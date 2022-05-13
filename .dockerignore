@@ -1,0 +1,11 @@
+Dockerfile*
+.dockerignore
+.editorconfig
+.gitignore
+README.md
+node_modules/
+.yarn/cache
+.eslintcache
+.github
+.github_build
+.build

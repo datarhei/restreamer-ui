@@ -1,0 +1,97 @@
+{
+	"name": "restreamer-ui",
+	"version": "1.0.0",
+	"bundle": "restreamer-v2.0.0",
+	"private": false,
+	"dependencies": {
+		"@auth0/auth0-spa-js": "^1.16.1",
+		"@clappr/core": "^0.4.17",
+		"@clappr/hlsjs-playback": "^0.5.3",
+		"@clappr/plugins": "^0.4.10",
+		"@clappr/stats-plugin": "^0.2.0",
+		"@emotion/react": "^11.5.0",
+		"@emotion/styled": "^11.3.0",
+		"@fontsource/dosis": "^4.5.1",
+		"@fontsource/roboto": "^4.5.5",
+		"@fortawesome/fontawesome-svg-core": "^6.1.1",
+		"@fortawesome/free-brands-svg-icons": "^5.15.2",
+		"@fortawesome/free-solid-svg-icons": "^5.15.2",
+		"@fortawesome/react-fontawesome": "^0.1.14",
+		"@lingui/core": "^3.13.2",
+		"@lingui/macro": "^3.4.0",
+		"@lingui/react": "^3.4.0",
+		"@material-ui/core": "^4.11.3",
+		"@material-ui/icons": "^4.11.2",
+		"@material-ui/lab": "^4.0.0-alpha.57",
+		"@mui/icons-material": "^5.0.4",
+		"@mui/lab": "^5.0.0-alpha.51",
+		"@mui/material": "^5.0.4",
+		"@mui/styles": "^5.0.1",
+		"@testing-library/dom": ">=5",
+		"@testing-library/jest-dom": "^4.2.4",
+		"@testing-library/react": "^9.5.0",
+		"@testing-library/user-event": "^7.2.1",
+		"babel-plugin-macros": "2 || 3",
+		"eslint": "^7.19.0",
+		"handlebars": "^4.7.6",
+		"hls.js": "^0.13.2",
+		"jwt-decode": "^3.1.2",
+		"make-plural": "^7.1.0",
+		"react": "^17.0.2",
+		"react-colorful": "^5.5.1",
+		"react-device-detect": "^2.2.2",
+		"react-dom": "^17.0.2",
+		"react-router-dom": "^6.2.1",
+		"react-scripts": "4.0.3",
+		"semver": "^7.3.4",
+		"typescript": "^3.9.7",
+		"url-parse": "^1.5.10",
+		"uuid": "^8.3.2",
+		"video.js": "^7.18.1",
+		"videojs-overlay": "^2.1.5"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts --optimize-for-size build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"i18n-extract": "lingui extract",
+		"i18n-extract:clean": "lingui extract --clean",
+		"i18n-compile": "lingui compile",
+		"format": "prettier --write ./src"
+	},
+	"eslintConfig": {
+		"extends": "react-app",
+		"overrides": [
+			{
+				"files": [
+					"**/*.js"
+				],
+				"rules": {
+					"import/no-anonymous-default-export": "off"
+				}
+			}
+		]
+	},
+	"browserslist": {
+		"production": [
+			"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"@babel/core": "^7.12.10",
+		"@lingui/cli": "^3.4.0",
+		"babel-core": "^7.0.0-bridge.0",
+		"prettier": "2.2.1",
+		"react-error-overlay": "^6.0.11"
+	},
+	"resolutions": {
+		"url-parse@1.5.3": "patch:url-parse@npm:1.5.3#.yarn/patches/url-parse-npm-1.5.3-225ab9cae7.patch",
+		"react-error-overlay": "6.0.9"
+	}
+}

@@ -1,0 +1,7 @@
+dist/video.min.js
+dist/video-js.min.css
+dist/videojs-overlay.min.js
+dist/videojs-overlay.min.css
+dist/video-js-skin.min.css
+dist/videojs-license.min.js
+dist/videojs-license.min.css
