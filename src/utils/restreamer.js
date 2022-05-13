@@ -2898,7 +2898,7 @@ class Restreamer {
 
 		config.service.token = '[anonymized]';
 
-		config.stats.ip_ignorelist = config.stats.ip_ignorelist.map((e) => '[anonymized]');
+		config.sessions.ip_ignorelist = config.sessions.ip_ignorelist.map((e) => '[anonymized]');
 
 		return config;
 	}
