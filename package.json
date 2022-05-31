@@ -25,7 +25,7 @@
 		"@material-ui/lab": "^4.0.0-alpha.57",
 		"@mui/icons-material": "^5.0.4",
 		"@mui/lab": "^5.0.0-alpha.51",
-		"@mui/material": "^5.0.4",
+		"@mui/material": "^5.7.0",
 		"@mui/styles": "^5.0.1",
 		"@testing-library/dom": ">=5",
 		"@testing-library/jest-dom": "^4.2.4",
