@@ -26,7 +26,7 @@
 		"@mui/icons-material": "^5.0.4",
 		"@mui/lab": "^5.0.0-alpha.51",
 		"@mui/material": "^5.0.4",
-		"@mui/styles": "^5.0.1",
+		"@mui/styles": "^5.7.0",
 		"@testing-library/dom": ">=5",
 		"@testing-library/jest-dom": "^4.2.4",
 		"@testing-library/react": "^9.5.0",
