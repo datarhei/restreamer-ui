@@ -4,7 +4,7 @@
 	"bundle": "restreamer-v2.0.0",
 	"private": false,
 	"dependencies": {
-		"@auth0/auth0-spa-js": "^1.16.1",
+		"@auth0/auth0-spa-js": "^1.21.1",
 		"@clappr/core": "^0.4.17",
 		"@clappr/hlsjs-playback": "^0.5.3",
 		"@clappr/plugins": "^0.4.10",
