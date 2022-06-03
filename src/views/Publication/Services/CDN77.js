@@ -13,8 +13,7 @@ const version = '1.0';
 const stream_key_link = '';
 const description = (
 	<Trans>
-		Transmit the main source to an CDN77 RTMP Service.
-		More about the setup{' '}
+		Transmit the main source to an CDN77 RTMP Service. More about the setup{' '}
 		<Link color="secondary" target="_blank" href="https://client.cdn77.com/support/knowledgebase/streaming/ls_general_setup">
 			here
 		</Link>

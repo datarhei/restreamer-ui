@@ -6,11 +6,13 @@ import makeStyles from '@mui/styles/makeStyles';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import WarningIcon from '@mui/icons-material/Warning';
 
 import useInterval from '../../hooks/useInterval';
 import ActionButton from '../../misc/ActionButton';
+import CopyButton from '../../misc/CopyButton';
 import DebugModal from '../../misc/modals/Debug';
 import H from '../../utils/help';
 import Paper from '../../misc/Paper';
@@ -19,7 +21,6 @@ import Player from '../../misc/Player';
 import Progress from './Progress';
 import Publication from './Publication';
 import ProcessModal from '../../misc/modals/Process';
-import TextFieldCopy from '../../misc/TextFieldCopy';
 import Welcome from '../Welcome';
 
 const useStyles = makeStyles((theme) => ({
@@ -141,7 +142,6 @@ export default function Main(props) {
 			},
 		});
 
-		await props.restreamer.CleanupIngest(_channelid);
 		await props.restreamer.StartIngest(_channelid);
 		await props.restreamer.StartIngestSnapshot(_channelid);
 	};
@@ -156,9 +156,6 @@ export default function Main(props) {
 		await props.restreamer.StopIngest(_channelid);
 
 		await disconnectEgresses();
-
-		// Cleanup previous files
-		await props.restreamer.CleanupIngest(_channelid);
 	};
 
 	const reconnect = async () => {
@@ -363,10 +360,19 @@ export default function Main(props) {
 								<Progress progress={$state.progress} />
 							</Grid>
 							<Grid item xs={12} marginTop="-.2em">
-								<TextFieldCopy
-									label={<Trans>HLS URL</Trans>}
-									value={address + manifest}
-								/>
+								<Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
+									<Typography variant="body">
+										<Trans>Content URL</Trans>
+									</Typography>
+									<Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={0.5}>
+										<CopyButton variant="outlined" color="default" size="small" value={address + manifest}>
+											<Trans>HLS</Trans>
+										</CopyButton>
+										<CopyButton variant="outlined" color="default" size="small" value={address + poster}>
+											<Trans>Snapshot</Trans>
+										</CopyButton>
+									</Stack>
+								</Stack>
 							</Grid>
 							<Grid item xs={12} marginTop="0em">
 								<ActionButton

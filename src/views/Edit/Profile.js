@@ -36,6 +36,7 @@ export default function Source(props) {
 		modal: false,
 		status: 'none',
 	});
+	const [$skillsRefresh, setSkillsRefresh] = React.useState(false);
 	const [$modal, setModal] = React.useState({
 		open: false,
 		data: '',
@@ -193,6 +194,12 @@ export default function Source(props) {
 		return status === 'success';
 	};
 
+	const handleRefresh = async () => {
+		setSkillsRefresh(true);
+		await props.onRefresh();
+		setSkillsRefresh(false);
+	};
+
 	const handleEncoding = (type) => (encoder, decoder) => {
 		const profile = $profile[type];
 
@@ -321,6 +328,7 @@ export default function Source(props) {
 								config={props.config}
 								onProbe={handleProbe}
 								onChange={handleSourceSettingsChange}
+								onRefresh={handleRefresh}
 							/>
 						</Grid>
 						{$videoProbe.status !== 'none' && (
@@ -426,6 +434,7 @@ export default function Source(props) {
 								onProbe={handleProbe}
 								onSelect={handleSourceChange}
 								onChange={handleSourceSettingsChange}
+								onRefresh={handleRefresh}
 							/>
 						</Grid>
 						{$profile.custom.selected === false && $profile.custom.stream >= 0 && (
@@ -544,7 +553,7 @@ export default function Source(props) {
 					/>
 				</React.Fragment>
 			)}
-			<Backdrop open={$videoProbe.probing || $audioProbe.probing}>
+			<Backdrop open={$videoProbe.probing || $audioProbe.probing || $skillsRefresh}>
 				<CircularProgress color="inherit" />
 			</Backdrop>
 			<ProbeModal open={$modal.open} onClose={handleModal('none')} data={$modal.data} />
@@ -566,4 +575,5 @@ Source.defaultProps = {
 			log: ['onProbe function not provided for this component'],
 		};
 	},
+	onRefresh: function () {},
 };

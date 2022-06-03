@@ -6,13 +6,14 @@ import Link from '@mui/material/Link';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 
+import FormInlineButton from '../../../misc/FormInlineButton';
 import Logo from './logos/datarhei.svg';
 import Select from '../../../misc/Select';
 
 const id = 'datarhei_core';
 const name = 'datarhei Core';
 const version = '1.0';
-const stream_key_link = '';
+const stream_key_link = 'https://docs.datarhei.com/restreamer/knowledge-base/manual/system-settings/rtmp';
 const description = (
 	<Trans>
 		Transmit the main source to an datarhei Core Ressource. More details about the settings can be found{' '}
@@ -77,7 +78,7 @@ function Service(props) {
 		const options = ['-f', 'flv'];
 
 		const output = {
-			address: settings.protocol + settings.base_url + settings.app_path + settings.stream_name + '?token=' + settings.rtmp_token,
+			address: settings.protocol + settings.base_url + '/' + settings.app_path + '/' + settings.stream_name + '?token=' + settings.rtmp_token,
 			options: options,
 		};
 
@@ -103,13 +104,7 @@ function Service(props) {
 				/>
 			</Grid>
 			<Grid item xs={12} md={3}>
-				<TextField
-					variant="outlined"
-					fullWidth
-					label={<Trans>App</Trans>}
-					value={settings.app_path}
-					onChange={handleChange('app_path')}
-				/>
+				<TextField variant="outlined" fullWidth label={<Trans>App</Trans>} value={settings.app_path} onChange={handleChange('app_path')} />
 			</Grid>
 			<Grid item xs={12} md={12}>
 				<TextField
@@ -120,7 +115,7 @@ function Service(props) {
 					onChange={handleChange('stream_name')}
 				/>
 			</Grid>
-			<Grid item xs={12} md={12}>
+			<Grid item xs={12} md={9}>
 				<TextField
 					variant="outlined"
 					fullWidth
@@ -128,6 +123,11 @@ function Service(props) {
 					value={settings.rtmp_token}
 					onChange={handleChange('rtmp_token')}
 				/>
+			</Grid>
+			<Grid item xs={12} md={3}>
+				<FormInlineButton target="blank" href={stream_key_link} component="a">
+					<Trans>GET</Trans>
+				</FormInlineButton>
 			</Grid>
 		</Grid>
 	);

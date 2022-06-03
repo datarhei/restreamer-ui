@@ -588,37 +588,30 @@ class Restreamer {
 		};
 
 		for (let device of val.devices.demuxers) {
-			if (['avfoundation', 'video4linux2', 'alsa', 'fbdev'].includes(device.id)) {
-				if (device.devices.length === 0) {
-					continue;
-				}
+			if (!['avfoundation', 'video4linux2', 'alsa', 'fbdev'].includes(device.id)) {
+				continue;
+			}
 
-				skills.sources[device.id] = [];
+			// It's OK to have an empty list of devices because a device might get
+			// plugged meanwhile and a refresh is required.
+			skills.sources[device.id] = [];
 
-				// Split out a Raspberry Pi camera and create a dedicated source
-				if (device.id === 'video4linux2') {
-					for (let d of device.devices) {
-						if (d.extra.indexOf('bcm2835-v4l2') !== -1) {
-							if (!('raspicam' in skills.sources)) {
-								skills.sources['raspicam'] = [];
-							}
-							skills.sources['raspicam'].push({ ...d });
-						} else {
-							skills.sources[device.id].push({ ...d });
+			// Split out a Raspberry Pi camera and create a dedicated source
+			if (device.id === 'video4linux2') {
+				for (let d of device.devices) {
+					if (d.extra.indexOf('bcm2835-v4l2') !== -1) {
+						if (!('raspicam' in skills.sources)) {
+							skills.sources['raspicam'] = [];
 						}
-					}
-				} else {
-					for (let d of device.devices) {
+						skills.sources['raspicam'].push({ ...d });
+					} else {
 						skills.sources[device.id].push({ ...d });
 					}
 				}
-			}
-		}
-
-		// Check if the V4L sources are empty and remove them in this case
-		if ('video4linux2' in skills.sources) {
-			if (skills.sources['video4linux2'].length === 0) {
-				delete skills.sources['video4linux2'];
+			} else {
+				for (let d of device.devices) {
+					skills.sources[device.id].push({ ...d });
+				}
 			}
 		}
 
@@ -1032,7 +1025,7 @@ class Restreamer {
 	}
 
 	async DeleteChannel(channelid) {
-		const channel = this.channels.get(channelid);
+		const channel = this.GetChannel(channelid);
 		if (channel === null) {
 			return false;
 		}
@@ -1044,8 +1037,6 @@ class Restreamer {
 		for (let egressid of channel.egresses) {
 			await this.DeleteEgress(channel.channelid, egressid);
 		}
-
-		await this.CleanupIngest(channel.channelid);
 
 		this.channels.delete(channel.channelid);
 
@@ -1425,7 +1416,7 @@ class Restreamer {
 		return await this._deleteProcess(channel.id);
 	}
 
-	// Delete the inges snaphot process
+	// Delete the ingest snaphot process
 	async DeleteIngestSnapshot(channelid) {
 		const channel = this.GetChannel(channelid);
 		if (channel === null) {
@@ -1473,11 +1464,13 @@ class Restreamer {
 				{
 					pattern: `memfs:/${channel.channelid}_*.ts`,
 					max_files: parseInt(control.hls.listSize) + 2,
-					max_file_age_seconds: parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 2),
+					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 2) : 0,
+					purge_on_delete: true,
 				},
 				{
 					pattern: `memfs:/${channel.channelid}.m3u8`,
-					max_file_age_seconds: parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 2),
+					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 2) : 0,
+					purge_on_delete: true,
 				},
 			],
 		};
@@ -1565,12 +1558,18 @@ class Restreamer {
 					id: 'output_0',
 					address: `{memfs}/${channel.channelid}.jpg`,
 					options: ['-vframes', '1', '-f', 'image2', '-update', '1'],
+					cleanup: [
+						{
+							pattern: `memfs:/${channel.channelid}.jpg`,
+							purge_on_delete: true,
+						},
+					],
 				},
 			],
 			options: ['-err_detect', 'ignore_err'],
 			autostart: control.process.autostart,
 			reconnect: true,
-			reconnect_delay_seconds: control.snapshot.interval,
+			reconnect_delay_seconds: parseInt(control.snapshot.interval),
 			stale_timeout_seconds: 30,
 		};
 
@@ -1590,30 +1589,6 @@ class Restreamer {
 		});
 
 		return [val, null];
-	}
-
-	// Cleanup the ingest files from the memfs
-	async CleanupIngest(channelid) {
-		const channel = this.GetChannel(channelid);
-		if (channel === null) {
-			return false;
-		}
-
-		let [files] = await this._call(this.api.MemFSListFiles, `/${channel.channelid}*`);
-		if (Array.isArray(files) === false) {
-			files = [];
-		}
-
-		let cleanup = true;
-
-		for (let file of files) {
-			const [, err] = await this._call(this.api.MemFSDeleteFile, file.name);
-			if (err !== null) {
-				cleanup = false;
-			}
-		}
-
-		return cleanup;
 	}
 
 	// Check whether the manifest of the ingest process is available
@@ -1870,11 +1845,12 @@ class Restreamer {
 			player: 'videojs',
 			playersite: true,
 			channelid: 'current',
-			titel: 'restreamer',
+			title: 'restreamer',
+			share: true,
 			support: true,
 			template: '!default',
 			templatename: '',
-			textcolor_titel: 'rgba(255,255,255,1)',
+			textcolor_title: 'rgba(255,255,255,1)',
 			textcolor_default: 'rgba(230,230,230,1)',
 			textcolor_link: 'rgba(230,230,230,1)',
 			textcolor_link_hover: 'rgba(255,255,255,1)',
@@ -1938,15 +1914,23 @@ class Restreamer {
 			return arg1 === arg2 ? options.fn(this) : options.inverse(this);
 		});
 
+		Handlebars.registerHelper('ifnoteq', function (arg1, arg2, options) {
+			if (arg1 !== arg2) {
+				return options.fn(this);
+			}
+			return options.inverse(this);
+		});
+
 		for (const item of channels) {
 			const ingestMetadata = await this.GetIngestMetadata(item.channelid);
 			const templateData = {
 				player: settings.player,
 				playersite: settings.playersite,
-				titel: settings.titel,
+				title: settings.title,
+				share: settings.share,
 				support: settings.support,
 				url: this.GetPlayersiteUrl(),
-				textcolor_titel: settings.textcolor_titel,
+				textcolor_title: settings.textcolor_title,
 				textcolor_default: settings.textcolor_default,
 				textcolor_link: settings.textcolor_link,
 				textcolor_link_hover: settings.textcolor_link_hover,
@@ -2466,7 +2450,7 @@ class Restreamer {
 			};
 
 			const findVersion = (name) => {
-				const matches = name.match(/\sv(\d+\.\d+\.\d+)\s?/);
+				const matches = name.match(/v(\d+\.\d+\.\d+)\s*$/);
 				if (matches === null) {
 					return '0.0.0';
 				}
@@ -2477,10 +2461,12 @@ class Restreamer {
 			const currentVersion = findVersion(Version.UI);
 			const announcedVersion = findVersion(value.latest_version);
 
-			if (SemverGt(announcedVersion, currentVersion)) {
-				this.hasUpdates = true;
-			} else {
-				this.hasUpdates = false;
+			if (currentVersion !== '0.0.0') {
+				if (SemverGt(announcedVersion, currentVersion)) {
+					this.hasUpdates = true;
+				} else {
+					this.hasUpdates = false;
+				}
 			}
 
 			const serviceVersion = findVersion(value.service_version);
@@ -2625,14 +2611,15 @@ class Restreamer {
 		}
 
 		if (p.state) {
-			for (let i in p.state.progress.input) {
-				p.state.progress.input[i].address = replace(p.state.progress.input[i].address);
+			for (let i in p.state.progress.inputs) {
+				p.state.progress.inputs[i].address = replace(p.state.progress.inputs[i].address);
 			}
 
-			for (let i in p.state.progress.output) {
-				p.state.progress.output[i].address = replace(p.state.progress.output[i].address);
+			for (let i in p.state.progress.outputs) {
+				p.state.progress.outputs[i].address = replace(p.state.progress.outputs[i].address);
 			}
 
+			p.state.command = p.state.command.map(replace);
 			p.state.last_logline = replace(p.state.last_logline);
 		}
 

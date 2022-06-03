@@ -98,7 +98,7 @@ export default function Playersite(props) {
 		const value = event.target.value;
 		const settings = $settings;
 
-		if (['playersite', 'header', 'support'].includes(what)) {
+		if (['playersite', 'header', 'share', 'support'].includes(what)) {
 			settings[what] = !settings[what];
 		} else {
 			settings[what] = value;
@@ -136,9 +136,10 @@ export default function Playersite(props) {
 			if (type === null) {
 				// not one of the allowed mimetypes
 				setSaving(false);
+				const types = imageAcceptString;
 				showUploadError(
 					<Trans>
-						The selected file type ({file.type}) is now allowed. Allowed file types are {imageAcceptString}
+						The selected file type ({file.type}) is not allowed. Allowed file types are {types}
 					</Trans>
 				);
 				return;
@@ -210,9 +211,10 @@ export default function Playersite(props) {
 			if (type === null) {
 				// not one of the allowed mimetypes
 				setSaving(false);
+				const types = templateAcceptString;
 				showUploadError(
 					<Trans>
-						The selected file type ({file.type}) is now allowed. Allowed file types are {templateAcceptString}
+						The selected file type ({file.type}) is not allowed. Allowed file types are {types}
 					</Trans>
 				);
 				return;
@@ -235,7 +237,7 @@ export default function Playersite(props) {
 				if (reader.result === null) {
 					// reading the file failed
 					setSaving(false);
-					showUploadError(<Trans>There war an error during upload: {reader.error.message}</Trans>);
+					showUploadError(<Trans>There was an error during upload: {reader.error.message}</Trans>);
 					return;
 				}
 
@@ -364,7 +366,8 @@ export default function Playersite(props) {
 								<Grid item xs={12}>
 									<Typography variant="body1">
 										<Trans>
-											In addition to the player, the Restreamer offers a complete landingpage, which you can use to present your live stream easily and quickly.
+											In addition to the player, the Restreamer offers a complete landingpage, which you can use to present your live
+											stream easily and quickly.
 										</Trans>
 									</Typography>
 								</Grid>
@@ -377,8 +380,8 @@ export default function Playersite(props) {
 										fullWidth
 										label={<Trans>Sitename</Trans>}
 										disabled={!$settings.playersite}
-										value={$settings.titel}
-										onChange={handleChange('titel')}
+										value={$settings.title}
+										onChange={handleChange('title')}
 									/>
 								</Grid>
 								<Grid item xs={12}>
@@ -408,6 +411,14 @@ export default function Playersite(props) {
 									<Typography variant="caption">
 										<Trans>Main page channel (index.html).</Trans>
 									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<Checkbox
+										label={<Trans>Share button</Trans>}
+										checked={$settings.share}
+										disabled={!$settings.playersite}
+										onChange={handleChange('share')}
+									/>
 								</Grid>
 								<Grid item xs={12}>
 									<Checkbox
@@ -448,7 +459,9 @@ export default function Playersite(props) {
 										})}
 									</Select>
 									<Typography variant="caption">
-										<Trans>Template to be used for creating the publication website. The delete button removes the selection from the system.</Trans>
+										<Trans>
+											Template to be used for creating the publication website. The delete button removes the selection from the system.
+										</Trans>
 									</Typography>
 								</Grid>
 								<Grid item xs={12} md={3}>
@@ -520,8 +533,8 @@ export default function Playersite(props) {
 										variant="outlined"
 										fullWidth
 										label={<Trans>Headline</Trans>}
-										value={$settings.textcolor_titel}
-										onChange={handleChange('textcolor_titel')}
+										value={$settings.textcolor_title}
+										onChange={handleChange('textcolor_title')}
 									/>
 								</Grid>
 								<Grid item xs={6}>

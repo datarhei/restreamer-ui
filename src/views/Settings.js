@@ -1173,7 +1173,12 @@ export default function Settings(props) {
 									{$updates.has === true && (
 										<BoxText color="success">
 											<Typography variant="inherit" color="inherit" width="100%">
-												<Link color="inherit" style={{ textDecoration: 'underline' }} onClick={handleHelp('update-link')} target="_blank">
+												<Link
+													color="inherit"
+													style={{ textDecoration: 'underline', cursor: 'pointer' }}
+													onClick={handleHelp('update-link')}
+													target="_blank"
+												>
 													<Trans>There are updates available. Here you get more information.</Trans>
 												</Link>
 											</Typography>

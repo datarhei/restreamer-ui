@@ -50,7 +50,9 @@ export default function Component(props) {
 			justifyContent="center"
 			alignItems="center"
 			spacing={1}
-			className={props.color === 'dark' ? classes.dark : props.color === 'success' ? classes.success : props.color === 'danger' ? classes.danger : classes.light}
+			className={
+				props.color === 'dark' ? classes.dark : props.color === 'success' ? classes.success : props.color === 'danger' ? classes.danger : classes.light
+			}
 			{...props}
 		>
 			{props.children}
@@ -59,5 +61,5 @@ export default function Component(props) {
 }
 
 Component.defaultProps = {
-	color: 'light'
+	color: 'light',
 };

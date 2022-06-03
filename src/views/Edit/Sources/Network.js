@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import SemverSatisfies from 'semver/functions/satisfies';
 
 import { useLingui } from '@lingui/react';
 import { Trans, t } from '@lingui/macro';
@@ -116,8 +117,14 @@ const initSkills = (initialSkills) => {
 	}
 
 	const skills = {
+		ffmpeg: {},
 		protocols: {},
 		...initialSkills,
+	};
+
+	skills.ffmpeg = {
+		version: '0.0.0',
+		...skills.version,
 	};
 
 	skills.protocols = {
@@ -131,6 +138,11 @@ const initSkills = (initialSkills) => {
 const createInputs = (settings, config, skills) => {
 	config = initConfig(config);
 	skills = initSkills(skills);
+
+	let ffmpeg_version = 4;
+	if (SemverSatisfies(skills.ffmpeg.version, '^5.0.0')) {
+		ffmpeg_version = 5;
+	}
 
 	const input = {
 		address: '',
@@ -159,7 +171,11 @@ const createInputs = (settings, config, skills) => {
 		input.address = addUsernamePassword(input.address, settings.username, settings.password);
 
 		if (protocol === 'rtsp') {
-			input.options.push('-stimeout', settings.rtsp.stimeout);
+			if (ffmpeg_version === 4) {
+				input.options.push('-stimeout', settings.rtsp.stimeout);
+			} else {
+				input.options.push('-timeout', settings.rtsp.stimeout);
+			}
 
 			if (settings.rtsp.udp === true) {
 				input.options.push('-rtsp_transport', 'udp');
@@ -209,10 +225,10 @@ const addUsernamePassword = (address, username, password) => {
 
 	const url = urlparser(address, {});
 	if (username.length !== 0) {
-		url.set('username', encodeURIComponent(username));
+		url.set('username', username);
 	}
 	if (password.length !== 0) {
-		url.set('password', encodeURIComponent(password));
+		url.set('password', password);
 	}
 
 	return url.toString();
@@ -667,6 +683,7 @@ function SourceIcon(props) {
 const id = 'network';
 const name = <Trans>Network source</Trans>;
 const capabilities = ['audio', 'video'];
+const ffversion = '^4.1.0 || ^5.0.0';
 
 const func = {
 	initSettings,
@@ -680,4 +697,4 @@ const func = {
 	isAuthProtocol,
 };
 
-export { id, name, capabilities, SourceIcon as icon, Source as component, func };
+export { id, name, capabilities, ffversion, SourceIcon as icon, Source as component, func };

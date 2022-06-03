@@ -57,7 +57,7 @@ Component.defaultProps = {
 	spacing: 0,
 	padding: null,
 	title: '',
-	variant: 'pagetitel',
+	variant: 'pagetitle',
 	onAbort: null,
 	onHelp: null,
 	onEdit: null,

@@ -14,7 +14,7 @@
 	{{#if channel_creator_name}}
 	<meta name="author" content="{{channel_creator_name}}">
 	{{/if}}
-    <meta property="og:site_name" content="{{titel}}">
+    <meta property="og:site_name" content="{{title}}">
     <meta property="og:url" content="{{url}}">
     <meta property="og:title" content="{{channel_name}}">
     <meta property="og:image" content="{{channel_poster}}">
@@ -99,7 +99,7 @@
 			background-color: {{bgcolor_header}};
 		}
 		.header-title {
-			color: {{textcolor_titel}};
+			color: {{textcolor_title}};
 			font-size: 1.4rem;
 			font-weight: 400;
 			padding-left: .5em;
@@ -181,7 +181,7 @@
 			}
 		}
 		.content-headline {
-			color: {{textcolor_titel}};
+			color: {{textcolor_title}};
 			font-size: 1.5rem;
 			font-weight: 500;
 		}
@@ -195,13 +195,13 @@
 			}
 		}
 		.channel-stats {
-			color: {{textcolor_titel}};
+			color: {{textcolor_title}};
 			font-weight: 500;
 			padding-top: 0.6em;
 			padding-bottom: 0.8em;
 		}
 		.channel-stats-icon {
-			color: {{textcolor_titel}};
+			color: {{textcolor_title}};
 			font-size: 1.3rem !important;
 			height: 1em;
 			margin-right: 0.5em;
@@ -344,14 +344,14 @@
 			display: flex;
 		}
 		.close {
-			color: {{textcolor_titel}};
+			color: {{textcolor_title}};
 			float: right;
 			font-size: 28px;
 			font-weight: bold;
 		}
 		.close:hover,
 		.close:focus {
-			color: {{textcolor_titel}};
+			color: {{textcolor_title}};
 			text-decoration: none;
 			cursor: pointer;
 		}
@@ -364,7 +364,7 @@
 <body>
 	<div class="row">
 		<div class="col-xs-12 middle-xs header">
-			<h1 class="header-title">{{titel}}</h1>
+			<h1 class="header-title">{{title}}</h1>
 		</div>
 	</div>
 	<div class="row max-width">
@@ -397,7 +397,9 @@
 									<span id="channel_stats_runtime_{{channel_id}}"></span> <span class="material-icons inline-icon channel-stats-icon">live_tv</span>
 								</div>
 								<div class="col-xs-3 middle-xs right-align">
+									{{#if share}}
 									<a id="btn-share" href="#"><span class="material-icons inline-icon">share</span> SHARE</a>
+									{{/if}}
 								</div>
 							</div>
 							<hr>
@@ -411,8 +413,10 @@
 										<strong>Creator:</strong> <a id="btn-creator" href="#">{{channel_creator_name}}</a><br />
 										{{/if}}
 										{{#if channel_license}}
+										{{#ifnoteq channel_license "none"}}
 										<strong>Content license:</strong><br />
 										<a id="license" target="_blank" rel="noopener"><img id="license_image" class="channel-license-image" height="40" width="114" /></a>
+										{{/ifnoteq}}
 										{{/if}}
 									</p>
 								</div>

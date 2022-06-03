@@ -2,9 +2,11 @@ import React from 'react';
 
 import { useLingui } from '@lingui/react';
 import { Trans, t } from '@lingui/macro';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Icon from '@mui/icons-material/Apple';
 import MenuItem from '@mui/material/MenuItem';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import Typography from '@mui/material/Typography';
 
 import * as S from '../../Sources/AVFoundation';
@@ -28,7 +30,13 @@ function Source(props) {
 	const handleChange = (newSettings) => {
 		newSettings = newSettings || settings;
 
-		props.onChange(S.id, newSettings, S.func.createInputs(newSettings), true);
+		const filteredDevices = props.knownDevices.filter((device) => device.media === 'video');
+
+		props.onChange(S.id, newSettings, S.func.createInputs(newSettings), filteredDevices.length !== 0 ? true : false);
+	};
+
+	const handleRefresh = () => {
+		props.onRefresh();
 	};
 
 	const update = (what) => (event) => {
@@ -56,11 +64,19 @@ function Source(props) {
 		);
 	});
 
-	options.unshift(
-		<MenuItem key="default" value="default">
-			{i18n._(t`Default`)}
-		</MenuItem>
-	);
+	if (options.length === 0) {
+		options.push(
+			<MenuItem key="none" value="none" disabled={true}>
+				{i18n._(t`No input device available`)}
+			</MenuItem>
+		);
+	} else {
+		options.unshift(
+			<MenuItem key="default" value="default">
+				{i18n._(t`Default`)}
+			</MenuItem>
+		);
+	}
 
 	const videoDevices = (
 		<Select label={<Trans>Video device</Trans>} value={settings.vindex} onChange={update('vindex')}>
@@ -82,11 +98,14 @@ function Source(props) {
 			{i18n._(t`None`)}
 		</MenuItem>
 	);
-	options.unshift(
-		<MenuItem key="default" value="default">
-			{i18n._(t`Default`)}
-		</MenuItem>
-	);
+
+	if (options.length > 1) {
+		options.unshift(
+			<MenuItem key="default" value="default">
+				{i18n._(t`Default`)}
+			</MenuItem>
+		);
+	}
 
 	const audioDevices = (
 		<Select label={<Trans>Audio Device</Trans>} value={settings.aindex} onChange={update('aindex')}>
@@ -112,6 +131,9 @@ function Source(props) {
 				<Grid container alignItems="center" spacing={1}>
 					<Grid item xs={12}>
 						{audioDevices}
+						<Button size="small" startIcon={<RefreshIcon />} onClick={handleRefresh} sx={{ float: 'right' }}>
+							<Trans>Refresh</Trans>
+						</Button>
 					</Grid>
 				</Grid>
 			</Grid>
@@ -123,6 +145,7 @@ Source.defaultProps = {
 	knownDevices: [],
 	settings: {},
 	onChange: function (type, settings, inputs, ready) {},
+	onRefresh: function () {},
 };
 
 function SourceIcon(props) {

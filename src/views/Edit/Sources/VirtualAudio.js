@@ -81,7 +81,7 @@ function Source(props) {
 		<Grid container alignItems="flex-start" spacing={2} style={{ marginTop: '0.5em' }}>
 			<Grid item xs={12}>
 				<Typography>
-					<Trans>Select audio Source:</Trans>
+					<Trans>Select audio source:</Trans>
 				</Typography>
 			</Grid>
 			<Grid item xs={12}>
@@ -186,10 +186,11 @@ function SourceIcon(props) {
 const id = 'virtualaudio';
 const name = <Trans>Virtual source</Trans>;
 const capabilities = ['audio'];
+const ffversion = '^4.1.0 || ^5.0.0';
 
 const func = {
 	initSettings,
 	createInputs,
 };
 
-export { id, name, capabilities, SourceIcon as icon, Source as component, func };
+export { id, name, capabilities, ffversion, SourceIcon as icon, Source as component, func };

@@ -15,7 +15,7 @@ const version = '1.0';
 const stream_key_link = '';
 const description = (
 	<Trans>
-		Transmit the main source to an Red5/Pro Server. More details about the settings can be found {' '}
+		Transmit the main source to an Red5/Pro Server. More details about the settings can be found{' '}
 		<Link color="secondary" target="_blank" href="https://www.red5pro.com/docs/server/ffmpeg/publishing-live-streams/">
 			here
 		</Link>

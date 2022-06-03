@@ -8,7 +8,6 @@ const root = {
 };
 
 const outlined = {
-
 	base: {
 		color: base.palette.text.primary,
 		backgroundColor: base.palette.background.dark1,

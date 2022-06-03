@@ -165,6 +165,7 @@ const topics = {
 
 function getTopicURL(topic, locale) {
 	if (!(topic in topics)) {
+		console.warn(`help topic "${topic}" not found`);
 		// If topic doesn't exist, return default URL
 		return 'https://docs.datarhei.com/restreamer';
 	}

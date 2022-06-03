@@ -14,14 +14,7 @@ export default function Component(props) {
 	const classes = useStyles();
 
 	return (
-		<Button
-			variant="outlined"
-			size="large"
-			fullWidth
-			color="primary"
-			className={classes.button}
-			{...props}
-		>
+		<Button variant="outlined" size="large" fullWidth color="primary" className={classes.button} {...props}>
 			{props.children}
 		</Button>
 	);

@@ -3,8 +3,10 @@ import React from 'react';
 import { useLingui } from '@lingui/react';
 import { Trans, t } from '@lingui/macro';
 import makeStyles from '@mui/styles/makeStyles';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Icon from '@mui/icons-material/Apple';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import Typography from '@mui/material/Typography';
 
 import Checkbox from '../../../misc/Checkbox';
@@ -92,6 +94,10 @@ function Source(props) {
 		});
 	};
 
+	const handleRefresh = () => {
+		props.onRefresh();
+	};
+
 	const handleProbe = () => {
 		props.onProbe(settings, createInputs(settings));
 	};
@@ -171,6 +177,9 @@ function Source(props) {
 			</Grid>
 			<Grid item xs={12}>
 				{audioDevices}
+				<Button size="small" startIcon={<RefreshIcon />} onClick={handleRefresh} sx={{ float: 'right' }}>
+					<Trans>Refresh</Trans>
+				</Button>
 			</Grid>
 			<Grid item xs={12}>
 				<Video.Format value={settings.format} onChange={handleChange('format')} allowCustom />
@@ -201,6 +210,7 @@ Source.defaultProps = {
 	settings: {},
 	onChange: function (settings) {},
 	onProbe: function (settings, inputs) {},
+	onRefresh: function () {},
 };
 
 function SourceIcon(props) {
@@ -210,10 +220,11 @@ function SourceIcon(props) {
 const id = 'avfoundation';
 const name = <Trans>AVFoundation</Trans>;
 const capabilities = ['audio', 'video'];
+const ffversion = '^4.1.0 || ^5.0.0';
 
 const func = {
 	initSettings,
 	createInputs,
 };
 
-export { id, name, capabilities, SourceIcon as icon, Source as component, func };
+export { id, name, capabilities, ffversion, SourceIcon as icon, Source as component, func };

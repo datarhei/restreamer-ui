@@ -5,11 +5,14 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
+import Checkbox from '../Checkbox';
+
 function init(settings) {
 	const initSettings = {
 		lhls: false,
 		segmentDuration: 2,
 		listSize: 6,
+		cleanup: true,
 		...settings,
 	};
 
@@ -28,7 +31,7 @@ export default function Control(props) {
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
 
-		if (what === 'lhls') {
+		if (['lhls', 'cleanup'].includes(what)) {
 			settings[what] = !settings[what];
 		} else {
 			settings[what] = value;
@@ -75,6 +78,9 @@ export default function Control(props) {
 				<Typography variant="caption">
 					<Trans>The maximum number of playlist segments. 0 will contain all the segments. 6 is recommended.</Trans>
 				</Typography>
+			</Grid>
+			<Grid item xs={12}>
+				<Checkbox label={<Trans>Automatic cleanup of all media data</Trans>} checked={settings.cleanup} onChange={handleChange('cleanup')} />
 			</Grid>
 		</Grid>
 	);

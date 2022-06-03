@@ -161,10 +161,22 @@ function Source(props) {
 						<TextField variant="outlined" fullWidth label={<Trans>Ratio</Trans>} value={settings.ratio} onChange={handleChange('ratio')} />
 					</Grid>
 					<Grid item xs={12}>
-						<TextField variant="outlined" fullWidth label={<Trans>Death color</Trans>} value={settings.death_color} onChange={handleChange('death_color')} />
+						<TextField
+							variant="outlined"
+							fullWidth
+							label={<Trans>Death color</Trans>}
+							value={settings.death_color}
+							onChange={handleChange('death_color')}
+						/>
 					</Grid>
 					<Grid item xs={12}>
-						<TextField variant="outlined" fullWidth label={<Trans>Life color</Trans>} value={settings.life_color} onChange={handleChange('life_color')} />
+						<TextField
+							variant="outlined"
+							fullWidth
+							label={<Trans>Life color</Trans>}
+							value={settings.life_color}
+							onChange={handleChange('life_color')}
+						/>
 					</Grid>
 					<Grid item xs={12}>
 						<TextField variant="outlined" fullWidth label={<Trans>Flags</Trans>} value={settings.flags} onChange={handleChange('flags')} />
@@ -193,10 +205,11 @@ function SourceIcon(props) {
 const id = 'virtualvideo';
 const name = <Trans>Virtual source</Trans>;
 const capabilities = ['video'];
+const ffversion = '^4.1.0 || ^5.0.0';
 
 const func = {
 	initSettings,
 	createInputs,
 };
 
-export { id, name, capabilities, SourceIcon as icon, Source as component, func };
+export { id, name, capabilities, ffversion, SourceIcon as icon, Source as component, func };

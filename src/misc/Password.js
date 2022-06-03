@@ -54,9 +54,7 @@ export default function Password(props) {
 				label={props.label}
 				autoComplete={props.autoComplete}
 			/>
-			{props.helperText && (
-				<FormHelperText>{props.helperText}</FormHelperText>
-			)}
+			{props.helperText && <FormHelperText>{props.helperText}</FormHelperText>}
 		</FormControl>
 	);
 }

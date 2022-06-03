@@ -25,14 +25,14 @@ const Component = React.forwardRef((props, ref) => {
 	elevation = 0;
 
 	return (
-        <Grid container justifyContent="center" spacing={1} style={{ marginBottom: props.marginBottom }}>
+		<Grid container justifyContent="center" spacing={1} style={{ marginBottom: props.marginBottom }}>
 			<Grid item xs={props.xs} sm={props.sm} md={props.md} lg={props.lg}>
 				<Paper className={classes[props.className]} elevation={elevation} ref={ref} {...other}>
 					{props.children}
 				</Paper>
 			</Grid>
 		</Grid>
-    );
+	);
 });
 
 export default Component;

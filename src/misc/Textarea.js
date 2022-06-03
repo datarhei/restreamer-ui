@@ -99,7 +99,7 @@ export default function Component(props) {
 	}
 
 	let textAreaDivStyle = {
-		width: '100%'
+		width: '100%',
 	};
 	let textAreaStyle = {
 		lineHeight: 1.3,
@@ -116,7 +116,7 @@ export default function Component(props) {
 	if (props.rows === 1) {
 		textAreaStyle = {
 			...textAreaStyle,
-			height: ((18 * props.rows) + 9.5) + 'px',
+			height: 18 * props.rows + 9.5 + 'px',
 			overflowY: 'hidden',
 			marginBottom: '0em',
 			marginTop: '0em',
@@ -134,7 +134,7 @@ export default function Component(props) {
 	} else {
 		textAreaStyle = {
 			...textAreaStyle,
-			height: ((18 * props.rows) + 8) + 'px',
+			height: 18 * props.rows + 8 + 'px',
 		};
 		textAreaDivStyle = {
 			...textAreaDivStyle,
@@ -149,20 +149,8 @@ export default function Component(props) {
 
 	return (
 		<React.Fragment>
-			<Stack
-				direction="column"
-				justifyContent="center"
-				alignItems="flex-start"
-				spacing={1}
-				style={textAreaDivStyle}
-			>
-				<Stack
-					direction="column"
-					justifyContent="flex-start"
-					alignItems="flex-end"
-					spacing={0}
-					width="100%"
-				>
+			<Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={1} style={textAreaDivStyle}>
+				<Stack direction="column" justifyContent="flex-start" alignItems="flex-end" spacing={0} width="100%">
 					{allowCopy && (
 						<IconButton size="small" onClick={handleCopy} style={actionButton}>
 							<FileCopyIcon fontSize="small" />

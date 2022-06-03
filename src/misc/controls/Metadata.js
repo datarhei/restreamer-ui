@@ -66,10 +66,7 @@ export default function Control(props) {
 	return (
 		<Grid container spacing={0}>
 			<Grid item xs={12}>
-				<TabsHorizontal
-					value={$tab}
-					onChange={handleChangeTab}
-				>
+				<TabsHorizontal value={$tab} onChange={handleChangeTab}>
 					<Tab className="tab" label={<Trans>Content</Trans>} value="content" />
 					<Tab className="tab" label={<Trans>Author</Trans>} value="author" />
 				</TabsHorizontal>

@@ -195,6 +195,13 @@ export default function Edit(props) {
 		});
 	};
 
+	const handleSkillsRefresh = async () => {
+		await props.restreamer.RefreshSkills();
+
+		const skills = await props.restreamer.Skills();
+		setSkills(skills);
+	};
+
 	const handleSourceProbe = async (inputs) => {
 		let [res, err] = await props.restreamer.Probe(_channelid, inputs);
 		if (err !== null) {
@@ -284,12 +291,6 @@ export default function Edit(props) {
 				return false;
 			}
 
-			// Cleanup previous files
-			let res = await props.restreamer.CleanupIngest(_channelid);
-			if (res === false) {
-				notify.Dispatch('warning', 'save:ingest', i18n._(t`Failed to correctly cleanup previous process data`));
-			}
-
 			// Create/update the ingest
 			const [, err] = await props.restreamer.UpsertIngest(_channelid, inputs, outputs, control);
 			if (err !== null) {
@@ -298,7 +299,7 @@ export default function Edit(props) {
 			}
 
 			// Save the metadata
-			res = await props.restreamer.SetIngestMetadata(_channelid, $data);
+			let res = await props.restreamer.SetIngestMetadata(_channelid, $data);
 			if (res === false) {
 				notify.Dispatch('warning', 'save:ingest', i18n._(t`Failed to save ingest metadata`));
 			}
@@ -449,6 +450,7 @@ export default function Edit(props) {
 									config={$config.source}
 									startWith={$state.edit}
 									onProbe={handleSourceProbe}
+									onRefresh={handleSkillsRefresh}
 									onDone={handleSourceDone}
 									onAbort={handleSourceAbort}
 								/>

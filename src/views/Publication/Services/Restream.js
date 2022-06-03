@@ -116,11 +116,7 @@ function Service(props) {
 				<TextField variant="outlined" fullWidth label={<Trans>Stream key</Trans>} value={settings.stream_key} onChange={handleChange('stream_key')} />
 			</Grid>
 			<Grid item cs={12} md={3}>
-				<FormInlineButton
-					target="blank"
-					href={stream_key_link}
-					component="a"
-				>
+				<FormInlineButton target="blank" href={stream_key_link} component="a">
 					<Trans>GET</Trans>
 				</FormInlineButton>
 			</Grid>

@@ -26,13 +26,7 @@ const Component = function (props) {
 			<ModalContent title={props.title} onClose={props.onClose} onHelp={props.onHelp} style={{ overflow: 'hidden' }}>
 				<Grid container spacing={1}>
 					<Grid item xs={12}>
-						<Stack
-							direction="column"
-							justifyContent="center"
-							alignItems="center"
-							spacing={1}
-							className={classes.box}
-						>
+						<Stack direction="column" justifyContent="center" alignItems="center" spacing={1} className={classes.box}>
 							<Textarea {...other} />
 						</Stack>
 					</Grid>

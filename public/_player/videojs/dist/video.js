@@ -1,6 +1,6 @@
 /**
  * @license
- * Video.js 7.19.0 <http://videojs.com/>
+ * Video.js 7.19.2 <http://videojs.com/>
  * Copyright Brightcove, Inc. <https://www.brightcove.com/>
  * Available under Apache License Version 2.0
  * <https://github.com/videojs/video.js/blob/main/LICENSE>
@@ -16,7 +16,7 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.videojs = factory());
 }(this, (function () { 'use strict';
 
-  var version$5 = "7.19.0";
+  var version$5 = "7.19.2";
 
   /**
    * An Object that contains lifecycle hooks as keys which point to an array
@@ -18587,8 +18587,10 @@
 
       if (this.items && this.items.length <= this.hideThreshold_) {
         this.hide();
+        this.menu.contentEl_.removeAttribute('role');
       } else {
         this.show();
+        this.menu.contentEl_.setAttribute('role', 'menu');
       }
     }
     /**
@@ -25588,7 +25590,7 @@
 
 
       this.addClass(idClass);
-      setTextContent(this.styleEl_, "\n      ." + idClass + " {\n        width: " + width + "px;\n        height: " + height + "px;\n      }\n\n      ." + idClass + ".vjs-fluid {\n        padding-top: " + ratioMultiplier * 100 + "%;\n      }\n    ");
+      setTextContent(this.styleEl_, "\n      ." + idClass + " {\n        width: " + width + "px;\n        height: " + height + "px;\n      }\n\n      ." + idClass + ".vjs-fluid:not(.vjs-audio-only-mode) {\n        padding-top: " + ratioMultiplier * 100 + "%;\n      }\n    ");
     }
     /**
      * Load/Create an instance of playback {@link Tech} including element
@@ -30889,7 +30891,7 @@
         head.insertBefore(style, head.firstChild);
       }
 
-      setTextContent(style, "\n      .video-js {\n        width: 300px;\n        height: 150px;\n      }\n\n      .vjs-fluid {\n        padding-top: 56.25%\n      }\n    ");
+      setTextContent(style, "\n      .video-js {\n        width: 300px;\n        height: 150px;\n      }\n\n      .vjs-fluid:not(.vjs-audio-only-mode) {\n        padding-top: 56.25%\n      }\n    ");
     }
   } // Run Auto-load players
   // You have to wait at least once in case this script is loaded after your
@@ -31515,7 +31517,7 @@
     return array;
   }
 
-  /*! @name m3u8-parser @version 4.7.0 @license Apache-2.0 */
+  /*! @name m3u8-parser @version 4.7.1 @license Apache-2.0 */
   /**
    * A stream that buffers string input and generates a `data` event for each
    * line.
@@ -32577,6 +32579,15 @@
                     attributes: entry.attributes
                   };
                   return;
+                }
+
+                if (entry.attributes.KEYFORMAT === 'com.microsoft.playready') {
+                  this.manifest.contentProtection = this.manifest.contentProtection || {}; // TODO: add full support for this.
+
+                  this.manifest.contentProtection['com.microsoft.playready'] = {
+                    uri: entry.attributes.URI
+                  };
+                  return;
                 } // check if the content is encrypted for Widevine
                 // Widevine/HLS spec: https://storage.googleapis.com/wvdocs/Widevine_DRM_HLS.pdf
 
@@ -33288,6 +33299,193 @@
     }
 
     return null;
+  };
+
+  // const log2 = Math.log2 ? Math.log2 : (x) => (Math.log(x) / Math.log(2));
+  // we used to do this with log2 but BigInt does not support builtin math
+  // Math.ceil(log2(x));
+
+
+  var countBits = function countBits(x) {
+    return x.toString(2).length;
+  }; // count the number of whole bytes it would take to represent a number
+
+  var countBytes = function countBytes(x) {
+    return Math.ceil(countBits(x) / 8);
+  };
+  var isArrayBufferView = function isArrayBufferView(obj) {
+    if (ArrayBuffer.isView === 'function') {
+      return ArrayBuffer.isView(obj);
+    }
+
+    return obj && obj.buffer instanceof ArrayBuffer;
+  };
+  var isTypedArray = function isTypedArray(obj) {
+    return isArrayBufferView(obj);
+  };
+  var toUint8 = function toUint8(bytes) {
+    if (bytes instanceof Uint8Array) {
+      return bytes;
+    }
+
+    if (!Array.isArray(bytes) && !isTypedArray(bytes) && !(bytes instanceof ArrayBuffer)) {
+      // any non-number or NaN leads to empty uint8array
+      // eslint-disable-next-line
+      if (typeof bytes !== 'number' || typeof bytes === 'number' && bytes !== bytes) {
+        bytes = 0;
+      } else {
+        bytes = [bytes];
+      }
+    }
+
+    return new Uint8Array(bytes && bytes.buffer || bytes, bytes && bytes.byteOffset || 0, bytes && bytes.byteLength || 0);
+  };
+  var BigInt = window.BigInt || Number;
+  var BYTE_TABLE = [BigInt('0x1'), BigInt('0x100'), BigInt('0x10000'), BigInt('0x1000000'), BigInt('0x100000000'), BigInt('0x10000000000'), BigInt('0x1000000000000'), BigInt('0x100000000000000'), BigInt('0x10000000000000000')];
+  var bytesToNumber = function bytesToNumber(bytes, _temp) {
+    var _ref = _temp === void 0 ? {} : _temp,
+        _ref$signed = _ref.signed,
+        signed = _ref$signed === void 0 ? false : _ref$signed,
+        _ref$le = _ref.le,
+        le = _ref$le === void 0 ? false : _ref$le;
+
+    bytes = toUint8(bytes);
+    var fn = le ? 'reduce' : 'reduceRight';
+    var obj = bytes[fn] ? bytes[fn] : Array.prototype[fn];
+    var number = obj.call(bytes, function (total, _byte, i) {
+      var exponent = le ? i : Math.abs(i + 1 - bytes.length);
+      return total + BigInt(_byte) * BYTE_TABLE[exponent];
+    }, BigInt(0));
+
+    if (signed) {
+      var max = BYTE_TABLE[bytes.length] / BigInt(2) - BigInt(1);
+      number = BigInt(number);
+
+      if (number > max) {
+        number -= max;
+        number -= max;
+        number -= BigInt(2);
+      }
+    }
+
+    return Number(number);
+  };
+  var numberToBytes = function numberToBytes(number, _temp2) {
+    var _ref2 = _temp2 === void 0 ? {} : _temp2,
+        _ref2$le = _ref2.le,
+        le = _ref2$le === void 0 ? false : _ref2$le; // eslint-disable-next-line
+
+
+    if (typeof number !== 'bigint' && typeof number !== 'number' || typeof number === 'number' && number !== number) {
+      number = 0;
+    }
+
+    number = BigInt(number);
+    var byteCount = countBytes(number);
+    var bytes = new Uint8Array(new ArrayBuffer(byteCount));
+
+    for (var i = 0; i < byteCount; i++) {
+      var byteIndex = le ? i : Math.abs(i + 1 - bytes.length);
+      bytes[byteIndex] = Number(number / BYTE_TABLE[i] & BigInt(0xFF));
+
+      if (number < 0) {
+        bytes[byteIndex] = Math.abs(~bytes[byteIndex]);
+        bytes[byteIndex] -= i === 0 ? 1 : 2;
+      }
+    }
+
+    return bytes;
+  };
+  var stringToBytes = function stringToBytes(string, stringIsBytes) {
+    if (typeof string !== 'string' && string && typeof string.toString === 'function') {
+      string = string.toString();
+    }
+
+    if (typeof string !== 'string') {
+      return new Uint8Array();
+    } // If the string already is bytes, we don't have to do this
+    // otherwise we do this so that we split multi length characters
+    // into individual bytes
+
+
+    if (!stringIsBytes) {
+      string = unescape(encodeURIComponent(string));
+    }
+
+    var view = new Uint8Array(string.length);
+
+    for (var i = 0; i < string.length; i++) {
+      view[i] = string.charCodeAt(i);
+    }
+
+    return view;
+  };
+  var concatTypedArrays = function concatTypedArrays() {
+    for (var _len = arguments.length, buffers = new Array(_len), _key = 0; _key < _len; _key++) {
+      buffers[_key] = arguments[_key];
+    }
+
+    buffers = buffers.filter(function (b) {
+      return b && (b.byteLength || b.length) && typeof b !== 'string';
+    });
+
+    if (buffers.length <= 1) {
+      // for 0 length we will return empty uint8
+      // for 1 length we return the first uint8
+      return toUint8(buffers[0]);
+    }
+
+    var totalLen = buffers.reduce(function (total, buf, i) {
+      return total + (buf.byteLength || buf.length);
+    }, 0);
+    var tempBuffer = new Uint8Array(totalLen);
+    var offset = 0;
+    buffers.forEach(function (buf) {
+      buf = toUint8(buf);
+      tempBuffer.set(buf, offset);
+      offset += buf.byteLength;
+    });
+    return tempBuffer;
+  };
+  /**
+   * Check if the bytes "b" are contained within bytes "a".
+   *
+   * @param {Uint8Array|Array} a
+   *        Bytes to check in
+   *
+   * @param {Uint8Array|Array} b
+   *        Bytes to check for
+   *
+   * @param {Object} options
+   *        options
+   *
+   * @param {Array|Uint8Array} [offset=0]
+   *        offset to use when looking at bytes in a
+   *
+   * @param {Array|Uint8Array} [mask=[]]
+   *        mask to use on bytes before comparison.
+   *
+   * @return {boolean}
+   *         If all bytes in b are inside of a, taking into account
+   *         bit masks.
+   */
+
+  var bytesMatch = function bytesMatch(a, b, _temp3) {
+    var _ref3 = _temp3 === void 0 ? {} : _temp3,
+        _ref3$offset = _ref3.offset,
+        offset = _ref3$offset === void 0 ? 0 : _ref3$offset,
+        _ref3$mask = _ref3.mask,
+        mask = _ref3$mask === void 0 ? [] : _ref3$mask;
+
+    a = toUint8(a);
+    b = toUint8(b); // ie 11 does not support uint8 every
+
+    var fn = b.every ? b.every : Array.prototype.every;
+    return b.length && a.length - offset >= b.length && // ie 11 doesn't support every on uin8
+    fn.call(b, function (bByte, i) {
+      var aByte = mask[i] ? mask[i] & a[offset + i] : a[offset + i];
+      return bByte === aByte;
+    });
   };
 
   /**
@@ -36516,7 +36714,7 @@
 
   var DOMParser = domParser.DOMParser;
 
-  /*! @name mpd-parser @version 0.21.0 @license Apache-2.0 */
+  /*! @name mpd-parser @version 0.21.1 @license Apache-2.0 */
 
   var isObject = function isObject(obj) {
     return !!obj && typeof obj === 'object';
@@ -38733,7 +38931,15 @@
 
   var generateKeySystemInformation = function generateKeySystemInformation(contentProtectionNodes) {
     return contentProtectionNodes.reduce(function (acc, node) {
-      var attributes = parseAttributes(node);
+      var attributes = parseAttributes(node); // Although it could be argued that according to the UUID RFC spec the UUID string (a-f chars) should be generated
+      // as a lowercase string it also mentions it should be treated as case-insensitive on input. Since the key system
+      // UUIDs in the keySystemsMap are hardcoded as lowercase in the codebase there isn't any reason not to do
+      // .toLowerCase() on the input UUID string from the manifest (at least I could not think of one).
+
+      if (attributes.schemeIdUri) {
+        attributes.schemeIdUri = attributes.schemeIdUri.toLowerCase();
+      }
+
       var keySystem = keySystemsMap[attributes.schemeIdUri];
 
       if (keySystem) {
@@ -38744,8 +38950,7 @@
 
         if (psshNode) {
           var pssh = getContent(psshNode);
-          var psshBuffer = pssh && decodeB64ToUint8Array(pssh);
-          acc[keySystem].pssh = psshBuffer;
+          acc[keySystem].pssh = pssh && decodeB64ToUint8Array(pssh);
         }
       }
 
@@ -39267,186 +39472,6 @@
   };
 
   var parseSidx_1 = parseSidx;
-
-  // const log2 = Math.log2 ? Math.log2 : (x) => (Math.log(x) / Math.log(2));
-  // we used to do this with log2 but BigInt does not support builtin math
-  // Math.ceil(log2(x));
-
-
-  var countBits = function countBits(x) {
-    return x.toString(2).length;
-  }; // count the number of whole bytes it would take to represent a number
-
-  var countBytes = function countBytes(x) {
-    return Math.ceil(countBits(x) / 8);
-  };
-  var isTypedArray = function isTypedArray(obj) {
-    return ArrayBuffer.isView(obj);
-  };
-  var toUint8 = function toUint8(bytes) {
-    if (bytes instanceof Uint8Array) {
-      return bytes;
-    }
-
-    if (!Array.isArray(bytes) && !isTypedArray(bytes) && !(bytes instanceof ArrayBuffer)) {
-      // any non-number or NaN leads to empty uint8array
-      // eslint-disable-next-line
-      if (typeof bytes !== 'number' || typeof bytes === 'number' && bytes !== bytes) {
-        bytes = 0;
-      } else {
-        bytes = [bytes];
-      }
-    }
-
-    return new Uint8Array(bytes && bytes.buffer || bytes, bytes && bytes.byteOffset || 0, bytes && bytes.byteLength || 0);
-  };
-  var BigInt = window.BigInt || Number;
-  var BYTE_TABLE = [BigInt('0x1'), BigInt('0x100'), BigInt('0x10000'), BigInt('0x1000000'), BigInt('0x100000000'), BigInt('0x10000000000'), BigInt('0x1000000000000'), BigInt('0x100000000000000'), BigInt('0x10000000000000000')];
-  var bytesToNumber = function bytesToNumber(bytes, _temp) {
-    var _ref = _temp === void 0 ? {} : _temp,
-        _ref$signed = _ref.signed,
-        signed = _ref$signed === void 0 ? false : _ref$signed,
-        _ref$le = _ref.le,
-        le = _ref$le === void 0 ? false : _ref$le;
-
-    bytes = toUint8(bytes);
-    var fn = le ? 'reduce' : 'reduceRight';
-    var obj = bytes[fn] ? bytes[fn] : Array.prototype[fn];
-    var number = obj.call(bytes, function (total, _byte, i) {
-      var exponent = le ? i : Math.abs(i + 1 - bytes.length);
-      return total + BigInt(_byte) * BYTE_TABLE[exponent];
-    }, BigInt(0));
-
-    if (signed) {
-      var max = BYTE_TABLE[bytes.length] / BigInt(2) - BigInt(1);
-      number = BigInt(number);
-
-      if (number > max) {
-        number -= max;
-        number -= max;
-        number -= BigInt(2);
-      }
-    }
-
-    return Number(number);
-  };
-  var numberToBytes = function numberToBytes(number, _temp2) {
-    var _ref2 = _temp2 === void 0 ? {} : _temp2,
-        _ref2$le = _ref2.le,
-        le = _ref2$le === void 0 ? false : _ref2$le; // eslint-disable-next-line
-
-
-    if (typeof number !== 'bigint' && typeof number !== 'number' || typeof number === 'number' && number !== number) {
-      number = 0;
-    }
-
-    number = BigInt(number);
-    var byteCount = countBytes(number);
-    var bytes = new Uint8Array(new ArrayBuffer(byteCount));
-
-    for (var i = 0; i < byteCount; i++) {
-      var byteIndex = le ? i : Math.abs(i + 1 - bytes.length);
-      bytes[byteIndex] = Number(number / BYTE_TABLE[i] & BigInt(0xFF));
-
-      if (number < 0) {
-        bytes[byteIndex] = Math.abs(~bytes[byteIndex]);
-        bytes[byteIndex] -= i === 0 ? 1 : 2;
-      }
-    }
-
-    return bytes;
-  };
-  var stringToBytes = function stringToBytes(string, stringIsBytes) {
-    if (typeof string !== 'string' && string && typeof string.toString === 'function') {
-      string = string.toString();
-    }
-
-    if (typeof string !== 'string') {
-      return new Uint8Array();
-    } // If the string already is bytes, we don't have to do this
-    // otherwise we do this so that we split multi length characters
-    // into individual bytes
-
-
-    if (!stringIsBytes) {
-      string = unescape(encodeURIComponent(string));
-    }
-
-    var view = new Uint8Array(string.length);
-
-    for (var i = 0; i < string.length; i++) {
-      view[i] = string.charCodeAt(i);
-    }
-
-    return view;
-  };
-  var concatTypedArrays = function concatTypedArrays() {
-    for (var _len = arguments.length, buffers = new Array(_len), _key = 0; _key < _len; _key++) {
-      buffers[_key] = arguments[_key];
-    }
-
-    buffers = buffers.filter(function (b) {
-      return b && (b.byteLength || b.length) && typeof b !== 'string';
-    });
-
-    if (buffers.length <= 1) {
-      // for 0 length we will return empty uint8
-      // for 1 length we return the first uint8
-      return toUint8(buffers[0]);
-    }
-
-    var totalLen = buffers.reduce(function (total, buf, i) {
-      return total + (buf.byteLength || buf.length);
-    }, 0);
-    var tempBuffer = new Uint8Array(totalLen);
-    var offset = 0;
-    buffers.forEach(function (buf) {
-      buf = toUint8(buf);
-      tempBuffer.set(buf, offset);
-      offset += buf.byteLength;
-    });
-    return tempBuffer;
-  };
-  /**
-   * Check if the bytes "b" are contained within bytes "a".
-   *
-   * @param {Uint8Array|Array} a
-   *        Bytes to check in
-   *
-   * @param {Uint8Array|Array} b
-   *        Bytes to check for
-   *
-   * @param {Object} options
-   *        options
-   *
-   * @param {Array|Uint8Array} [offset=0]
-   *        offset to use when looking at bytes in a
-   *
-   * @param {Array|Uint8Array} [mask=[]]
-   *        mask to use on bytes before comparison.
-   *
-   * @return {boolean}
-   *         If all bytes in b are inside of a, taking into account
-   *         bit masks.
-   */
-
-  var bytesMatch = function bytesMatch(a, b, _temp3) {
-    var _ref3 = _temp3 === void 0 ? {} : _temp3,
-        _ref3$offset = _ref3.offset,
-        offset = _ref3$offset === void 0 ? 0 : _ref3$offset,
-        _ref3$mask = _ref3.mask,
-        mask = _ref3$mask === void 0 ? [] : _ref3$mask;
-
-    a = toUint8(a);
-    b = toUint8(b); // ie 11 does not support uint8 every
-
-    var fn = b.every ? b.every : Array.prototype.every;
-    return b.length && a.length - offset >= b.length && // ie 11 doesn't support every on uin8
-    fn.call(b, function (bByte, i) {
-      var aByte = mask[i] ? mask[i] & a[offset + i] : a[offset + i];
-      return bByte === aByte;
-    });
-  };
 
   var ID3 = toUint8([0x49, 0x44, 0x33]);
   var getId3Size = function getId3Size(bytes, offset) {
@@ -40130,7 +40155,7 @@
   };
   var clock_1 = clock.ONE_SECOND_IN_TS;
 
-  /*! @name @videojs/http-streaming @version 2.14.0 @license Apache-2.0 */
+  /*! @name @videojs/http-streaming @version 2.14.2 @license Apache-2.0 */
   /**
    * @file resolve-url.js - Handling how URLs are resolved and manipulated
    */
@@ -41964,7 +41989,7 @@
 
       for (var _i2 = 0; _i2 < properties.playlists.length; _i2++) {
         if (newMedia.id === properties.playlists[_i2].id) {
-          properties.playlists[_i2] = newMedia;
+          properties.playlists[_i2] = mergedPlaylist;
         }
       }
     });
@@ -42747,7 +42772,7 @@
     Object.keys(message).forEach(function (key) {
       var value = message[key];
 
-      if (ArrayBuffer.isView(value)) {
+      if (isArrayBufferView(value)) {
         transferable[key] = {
           bytes: value.buffer,
           byteOffset: value.byteOffset,
@@ -44241,7 +44266,7 @@
   var getWorkerString = function getWorkerString(fn) {
     return fn.toString().replace(/^function.+?{/, '').slice(0, -1);
   };
-  /* rollup-plugin-worker-factory start for worker!/Users/poneill/dev/http-streaming/src/transmuxer-worker.js */
+  /* rollup-plugin-worker-factory start for worker!/Users/bclifford/Code/vhs-release-test/src/transmuxer-worker.js */
 
 
   var workerCode$1 = transform(getWorkerString(function () {
@@ -53047,7 +53072,7 @@
     };
   }));
   var TransmuxWorker = factory(workerCode$1);
-  /* rollup-plugin-worker-factory end for worker!/Users/poneill/dev/http-streaming/src/transmuxer-worker.js */
+  /* rollup-plugin-worker-factory end for worker!/Users/bclifford/Code/vhs-release-test/src/transmuxer-worker.js */
 
   var handleData_ = function handleData_(event, transmuxedData, callback) {
     var _event$data$segment = event.data.segment,
@@ -60834,10 +60859,12 @@
 
     return TimelineChangeController;
   }(videojs.EventTarget);
-  /* rollup-plugin-worker-factory start for worker!/Users/poneill/dev/http-streaming/src/decrypter-worker.js */
+  /* rollup-plugin-worker-factory start for worker!/Users/bclifford/Code/vhs-release-test/src/decrypter-worker.js */
 
 
   var workerCode = transform(getWorkerString(function () {
+    var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
     function createCommonjsModule(fn, basedir, module) {
       return module = {
         path: basedir,
@@ -61030,7 +61057,7 @@
     function unpad(padded) {
       return padded.subarray(0, padded.byteLength - padded[padded.byteLength - 1]);
     }
-    /*! @name aes-decrypter @version 3.1.2 @license Apache-2.0 */
+    /*! @name aes-decrypter @version 3.1.3 @license Apache-2.0 */
 
     /**
      * @file aes.js
@@ -61455,10 +61482,31 @@
       }]);
       return Decrypter;
     }();
-    /**
-     * @file bin-utils.js
-     */
 
+    var win;
+
+    if (typeof window !== "undefined") {
+      win = window;
+    } else if (typeof commonjsGlobal !== "undefined") {
+      win = commonjsGlobal;
+    } else if (typeof self !== "undefined") {
+      win = self;
+    } else {
+      win = {};
+    }
+
+    var window_1 = win;
+
+    var isArrayBufferView = function isArrayBufferView(obj) {
+      if (ArrayBuffer.isView === 'function') {
+        return ArrayBuffer.isView(obj);
+      }
+
+      return obj && obj.buffer instanceof ArrayBuffer;
+    };
+
+    var BigInt = window_1.BigInt || Number;
+    [BigInt('0x1'), BigInt('0x100'), BigInt('0x10000'), BigInt('0x1000000'), BigInt('0x100000000'), BigInt('0x10000000000'), BigInt('0x1000000000000'), BigInt('0x100000000000000'), BigInt('0x10000000000000000')];
     /**
      * Creates an object for sending to a web worker modifying properties that are TypedArrays
      * into a new object with seperated properties for the buffer, byteOffset, and byteLength.
@@ -61476,7 +61524,7 @@
       Object.keys(message).forEach(function (key) {
         var value = message[key];
 
-        if (ArrayBuffer.isView(value)) {
+        if (isArrayBufferView(value)) {
           transferable[key] = {
             bytes: value.buffer,
             byteOffset: value.byteOffset,
@@ -61514,7 +61562,7 @@
     };
   }));
   var Decrypter = factory(workerCode);
-  /* rollup-plugin-worker-factory end for worker!/Users/poneill/dev/http-streaming/src/decrypter-worker.js */
+  /* rollup-plugin-worker-factory end for worker!/Users/bclifford/Code/vhs-release-test/src/decrypter-worker.js */
 
   /**
    * Convert the properties of an HLS track into an audioTrackKind.
@@ -65350,11 +65398,11 @@
     initPlugin(this, options);
   };
 
-  var version$4 = "2.14.0";
+  var version$4 = "2.14.2";
   var version$3 = "6.0.1";
-  var version$2 = "0.21.0";
-  var version$1 = "4.7.0";
-  var version = "3.1.2";
+  var version$2 = "0.21.1";
+  var version$1 = "4.7.1";
+  var version = "3.1.3";
   var Vhs = {
     PlaylistLoader: PlaylistLoader,
     Playlist: Playlist,

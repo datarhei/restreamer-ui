@@ -1,14 +1,14 @@
 /* eslint-disable import/no-anonymous-default-export */
 import palette from './palette';
 
-import "@fontsource/dosis/300.css"
-import "@fontsource/dosis/400.css"
-import "@fontsource/dosis/500.css"
-import "@fontsource/dosis/700.css"
-import "@fontsource/roboto/300.css"
-import "@fontsource/roboto/400.css"
-import "@fontsource/roboto/500.css"
-import "@fontsource/roboto/700.css"
+import '@fontsource/dosis/300.css';
+import '@fontsource/dosis/400.css';
+import '@fontsource/dosis/500.css';
+import '@fontsource/dosis/700.css';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 const base = {
 	htmlFontSize: 16,
@@ -74,7 +74,7 @@ const base = {
 	button: {
 		fontSize: '.9rem',
 	},
-	pagetitel: {
+	pagetitle: {
 		fontSize: '1rem',
 		textTransform: 'uppercase',
 		fontWeight: 500,

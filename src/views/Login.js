@@ -226,7 +226,7 @@ export default function Login(props) {
 
 	return (
 		<Paper xs={11} sm={10} md={6}>
-			<Grid container spacing={3} padding={{xs: 1, sm: 5}}>
+			<Grid container spacing={3} padding={{ xs: 1, sm: 5 }}>
 				{$loginTarget !== 'none' && (
 					<Grid item xs={12} align="center">
 						{$auths.length > 1 && (

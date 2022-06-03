@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 const id = 'vimeo';
 const name = 'Vimeo';
 const version = '1.0';
-const description = <Trans>Live-Streaming to Vimeos Live RTMP Service</Trans>;
+const description = <Trans>Live-Streaming to Vimeo Live RTMP Service</Trans>;
 const stream_key_link = '';
 const image_copyright = <Trans>More about licenses here</Trans>;
 const author = {

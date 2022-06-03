@@ -1,22 +1,23 @@
 import React from 'react';
 
-import { faMagic, faPen } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Trans } from '@lingui/macro';
 import makeStyles from '@mui/styles/makeStyles';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
+import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
+import EditIcon from '@mui/icons-material/Edit';
+
 import * as M from '../../utils/metadata';
 import Summary from './Summary';
 
-function WizardIcon(props) {
-	return <FontAwesomeIcon icon={faMagic} {...props} />;
+function IconWizard(props) {
+	return (<AutoFixHighIcon {...props} />);
 }
 
-function EditIcon(props) {
-	return <FontAwesomeIcon icon={faPen} {...props} />;
+function IconEdit(props) {
+	return (<EditIcon {...props} />);
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -56,10 +57,10 @@ export default function ProfileSummary(props) {
 				}}
 			>
 				<IconButton size="small" color="inherit" onClick={handleEdit('video')}>
-					<EditIcon />
+					<IconEdit />
 				</IconButton>
 				<IconButton size="small" color="inherit" onClick={handleWizard()}>
-					<WizardIcon />
+					<IconWizard />
 				</IconButton>
 				<Typography variant="h3">
 					<Trans>Video settings</Trans>
@@ -80,10 +81,10 @@ export default function ProfileSummary(props) {
 				}}
 			>
 				<IconButton size="small" color="inherit" onClick={handleEdit('audio')}>
-					<EditIcon />
+					<IconEdit />
 				</IconButton>
 				<IconButton size="small" color="inherit" onClick={handleWizard()}>
-					<WizardIcon />
+					<IconWizard />
 				</IconButton>
 				<Typography variant="h3" className={classes.title}>
 					<Trans>Audio settings</Trans>

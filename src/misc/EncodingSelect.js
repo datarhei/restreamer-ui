@@ -5,10 +5,12 @@ import { Trans, t } from '@lingui/macro';
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 
 import * as Encoders from './coders/Encoders';
 import * as Decoders from './coders/Decoders';
 import Select from './Select';
+import H from '../utils/help';
 
 export default function EncodingSelect(props) {
 	const { i18n } = useLingui();
@@ -75,6 +77,11 @@ export default function EncodingSelect(props) {
 		props.onChange(encoder, profile.decoder, automatic);
 	};
 
+	const handleEncoderHelp = (topic) => (event) => {
+		event.preventDefault();
+		H('encoder-' + topic);
+	};
+
 	let stream = null;
 
 	if (profile.stream >= 0) {
@@ -106,12 +113,17 @@ export default function EncodingSelect(props) {
 	}
 
 	let encoderSettings = null;
+	let encoderSettingsHelp = null;
 
 	let coder = encoderRegistry.Get(profile.encoder.coder);
 	if (coder !== null && props.availableEncoders.includes(coder.coder)) {
 		const Settings = coder.component;
 
 		encoderSettings = <Settings stream={stream} settings={profile.encoder.settings} onChange={handleEncoderSettingsChange} />;
+
+		if (props.type === 'video' && !['copy', 'none', 'rawvideo'].includes(coder.coder)) {
+			encoderSettingsHelp = handleEncoderHelp(coder.coder);
+		}
 	}
 
 	let encoderList = [];
@@ -207,6 +219,15 @@ export default function EncodingSelect(props) {
 			<Grid item xs={12}>
 				{encoderSettings}
 			</Grid>
+			{encoderSettingsHelp !== null && (
+				<Grid item xs={12}>
+					<Trans>
+						<Link color="secondary" href="#" onClick={encoderSettingsHelp}>
+							Compatibility list
+						</Link>
+					</Trans>
+				</Grid>
+			)}
 		</Grid>
 	);
 }

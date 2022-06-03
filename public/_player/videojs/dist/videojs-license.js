@@ -1,13 +1,14 @@
 /*! @name videojs-license @version 0.1.0 @license MIT */
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('video.js')) :
-	typeof define === 'function' && define.amd ? define(['video.js'], factory) :
-	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.videojsLicense = factory(global.videojs));
-})(this, (function (videojs) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('video.js'), require('global/document')) :
+	typeof define === 'function' && define.amd ? define(['video.js', 'global/document'], factory) :
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.videojsLicense = factory(global.videojs, global.document));
+}(this, (function (videojs, document) { 'use strict';
 
 	function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 	var videojs__default = /*#__PURE__*/_interopDefaultLegacy(videojs);
+	var document__default = /*#__PURE__*/_interopDefaultLegacy(document);
 
 	function createCommonjsModule(fn, basedir, module) {
 		return module = {
@@ -32,7 +33,8 @@
 	    return self;
 	  }
 
-	  module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
+	  module.exports = _assertThisInitialized;
+	  module.exports["default"] = module.exports, module.exports.__esModule = true;
 	});
 
 	var setPrototypeOf = createCommonjsModule(function (module) {
@@ -40,11 +42,14 @@
 	    module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
 	      o.__proto__ = p;
 	      return o;
-	    }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+	    };
+
+	    module.exports["default"] = module.exports, module.exports.__esModule = true;
 	    return _setPrototypeOf(o, p);
 	  }
 
-	  module.exports = _setPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
+	  module.exports = _setPrototypeOf;
+	  module.exports["default"] = module.exports, module.exports.__esModule = true;
 	});
 
 	var inheritsLoose = createCommonjsModule(function (module) {
@@ -54,14 +59,15 @@
 	    setPrototypeOf(subClass, superClass);
 	  }
 
-	  module.exports = _inheritsLoose, module.exports.__esModule = true, module.exports["default"] = module.exports;
+	  module.exports = _inheritsLoose;
+	  module.exports["default"] = module.exports, module.exports.__esModule = true;
 	});
 
 	var version = "0.1.0";
 
-	var Plugin = videojs__default["default"].getPlugin('plugin');
-	var Component = videojs__default["default"].getComponent('Component');
-	var Button = videojs__default["default"].getComponent('MenuButton'); // Default options for the plugin.
+	var Plugin = videojs__default['default'].getPlugin('plugin');
+	var Component = videojs__default['default'].getComponent('Component');
+	var Button = videojs__default['default'].getComponent('MenuButton'); // Default options for the plugin.
 
 	var defaults = {
 	  license: 'none',
@@ -100,7 +106,7 @@
 	    // the parent class will add player under this.player
 	    _this = _Plugin.call(this, player) || this;
 	    _this.playerId = _this.player.id();
-	    _this.options = videojs__default["default"].mergeOptions(defaults, options);
+	    _this.options = videojs__default['default'].mergeOptions(defaults, options);
 
 	    if (options.license === 'none') {
 	      return assertThisInitialized(_this);
@@ -111,14 +117,14 @@
 
 	      _this.buildUI();
 
-	      if (videojs__default["default"].browser.IS_IOS || videojs__default["default"].browser.IS_ANDROID) {
+	      if (videojs__default['default'].browser.IS_IOS || videojs__default['default'].browser.IS_ANDROID) {
 	        _this.mobileBuildUI();
 	      }
 	    }); // close the menu if open on userinactive
 
 
 	    _this.player.on('userinactive', function () {
-	      document.getElementById(_this.playerId).querySelectorAll('.vjs-menu').forEach(function (element) {
+	      document__default['default'].getElementById(_this.playerId).querySelectorAll('.vjs-menu').forEach(function (element) {
 	        element.classList.remove('vjs-lock-open');
 	      });
 	    }); // close the menu if anywhere in the player is clicked
@@ -126,7 +132,7 @@
 
 	    _this.player.on('click', function (evt) {
 	      if (evt.target.tagName === 'VIDEO') {
-	        document.getElementById(_this.playerId).querySelectorAll('.vjs-menu').forEach(function (element) {
+	        document__default['default'].getElementById(_this.playerId).querySelectorAll('.vjs-menu').forEach(function (element) {
 	          element.classList.remove('vjs-lock-open');
 	        });
 	      }
@@ -135,7 +141,7 @@
 	    _this.player.on('loadstart', function (_event) {
 	      _this.removeElementsByClass('vjs-license-clear');
 
-	      if (videojs__default["default"].browser.IS_IOS || videojs__default["default"].browser.IS_ANDROID) {
+	      if (videojs__default['default'].browser.IS_IOS || videojs__default['default'].browser.IS_ANDROID) {
 	        _this.mobileBuildTopLevelMenu();
 	      } else {
 	        _this.buildTopLevelMenu();
@@ -190,7 +196,7 @@
 	      var _proto2 = LicenseMenuButton.prototype;
 
 	      _proto2.handleClick = function handleClick() {
-	        if (videojs__default["default"].browser.IS_IOS || videojs__default["default"].browser.IS_ANDROID) {
+	        if (videojs__default['default'].browser.IS_IOS || videojs__default['default'].browser.IS_ANDROID) {
 	          this.player.getChild('licenseMenuMobileModal').el().style.display = 'block';
 	        } else {
 	          this.el().classList.toggle('vjs-toogle-btn');
@@ -201,7 +207,7 @@
 	      return LicenseMenuButton;
 	    }(Button);
 
-	    videojs__default["default"].registerComponent('licenseMenuButton', LicenseMenuButton);
+	    videojs__default['default'].registerComponent('licenseMenuButton', LicenseMenuButton);
 	    this.player.getChild('controlBar').addChild('licenseMenuButton');
 
 	    if (this.player.getChild('controlBar').getChild('fullscreenToggle')) {
@@ -222,26 +228,26 @@
 	    main.innerHTML = '';
 	    main.classList.add('vjs-license-top-level'); // Start building new list items
 
-	    var menuTitle = document.createElement('li');
+	    var menuTitle = document__default['default'].createElement('li');
 	    menuTitle.className = 'vjs-license-top-level-header';
-	    var menuTitleInner = document.createElement('span');
+	    var menuTitleInner = document__default['default'].createElement('span');
 	    menuTitleInner.innerHTML = 'About';
 	    menuTitleInner.className = 'vjs-license-top-level-header-titel';
 	    menuTitle.appendChild(menuTitleInner);
 	    main.appendChild(menuTitle);
-	    var itemTitel = document.createElement('li');
+	    var itemTitel = document__default['default'].createElement('li');
 	    itemTitel.innerHTML = this.buildItemTitel();
 	    itemTitel.className = 'vjs-license-top-level-item';
 	    main.appendChild(itemTitel);
 
 	    if (this.options.author) {
-	      var itemAuthor = document.createElement('li');
+	      var itemAuthor = document__default['default'].createElement('li');
 	      itemAuthor.innerHTML = this.buildItemAuthor();
 	      itemAuthor.className = 'vjs-license-top-level-item';
 	      main.appendChild(itemAuthor);
 	    }
 
-	    var itemLicense = document.createElement('li');
+	    var itemLicense = document__default['default'].createElement('li');
 	    itemLicense.innerHTML = this.buildItemLicense();
 	    itemLicense.className = 'vjs-license-top-level-item';
 	    main.appendChild(itemLicense);
@@ -277,7 +283,7 @@
 	      var _proto3 = LicenseMenuMobileModal.prototype;
 
 	      _proto3.createEl = function createEl() {
-	        return videojs__default["default"].createEl('div', {
+	        return videojs__default['default'].createEl('div', {
 	          className: 'vjs-license-mobile'
 	        });
 	      };
@@ -285,8 +291,8 @@
 	      return LicenseMenuMobileModal;
 	    }(Component);
 
-	    videojs__default["default"].registerComponent('licenseMenuMobileModal', LicenseMenuMobileModal);
-	    videojs__default["default"].dom.prependTo(this.player.addChild('licenseMenuMobileModal').el(), document.body);
+	    videojs__default['default'].registerComponent('licenseMenuMobileModal', LicenseMenuMobileModal);
+	    videojs__default['default'].dom.prependTo(this.player.addChild('licenseMenuMobileModal').el(), document__default['default'].body);
 	  }
 	  /**
 	   * Add the menu ui button to the controlbar
@@ -297,28 +303,28 @@
 	    var _this3 = this;
 
 	    var settingsButton = this.player.getChild('licenseMenuMobileModal');
-	    var menuTopLevel = document.createElement('ul');
+	    var menuTopLevel = document__default['default'].createElement('ul');
 	    menuTopLevel.className = 'vjs-license-mob-top-level vjs-setting-menu-clear';
 	    settingsButton.el().appendChild(menuTopLevel); // Empty the main menu div to repopulate
 
-	    var menuTitle = document.createElement('li');
+	    var menuTitle = document__default['default'].createElement('li');
 	    menuTitle.innerHTML = 'About';
 	    menuTitle.className = 'vjs-setting-menu-mobile-top-header';
 	    menuTopLevel.appendChild(menuTitle);
-	    var itemTitel = document.createElement('li');
+	    var itemTitel = document__default['default'].createElement('li');
 	    itemTitel.innerHTML = this.buildItemTitel();
 	    itemTitel.className = 'vjs-license-top-level-item';
 
 	    if (this.options.author) {
-	      var itemAuthor = document.createElement('li');
+	      var itemAuthor = document__default['default'].createElement('li');
 	      itemAuthor.innerHTML = this.buildItemAuthor();
 	      itemAuthor.className = 'vjs-license-top-level-item';
 	    }
 
-	    var itemLicense = document.createElement('li');
+	    var itemLicense = document__default['default'].createElement('li');
 	    itemLicense.innerHTML = this.buildItemLicense();
 	    itemLicense.className = 'vjs-license-top-level-item';
-	    var menuClose = document.createElement('li');
+	    var menuClose = document__default['default'].createElement('li');
 	    menuClose.innerHTML = 'Close';
 	    menuClose.className = 'setting-menu-footer-default';
 
@@ -342,7 +348,7 @@
 	      titel = "" + this.options.title;
 	    }
 
-	    return 'Titel: ' + titel;
+	    return 'Title: ' + titel;
 	  }
 	  /**
 	   * Add the menu ui button to the controlbar
@@ -428,10 +434,10 @@
 
 	  _proto.removeElementsByClass = function removeElementsByClass(className) {
 	    // Need to prevent the menu from not showing sometimes
-	    document.querySelectorAll('.vjs-sm-top-level').forEach(function (element) {
+	    document__default['default'].querySelectorAll('.vjs-sm-top-level').forEach(function (element) {
 	      element.classList.remove('vjs-hidden');
 	    });
-	    var elements = document.getElementsByClassName(className);
+	    var elements = document__default['default'].getElementsByClassName(className);
 
 	    while (elements.length > 0) {
 	      elements[0].parentNode.removeChild(elements[0]);
@@ -446,8 +452,8 @@
 
 	License.VERSION = version; // Register the plugin with video.js.
 
-	videojs__default["default"].registerPlugin('license', License);
+	videojs__default['default'].registerPlugin('license', License);
 
 	return License;
 
-}));
+})));

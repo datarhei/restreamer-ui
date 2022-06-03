@@ -5,8 +5,9 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 
-import Checkbox from '../../../misc/Checkbox';
 import Logo from './logos/akamai.svg';
+
+import Checkbox from '../../../misc/Checkbox';
 
 const id = 'akamai';
 const name = 'Akamai';

@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 			float: 'right',
 			marginLeft: '.5em',
 			paddingTop: '.25em',
-    		marginRight: '-.7em',
+			marginRight: '-.7em',
 		},
 	},
 	modalFooter: {
@@ -53,19 +53,9 @@ const Component = React.forwardRef((props, ref) => {
 		<Paper className={classes.modalPaper} elevation={0} tabIndex={-1} ref={ref} {...other}>
 			<Grid container spacing={0}>
 				<Grid item xs={12} className={classes.modalHeader}>
-					<Stack
-						direction="row"
-						justifyContent="space-between"
-						alignItems="center"
-						spacing={2}
-					>
+					<Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
 						<Typography variant="button">{props.title}</Typography>
-						<Stack
-							direction="row"
-							justifyContent="flex-end"
-							alignItems="center"
-							spacing={2}
-						>
+						<Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={2}>
 							{typeof props.onHelp === 'function' && (
 								<IconButton color="inherit" size="small" onClick={props.onHelp}>
 									<HelpIcon fontSize="small" />

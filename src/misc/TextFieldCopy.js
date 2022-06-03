@@ -10,6 +10,8 @@ import InputLabel from '@mui/material/InputLabel';
 import NotifyContext from '../contexts/Notify';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
+import CopyToClipboard from '../utils/clipboard';
+
 const useStyles = makeStyles((theme) => ({
 	root: {
 		'& .MuiOutlinedInput-notchedOutline': {
@@ -23,22 +25,9 @@ export default function Component(props) {
 	const { i18n } = useLingui();
 
 	const notify = useContext(NotifyContext);
-	const textAreaRef = React.createRef();
 
 	const handleCopy = async () => {
-		let success = false;
-
-		if (!navigator.clipboard) {
-			textAreaRef.current.select();
-
-			try {
-				success = document.execCommand('copy');
-			} catch (err) {}
-
-			textAreaRef.current.setSelectionRange(0, 0);
-		} else {
-			success = await writeText(navigator.clipboard.writeText(props.value));
-		}
+		const success = await CopyToClipboard(props.value);
 
 		if (success === true) {
 			notify.Dispatch('success', 'clipboard', i18n._(t`Data copied to clipboard`));
@@ -47,21 +36,11 @@ export default function Component(props) {
 		}
 	};
 
-	const writeText = (promise) => {
-		return promise
-			.then(() => true)
-			.catch((err) => {
-				console.warn(err);
-				return false;
-			});
-	};
-
 	return (
 		<FormControl variant="outlined" disabled={props.disabled} fullWidth>
 			<InputLabel htmlFor={props.id}>{props.label}</InputLabel>
 			<OutlinedInput
 				className={classes.root}
-				inputRef={textAreaRef}
 				id={props.id}
 				value={props.value}
 				label={props.label}

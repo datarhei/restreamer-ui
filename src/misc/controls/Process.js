@@ -31,7 +31,7 @@ export default function Control(props) {
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
 
-		if (['autostart', 'reconnect'].includes(what)) {
+		if (['autostart', 'reconnect', 'cleanup'].includes(what)) {
 			settings[what] = !settings[what];
 		} else {
 			settings[what] = value;

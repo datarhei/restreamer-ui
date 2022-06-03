@@ -1,10 +1,13 @@
 import React from 'react';
 
+import { useLingui } from '@lingui/react';
 import { faUsb } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Trans } from '@lingui/macro';
+import { Trans, t } from '@lingui/macro';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import Typography from '@mui/material/Typography';
 
 import * as S from '../../Sources/V4L';
@@ -52,13 +55,18 @@ function initDevices(initialDevices) {
 }
 
 function Source(props) {
+	const { i18n } = useLingui();
 	const settings = initSettings(props.settings, props.knownDevices);
 	const devices = initDevices(props.knownDevices);
 
 	const handleChange = (newSettings) => {
 		newSettings = newSettings || settings;
 
-		props.onChange(S.id, newSettings, S.func.createInputs(newSettings), true);
+		props.onChange(S.id, newSettings, S.func.createInputs(newSettings), devices.length !== 0 ? true : false);
+	};
+
+	const handleRefresh = () => {
+		props.onRefresh();
 	};
 
 	const update = (what) => (event) => {
@@ -85,6 +93,14 @@ function Source(props) {
 		);
 	});
 
+	if (options.length === 0) {
+		options.push(
+			<MenuItem key="none" value="none" disabled={true}>
+				{i18n._(t`No input device available`)}
+			</MenuItem>
+		);
+	}
+
 	const videoDevices = (
 		<Select label={<Trans>Video device</Trans>} value={settings.device} onChange={update('device')}>
 			{options}
@@ -100,6 +116,9 @@ function Source(props) {
 			</Grid>
 			<Grid item xs={12}>
 				{videoDevices}
+				<Button size="small" startIcon={<RefreshIcon />} onClick={handleRefresh} sx={{ float: 'right' }}>
+					<Trans>Refresh</Trans>
+				</Button>
 			</Grid>
 		</React.Fragment>
 	);
@@ -109,6 +128,7 @@ Source.defaultProps = {
 	knownDevices: [],
 	settings: {},
 	onChange: function (type, settings, inputs, ready) {},
+	onRefresh: function () {},
 };
 
 function SourceIcon(props) {

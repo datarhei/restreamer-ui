@@ -1,8 +1,11 @@
 import React from 'react';
+import SemverSatisfies from 'semver/functions/satisfies';
 
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+
+import { Trans } from '@lingui/macro';
 
 import Sources from './Sources';
 
@@ -61,6 +64,10 @@ export default function SourceSelect(props) {
 		props.onSelect(props.type, source);
 	};
 
+	const handleRefresh = async () => {
+		await props.onRefresh();
+	};
+
 	const handleProbe = async (settings, inputs) => {
 		await props.onProbe(props.type, $source, settings, inputs);
 	};
@@ -80,22 +87,31 @@ export default function SourceSelect(props) {
 	if (s !== null) {
 		const Component = s.component;
 
-		sourceControl = (
-			<Component
-				knownDevices={props.skills.sources[$source]}
-				skills={props.skills}
-				config={config[$source]}
-				settings={$settings[$source]}
-				onChange={handleChange($source)}
-				onProbe={handleProbe}
-			/>
-		);
+		if (SemverSatisfies(props.skills.ffmpeg.version, s.ffversion)) {
+			sourceControl = (
+				<Component
+					knownDevices={props.skills.sources[$source]}
+					skills={props.skills}
+					config={config[$source]}
+					settings={$settings[$source]}
+					onChange={handleChange($source)}
+					onProbe={handleProbe}
+					onRefresh={handleRefresh}
+				/>
+			);
+		}
 	}
 
 	return (
 		<Grid container spacing={1}>
 			<Grid item xs={12}>
-				<Select type={props.type} selected={$source} availableSources={props.skills.sources} onSelect={handleSource} />
+				<Select
+					type={props.type}
+					selected={$source}
+					ffversion={props.skills.ffmpeg.version}
+					availableSources={props.skills.sources}
+					onSelect={handleSource}
+				/>
 			</Grid>
 			<Grid item xs={12}>
 				{sourceControl}
@@ -112,6 +128,7 @@ SourceSelect.defaultProps = {
 	onProbe: function (type, device, settings, inputs) {},
 	onSelect: function (type, device) {},
 	onChange: function (type, device, settings) {},
+	onRefresh: function () {},
 };
 
 function Select(props) {
@@ -130,6 +147,10 @@ function Select(props) {
 			continue;
 		}
 
+		if (!SemverSatisfies(props.ffversion, s.ffversion)) {
+			continue;
+		}
+
 		const variant = s.id === props.selected ? 'bigSelected' : 'big';
 		const Icon = s.icon;
 
@@ -145,6 +166,18 @@ function Select(props) {
 		);
 	}
 
+	if (availableSources.length === 0) {
+		return (
+			<Grid container spacing={1}>
+				<Grid item xs={12}>
+					<Typography variant="body1">
+						<Trans>No sources available</Trans>
+					</Typography>
+				</Grid>
+			</Grid>
+		);
+	}
+
 	return (
 		<Grid container spacing={1}>
 			{availableSources}
@@ -155,6 +188,7 @@ function Select(props) {
 Select.defaultProps = {
 	type: '',
 	selected: '',
+	ffversion: '0.0.0',
 	availableSources: {},
 	onSelect: function (source) {},
 };

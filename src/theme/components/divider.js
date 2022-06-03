@@ -8,7 +8,7 @@ export default {
 			marginTop: '0.35em',
 			marginBottom: '0.35em',
 			borderTop: `2px solid ${base.palette.text.disabled}`,
-			opacity: .6,
+			opacity: 0.6,
 		},
 	},
 };

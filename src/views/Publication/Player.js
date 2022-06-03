@@ -111,39 +111,41 @@ export default function Edit(props) {
 		setReady(true);
 	};
 
-	const handleChange = (what, section = '') => (event) => {
-		const value = event.target.value;
-		const settings = $settings;
+	const handleChange =
+		(what, section = '') =>
+		(event) => {
+			const value = event.target.value;
+			const settings = $settings;
 
-		if (section === '') {
-			if (['autoplay', 'mute', 'statistics'].includes(what)) {
-				settings[what] = !settings[what];
-			} else {
-				settings[what] = value;
+			if (section === '') {
+				if (['autoplay', 'mute', 'statistics'].includes(what)) {
+					settings[what] = !settings[what];
+				} else {
+					settings[what] = value;
+				}
+			} else if (section === 'color') {
+				settings.color[what] = value;
+			} else if (section === 'ga') {
+				settings.ga[what] = value;
+			} else if (section === 'logo') {
+				settings.logo[what] = value;
 			}
-		} else if (section === 'color') {
-			settings.color[what] = value;
-		} else if (section === 'ga') {
-			settings.ga[what] = value;
-		} else if (section === 'logo') {
-			settings.logo[what] = value;
-		}
 
-		if (timeout.current !== null) {
-			clearTimeout(timeout.current);
-			timeout.current = null;
-		}
+			if (timeout.current !== null) {
+				clearTimeout(timeout.current);
+				timeout.current = null;
+			}
 
-		timeout.current = setTimeout(() => {
-			timeout.current = null;
-			setRevision($revision + 1);
-		}, 500);
+			timeout.current = setTimeout(() => {
+				timeout.current = null;
+				setRevision($revision + 1);
+			}, 500);
 
-		setSettings({
-			...$settings,
-			...settings,
-		});
-	};
+			setSettings({
+				...$settings,
+				...settings,
+			});
+		};
 
 	const handleLogoUpload = (event) => {
 		const handler = (event) => {
@@ -171,9 +173,10 @@ export default function Edit(props) {
 			if (type === null) {
 				// not one of the allowed mimetypes
 				setSaving(false);
+				const types = logoAcceptString;
 				showUploadError(
 					<Trans>
-						The selected file type ({file.type}) is now allowed. Allowed file types are {logoAcceptString}
+						The selected file type ({file.type}) is not allowed. Allowed file types are {types}
 					</Trans>
 				);
 				return;

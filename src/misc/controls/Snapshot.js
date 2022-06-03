@@ -43,7 +43,7 @@ export default function Control(props) {
 			<Grid item xs={12}>
 				<Checkbox label={<Trans>Enable snapshots</Trans>} checked={settings.enable} onChange={handleChange('enable')} />
 			</Grid>
-			<Grid item xs={12}>
+			<Grid item xs={12} md={6}>
 				<TextField
 					variant="outlined"
 					fullWidth

@@ -132,7 +132,7 @@ function Resources(props) {
 	const core = $resources.core;
 
 	return (
-		<Stack className="footerRight" direction="row" alignItems="center" spacing={0} >
+		<Stack className="footerRight" direction="row" alignItems="center" spacing={0}>
 			{(system.cpu_used >= 75 || system.mem_used >= 75 || core.memfs_used >= 75 || core.disk_used >= 75 || core.net_used >= 75) && (
 				<WarningIcon className={classes.warningIcon} color="service" />
 			)}

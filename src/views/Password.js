@@ -76,7 +76,7 @@ export default function ResetPassword(props) {
 		});
 	};
 
-	const invalid = $login.username.length === 0 || $login.password.length === 0 || ($login.password !== $login.passwordConfirm);
+	const invalid = $login.username.length === 0 || $login.password.length === 0 || $login.password !== $login.passwordConfirm;
 
 	return (
 		<Paper xs={12} sm={10} md={6} className="PaperL">

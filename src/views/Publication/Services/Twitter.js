@@ -18,8 +18,8 @@ const version = '1.0';
 const stream_key_link = 'https://studio.twitter.com/producer/sources';
 const description = (
 	<Trans>
-		Transmits your video stream with the required key, which was generated in Twitter Producer. You can find more information on seting up a live stream
-		at Twitter's{' '}
+		Transmits your video stream with the required key, which was generated in Twitter Producer. You can find more information on seting up a live stream at
+		Twitter's{' '}
 		<Link color="secondary" target="_blank" href="https://help.twitter.com/en/using-twitter/how-to-use-live-producer">
 			Producer
 		</Link>

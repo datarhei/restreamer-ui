@@ -13,6 +13,8 @@ import * as X265 from './video/X265';
 import * as H264VideoToolbox from './video/H264VideoToolbox';
 import * as H264NVENC from './video/H264NVENC';
 import * as H264OMX from './video/H264OMX';
+import * as H264V4L2M2M from './video/H264V4L2M2M';
+import * as H264VAAPI from './video/H264VAAPI';
 import * as VideoCopy from './video/Copy';
 import * as VideoNone from './video/None';
 import * as VideoRaw from './video/Raw';
@@ -123,6 +125,8 @@ videoRegistry.Register(X265);
 videoRegistry.Register(H264VideoToolbox);
 videoRegistry.Register(H264NVENC);
 videoRegistry.Register(H264OMX);
+videoRegistry.Register(H264V4L2M2M);
+videoRegistry.Register(H264VAAPI);
 videoRegistry.Register(VP9);
 videoRegistry.Register(VideoRaw);
 

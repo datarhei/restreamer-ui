@@ -111,11 +111,7 @@ function Service(props) {
 			)}
 			{settings.rtmp_primary === true && (
 				<Grid item xs={12} md={3}>
-					<FormInlineButton
-						target="blank"
-						href={stream_key_link}
-						component="a"
-					>
+					<FormInlineButton target="blank" href={stream_key_link} component="a">
 						<Trans>GET</Trans>
 					</FormInlineButton>
 				</Grid>
@@ -133,11 +129,7 @@ function Service(props) {
 			)}
 			{settings.rtmp_backup === true && (
 				<Grid item xs={12} md={3}>
-					<FormInlineButton
-						target="blank"
-						href={stream_key_link}
-						component="a"
-					>
+					<FormInlineButton target="blank" href={stream_key_link} component="a">
 						<Trans>GET</Trans>
 					</FormInlineButton>
 				</Grid>

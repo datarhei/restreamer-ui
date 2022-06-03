@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 		marginRight: '-1.5em!important',
 		paddingBottom: '1em',
 	},
-	imageTitel: {
+	imageTitle: {
 		textAlign: 'initial',
 		padding: '.5em 0em 0em .1em',
 	},
@@ -169,7 +169,7 @@ function ChannelButton(props) {
 						<ImageSrc style={{ backgroundImage: `url(${props.url})`, borderColor: color_active }} />
 						<ImageBackdrop className="MuiImageBackdrop-root" style={{ borderColor: color_active }} />
 					</Image>
-					<Stack direction="row" alignItems="flex-start" justifyContent="space-between" className={classes.imageTitel}>
+					<Stack direction="row" alignItems="flex-start" justifyContent="space-between" className={classes.imageTitle}>
 						<Typography variant="body2" color="inherit">
 							{props.title}
 						</Typography>

@@ -3,8 +3,10 @@ import React from 'react';
 import { useLingui } from '@lingui/react';
 import { Trans, t } from '@lingui/macro';
 import makeStyles from '@mui/styles/makeStyles';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Icon from '@mui/icons-material/Usb';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
@@ -73,6 +75,10 @@ function Source(props) {
 		});
 	};
 
+	const handleRefresh = () => {
+		props.onRefresh();
+	};
+
 	const handleProbe = () => {
 		props.onProbe(settings, createInputs(settings));
 	};
@@ -95,18 +101,6 @@ function Source(props) {
 		label: i18n._(t`Custom ...`),
 	});
 
-	const audioDevices = (
-		<SelectCustom
-			options={options}
-			label={<Trans>Audio device</Trans>}
-			customLabel={<Trans>Custom audio device</Trans>}
-			value={settings.device}
-			onChange={handleChange('device')}
-			variant="outlined"
-			allowCustom
-		/>
-	);
-
 	return (
 		<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
 			<Grid item xs={12}>
@@ -115,7 +109,18 @@ function Source(props) {
 				</Typography>
 			</Grid>
 			<Grid item xs={12}>
-				{audioDevices}
+				<SelectCustom
+					options={options}
+					label={<Trans>Audio device</Trans>}
+					customLabel={<Trans>Custom audio device</Trans>}
+					value={settings.device}
+					onChange={handleChange('device')}
+					variant="outlined"
+					allowCustom
+				/>
+				<Button size="small" startIcon={<RefreshIcon />} onClick={handleRefresh} sx={{ float: 'right' }}>
+					<Trans>Refresh</Trans>
+				</Button>
 			</Grid>
 			<Grid item xs={12}>
 				<Audio.Sampling value={settings.sampling} onChange={handleChange('sampling')} allowCustom />
@@ -140,6 +145,7 @@ Source.defaultProps = {
 	settings: {},
 	onChange: function (settings) {},
 	onProbe: function (settings, inputs) {},
+	onRefresh: function () {},
 };
 
 function SourceIcon(props) {
@@ -149,10 +155,11 @@ function SourceIcon(props) {
 const id = 'alsa';
 const name = <Trans>ALSA</Trans>;
 const capabilities = ['audio'];
+const ffversion = '^4.1.0 || ^5.0.0';
 
 const func = {
 	initSettings,
 	createInputs,
 };
 
-export { id, name, capabilities, SourceIcon as icon, Source as component, func };
+export { id, name, capabilities, ffversion, SourceIcon as icon, Source as component, func };

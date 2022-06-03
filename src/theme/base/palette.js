@@ -20,7 +20,7 @@ export default {
 		// MuiButton, MuiMenu, MuiToggleButton, MultiSelectOption.js (MenuItem)
 		dark1: 'rgba(0, 0, 0, .1)',
 		// MuiOutlinedInput, BoxText.js (color=dark)
- 		dark2: 'rgba(0, 0, 0, .25)',
+		dark2: 'rgba(0, 0, 0, .25)',
 		// Footer.js, Textarea.js, global.js (Scrollbar)
 		footer1: 'rgba(66, 61, 63, .9)',
 		// Footer.js, Textarea.js

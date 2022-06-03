@@ -182,10 +182,7 @@ function AboutModal(props) {
 					<Grid item xs={12}></Grid>
 					<Grid item xs={12}>
 						<Typography>
-							<strong>Release</strong>:{' '}
-							<Link color="secondary" target="_blank" href={'https://github.com/datarhei/restreamer/releases/tag/v' + Version.UI}>
-								v{Version.UI}
-							</Link>
+							<strong>Release</strong>: {Version.UI}
 						</Typography>
 						<Typography>
 							<strong>Repo</strong>:{' '}

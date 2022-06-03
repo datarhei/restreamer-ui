@@ -34,9 +34,7 @@ export default function Component(props) {
 				rows={props.rows}
 				type={props.type}
 			/>
-			{props.helperText && (
-				<FormHelperText>{props.helperText}</FormHelperText>
-			)}
+			{props.helperText && <FormHelperText>{props.helperText}</FormHelperText>}
 		</FormControl>
 	);
 }

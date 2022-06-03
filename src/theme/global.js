@@ -6,13 +6,13 @@ export default {
 	html: {
 		width: '100%',
 		height: '100%',
-		fontSize: '16px/1.5'
+		fontSize: '16px/1.5',
 	},
 	body: {
 		background: `${base.palette.background.button_disabled} url(${universe}) no-repeat fixed left top`,
 		backgroundSize: 'cover',
 		overflowX: 'hidden',
-		overflowY: 'scroll'
+		overflowY: 'scroll',
 	},
 	code: {
 		fontFamily: 'soure-code-pro, monospace',
@@ -20,7 +20,8 @@ export default {
 	textarea: {
 		width: '100%',
 		backgroundColor: base.palette.background.modalbox,
-		fontFamily: 'Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace',
+		fontFamily:
+			'Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace',
 		fontSize: 14,
 		whiteSpace: 'pre',
 		overflow: 'auto',
@@ -35,7 +36,7 @@ export default {
 		outline: 'none',
 	},
 	'::-webkit-scrollbar': {
-		width:6,
+		width: 6,
 		height: 6,
 	},
 	'::-webkit-scrollbar:vertical': {

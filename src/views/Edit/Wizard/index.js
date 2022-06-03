@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useLingui } from '@lingui/react';
 import { Trans, t } from '@lingui/macro';
+import Backdrop from '@mui/material/Backdrop';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import Divider from '@mui/material/Divider';
@@ -48,6 +49,7 @@ export default function Wizard(props) {
 		probing: false,
 		status: 'none',
 	});
+	const [$skillsRefresh, setSkillsRefresh] = React.useState(false);
 	const [$abort, setAbort] = React.useState({
 		step: 'TYPE',
 	});
@@ -81,6 +83,13 @@ export default function Wizard(props) {
 		});
 
 		setReady(true);
+	};
+
+	const refreshSkills = async () => {
+		await props.restreamer.RefreshSkills();
+
+		const skills = await props.restreamer.Skills();
+		setSkills(skills);
 	};
 
 	const probe = async (type, source) => {
@@ -163,8 +172,6 @@ export default function Wizard(props) {
 		}
 
 		data.streams = M.createOutputStreams(sources, profiles);
-
-		await props.restreamer.CleanupIngest(_channelid);
 
 		const [, err] = await props.restreamer.UpsertIngest(_channelid, inputs, outputs, control);
 		if (err !== null) {
@@ -327,6 +334,12 @@ export default function Wizard(props) {
 			});
 		};
 
+		const handleRefresh = async () => {
+			setSkillsRefresh(true);
+			await refreshSkills();
+			setSkillsRefresh(false);
+		};
+
 		const s = Sources.Get($sourceid);
 		if (s === null) {
 			setStep('TYPE');
@@ -349,6 +362,7 @@ export default function Wizard(props) {
 						settings={$sources.video.settings}
 						skills={$skills}
 						onChange={handleChange}
+						onRefresh={handleRefresh}
 					/>
 					<Grid item xs={12}>
 						{$probe.status === 'error' && (
@@ -400,6 +414,9 @@ export default function Wizard(props) {
 						</Button>
 					</Grid>
 				</Grid>
+				<Backdrop open={$skillsRefresh}>
+					<CircularProgress color="inherit" />
+				</Backdrop>
 			</Paper>
 		);
 	}
@@ -1049,8 +1066,8 @@ export default function Wizard(props) {
 					<Grid item xs={12}>
 						<Typography>
 							<Trans>
-							Use your copyright and choose the correct image license. Whether free for all or highly restricted.
-							Briefly discuss what others are allowed to do with your image.
+								Use your copyright and choose the correct image license. Whether free for all or highly restricted. Briefly discuss what others
+								are allowed to do with your image.
 							</Trans>
 						</Typography>
 					</Grid>
