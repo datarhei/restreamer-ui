@@ -17,11 +17,11 @@ const topics = {
 		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/edit-livestream/license',
 		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/streameinstellungen/lizenz',
 	},
-	login: {
+	'login': {
 		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/login',
 		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/dashboard',
 	},
-	main: {
+	'main': {
 		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/main-screen',
 		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/hauptbildschirm',
 	},
@@ -73,7 +73,7 @@ const topics = {
 		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/process-report',
 		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/prozess-details',
 	},
-	publication: {
+	'publication': {
 		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/publications',
 		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/publication-services',
 	},
@@ -160,6 +160,38 @@ const topics = {
 	'wizard-abort': {
 		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/wizard',
 		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/assistent',
+	},
+	'encoder-h264_omx': {
+		en: 'https://docs.datarhei.com/restreamer/knowledge-base/troubleshooting/encoding-compatibility-list#h264_omx',
+		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/fehlersuche/kompatibilitaetsliste-fuer-encoder#h264_omx',
+	},
+	'encoder-h264_v4l2m2m': {
+		en: 'https://docs.datarhei.com/restreamer/knowledge-base/troubleshooting/encoding-compatibility-list#h264_v4l2m2m',
+		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/fehlersuche/kompatibilitaetsliste-fuer-encoder#h264_v4l2m2m',
+	},
+	'encoder-h264_nvenc': {
+		en: 'https://docs.datarhei.com/restreamer/knowledge-base/troubleshooting/encoding-compatibility-list#h264_nvenc',
+		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/fehlersuche/kompatibilitaetsliste-fuer-encoder#h264_nvenc',
+	},
+	'encoder-h264_vaapi': {
+		en: 'https://docs.datarhei.com/restreamer/knowledge-base/troubleshooting/encoding-compatibility-list#h264_vaapi',
+		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/fehlersuche/kompatibilitaetsliste-fuer-encoder#h264_vaapi',
+	},
+	'encoder-h264_videotoolbox': {
+		en: 'https://docs.datarhei.com/restreamer/knowledge-base/troubleshooting/encoding-compatibility-list#h264_videotoolbox',
+		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/fehlersuche/kompatibilitaetsliste-fuer-encoder#h264_videotoolbox',
+	},
+	'encoder-libx264': {
+		en: 'https://docs.datarhei.com/restreamer/knowledge-base/troubleshooting/encoding-compatibility-list#libx264',
+		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/fehlersuche/kompatibilitaetsliste-fuer-encoder#libx264',
+	},
+	'encoder-libx265': {
+		en: 'https://docs.datarhei.com/restreamer/knowledge-base/troubleshooting/encoding-compatibility-list#libx265',
+		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/fehlersuche/kompatibilitaetsliste-fuer-encoder#libx265',
+	},
+	'encoder-libvpx-vp9': {
+		en: 'https://docs.datarhei.com/restreamer/knowledge-base/troubleshooting/encoding-compatibility-list#libvpx-vp9',
+		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/fehlersuche/kompatibilitaetsliste-fuer-encoder#libvpx-vp9',
 	},
 };
 

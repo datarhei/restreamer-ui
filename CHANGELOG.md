@@ -2,6 +2,7 @@
 
 #### v1.0.0 > v1.1.0
 
+-   Add compatibility list for encoders
 -   Add "HLS cleanup" as an optional function ([Philipp Trenz](https://github.com/philipptrenz))
 -   Add /ui info to / ([#326](https://github.com/datarhei/restreamer/issues/326))
 -   Add Russian translation (thx Inthegamelp)
