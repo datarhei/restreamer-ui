@@ -3,7 +3,7 @@ FROM node:17.9.0-alpine3.15
 ARG NODE_SPACE_SIZE=10240
 ENV NODE_OPTIONS="--openssl-legacy-provider --max-old-space-size=$NODE_SPACE_SIZE"
 
-ENV PUBLIC_URL "/"
+ARG PUBLIC_URL "/"
 
 COPY . /ui
 
