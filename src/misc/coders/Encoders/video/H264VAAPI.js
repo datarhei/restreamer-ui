@@ -35,8 +35,6 @@ function createMapping(settings) {
 		`${settings.profile}`,
 		'-quality',
 		`${settings.quality}`,
-		'-level',
-		`${settings.level}`,
 		'-b:v',
 		`${settings.bitrate}k`,
 		'-maxrate',
