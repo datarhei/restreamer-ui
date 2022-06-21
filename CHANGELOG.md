@@ -1,5 +1,11 @@
 # Restreamer-UI
 
+#### v1.1.0 > v1.3.1
+
+-   Add Owncast to publication services
+-   Add Telegram to publication services
+-   Fix VAAPI encoder
+
 #### v1.0.0 > v1.1.0
 
 -   Add compatibility list for encoders
