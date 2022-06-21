@@ -493,7 +493,7 @@ export default function Edit(props) {
 														<Trans>Process details</Trans>
 													</Link>
 													<Link color="textSecondary" href="#!" onClick={handleProcessDebug} className={classes.link}>
-														<Trans>Process debug</Trans>
+														<Trans>Process report</Trans>
 													</Link>
 												</Grid>
 											</React.Fragment>
