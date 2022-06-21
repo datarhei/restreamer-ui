@@ -45,7 +45,7 @@ const requires = {
 };
 
 function ServiceIcon(props) {
-	return <img src={Logo} alt="datarhei.com Logo" style={{ marginBottom: '-6px' }} {...props} />;
+	return <img src={Logo} alt="datarhei.com Logo" {...props} />;
 }
 
 function init(settings) {

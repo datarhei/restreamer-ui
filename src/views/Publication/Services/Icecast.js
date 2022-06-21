@@ -48,7 +48,7 @@ const requires = {
 };
 
 function ServiceIcon(props) {
-	return <img src={Logo} alt="Icecat Logo" style={{ marginBottom: '-7px' }} {...props} />;
+	return <img src={Logo} alt="Icecat Logo" {...props} />;
 }
 
 function init(settings, metadata) {

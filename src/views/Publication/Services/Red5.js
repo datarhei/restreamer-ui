@@ -44,7 +44,7 @@ const requires = {
 };
 
 function ServiceIcon(props) {
-	return <img src={Logo} alt="Red5 Logo" style={{ marginBottom: '-7px' }} {...props} />;
+	return <img src={Logo} alt="Red5 Logo" {...props} />;
 }
 
 function init(settings) {

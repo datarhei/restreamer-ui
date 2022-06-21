@@ -29,6 +29,11 @@ const useStyles = makeStyles((theme) => ({
 			minWidth: 30,
 			marginRight: 6,
 			float: 'left',
+			'& img': {
+				maxWidth: 22,
+				maxHeight: 22,
+				marginBottom: '0!important',
+			},
 		},
 		'& .egress-right-edit': {
 			float: 'right',

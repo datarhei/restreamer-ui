@@ -13,6 +13,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import TextField from '@mui/material/TextField';
@@ -48,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: '4rem!important',
 		maxHeight: 64,
 		marginTop: '-0.065em',
+	},
+	serviceName: {
+		marginTop: '-.2rem',
 	},
 	buttonGroup: {
 		marginTop: '0.5em',
@@ -375,12 +379,24 @@ export default function Add(props) {
 								</Tabs>
 								<TabPanel value={$tab} index="general" className="panel">
 									<Grid container spacing={2}>
-										<Grid item xs={12} md={2}>
-											<ServiceIcon className={classes.serviceIcon} />
-										</Grid>
-										<Grid item xs={12} md={10}>
-											<Typography variant="h1">{service.name}</Typography>
-											<Typography>v{service.version}</Typography>
+										<Grid item xs={12}>
+											<Stack
+												direction="row"
+												justifyContent="flex-start"
+												alignItems="center"
+												spacing={2}
+											>
+												<ServiceIcon className={classes.serviceIcon} />
+												<Stack
+													direction="column"
+													justifyContent="center"
+													alignItems="flex-start"
+													spacing={0}
+												>
+													<Typography variant="h1" className={classes.serviceName}>{service.name}</Typography>
+													<Typography>v{service.version}</Typography>
+												</Stack>
+											</Stack>
 										</Grid>
 										<Grid item xs={12} className={classes.serviceDescription}>
 											<Typography>{service.description}</Typography>
@@ -418,12 +434,24 @@ export default function Add(props) {
 								</TabPanel>
 								<TabPanel value={$tab} index="process" className="panel">
 									<Grid container spacing={2}>
-										<Grid item xs={12} md={2}>
-											<ServiceIcon className={classes.serviceIcon} />
-										</Grid>
-										<Grid item xs={12} md={10}>
-											<Typography variant="h1">{service.name}</Typography>
-											<Typography>v{service.version}</Typography>
+										<Grid item xs={12}>
+											<Stack
+												direction="row"
+												justifyContent="flex-start"
+												alignItems="center"
+												spacing={2}
+											>
+												<ServiceIcon className={classes.serviceIcon} />
+												<Stack
+													direction="column"
+													justifyContent="center"
+													alignItems="flex-start"
+													spacing={0}
+												>
+													<Typography variant="h1" className={classes.serviceName}>{service.name}</Typography>
+													<Typography>v{service.version}</Typography>
+												</Stack>
+											</Stack>
 										</Grid>
 										<Grid item xs={12}>
 											<Divider />
@@ -451,12 +479,24 @@ export default function Add(props) {
 								</TabPanel>
 								<TabPanel value={$tab} index="encoding" className="panel">
 									<Grid container spacing={2}>
-										<Grid item xs={12} md={2}>
-											<ServiceIcon className={classes.serviceIcon} />
-										</Grid>
-										<Grid item xs={12} md={10}>
-											<Typography variant="h1">{service.name}</Typography>
-											<Typography>v{service.version}</Typography>
+										<Grid item xs={12}>
+											<Stack
+												direction="row"
+												justifyContent="flex-start"
+												alignItems="center"
+												spacing={2}
+											>
+												<ServiceIcon className={classes.serviceIcon} />
+												<Stack
+													direction="column"
+													justifyContent="center"
+													alignItems="flex-start"
+													spacing={0}
+												>
+													<Typography variant="h1" className={classes.serviceName}>{service.name}</Typography>
+													<Typography>v{service.version}</Typography>
+												</Stack>
+											</Stack>
 										</Grid>
 										<Grid item xs={12}>
 											<Divider />

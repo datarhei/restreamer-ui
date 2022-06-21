@@ -45,7 +45,7 @@ const requires = {
 };
 
 function ServiceIcon(props) {
-	return <img src={Logo} alt="DaCast Logo" style={{ marginBottom: '-6px' }} {...props} />;
+	return <img src={Logo} alt="DaCast Logo" {...props} />;
 }
 
 function init(settings) {

@@ -1,10 +1,11 @@
 # Restreamer-UI
 
-#### v1.1.0 > v1.3.1
+#### v1.1.0 > v1.3.2
 
--   Add Owncast to publication services
--   Add Telegram to publication services
--   Fix VAAPI encoder
+-   Add Owncast to publication services ([#369](https://github.com/datarhei/restreamer/issues/369))
+-   Add Telegram to publication services (thx Martin Held)
+-   Fix publication service icon styles
+-   Fix VAAPI encoder 
 
 #### v1.0.0 > v1.1.0
 
