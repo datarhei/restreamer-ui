@@ -1,10 +1,11 @@
 # Restreamer-UI
 
-#### v1.1.0 > v1.3.3
+#### v1.1.0 > v1.4.0
 
 -   Add Owncast to publication services ([#369](https://github.com/datarhei/restreamer/issues/369))
 -   Add Telegram to publication services (thx Martin Held)
--   Fix process debug > process report
+-   Add Polish translations (thx Robert Rykała)
+-   Fix process report naming
 -   Fix publication service icon styles
 -   Fix VAAPI encoder 
 

@@ -1619,7 +1619,7 @@ msgid "Processing & Control"
 msgstr "Traitement et contrôle"
 
 #: src/misc/coders/Encoders/video/H264NVENC.js:92
-#: src/misc/coders/Encoders/video/H264VAAPI.js:82
+#: src/misc/coders/Encoders/video/H264VAAPI.js:80
 #: src/misc/coders/settings/Video.js:142
 #: src/views/Edit/Wizard/index.js:607
 msgid "Profile"
@@ -1678,7 +1678,7 @@ msgid "Pull or recieve the data:"
 msgstr "Tirer ou recevoir les données :"
 
 #: src/misc/Progress.js:90
-#: src/misc/coders/Encoders/video/H264VAAPI.js:137
+#: src/misc/coders/Encoders/video/H264VAAPI.js:135
 msgid "Quality"
 msgstr "Qualité"
 
@@ -1726,7 +1726,7 @@ msgid "Raspberry Pi camera"
 msgstr "Caméra Raspberry Pi"
 
 #: src/misc/coders/Encoders/video/H264NVENC.js:144
-#: src/misc/coders/Encoders/video/H264VAAPI.js:63
+#: src/misc/coders/Encoders/video/H264VAAPI.js:61
 msgid "Rate control"
 msgstr "Contrôle du taux"
 

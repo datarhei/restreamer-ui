@@ -2753,9 +2753,9 @@ class Restreamer {
 
 	async _removePublicEssentials() {
 		await this._deleteAsset('/robots.txt');
-		await this._deleteAsset('/favicon.ico', '/favicon.ico');
-		await this._deleteAsset('/logo192.png', '/logo192.png');
-		await this._deleteAsset('/logo512.png', '/logo512.png');
+		await this._deleteAsset('/favicon.ico');
+		await this._deleteAsset('/logo192.png');
+		await this._deleteAsset('/logo512.png');
 	}
 
 	async _getLocalAssetAsString(localPath) {
