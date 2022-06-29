@@ -1427,7 +1427,7 @@ class Restreamer {
 	}
 
 	// Upsert the ingest process
-	async UpsertIngest(channelid, inputs, outputs, control) {
+	async UpsertIngest(channelid, global, inputs, outputs, control) {
 		const channel = this.GetChannel(channelid);
 		if (channel === null) {
 			return [null, { message: 'Unknown channel ID' }];
@@ -1439,7 +1439,7 @@ class Restreamer {
 			reference: channel.channelid,
 			input: [],
 			output: [],
-			options: ['-err_detect', 'ignore_err'],
+			options: ['-err_detect', 'ignore_err', ...global],
 			autostart: control.process.autostart,
 			reconnect: control.process.reconnect,
 			reconnect_delay_seconds: parseInt(control.process.delay),
@@ -2195,7 +2195,7 @@ class Restreamer {
 	}
 
 	// Update an egress process
-	async UpdateEgress(channelid, id, inputs, outputs, control) {
+	async UpdateEgress(channelid, id, global, inputs, outputs, control) {
 		const channel = this.GetChannel(channelid);
 		if (channel === null) {
 			return null;
@@ -2226,7 +2226,7 @@ class Restreamer {
 				},
 			],
 			output: [],
-			options: ['-err_detect', 'ignore_err'],
+			options: ['-err_detect', 'ignore_err', ...global],
 			autostart: control.process.autostart,
 			reconnect: control.process.reconnect,
 			reconnect_delay_seconds: parseInt(control.process.delay),
@@ -2252,7 +2252,7 @@ class Restreamer {
 	}
 
 	// Create an egress process
-	async CreateEgress(channelid, service, inputs, outputs, control) {
+	async CreateEgress(channelid, service, global, inputs, outputs, control) {
 		const channel = this.GetChannel(channelid);
 		if (channel === null) {
 			return ['', { message: 'Unknown channel ID' }];
@@ -2269,7 +2269,7 @@ class Restreamer {
 
 		this.SetChannelEgress(channelid, egress.id, egress);
 
-		const [, err] = await this.UpdateEgress(channelid, egress.id, inputs, outputs, control);
+		const [, err] = await this.UpdateEgress(channelid, egress.id, global, inputs, outputs, control);
 		if (err !== null) {
 			this.DeleteChannelEgress(channelid, egress.id);
 		}

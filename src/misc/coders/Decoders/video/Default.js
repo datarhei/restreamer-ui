@@ -9,7 +9,10 @@ function init(initialState) {
 }
 
 function createMapping(settings) {
-	const mapping = [];
+	const mapping = {
+		global: [],
+		local: [],
+	};
 
 	return mapping;
 }

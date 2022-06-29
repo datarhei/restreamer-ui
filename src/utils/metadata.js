@@ -93,13 +93,16 @@ data = {
 					channels: '2',
 					sampling: '44100'
 				},
-				mapping: [
-					'-codec:a', 'aac',
-					'-b:a', '64k',
-					'-bsf:a', 'aac_adtstoasc',
-					'-shortest',
-					'-af', 'aresample=osr=44100:ocl=2'
-				]
+				mapping: {
+					global: [],
+					local: [
+						'-codec:a', 'aac',
+						'-b:a', '64k',
+						'-bsf:a', 'aac_adtstoasc',
+						'-shortest',
+						'-af', 'aresample=osr=44100:ocl=2'
+					]
+				}
 			},
 			decoder: null,
 		},
@@ -110,12 +113,15 @@ data = {
 				coder: 'copy',
 				codec: 'h264',
 				settings: {},
-				mapping: [
-					'-codec:v', 'copy',
-					'-vsync 0',
-					'-copyts',
-					'-start_at_zero',
-				]
+				mapping: {
+					global: [],
+					local: [
+						'-codec:v', 'copy',
+						'-vsync 0',
+						'-copyts',
+						'-start_at_zero',
+					]
+				}
 			},
 			decoder: null,
 		},
@@ -133,19 +139,22 @@ data = {
 					profile: 'auto',
 					tune: 'zerolatency',
 				},
-				mapping: [
-					'-codec:v', 'libx264',
-					'-preset:v', 'ultrafast',
-					'-b:v', '4096k',
-					'-maxrate', '4096k',
-					'-bufsize', '4096k',
-					'-r', '25',
-					'-g', '50',
-					'-pix_fmt', 'yuv420p',
-					'-vsync', '1',
-					'-profile:v', 'high',
-					'-tune:v', 'zerolatency',
-				]
+				mapping: {
+					global: [],
+					local: [
+						'-codec:v', 'libx264',
+						'-preset:v', 'ultrafast',
+						'-b:v', '4096k',
+						'-maxrate', '4096k',
+						'-bufsize', '4096k',
+						'-r', '25',
+						'-g', '50',
+						'-pix_fmt', 'yuv420p',
+						'-vsync', '1',
+						'-profile:v', 'high',
+						'-tune:v', 'zerolatency',
+					]
+				}
 			},
 			decoder: {
 				coder: 'h264_cuvid',
@@ -483,11 +492,7 @@ const mergeEgressMetadata = (metadata, base) => {
 const validateProfile = (sources, profile) => {
 	let validVideo = false;
 
-	if (!('video' in profile)) {
-		profile.video = initProfile({});
-	} else {
-		profile.video = initProfile(profile.video);
-	}
+	profile = initProfile(profile);
 
 	if (profile.video.source !== -1 && profile.video.source < sources.length) {
 		const source = sources[profile.video.source];
@@ -504,12 +509,6 @@ const validateProfile = (sources, profile) => {
 	}
 
 	let validAudio = false;
-
-	if (!('audio' in profile)) {
-		profile.audio = initProfile({});
-	} else {
-		profile.audio = initProfile(profile.audio);
-	}
 
 	if (profile.audio.source !== -1 && profile.audio.source < sources.length) {
 		const source = sources[profile.audio.source];
@@ -547,6 +546,7 @@ const validateProfile = (sources, profile) => {
 const createInputsOutputs = (sources, profiles) => {
 	const source2inputMap = new Map();
 
+	let global = [];
 	const inputs = [];
 	const outputs = [];
 
@@ -559,11 +559,13 @@ const createInputsOutputs = (sources, profiles) => {
 
 		let index = -1;
 
+		global = [...global, ...profile.video.decoder.mapping.global];
+
 		const source = sources[profile.video.source];
 		const stream = source.streams[profile.video.stream];
 		const input = source.inputs[stream.index];
 
-		input.options = [...profile.video.decoder.mapping, ...input.options];
+		input.options = [...profile.video.decoder.mapping.local, ...input.options];
 
 		const id = profile.video.source + ':' + stream.index;
 
@@ -576,14 +578,18 @@ const createInputsOutputs = (sources, profiles) => {
 
 		index = source2inputMap.get(id);
 
-		const options = ['-map', index + ':' + stream.stream, ...profile.video.encoder.mapping];
+		global = [...global, ...profile.video.encoder.mapping.global];
+
+		const options = ['-map', index + ':' + stream.stream, ...profile.video.encoder.mapping.local];
 
 		if (profile.audio.encoder.coder !== 'none' && profile.audio.source !== -1 && profile.audio.stream !== -1) {
+			global = [...global, ...profile.audio.decoder.mapping.global];
+
 			const source = sources[profile.audio.source];
 			const stream = source.streams[profile.audio.stream];
 			const input = source.inputs[stream.index];
 
-			input.options = [...profile.audio.decoder.mapping, ...input.options];
+			input.options = [...profile.audio.decoder.mapping.local, ...input.options];
 
 			const id = profile.audio.source + ':' + stream.index;
 
@@ -594,7 +600,9 @@ const createInputsOutputs = (sources, profiles) => {
 
 			index = source2inputMap.get(id);
 
-			options.push('-map', index + ':' + stream.stream, ...profile.audio.encoder.mapping);
+			global = [...global, ...profile.audio.encoder.mapping.global];
+
+			options.push('-map', index + ':' + stream.stream, ...profile.audio.encoder.mapping.local);
 		} else {
 			options.push('-an');
 		}
@@ -605,7 +613,16 @@ const createInputsOutputs = (sources, profiles) => {
 		});
 	}
 
-	return [inputs, outputs];
+	// https://stackoverflow.com/questions/9229645/remove-duplicate-values-from-js-array
+	const uniqBy = (a, key) => {
+		return [...new Map(a.map((x) => [key(x), x])).values()];
+	};
+
+	// global is an array of arrays. Here we remove duplicates and flatten it.
+	global = uniqBy(global, (x) => JSON.stringify(x.sort()));
+	global = global.reduce((acc, val) => acc.concat(val), []);
+
+	return [global, inputs, outputs];
 };
 
 const createOutputStreams = (sources, profiles) => {
@@ -717,16 +734,43 @@ const initProfile = (initialProfile) => {
 	profile.video.encoder = {
 		coder: 'none',
 		settings: {},
-		mapping: [],
+		mapping: {},
 		...profile.video.encoder,
 	};
+
+	// mapping used to be an array for input/output specific options
+	if (Array.isArray(profile.video.encoder.mapping)) {
+		profile.video.encoder.mapping = {
+			global: [],
+			local: profile.video.encoder.mapping,
+		};
+	} else {
+		profile.video.encoder.mapping = {
+			global: [],
+			local: [],
+			...profile.video.encoder.mapping,
+		};
+	}
 
 	profile.video.decoder = {
 		coder: 'default',
 		settings: {},
-		mapping: [],
+		mapping: {},
 		...profile.video.decoder,
 	};
+
+	if (Array.isArray(profile.video.decoder.mapping)) {
+		profile.video.decoder.mapping = {
+			global: [],
+			local: profile.video.decoder.mapping,
+		};
+	} else {
+		profile.video.decoder.mapping = {
+			global: [],
+			local: [],
+			...profile.video.decoder.mapping,
+		};
+	}
 
 	profile.audio = {
 		source: -1,
@@ -739,16 +783,42 @@ const initProfile = (initialProfile) => {
 	profile.audio.encoder = {
 		coder: 'none',
 		settings: {},
-		mapping: [],
+		mapping: {},
 		...profile.audio.encoder,
 	};
+
+	if (Array.isArray(profile.audio.encoder.mapping)) {
+		profile.audio.encoder.mapping = {
+			global: [],
+			local: profile.audio.encoder.mapping,
+		};
+	} else {
+		profile.audio.encoder.mapping = {
+			global: [],
+			local: [],
+			...profile.audio.encoder.mapping,
+		};
+	}
 
 	profile.audio.decoder = {
 		coder: 'default',
 		settings: {},
-		mapping: [],
+		mapping: {},
 		...profile.audio.decoder,
 	};
+
+	if (Array.isArray(profile.audio.decoder.mapping)) {
+		profile.audio.decoder.mapping = {
+			global: [],
+			local: profile.audio.decoder.mapping,
+		};
+	} else {
+		profile.audio.decoder.mapping = {
+			global: [],
+			local: [],
+			...profile.audio.decoder.mapping,
+		};
+	}
 
 	profile.custom = {
 		selected: profile.audio.source === 1,

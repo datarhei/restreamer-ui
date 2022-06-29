@@ -34,11 +34,16 @@ function createMapping(settings, stream) {
 		layout = stream.layout;
 	}
 
-	const mapping = ['-codec:a', 'opus', '-b:a', `${settings.bitrate}k`, '-vbr', 'on', '-shortest', '-af', `aresample=osr=${sampling}:ocl=${layout}`];
+	const local = ['-codec:a', 'opus', '-b:a', `${settings.bitrate}k`, '-vbr', 'on', '-shortest', '-af', `aresample=osr=${sampling}:ocl=${layout}`];
 
 	if (settings.delay !== 'auto') {
-		mapping.push('opus_delay', settings.delay);
+		local.push('opus_delay', settings.delay);
 	}
+
+	const mapping = {
+		global: [],
+		local: local,
+	};
 
 	return mapping;
 }

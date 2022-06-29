@@ -9,7 +9,10 @@ function init(initialState) {
 }
 
 function createMapping(settings) {
-	const mapping = ['-hwaccel', 'cuda'];
+	const mapping = {
+		global: [],
+		local: ['-hwaccel', 'cuda', '-hwaccel_output_format', 'cuda'],
+	};
 
 	return mapping;
 }

@@ -9,7 +9,10 @@ function init(initialState) {
 }
 
 function createMapping(settings) {
-	const mapping = ['-c:v', 'vc1_mmal'];
+	const mapping = {
+		global: [],
+		local: ['-c:v', 'vc1_mmal'],
+	};
 
 	return mapping;
 }

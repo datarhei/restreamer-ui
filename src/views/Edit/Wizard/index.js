@@ -164,7 +164,7 @@ export default function Wizard(props) {
 		const profiles = data.profiles;
 		const control = data.control;
 
-		const [inputs, outputs] = M.createInputsOutputs(sources, profiles);
+		const [global, inputs, outputs] = M.createInputsOutputs(sources, profiles);
 
 		if (inputs.length === 0 || outputs.length === 0) {
 			notify.Dispatch('error', 'save:ingest', i18n._(t`The input profile is not complete. Please define a video and audio source.`));
@@ -173,7 +173,7 @@ export default function Wizard(props) {
 
 		data.streams = M.createOutputStreams(sources, profiles);
 
-		const [, err] = await props.restreamer.UpsertIngest(_channelid, inputs, outputs, control);
+		const [, err] = await props.restreamer.UpsertIngest(_channelid, global, inputs, outputs, control);
 		if (err !== null) {
 			notify.Dispatch('error', 'save:ingest', err.message);
 			return false;

@@ -9,7 +9,10 @@ function init(initialState) {
 }
 
 function createMapping(settings) {
-	const mapping = ['-c:v', 'h264_cuvid'];
+	const mapping = {
+		global: [],
+		local: ['-c:v', 'h264_cuvid'],
+	};
 
 	return mapping;
 }

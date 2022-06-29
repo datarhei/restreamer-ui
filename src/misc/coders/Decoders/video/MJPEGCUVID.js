@@ -9,7 +9,10 @@ function init(initialState) {
 }
 
 function createMapping(settings) {
-	const mapping = ['-c:v', 'mjpeg_cuvid'];
+	const mapping = {
+		global: [],
+		local: ['-c:v', 'mjpeg_cuvid'],
+	};
 
 	return mapping;
 }

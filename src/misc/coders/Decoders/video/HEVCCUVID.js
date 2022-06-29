@@ -9,7 +9,10 @@ function init(initialState) {
 }
 
 function createMapping(settings) {
-	const mapping = ['-c:v', 'hevc_cuvid'];
+	const mapping = {
+		global: [],
+		local: ['-c:v', 'hevc_cuvid'],
+	};
 
 	return mapping;
 }

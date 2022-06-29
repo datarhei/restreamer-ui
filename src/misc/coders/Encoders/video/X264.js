@@ -23,7 +23,7 @@ function init(initialState) {
 }
 
 function createMapping(settings) {
-	const mapping = [
+	const local = [
 		'-codec:v',
 		'libx264',
 		'-preset:v',
@@ -43,16 +43,21 @@ function createMapping(settings) {
 	];
 
 	if (settings.gop !== 'auto') {
-		mapping.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);
+		local.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);
 	}
 
 	if (settings.profile !== 'auto') {
-		mapping.push('-profile:v', `${settings.profile}`);
+		local.push('-profile:v', `${settings.profile}`);
 	}
 
 	if (settings.tune !== 'none') {
-		mapping.push('-tune:v', `${settings.tune}`);
+		local.push('-tune:v', `${settings.tune}`);
 	}
+
+	const mapping = {
+		global: [],
+		local: local,
+	};
 
 	return mapping;
 }

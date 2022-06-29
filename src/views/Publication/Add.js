@@ -176,9 +176,9 @@ export default function Add(props) {
 	const handleServiceDone = async () => {
 		setSaving(true);
 
-		const [inputs, outputs] = helper.createInputsOutputs($sources, $settings.profiles, $settings.outputs);
+		const [global, inputs, outputs] = helper.createInputsOutputs($sources, $settings.profiles, $settings.outputs);
 
-		const [id, err] = await props.restreamer.CreateEgress(_channelid, $service, inputs, outputs, $settings.control);
+		const [id, err] = await props.restreamer.CreateEgress(_channelid, $service, global, inputs, outputs, $settings.control);
 		if (err !== null) {
 			setSaving(false);
 			notify.Dispatch('error', 'save:egress:' + $service, i18n._(t`Failed to create publication service (${err.message})`));
@@ -380,20 +380,12 @@ export default function Add(props) {
 								<TabPanel value={$tab} index="general" className="panel">
 									<Grid container spacing={2}>
 										<Grid item xs={12}>
-											<Stack
-												direction="row"
-												justifyContent="flex-start"
-												alignItems="center"
-												spacing={2}
-											>
+											<Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
 												<ServiceIcon className={classes.serviceIcon} />
-												<Stack
-													direction="column"
-													justifyContent="center"
-													alignItems="flex-start"
-													spacing={0}
-												>
-													<Typography variant="h1" className={classes.serviceName}>{service.name}</Typography>
+												<Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={0}>
+													<Typography variant="h1" className={classes.serviceName}>
+														{service.name}
+													</Typography>
 													<Typography>v{service.version}</Typography>
 												</Stack>
 											</Stack>
@@ -435,20 +427,12 @@ export default function Add(props) {
 								<TabPanel value={$tab} index="process" className="panel">
 									<Grid container spacing={2}>
 										<Grid item xs={12}>
-											<Stack
-												direction="row"
-												justifyContent="flex-start"
-												alignItems="center"
-												spacing={2}
-											>
+											<Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
 												<ServiceIcon className={classes.serviceIcon} />
-												<Stack
-													direction="column"
-													justifyContent="center"
-													alignItems="flex-start"
-													spacing={0}
-												>
-													<Typography variant="h1" className={classes.serviceName}>{service.name}</Typography>
+												<Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={0}>
+													<Typography variant="h1" className={classes.serviceName}>
+														{service.name}
+													</Typography>
 													<Typography>v{service.version}</Typography>
 												</Stack>
 											</Stack>
@@ -480,20 +464,12 @@ export default function Add(props) {
 								<TabPanel value={$tab} index="encoding" className="panel">
 									<Grid container spacing={2}>
 										<Grid item xs={12}>
-											<Stack
-												direction="row"
-												justifyContent="flex-start"
-												alignItems="center"
-												spacing={2}
-											>
+											<Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
 												<ServiceIcon className={classes.serviceIcon} />
-												<Stack
-													direction="column"
-													justifyContent="center"
-													alignItems="flex-start"
-													spacing={0}
-												>
-													<Typography variant="h1" className={classes.serviceName}>{service.name}</Typography>
+												<Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={0}>
+													<Typography variant="h1" className={classes.serviceName}>
+														{service.name}
+													</Typography>
 													<Typography>v{service.version}</Typography>
 												</Stack>
 											</Stack>

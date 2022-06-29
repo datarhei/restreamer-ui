@@ -1,12 +1,18 @@
 import React from 'react';
 
 function createMapping(settings, stream) {
-	const mapping = ['-codec:a', 'copy'];
+	const local = ['-codec:a', 'copy'];
 	/*
 	if(stream.codec === 'aac') {
-		mapping.push('-bsf:a', 'aac_adtstoasc');
+		local.push('-bsf:a', 'aac_adtstoasc');
 	}
 */
+
+	const mapping = {
+		global: [],
+		local: local,
+	};
+
 	return mapping;
 }
 

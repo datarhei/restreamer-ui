@@ -29,7 +29,12 @@ function createMapping(settings, stream) {
 	}
 
 	// '-qscale:a', '6'
-	const mapping = ['-codec:a', 'libmp3lame', '-b:a', `${settings.bitrate}k`, '-shortest', '-af', `aresample=osr=${sampling}:ocl=${layout}`];
+	const local = ['-codec:a', 'libmp3lame', '-b:a', `${settings.bitrate}k`, '-shortest', '-af', `aresample=osr=${sampling}:ocl=${layout}`];
+
+	const mapping = {
+		global: [],
+		local: local,
+	};
 
 	return mapping;
 }

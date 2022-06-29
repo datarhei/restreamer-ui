@@ -28,11 +28,16 @@ function createMapping(settings, stream) {
 		layout = stream.layout;
 	}
 
-	const mapping = ['-codec:a', 'aac_at', '-b:a', `${settings.bitrate}k`, '-shortest', '-af', `aresample=osr=${sampling}:ocl=${layout}`];
+	const local = ['-codec:a', 'aac_at', '-b:a', `${settings.bitrate}k`, '-shortest', '-af', `aresample=osr=${sampling}:ocl=${layout}`];
 
 	if (stream.codec === 'aac') {
-		mapping.push('-bsf:a', 'aac_adtstoasc');
+		local.push('-bsf:a', 'aac_adtstoasc');
 	}
+
+	const mapping = {
+		global: [],
+		local: local,
+	};
 
 	return mapping;
 }

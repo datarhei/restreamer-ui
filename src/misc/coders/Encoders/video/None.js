@@ -1,7 +1,12 @@
 import React from 'react';
 
 function createMapping(settings, stream) {
-	const mapping = ['-vn'];
+	const local = ['-vn'];
+
+	const mapping = {
+		global: [],
+		local: local,
+	};
 
 	return mapping;
 }

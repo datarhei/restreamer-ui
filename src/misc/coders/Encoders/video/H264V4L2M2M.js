@@ -65,7 +65,7 @@ Codec Controls
  */
 
 function createMapping(settings) {
-	const mapping = [
+	const local = [
 		'-codec:v',
 		'h264_v4l2m2m',
 		'-b:v',
@@ -83,12 +83,17 @@ function createMapping(settings) {
 	];
 
 	if (settings.gop !== 'auto') {
-		mapping.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);
+		local.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);
 	}
 
 	if (settings.profile !== 'auto') {
-		mapping.push('-profile:v', `${settings.profile}`);
+		local.push('-profile:v', `${settings.profile}`);
 	}
+
+	const mapping = {
+		global: [],
+		local: local,
+	};
 
 	return mapping;
 }
