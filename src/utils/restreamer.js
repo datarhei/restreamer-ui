@@ -1462,14 +1462,14 @@ class Restreamer {
 			options: ['-dn', '-sn', ...outputs[0].options.map((o) => '' + o)],
 			cleanup: [
 				{
-					pattern: `memfs:/${channel.channelid}_*.ts`,
-					max_files: parseInt(control.hls.listSize) + 2,
-					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 2) : 0,
+					pattern: control.hls.version >= 7 ? `memfs:/${channel.channelid}_*.mp4` : `memfs:/${channel.channelid}_*.ts`,
+					max_files: parseInt(control.hls.listSize) + 6,
+					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
 					purge_on_delete: true,
 				},
 				{
 					pattern: `memfs:/${channel.channelid}.m3u8`,
-					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 2) : 0,
+					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
 					purge_on_delete: true,
 				},
 			],
@@ -1481,25 +1481,57 @@ class Restreamer {
 
 		output.options.push(...metadata_options);
 
+		// manifest versions
+		// https://developer.apple.com/documentation/http_live_streaming/about_the_ext-x-version_tag
+		// https://ffmpeg.org/ffmpeg-all.html#Options-53
+		console.log(control.hls.version)
 		if (control.hls.lhls === false) {
 			// ordinary HLS
-			output.options.push(
-				'-f',
-				'hls',
-				'-start_number',
-				'0',
-				'-hls_time',
-				'' + parseInt(control.hls.segmentDuration),
-				'-hls_list_size',
-				'' + parseInt(control.hls.listSize),
-				'-hls_flags',
-				'append_list+delete_segments',
-				'-hls_segment_filename',
-				`{memfs}/${channel.channelid}_%04d.ts`,
-				'-y',
-				'-method',
-				'PUT'
-			);
+			if (control.hls.version >= 6 && control.hls.version < 7) {
+				output.options.push(
+					'-f', 'hls',
+					'-start_number', '0',
+					'-hls_time', '' + parseInt(control.hls.segmentDuration),
+					'-hls_list_size', '' + parseInt(control.hls.listSize),
+					'-hls_flags', 'append_list+delete_segments+program_date_time+independent_segments',
+					'-hls_delete_threshold', '4',
+					'-hls_segment_filename', `{memfs}/${channel.channelid}_%04d.ts`,
+					'-segment_format_options', 'mpegts_flags=mpegts_copyts=1',
+					'-max_muxing_queue_size', '400',
+					'-y',
+					'-method', 'PUT'
+				);
+			} else if (control.hls.version >= 7) {
+				output.options.push(
+					'-f', 'hls',
+					'-start_number', '0',
+					'-hls_time', '' + parseInt(control.hls.segmentDuration),
+					'-hls_list_size', '' + parseInt(control.hls.listSize),
+					'-hls_flags', 'append_list+delete_segments+program_date_time+independent_segments',
+					'-hls_delete_threshold', '4',
+					'-hls_segment_type', 'fmp4',
+					'-hls_fmp4_init_filename', `${channel.channelid}_init.mp4`,
+					'-hls_segment_filename', `{memfs}/${channel.channelid}_%04d.mp4`,
+					'-segment_format_options', 'mpegts_flags=mpegts_copyts=1',
+					'-max_muxing_queue_size', '400',
+					'-y',
+					'-method', 'PUT'
+				);
+			} else {
+				output.options.push(
+					'-f', 'hls',
+					'-start_number', '0',
+					'-hls_time', '' + parseInt(control.hls.segmentDuration),
+					'-hls_list_size', '' + parseInt(control.hls.listSize),
+					'-hls_flags', 'append_list+delete_segments+program_date_time',
+					'-hls_delete_threshold', '4',
+					'-hls_segment_filename', `{memfs}/${channel.channelid}_%04d.ts`,
+					'-segment_format_options', 'mpegts_flags=mpegts_copyts=1',
+					'-max_muxing_queue_size', '400',
+					'-y',
+					'-method', 'PUT'
+				);
+			};
 		} else {
 			// Low Latency HLS
 			output.address = `{memfs}/${channel.channelid}.mpd`;
