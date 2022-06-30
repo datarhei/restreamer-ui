@@ -1481,127 +1481,117 @@ class Restreamer {
 
 		output.options.push(...metadata_options);
 
-		// manifest versions
+		// Manifest versions
 		// https://developer.apple.com/documentation/http_live_streaming/about_the_ext-x-version_tag
 		// https://ffmpeg.org/ffmpeg-all.html#Options-53
-		console.log(control.hls.version);
-		if (control.hls.lhls === false) {
-			// ordinary HLS
-			if (control.hls.version === 6) {
-				output.options.push(
-					'-f',
-					'hls',
-					'-start_number',
-					'0',
-					'-hls_time',
-					'' + parseInt(control.hls.segmentDuration),
-					'-hls_list_size',
-					'' + parseInt(control.hls.listSize),
-					'-hls_flags',
-					'append_list+delete_segments+program_date_time+independent_segments',
-					'-hls_delete_threshold',
-					'4',
-					'-hls_segment_filename',
-					`{memfs}/${channel.channelid}_%04d.ts`,
-					'-segment_format_options',
-					'mpegts_flags=mpegts_copyts=1',
-					'-max_muxing_queue_size',
-					'400',
-					'-y',
-					'-method',
-					'PUT'
-				);
-			} else if (control.hls.version === 7) {
-				output.options.push(
-					'-f',
-					'hls',
-					'-start_number',
-					'0',
-					'-hls_time',
-					'' + parseInt(control.hls.segmentDuration),
-					'-hls_list_size',
-					'' + parseInt(control.hls.listSize),
-					'-hls_flags',
-					'append_list+delete_segments+program_date_time+independent_segments',
-					'-hls_delete_threshold',
-					'4',
-					'-hls_segment_type',
-					'fmp4',
-					'-hls_fmp4_init_filename',
-					`${channel.channelid}_init.mp4`,
-					'-hls_segment_filename',
-					`{memfs}/${channel.channelid}_%04d.mp4`,
-					'-segment_format_options',
-					'mpegts_flags=mpegts_copyts=1',
-					'-max_muxing_queue_size',
-					'400',
-					'-y',
-					'-method',
-					'PUT'
-				);
+
+		// Returns the raw l/hls parameters for a EXT-X-VERSION
+		function hlsParams(lhls, version) {
+			if (lhls) {
+				// lhls
+				switch (version) {
+					default:
+						return [
+							['f', 'dash'],
+							['strict', 'experimental'],
+							['hls_playlist', '1'],
+							['init_seg_name', `init-${channel.channelid}.$ext$`],
+							['media_seg_name', `chunk-${channel.channelid}-$Number%05d$.$ext$`],
+							['master_m3u8_publish_rate', '1'],
+							['adaptation_sets', 'id=0,streams=v id=1,streams=a'],
+							['lhls', '1'],
+							['streaming', '1'],
+							['seg_duration', '' + parseInt(control.hls.segmentDuration)],
+							['frag_duration', '0.5'],
+							['use_template', '1'],
+							['remove_at_exit', '0'],
+							['window_size', '' + parseInt(control.hls.listSize)],
+							['http_persistent', '0'],
+							['method', 'PUT'],
+						];
+				}
 			} else {
-				output.options.push(
-					'-f',
-					'hls',
-					'-start_number',
-					'0',
-					'-hls_time',
-					'' + parseInt(control.hls.segmentDuration),
-					'-hls_list_size',
-					'' + parseInt(control.hls.listSize),
-					'-hls_flags',
-					'append_list+delete_segments+program_date_time',
-					'-hls_delete_threshold',
-					'4',
-					'-hls_segment_filename',
-					`{memfs}/${channel.channelid}_%04d.ts`,
-					'-segment_format_options',
-					'mpegts_flags=mpegts_copyts=1',
-					'-max_muxing_queue_size',
-					'400',
-					'-y',
-					'-method',
-					'PUT'
-				);
+				// hls
+				switch (version) {
+					case 6:
+						return [
+							['f', 'hls'],
+							['start_number', '0'],
+							['hls_time', '' + parseInt(control.hls.segmentDuration)],
+							['hls_list_size', '' + parseInt(control.hls.listSize)],
+							['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments'],
+							['hls_delete_threshold', '4'],
+							['hls_segment_filename', `{memfs}/${channel.channelid}_%04d.ts`],
+							['segment_format_options', 'mpegts_flags=mpegts_copyts=1'],
+							['max_muxing_queue_size', '400'],
+							['method', 'PUT'],
+						];
+
+					case 7:
+						return [
+							['f', 'hls'],
+							['start_number', '0'],
+							['hls_time', '' + parseInt(control.hls.segmentDuration)],
+							['hls_list_size', '' + parseInt(control.hls.listSize)],
+							['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments'],
+							['hls_delete_threshold', '4'],
+							['hls_segment_type', 'fmp4'],
+							['hls_fmp4_init_filename', `${channel.channelid}_init.mp4`],
+							['hls_segment_filename', `{memfs}/${channel.channelid}_%04d.mp4`],
+							['segment_format_options', 'mpegts_flags=mpegts_copyts=1'],
+							['max_muxing_queue_size', '400'],
+							['method', 'PUT'],
+						];
+
+					default:
+						// case 3
+						return [
+							['f', 'hls'],
+							['start_number', '0'],
+							['hls_time', '' + parseInt(control.hls.segmentDuration)],
+							['hls_list_size', '' + parseInt(control.hls.listSize)],
+							['hls_flags', 'append_list+delete_segments+program_date_time'],
+							['hls_delete_threshold', '4'],
+							['hls_segment_filename', `{memfs}/${channel.channelid}_%04d.ts`],
+							['segment_format_options', 'mpegts_flags=mpegts_copyts=1'],
+							['max_muxing_queue_size', '400'],
+							['method', 'PUT'],
+						];
+				}
 			}
+		}
+		const hls_params_raw = hlsParams(control.hls.lhls, control.hls.version);
+
+		// 'tee_muxer' is required for the delivery of one output to multiple endpoints
+		// http://ffmpeg.org/ffmpeg-all.html#tee-1
+		const tee_muxer = false;
+
+		// Returns the l/hls parameters with or without tee_muxer
+		let hls_params = [];
+		if (tee_muxer) {
+			// ['f=hls', 'start_number=0', ...]
+			for (let i in hls_params_raw) {
+				if (hls_params_raw[i][0] !== 'segment_format_options' && hls_params_raw[i][0] !== 'max_muxing_queue_size') {
+					hls_params = [...hls_params, hls_params_raw[i][0] + '=' + hls_params_raw[i][1]];
+				}
+			}
+			// ['f=hls:start_number=0...]
+			// Switch to hls_params += string?
+			hls_params = '[' + hls_params.toString().replace(/,/g, ':') + ']' + `{memfs}/${channel.channelid}.m3u8`;
 		} else {
-			// Low Latency HLS
-			output.address = `{memfs}/${channel.channelid}.mpd`;
-			output.options.push(
-				'-f',
-				'dash',
-				'-strict',
-				'experimental',
-				'-hls_playlist',
-				'1',
-				'-init_seg_name',
-				`init-${channel.channelid}.$ext$`,
-				'-media_seg_name',
-				`chunk-${channel.channelid}-$Number%05d$.$ext$`,
-				'-master_m3u8_publish_rate',
-				'1',
-				'-adaptation_sets',
-				'id=0,streams=v id=1,streams=a',
-				'-lhls',
-				'1',
-				'-streaming',
-				'1',
-				'-seg_duration',
-				'' + parseInt(control.hls.segmentDuration),
-				'-frag_duration',
-				'0.5',
-				'-use_template',
-				'1',
-				'-remove_at_exit',
-				'0',
-				'-window_size',
-				'' + parseInt(control.hls.listSize),
-				'-http_persistent',
-				'0',
-				'-y',
-				'-method',
-				'PUT'
-			);
+			// ['-f', 'hls', '-start_number', '0', ...]
+			for (let i in hls_params_raw) {
+				hls_params = [...hls_params, '-' + hls_params_raw[i][0], hls_params_raw[i][1]];
+			}
+		}
+
+		// Pushes the hls parameters into the output options
+		if (tee_muxer) {
+			output.options.push("-tag:v", "7", "-tag:a", "10", "-f", "tee");
+			// WARN: It is a magic function. Returns 'Invalid process config' and the process.id is lost (Core v16.8.0)
+			// output.address = hls_params;
+		} else {
+			output.options.concat(hls_params);
 		}
 
 		proc.output.push(output);
