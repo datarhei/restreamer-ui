@@ -1485,31 +1485,28 @@ class Restreamer {
 		// https://developer.apple.com/documentation/http_live_streaming/about_the_ext-x-version_tag
 		// https://ffmpeg.org/ffmpeg-all.html#Options-53
 
-		// Returns the raw l/hls parameters for a EXT-X-VERSION
-		function hlsParams(lhls, version) {
+		// Returns the raw l/hls parameters for an EXT-X-VERSION
+		function GetHlsParams(lhls, version) {
 			if (lhls) {
 				// lhls
-				switch (version) {
-					default:
-						return [
-							['f', 'dash'],
-							['strict', 'experimental'],
-							['hls_playlist', '1'],
-							['init_seg_name', `init-${channel.channelid}.$ext$`],
-							['media_seg_name', `chunk-${channel.channelid}-$Number%05d$.$ext$`],
-							['master_m3u8_publish_rate', '1'],
-							['adaptation_sets', 'id=0,streams=v id=1,streams=a'],
-							['lhls', '1'],
-							['streaming', '1'],
-							['seg_duration', '' + parseInt(control.hls.segmentDuration)],
-							['frag_duration', '0.5'],
-							['use_template', '1'],
-							['remove_at_exit', '0'],
-							['window_size', '' + parseInt(control.hls.listSize)],
-							['http_persistent', '0'],
-							['method', 'PUT'],
-						];
-				}
+				return [
+					['f', 'dash'],
+					['strict', 'experimental'],
+					['hls_playlist', '1'],
+					['init_seg_name', `init-${channel.channelid}.$ext$`],
+					['media_seg_name', `chunk-${channel.channelid}-$Number%05d$.$ext$`],
+					['master_m3u8_publish_rate', '1'],
+					['adaptation_sets', 'id=0,streams=v id=1,streams=a'],
+					['lhls', '1'],
+					['streaming', '1'],
+					['seg_duration', '' + parseInt(control.hls.segmentDuration)],
+					['frag_duration', '0.5'],
+					['use_template', '1'],
+					['remove_at_exit', '0'],
+					['window_size', '' + parseInt(control.hls.listSize)],
+					['http_persistent', '0'],
+					['method', 'PUT'],
+				];
 			} else {
 				// hls
 				switch (version) {
@@ -1526,7 +1523,6 @@ class Restreamer {
 							['max_muxing_queue_size', '400'],
 							['method', 'PUT'],
 						];
-
 					case 7:
 						return [
 							['f', 'hls'],
@@ -1542,9 +1538,8 @@ class Restreamer {
 							['max_muxing_queue_size', '400'],
 							['method', 'PUT'],
 						];
-
+					// case 3
 					default:
-						// case 3
 						return [
 							['f', 'hls'],
 							['start_number', '0'],
@@ -1560,25 +1555,28 @@ class Restreamer {
 				}
 			}
 		}
-		const hls_params_raw = hlsParams(control.hls.lhls, control.hls.version);
+		const hls_params_raw = GetHlsParams(control.hls.lhls, control.hls.version);
 
 		// 'tee_muxer' is required for the delivery of one output to multiple endpoints
 		// http://ffmpeg.org/ffmpeg-all.html#tee-1
 		const tee_muxer = false;
 
 		// Returns the l/hls parameters with or without tee_muxer
-		let hls_params = [];
+		let hls_params = '';
 		if (tee_muxer) {
-			// ['f=hls', 'start_number=0', ...]
+			// ['f=hls:start_number=0...]
 			for (let i in hls_params_raw) {
 				if (hls_params_raw[i][0] !== 'segment_format_options' && hls_params_raw[i][0] !== 'max_muxing_queue_size') {
-					hls_params = [...hls_params, hls_params_raw[i][0] + '=' + hls_params_raw[i][1]];
+					hls_params += hls_params_raw[i][0] + '=' + hls_params_raw[i][1];
+					if (i < hls_params_raw.length - 1) {
+						hls_params += ':';
+					}
 				}
 			}
-			// ['f=hls:start_number=0...]
-			// Switch to hls_params += string?
-			hls_params = '[' + hls_params.toString().replace(/,/g, ':') + ']' + `{memfs}/${channel.channelid}.m3u8`;
+			// ['f=hls:start_number=0...]address.m3u8
+			hls_params = `[` + hls_params + `]{memfs}/${channel.channelid}.m3u8`;
 		} else {
+			hls_params = [];
 			// ['-f', 'hls', '-start_number', '0', ...]
 			for (let i in hls_params_raw) {
 				hls_params = [...hls_params, '-' + hls_params_raw[i][0], hls_params_raw[i][1]];
@@ -1587,7 +1585,7 @@ class Restreamer {
 
 		// Pushes the hls parameters into the output options
 		if (tee_muxer) {
-			output.options.push("-tag:v", "7", "-tag:a", "10", "-f", "tee");
+			output.options.push('-tag:v', '7', '-tag:a', '10', '-f', 'tee');
 			// WARN: It is a magic function. Returns 'Invalid process config' and the process.id is lost (Core v16.8.0)
 			// output.address = hls_params;
 		} else {
