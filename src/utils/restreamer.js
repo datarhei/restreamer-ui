@@ -1524,6 +1524,10 @@ class Restreamer {
 							['method', 'PUT'],
 						];
 					case 7:
+						// fix Malformed AAC bitstream detected for hls version 7
+						if (control.hls.version === 7 && output.options.includes('-codec:a') && output.options.includes('copy')) {
+							output.options.push('-bsf:a', 'aac_adtstoasc');
+						}
 						return [
 							['f', 'hls'],
 							['start_number', '0'],
@@ -1589,7 +1593,7 @@ class Restreamer {
 			// WARN: It is a magic function. Returns 'Invalid process config' and the process.id is lost (Core v16.8.0)
 			// output.address = hls_params;
 		} else {
-			output.options.concat(hls_params);
+			output.options.push(...hls_params);
 		}
 
 		proc.output.push(output);
