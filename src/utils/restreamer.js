@@ -1484,54 +1484,86 @@ class Restreamer {
 		// manifest versions
 		// https://developer.apple.com/documentation/http_live_streaming/about_the_ext-x-version_tag
 		// https://ffmpeg.org/ffmpeg-all.html#Options-53
-		console.log(control.hls.version)
+		console.log(control.hls.version);
 		if (control.hls.lhls === false) {
 			// ordinary HLS
-			if (control.hls.version >= 6 && control.hls.version < 7) {
+			if (control.hls.version === 6) {
 				output.options.push(
-					'-f', 'hls',
-					'-start_number', '0',
-					'-hls_time', '' + parseInt(control.hls.segmentDuration),
-					'-hls_list_size', '' + parseInt(control.hls.listSize),
-					'-hls_flags', 'append_list+delete_segments+program_date_time+independent_segments',
-					'-hls_delete_threshold', '4',
-					'-hls_segment_filename', `{memfs}/${channel.channelid}_%04d.ts`,
-					'-segment_format_options', 'mpegts_flags=mpegts_copyts=1',
-					'-max_muxing_queue_size', '400',
+					'-f',
+					'hls',
+					'-start_number',
+					'0',
+					'-hls_time',
+					'' + parseInt(control.hls.segmentDuration),
+					'-hls_list_size',
+					'' + parseInt(control.hls.listSize),
+					'-hls_flags',
+					'append_list+delete_segments+program_date_time+independent_segments',
+					'-hls_delete_threshold',
+					'4',
+					'-hls_segment_filename',
+					`{memfs}/${channel.channelid}_%04d.ts`,
+					'-segment_format_options',
+					'mpegts_flags=mpegts_copyts=1',
+					'-max_muxing_queue_size',
+					'400',
 					'-y',
-					'-method', 'PUT'
+					'-method',
+					'PUT'
 				);
-			} else if (control.hls.version >= 7) {
+			} else if (control.hls.version === 7) {
 				output.options.push(
-					'-f', 'hls',
-					'-start_number', '0',
-					'-hls_time', '' + parseInt(control.hls.segmentDuration),
-					'-hls_list_size', '' + parseInt(control.hls.listSize),
-					'-hls_flags', 'append_list+delete_segments+program_date_time+independent_segments',
-					'-hls_delete_threshold', '4',
-					'-hls_segment_type', 'fmp4',
-					'-hls_fmp4_init_filename', `${channel.channelid}_init.mp4`,
-					'-hls_segment_filename', `{memfs}/${channel.channelid}_%04d.mp4`,
-					'-segment_format_options', 'mpegts_flags=mpegts_copyts=1',
-					'-max_muxing_queue_size', '400',
+					'-f',
+					'hls',
+					'-start_number',
+					'0',
+					'-hls_time',
+					'' + parseInt(control.hls.segmentDuration),
+					'-hls_list_size',
+					'' + parseInt(control.hls.listSize),
+					'-hls_flags',
+					'append_list+delete_segments+program_date_time+independent_segments',
+					'-hls_delete_threshold',
+					'4',
+					'-hls_segment_type',
+					'fmp4',
+					'-hls_fmp4_init_filename',
+					`${channel.channelid}_init.mp4`,
+					'-hls_segment_filename',
+					`{memfs}/${channel.channelid}_%04d.mp4`,
+					'-segment_format_options',
+					'mpegts_flags=mpegts_copyts=1',
+					'-max_muxing_queue_size',
+					'400',
 					'-y',
-					'-method', 'PUT'
+					'-method',
+					'PUT'
 				);
 			} else {
 				output.options.push(
-					'-f', 'hls',
-					'-start_number', '0',
-					'-hls_time', '' + parseInt(control.hls.segmentDuration),
-					'-hls_list_size', '' + parseInt(control.hls.listSize),
-					'-hls_flags', 'append_list+delete_segments+program_date_time',
-					'-hls_delete_threshold', '4',
-					'-hls_segment_filename', `{memfs}/${channel.channelid}_%04d.ts`,
-					'-segment_format_options', 'mpegts_flags=mpegts_copyts=1',
-					'-max_muxing_queue_size', '400',
+					'-f',
+					'hls',
+					'-start_number',
+					'0',
+					'-hls_time',
+					'' + parseInt(control.hls.segmentDuration),
+					'-hls_list_size',
+					'' + parseInt(control.hls.listSize),
+					'-hls_flags',
+					'append_list+delete_segments+program_date_time',
+					'-hls_delete_threshold',
+					'4',
+					'-hls_segment_filename',
+					`{memfs}/${channel.channelid}_%04d.ts`,
+					'-segment_format_options',
+					'mpegts_flags=mpegts_copyts=1',
+					'-max_muxing_queue_size',
+					'400',
 					'-y',
-					'-method', 'PUT'
+					'-method',
+					'PUT'
 				);
-			};
+			}
 		} else {
 			// Low Latency HLS
 			output.address = `{memfs}/${channel.channelid}.mpd`;
