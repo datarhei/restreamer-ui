@@ -1486,7 +1486,7 @@ class Restreamer {
 		// https://ffmpeg.org/ffmpeg-all.html#Options-53
 
 		// Returns the raw l/hls parameters for an EXT-X-VERSION
-		function GetHlsParams(lhls, version) {
+		const getHLSParams = (lhls, version) => {
 			if (lhls) {
 				// lhls
 				return [
@@ -1558,41 +1558,36 @@ class Restreamer {
 						];
 				}
 			}
-		}
-		const hls_params_raw = GetHlsParams(control.hls.lhls, control.hls.version);
+		};
+		const hls_params_raw = getHLSParams(control.hls.lhls, control.hls.version);
 
-		// 'tee_muxer' is required for the delivery of one output to multiple endpoints
+		// 'tee_muxer' is required for the delivery of one output to multiple endpoints without processing the input for each output
 		// http://ffmpeg.org/ffmpeg-all.html#tee-1
 		const tee_muxer = false;
 
 		// Returns the l/hls parameters with or without tee_muxer
-		let hls_params = '';
 		if (tee_muxer) {
-			// ['f=hls:start_number=0...]
-			for (let i in hls_params_raw) {
-				if (hls_params_raw[i][0] !== 'segment_format_options' && hls_params_raw[i][0] !== 'max_muxing_queue_size') {
-					hls_params += hls_params_raw[i][0] + '=' + hls_params_raw[i][1];
-					if (i < hls_params_raw.length - 1) {
-						hls_params += ':';
+			// f=hls:start_number=0...
+			const hls_params = hls_params_raw
+				.filter((o) => {
+					if (o[0] === 'segment_format_options' || o[0] === 'max_muxing_queue_size') {
+						return false;
 					}
-				}
-			}
-			// ['f=hls:start_number=0...]address.m3u8
-			hls_params = `[` + hls_params + `]{memfs}/${channel.channelid}.m3u8`;
-		} else {
-			hls_params = [];
-			// ['-f', 'hls', '-start_number', '0', ...]
-			for (let i in hls_params_raw) {
-				hls_params = [...hls_params, '-' + hls_params_raw[i][0], hls_params_raw[i][1]];
-			}
-		}
 
-		// Pushes the hls parameters into the output options
-		if (tee_muxer) {
+					return true;
+				})
+				.map((o) => o[0] + '=' + o[1])
+				.join(':');
+
 			output.options.push('-tag:v', '7', '-tag:a', '10', '-f', 'tee');
-			// WARN: It is a magic function. Returns 'Invalid process config' and the process.id is lost (Core v16.8.0)
-			// output.address = hls_params;
+			// WARN: It is a magic function. Returns 'Invalid process config' and the process.id is lost (Core v16.8.0) <= this is not the case anymore with the latest dev branch
+			// ['f=hls:start_number=0...]address.m3u8
+			output.address = `[` + hls_params + `]{memfs}/${channel.channelid}.m3u8`;
 		} else {
+			// ['-f', 'hls', '-start_number', '0', ...]
+			// adding the '-' in front of the first option, then flatten everything
+			const hls_params = hls_params_raw.map((o) => ['-' + o[0], o[1]]).reduce((acc, val) => acc.concat(val), []);
+
 			output.options.push(...hls_params);
 		}
 
