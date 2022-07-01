@@ -1,5 +1,10 @@
 class API {
 	constructor(address) {
+		// Removes the / at the end
+		if (address.slice(-1) === '/') {
+			address = address.slice(0, -1);
+		}
+
 		this.base = '/api';
 		this.address = address;
 		this.token = '';
