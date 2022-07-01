@@ -2,10 +2,12 @@ import React from 'react';
 
 import { Trans } from '@lingui/macro';
 import Grid from '@mui/material/Grid';
+import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 import Checkbox from '../Checkbox';
+import Select from '../Select';
 
 function init(settings) {
 	const initSettings = {
@@ -13,6 +15,7 @@ function init(settings) {
 		segmentDuration: 2,
 		listSize: 6,
 		cleanup: true,
+		version: 3,
 		...settings,
 	};
 
@@ -55,6 +58,20 @@ export default function Control(props) {
 					</Typography>
 				</Grid>
 			*/}
+			<Grid item xs={12}>
+				<Select label={<Trans>EXT-X-VERSION</Trans>} value={settings.version} onChange={handleChange('version')}>
+					<MenuItem value={3}>3</MenuItem>
+					<MenuItem value={6}>
+						<Trans>6 (+ guaranteed to start with a Key frame)</Trans>
+					</MenuItem>
+					<MenuItem value={7}>
+						<Trans>7 (+ fragmented MP4 format)</Trans>
+					</MenuItem>
+				</Select>
+				<Typography variant="caption">
+					<Trans>M3U8 manifest version. Version 3 has the best browser/client compatibility.</Trans>
+				</Typography>
+			</Grid>
 			<Grid item xs={12} md={6}>
 				<TextField
 					variant="outlined"
