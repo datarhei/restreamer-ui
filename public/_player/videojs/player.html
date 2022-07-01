@@ -19,6 +19,12 @@
 		.player-poster[data-poster] .poster-background[data-poster] {
 			height: initial !important;
 		}
+		.vjs-chromecast-button .vjs-icon-placeholder {
+		    background: url("cast.svg") center center no-repeat;
+		    background-size: contain;
+		    display: inline-block;
+		    width: 20px;
+		    height: 20px;
 	</style>
 </head>
 <body>
@@ -28,6 +34,8 @@
 <script src="player/videojs/dist/video.min.js"></script>
 <script src="player/videojs/dist/videojs-overlay.min.js"></script>
 <script src="player/videojs/dist/videojs-license.min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/@silvermine/videojs-chromecast@latest/dist/silvermine-videojs-chromecast.min.js'></script>
+<script src='https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1'></script>
 <script>
 	function getQueryParam(key, defaultValue) {
 		var query = window.location.search.substring(1);
@@ -76,7 +84,8 @@
 		fluid: true,
 		sources: [{ src: playerConfig.source, type: 'application/x-mpegURL' }],
 		plugins: {
-			license: playerConfig.license
+			license: playerConfig.license,
+			chromecast: {}
 		}
 	};
 
