@@ -2,6 +2,7 @@
 
 #### v1.1.0 > v1.2.0
 
+-   Add SRT settings
 -   Add HLS version selection (Dwaynarang, Electra Player compatibility)
 -   Add Owncast to publication services ([#369](https://github.com/datarhei/restreamer/issues/369))
 -   Add Telegram to publication services (thx Martin Held)
