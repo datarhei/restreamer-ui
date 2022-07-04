@@ -280,7 +280,72 @@
 			display: -webkit-box;
 			padding: 0px 10px 0px 20px;
 		}
-
+		
+		/**	Silvermine Chromecast */
+		.vjs-chromecast-button .vjs-icon-placeholder {
+		  background: url('ic_cast_white_24dp.png') center center no-repeat;
+		  background-size: contain;
+		  display: inline-block;
+		  width: 20px;
+		  height: 20px;
+		}
+		.vjs-chromecast-button:hover {
+		  cursor: pointer;
+		}
+		.vjs-chromecast-button:hover .vjs-icon-placeholder {
+		  background-image: url('ic_cast_white_24dp.png');
+		}
+		.vjs-chromecast-button.vjs-chromecast-casting-state .vjs-icon-placeholder {
+		  background-image: url('ic_cast_connected_white_24dp.png');
+		}
+		.vjs-chromecast-button.vjs-chromecast-casting-state:hover .vjs-icon-placeholder {
+		  background-image: url('ic_cast_connected_white_24dp.png');
+		}
+		.vjs-tech-chromecast {
+		  display: flex;
+		  flex-direction: column;
+		  justify-content: center;
+		  align-items: center;
+		  overflow: hidden;
+		}
+		.vjs-tech-chromecast .vjs-tech-chromecast-poster::after {
+		  content: ' ';
+		  display: block;
+		  height: 2px;
+		  width: 100px;
+		  background-color: #cccccc;
+		  position: absolute;
+		  left: calc(50% - 50px);
+		}
+		.vjs-tech-chromecast .vjs-tech-chromecast-poster-img {
+		  max-height: 180px;
+		  width: auto;
+		  border: 2px solid #cccccc;
+		}
+		.vjs-tech-chromecast .vjs-tech-chromecast-poster-img.vjs-tech-chromecast-poster-img-empty {
+		  width: 160px;
+		  height: 90px;
+		}
+		.vjs-tech-chromecast .vjs-tech-chromecast-title-container {
+		  position: absolute;
+		  bottom: 50%;
+		  margin-bottom: 100px;
+		  color: #cccccc;
+		  text-align: center;
+		}
+		.vjs-tech-chromecast .vjs-tech-chromecast-title {
+		  font-size: 22px;
+		}
+		.vjs-tech-chromecast .vjs-tech-chromecast-title.vjs-tech-chromecast-title-empty {
+		  display: none;
+		}
+		.vjs-tech-chromecast .vjs-tech-chromecast-subtitle {
+		  font-size: 18px;
+		  padding-top: 0.5em;
+		}
+		.vjs-tech-chromecast .vjs-tech-chromecast-subtitle.vjs-tech-chromecast-subtitle-empty {
+		  display: none;
+		}
 		/**	share icons **/
 		.btn-share {
 			color: {{textcolor_link}};
@@ -782,6 +847,9 @@
 	<script src="player/videojs/dist/video.min.js"></script>
 	<script src="player/videojs/dist/videojs-overlay.min.js"></script>
 	<script src="player/videojs/dist/videojs-license.min.js"></script>
+	<!--Added silvermine chromecast plugins here-->
+	<script src='https://cdn.jsdelivr.net/npm/@silvermine/videojs-chromecast@latest/dist/silvermine-videojs-chromecast.min.js'></script>
+	<script src='https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1'></script>
 	{{else}}
 	<script src="player/clappr/clappr.min.js"></script>
 	<script src="player/clappr/clappr-stats.min.js"></script>
