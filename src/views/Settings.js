@@ -295,6 +295,54 @@ const configValues = {
 			return null;
 		},
 	},
+	'srt.enable': {
+		tab: 'srt',
+		set: (config, value) => {
+			config.srt.enable = !config.srt.enable;
+		},
+		unset: (config) => {
+			delete config.srt.enable;
+		},
+		validate: (config) => {
+			return null;
+		},
+	},
+	'srt.address': {
+		tab: 'srt',
+		set: (config, value) => {
+			config.srt.address = value;
+		},
+		unset: (config) => {
+			delete config.srt.address;
+		},
+		validate: (config) => {
+			return null;
+		},
+	},
+	'srt.passphrase': {
+		tab: 'srt',
+		set: (config, value) => {
+			config.srt.token = value;
+		},
+		unset: (config) => {
+			delete config.srt.token;
+		},
+		validate: (config) => {
+			return null;
+		},
+	},
+	'srt.token': {
+		tab: 'srt',
+		set: (config, value) => {
+			config.srt.token = value;
+		},
+		unset: (config) => {
+			delete config.srt.token;
+		},
+		validate: (config) => {
+			return null;
+		},
+	},
 	'storage.cors.allow_all': {
 		tab: 'storage',
 		set: (config, value) => {
@@ -638,6 +686,7 @@ export default function Settings(props) {
 		playback: { errors: false, messages: [] },
 		storage: { errors: false, messages: [] },
 		rtmp: { errors: false, messages: [] },
+		srt: { errors: false, messages: [] },
 		logging: { errors: false, messages: [] },
 		service: { errors: false, messages: [] },
 	});
@@ -703,9 +752,10 @@ export default function Settings(props) {
 				config.tls.auto = false;
 			}
 
-			config.tls.address = config.tls.address.split(':').join('');
 			config.address = config.address.split(':').join('');
+			config.tls.address = config.tls.address.split(':').join('');
 			config.rtmp.address = config.rtmp.address.split(':').join('');
+			config.srt.address = config.srt.address.split(':').join('');
 
 			if (config.tls.auto === true) {
 				config.tls.enable = true;
@@ -856,9 +906,11 @@ export default function Settings(props) {
 			config.sessions.session_timeout_sec = toInt(config.sessions.session_timeout_sec);
 			config.sessions.max_bitrate_mbit = toInt(config.sessions.max_bitrate_mbit);
 			config.sessions.max_sessions = toInt(config.sessions.max_sessions);
-			config.tls.address = ':' + config.tls.address;
+
 			config.address = ':' + config.address;
+			config.tls.address = ':' + config.tls.address;
 			config.rtmp.address = ':' + config.rtmp.address;
+			config.srt.address = ':' + config.srt.address;
 
 			if (config.tls.auto === true) {
 				config.tls.enable = true;
@@ -1144,6 +1196,7 @@ export default function Settings(props) {
 							{$expert === true && <ErrorTab className="tab" label={<Trans>Playback</Trans>} value="playback" errors={$tabs.playback.errors} />}
 							{$expert === true && <ErrorTab className="tab" label={<Trans>Storage</Trans>} value="storage" errors={$tabs.storage.errors} />}
 							<ErrorTab className="tab" label={<Trans>RTMP/S</Trans>} value="rtmp" errors={$tabs.rtmp.errors} />
+							<ErrorTab className="tab" label={<Trans>SRT</Trans>} value="srt" errors={$tabs.srt.errors} />
 							{$expert === true && <ErrorTab className="tab" label={<Trans>Logging</Trans>} value="logging" errors={$tabs.logging.errors} />}
 						</Tabs>
 						<TabPanel value={$tab} index="general" className="panel">
@@ -1835,6 +1888,67 @@ export default function Settings(props) {
 									<ErrorBox configvalue="rtmp.token" messages={$tabs.rtmp.messages} />
 									<Typography variant="caption">
 										<Trans>RTMP token for publishing and playing. The token is the value of the URL query parameter 'token.'</Trans>
+									</Typography>
+								</Grid>
+							</Grid>
+						</TabPanel>
+						<TabPanel value={$tab} index="srt" className="panel">
+							<Grid container spacing={2}>
+								<Grid item xs={12}>
+									<Typography variant="h2">
+										<Trans>SRT</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<Checkbox
+										label={<Trans>SRT server</Trans>}
+										checked={config.srt.enable}
+										disabled={env('srt.enable')}
+										onChange={handleChange('srt.enable')}
+									/>{' '}
+									{env('srt.enable') && <Env style={{ marginRight: '2em' }} />}
+									<ErrorBox configvalue="srt.enable" messages={$tabs.srt.messages} />
+								</Grid>
+								<Grid item xs={12}>
+									<Divider />
+								</Grid>
+								<Grid item xs={6} md={4}>
+									<TextField
+										label={<Trans>Port</Trans>}
+										env={env('srt.address')}
+										disabled={env('srt.address') || !config.srt.enable}
+										value={config.srt.address}
+										onChange={handleChange('srt.address')}
+									/>
+									<ErrorBox configvalue="srt.address" messages={$tabs.srt.messages} />
+									<Typography variant="caption">
+										<Trans>SRT server listen address.</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={6} md={8}>
+									<Password
+										label={<Trans>Token</Trans>}
+										env={env('srt.token')}
+										disabled={env('srt.token') || !config.srt.enable}
+										value={config.srt.token}
+										onChange={handleChange('srt.token')}
+									/>
+									<ErrorBox configvalue="srt.token" messages={$tabs.srt.messages} />
+									<Typography variant="caption">
+										<Trans>SRT token for publishing and playing. The token is the value of the streamid parameter 'token.'</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<Password
+										label={<Trans>Passphrase</Trans>}
+										env={env('srt.passphrase')}
+										disabled={env('srt.passphrase') || !config.srt.enable}
+										value={config.srt.passphrase}
+										onChange={handleChange('srt.passphrase')}
+									/>
+									<ErrorBox configvalue="srt.passphrase" messages={$tabs.srt.messages} />
+									<Typography variant="caption">
+										<Trans>Passphrase for SRT encryption.</Trans>
 									</Typography>
 								</Grid>
 							</Grid>

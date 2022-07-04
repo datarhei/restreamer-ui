@@ -679,6 +679,13 @@ class Restreamer {
 						token: '',
 						name: '',
 					},
+					srt: {
+						enabled: false,
+						host: '',
+						local: 'localhost',
+						token: '',
+						passphrase: '',
+					},
 					hls: {
 						secure: false,
 						host: '',
@@ -823,6 +830,17 @@ class Restreamer {
 			config.source.network.rtmp.host += ':' + rtmp_port;
 			config.source.network.rtmp.local += ':' + rtmp_port;
 		}
+
+		// SRT
+
+		config.source.network.srt.enabled = val.config.srt.enable;
+		config.source.network.srt.passphrase = val.config.srt.passphrase;
+		config.source.network.srt.token = val.config.srt.token;
+
+		let [srt_host, srt_port] = splitHostPort(val.config.srt.address);
+		config.source.network.srt.local = srt_host.length !== 0 ? srt_host : 'localhost';
+		config.source.network.srt.host += ':' + srt_port;
+		config.source.network.srt.local += ':' + srt_port;
 
 		// Memfs
 
