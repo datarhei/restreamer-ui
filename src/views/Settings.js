@@ -322,10 +322,10 @@ const configValues = {
 	'srt.passphrase': {
 		tab: 'srt',
 		set: (config, value) => {
-			config.srt.token = value;
+			config.srt.passphrase = value;
 		},
 		unset: (config) => {
-			delete config.srt.token;
+			delete config.srt.passphrase;
 		},
 		validate: (config) => {
 			return null;
