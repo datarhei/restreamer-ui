@@ -55,7 +55,7 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: |
-            badincite/restreamer-ui:${{ env.RELEASE }}
-            badincite/restreamer-ui:latest
+            datarhei/restreamer-ui:${{ env.RELEASE }}
+            datarhei/restreamer-ui:latest
           cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new
+          cache-to: type=local,dest=/tmp/.buildx-cache-ne
