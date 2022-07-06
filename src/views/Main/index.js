@@ -10,6 +10,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import WarningIcon from '@mui/icons-material/Warning';
 
+import * as M from '../../utils/metadata';
 import useInterval from '../../hooks/useInterval';
 import ActionButton from '../../misc/ActionButton';
 import CopyButton from '../../misc/CopyButton';
@@ -65,6 +66,7 @@ export default function Main(props) {
 		state: 'disconnected',
 		onConnect: null,
 	});
+	const [$metadata, setMetadata] = React.useState(M.getDefaultIngestMetadata());
 	const [$processDetails, setProcessDetails] = React.useState({
 		open: false,
 		data: {
@@ -87,10 +89,23 @@ export default function Main(props) {
 
 	React.useEffect(() => {
 		(async () => {
+			await load();
 			await update();
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	const load = async () => {
+		let metadata = await props.restreamer.GetIngestMetadata(_channelid);
+		if (metadata.version && metadata.version === 1) {
+			setMetadata({
+				...$metadata,
+				...metadata,
+			});
+		}
+
+		await update();
+	};
 
 	const update = async () => {
 		const channelid = props.restreamer.SelectChannel(_channelid);
@@ -365,18 +380,40 @@ export default function Main(props) {
 										<Trans>Content URL</Trans>
 									</Typography>
 									<Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={0.5}>
-										<CopyButton variant="outlined" color="default" size="small" value={props.restreamer.GetAddresses('hlsMemFs', _channelid)}>
+										<CopyButton
+											variant="outlined"
+											color="default"
+											size="small"
+											value={props.restreamer.GetAddresses('hlsMemFs', _channelid)}
+										>
 											<Trans>HLS</Trans>
 										</CopyButton>
-										{/* Todo: Check availability */}
-										<CopyButton variant="outlined" color="default" size="small" value={props.restreamer.GetAddresses('rtmp', _channelid)}>
-											<Trans>RTMP</Trans>
-										</CopyButton>
-										{/* Todo: Check availability */}
-										<CopyButton variant="outlined" color="default" size="small" value={props.restreamer.GetAddresses('srt', _channelid)}>
-											<Trans>SRT</Trans>
-										</CopyButton>
-										<CopyButton variant="outlined" color="default" size="small" value={props.restreamer.GetAddresses('snapshotMemFs', _channelid)}>
+										{$metadata.control.rtmp.enable && (
+											<CopyButton
+												variant="outlined"
+												color="default"
+												size="small"
+												value={props.restreamer.GetAddresses('rtmp', _channelid)}
+											>
+												<Trans>RTMP</Trans>
+											</CopyButton>
+										)}
+										{$metadata.control.srt.enable && (
+											<CopyButton
+												variant="outlined"
+												color="default"
+												size="small"
+												value={props.restreamer.GetAddresses('srt', _channelid)}
+											>
+												<Trans>SRT</Trans>
+											</CopyButton>
+										)}
+										<CopyButton
+											variant="outlined"
+											color="default"
+											size="small"
+											value={props.restreamer.GetAddresses('snapshotMemFs', _channelid)}
+										>
 											<Trans>Snapshot</Trans>
 										</CopyButton>
 									</Stack>
