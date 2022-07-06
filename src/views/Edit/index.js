@@ -485,7 +485,11 @@ export default function Edit(props) {
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
-									<RTMPControl settings={$data.control.rtmp} onChange={handleControlChange('rtmp')} />
+									<RTMPControl
+										settings={$data.control.rtmp}
+										enabled={$config.source.network.rtmp.enabled}
+										onChange={handleControlChange('rtmp')}
+									/>
 								</Grid>
 								<Grid item xs={12}>
 									<Divider />
@@ -496,7 +500,11 @@ export default function Edit(props) {
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
-									<SRTControl settings={$data.control.srt} onChange={handleControlChange('srt')} />
+									<SRTControl
+										settings={$data.control.srt}
+										enabled={$config.source.network.srt.enabled}
+										onChange={handleControlChange('srt')}
+									/>
 								</Grid>
 								<Grid item xs={12}>
 									<Divider />

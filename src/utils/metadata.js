@@ -249,6 +249,12 @@ const defaultIngestMetadata = {
 			segmentDuration: 2,
 			listSize: 6,
 		},
+		rtmp: {
+			enable: false,
+		},
+		srt: {
+			enable: false,
+		},
 		process: {
 			autostart: true,
 			reconnect: true,

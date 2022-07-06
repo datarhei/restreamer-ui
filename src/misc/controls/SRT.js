@@ -38,10 +38,10 @@ export default function Control(props) {
 	return (
 		<Grid container spacing={2}>
 			<Grid item xs={12}>
-				{/* Todo: Check availability */}
+				{/* Todo: Check availability with props.enabled */}
 				<Checkbox label={<Trans>Enable</Trans>} checked={settings.enable} onChange={handleChange('enable')} />
 				<Typography variant="caption">
-					<Trans>It makes the channel available as an SRT stream.</Trans>
+					<Trans>Make the channel available as an SRT stream.</Trans>
 				</Typography>
 			</Grid>
 		</Grid>
@@ -50,5 +50,6 @@ export default function Control(props) {
 
 Control.defaulProps = {
 	settings: {},
+	enabled: false,
 	onChange: function (settings, automatic) {},
 };
