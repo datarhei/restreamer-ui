@@ -227,7 +227,16 @@ export default function Wizard(props) {
 		let knownSources = [];
 		for (let s in $skills.sources) {
 			if (s === 'network') {
-				knownSources.push('network', 'rtmp', 'hls');
+				knownSources.push('network');
+				if ($skills.protocols.input.includes('rtmp')) {
+					knownSources.push('rtmp');
+				}
+				if ($skills.protocols.input.includes('http')) {
+					knownSources.push('hls');
+				}
+				if ($skills.protocols.input.includes('srt')) {
+					knownSources.push('srt');
+				}
 			} else if (s === 'video4linux2') {
 				knownSources.push('video4linux2');
 			} else if (s === 'raspicam') {

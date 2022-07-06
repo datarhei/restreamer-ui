@@ -16,8 +16,10 @@ import Icon from '@mui/icons-material/AccountTree';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import WarningIcon from '@mui/icons-material/Warning';
 
 import BoxTextarea from '../../../misc/BoxTextarea';
+import BoxText from '../../../misc/BoxText';
 import Checkbox from '../../../misc/Checkbox';
 import FormInlineButton from '../../../misc/FormInlineButton';
 import MultiSelect from '../../../misc/MultiSelect';
@@ -84,6 +86,7 @@ const initConfig = (initialConfig) => {
 
 	const config = {
 		rtmp: {},
+		srt: {},
 		hls: {},
 		...initialConfig,
 	};
@@ -97,6 +100,16 @@ const initConfig = (initialConfig) => {
 		token: '',
 		name: 'external',
 		...config.rtmp,
+	};
+
+	config.srt = {
+		enabled: false,
+		host: 'localhost',
+		local: 'localhost',
+		token: '',
+		passphrase: '',
+		name: '',
+		...config.srt,
 	};
 
 	config.hls = {
@@ -127,10 +140,19 @@ const initSkills = (initialSkills) => {
 		...skills.version,
 	};
 
+	skills.formats = {
+		demuxers: [],
+		...skills.formats,
+	};
+
 	skills.protocols = {
 		input: [],
 		...skills.protocols,
 	};
+
+	if (skills.formats.demuxers.includes('rtsp')) {
+		skills.protocols.input.push('rtsp');
+	}
 
 	return skills;
 };
@@ -158,8 +180,12 @@ const createInputs = (settings, config, skills) => {
 	if (settings.mode === 'push') {
 		if (settings.push.type === 'hls') {
 			input.address = getLocalHLS(config);
-		} else {
+		} else if (settings.push.type === 'rtmp') {
 			input.address = getLocalRTMP(config);
+		} else if (settings.push.type === 'srt') {
+			input.address = getLocalSRT(config);
+		} else {
+			input.address = '';
 		}
 	} else {
 		input.address = settings.address;
@@ -285,6 +311,26 @@ const isAuthProtocol = (url) => {
 	return false;
 };
 
+const isSupportedProtocol = (url, supportedProtocols) => {
+	const protocol = getProtocol(url);
+	if (protocol.length === 0) {
+		return 0;
+	}
+
+	if (!supportedProtocols.includes(protocol)) {
+		return -1;
+	}
+
+	return 1;
+};
+
+const getHLSAddress = (host, credentials, name, secure) => {
+	// Test for IPv6 addresses and put brackets around
+	let url = 'http' + (secure ? 's' : '') + '://' + (credentials.length !== 0 ? credentials + '@' : '') + host + '/memfs/ingest/' + name + '.m3u8';
+
+	return url;
+};
+
 const getRTMPAddress = (host, app, name, token, secure) => {
 	let url = 'rtmp' + (secure ? 's' : '') + '://' + host + app + '/' + name + '.stream';
 
@@ -295,21 +341,18 @@ const getRTMPAddress = (host, app, name, token, secure) => {
 	return url;
 };
 
-const getRTMP = (config, name) => {
-	const url = getRTMPAddress(config.rtmp.host, config.rtmp.app, config.rtmp.name, config.rtmp.token, config.rtmp.secure);
+const getSRTAddress = (host, name, token, passphrase) => {
+	let url =
+		'srt' +
+		'://' +
+		host +
+		'?mode=caller&transtype=live&streamid=#!:m=publish,r=' +
+		name +
+		(token.length !== 0 ? ',token=' + encodeURIComponent(token) : '');
 
-	return [url];
-};
-
-const getLocalRTMP = (config, name) => {
-	let url = getRTMPAddress(config.rtmp.local, config.rtmp.app, config.rtmp.name, config.rtmp.token, config.rtmp.secure);
-
-	return url;
-};
-
-const getHLSAddress = (host, credentials, name, secure) => {
-	// Test for IPv6 addresses and put brackets around
-	let url = 'http' + (secure ? 's' : '') + '://' + (credentials.length !== 0 ? credentials + '@' : '') + host + '/memfs/ingest/' + name + '.m3u8';
+	if (passphrase.length !== 0) {
+		url += '&passphrase=' + encodeURIComponent(passphrase);
+	}
 
 	return url;
 };
@@ -320,10 +363,30 @@ const getHLS = (config, name) => {
 	return [url];
 };
 
+const getRTMP = (config) => {
+	const url = getRTMPAddress(config.rtmp.host, config.rtmp.app, config.rtmp.name, config.rtmp.token, config.rtmp.secure);
+
+	return [url];
+};
+
+const getSRT = (config) => {
+	const url = getSRTAddress(config.srt.host, config.srt.name, config.srt.token, config.srt.passphrase);
+
+	return [url];
+};
+
 const getLocalHLS = (config, name) => {
 	let url = getHLSAddress(config.hls.local, '', config.hls.name, false);
 
 	return url;
+};
+
+const getLocalRTMP = (config) => {
+	return getRTMPAddress(config.rtmp.local, config.rtmp.app, config.rtmp.name, config.rtmp.token, config.rtmp.secure);
+};
+
+const getLocalSRT = (config) => {
+	return getSRTAddress(config.srt.local, config.srt.name, config.srt.token, config.srt.passphrase);
 };
 
 const isValidURL = (address) => {
@@ -340,6 +403,7 @@ function Pull(props) {
 	const settings = props.settings;
 	const protocolClass = getProtocolClass(settings.address);
 	const authProtocol = isAuthProtocol(settings.address);
+	const supportedProtocol = isSupportedProtocol(settings.address, props.skills.protocols.input);
 
 	return (
 		<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
@@ -361,52 +425,131 @@ function Pull(props) {
 					<Trans>Supports HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT and more.</Trans>
 				</Typography>
 			</Grid>
-			{authProtocol && (
-				<React.Fragment>
-					<Grid item md={6} xs={12}>
-						<TextField
-							variant="outlined"
-							fullWidth
-							label={<Trans>Username</Trans>}
-							value={settings.username}
-							onChange={props.onChange('', 'username')}
-						/>
-						<Typography variant="caption">
-							<Trans>Username for the device.</Trans>
-						</Typography>
-					</Grid>
-					<Grid item md={6} xs={12}>
-						<Password
-							variant="outlined"
-							fullWidth
-							label={<Trans>Password</Trans>}
-							value={settings.password}
-							onChange={props.onChange('', 'password')}
-						/>
-						<Typography variant="caption">
-							<Trans>Password for the device.</Trans>
-						</Typography>
-					</Grid>
-				</React.Fragment>
-			)}
-			<Grid item xs={12}>
-				<Accordion className="accordion">
-					<AccordionSummary elevation={0} expandIcon={<ArrowDropDownIcon />}>
+			{supportedProtocol === -1 && (
+				<Grid item xs={12} align="center">
+					<BoxText color="dark">
+						<WarningIcon fontSize="large" color="error" />
 						<Typography>
-							<Trans>Advanced settings</Trans>
+							<Trans>This protocol is unknown or not supported by the available FFmpeg binary.</Trans>
 						</Typography>
-					</AccordionSummary>
-					<AccordionDetails>
-						<Grid container spacing={2}>
-							{protocolClass === 'rtsp' && (
-								<React.Fragment>
+					</BoxText>
+				</Grid>
+			)}
+			{supportedProtocol === 1 && (
+				<React.Fragment>
+					{authProtocol && (
+						<React.Fragment>
+							<Grid item md={6} xs={12}>
+								<TextField
+									variant="outlined"
+									fullWidth
+									label={<Trans>Username</Trans>}
+									value={settings.username}
+									onChange={props.onChange('', 'username')}
+								/>
+								<Typography variant="caption">
+									<Trans>Username for the device.</Trans>
+								</Typography>
+							</Grid>
+							<Grid item md={6} xs={12}>
+								<Password
+									variant="outlined"
+									fullWidth
+									label={<Trans>Password</Trans>}
+									value={settings.password}
+									onChange={props.onChange('', 'password')}
+								/>
+								<Typography variant="caption">
+									<Trans>Password for the device.</Trans>
+								</Typography>
+							</Grid>
+						</React.Fragment>
+					)}
+					<Grid item xs={12}>
+						<Accordion className="accordion">
+							<AccordionSummary elevation={0} expandIcon={<ArrowDropDownIcon />}>
+								<Typography>
+									<Trans>Advanced settings</Trans>
+								</Typography>
+							</AccordionSummary>
+							<AccordionDetails>
+								<Grid container spacing={2}>
+									{protocolClass === 'rtsp' && (
+										<React.Fragment>
+											<Grid item xs={12}>
+												<Typography variant="h3">
+													<Trans>RTSP</Trans>
+												</Typography>
+											</Grid>
+											<Grid item xs={12}>
+												<Checkbox
+													label={<Trans>UDP transport</Trans>}
+													checked={settings.rtsp.udp}
+													onChange={props.onChange('rtsp', 'udp')}
+												/>
+											</Grid>
+											<Grid item xs={12}>
+												<TextField
+													variant="outlined"
+													type="number"
+													min="0"
+													step="1"
+													fullWidth
+													label={<Trans>Socket timeout (microseconds)</Trans>}
+													value={settings.rtsp.stimeout}
+													onChange={props.onChange('rtsp', 'stimeout')}
+												/>
+											</Grid>
+										</React.Fragment>
+									)}
+									{protocolClass === 'http' && (
+										<React.Fragment>
+											<Grid item xs={12}>
+												<Typography variant="h3">
+													<Trans>HTTP and HTTPS</Trans>
+												</Typography>
+											</Grid>
+											<Grid item xs={12}>
+												<Checkbox
+													label={<Trans>Read input at native speed</Trans>}
+													checked={settings.http.readNative}
+													onChange={props.onChange('http', 'readNative')}
+												/>
+												<Checkbox
+													label={<Trans>Force input framerate</Trans>}
+													checked={settings.http.forceFramerate}
+													onChange={props.onChange('http', 'forceFramerate')}
+												/>
+											</Grid>
+											{settings.http.forceFramerate === true && (
+												<Grid item xs={12}>
+													<TextField
+														variant="outlined"
+														type="number"
+														min="0"
+														step="1"
+														fullWidth
+														label={<Trans>Framerate</Trans>}
+														value={settings.http.framerate}
+														onChange={props.onChange('http', 'framerate')}
+													/>
+												</Grid>
+											)}
+											<Grid item xs={12}>
+												<TextField
+													variant="outlined"
+													fullWidth
+													label="User-Agent"
+													value={settings.http.userAgent}
+													onChange={props.onChange('http', 'userAgent')}
+												/>
+											</Grid>
+										</React.Fragment>
+									)}
 									<Grid item xs={12}>
 										<Typography variant="h3">
-											<Trans>RTSP</Trans>
+											<Trans>General</Trans>
 										</Typography>
-									</Grid>
-									<Grid item xs={12}>
-										<Checkbox label={<Trans>UDP transport</Trans>} checked={settings.rtsp.udp} onChange={props.onChange('rtsp', 'udp')} />
 									</Grid>
 									<Grid item xs={12}>
 										<TextField
@@ -415,93 +558,32 @@ function Pull(props) {
 											min="0"
 											step="1"
 											fullWidth
-											label={<Trans>Socket timeout (microseconds)</Trans>}
-											value={settings.rtsp.stimeout}
-											onChange={props.onChange('rtsp', 'stimeout')}
+											label="thread_queue_size"
+											value={settings.general.thread_queue_size}
+											onChange={props.onChange('general', 'thread_queue_size')}
 										/>
-									</Grid>
-								</React.Fragment>
-							)}
-							{protocolClass === 'http' && (
-								<React.Fragment>
-									<Grid item xs={12}>
-										<Typography variant="h3">
-											<Trans>HTTP and HTTPS</Trans>
-										</Typography>
 									</Grid>
 									<Grid item xs={12}>
-										<Checkbox
-											label={<Trans>Read input at native speed</Trans>}
-											checked={settings.http.readNative}
-											onChange={props.onChange('http', 'readNative')}
-										/>
-										<Checkbox
-											label={<Trans>Force input framerate</Trans>}
-											checked={settings.http.forceFramerate}
-											onChange={props.onChange('http', 'forceFramerate')}
-										/>
+										<MultiSelect type="select" label="flags" value={settings.general.fflags} onChange={props.onChange('general', 'fflags')}>
+											<MultiSelectOption value="discardcorrupt" name="discardcorrupt" />
+											<MultiSelectOption value="fastseek" name="fastseek" />
+											<MultiSelectOption value="genpts" name="genpts" />
+											<MultiSelectOption value="igndts" name="igndts" />
+											<MultiSelectOption value="ignidx" name="ignidx" />
+											<MultiSelectOption value="nobuffer" name="nobuffer" />
+											<MultiSelectOption value="nofillin" name="nofillin" />
+											<MultiSelectOption value="noparse" name="noparse" />
+											<MultiSelectOption value="sortdts" name="sortdts" />
+										</MultiSelect>
 									</Grid>
-									{settings.http.forceFramerate === true && (
-										<Grid item xs={12}>
-											<TextField
-												variant="outlined"
-												type="number"
-												min="0"
-												step="1"
-												fullWidth
-												label={<Trans>Framerate</Trans>}
-												value={settings.http.framerate}
-												onChange={props.onChange('http', 'framerate')}
-											/>
-										</Grid>
-									)}
-									<Grid item xs={12}>
-										<TextField
-											variant="outlined"
-											fullWidth
-											label="User-Agent"
-											value={settings.http.userAgent}
-											onChange={props.onChange('http', 'userAgent')}
-										/>
-									</Grid>
-								</React.Fragment>
-							)}
-							<Grid item xs={12}>
-								<Typography variant="h3">
-									<Trans>General</Trans>
-								</Typography>
-							</Grid>
-							<Grid item xs={12}>
-								<TextField
-									variant="outlined"
-									type="number"
-									min="0"
-									step="1"
-									fullWidth
-									label="thread_queue_size"
-									value={settings.general.thread_queue_size}
-									onChange={props.onChange('general', 'thread_queue_size')}
-								/>
-							</Grid>
-							<Grid item xs={12}>
-								<MultiSelect type="select" label="flags" value={settings.general.fflags} onChange={props.onChange('general', 'fflags')}>
-									<MultiSelectOption value="discardcorrupt" name="discardcorrupt" />
-									<MultiSelectOption value="fastseek" name="fastseek" />
-									<MultiSelectOption value="genpts" name="genpts" />
-									<MultiSelectOption value="igndts" name="igndts" />
-									<MultiSelectOption value="ignidx" name="ignidx" />
-									<MultiSelectOption value="nobuffer" name="nobuffer" />
-									<MultiSelectOption value="nofillin" name="nofillin" />
-									<MultiSelectOption value="noparse" name="noparse" />
-									<MultiSelectOption value="sortdts" name="sortdts" />
-								</MultiSelect>
-							</Grid>
-						</Grid>
-					</AccordionDetails>
-				</Accordion>
-			</Grid>
+								</Grid>
+							</AccordionDetails>
+						</Accordion>
+					</Grid>
+				</React.Fragment>
+			)}
 			<Grid item xs={12}>
-				<FormInlineButton disabled={!isValidURL(settings.address)} onClick={props.onProbe}>
+				<FormInlineButton disabled={!isValidURL(settings.address) || supportedProtocol <= 0} onClick={props.onProbe}>
 					<Trans>Probe</Trans>
 				</FormInlineButton>
 			</Grid>
@@ -513,27 +595,51 @@ function Push(props) {
 	const classes = useStyles();
 	const settings = props.settings;
 
+	//const supportsHLS = isSupportedProtocol('http://', props.skills.protocols.input);
+	const supportsRTMP = isSupportedProtocol('rtmp://', props.skills.protocols.input);
+	const supportsSRT = isSupportedProtocol('srt://', props.skills.protocols.input);
+
+	if (!supportsRTMP && supportsSRT) {
+		return (
+			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
+				<Grid item xs={12} align="center">
+					<BoxText color="dark">
+						<WarningIcon fontSize="large" color="error" />
+						<Typography>
+							<Trans>The available FFmpeg binary doesn't support any of the required protocols.</Trans>
+						</Typography>
+					</BoxText>
+				</Grid>
+			</Grid>
+		);
+	}
+
 	return (
 		<React.Fragment>
 			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
 				<Grid item xs={12}>
 					<Select type="select" label={<Trans>Protocol</Trans>} value={settings.push.type} onChange={props.onChange('push', 'type')}>
-						<MenuItem value="rtmp">RTMP</MenuItem>
-						{/* <MenuItem value="hls">HLS</MenuItem> */}
+						<MenuItem value="rtmp" disabled={!supportsRTMP}>
+							RTMP
+						</MenuItem>
+						<MenuItem value="srt" disabled={!supportsSRT}>
+							SRT
+						</MenuItem>
 					</Select>
 				</Grid>
 			</Grid>
-			{settings.push.type === 'rtmp' ? <PushRTMP {...props} /> : settings.push.type === 'hls' ? <PushHLS {...props} /> : null}
+			{settings.push.type === 'rtmp' && <PushRTMP {...props} />}
+			{settings.push.type === 'hls' && <PushHLS {...props} />}
+			{settings.push.type === 'srt' && <PushSRT {...props} />}
 		</React.Fragment>
 	);
 }
 
 function PushHLS(props) {
 	const classes = useStyles();
-	const settings = props.settings;
 	const config = props.config;
 
-	const HLSs = getHLS(config, settings.push.name);
+	const HLSs = getHLS(config);
 
 	return (
 		<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
@@ -559,7 +665,6 @@ function PushHLS(props) {
 function PushRTMP(props) {
 	const classes = useStyles();
 	const navigate = useNavigate();
-	const settings = props.settings;
 	const config = props.config;
 
 	let form = null;
@@ -580,7 +685,7 @@ function PushRTMP(props) {
 			</Grid>
 		);
 	} else {
-		const RTMPs = getRTMP(config, settings.push.name);
+		const RTMPs = getRTMP(config);
 
 		form = (
 			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
@@ -592,6 +697,55 @@ function PushRTMP(props) {
 				<Grid item xs={12}>
 					<BoxTextarea>
 						<Textarea rows={RTMPs.length} value={RTMPs.join('\n')} readOnly allowCopy />
+					</BoxTextarea>
+				</Grid>
+				<Grid item xs={12}>
+					<FormInlineButton onClick={props.onProbe}>
+						<Trans>Probe</Trans>
+					</FormInlineButton>
+				</Grid>
+			</Grid>
+		);
+	}
+
+	return form;
+}
+
+function PushSRT(props) {
+	const classes = useStyles();
+	const navigate = useNavigate();
+	const config = props.config;
+
+	let form = null;
+
+	if (config.srt.enabled === false) {
+		form = (
+			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
+				<Grid item xs={12}>
+					<Typography>
+						<Trans>SRT server is not enabled</Trans>
+					</Typography>
+				</Grid>
+				<Grid item xs={12}>
+					<Button variant="outlined" size="large" fullWidth color="primary" onClick={() => navigate('/settings/srt')}>
+						<Trans>Enable SRT server ...</Trans>
+					</Button>
+				</Grid>
+			</Grid>
+		);
+	} else {
+		const SRTs = getSRT(config);
+
+		form = (
+			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
+				<Grid item xs={12}>
+					<Typography>
+						<Trans>Send stream to this address:</Trans>
+					</Typography>
+				</Grid>
+				<Grid item xs={12}>
+					<BoxTextarea>
+						<Textarea rows={SRTs.length} value={SRTs.join('\n')} readOnly allowCopy />
 					</BoxTextarea>
 				</Grid>
 				<Grid item xs={12}>
@@ -660,9 +814,9 @@ function Source(props) {
 				</Grid>
 			</Grid>
 			{settings.mode === 'pull' ? (
-				<Pull settings={settings} config={config} onChange={handleChange} onProbe={handleProbe} />
+				<Pull settings={settings} config={config} skills={skills} onChange={handleChange} onProbe={handleProbe} />
 			) : (
-				<Push settings={settings} config={config} onChange={handleChange} onProbe={handleProbe} />
+				<Push settings={settings} config={config} skills={skills} onChange={handleChange} onProbe={handleProbe} />
 			)}
 		</React.Fragment>
 	);
@@ -691,10 +845,12 @@ const func = {
 	initSkills,
 	createInputs,
 	getProtocolClass,
-	getRTMP,
 	getHLS,
+	getRTMP,
+	getSRT,
 	isValidURL,
 	isAuthProtocol,
+	isSupportedProtocol,
 };
 
 export { id, name, capabilities, ffversion, SourceIcon as icon, Source as component, func };

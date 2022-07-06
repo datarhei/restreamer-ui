@@ -837,6 +837,8 @@ class Restreamer {
 		config.source.network.srt.passphrase = val.config.srt.passphrase;
 		config.source.network.srt.token = val.config.srt.token;
 
+		config.source.network.srt.host = config.hostname;
+
 		let [srt_host, srt_port] = splitHostPort(val.config.srt.address);
 		config.source.network.srt.local = srt_host.length !== 0 ? srt_host : 'localhost';
 		config.source.network.srt.host += ':' + srt_port;
@@ -862,6 +864,7 @@ class Restreamer {
 
 		config.source.network.rtmp.name = this.channel.channelid;
 		config.source.network.hls.name = this.channel.channelid;
+		config.source.network.srt.name = this.channel.channelid;
 
 		return config;
 	}
