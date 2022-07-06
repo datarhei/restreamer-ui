@@ -677,7 +677,6 @@ class Restreamer {
 						local: 'localhost',
 						app: '',
 						token: '',
-						name: '',
 					},
 					srt: {
 						enabled: false,
@@ -691,7 +690,6 @@ class Restreamer {
 						host: '',
 						local: 'localhost',
 						credentials: '',
-						name: '',
 					},
 				},
 			},
@@ -824,11 +822,18 @@ class Restreamer {
 
 		// This is used for FFmpeg to access the RTMP stream. If the RTMP server is bound to a
 		// specific address, we'll use this one, localhost otherwise.
-		let [rtmp_host, rtmp_port] = splitHostPort(val.config.rtmp.address);
+		const [rtmp_host, rtmp_port] = splitHostPort(val.config.rtmp.address);
 		config.source.network.rtmp.local = rtmp_host.length !== 0 ? rtmp_host : 'localhost';
 		if (rtmp_port !== '1935') {
 			config.source.network.rtmp.host += ':' + rtmp_port;
 			config.source.network.rtmp.local += ':' + rtmp_port;
+		}
+
+		if (config.source.network.rtmp.secure === true) {
+			const [, rtmp_port] = splitHostPort(val.config.rtmp.address_tls);
+			if (rtmp_port !== '1935') {
+				config.source.network.rtmp.host += ':' + rtmp_port;
+			}
 		}
 
 		// SRT

@@ -247,6 +247,18 @@ const configValues = {
 			return null;
 		},
 	},
+	'rtmp.address_tls': {
+		tab: 'rtmp',
+		set: (config, value) => {
+			config.rtmp.address_tls = value;
+		},
+		unset: (config) => {
+			delete config.rtmp.address_tls;
+		},
+		validate: (config) => {
+			return null;
+		},
+	},
 	'rtmp.app': {
 		tab: 'rtmp',
 		set: (config, value) => {
@@ -755,6 +767,7 @@ export default function Settings(props) {
 			config.address = config.address.split(':').join('');
 			config.tls.address = config.tls.address.split(':').join('');
 			config.rtmp.address = config.rtmp.address.split(':').join('');
+			config.rtmp.address_tls = config.rtmp.address_tls.split(':').join('');
 			config.srt.address = config.srt.address.split(':').join('');
 
 			if (config.tls.auto === true) {
@@ -910,6 +923,7 @@ export default function Settings(props) {
 			config.address = ':' + config.address;
 			config.tls.address = ':' + config.tls.address;
 			config.rtmp.address = ':' + config.rtmp.address;
+			config.rtmp.address_tls = ':' + config.rtmp.address_tls;
 			config.srt.address = ':' + config.srt.address;
 
 			if (config.tls.auto === true) {
@@ -1821,33 +1835,8 @@ export default function Settings(props) {
 										onChange={handleChange('rtmp.enable')}
 									/>{' '}
 									{env('rtmp.enable') && <Env style={{ marginRight: '2em' }} />}
-									<Checkbox
-										label={<Trans>RTMPS server</Trans>}
-										checked={config.rtmp.enable_tls}
-										disabled={env('rtmp.enable_tls') || config.rtmp.enable}
-										onChange={handleChange('rtmp.enable_tls')}
-									/>{' '}
-									{env('rtmp.enable_tls') && <Env />}
 									<ErrorBox configvalue="rtmp.enable" messages={$tabs.rtmp.messages} />
-									<ErrorBox configvalue="rtmp.enable_tls" messages={$tabs.rtmp.messages} />
 								</Grid>
-								{config.rtmp.enable_tls && (
-									<Grid item xs={12}>
-										<Typography variant="caption">
-											<Trans>Requires activation</Trans>{' '}
-											<Link
-												color="secondary"
-												href="#/settings/auth"
-												onClick={() => {
-													setTab('auth');
-												}}
-											>
-												TLS/HTTPS
-											</Link>
-											.
-										</Typography>
-									</Grid>
-								)}
 								<Grid item xs={12}>
 									<Divider />
 								</Grid>
@@ -1888,6 +1877,47 @@ export default function Settings(props) {
 									<ErrorBox configvalue="rtmp.token" messages={$tabs.rtmp.messages} />
 									<Typography variant="caption">
 										<Trans>RTMP token for publishing and playing. The token is the value of the URL query parameter 'token.'</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<Divider />
+								</Grid>
+								<Grid item xs={12}>
+									<Checkbox
+										label={<Trans>RTMPS server</Trans>}
+										checked={config.rtmp.enable_tls}
+										disabled={env('rtmp.enable_tls')}
+										onChange={handleChange('rtmp.enable_tls')}
+									/>{' '}
+									{env('rtmp.enable_tls') && <Env />}
+									<ErrorBox configvalue="rtmp.enable_tls" messages={$tabs.rtmp.messages} />
+									{config.rtmp.enable_tls && !config.tls.auto && (
+										<Typography variant="caption">
+											<Trans>Requires activation</Trans>{' '}
+											<Link
+												color="secondary"
+												href="#/settings/auth"
+												onClick={() => {
+													setTab('auth');
+												}}
+											>
+												TLS/HTTPS
+											</Link>
+											.
+										</Typography>
+									)}
+								</Grid>
+								<Grid item xs={6} md={4}>
+									<TextField
+										label={<Trans>Port</Trans>}
+										env={env('rtmp.address_tls')}
+										disabled={env('rtmp.address_tls') || (!config.rtmp.enable && !config.rtmp.enable_tls)}
+										value={config.rtmp.address_tls}
+										onChange={handleChange('rtmp.address_tls')}
+									/>
+									<ErrorBox configvalue="rtmp.address_tls" messages={$tabs.rtmp.messages} />
+									<Typography variant="caption">
+										<Trans>RTMPS server listen address.</Trans>
 									</Typography>
 								</Grid>
 							</Grid>
