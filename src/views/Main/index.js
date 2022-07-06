@@ -365,10 +365,18 @@ export default function Main(props) {
 										<Trans>Content URL</Trans>
 									</Typography>
 									<Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={0.5}>
-										<CopyButton variant="outlined" color="default" size="small" value={address + manifest}>
+										<CopyButton variant="outlined" color="default" size="small" value={props.restreamer.GetAddresses('hlsMemFs', _channelid)}>
 											<Trans>HLS</Trans>
 										</CopyButton>
-										<CopyButton variant="outlined" color="default" size="small" value={address + poster}>
+										{/* Todo: Check availability */}
+										<CopyButton variant="outlined" color="default" size="small" value={props.restreamer.GetAddresses('rtmp', _channelid)}>
+											<Trans>RTMP</Trans>
+										</CopyButton>
+										{/* Todo: Check availability */}
+										<CopyButton variant="outlined" color="default" size="small" value={props.restreamer.GetAddresses('srt', _channelid)}>
+											<Trans>SRT</Trans>
+										</CopyButton>
+										<CopyButton variant="outlined" color="default" size="small" value={props.restreamer.GetAddresses('snapshotMemFs', _channelid)}>
 											<Trans>Snapshot</Trans>
 										</CopyButton>
 									</Stack>

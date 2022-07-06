@@ -31,7 +31,9 @@ import PaperThumb from '../../misc/PaperThumb';
 import ProcessControl from '../../misc/controls/Process';
 import Profile from './Profile';
 import ProfileSummary from './ProfileSummary';
+import RTMPControl from '../../misc/controls/RTMP';
 import SnapshotControl from '../../misc/controls/Snapshot';
+import SRTControl from '../../misc/controls/SRT';
 import TabPanel from '../../misc/TabPanel';
 import TabsVerticalGrid from '../../misc/TabsVerticalGrid';
 
@@ -473,6 +475,28 @@ export default function Edit(props) {
 								</Grid>
 								<Grid item xs={12}>
 									<HLSControl settings={$data.control.hls} onChange={handleControlChange('hls')} />
+								</Grid>
+								<Grid item xs={12}>
+									<Divider />
+								</Grid>
+								<Grid item xs={12}>
+									<Typography variant="h3">
+										<Trans>RTMP</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<RTMPControl settings={$data.control.rtmp} onChange={handleControlChange('rtmp')} />
+								</Grid>
+								<Grid item xs={12}>
+									<Divider />
+								</Grid>
+								<Grid item xs={12}>
+									<Typography variant="h3">
+										<Trans>SRT</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<SRTControl settings={$data.control.srt} onChange={handleControlChange('srt')} />
 								</Grid>
 								<Grid item xs={12}>
 									<Divider />
