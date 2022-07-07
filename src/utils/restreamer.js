@@ -946,31 +946,45 @@ class Restreamer {
 			const port = getPort(config.source.network.rtmp.host);
 
 			if (config.source.network.rtmp.secure) {
-				address = `rtmps://${host}${port}/` + (config.source.network.rtmp.app.length !== 0 ? config.source.network.rtmp.app : '') + channelId + '.stream' + (config.source.network.rtmp.token.length !== 0 ? `?token=${config.source.network.rtmp.token}` : '');
+				address =
+					`rtmps://${host}${port}/` +
+					(config.source.network.rtmp.app.length !== 0 ? config.source.network.rtmp.app : '') +
+					channelId +
+					'.stream' +
+					(config.source.network.rtmp.token.length !== 0 ? `?token=${config.source.network.rtmp.token}` : '');
 			} else {
-				address = `rtmp://${host}${port}/` + (config.source.network.rtmp.app.length !== 0 ? config.source.network.rtmp.app : '') + channelId + '.stream' + (config.source.network.rtmp.token.length !== 0 ? `?token=${config.source.network.rtmp.token}` : '');
+				address =
+					`rtmp://${host}${port}/` +
+					(config.source.network.rtmp.app.length !== 0 ? config.source.network.rtmp.app : '') +
+					channelId +
+					'.stream' +
+					(config.source.network.rtmp.token.length !== 0 ? `?token=${config.source.network.rtmp.token}` : '');
 			}
 
-		// srt
+			// srt
 		} else if (what && what === 'srt') {
 			const port = getPort(config.source.network.srt.host);
 
-			address = `srt://${host}${port}/?mode=caller&streamid=#!:m=request,r=${channelId}` + (config.source.network.srt.token.length !== 0 ? `,token=${config.source.network.srt.token}` : '') + '&transtype=live' + (config.source.network.srt.passphrase.length !== 0 ? `&passphrase=${config.source.network.srt.passphrase}` : '');
+			address =
+				`srt://${host}${port}/?mode=caller&streamid=#!:m=request,r=${channelId}` +
+				(config.source.network.srt.token.length !== 0 ? `,token=${config.source.network.srt.token}` : '') +
+				'&transtype=live' +
+				(config.source.network.srt.passphrase.length !== 0 ? `&passphrase=${config.source.network.srt.passphrase}` : '');
 
-		// snapshot+memfs
+			// snapshot+memfs
 		} else if (what && what === 'snapshotMemFs') {
 			const port = getPort(config.source.network.hls.host);
 
 			address = (config.http.secure === true ? 'https://' : 'http://') + `${host}${port}/memfs/${channelId}.jpg`;
 
-		// hls+memfs
+			// hls+memfs
 		} else {
 			const port = getPort(config.source.network.hls.host);
 
 			address = (config.http.secure === true ? 'https://' : 'http://') + `${host}${port}/memfs/${channelId}.m3u8`;
 		}
 
-	 	return [address];
+		return [address];
 	}
 
 	// Channels
@@ -1622,7 +1636,10 @@ class Restreamer {
 							['hls_list_size', '' + parseInt(control.hls.listSize)],
 							['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments'],
 							['hls_delete_threshold', '4'],
-							['hls_segment_filename', tee_muxer ? `{` + hlsStore + `^:}/${channel.channelid}_%04d.ts` : `{` + hlsStore + `}/${channel.channelid}_%04d.ts`],
+							[
+								'hls_segment_filename',
+								tee_muxer ? `{` + hlsStore + `^:}/${channel.channelid}_%04d.ts` : `{` + hlsStore + `}/${channel.channelid}_%04d.ts`,
+							],
 							['method', 'PUT'],
 						];
 					case 7:
@@ -1631,13 +1648,11 @@ class Restreamer {
 							output.options.push('-bsf:a', 'aac_adtstoasc');
 						}
 						// mp4 manifest cleanup
-						output.cleanup.push(
-							{
-								pattern: hlsStore + `:/${channel.channelid}.mp4`,
-								max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
-								purge_on_delete: true,
-							}
-						)
+						output.cleanup.push({
+							pattern: hlsStore + `:/${channel.channelid}.mp4`,
+							max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
+							purge_on_delete: true,
+						});
 						return [
 							['f', 'hls'],
 							['start_number', '0'],
@@ -1647,7 +1662,10 @@ class Restreamer {
 							['hls_delete_threshold', '4'],
 							['hls_segment_type', 'fmp4'],
 							['hls_fmp4_init_filename', `${channel.channelid}.mp4`],
-							['hls_segment_filename', tee_muxer ? `{` + hlsStore + `^:}/${channel.channelid}_%04d.mp4` : `{` + hlsStore + `}/${channel.channelid}_%04d.mp4`],
+							[
+								'hls_segment_filename',
+								tee_muxer ? `{` + hlsStore + `^:}/${channel.channelid}_%04d.mp4` : `{` + hlsStore + `}/${channel.channelid}_%04d.mp4`,
+							],
 							['method', 'PUT'],
 						];
 					// case 3
@@ -1659,7 +1677,10 @@ class Restreamer {
 							['hls_list_size', '' + parseInt(control.hls.listSize)],
 							['hls_flags', 'append_list+delete_segments+program_date_time'],
 							['hls_delete_threshold', '4'],
-							['hls_segment_filename', tee_muxer ? `{` + hlsStore + `^:}/${channel.channelid}_%04d.ts` : `{` + hlsStore + `}/${channel.channelid}_%04d.ts`],
+							[
+								'hls_segment_filename',
+								tee_muxer ? `{` + hlsStore + `^:}/${channel.channelid}_%04d.ts` : `{` + hlsStore + `}/${channel.channelid}_%04d.ts`,
+							],
 							['method', 'PUT'],
 						];
 				}
@@ -1669,29 +1690,6 @@ class Restreamer {
 
 		// push -y
 		proc.options.push('-y');
-
-		// build tee_muxer rtmp endpoint
-		let rtmp_params = '';
-		if (rtmp_enabled) {
-			rtmp_params = '|[f=flv]rtmp' + (rtmp_config.secure ? 's' : '') + '://' + rtmp_config.local + rtmp_config.app + `/${channel.channelid}.stream`;
-			if (rtmp_config.token.length !== 0) {
-				rtmp_params += '?token=' + encodeURIComponent(rtmp_config.token);
-			}
-		}
-
-		// build tee_muxer srt endpoint
-		let srt_params = '';
-		if (srt_enabled) {
-			// mode=caller&streamid=#\!:m=publish,r=12345,token=foobarfoobar&passphrase=foobarfoobar&transtype=live
-			srt_params = '|[f=mpegts]srt://' + srt_config.local + `?mode=caller&streamid=#!:m=publish,r=${channel.channelid}`;
-			if (srt_config.token.length !== 0) {
-				srt_params += ',token=' + encodeURIComponent(srt_config.token);
-			}
-			if (srt_config.passphrase.length !== 0) {
-				srt_params += '&passphrase=' + encodeURIComponent(srt_config.passphrase);
-			}
-			srt_params += '&transtype=live'
-		}
 
 		// Returns the l/hls parameters with or without tee_muxer
 		if (tee_muxer) {
@@ -1705,10 +1703,18 @@ class Restreamer {
 				.join(':');
 
 			output.options.push('-flags', '+global_header', '-tag:v', '7', '-tag:a', '10', '-f', 'tee');
-			// WARN: It is a magic function. Returns 'Invalid process config' and the process.id is lost (Core v16.8.0) <= this is not the case anymore with the latest dev branch
 			// ['f=hls:start_number=0...]address.m3u8
+			// use tee_muxer formatting
 
-			output.address = `[` + hls_params + `]{` + hlsStore + `}/${channel.channelid}.m3u8` + rtmp_params + srt_params;
+			output.address =
+				`[` +
+				hls_params +
+				// use
+				`]{` +
+				hlsStore +
+				`}/${channel.channelid}.m3u8` +
+				(rtmp_enabled ? `|[f=flv]{rtmp,name=${channel.channelid}.stream}` : '') +
+				(srt_enabled ? `|[f=mpegts]{srt,name=${channel.channelid},mode=publish}&transtype=live` : '');
 		} else {
 			// ['-f', 'hls', '-start_number', '0', ...]
 			// adding the '-' in front of the first option, then flatten everything
