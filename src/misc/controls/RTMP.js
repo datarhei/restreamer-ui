@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Trans } from '@lingui/macro';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
@@ -16,6 +18,7 @@ function init(settings) {
 }
 
 export default function Control(props) {
+	const navigate = useNavigate();
 	const settings = init(props.settings);
 
 	// Set the defaults
@@ -37,19 +40,19 @@ export default function Control(props) {
 	};
 	return (
 		<Grid container spacing={2}>
-			{!props.enabled && (
-				<Grid item xs={12}>
-					<Typography>
-						<Trans>RTMP server is not enabled</Trans>
-					</Typography>
-				</Grid>
-			)}
 			<Grid item xs={12}>
 				<Checkbox label={<Trans>Enable</Trans>} checked={settings.enable} disabled={!props.enabled} onChange={handleChange('enable')} />
 				<Typography variant="caption">
 					<Trans>Make the channel available as an RTMP stream.</Trans>
 				</Typography>
 			</Grid>
+			{!props.enabled && (
+				<Grid item xs={12}>
+					<Button variant="outlined" size="large" fullWidth color="primary" onClick={() => navigate('/settings/rtmp')}>
+						<Trans>Enable RTMP server</Trans>
+					</Button>
+				</Grid>
+			)}
 		</Grid>
 	);
 }
