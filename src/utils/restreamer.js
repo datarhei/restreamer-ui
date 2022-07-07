@@ -20,6 +20,11 @@ class Restreamer {
 			address = window.location.protocol + '//' + window.location.host;
 		}
 
+		// Remove the / at the end
+		if (address.slice(-1) === '/') {
+			address = address.slice(0, -1);
+		}
+
 		this.address = address;
 		this.api = new API(this.address);
 
@@ -759,6 +764,8 @@ class Restreamer {
 			hostname = val.config.host.name[0];
 		}
 
+		config.hostname = hostname;
+
 		// If we're connecting to the API with TLS or if the API is TLS-enabled
 		// we upgrade to TLS.
 		let protocol = 'http:';
@@ -773,8 +780,6 @@ class Restreamer {
 		if (port.length === 0) {
 			port = config.http.secure ? '443' : '80';
 		}
-
-		config.hostname = hostname;
 
 		// Set the HTTP host and only add the port if it is not the default one.
 		config.http.host = config.hostname;
@@ -925,7 +930,7 @@ class Restreamer {
 	// Get all RTMP/SRT/SNAPSHOT+MEMFS/HLS+MEMFS addresses
 	GetAddresses(what, channelId) {
 		const config = this.ConfigActive();
-		const host = new URL(this.Address()).hostname;
+		const host = config.hostname;
 
 		let address = '';
 
@@ -941,44 +946,39 @@ class Restreamer {
 			}
 		}
 
-		// rtmp/s
 		if (what && what === 'rtmp') {
-			const port = getPort(config.source.network.rtmp.host);
+			// rtmp/s
+			const cfg = config.source.network.rtmp;
+			const port = getPort(cfg.host);
 
-			if (config.source.network.rtmp.secure) {
-				address =
-					`rtmps://${host}${port}/` +
-					(config.source.network.rtmp.app.length !== 0 ? config.source.network.rtmp.app : '') +
-					channelId +
-					'.stream' +
-					(config.source.network.rtmp.token.length !== 0 ? `?token=${config.source.network.rtmp.token}` : '');
-			} else {
-				address =
-					`rtmp://${host}${port}/` +
-					(config.source.network.rtmp.app.length !== 0 ? config.source.network.rtmp.app : '') +
-					channelId +
-					'.stream' +
-					(config.source.network.rtmp.token.length !== 0 ? `?token=${config.source.network.rtmp.token}` : '');
+			address = 'rtmp';
+			if (cfg.secure) {
+				address += 's';
 			}
 
-			// srt
+			address +=
+				`://${host}${port}` +
+				(cfg.app.length !== 0 ? cfg.app : '') +
+				'/' +
+				channelId +
+				'.stream' +
+				(cfg.token.length !== 0 ? `?token=${cfg.token}` : '');
 		} else if (what && what === 'srt') {
-			const port = getPort(config.source.network.srt.host);
+			// srt
+			const cfg = config.source.network.srt;
+			const port = getPort(cfg.host);
 
 			address =
-				`srt://${host}${port}/?mode=caller&streamid=#!:m=request,r=${channelId}` +
-				(config.source.network.srt.token.length !== 0 ? `,token=${config.source.network.srt.token}` : '') +
-				'&transtype=live' +
-				(config.source.network.srt.passphrase.length !== 0 ? `&passphrase=${config.source.network.srt.passphrase}` : '');
-
+				`srt://${host}${port}/?mode=caller&transtype=live&streamid=#!:m=request,r=${channelId}` +
+				(cfg.token.length !== 0 ? `,token=${cfg.srt.token}` : '') +
+				(cfg.passphrase.length !== 0 ? `&passphrase=${cfg.passphrase}` : '');
+		} else if (what && what === 'snapshot+memfs') {
 			// snapshot+memfs
-		} else if (what && what === 'snapshotMemFs') {
 			const port = getPort(config.source.network.hls.host);
 
 			address = (config.http.secure === true ? 'https://' : 'http://') + `${host}${port}/memfs/${channelId}.jpg`;
-
-			// hls+memfs
 		} else {
+			// hls+memfs
 			const port = getPort(config.source.network.hls.host);
 
 			address = (config.http.secure === true ? 'https://' : 'http://') + `${host}${port}/memfs/${channelId}.m3u8`;

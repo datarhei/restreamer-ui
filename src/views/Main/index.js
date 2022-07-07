@@ -384,7 +384,7 @@ export default function Main(props) {
 											variant="outlined"
 											color="default"
 											size="small"
-											value={props.restreamer.GetAddresses('hlsMemFs', _channelid)}
+											value={props.restreamer.GetAddresses('hls+memfs', _channelid)}
 										>
 											<Trans>HLS</Trans>
 										</CopyButton>
@@ -412,7 +412,7 @@ export default function Main(props) {
 											variant="outlined"
 											color="default"
 											size="small"
-											value={props.restreamer.GetAddresses('snapshotMemFs', _channelid)}
+											value={props.restreamer.GetAddresses('snapshot+memfs', _channelid)}
 										>
 											<Trans>Snapshot</Trans>
 										</CopyButton>
