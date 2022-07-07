@@ -1705,16 +1705,14 @@ class Restreamer {
 			output.options.push('-flags', '+global_header', '-tag:v', '7', '-tag:a', '10', '-f', 'tee');
 			// ['f=hls:start_number=0...]address.m3u8
 			// use tee_muxer formatting
-
 			output.address =
 				`[` +
 				hls_params +
-				// use
 				`]{` +
 				hlsStore +
 				`}/${channel.channelid}.m3u8` +
 				(rtmp_enabled ? `|[f=flv]{rtmp,name=${channel.channelid}.stream}` : '') +
-				(srt_enabled ? `|[f=mpegts]{srt,name=${channel.channelid},mode=publish}&transtype=live` : '');
+				(srt_enabled ? `|[f=mpegts]{srt,name=${channel.channelid},mode=publish}` : '');
 		} else {
 			// ['-f', 'hls', '-start_number', '0', ...]
 			// adding the '-' in front of the first option, then flatten everything
