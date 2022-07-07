@@ -767,12 +767,7 @@ export default function Settings(props) {
 			config.address = config.address.split(':').join('');
 			config.tls.address = config.tls.address.split(':').join('');
 			config.rtmp.address = config.rtmp.address.split(':').join('');
-			// fix: Cannot read properties of undefined
-			if (config.rtmp.address_tls) {
-				config.rtmp.address_tls = config.rtmp.address_tls.split(':').join('');
-			} else {
-				config.rtmp.address_tls = '1936';
-			}
+			config.rtmp.address_tls = config.rtmp.address_tls.split(':').join('');
 			config.srt.address = config.srt.address.split(':').join('');
 
 			if (config.tls.auto === true) {
