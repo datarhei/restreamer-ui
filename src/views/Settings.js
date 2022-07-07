@@ -767,7 +767,12 @@ export default function Settings(props) {
 			config.address = config.address.split(':').join('');
 			config.tls.address = config.tls.address.split(':').join('');
 			config.rtmp.address = config.rtmp.address.split(':').join('');
-			config.rtmp.address_tls = config.rtmp.address_tls.split(':').join('');
+			// fix: Cannot read properties of undefined
+			if (config.rtmp.address_tls) {
+				config.rtmp.address_tls = config.rtmp.address_tls.split(':').join('');
+			} else {
+				config.rtmp.address_tls = '1936';
+			}
 			config.srt.address = config.srt.address.split(':').join('');
 
 			if (config.tls.auto === true) {
@@ -1836,53 +1841,6 @@ export default function Settings(props) {
 									/>{' '}
 									{env('rtmp.enable') && <Env style={{ marginRight: '2em' }} />}
 									<ErrorBox configvalue="rtmp.enable" messages={$tabs.rtmp.messages} />
-								</Grid>
-								<Grid item xs={12}>
-									<Divider />
-								</Grid>
-								<Grid item xs={6} md={4}>
-									<TextField
-										label={<Trans>Port</Trans>}
-										env={env('rtmp.address')}
-										disabled={env('rtmp.address') || (!config.rtmp.enable && !config.rtmp.enable_tls)}
-										value={config.rtmp.address}
-										onChange={handleChange('rtmp.address')}
-									/>
-									<ErrorBox configvalue="rtmp.address" messages={$tabs.rtmp.messages} />
-									<Typography variant="caption">
-										<Trans>RTMP server listen address.</Trans>
-									</Typography>
-								</Grid>
-								<Grid item xs={6} md={8}>
-									<TextField
-										label={<Trans>App</Trans>}
-										env={env('rtmp.app')}
-										disabled={env('rtmp.app') || (!config.rtmp.enable && !config.rtmp.enable_tls)}
-										value={config.rtmp.app}
-										onChange={handleChange('rtmp.app')}
-									/>
-									<ErrorBox configvalue="rtmp.app" messages={$tabs.rtmp.messages} />
-									<Typography variant="caption">
-										<Trans>RTMP app for publishing.</Trans>
-									</Typography>
-								</Grid>
-								<Grid item xs={12}>
-									<Password
-										label={<Trans>Token</Trans>}
-										env={env('rtmp.token')}
-										disabled={env('rtmp.token') || (!config.rtmp.enable && !config.rtmp.enable_tls)}
-										value={config.rtmp.token}
-										onChange={handleChange('rtmp.token')}
-									/>
-									<ErrorBox configvalue="rtmp.token" messages={$tabs.rtmp.messages} />
-									<Typography variant="caption">
-										<Trans>RTMP token for publishing and playing. The token is the value of the URL query parameter 'token.'</Trans>
-									</Typography>
-								</Grid>
-								<Grid item xs={12}>
-									<Divider />
-								</Grid>
-								<Grid item xs={12}>
 									<Checkbox
 										label={<Trans>RTMPS server</Trans>}
 										checked={config.rtmp.enable_tls}
@@ -1896,9 +1854,9 @@ export default function Settings(props) {
 											<Trans>Requires activation</Trans>{' '}
 											<Link
 												color="secondary"
-												href="#/settings/auth"
+												href="#/settings/network"
 												onClick={() => {
-													setTab('auth');
+													setTab('network');
 												}}
 											>
 												TLS/HTTPS
@@ -1907,17 +1865,59 @@ export default function Settings(props) {
 										</Typography>
 									)}
 								</Grid>
-								<Grid item xs={6} md={4}>
+								<Grid item xs={12}>
+									<Divider />
+								</Grid>
+								<Grid item xs={6} md={3}>
 									<TextField
-										label={<Trans>Port</Trans>}
+										label={<Trans>RTMP Port</Trans>}
+										env={env('rtmp.address')}
+										disabled={env('rtmp.address') || (!config.rtmp.enable && !config.rtmp.enable_tls)}
+										value={config.rtmp.address}
+										onChange={handleChange('rtmp.address')}
+									/>
+									<ErrorBox configvalue="rtmp.address" messages={$tabs.rtmp.messages} />
+									<Typography variant="caption">
+										<Trans>RTMP server listen address.</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={6} md={3}>
+									<TextField
+										label={<Trans>RTMPS Port</Trans>}
 										env={env('rtmp.address_tls')}
-										disabled={env('rtmp.address_tls') || (!config.rtmp.enable && !config.rtmp.enable_tls)}
+										disabled={env('rtmp.address_tls') || (!config.rtmp.enable_tls) || (!config.tls.auto)}
 										value={config.rtmp.address_tls}
 										onChange={handleChange('rtmp.address_tls')}
 									/>
 									<ErrorBox configvalue="rtmp.address_tls" messages={$tabs.rtmp.messages} />
 									<Typography variant="caption">
 										<Trans>RTMPS server listen address.</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12} md={6}>
+									<TextField
+										label={<Trans>App</Trans>}
+										env={env('rtmp.app')}
+										disabled={env('rtmp.app') || (!config.rtmp.enable)}
+										value={config.rtmp.app}
+										onChange={handleChange('rtmp.app')}
+									/>
+									<ErrorBox configvalue="rtmp.app" messages={$tabs.rtmp.messages} />
+									<Typography variant="caption">
+										<Trans>RTMP app for publishing.</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<Password
+										label={<Trans>Token</Trans>}
+										env={env('rtmp.token')}
+										disabled={env('rtmp.token') || (!config.rtmp.enable)}
+										value={config.rtmp.token}
+										onChange={handleChange('rtmp.token')}
+									/>
+									<ErrorBox configvalue="rtmp.token" messages={$tabs.rtmp.messages} />
+									<Typography variant="caption">
+										<Trans>RTMP token for publishing and playing. The token is the value of the URL query parameter 'token.'</Trans>
 									</Typography>
 								</Grid>
 							</Grid>
