@@ -1547,48 +1547,47 @@ class Restreamer {
 			});
 		}
 
-		// set hls storage endpoint
+		// Set hls storage endpoint
 		let hlsStore = 'memfs';
 
 		const output = {
 			id: 'output_0',
-			address: `{` + hlsStore + `}/${channel.channelid}.m3u8`,
+			address: `{${hlsStore}}/${channel.channelid}.m3u8`,
 			options: ['-dn', '-sn', ...outputs[0].options.map((o) => '' + o)],
 			cleanup: [
 				{
-					pattern: control.hls.version >= 7 ? hlsStore + `:/${channel.channelid}_*.mp4` : hlsStore + `:/${channel.channelid}_*.ts`,
+					pattern: `${hlsStore}:/${channel.channelid}_*.` + (control.hls.version >= 7 ? 'mp4' : 'ts'),
 					max_files: parseInt(control.hls.listSize) + 6,
 					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
 					purge_on_delete: true,
 				},
 				{
-					pattern: hlsStore + `:/${channel.channelid}.m3u8`,
+					pattern: `${hlsStore}:/${channel.channelid}.m3u8`,
 					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
 					purge_on_delete: true,
 				},
 			],
 		};
 
-		const metadata = this.GetHTTPAddresses()[0] + '/' + channel.channelid + '/oembed.json';
-
+		// Injects a metadata link as title
+		const metadata = `${this.GetHTTPAddresses()[0]}/${channel.channelid}/oembed.json`;
 		const metadata_options = ['-metadata', `title=${metadata}`, '-metadata', 'service_provider=datarhei-Restreamer'];
-
 		output.options.push(...metadata_options);
 
-		// fetch core config
+		// Fetch core config
 		const core_config = this.ConfigActive();
 
-		// fetch rtmp settings
+		// Fetch rtmp settings
 		const rtmp_config = core_config.source.network.rtmp;
 		let rtmp_enabled = false;
 		if (control.rtmp && control.rtmp.enable && rtmp_config.enabled) {
 			rtmp_enabled = true;
 		}
 
-		// fetch srt settings
+		// Fetch srt settings
 		const srt_config = core_config.source.network.srt;
 		let srt_enabled = false;
-		if (control.srt && control.srt.enable && srt_config.enabled) {
+		if (control.srt.enable && srt_config.enabled) {
 			srt_enabled = true;
 		}
 
@@ -1636,10 +1635,7 @@ class Restreamer {
 							['hls_list_size', '' + parseInt(control.hls.listSize)],
 							['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments'],
 							['hls_delete_threshold', '4'],
-							[
-								'hls_segment_filename',
-								tee_muxer ? `{` + hlsStore + `^:}/${channel.channelid}_%04d.ts` : `{` + hlsStore + `}/${channel.channelid}_%04d.ts`,
-							],
+							['hls_segment_filename', `{${hlsStore}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d.ts`],
 							['method', 'PUT'],
 						];
 					case 7:
@@ -1649,7 +1645,7 @@ class Restreamer {
 						}
 						// mp4 manifest cleanup
 						output.cleanup.push({
-							pattern: hlsStore + `:/${channel.channelid}.mp4`,
+							pattern: `${hlsStore}:/${channel.channelid}.mp4`,
 							max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
 							purge_on_delete: true,
 						});
@@ -1662,10 +1658,7 @@ class Restreamer {
 							['hls_delete_threshold', '4'],
 							['hls_segment_type', 'fmp4'],
 							['hls_fmp4_init_filename', `${channel.channelid}.mp4`],
-							[
-								'hls_segment_filename',
-								tee_muxer ? `{` + hlsStore + `^:}/${channel.channelid}_%04d.mp4` : `{` + hlsStore + `}/${channel.channelid}_%04d.mp4`,
-							],
+							['hls_segment_filename', `{${hlsStore}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d.mp4`],
 							['method', 'PUT'],
 						];
 					// case 3
@@ -1677,10 +1670,7 @@ class Restreamer {
 							['hls_list_size', '' + parseInt(control.hls.listSize)],
 							['hls_flags', 'append_list+delete_segments+program_date_time'],
 							['hls_delete_threshold', '4'],
-							[
-								'hls_segment_filename',
-								tee_muxer ? `{` + hlsStore + `^:}/${channel.channelid}_%04d.ts` : `{` + hlsStore + `}/${channel.channelid}_%04d.ts`,
-							],
+							['hls_segment_filename', `{${hlsStore}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d.ts`],
 							['method', 'PUT'],
 						];
 				}
@@ -1688,7 +1678,7 @@ class Restreamer {
 		};
 		const hls_params_raw = getHLSParams(control.hls.lhls, control.hls.version);
 
-		// push -y
+		// Overwrite output files
 		proc.options.push('-y');
 
 		// Returns the l/hls parameters with or without tee_muxer
@@ -1706,11 +1696,7 @@ class Restreamer {
 			// ['f=hls:start_number=0...]address.m3u8
 			// use tee_muxer formatting
 			output.address =
-				`[` +
-				hls_params +
-				`]{` +
-				hlsStore +
-				`}/${channel.channelid}.m3u8` +
+				`[${hls_params}]{${hlsStore}}/${channel.channelid}.m3u8` +
 				(rtmp_enabled ? `|[f=flv]{rtmp,name=${channel.channelid}.stream}` : '') +
 				(srt_enabled ? `|[f=mpegts]{srt,name=${channel.channelid},mode=publish}` : '');
 		} else {
@@ -1752,7 +1738,7 @@ class Restreamer {
 			input: [
 				{
 					id: 'input_0',
-					address: `{` + hlsStore + `}/${channel.channelid}.m3u8`,
+					address: `{${hlsStore}}/${channel.channelid}.m3u8`,
 					options: [],
 				},
 			],

@@ -36,6 +36,8 @@ function createMapping(settings) {
 		`${settings.bitrate}k`,
 		'-r',
 		`${settings.fps}`,
+		'-sc_threshold',
+		'0',
 		'-pix_fmt',
 		'yuv420p',
 		'-vsync',
@@ -43,7 +45,12 @@ function createMapping(settings) {
 	];
 
 	if (settings.gop !== 'auto') {
-		local.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);
+		local.push(
+			'-g',
+			`${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`,
+			'-keyint_min',
+			`${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`
+		);
 	}
 
 	if (settings.profile !== 'auto') {
