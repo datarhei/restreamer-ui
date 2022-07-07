@@ -37,9 +37,15 @@ export default function Control(props) {
 	};
 	return (
 		<Grid container spacing={2}>
+			{!props.enabled && (
+				<Grid item xs={12}>
+					<Typography>
+						<Trans>RTMP server is not enabled</Trans>
+					</Typography>
+				</Grid>
+			)}
 			<Grid item xs={12}>
-				{/* Todo: Check availability with props.enabled */}
-				<Checkbox label={<Trans>Enable</Trans>} checked={settings.enable} onChange={handleChange('enable')} />
+				<Checkbox label={<Trans>Enable</Trans>} checked={settings.enable} disabled={!props.enabled} onChange={handleChange('enable')} />
 				<Typography variant="caption">
 					<Trans>Make the channel available as an RTMP stream.</Trans>
 				</Typography>
