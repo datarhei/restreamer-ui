@@ -294,7 +294,7 @@ export default function Edit(props) {
 			}
 
 			// Create/update the ingest
-			const [, err] = await props.restreamer.UpsertIngest(_channelid, global, inputs, outputs, control);
+			let [, err] = await props.restreamer.UpsertIngest(_channelid, global, inputs, outputs, control);
 			if (err !== null) {
 				notify.Dispatch('error', 'save:ingest', i18n._(t`Failed to update ingest process (${err.message})`));
 				return false;
@@ -304,6 +304,12 @@ export default function Edit(props) {
 			let res = await props.restreamer.SetIngestMetadata(_channelid, $data);
 			if (res === false) {
 				notify.Dispatch('warning', 'save:ingest', i18n._(t`Failed to save ingest metadata`));
+			}
+
+			// Create/update the ingest snapshot process
+			[, err] = await props.restreamer.UpsertIngestSnapshot(_channelid, control);
+			if (err !== null) {
+				notify.Dispatch('error', 'save:ingest', i18n._(t`Failed to update ingest snapshot process (${err.message})`));
 			}
 
 			// Create/update the player

@@ -182,6 +182,9 @@ export default function Wizard(props) {
 		// Save the metadata
 		await props.restreamer.SetIngestMetadata(_channelid, data);
 
+		// Create update the ingest snapshot process
+		await props.restreamer.UpsertIngestSnapshot(_channelid, control);
+
 		// Create/update the player
 		await props.restreamer.UpdatePlayer(_channelid);
 

@@ -1723,6 +1723,28 @@ class Restreamer {
 
 		proc.output.push(output);
 
+		const [val, err] = await this._upsertProcess(channel.id, proc);
+		if (err !== null) {
+			return [val, err];
+		}
+
+		this.SetChannel(channelid, {
+			...channel,
+			available: true,
+		});
+
+		return [val, null];
+	}
+
+	// Upsert the ingest snapshot process
+	async UpsertIngestSnapshot(channelid, control) {
+		const channel = this.GetChannel(channelid);
+		if (channel === null) {
+			return [null, { message: 'Unknown channel ID' }];
+		}
+
+		const hlsStore = 'memfs';
+
 		const snapshot = {
 			type: 'ffmpeg',
 			id: channel.id + '_snapshot',
@@ -1730,7 +1752,7 @@ class Restreamer {
 			input: [
 				{
 					id: 'input_0',
-					address: `#${channel.id}:output=output_0`,
+					address: `{` + hlsStore + `}/${channel.channelid}.m3u8`,
 					options: [],
 				},
 			],
@@ -1754,20 +1776,10 @@ class Restreamer {
 			stale_timeout_seconds: 30,
 		};
 
-		let [val, err] = await this._upsertProcess(channel.id, proc);
+		const [val, err] = await this._upsertProcess(channel.id + '_snapshot', snapshot);
 		if (err !== null) {
 			return [val, err];
 		}
-
-		[val, err] = await this._upsertProcess(channel.id + '_snapshot', snapshot);
-		if (err !== null) {
-			return [val, err];
-		}
-
-		this.SetChannel(channelid, {
-			...channel,
-			available: true,
-		});
 
 		return [val, null];
 	}
