@@ -2,6 +2,7 @@
 
 #### v1.1.0 > v1.2.0
 
+-   Add stream distribution across multiple internal servers
 -   Add SRT settings
 -   Add HLS version selection (Dwaynarang, Electra Player compatibility)
 -   Add Owncast to publication services ([#369](https://github.com/datarhei/restreamer/issues/369))
