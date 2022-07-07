@@ -24,9 +24,13 @@ function init(initialState) {
 }
 
 function createMapping(settings) {
-	const local = [
-		'-vaapi_device',
-		'/dev/dri/renderD128',
+	const global = [];
+	const local = [];
+
+	// https://trac.ffmpeg.org/wiki/Hardware/VAAPI
+	global.push(['-vaapi_device', '/dev/dri/renderD128']);
+
+	local.push(
 		'-vf',
 		'format=nv12,hwupload',
 		'-codec:v',
@@ -46,19 +50,17 @@ function createMapping(settings) {
 		'-g',
 		`${settings.gop}`,
 		'-vsync',
-		'cfr',
-	];
+		'1'
+	);
 
 	if (settings.gop !== 'auto') {
 		local.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);
 	}
 
-	const mapping = {
-		global: [],
+	return {
+		global: global,
 		local: local,
 	};
-
-	return mapping;
 }
 
 function RateControl(props) {
