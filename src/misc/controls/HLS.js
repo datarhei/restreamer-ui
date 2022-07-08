@@ -16,6 +16,7 @@ function init(settings) {
 		listSize: 6,
 		cleanup: true,
 		version: 3,
+		storage: 'memfs',
 		...settings,
 	};
 

@@ -248,6 +248,9 @@ const defaultIngestMetadata = {
 			lhls: false,
 			segmentDuration: 2,
 			listSize: 6,
+			cleanup: true,
+			version: 3,
+			storage: 'memfs',
 		},
 		rtmp: {
 			enable: false,
@@ -287,6 +290,9 @@ const defaultEgressMetadata = {
 			reconnect: true,
 			delay: 15,
 			staleTimeout: 30,
+		},
+		source: {
+			source: 'memfs',
 		},
 	},
 	outputs: [],
@@ -466,6 +472,11 @@ const mergeEgressMetadata = (metadata, base) => {
 	metadata.control.process = {
 		...base.control.process,
 		...metadata.control.process,
+	};
+
+	metadata.control.source = {
+		...base.control.source,
+		...metadata.control.source,
 	};
 
 	if (!Array.isArray(metadata.outputs)) {

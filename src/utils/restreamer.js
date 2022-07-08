@@ -1548,21 +1548,21 @@ class Restreamer {
 		}
 
 		// Set hls storage endpoint
-		let hlsStore = 'memfs';
+		const hlsStorage = control.hls.storage;
 
 		const output = {
 			id: 'output_0',
-			address: `{${hlsStore}}/${channel.channelid}.m3u8`,
+			address: `{${hlsStorage}}/${channel.channelid}.m3u8`,
 			options: ['-dn', '-sn', ...outputs[0].options.map((o) => '' + o)],
 			cleanup: [
 				{
-					pattern: `${hlsStore}:/${channel.channelid}_*.` + (control.hls.version >= 7 ? 'mp4' : 'ts'),
+					pattern: `${hlsStorage}:/${channel.channelid}_*.` + (control.hls.version >= 7 ? 'mp4' : 'ts'),
 					max_files: parseInt(control.hls.listSize) + 6,
 					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
 					purge_on_delete: true,
 				},
 				{
-					pattern: `${hlsStore}:/${channel.channelid}.m3u8`,
+					pattern: `${hlsStorage}:/${channel.channelid}.m3u8`,
 					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
 					purge_on_delete: true,
 				},
@@ -1635,7 +1635,7 @@ class Restreamer {
 							['hls_list_size', '' + parseInt(control.hls.listSize)],
 							['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments'],
 							['hls_delete_threshold', '4'],
-							['hls_segment_filename', `{${hlsStore}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d.ts`],
+							['hls_segment_filename', `{${hlsStorage}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d.ts`],
 							['method', 'PUT'],
 						];
 					case 7:
@@ -1645,7 +1645,7 @@ class Restreamer {
 						}
 						// mp4 manifest cleanup
 						output.cleanup.push({
-							pattern: `${hlsStore}:/${channel.channelid}.mp4`,
+							pattern: `${hlsStorage}:/${channel.channelid}.mp4`,
 							max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
 							purge_on_delete: true,
 						});
@@ -1658,7 +1658,7 @@ class Restreamer {
 							['hls_delete_threshold', '4'],
 							['hls_segment_type', 'fmp4'],
 							['hls_fmp4_init_filename', `${channel.channelid}.mp4`],
-							['hls_segment_filename', `{${hlsStore}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d.mp4`],
+							['hls_segment_filename', `{${hlsStorage}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d.mp4`],
 							['method', 'PUT'],
 						];
 					// case 3
@@ -1670,7 +1670,7 @@ class Restreamer {
 							['hls_list_size', '' + parseInt(control.hls.listSize)],
 							['hls_flags', 'append_list+delete_segments+program_date_time'],
 							['hls_delete_threshold', '4'],
-							['hls_segment_filename', `{${hlsStore}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d.ts`],
+							['hls_segment_filename', `{${hlsStorage}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d.ts`],
 							['method', 'PUT'],
 						];
 				}
@@ -1696,7 +1696,7 @@ class Restreamer {
 			// ['f=hls:start_number=0...]address.m3u8
 			// use tee_muxer formatting
 			output.address =
-				`[${hls_params}]{${hlsStore}}/${channel.channelid}.m3u8` +
+				`[${hls_params}]{${hlsStorage}}/${channel.channelid}.m3u8` +
 				(rtmp_enabled ? `|[f=flv]{rtmp,name=${channel.channelid}.stream}` : '') +
 				(srt_enabled ? `|[f=mpegts]{srt,name=${channel.channelid},mode=publish}` : '');
 		} else {
@@ -2390,8 +2390,12 @@ class Restreamer {
 			outputs = [outputs];
 		}
 
-		// from the inputs only the first is used and only
-		// its options are considered.
+		// from the inputs only the first is used and only its options are considered.
+
+		let address = '';
+		if (control.source.source === 'memfs') {
+			address = `{memfs}/${channel.channelid}.m3u8`;
+		}
 
 		const config = {
 			type: 'ffmpeg',
@@ -2400,7 +2404,7 @@ class Restreamer {
 			input: [
 				{
 					id: 'input_0',
-					address: `#${channel.id}:output=output_0`,
+					address: address,
 					options: ['-re', ...inputs[0].options],
 				},
 			],
