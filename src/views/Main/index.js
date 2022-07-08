@@ -79,6 +79,7 @@ export default function Main(props) {
 		open: false,
 		data: '',
 	});
+	const [$config, setConfig] = React.useState(null);
 
 	const navigate = useNavigate();
 	const address = props.restreamer.Address() + '/';
@@ -96,7 +97,10 @@ export default function Main(props) {
 	}, []);
 
 	const load = async () => {
-		let metadata = await props.restreamer.GetIngestMetadata(_channelid);
+		const config = props.restreamer.ConfigActive();
+		setConfig(config);
+
+		const metadata = await props.restreamer.GetIngestMetadata(_channelid);
 		if (metadata.version && metadata.version === 1) {
 			setMetadata({
 				...$metadata,
@@ -139,6 +143,14 @@ export default function Main(props) {
 				}, 100);
 				state.onConnect = null;
 			}
+		}
+
+		if (!$config.source.network.rtmp.enabled && $metadata.control.rtmp.enable) {
+			state.state = 'error';
+			state.progress.error = 'RTMP server is not enabled, but required.';
+		} else if (!$config.source.network.srt.enabled && $metadata.control.srt.enable) {
+			state.state = 'error';
+			state.progress.error = 'SRT server is not enabled, but required.';
 		}
 
 		setState({

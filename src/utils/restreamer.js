@@ -2798,11 +2798,19 @@ class Restreamer {
 				p.state.progress.outputs[i].address = replace(p.state.progress.outputs[i].address);
 			}
 
+			if (!p.state.command) {
+				p.state.command = [];
+			}
+
 			p.state.command = p.state.command.map(replace);
 			p.state.last_logline = replace(p.state.last_logline);
 		}
 
 		if (p.report) {
+			if (!p.report.prelude) {
+				p.report.prelude = [];
+			}
+
 			p.report.prelude = p.report.prelude.map(replace);
 			p.report.log = p.report.log.map((l) => [l[0], replace(l[1])]);
 
@@ -2810,10 +2818,6 @@ class Restreamer {
 				p.report.history[i].prelude = p.report.history[i].prelude.map(replace);
 				p.report.history[i].log = p.report.history[i].log.map((l) => [l[0], replace(l[1])]);
 			}
-		}
-
-		if (p.service) {
-			p.service.token = replace(p.service.token);
 		}
 
 		return p;
