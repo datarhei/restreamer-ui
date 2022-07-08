@@ -332,7 +332,7 @@ const getHLSAddress = (host, credentials, name, secure) => {
 };
 
 const getRTMPAddress = (host, app, name, token, secure) => {
-	let url = 'rtmp' + (secure ? 's' : '') + '://' + host + app + '/' + name + '.stream';
+	let url = 'rtmp' + (secure ? 's' : '') + '://' + host + app + '/ingest/' + name + '.stream';
 
 	if (token.length !== 0) {
 		url += '?token=' + encodeURIComponent(token);
@@ -346,7 +346,7 @@ const getSRTAddress = (host, name, token, passphrase) => {
 		'srt' +
 		'://' +
 		host +
-		'?mode=caller&transtype=live&streamid=#!:m=publish,r=' +
+		'?mode=caller&transtype=live&streamid=#!:m=publish,r=ingest/' +
 		name +
 		(token.length !== 0 ? ',token=' + encodeURIComponent(token) : '');
 
