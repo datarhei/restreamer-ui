@@ -144,13 +144,16 @@ export default function Main(props) {
 				state.onConnect = null;
 			}
 		}
-
-		if (!$config.source.network.rtmp.enabled && $metadata.control.rtmp.enable) {
-			state.state = 'error';
-			state.progress.error = 'RTMP server is not enabled, but required.';
-		} else if (!$config.source.network.srt.enabled && $metadata.control.srt.enable) {
-			state.state = 'error';
-			state.progress.error = 'SRT server is not enabled, but required.';
+		if ($metadata.control.rtmp.enable) {
+			if (!$config.source.network.rtmp.enabled) {
+				state.state = 'error';
+				state.progress.error = 'RTMP server is not enabled, but required.';
+			}
+		} else if ($metadata.control.srt.enable) {
+			if (!$config.source.network.srt.enabled) {
+				state.state = 'error';
+				state.progress.error = 'SRT server is not enabled, but required.';
+			}
 		}
 
 		setState({
