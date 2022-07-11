@@ -8,10 +8,8 @@ import makeStyles from '@mui/styles/makeStyles';
 import Backdrop from '@mui/material/Backdrop';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
-import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import TextField from '@mui/material/TextField';
@@ -34,6 +32,7 @@ import ProcessControl from '../../misc/controls/Process';
 import ProcessModal from '../../misc/modals/Process';
 import Services from './Services';
 import SourceControl from '../../misc/controls/Source';
+import TabContent from './TabContent';
 import TabPanel from '../../misc/TabPanel';
 import TabsVerticalGrid from '../../misc/TabsVerticalGrid';
 
@@ -45,17 +44,6 @@ const useStyles = makeStyles((theme) => ({
 	link: {
 		marginLeft: 10,
 		wordWrap: 'anywhere',
-	},
-	serviceDescription: {
-		margin: '1em 0em 1em 0em',
-	},
-	serviceIcon: {
-		fontSize: '4rem!important',
-		maxHeight: 64,
-		marginTop: '-0.065em',
-	},
-	serviceName: {
-		marginTop: '-.2rem',
 	},
 }));
 
@@ -384,7 +372,6 @@ export default function Edit(props) {
 	}
 
 	const ServiceControl = $service.component;
-	const ServiceIcon = $service.icon;
 
 	const title = $settings.name.length === 0 ? $service.name : $settings.name;
 
@@ -409,19 +396,8 @@ export default function Edit(props) {
 							<Tab className="tab" label={<Trans>Encoding</Trans>} value="encoding" />
 						</Tabs>
 						<TabPanel value={$tab} index="general" className="panel">
-							<Grid container spacing={2}>
-								<Grid item xs={12}>
-									<Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-										<ServiceIcon className={classes.serviceIcon} />
-										<Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={0}>
-											<Typography variant="h1" className={classes.serviceName}>
-												{$service.name}
-											</Typography>
-											<Typography>v{$service.version}</Typography>
-										</Stack>
-									</Stack>
-								</Grid>
-								<Grid item xs={12} className={classes.serviceDescription}>
+							<TabContent service={$service}>
+								<Grid item xs={12} sx={{ margin: '1em 0em 1em 0em' }}>
 									<Typography>{$service.description}</Typography>
 								</Grid>
 								<Grid item xs={12}>
@@ -436,35 +412,10 @@ export default function Edit(props) {
 								<Grid item xs={12}>
 									<ServiceControl settings={$settings.settings} skills={$serviceSkills} metadata={$metadata} onChange={handleServiceChange} />
 								</Grid>
-								<Grid item xs={12}>
-									<Divider />
-								</Grid>
-								<Grid item xs={12}>
-									<Typography>
-										<Trans>Maintainer:</Trans>{' '}
-										<Link color="secondary" target="_blank" href={$service.author.maintainer.link}>
-											{$service.author.maintainer.name}
-										</Link>
-									</Typography>
-								</Grid>
-							</Grid>
+							</TabContent>
 						</TabPanel>
 						<TabPanel value={$tab} index="process" className="panel">
-							<Grid container spacing={2}>
-								<Grid item xs={12}>
-									<Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-										<ServiceIcon className={classes.serviceIcon} />
-										<Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={0}>
-											<Typography variant="h1" className={classes.serviceName}>
-												{$service.name}
-											</Typography>
-											<Typography>v{$service.version}</Typography>
-										</Stack>
-									</Stack>
-								</Grid>
-								<Grid item xs={12}>
-									<Divider />
-								</Grid>
+							<TabContent service={$service}>
 								<Grid item xs={12}>
 									<Typography variant="h2">
 										<Trans>Process</Trans>
@@ -501,35 +452,10 @@ export default function Edit(props) {
 										)}
 									</Grid>
 								</Grid>
-								<Grid item xs={12}>
-									<Divider />
-								</Grid>
-								<Grid item xs={12}>
-									<Typography>
-										<Trans>Maintainer:</Trans>{' '}
-										<Link color="secondary" target="_blank" href={$service.author.maintainer.link}>
-											{$service.author.maintainer.name}
-										</Link>
-									</Typography>
-								</Grid>
-							</Grid>
+							</TabContent>
 						</TabPanel>
 						<TabPanel value={$tab} index="source" className="panel">
-							<Grid container spacing={2}>
-								<Grid item xs={12}>
-									<Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-										<ServiceIcon className={classes.serviceIcon} />
-										<Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={0}>
-											<Typography variant="h1" className={classes.serviceName}>
-												{$service.name}
-											</Typography>
-											<Typography>v{$service.version}</Typography>
-										</Stack>
-									</Stack>
-								</Grid>
-								<Grid item xs={12}>
-									<Divider />
-								</Grid>
+							<TabContent service={$service}>
 								<Grid item xs={12}>
 									<Typography variant="h2">
 										<Trans>Source</Trans>
@@ -538,35 +464,10 @@ export default function Edit(props) {
 								<Grid item xs={12}>
 									<SourceControl settings={$settings.control.source} sources={$localSources} onChange={handleControlChange('source')} />
 								</Grid>
-								<Grid item xs={12}>
-									<Divider />
-								</Grid>
-								<Grid item xs={12}>
-									<Typography>
-										<Trans>Maintainer:</Trans>{' '}
-										<Link color="secondary" target="_blank" href={$service.author.maintainer.link}>
-											{$service.author.maintainer.name}
-										</Link>
-									</Typography>
-								</Grid>
-							</Grid>
+							</TabContent>
 						</TabPanel>
 						<TabPanel value={$tab} index="encoding" className="panel">
-							<Grid container spacing={2}>
-								<Grid item xs={12}>
-									<Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-										<ServiceIcon className={classes.serviceIcon} />
-										<Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={0}>
-											<Typography variant="h1" className={classes.serviceName}>
-												{$service.name}
-											</Typography>
-											<Typography>v{$service.version}</Typography>
-										</Stack>
-									</Stack>
-								</Grid>
-								<Grid item xs={12}>
-									<Divider />
-								</Grid>
+							<TabContent service={$service}>
 								<Grid item xs={12}>
 									<Typography variant="h2">
 										<Trans>Encoding</Trans>
@@ -611,18 +512,7 @@ export default function Edit(props) {
 										onChange={handleEncoding('audio')}
 									/>
 								</Grid>
-								<Grid item xs={12}>
-									<Divider />
-								</Grid>
-								<Grid item xs={12}>
-									<Typography>
-										<Trans>Maintainer:</Trans>{' '}
-										<Link color="secondary" target="_blank" href={$service.author.maintainer.link}>
-											{$service.author.maintainer.name}
-										</Link>
-									</Typography>
-								</Grid>
-							</Grid>
+							</TabContent>
 						</TabPanel>
 					</TabsVerticalGrid>
 				</Grid>
