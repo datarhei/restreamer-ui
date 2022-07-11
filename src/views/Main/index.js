@@ -144,6 +144,7 @@ export default function Main(props) {
 				state.onConnect = null;
 			}
 		}
+
 		if ($metadata.control.rtmp.enable) {
 			if (!$config.source.network.rtmp.enabled) {
 				state.state = 'error';

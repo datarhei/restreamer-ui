@@ -2393,8 +2393,14 @@ class Restreamer {
 		// from the inputs only the first is used and only its options are considered.
 
 		let address = '';
-		if (control.source.source === 'memfs') {
+		if (control.source.source === 'hls+memfs') {
 			address = `{memfs}/${channel.channelid}.m3u8`;
+		} else if (control.source.source === 'hls+diskfs') {
+			address = `{diskfs}/${channel.channelid}.m3u8`;
+		} else if (control.source.source === 'rtmp') {
+			address = `{rtmp,name=${channel.channelid}.stream}`;
+		} else if (control.source.source === 'srt') {
+			address = `{srt,name=${channel.channelid},mode=request}`;
 		}
 
 		const config = {

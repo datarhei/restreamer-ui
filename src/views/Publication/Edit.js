@@ -33,6 +33,7 @@ import Process from './Process';
 import ProcessControl from '../../misc/controls/Process';
 import ProcessModal from '../../misc/modals/Process';
 import Services from './Services';
+import SourceControl from '../../misc/controls/Source';
 import TabPanel from '../../misc/TabPanel';
 import TabsVerticalGrid from '../../misc/TabsVerticalGrid';
 
@@ -68,6 +69,7 @@ export default function Edit(props) {
 	const [$ready, setReady] = React.useState(false);
 	const [$settings, setSettings] = React.useState(M.getDefaultEgressMetadata());
 	const [$sources, setSources] = React.useState([]);
+	const [$localSources, setLocalSources] = React.useState([]);
 	const [$tab, setTab] = React.useState('general');
 	const [$progress, setProgress] = React.useState({});
 	const [$processDetails, setProcessDetails] = React.useState({
@@ -144,6 +146,20 @@ export default function Edit(props) {
 				description: ingest.meta.description,
 				license: ingest.license,
 			});
+
+			const localSources = [];
+
+			localSources.push('hls+' + ingest.control.hls.storage);
+
+			if (ingest.control.rtmp.enable) {
+				localSources.push('rtmp');
+			}
+
+			if (ingest.control.srt.enable) {
+				localSources.push('srt');
+			}
+
+			setLocalSources(localSources);
 
 			const sources = helper.createSourcesFromStreams(ingest.streams);
 			setSources(sources);
@@ -247,12 +263,12 @@ export default function Edit(props) {
 		setUnsavedChanges(true);
 	};
 
-	const handleProcessControlChange = (control, automatic) => {
+	const handleControlChange = (what) => (control, automatic) => {
 		setSettings({
 			...$settings,
 			control: {
 				...$settings.control,
-				process: control,
+				[what]: control,
 			},
 		});
 
@@ -389,6 +405,7 @@ export default function Edit(props) {
 						<Tabs orientation="vertical" variant="scrollable" value={$tab} onChange={handleChangeTab} className="tabs">
 							<Tab className="tab" label={<Trans>General</Trans>} value="general" />
 							<Tab className="tab" label={<Trans>Process control</Trans>} value="process" />
+							<Tab className="tab" label={<Trans>Source</Trans>} value="source" />
 							<Tab className="tab" label={<Trans>Encoding</Trans>} value="encoding" />
 						</Tabs>
 						<TabPanel value={$tab} index="general" className="panel">
@@ -454,7 +471,7 @@ export default function Edit(props) {
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
-									<ProcessControl settings={$settings.control.process} onChange={handleProcessControlChange} />
+									<ProcessControl settings={$settings.control.process} onChange={handleControlChange('process')} />
 								</Grid>
 								<Grid item xs={12}>
 									<Grid container spacing={1} className={classes.gridContainer}>
@@ -483,6 +500,43 @@ export default function Edit(props) {
 											</React.Fragment>
 										)}
 									</Grid>
+								</Grid>
+								<Grid item xs={12}>
+									<Divider />
+								</Grid>
+								<Grid item xs={12}>
+									<Typography>
+										<Trans>Maintainer:</Trans>{' '}
+										<Link color="secondary" target="_blank" href={$service.author.maintainer.link}>
+											{$service.author.maintainer.name}
+										</Link>
+									</Typography>
+								</Grid>
+							</Grid>
+						</TabPanel>
+						<TabPanel value={$tab} index="source" className="panel">
+							<Grid container spacing={2}>
+								<Grid item xs={12}>
+									<Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
+										<ServiceIcon className={classes.serviceIcon} />
+										<Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={0}>
+											<Typography variant="h1" className={classes.serviceName}>
+												{$service.name}
+											</Typography>
+											<Typography>v{$service.version}</Typography>
+										</Stack>
+									</Stack>
+								</Grid>
+								<Grid item xs={12}>
+									<Divider />
+								</Grid>
+								<Grid item xs={12}>
+									<Typography variant="h2">
+										<Trans>Source</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<SourceControl settings={$settings.control.source} sources={$localSources} onChange={handleControlChange('source')} />
 								</Grid>
 								<Grid item xs={12}>
 									<Divider />

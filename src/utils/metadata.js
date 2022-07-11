@@ -292,7 +292,7 @@ const defaultEgressMetadata = {
 			staleTimeout: 30,
 		},
 		source: {
-			source: 'memfs',
+			source: 'hls+memfs',
 		},
 	},
 	outputs: [],

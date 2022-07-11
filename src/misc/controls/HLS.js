@@ -43,6 +43,7 @@ export default function Control(props) {
 
 		props.onChange(settings, false);
 	};
+
 	return (
 		<Grid container spacing={2}>
 			{/*
