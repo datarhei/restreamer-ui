@@ -391,7 +391,7 @@ export default function Edit(props) {
 					<TabsVerticalGrid>
 						<Tabs orientation="vertical" variant="scrollable" value={$tab} onChange={handleChangeTab} className="tabs">
 							<Tab className="tab" label={<Trans>General</Trans>} value="general" />
-							<Tab className="tab" label={<Trans>Source & Encoding</Trans>} value="encoding" />
+							<Tab className="tab" label={<Trans>Source &amp; Encoding</Trans>} value="encoding" />
 							<Tab className="tab" label={<Trans>Process control</Trans>} value="process" />
 						</Tabs>
 						<TabPanel value={$tab} index="general" className="panel">
@@ -457,7 +457,7 @@ export default function Edit(props) {
 							<TabContent service={$service}>
 								<Grid item xs={12}>
 									<Typography variant="h2">
-										<Trans>Source & Encoding</Trans>
+										<Trans>Source &amp; Encoding</Trans>
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
@@ -471,11 +471,7 @@ export default function Edit(props) {
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
-									<SourceControl
-										settings={$settings.control.source}
-										sources={$localSources}
-										onChange={handleControlChange('source')}
-									/>
+									<SourceControl settings={$settings.control.source} sources={$localSources} onChange={handleControlChange('source')} />
 								</Grid>
 								<Grid item xs={12}>
 									<Typography variant="h3">
