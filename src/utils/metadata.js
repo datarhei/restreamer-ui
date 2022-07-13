@@ -597,7 +597,15 @@ const createInputsOutputs = (sources, profiles) => {
 
 		global = [...global, ...profile.video.encoder.mapping.global];
 
-		const options = ['-map', index + ':' + stream.stream, ...profile.video.encoder.mapping.local];
+		// Merge video filters
+		for (let i = 0; i < profile.video.encoder.mapping.local.length; i++) {
+			if (profile.video.encoder.mapping.local[i] === '-vf' && profile.video.filter.mapping.length !== 0) {
+				profile.video.encoder.mapping.local[i + 1] = profile.video.encoder.mapping.local[i + 1] + ',' + profile.video.filter.mapping[1];
+				profile.video.filter.mapping = [];
+			}
+		}
+
+		const options = ['-map', index + ':' + stream.stream, ...profile.video.filter.mapping, ...profile.video.encoder.mapping.local];
 
 		if (profile.audio.encoder.coder !== 'none' && profile.audio.source !== -1 && profile.audio.stream !== -1) {
 			global = [...global, ...profile.audio.decoder.mapping.global];
@@ -619,7 +627,15 @@ const createInputsOutputs = (sources, profiles) => {
 
 			global = [...global, ...profile.audio.encoder.mapping.global];
 
-			options.push('-map', index + ':' + stream.stream, ...profile.audio.encoder.mapping.local);
+			// Merge audio filters
+			for (let i = 0; i < profile.audio.encoder.mapping.local.length; i++) {
+				if (profile.audio.encoder.mapping.local[i] === '-af' && profile.audio.filter.mapping.length !== 0) {
+					profile.audio.encoder.mapping.local[i + 1] = profile.audio.encoder.mapping.local[i + 1] + ',' + profile.audio.filter.mapping[1];
+					profile.audio.filter.mapping = [];
+				}
+			}
+
+			options.push('-map', index + ':' + stream.stream, ...profile.audio.filter.mapping, ...profile.audio.encoder.mapping.local);
 		} else {
 			options.push('-an');
 		}
@@ -745,6 +761,7 @@ const initProfile = (initialProfile) => {
 		stream: -1,
 		encoder: {},
 		decoder: {},
+		filter: {},
 		...profile.video,
 	};
 
@@ -789,11 +806,19 @@ const initProfile = (initialProfile) => {
 		};
 	}
 
+	profile.video.filter = {
+		filter: 'default',
+		settings: {},
+		mapping: {},
+		...profile.video.filter,
+	};
+
 	profile.audio = {
 		source: -1,
 		stream: -1,
 		encoder: {},
 		decoder: {},
+		filter: {},
 		...profile.audio,
 	};
 
@@ -836,6 +861,13 @@ const initProfile = (initialProfile) => {
 			...profile.audio.decoder.mapping,
 		};
 	}
+
+	profile.audio.filter = {
+		filter: 'default',
+		settings: {},
+		mapping: {},
+		...profile.audio.filter,
+	};
 
 	profile.custom = {
 		selected: profile.audio.source === 1,

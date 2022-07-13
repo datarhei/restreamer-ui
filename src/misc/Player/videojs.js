@@ -31,6 +31,7 @@ export default function VideoJS(props) {
 				player.addClass('vjs-internal');
 			}
 			player.addClass('video-js');
+			player.addClass('vjs-16-9');
 		} else {
 			// you can update player here [update player through props]
 			// const player = playerRef.current;

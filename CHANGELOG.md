@@ -2,6 +2,10 @@
 
 #### v1.1.0 > v1.2.0
 
+-   Add video rotation filter ([#347](https://github.com/datarhei/restreamer/discussions/347))
+-   Add video h/v flip filter
+-   Add audio volume filter ([#313](https://github.com/datarhei/restreamer/issues/313))
+-   Add audio loudness normalization filter
 -   Add stream distribution across multiple internal servers
 -   Add SRT settings
 -   Add HLS version selection (Dwaynarang, Electra Player compatibility)
@@ -9,6 +13,7 @@
 -   Add Telegram to publication services (thx Martin Held)
 -   Add Polish translations (thx Robert Rykała)
 -   Mod Allow decoders and encoders to set global options
+-   Fix player problem with different stream formats (9:16)
 -   Fix process report naming
 -   Fix publication service icon styles
 -   Fix VAAPI encoder
