@@ -24,8 +24,6 @@ function createMapping(settings) {
 		mapping.push('loudnorm');
 	}
 
-	console.log(mapping);
-
 	return mapping;
 }
 

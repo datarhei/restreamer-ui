@@ -31,8 +31,6 @@ function createMapping(settings) {
 		}
 	}
 
-	console.log(mapping);
-
 	return mapping;
 }
 
@@ -61,7 +59,6 @@ VolumeLevel.defaultProps = {
 };
 
 function VolumeDB(props) {
-	console.log(props);
 	return (
 		<TextField
 			variant="outlined"
