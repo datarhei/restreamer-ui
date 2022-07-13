@@ -98,7 +98,7 @@ export default function Playersite(props) {
 		const value = event.target.value;
 		const settings = $settings;
 
-		if (['playersite', 'header', 'share', 'support', 'chromecast'].includes(what)) {
+		if (['playersite', 'header', 'share', 'support', 'chromecast', 'airplay'].includes(what)) {
 			settings[what] = !settings[what];
 		} else {
 			settings[what] = value;
@@ -426,6 +426,14 @@ export default function Playersite(props) {
 										checked={$settings.chromecast}
 										disabled={!$settings.playersite}
 										onChange={handleChange('chromecast')}
+									/>
+								</Grid>
+								<Grid item xs={12}>
+									<Checkbox
+										label={<Trans>AirPlay</Trans>}
+										checked={$settings.airplay}
+										disabled={!$settings.playersite}
+										onChange={handleChange('airplay')}
 									/>
 								</Grid>
 								<Grid item xs={12}>

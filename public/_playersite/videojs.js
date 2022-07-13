@@ -18,6 +18,10 @@ if (chromecast) {
 	config.plugins.chromecast = {};
 }
 
+if (airplay) {
+	config.plugins.airPlay = {};
+}
+
 var player = videojs('player', config);
 
 player.ready(function () {

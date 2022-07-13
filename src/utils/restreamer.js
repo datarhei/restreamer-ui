@@ -1892,6 +1892,7 @@ class Restreamer {
 			mute: false,
 			statistics: false,
 			chromecast: false,
+			airplay: false,
 			color: {},
 			ga: {},
 			logo: {},
@@ -1950,6 +1951,7 @@ class Restreamer {
 			width: 640,
 			height: 360,
 			chromecast: metadata.player.chromecast,
+			airplay: metadata.player.airplay,
 		};
 
 		// upload player.html
@@ -2032,6 +2034,7 @@ class Restreamer {
 			share: true,
 			support: true,
 			chromecast: false,
+			airplay: false,
 			template: '!default',
 			templatename: '',
 			textcolor_title: 'rgba(255,255,255,1)',
@@ -2114,6 +2117,7 @@ class Restreamer {
 				share: settings.share,
 				support: settings.support,
 				chromecast: settings.chromecast,
+				airplay: settings.airplay,
 				url: this.GetPlayersiteUrl(),
 				textcolor_title: settings.textcolor_title,
 				textcolor_default: settings.textcolor_default,

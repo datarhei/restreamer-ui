@@ -9,3 +9,6 @@ dist/videojs-chromecast.min.js
 dist/videojs-chromecast.min.css
 dist/ic_cast_connected_white_24dp.png
 dist/ic_cast_white_24dp.png
+dist/videojs-airplay.min.js
+dist/videojs-airplay.min.css
+dist/ic_airplay_white_24px.svg

@@ -44,6 +44,9 @@
 	<link href="player/videojs/dist/video-js-skin.min.css" rel="stylesheet">
 	<link href="player/videojs/dist/videojs-overlay.min.css" rel="stylesheet">
 	<link href="player/videojs/dist/videojs-license.min.css" rel="stylesheet">
+		{{#if airplay}}
+	<link href="player/videojs/dist/videojs-airplay.min.css" rel="stylesheet">
+		{{/if}}
 		{{#if chromecast}}
 	<link href="player/videojs/dist/videojs-chromecast.min.css" rel="stylesheet">
 		{{/if}}
@@ -785,6 +788,9 @@
 	<script src="player/videojs/dist/video.min.js"></script>
 	<script src="player/videojs/dist/videojs-overlay.min.js"></script>
 	<script src="player/videojs/dist/videojs-license.min.js"></script>
+		{{#if airplay}}
+	<script src='player/videojs/dist/videojs-airplay.min.js'></script>
+		{{/if}}
 		{{#if chromecast}}
 	<script src='player/videojs/dist/videojs-chromecast.min.js'></script>
 	<script src='https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1'></script>
@@ -832,6 +838,7 @@
 		var statistics = convertBoolParam("stats", playerConfig.statistics);
 		var color = convertColorParam("color", playerConfig.color.buttons);
 		var chromecast = {{#if chromecast}}true{{else}}false{{/if}};
+		var airplay = {{#if airplay}}true{{else}}false{{/if}};
 	</script>
 	<script src="playersite/player.js"></script>
 
