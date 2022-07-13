@@ -1883,10 +1883,15 @@ class Restreamer {
 
 	// Set defaults for the settings of the selfhosted player
 	InitPlayerSettings(initSettings) {
+		if (!initSettings) {
+			initSettings = {};
+		}
+
 		const settings = {
 			autoplay: false,
 			mute: false,
 			statistics: false,
+			chromecast: false,
 			color: {},
 			ga: {},
 			logo: {},
@@ -1930,6 +1935,8 @@ class Restreamer {
 			return false;
 		}
 
+		metadata.player = this.InitPlayerSettings(metadata.player);
+
 		const templateData = {
 			channelid: channelid,
 			name: metadata.meta.name,
@@ -1942,6 +1949,7 @@ class Restreamer {
 			poster_url: this.GetIngestPosterUrlAddresses(channelid)[0],
 			width: 640,
 			height: 360,
+			chromecast: metadata.player.chromecast,
 		};
 
 		// upload player.html
@@ -1975,10 +1983,6 @@ class Restreamer {
 	}
 
 	async UpdatePlayerConfig(channelid, metadata) {
-		if (!('player' in metadata)) {
-			metadata.player = {};
-		}
-
 		metadata.player = this.InitPlayerSettings(metadata.player);
 
 		const playerConfig = {
@@ -2027,6 +2031,7 @@ class Restreamer {
 			title: 'restreamer',
 			share: true,
 			support: true,
+			chromecast: false,
 			template: '!default',
 			templatename: '',
 			textcolor_title: 'rgba(255,255,255,1)',
@@ -2108,6 +2113,7 @@ class Restreamer {
 				title: settings.title,
 				share: settings.share,
 				support: settings.support,
+				chromecast: settings.chromecast,
 				url: this.GetPlayersiteUrl(),
 				textcolor_title: settings.textcolor_title,
 				textcolor_default: settings.textcolor_default,

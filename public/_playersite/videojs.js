@@ -2,17 +2,24 @@ var config = {
 	controls: true,
 	poster: playerConfig.poster + '?t=' + String(new Date().getTime()),
 	autoplay: autoplay ? 'muted' : false,
-	muted: mute,
+	muted: true,
 	liveui: true,
 	responsive: true,
 	fluid: true,
-	sources: [{ src: playerConfig.source, type: 'application/x-mpegURL' }],
+	// Needed to append the url orgin in order for the source to properly pass to the cast device
+	sources: [{ src: window.location.origin + '/' + playerConfig.source, type: 'application/x-mpegURL' }],
 	plugins: {
 		license: playerConfig.license,
 	},
 };
 
+if (chromecast) {
+	config.techOrder = ['chromecast', 'html5'];
+	config.plugins.chromecast = {};
+}
+
 var player = videojs('player', config);
+
 player.ready(function () {
 	if (playerConfig.logo.image.length != 0) {
 		var overlay = null;

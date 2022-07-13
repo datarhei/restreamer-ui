@@ -118,7 +118,7 @@ export default function Edit(props) {
 			const settings = $settings;
 
 			if (section === '') {
-				if (['autoplay', 'mute', 'statistics'].includes(what)) {
+				if (['autoplay', 'mute', 'statistics', 'chromecast'].includes(what)) {
 					settings[what] = !settings[what];
 				} else {
 					settings[what] = value;
@@ -436,6 +436,7 @@ export default function Edit(props) {
 								<Grid item xs={12}>
 									<Checkbox label={<Trans>Autoplay</Trans>} checked={$settings.autoplay} onChange={handleChange('autoplay')} />
 									<Checkbox label={<Trans>Mute</Trans>} checked={$settings.mute} onChange={handleChange('mute')} />
+									<Checkbox label={<Trans>Chromecast</Trans>} checked={$settings.chromecast} onChange={handleChange('chromecast')} />
 								</Grid>
 							</Grid>
 						</TabPanel>
