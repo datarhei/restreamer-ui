@@ -16,6 +16,7 @@ import dialog from './components/dialog';
 import divider from './components/divider';
 import fab from './components/fab';
 import formControlLabel from './components/formControlLabel';
+import formHelperText from './components/formHelperText';
 import formLabel from './components/formLabel';
 import iconButton from './components/iconButton';
 import inputLabel from './components/inputLabel';
@@ -61,6 +62,7 @@ const theme = createTheme({
 		MuiDivider: { ...divider },
 		MuiFab: { ...fab },
 		MuiFormControlLabel: { ...formControlLabel },
+		MuiFormHelperText: { ...formHelperText },
 		MuiFormLabel: { ...formLabel },
 		MuiIconButton: { ...iconButton },
 		MuiInputLabel: { ...inputLabel },

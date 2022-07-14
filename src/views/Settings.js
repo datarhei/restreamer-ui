@@ -1491,7 +1491,9 @@ export default function Settings(props) {
 									<Checkbox
 										label={<Trans>Login/JWT authorization</Trans>}
 										checked={config.api.auth.enable}
-										disabled={env('api.auth.enable')}
+										// prob: interface enforces auth.
+										// disabled={env('api.auth.enable')}
+										disabled
 										onChange={handleChange('api.auth.enable')}
 									/>{' '}
 									{env('api.auth.enable') && <Env />}
@@ -1970,6 +1972,9 @@ export default function Settings(props) {
 										disabled={env('srt.passphrase') || !config.srt.enable}
 										value={config.srt.passphrase}
 										onChange={handleChange('srt.passphrase')}
+										inputProps={{ maxLength: 79 }}
+										error={config.srt.passphrase && config.srt.passphrase.length < 10}
+										helperText={config.srt.passphrase && config.srt.passphrase.length < 10 ? (<Trans>Passphrase must be between 10 and 79 characters long</Trans>) : false}
 									/>
 									<ErrorBox configvalue="srt.passphrase" messages={$tabs.srt.messages} />
 									<Typography variant="caption">

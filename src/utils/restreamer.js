@@ -981,7 +981,7 @@ class Restreamer {
 
 			address =
 				`srt://${host}${port}/?mode=caller&transtype=live&streamid=#!:m=request,r=${channelId}` +
-				(cfg.token.length !== 0 ? `,token=${cfg.srt.token}` : '') +
+				(cfg.token.length !== 0 ? `,token=${cfg.token}` : '') +
 				(cfg.passphrase.length !== 0 ? `&passphrase=${cfg.passphrase}` : '');
 		} else if (what && what === 'snapshot+memfs') {
 			// snapshot+memfs
