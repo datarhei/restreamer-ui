@@ -358,7 +358,9 @@ class Restreamer {
 		}
 
 		compatibility.core.have = this.Version().number;
-		compatibility.ffmpeg.have = this.skills.ffmpeg.version;
+		if (this.skills?.ffmpeg?.version) {
+			compatibility.ffmpeg.have = this.skills.ffmpeg.version;
+		}
 
 		compatibility.core.compatible = SemverSatisfies(compatibility.core.have, compatibility.core.want);
 		compatibility.ffmpeg.compatible = SemverSatisfies(compatibility.ffmpeg.have, compatibility.ffmpeg.want);
@@ -371,8 +373,13 @@ class Restreamer {
 	}
 
 	async _init() {
-		await this._initConfig();
+		const compatibility = this.Compatibility();
+		if (!compatibility.compatible) {
+			return;
+		}
+
 		await this._initSkills();
+		await this._initConfig();
 		await this._discoverChannels();
 	}
 
@@ -895,6 +902,10 @@ class Restreamer {
 	}
 
 	ConfigOverrides(name) {
+		if (!this.config) {
+			return false;
+		}
+
 		return this.config.overrides.includes(name);
 	}
 
@@ -1889,10 +1900,16 @@ class Restreamer {
 
 	// Set defaults for the settings of the selfhosted player
 	InitPlayerSettings(initSettings) {
+		if (!initSettings) {
+			initSettings = {};
+		}
+
 		const settings = {
 			autoplay: false,
 			mute: false,
 			statistics: false,
+			chromecast: false,
+			airplay: false,
 			color: {},
 			ga: {},
 			logo: {},
@@ -1936,6 +1953,8 @@ class Restreamer {
 			return false;
 		}
 
+		metadata.player = this.InitPlayerSettings(metadata.player);
+
 		const templateData = {
 			channelid: channelid,
 			name: metadata.meta.name,
@@ -1948,6 +1967,8 @@ class Restreamer {
 			poster_url: this.GetIngestPosterUrlAddresses(channelid)[0],
 			width: 640,
 			height: 360,
+			chromecast: metadata.player.chromecast,
+			airplay: metadata.player.airplay,
 		};
 
 		// upload player.html
@@ -1981,10 +2002,6 @@ class Restreamer {
 	}
 
 	async UpdatePlayerConfig(channelid, metadata) {
-		if (!('player' in metadata)) {
-			metadata.player = {};
-		}
-
 		metadata.player = this.InitPlayerSettings(metadata.player);
 
 		const playerConfig = {
@@ -2033,6 +2050,8 @@ class Restreamer {
 			title: 'restreamer',
 			share: true,
 			support: true,
+			chromecast: false,
+			airplay: false,
 			template: '!default',
 			templatename: '',
 			textcolor_title: 'rgba(255,255,255,1)',
@@ -2114,6 +2133,8 @@ class Restreamer {
 				title: settings.title,
 				share: settings.share,
 				support: settings.support,
+				chromecast: settings.chromecast,
+				airplay: settings.airplay,
 				url: this.GetPlayersiteUrl(),
 				textcolor_title: settings.textcolor_title,
 				textcolor_default: settings.textcolor_default,

@@ -6,6 +6,8 @@
 -   Add video h/v flip filter
 -   Add audio volume filter ([#313](https://github.com/datarhei/restreamer/issues/313))
 -   Add audio loudness normalization filter
+-   Add AirPlay support with silvermine videojs plugin
+-   Add Chromecast support (thx badincite, [#10](https://github.com/datarhei/restreamer-ui/pull/10))
 -   Add stream distribution across multiple internal servers
 -   Add SRT settings
 -   Add HLS version selection (Dwaynarang, Electra Player compatibility)
