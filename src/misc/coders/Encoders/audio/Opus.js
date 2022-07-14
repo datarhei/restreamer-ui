@@ -34,7 +34,7 @@ function createMapping(settings, stream) {
 		layout = stream.layout;
 	}
 
-	const local = ['-codec:a', 'opus', '-b:a', `${settings.bitrate}k`, '-vbr', 'on', '-shortest', '-af', `aresample=osr=${sampling}:ocl=${layout}`];
+	const local = ['-codec:a', 'opus', '-b:a', `${settings.bitrate}k`, '-vbr', 'on', '-shortest', '-filter:a', `aresample=osr=${sampling}:ocl=${layout}`];
 
 	if (settings.delay !== 'auto') {
 		local.push('opus_delay', settings.delay);

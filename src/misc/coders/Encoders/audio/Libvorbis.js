@@ -28,7 +28,7 @@ function createMapping(settings, stream) {
 		layout = stream.layout;
 	}
 
-	const local = ['-codec:a', 'libvorbis', '-b:a', `${settings.bitrate}k`, '-shortest', '-af', `aresample=osr=${sampling}:ocl=${layout}`];
+	const local = ['-codec:a', 'libvorbis', '-b:a', `${settings.bitrate}k`, '-shortest', '-filter:a', `aresample=osr=${sampling}:ocl=${layout}`];
 
 	const mapping = {
 		global: [],

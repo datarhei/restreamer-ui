@@ -597,15 +597,19 @@ const createInputsOutputs = (sources, profiles) => {
 
 		global = [...global, ...profile.video.encoder.mapping.global];
 
-		// Merge video filters
-		for (let i = 0; i < profile.video.encoder.mapping.local.length; i++) {
-			if (profile.video.encoder.mapping.local[i] === '-vf' && profile.video.filter.mapping.length !== 0) {
-				profile.video.encoder.mapping.local[i + 1] = profile.video.encoder.mapping.local[i + 1] + ',' + profile.video.filter.mapping[1];
-				profile.video.filter.mapping = [];
+		const local = profile.video.encoder.mapping.local.slice();
+
+		if (profile.video.filter.graph.length !== 0) {
+			// Check if there's already a video filter in the local mapping
+			let filterIndex = local.indexOf('-filter:v');
+			if (filterIndex !== -1) {
+				local[filterIndex + 1] += ',' + profile.video.filter.graph;
+			} else {
+				local.unshift('-filter:v', profile.video.filter.graph);
 			}
 		}
 
-		const options = ['-map', index + ':' + stream.stream, ...profile.video.filter.mapping, ...profile.video.encoder.mapping.local];
+		const options = ['-map', index + ':' + stream.stream, ...local];
 
 		if (profile.audio.encoder.coder !== 'none' && profile.audio.source !== -1 && profile.audio.stream !== -1) {
 			global = [...global, ...profile.audio.decoder.mapping.global];
@@ -627,15 +631,19 @@ const createInputsOutputs = (sources, profiles) => {
 
 			global = [...global, ...profile.audio.encoder.mapping.global];
 
-			// Merge audio filters
-			for (let i = 0; i < profile.audio.encoder.mapping.local.length; i++) {
-				if (profile.audio.encoder.mapping.local[i] === '-af' && profile.audio.filter.mapping.length !== 0) {
-					profile.audio.encoder.mapping.local[i + 1] = profile.audio.encoder.mapping.local[i + 1] + ',' + profile.audio.filter.mapping[1];
-					profile.audio.filter.mapping = [];
+			const local = profile.audio.encoder.mapping.local.slice();
+
+			if (profile.audio.filter.graph.length !== 0) {
+				// Check if there's already a audio filter in the local mapping
+				let filterIndex = local.indexOf('-filter:a');
+				if (filterIndex !== -1) {
+					local[filterIndex + 1] += ',' + profile.audio.filter.graph;
+				} else {
+					local.unshift('-filter:a', profile.audio.filter.graph);
 				}
 			}
 
-			options.push('-map', index + ':' + stream.stream, ...profile.audio.filter.mapping, ...profile.audio.encoder.mapping.local);
+			options.push('-map', index + ':' + stream.stream, ...local);
 		} else {
 			options.push('-an');
 		}
@@ -807,9 +815,8 @@ const initProfile = (initialProfile) => {
 	}
 
 	profile.video.filter = {
-		filter: 'default',
+		graph: '',
 		settings: {},
-		mapping: {},
 		...profile.video.filter,
 	};
 
@@ -863,9 +870,8 @@ const initProfile = (initialProfile) => {
 	}
 
 	profile.audio.filter = {
-		filter: 'default',
+		graph: '',
 		settings: {},
-		mapping: {},
 		...profile.audio.filter,
 	};
 

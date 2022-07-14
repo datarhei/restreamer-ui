@@ -17,36 +17,38 @@ export default function FilterSelect(props) {
 	// what: Filter name
 	// settings (component settings):  {Key: Value}
 	// mapping (FFmpeg -af/-vf args): ['String', ...]
-	const handleFilterSettingsChange = (what) => (settings, mapping, automatic) => {
+	const handleFilterSettingsChange = (what) => (settings, graph, automatic) => {
 		const filter = profile.filter;
 
 		// Store mapping/settings per component
 		filter.settings[what] = {
-			mapping: mapping,
 			settings: settings,
+			graph: graph,
 		};
 
-		// Combine FFmpeg args
-		let settings_mapping = [];
-		for (let i in filter.settings) {
-			if (filter.settings[i].mapping.length !== 0) {
-				settings_mapping.push(filter.settings[i].mapping);
-			}
-		}
-
-		// Create the real filter mapping
-		// ['-af/-vf', 'args,args']
-		if (settings_mapping.length !== 0) {
-			if (props.type === 'video') {
-				filter.mapping = ['-vf', settings_mapping.join(',')];
-			} else if (props.type === 'audio') {
-				filter.mapping = ['-af', settings_mapping.join(',')];
-			}
+		// Get the order of the filters
+		let filterOrder = [];
+		if (props.type === 'video') {
+			filterOrder = Filters.Video.Filters();
 		} else {
-			filter.mapping = [];
+			filterOrder = Filters.Audio.Filters();
 		}
 
-		props.onChange(profile.filter, filter, automatic);
+		// Create the filter graph in the order as the filters are registered
+		const graphs = [];
+		for (let f of filterOrder) {
+			if (!(f in filter.settings)) {
+				continue;
+			}
+
+			if (filter.settings[f].graph.length !== 0) {
+				graphs.push(filter.settings[f].graph);
+			}
+		}
+
+		filter.graph = graphs.join(',');
+
+		props.onChange(filter, automatic);
 	};
 
 	// Set filterRegistry by type
@@ -64,8 +66,8 @@ export default function FilterSelect(props) {
 	let hwaccel = false;
 	if (props.type === 'video') {
 		encoderRegistry = Encoders.Video;
-		for (let i in encoderRegistry.List()) {
-			if (encoderRegistry.List()[i].codec === props.videoProfile.encoder.coder && encoderRegistry.List()[i].hwaccel) {
+		for (let encoder of encoderRegistry.List()) {
+			if (encoder.codec === props.profile.encoder.coder && encoder.hwaccel) {
 				hwaccel = true;
 			}
 		}
@@ -79,12 +81,17 @@ export default function FilterSelect(props) {
 			if (props.availableFilters.includes(c.filter)) {
 				const Settings = c.component;
 
+				if (!(c.filter in profile.filter.settings)) {
+					profile.filter.settings[c.filter] = c.defaults();
+				} else {
+					profile.filter.settings[c.filter] = {
+						...c.defaults(),
+						...profile.filter.settings[c.filter],
+					};
+				}
+
 				filterSettings.push(
-					<Settings
-						key={c.filter}
-						settings={profile.filter.settings[c.filter] ? profile.filter.settings[c.filter].settings : []}
-						onChange={handleFilterSettingsChange(c.filter)}
-					/>
+					<Settings key={c.filter} settings={profile.filter.settings[c.filter].settings} onChange={handleFilterSettingsChange(c.filter)} />
 				);
 			}
 		}
@@ -121,7 +128,7 @@ export default function FilterSelect(props) {
 
 FilterSelect.defaultProps = {
 	type: '',
-	filters: [],
+	profile: {},
 	availableFilters: [],
-	onChange: function (filter) {},
+	onChange: function (filter, automatic) {},
 };

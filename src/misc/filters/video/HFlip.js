@@ -10,21 +10,21 @@ import Checkbox from '../../Checkbox';
 
 function init(initialState) {
 	const state = {
-		value: false,
+		enabled: false,
 		...initialState,
 	};
 
 	return state;
 }
 
-function createMapping(settings) {
+function createGraph(settings) {
 	const mapping = [];
 
-	if (settings.value) {
+	if (settings.enabled) {
 		mapping.push('hflip');
 	}
 
-	return mapping;
+	return mapping.join(',');
 }
 
 function Filter(props) {
@@ -37,15 +37,15 @@ function Filter(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings), automatic);
+		props.onChange(newSettings, createGraph(newSettings), automatic);
 	};
 
 	const update = (what) => (event) => {
 		const newSettings = {
 			...settings,
 		};
-		if (['value'].includes(what)) {
-			newSettings[what] = !settings.value;
+		if (['enabled'].includes(what)) {
+			newSettings[what] = !settings.enabled;
 		} else {
 			newSettings[what] = event.target.value;
 		}
@@ -60,7 +60,7 @@ function Filter(props) {
 
 	return (
 		<Grid item>
-			<Checkbox label={<Trans>Horizontal Flip</Trans>} checked={settings.value} onChange={update('value')} />
+			<Checkbox label={<Trans>Horizontal Flip</Trans>} checked={settings.enabled} onChange={update('enabled')} />
 		</Grid>
 	);
 }
@@ -84,7 +84,7 @@ function defaults() {
 
 	return {
 		settings: settings,
-		mapping: createMapping(settings),
+		graph: createGraph(settings),
 	};
 }
 

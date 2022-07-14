@@ -18,7 +18,7 @@ function init(initialState) {
 	return state;
 }
 
-function createMapping(settings) {
+function createGraph(settings) {
 	const mapping = [];
 
 	switch (settings.value) {
@@ -35,7 +35,7 @@ function createMapping(settings) {
 			break;
 	}
 
-	return mapping;
+	return mapping.join(',');
 }
 
 // filter
@@ -65,7 +65,7 @@ function Filter(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings), automatic);
+		props.onChange(newSettings, createGraph(newSettings), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -108,7 +108,7 @@ function defaults() {
 
 	return {
 		settings: settings,
-		mapping: createMapping(settings),
+		graph: createGraph(settings),
 	};
 }
 

@@ -408,12 +408,11 @@ export default function Source(props) {
 												onChange={handleEncoding('video')}
 											/>
 										</Grid>
-										{($profile.video.encoder.coder !== 'none' && $profile.video.encoder.coder !== 'copy') && (
+										{$profile.video.encoder.coder !== 'none' && $profile.video.encoder.coder !== 'copy' && (
 											<Grid item xs={12}>
 												<FilterSelect
 													type="video"
 													profile={$profile.video}
-													videoProfile={$profile.video}
 													availableFilters={props.skills.filter}
 													onChange={handleFilter('video')}
 												/>
@@ -481,7 +480,7 @@ export default function Source(props) {
 										onChange={handleEncoding('audio')}
 									/>
 								</Grid>
-								{($profile.audio.encoder.coder !== 'none' && $profile.audio.encoder.coder !== 'copy') && (
+								{$profile.audio.encoder.coder !== 'none' && $profile.audio.encoder.coder !== 'copy' && (
 									<Grid item xs={12}>
 										<FilterSelect
 											type="audio"
@@ -558,7 +557,7 @@ export default function Source(props) {
 														onChange={handleEncoding('audio')}
 													/>
 												</Grid>
-												{($profile.audio.encoder.coder !== 'none' && $profile.audio.encoder.coder !== 'copy') && (
+												{$profile.audio.encoder.coder !== 'none' && $profile.audio.encoder.coder !== 'copy' && (
 													<Grid item xs={12}>
 														<FilterSelect
 															type="audio"
