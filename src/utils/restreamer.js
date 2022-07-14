@@ -358,7 +358,9 @@ class Restreamer {
 		}
 
 		compatibility.core.have = this.Version().number;
-		compatibility.ffmpeg.have = this.skills.ffmpeg.version;
+		if (this.skills?.ffmpeg?.version) {
+			compatibility.ffmpeg.have = this.skills.ffmpeg.version;
+		}
 
 		compatibility.core.compatible = SemverSatisfies(compatibility.core.have, compatibility.core.want);
 		compatibility.ffmpeg.compatible = SemverSatisfies(compatibility.ffmpeg.have, compatibility.ffmpeg.want);
@@ -371,8 +373,13 @@ class Restreamer {
 	}
 
 	async _init() {
-		await this._initConfig();
+		const compatibility = this.Compatibility();
+		if (!compatibility.compatible) {
+			return;
+		}
+
 		await this._initSkills();
+		await this._initConfig();
 		await this._discoverChannels();
 	}
 
@@ -889,6 +896,10 @@ class Restreamer {
 	}
 
 	ConfigOverrides(name) {
+		if (!this.config) {
+			return false;
+		}
+
 		return this.config.overrides.includes(name);
 	}
 
