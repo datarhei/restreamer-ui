@@ -374,7 +374,7 @@ class Restreamer {
 
 	async _init() {
 		const compatibility = this.Compatibility();
-		if (!compatibility.compatible) {
+		if (!compatibility.core.compatible) {
 			return;
 		}
 
