@@ -12,7 +12,7 @@ import Select from '../../Select';
 
 function init(initialState) {
 	const state = {
-		level: false,
+		level: 'none',
 		db: 0,
 		...initialState,
 	};
@@ -23,12 +23,15 @@ function init(initialState) {
 function createMapping(settings) {
 	const mapping = [];
 
-	if (settings.level) {
-		if (settings.level !== 'custom') {
-			mapping.push(`volume=volume=${settings.level}`);
-		} else {
+	switch (settings.level) {
+		case 'none':
+			break;
+		case 'custom':
 			mapping.push(`volume=volume=${settings.db}dB`);
-		}
+			break;
+		default:
+			mapping.push(`volume=volume=${parseInt(settings.level) / 100}`);
+			break;
 	}
 
 	return mapping;
@@ -37,18 +40,22 @@ function createMapping(settings) {
 function VolumeLevel(props) {
 	return (
 		<Select label={<Trans>Volume</Trans>} value={props.value} onChange={props.onChange}>
-			<MenuItem value={false}>None</MenuItem>
-			<MenuItem value={0.1}>10%</MenuItem>
-			<MenuItem value={0.2}>20%</MenuItem>
-			<MenuItem value={0.3}>30%</MenuItem>
-			<MenuItem value={0.4}>40%</MenuItem>
-			<MenuItem value={0.5}>50%</MenuItem>
-			<MenuItem value={0.6}>60%</MenuItem>
-			<MenuItem value={0.7}>70%</MenuItem>
-			<MenuItem value={0.8}>80%</MenuItem>
-			<MenuItem value={0.9}>90%</MenuItem>
-			<MenuItem value={1.0}>100%</MenuItem>
-			<MenuItem value="custom">Custom</MenuItem>
+			<MenuItem value="none">
+				<Trans>None</Trans>
+			</MenuItem>
+			<MenuItem value="10">10%</MenuItem>
+			<MenuItem value="20">20%</MenuItem>
+			<MenuItem value="30">30%</MenuItem>
+			<MenuItem value="40">40%</MenuItem>
+			<MenuItem value="50">50%</MenuItem>
+			<MenuItem value="60">60%</MenuItem>
+			<MenuItem value="70">70%</MenuItem>
+			<MenuItem value="80">80%</MenuItem>
+			<MenuItem value="90">90%</MenuItem>
+			<MenuItem value="100">100%</MenuItem>
+			<MenuItem value="custom">
+				<Trans>Custom ...</Trans>
+			</MenuItem>
 		</Select>
 	);
 }
@@ -108,10 +115,10 @@ function Filter(props) {
 	return (
 		<React.Fragment>
 			<Grid item xs={6}>
-				<VolumeLevel value={settings.level} onChange={update('level')} allowCustom />
+				<VolumeLevel value={settings.level} onChange={update('level')} />
 			</Grid>
 			<Grid item xs={6}>
-				<VolumeDB value={settings.db} onChange={update('db')} disabled={settings.level !== 'custom'} allowCustom />
+				<VolumeDB value={settings.db} onChange={update('db')} disabled={settings.level !== 'custom'} />
 			</Grid>
 		</React.Fragment>
 	);

@@ -27,17 +27,6 @@ function createMapping(settings) {
 	return mapping;
 }
 
-function HFlip(props) {
-	return (
-		<Checkbox label={<Trans>Horizontal Flip</Trans>} checked={props.value} onChange={props.onChange} />
-	);
-}
-
-HFlip.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
 function Filter(props) {
 	const settings = init(props.settings);
 
@@ -71,7 +60,7 @@ function Filter(props) {
 
 	return (
 		<Grid item>
-			<HFlip value={settings.value} onChange={update('value')} allowCustom />
+			<Checkbox label={<Trans>Horizontal Flip</Trans>} checked={settings.value} onChange={update('value')} />
 		</Grid>
 	);
 }

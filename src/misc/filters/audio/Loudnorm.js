@@ -27,15 +27,6 @@ function createMapping(settings) {
 	return mapping;
 }
 
-function Loudness(props) {
-	return <Checkbox label={<Trans>Loudness Normalization</Trans>} checked={props.value} onChange={props.onChange} />;
-}
-
-Loudness.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
 function Filter(props) {
 	const settings = init(props.settings);
 
@@ -70,7 +61,7 @@ function Filter(props) {
 	return (
 		<React.Fragment>
 			<Grid item>
-				<Loudness value={settings.value} onChange={update('value')} allowCustom />
+				<Checkbox label={<Trans>Loudness Normalization</Trans>} checked={settings.value} onChange={update('value')} />
 			</Grid>
 		</React.Fragment>
 	);

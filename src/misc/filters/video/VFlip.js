@@ -27,17 +27,6 @@ function createMapping(settings) {
 	return mapping;
 }
 
-function VFlip(props) {
-	return (
-		<Checkbox label={<Trans>Vertical Flip</Trans>} checked={props.value} onChange={props.onChange} />
-	);
-}
-
-VFlip.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
 function Filter(props) {
 	const settings = init(props.settings);
 
@@ -71,7 +60,7 @@ function Filter(props) {
 
 	return (
 		<Grid item>
-			<VFlip value={settings.value} onChange={update('value')} allowCustom />
+			<Checkbox label={<Trans>Vertical Flip</Trans>} checked={settings.value} onChange={update('value')} />
 		</Grid>
 	);
 }

@@ -7,8 +7,7 @@ import * as Transpose from './video/Transpose';
 import * as HFlip from './video/HFlip';
 import * as VFlip from './video/VFlip';
 
-// Registrate Filters by:
-// type: audio/video
+// Register filters type: audio/video
 class Registry {
 	constructor(type) {
 		this.type = type;

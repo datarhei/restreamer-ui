@@ -11,7 +11,7 @@ import Select from '../../Select';
 
 function init(initialState) {
 	const state = {
-		value: false,
+		value: 'none',
 		...initialState,
 	};
 
@@ -21,12 +21,18 @@ function init(initialState) {
 function createMapping(settings) {
 	const mapping = [];
 
-	if (settings.value) {
-		if (settings.value === 3) {
-			mapping.push('transpose=2', 'transpose=2');
-		} else {
-			mapping.push(`transpose=${settings.value}`);
-		}
+	switch (settings.value) {
+		case '90':
+			mapping.push('transpose=dir=clock:passthrough=none');
+			break;
+		case '180':
+			mapping.push('transpose=dir=clock:passthrough=none', 'transpose=dir=clock:passthrough=none');
+			break;
+		case '270':
+			mapping.push('transpose=dir=cclock:passthrough=none');
+			break;
+		default:
+			break;
 	}
 
 	return mapping;
@@ -36,10 +42,10 @@ function createMapping(settings) {
 function Rotate(props) {
 	return (
 		<Select label={<Trans>Rotate</Trans>} value={props.value} onChange={props.onChange}>
-			<MenuItem value={false}>None</MenuItem>
-			<MenuItem value={1}>90°</MenuItem>
-			<MenuItem value={3}>180°</MenuItem>
-			<MenuItem value={2}>270°</MenuItem>
+			<MenuItem value="none">None</MenuItem>
+			<MenuItem value="90">90°</MenuItem>
+			<MenuItem value="180">180°</MenuItem>
+			<MenuItem value="270">270°</MenuItem>
 		</Select>
 	);
 }
