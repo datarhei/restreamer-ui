@@ -70,7 +70,7 @@ Password.defaultProps = {
 	env: false,
 	show: false,
 	helperText: false,
-	inputProps: false,
+	inputProps: {},
 	error: false,
 	onChange: function (value) {},
 };
