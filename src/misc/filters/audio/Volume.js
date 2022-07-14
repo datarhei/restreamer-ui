@@ -130,12 +130,22 @@ Filter.defaultProps = {
 };
 
 const filter = 'volume';
-const name = 'Volume level';
+const name = 'Volume';
 const type = 'audio';
 const hwaccel = false;
 
 function summarize(settings) {
-	return `${name}`;
+	let summary = `${name} (`;
+
+	if (settings.level === 'custom') {
+		summary += `${settings.db}dB`;
+	} else {
+		summary += `${settings.level}%`;
+	}
+
+	summary += ')';
+
+	return summary;
 }
 
 function defaults() {

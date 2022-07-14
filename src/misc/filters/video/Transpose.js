@@ -100,7 +100,7 @@ const type = 'video';
 const hwaccel = false;
 
 function summarize(settings) {
-	return `${name}`;
+	return `${name} (${settings.value}° clockwise)`;
 }
 
 function defaults() {

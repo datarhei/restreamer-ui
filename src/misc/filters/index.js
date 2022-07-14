@@ -1,4 +1,5 @@
 // Audio Filter
+import * as AResample from './audio/Resample';
 import * as Volume from './audio/Volume';
 import * as Loudnorm from './audio/Loudnorm';
 
@@ -42,6 +43,7 @@ class Registry {
 
 // Audio Filters
 const audioRegistry = new Registry('audio');
+audioRegistry.Register(AResample);
 audioRegistry.Register(Volume);
 audioRegistry.Register(Loudnorm);
 
