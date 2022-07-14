@@ -3,7 +3,7 @@
 Ingest Metadata Layout:
 
 data = {
-	version: 1,
+	version: "1.2.0",
 	meta: {
 		name: 'Livestream 1',
 		description: 'Live from earth. Powered by datarhei/restreamer.',
@@ -99,12 +99,24 @@ data = {
 						'-codec:a', 'aac',
 						'-b:a', '64k',
 						'-bsf:a', 'aac_adtstoasc',
-						'-shortest',
-						'-af', 'aresample=osr=44100:ocl=2'
+						'-shortest'
 					]
 				}
 			},
 			decoder: null,
+			filter: {
+				graph: 'aresample=osr=44100:ocl=stereo',
+				settings: {
+					aresample: {
+						graph: 'aresample=osr=44100:ocl=stereo',
+						settings: {
+							channels: 2,
+							layout: 'stereo',
+							sampling: 44100
+						}
+					}
+				}
+			},
 		},
 		video: {
 			source: 0,
@@ -124,6 +136,7 @@ data = {
 				}
 			},
 			decoder: null,
+			filter: null,
 		},
 		"or": {},
 		"video": {
@@ -210,7 +223,7 @@ data = {
 Egress Metadata Layout:
 
 data = {
-	version: 1,
+	version: "1.2.0",
 	name: "foobar",
 	control: {
 		process: {
@@ -232,14 +245,15 @@ data = {
 */
 
 import * as Coders from '../misc/coders/Encoders';
+import * as version from '../version';
 
 const defaultMetadata = {
-	version: 1,
+	version: version.Version,
 	playersite: {},
 };
 
 const defaultIngestMetadata = {
-	version: 1,
+	version: version.Version,
 	sources: [],
 	profiles: [{}],
 	streams: [],
@@ -282,7 +296,7 @@ const defaultIngestMetadata = {
 };
 
 const defaultEgressMetadata = {
-	version: 1,
+	version: version.Version,
 	name: '',
 	control: {
 		process: {

@@ -200,7 +200,7 @@ function Filter(props) {
 
 Filter.defaultProps = {
 	settings: {},
-	onChange: function (settings, mapping) {},
+	onChange: function (settings, graph, automatic) {},
 };
 
 const filter = 'aresample';

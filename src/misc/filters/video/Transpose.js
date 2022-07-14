@@ -95,7 +95,7 @@ Filter.defaultProps = {
 };
 
 const filter = 'transpose';
-const name = 'Filter (transpose)';
+const name = 'Transpose';
 const type = 'video';
 const hwaccel = false;
 

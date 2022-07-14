@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
 import * as Coders from '../../misc/coders/Encoders';
+import * as Filters from '../../misc/filters';
 import BoxText from '../../misc/BoxText';
 import Sources from './Sources';
 
@@ -28,6 +29,7 @@ export default function Summary(props) {
 	let name = i18n._(t`No source selected`);
 	let address = '';
 	let encodingSummary = i18n._(t`None`);
+	let filterSummary = [];
 
 	let showEncoding = false;
 
@@ -51,6 +53,30 @@ export default function Summary(props) {
 		if (coder !== null) {
 			encodingSummary = coder.summarize(profile.encoder.settings);
 		}
+
+		if (profile.filter.graph.length !== 0) {
+			let filters = null;
+
+			if (props.type === 'video') {
+				filters = Filters.Video;
+			} else if (props.type === 'audio') {
+				filters = Filters.Audio;
+			}
+
+			for (let filter of filters.List()) {
+				const name = filter.filter;
+
+				if (!(name in profile.filter.settings)) {
+					continue;
+				}
+
+				if (profile.filter.settings[name].graph.length === 0) {
+					continue;
+				}
+
+				filterSummary.push(filter.summarize(profile.filter.settings[name].settings));
+			}
+		}
 	}
 
 	return (
@@ -61,12 +87,26 @@ export default function Summary(props) {
 					<Typography variant="body1">{address}</Typography>
 				</Grid>
 				{showEncoding === true && (
-					<Grid item xs={12}>
-						<Typography variant="subtitle2">
-							<Trans>Encoding</Trans>
-						</Typography>
-						<Typography variant="body1">{encodingSummary}</Typography>
-					</Grid>
+					<React.Fragment>
+						<Grid item xs={12}>
+							<Typography variant="subtitle2">
+								<Trans>Encoding</Trans>
+							</Typography>
+							<Typography variant="body1">{encodingSummary}</Typography>
+						</Grid>
+						<Grid item xs={12}>
+							<Typography variant="subtitle2">
+								<Trans>Filter</Trans>
+							</Typography>
+							{filterSummary.length ? (
+								<Typography variant="body1">{filterSummary.join(', ')}</Typography>
+							) : (
+								<Typography variant="body1">
+									<Trans>None</Trans>
+								</Typography>
+							)}
+						</Grid>
+					</React.Fragment>
 				)}
 			</Grid>
 		</BoxText>
