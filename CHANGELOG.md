@@ -6,6 +6,7 @@
 -   Add video h/v flip filter
 -   Add audio volume filter ([#313](https://github.com/datarhei/restreamer/issues/313))
 -   Add audio loudness normalization filter
+-   Add audio resample filter, that was before part of the encoders
 -   Add HLS Master playlist (requires FFmpeg hlsbitrate.patch) (thx Dwaynarang, Electra Player compatibility)
 -   Add linkedIn & Azure Media Services to publication services (thx kalashnikov)
 -   Add AirPlay support with silvermine videojs plugin
