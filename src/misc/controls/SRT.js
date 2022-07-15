@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
+import BoxText from '../BoxText';
 import Checkbox from '../Checkbox';
 
 function init(settings) {
@@ -41,17 +42,22 @@ export default function Control(props) {
 
 	return (
 		<Grid container spacing={2}>
-			<Grid item xs={12}>
-				<Checkbox label={<Trans>Enable</Trans>} checked={settings.enable} disabled={!props.enabled} onChange={handleChange('enable')} />
-				<Typography variant="caption">
-					<Trans>Make the channel available as an SRT stream.</Trans>
-				</Typography>
-			</Grid>
+			{props.enabled && (
+				<Grid item xs={12}>
+					<Checkbox label={<Trans>Enable</Trans>} checked={settings.enable} disabled={!props.enabled && settings.enable !== true} onChange={handleChange('enable')} />
+					<Typography variant="caption">
+						<Trans>Make the channel available as an SRT stream.</Trans>
+					</Typography>
+				</Grid>
+			)}
 			{!props.enabled && (
 				<Grid item xs={12}>
-					<Button variant="outlined" size="large" fullWidth color="primary" onClick={() => navigate('/settings/srt')}>
-						<Trans>Enable SRT server</Trans>
-					</Button>
+					<BoxText textAlign="center">
+						<Trans>The SRT output requires the SRT Server.</Trans>
+						<Button variant="outlined" size="small" style={{marginTop: 10, marginBottom: 3}} fullWidth color="primary" onClick={() => navigate('/settings/srt')}>
+							<Trans>Enable now</Trans>
+						</Button>
+					</BoxText>
 				</Grid>
 			)}
 		</Grid>

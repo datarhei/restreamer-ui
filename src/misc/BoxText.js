@@ -49,6 +49,7 @@ export default function Component(props) {
 			direction="column"
 			justifyContent="center"
 			alignItems="center"
+			textAlign={props.textAlign}
 			spacing={1}
 			className={
 				props.color === 'dark' ? classes.dark : props.color === 'success' ? classes.success : props.color === 'danger' ? classes.danger : classes.light
@@ -62,4 +63,5 @@ export default function Component(props) {
 
 Component.defaultProps = {
 	color: 'light',
+	textAlign: 'left',
 };

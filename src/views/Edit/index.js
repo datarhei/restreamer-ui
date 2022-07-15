@@ -102,8 +102,6 @@ export default function Edit(props) {
 			...metadata,
 		});
 
-		console.log(metadata);
-
 		const skills = await props.restreamer.Skills();
 		setSkills(skills);
 
@@ -476,7 +474,7 @@ export default function Edit(props) {
 								</Grid>
 								<Grid item xs={12}>
 									<Typography variant="h3">
-										<Trans>HLS</Trans>
+										<Trans>HLS Output</Trans>
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
@@ -486,31 +484,43 @@ export default function Edit(props) {
 									<Divider />
 								</Grid>
 								<Grid item xs={12}>
-									<Typography variant="h3">
-										<Trans>RTMP</Trans>
-									</Typography>
-								</Grid>
-								<Grid item xs={12}>
-									<RTMPControl
-										settings={$data.control.rtmp}
-										enabled={$config.source.network.rtmp.enabled}
-										onChange={handleControlChange('rtmp')}
-									/>
-								</Grid>
-								<Grid item xs={12}>
-									<Divider />
-								</Grid>
-								<Grid item xs={12}>
-									<Typography variant="h3">
-										<Trans>SRT</Trans>
-									</Typography>
-								</Grid>
-								<Grid item xs={12}>
-									<SRTControl
-										settings={$data.control.srt}
-										enabled={$config.source.network.srt.enabled}
-										onChange={handleControlChange('srt')}
-									/>
+									<Grid container spacing={2}>
+										<Grid item xs={12} md={6}>
+											<Grid container spacing={2}>
+												<Grid item xs={12}>
+													<Typography variant="h3">
+														<Trans>RTMP Output</Trans>
+													</Typography>
+												</Grid>
+												<Grid item xs={12}>
+													<RTMPControl
+														settings={$data.control.rtmp}
+														enabled={$config.source.network.rtmp.enabled}
+														onChange={handleControlChange('rtmp')}
+													/>
+												</Grid>
+											</Grid>
+										</Grid>
+										<Grid item xs={12} display={{xs: 'block', md: 'none'}}>
+											<Divider />
+										</Grid>
+										<Grid item xs={12} md={6}>
+											<Grid container spacing={2}>
+												<Grid item xs={12}>
+													<Typography variant="h3">
+														<Trans>SRT Output</Trans>
+													</Typography>
+												</Grid>
+												<Grid item xs={12}>
+													<SRTControl
+														settings={$data.control.srt}
+														enabled={$config.source.network.srt.enabled}
+														onChange={handleControlChange('srt')}
+													/>
+												</Grid>
+											</Grid>
+										</Grid>
+									</Grid>
 								</Grid>
 								<Grid item xs={12}>
 									<Divider />
