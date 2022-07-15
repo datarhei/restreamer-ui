@@ -2,6 +2,7 @@
 
 #### v1.1.0 > v1.2.0
 
+-   Add audio pan filter
 -   Add video rotation filter ([#347](https://github.com/datarhei/restreamer/discussions/347))
 -   Add video h/v flip filter
 -   Add audio volume filter ([#313](https://github.com/datarhei/restreamer/issues/313))
@@ -17,9 +18,9 @@
 -   Add Telegram to publication services (thx Martin Held)
 -   Add Polish translations (thx Robert Rykała)
 -   Mod extends the datarhei Core publication service with srt streaming
--   Mod Allow decoders and encoders to set global options
+-   Mod allow decoders and encoders to set global options
 -   Fix player problem with different stream formats (9:16)
--   Mod Allow trailing slash on Core address
+-   Mod allow trailing slash on Core address
 -   Fix process report naming
 -   Fix publication service icon styles
 -   Fix VAAPI encoder
