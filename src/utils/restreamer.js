@@ -1128,7 +1128,7 @@ class Restreamer {
 
 	async DeleteChannel(channelid) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return false;
 		}
 
@@ -1202,7 +1202,7 @@ class Restreamer {
 
 	SetChannel(channelid, channel) {
 		let c = this.channels.get(channelid);
-		if (c === null) {
+		if (!c) {
 			return false;
 		}
 
@@ -1217,13 +1217,13 @@ class Restreamer {
 
 	GetChannelEgress(channelid, id) {
 		let channel = this.channels.get(channelid);
-		if (channel === null) {
-			return false;
+		if (!channel) {
+			return null;
 		}
 
 		const egress = channel.egresses.get(id);
-		if (egress === null) {
-			return false;
+		if (!egress) {
+			return null;
 		}
 
 		return {
@@ -1237,7 +1237,7 @@ class Restreamer {
 
 	SetChannelEgress(channelid, id, data) {
 		let channel = this.channels.get(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return false;
 		}
 
@@ -1246,7 +1246,7 @@ class Restreamer {
 
 	DeleteChannelEgress(channelid, id) {
 		let channel = this.channels.get(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return false;
 		}
 
@@ -2259,7 +2259,7 @@ class Restreamer {
 	// Get process information for egress
 	async GetEgress(channelid, id, filter = []) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return;
 		}
 
@@ -2275,7 +2275,7 @@ class Restreamer {
 		let metadata = null;
 
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return M.initEgressMetadata(metadata);
 		}
 
@@ -2289,7 +2289,7 @@ class Restreamer {
 	// Set metadata for egress
 	async SetEgressMetadata(channelid, id, metadata) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return null;
 		}
 
@@ -2307,7 +2307,7 @@ class Restreamer {
 	// Start egress process
 	async StartEgress(channelid, id) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return null;
 		}
 
@@ -2321,7 +2321,7 @@ class Restreamer {
 	// Stop egress process
 	async StopEgress(channelid, id) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return null;
 		}
 
@@ -2335,7 +2335,7 @@ class Restreamer {
 	// Stop all egress processes
 	async StopAllEgresses(channelid) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return;
 		}
 
@@ -2349,7 +2349,7 @@ class Restreamer {
 	// Delete egress process
 	async DeleteEgress(channelid, id) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return null;
 		}
 
@@ -2369,7 +2369,7 @@ class Restreamer {
 	// Get the egress log
 	async GetEgressLog(channelid, id) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return null;
 		}
 
@@ -2383,7 +2383,7 @@ class Restreamer {
 	// Get the egress debug log
 	async GetEgressDebug(channelid, id) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return null;
 		}
 
@@ -2397,7 +2397,7 @@ class Restreamer {
 	// Update an egress process
 	async UpdateEgress(channelid, id, global, inputs, outputs, control) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return null;
 		}
 
@@ -2406,6 +2406,9 @@ class Restreamer {
 		}
 
 		const egress = this.GetChannelEgress(channelid, id);
+		if (!egress) {
+			return null;
+		}
 
 		if (!Array.isArray(outputs)) {
 			outputs = [outputs];
@@ -2464,7 +2467,7 @@ class Restreamer {
 	// Create an egress process
 	async CreateEgress(channelid, service, global, inputs, outputs, control) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return ['', { message: 'Unknown channel ID' }];
 		}
 
@@ -2491,7 +2494,7 @@ class Restreamer {
 
 	async ListIngestEgresses(channelid, services = []) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return [];
 		}
 
