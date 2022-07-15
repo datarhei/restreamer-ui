@@ -2,19 +2,22 @@
 
 #### v1.1.0 > v1.2.0
 
+-   Add HLS Master playlist (requires FFmpeg hlsbitrate.patch) (thx Dwaynarang, Electra Player compatibility)
+-   Add linkedIn & Azure Media Services to publication services (thx kalashnikov)
 -   Add AirPlay support with silvermine videojs plugin
 -   Add Chromecast support (thx badincite, [#10](https://github.com/datarhei/restreamer-ui/pull/10))
 -   Add stream distribution across multiple internal servers
 -   Add SRT settings
--   Add HLS version selection (Dwaynarang, Electra Player compatibility)
+-   Add HLS version selection (thx Dwaynarang, Electra Player compatibility)
 -   Add Owncast to publication services ([#369](https://github.com/datarhei/restreamer/issues/369))
 -   Add Telegram to publication services (thx Martin Held)
 -   Add Polish translations (thx Robert Rykała)
+-   Mod extends the datarhei Core publication service with srt streaming
 -   Mod Allow decoders and encoders to set global options
+-   Mod Allow trailing slash on Core address
 -   Fix process report naming
 -   Fix publication service icon styles
 -   Fix VAAPI encoder
--   Allow trailing slash on Core address
 
 #### v1.0.0 > v1.1.0
 

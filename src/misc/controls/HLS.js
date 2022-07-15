@@ -17,6 +17,7 @@ function init(settings) {
 		cleanup: true,
 		version: 3,
 		storage: 'memfs',
+		master_playlist: true,
 		...settings,
 	};
 
@@ -35,7 +36,7 @@ export default function Control(props) {
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
 
-		if (['lhls', 'cleanup'].includes(what)) {
+		if (['lhls', 'cleanup', 'master_playlist'].includes(what)) {
 			settings[what] = !settings[what];
 		} else {
 			settings[what] = value;
@@ -71,7 +72,7 @@ export default function Control(props) {
 					</MenuItem>
 				</Select>
 				<Typography variant="caption">
-					<Trans>M3U8 manifest version. Version 3 has the best browser/client compatibility.</Trans>
+					<Trans>Playlist version (M3U8). Version 3 has the best browser/client compatibility.</Trans>
 				</Typography>
 			</Grid>
 			<Grid item xs={12} md={6}>
@@ -97,6 +98,9 @@ export default function Control(props) {
 				<Typography variant="caption">
 					<Trans>The maximum number of playlist segments. 0 will contain all the segments. 6 is recommended.</Trans>
 				</Typography>
+			</Grid>
+			<Grid item xs={12}>
+				<Checkbox label={<Trans>Master playlist (increases browser/client compatibility)</Trans>} checked={settings.master_playlist} onChange={handleChange('master_playlist')} />
 			</Grid>
 			<Grid item xs={12}>
 				<Checkbox label={<Trans>Automatic cleanup of all media data</Trans>} checked={settings.cleanup} onChange={handleChange('cleanup')} />

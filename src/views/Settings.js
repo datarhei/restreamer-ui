@@ -1973,7 +1973,7 @@ export default function Settings(props) {
 										value={config.srt.passphrase}
 										onChange={handleChange('srt.passphrase')}
 										inputProps={{ maxLength: 79 }}
-										error={config.srt.passphrase && config.srt.passphrase.length < 10}
+										error={(config.srt.passphrase && config.srt.passphrase.length < 10)}
 										helperText={config.srt.passphrase && config.srt.passphrase.length < 10 ? (<Trans>Passphrase must be between 10 and 79 characters long</Trans>) : false}
 									/>
 									<ErrorBox configvalue="srt.passphrase" messages={$tabs.srt.messages} />

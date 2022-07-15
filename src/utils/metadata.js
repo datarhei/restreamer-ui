@@ -251,6 +251,7 @@ const defaultIngestMetadata = {
 			cleanup: true,
 			version: 3,
 			storage: 'memfs',
+			master_playlist: true,
 		},
 		rtmp: {
 			enable: false,
