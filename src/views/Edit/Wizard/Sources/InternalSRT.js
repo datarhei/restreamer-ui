@@ -34,7 +34,7 @@ function Source(props) {
 		const inputs = S.func.createInputs(newSettings, config, skills);
 		newSettings.address = inputs[0].address;
 
-		props.onChange(S.id, newSettings, inputs, config.rtmp.enabled);
+		props.onChange(S.id, newSettings, inputs, config.srt.enabled);
 	};
 
 	React.useEffect(() => {
