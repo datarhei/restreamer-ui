@@ -101,12 +101,10 @@ export default function Main(props) {
 		setConfig(config);
 
 		const metadata = await props.restreamer.GetIngestMetadata(_channelid);
-		if (metadata.version && metadata.version === 1) {
-			setMetadata({
-				...$metadata,
-				...metadata,
-			});
-		}
+		setMetadata({
+			...$metadata,
+			...metadata,
+		});
 
 		await update();
 	};

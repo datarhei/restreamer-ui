@@ -502,6 +502,7 @@ class Restreamer {
 				input: [],
 				output: [],
 			},
+			filter: [],
 			sources: {
 				network: [],
 				virtualaudio: [],
@@ -523,6 +524,7 @@ class Restreamer {
 			formats: {},
 			protocols: {},
 			devices: {},
+			filter: [],
 			...val,
 		};
 
@@ -563,6 +565,10 @@ class Restreamer {
 
 		for (let hwaccel of val.hwaccels) {
 			skills.decoders.video.push(hwaccel.id);
+		}
+
+		for (let filter of val.filter) {
+			skills.filter.push(filter.id);
 		}
 
 		val.formats = {

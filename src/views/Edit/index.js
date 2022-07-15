@@ -97,12 +97,12 @@ export default function Edit(props) {
 		setProcess(proc);
 
 		let metadata = await props.restreamer.GetIngestMetadata(_channelid);
-		if (metadata.version && metadata.version === 1) {
-			setData({
-				...$data,
-				...metadata,
-			});
-		}
+		setData({
+			...$data,
+			...metadata,
+		});
+
+		console.log(metadata);
 
 		const skills = await props.restreamer.Skills();
 		setSkills(skills);

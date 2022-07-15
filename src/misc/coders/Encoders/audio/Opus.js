@@ -13,9 +13,6 @@ function init(initialState) {
 	const state = {
 		bitrate: '64',
 		delay: 'auto',
-		channels: '2',
-		layout: 'stereo',
-		sampling: '44100',
 		...initialState,
 	};
 
@@ -34,7 +31,7 @@ function createMapping(settings, stream) {
 		layout = stream.layout;
 	}
 
-	const local = ['-codec:a', 'opus', '-b:a', `${settings.bitrate}k`, '-vbr', 'on', '-shortest', '-af', `aresample=osr=${sampling}:ocl=${layout}`];
+	const local = ['-codec:a', 'opus', '-b:a', `${settings.bitrate}k`, '-vbr', 'on', '-shortest'];
 
 	if (settings.delay !== 'auto') {
 		local.push('opus_delay', settings.delay);
@@ -113,23 +110,6 @@ function Coder(props) {
 			[what]: value,
 		};
 
-		if (what === 'layout') {
-			let channels = stream.channels;
-
-			switch (value) {
-				case 'mono':
-					channels = 1;
-					break;
-				case 'stereo':
-					channels = 2;
-					break;
-				default:
-					break;
-			}
-
-			newSettings.channels = channels;
-		}
-
 		handleChange(newSettings);
 	};
 
@@ -145,12 +125,6 @@ function Coder(props) {
 			</Grid>
 			<Grid item xs={12}>
 				<Delay value={settings.delay} onChange={update('delay')} allowAuto allowCustom />
-			</Grid>
-			<Grid item xs={12}>
-				<Audio.Sampling value={settings.sampling} onChange={update('sampling')} allowInherit allowCustom />
-			</Grid>
-			<Grid item xs={12}>
-				<Audio.Layout value={settings.layout} onChange={update('layout')} allowInherit />
 			</Grid>
 		</Grid>
 	);
@@ -169,7 +143,7 @@ const type = 'audio';
 const hwaccel = false;
 
 function summarize(settings) {
-	return `${name}, ${settings.bitrate} kbit/s, ${settings.layout}, ${settings.sampling}Hz`;
+	return `${name}, ${settings.bitrate} kbit/s`;
 }
 
 function defaults(stream) {

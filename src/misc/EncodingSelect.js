@@ -239,5 +239,5 @@ EncodingSelect.defaultProps = {
 	codecs: [],
 	availableEncoders: [],
 	availableDecoders: [],
-	onChange: function (encoder, decoder) {},
+	onChange: function (encoder, decoder, automatic) {},
 };

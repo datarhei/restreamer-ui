@@ -3,7 +3,7 @@
 Ingest Metadata Layout:
 
 data = {
-	version: 1,
+	version: "1.2.0",
 	meta: {
 		name: 'Livestream 1',
 		description: 'Live from earth. Powered by datarhei/restreamer.',
@@ -99,12 +99,24 @@ data = {
 						'-codec:a', 'aac',
 						'-b:a', '64k',
 						'-bsf:a', 'aac_adtstoasc',
-						'-shortest',
-						'-af', 'aresample=osr=44100:ocl=2'
+						'-shortest'
 					]
 				}
 			},
 			decoder: null,
+			filter: {
+				graph: 'aresample=osr=44100:ocl=stereo',
+				settings: {
+					aresample: {
+						graph: 'aresample=osr=44100:ocl=stereo',
+						settings: {
+							channels: 2,
+							layout: 'stereo',
+							sampling: 44100
+						}
+					}
+				}
+			},
 		},
 		video: {
 			source: 0,
@@ -124,6 +136,7 @@ data = {
 				}
 			},
 			decoder: null,
+			filter: null,
 		},
 		"or": {},
 		"video": {
@@ -210,7 +223,7 @@ data = {
 Egress Metadata Layout:
 
 data = {
-	version: 1,
+	version: "1.2.0",
 	name: "foobar",
 	control: {
 		process: {
@@ -231,15 +244,20 @@ data = {
 
 */
 
+import SemverGt from 'semver/functions/gt';
+import SemverCompare from 'semver/functions/compare';
+
 import * as Coders from '../misc/coders/Encoders';
+import * as Filters from '../misc/filters';
+import * as version from '../version';
 
 const defaultMetadata = {
-	version: 1,
+	version: version.Version,
 	playersite: {},
 };
 
 const defaultIngestMetadata = {
-	version: 1,
+	version: version.Version,
 	sources: [],
 	profiles: [{}],
 	streams: [],
@@ -283,7 +301,7 @@ const defaultIngestMetadata = {
 };
 
 const defaultEgressMetadata = {
-	version: 1,
+	version: version.Version,
 	name: '',
 	control: {
 		process: {
@@ -317,6 +335,12 @@ const getDefaultEgressMetadata = () => {
 	return JSON.parse(JSON.stringify(defaultEgressMetadata));
 };
 
+const initMetadata = (initialMetadata) => {
+	return mergeMetadata(initialMetadata);
+};
+
+const transformers = {};
+
 const mergeMetadata = (metadata, base) => {
 	if (!metadata) {
 		metadata = {};
@@ -333,26 +357,55 @@ const mergeMetadata = (metadata, base) => {
 		...metadata,
 	};
 
-	if (metadata.version !== defaultMetadata.version) {
-		metadata = {
-			...defaultMetadata,
-		};
-	}
-
 	metadata.playersite = {
 		...base.playersite,
 		...metadata.playersite,
 	};
 
-	return metadata;
-};
+	metadata = transformMetadata(metadata, defaultMetadata.version, transformers);
 
-const initMetadata = (initialMetadata) => {
-	return mergeMetadata(initialMetadata);
+	return metadata;
 };
 
 const initIngestMetadata = (initialMetadata) => {
 	return mergeIngestMetadata(initialMetadata);
+};
+
+const ingestTransformers = {
+	'1.2.0': (metadata) => {
+		for (let p = 0; p < metadata.profiles.length; p++) {
+			const profile = metadata.profiles[p];
+
+			if (profile.audio.encoder.coder === 'copy' || profile.audio.encoder.coder === 'none') {
+				continue;
+			}
+
+			const settings = profile.audio.encoder.settings;
+
+			profile.audio.filter = {
+				settings: {
+					aresample: {
+						settings: {
+							channels: settings.channels,
+							layout: settings.layout,
+							sampling: settings.sampling,
+						},
+					},
+				},
+			};
+
+			delete profile.audio.encoder.settings.channels;
+			delete profile.audio.encoder.settings.layout;
+			delete profile.audio.encoder.settings.sampling;
+
+			profile.audio.filter.settings.aresample.graph = Filters.Audio.Get('aresample').createGraph(profile.audio.filter.settings.aresample.settings);
+			profile.audio.filter.graph = profile.audio.filter.settings.aresample.graph;
+		}
+
+		metadata.version = '1.2.0';
+
+		return metadata;
+	},
 };
 
 const mergeIngestMetadata = (metadata, base) => {
@@ -370,12 +423,6 @@ const mergeIngestMetadata = (metadata, base) => {
 		...base,
 		...metadata,
 	};
-
-	if (metadata.version !== defaultMetadata.version) {
-		metadata = {
-			...defaultMetadata,
-		};
-	}
 
 	metadata.meta = {
 		...base.meta,
@@ -436,12 +483,16 @@ const mergeIngestMetadata = (metadata, base) => {
 		}
 	}
 
+	metadata = transformMetadata(metadata, defaultMetadata.version, ingestTransformers);
+
 	return metadata;
 };
 
 const initEgressMetadata = (initialMetadata) => {
 	return mergeEgressMetadata(initialMetadata);
 };
+
+const egressTransformers = {};
 
 const mergeEgressMetadata = (metadata, base) => {
 	if (!metadata) {
@@ -458,12 +509,6 @@ const mergeEgressMetadata = (metadata, base) => {
 		...base,
 		...metadata,
 	};
-
-	if (metadata.version !== defaultMetadata.version) {
-		metadata = {
-			...defaultMetadata,
-		};
-	}
 
 	metadata.control = {
 		...base.control,
@@ -503,6 +548,8 @@ const mergeEgressMetadata = (metadata, base) => {
 			metadata.streams[i] = initStream(metadata.streams[i]);
 		}
 	}
+
+	metadata = transformMetadata(metadata, defaultMetadata.version, egressTransformers);
 
 	return metadata;
 };
@@ -598,7 +645,19 @@ const createInputsOutputs = (sources, profiles) => {
 
 		global = [...global, ...profile.video.encoder.mapping.global];
 
-		const options = ['-map', index + ':' + stream.stream, ...profile.video.encoder.mapping.local];
+		const local = profile.video.encoder.mapping.local.slice();
+
+		if (profile.video.filter.graph.length !== 0) {
+			// Check if there's already a video filter in the local mapping
+			let filterIndex = local.indexOf('-filter:v');
+			if (filterIndex !== -1) {
+				local[filterIndex + 1] += ',' + profile.video.filter.graph;
+			} else {
+				local.unshift('-filter:v', profile.video.filter.graph);
+			}
+		}
+
+		const options = ['-map', index + ':' + stream.stream, ...local];
 
 		if (profile.audio.encoder.coder !== 'none' && profile.audio.source !== -1 && profile.audio.stream !== -1) {
 			global = [...global, ...profile.audio.decoder.mapping.global];
@@ -620,7 +679,19 @@ const createInputsOutputs = (sources, profiles) => {
 
 			global = [...global, ...profile.audio.encoder.mapping.global];
 
-			options.push('-map', index + ':' + stream.stream, ...profile.audio.encoder.mapping.local);
+			const local = profile.audio.encoder.mapping.local.slice();
+
+			if (profile.audio.filter.graph.length !== 0) {
+				// Check if there's already a audio filter in the local mapping
+				let filterIndex = local.indexOf('-filter:a');
+				if (filterIndex !== -1) {
+					local[filterIndex + 1] += ',' + profile.audio.filter.graph;
+				} else {
+					local.unshift('-filter:a', profile.audio.filter.graph);
+				}
+			}
+
+			options.push('-map', index + ':' + stream.stream, ...local);
 		} else {
 			options.push('-an');
 		}
@@ -746,6 +817,7 @@ const initProfile = (initialProfile) => {
 		stream: -1,
 		encoder: {},
 		decoder: {},
+		filter: {},
 		...profile.video,
 	};
 
@@ -790,11 +862,18 @@ const initProfile = (initialProfile) => {
 		};
 	}
 
+	profile.video.filter = {
+		graph: '',
+		settings: {},
+		...profile.video.filter,
+	};
+
 	profile.audio = {
 		source: -1,
 		stream: -1,
 		encoder: {},
 		decoder: {},
+		filter: {},
 		...profile.audio,
 	};
 
@@ -837,6 +916,12 @@ const initProfile = (initialProfile) => {
 			...profile.audio.decoder.mapping,
 		};
 	}
+
+	profile.audio.filter = {
+		graph: '',
+		settings: {},
+		...profile.audio.filter,
+	};
 
 	profile.custom = {
 		selected: profile.audio.source === 1,
@@ -1111,6 +1196,39 @@ const cleanupProfile = (profile) => {
 		video: profile.video,
 		custom: profile.custom,
 	};
+};
+
+const transformMetadata = (metadata, targetVersion, transformers) => {
+	if (metadata.version === 1) {
+		metadata.version = '1.0.0';
+	}
+
+	if (targetVersion === 1) {
+		targetVersion = '1.0.0';
+	}
+
+	if (metadata.version === targetVersion) {
+		return metadata;
+	}
+
+	// Create a list of all transformers that are greater than the current version
+	// and sort them in ascending order.
+	const tlist = [];
+
+	for (let v in transformers) {
+		if (SemverGt(v, metadata.version)) {
+			tlist.push(v);
+		}
+	}
+
+	tlist.sort(SemverCompare);
+
+	// Apply all found transformers
+	for (let t of tlist) {
+		metadata = transformers[t](metadata);
+	}
+
+	return metadata;
 };
 
 export {
