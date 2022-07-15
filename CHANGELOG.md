@@ -25,6 +25,9 @@
 -   Fix publication service icon styles
 -   Fix VAAPI encoder
 
+Dependency:
+-   datarhei Core v16.9.0+
+
 #### v1.0.0 > v1.1.0
 
 -   Add compatibility list for encoders
@@ -34,8 +37,9 @@
 -   Add missed VAAPI encoder
 -   Add missed V4L2_M2M encoder
 -   Add missed Raspberry Pi 64bit Docker image
--   Mod updates VideoJS
 -   Add option to disable playersites share-button (thx Anders Mellgren)
+-   Add security pr
+-   Mod updates VideoJS
 -   Fix hides unset content license on playersite (thx Anders Mellgren)
 -   Fix updates V4L2 device-list on select
 -   Fix snapshot interval ([#341](https://github.com/datarhei/restreamer/issues/340))
@@ -46,7 +50,6 @@
 -   Fix datarhei Core publication service
 -   Fix dependabot alerts
 -   Fix code scanning alerts
--   Merge security pr
 
 Preparation for FFmpeg v5.0 (migration will not work)
 
