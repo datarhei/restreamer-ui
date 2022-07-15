@@ -1,8 +1,8 @@
 // Audio Filter
 import * as AResample from './audio/Resample';
+import * as Pan from './audio/Pan';
 import * as Volume from './audio/Volume';
 import * as Loudnorm from './audio/Loudnorm';
-import * as Pan from './audio/Pan';
 
 // Video Filter
 import * as Transpose from './video/Transpose';
@@ -45,9 +45,9 @@ class Registry {
 // Audio Filters
 const audioRegistry = new Registry('audio');
 audioRegistry.Register(AResample);
+audioRegistry.Register(Pan);
 audioRegistry.Register(Volume);
 audioRegistry.Register(Loudnorm);
-audioRegistry.Register(Pan);
 
 // Video Filters
 const videoRegistry = new Registry('video');
