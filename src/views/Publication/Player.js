@@ -279,7 +279,7 @@ export default function Edit(props) {
 	const storage = $metadata.control.hls.storage;
 	const manifest = props.restreamer.GetChannelAddress('hls+' + storage, _channelid);
 	const poster = props.restreamer.GetChannelAddress('snapshot+' + storage, _channelid);
-	const playerAddress = props.restreamer.GetPublicAddress('player');
+	const playerAddress = props.restreamer.GetPublicAddress('player', _channelid);
 	const iframeCode = props.restreamer.GetPublicIframeCode(_channelid);
 
 	return (
