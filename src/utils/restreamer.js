@@ -1735,7 +1735,7 @@ class Restreamer {
 			// ['f=hls:start_number=0...]address.m3u8
 			// use tee_muxer formatting
 			output.address =
-				`[${hls_params}]{${hlsStorage}}/${channel.channelid}.m3u8` +
+				`[${hls_params}]{${hlsStorage}}/${channel.channelid}${bitrate_suffix}.m3u8` +
 				(rtmp_enabled ? `|[f=flv]{rtmp,name=${channel.channelid}.stream}` : '') +
 				(srt_enabled ? `|[f=mpegts]{srt,name=${channel.channelid},mode=publish}` : '');
 		} else {
