@@ -647,7 +647,7 @@ const createInputsOutputs = (sources, profiles) => {
 
 		const local = profile.video.encoder.mapping.local.slice();
 
-		if (profile.video.filter.graph.length !== 0) {
+		if (profile.video.encoder.coder !== 'copy' && profile.video.filter.graph.length !== 0) {
 			// Check if there's already a video filter in the local mapping
 			let filterIndex = local.indexOf('-filter:v');
 			if (filterIndex !== -1) {
@@ -681,7 +681,7 @@ const createInputsOutputs = (sources, profiles) => {
 
 			const local = profile.audio.encoder.mapping.local.slice();
 
-			if (profile.audio.filter.graph.length !== 0) {
+			if (profile.audio.encoder.coder !== 'copy' && profile.audio.filter.graph.length !== 0) {
 				// Check if there's already a audio filter in the local mapping
 				let filterIndex = local.indexOf('-filter:a');
 				if (filterIndex !== -1) {

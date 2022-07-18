@@ -12,7 +12,7 @@ import Select from '../../Select';
 
 function init(initialState) {
 	const state = {
-		level: 'none',
+		level: 'inherit',
 		db: 0,
 		...initialState,
 	};
@@ -26,7 +26,7 @@ function createGraph(settings) {
 	const mapping = [];
 
 	switch (settings.level) {
-		case 'none':
+		case 'inherit':
 			break;
 		case 'custom':
 			mapping.push(`volume=volume=${settings.db}dB`);
@@ -42,8 +42,8 @@ function createGraph(settings) {
 function VolumeLevel(props) {
 	return (
 		<Select label={<Trans>Volume</Trans>} value={props.value} onChange={props.onChange}>
-			<MenuItem value="none">
-				<Trans>None</Trans>
+			<MenuItem value="inherit">
+				<Trans>Inherit</Trans>
 			</MenuItem>
 			<MenuItem value="10">10%</MenuItem>
 			<MenuItem value="20">20%</MenuItem>

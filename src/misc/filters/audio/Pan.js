@@ -12,7 +12,7 @@ import Select from '../../Select';
 
 function init(initialState) {
 	const state = {
-		value: 'none',
+		value: 'inherit',
 		...initialState,
 	};
 
@@ -43,9 +43,15 @@ function Pan(props) {
 	return (
 		<React.Fragment>
 			<Select label={<Trans>Pan</Trans>} value={props.value} onChange={props.onChange}>
-				<MenuItem value="none"><Trans>None</Trans></MenuItem>
-				<MenuItem value="mute_left"><Trans>Mute left</Trans></MenuItem>
-				<MenuItem value="mute_right"><Trans>Mute right</Trans></MenuItem>
+				<MenuItem value="inherit">
+					<Trans>Inherit</Trans>
+				</MenuItem>
+				<MenuItem value="mute_left">
+					<Trans>Mute left</Trans>
+				</MenuItem>
+				<MenuItem value="mute_right">
+					<Trans>Mute right</Trans>
+				</MenuItem>
 			</Select>
 			<Typography variant="caption">
 				<Trans>Mute a channel.</Trans>
@@ -107,9 +113,7 @@ const type = 'audio';
 const hwaccel = false;
 
 function summarize(settings) {
-
-
-	return `${name} (${settings.value.replace(/_/i, " ")})`;
+	return `${name} (${settings.value.replace(/_/i, ' ')})`;
 }
 
 function defaults() {
