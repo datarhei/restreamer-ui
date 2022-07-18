@@ -360,19 +360,19 @@ const getSRTAddress = (host, name, token, passphrase) => {
 const getHLS = (config, name) => {
 	const url = getHLSAddress(config.hls.host, config.hls.credentials, config.hls.name, config.hls.secure);
 
-	return [url];
+	return url;
 };
 
 const getRTMP = (config) => {
 	const url = getRTMPAddress(config.rtmp.host, config.rtmp.app, config.rtmp.name, config.rtmp.token, config.rtmp.secure);
 
-	return [url];
+	return url;
 };
 
 const getSRT = (config) => {
 	const url = getSRTAddress(config.srt.host, config.srt.name, config.srt.token, config.srt.passphrase);
 
-	return [url];
+	return url;
 };
 
 const getLocalHLS = (config, name) => {
@@ -639,7 +639,7 @@ function PushHLS(props) {
 	const classes = useStyles();
 	const config = props.config;
 
-	const HLSs = getHLS(config);
+	const HLS = getHLS(config);
 
 	return (
 		<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
@@ -650,7 +650,7 @@ function PushHLS(props) {
 			</Grid>
 			<Grid item xs={12}>
 				<BoxTextarea>
-					<Textarea rows={HLSs.length} value={HLSs.join('\n')} readOnly allowCopy />
+					<Textarea rows={1} value={HLS} readOnly allowCopy />
 				</BoxTextarea>
 			</Grid>
 			<Grid item xs={12}>
@@ -685,7 +685,7 @@ function PushRTMP(props) {
 			</Grid>
 		);
 	} else {
-		const RTMPs = getRTMP(config);
+		const RTMP = getRTMP(config);
 
 		form = (
 			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
@@ -696,7 +696,7 @@ function PushRTMP(props) {
 				</Grid>
 				<Grid item xs={12}>
 					<BoxTextarea>
-						<Textarea rows={RTMPs.length} value={RTMPs.join('\n')} readOnly allowCopy />
+						<Textarea rows={1} value={RTMP} readOnly allowCopy />
 					</BoxTextarea>
 				</Grid>
 				<Grid item xs={12}>
@@ -734,7 +734,7 @@ function PushSRT(props) {
 			</Grid>
 		);
 	} else {
-		const SRTs = getSRT(config);
+		const SRT = getSRT(config);
 
 		form = (
 			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
@@ -745,7 +745,7 @@ function PushSRT(props) {
 				</Grid>
 				<Grid item xs={12}>
 					<BoxTextarea>
-						<Textarea rows={SRTs.length} value={SRTs.join('\n')} readOnly allowCopy />
+						<Textarea rows={1} value={SRT} readOnly allowCopy />
 					</BoxTextarea>
 				</Grid>
 				<Grid item xs={12}>

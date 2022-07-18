@@ -64,15 +64,12 @@ export default function Edit(props) {
 	const { channelid: _channelid } = useParams();
 	const { i18n } = useLingui();
 	const address = props.restreamer.Address();
-	const iframeCodes = props.restreamer.GetIngestIframeCodes(_channelid);
-	const manifest = props.restreamer.GetIngestManifestUrl(_channelid);
-	const poster = props.restreamer.GetIngestPosterUrl(_channelid);
 	const timeout = React.useRef();
 	const notify = React.useContext(NotifyContext);
 	const [$player] = React.useState('videojs-public');
 	const [$ready, setReady] = React.useState(false);
 	const [$state, setState] = React.useState('disconnected');
-	const [$data, setData] = React.useState({});
+	const [$metadata, setMetadata] = React.useState({});
 	const [$settings, setSettings] = React.useState({});
 	const [$tab, setTab] = React.useState('embed');
 	const [$revision, setRevision] = React.useState(0);
@@ -104,7 +101,7 @@ export default function Edit(props) {
 			return;
 		}
 
-		setData(proc.metadata);
+		setMetadata(proc.metadata);
 		setState(proc.progress.state);
 		setSettings(props.restreamer.InitPlayerSettings(proc.metadata.player));
 
@@ -244,12 +241,12 @@ export default function Edit(props) {
 	const handleDone = async () => {
 		setSaving(true);
 
-		const data = {
-			...$data,
+		const metadata = {
+			...$metadata,
 			player: $settings,
 		};
 
-		await props.restreamer.SetIngestMetadata(_channelid, data);
+		await props.restreamer.SetIngestMetadata(_channelid, metadata);
 		await props.restreamer.UpdatePlayer(_channelid);
 
 		setSaving(false);
@@ -279,6 +276,12 @@ export default function Edit(props) {
 		return null;
 	}
 
+	const storage = $metadata.control.hls.storage;
+	const manifest = props.restreamer.GetChannelAddress('hls+' + storage, _channelid);
+	const poster = props.restreamer.GetChannelAddress('snapshot+' + storage, _channelid);
+	const playerAddress = props.restreamer.GetPublicAddress('player');
+	const iframeCode = props.restreamer.GetPublicIframeCode(_channelid);
+
 	return (
 		<React.Fragment>
 			<Paper xs={12} md={10}>
@@ -299,10 +302,10 @@ export default function Edit(props) {
 									<Player
 										key={$revision}
 										type={$player}
-										source={address + '/' + manifest}
+										source={manifest}
 										autoplay={$settings.autoplay}
 										mute={$settings.mute}
-										poster={address + '/' + poster}
+										poster={poster}
 										logo={$settings.logo}
 										colors={$settings.color}
 										statistics={$settings.statistics}
@@ -325,10 +328,10 @@ export default function Edit(props) {
 						<TabPanel value={$tab} index="embed">
 							<Grid container spacing={2}>
 								<Grid item xs={12}>
-									<TextFieldCopy label={<Trans>Player URL</Trans>} value={address + '/' + _channelid + '.html'} />
+									<TextFieldCopy label={<Trans>Player URL</Trans>} value={playerAddress} />
 								</Grid>
 								<Grid item xs={12}>
-									<TextFieldCopy label={<Trans>iframe code</Trans>} value={iframeCodes.join('\n')} />
+									<TextFieldCopy label={<Trans>iframe code</Trans>} value={iframeCode} />
 								</Grid>
 							</Grid>
 						</TabPanel>

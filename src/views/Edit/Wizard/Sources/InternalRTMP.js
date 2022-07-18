@@ -59,7 +59,7 @@ function Source(props) {
 		);
 	}
 
-	const RTMPs = S.func.getRTMP(config, settings.push.name);
+	const RTMP = S.func.getRTMP(config, settings.push.name);
 
 	return (
 		<React.Fragment>
@@ -68,13 +68,11 @@ function Source(props) {
 					<Trans>Send stream to this address:</Trans>
 				</Typography>
 			</Grid>
-			{RTMPs.length !== 0 && (
-				<Grid item xs={12}>
-					<BoxTextarea>
-						<Textarea rows={RTMPs.length} value={RTMPs.join('\n')} readOnly allowCopy />
-					</BoxTextarea>
-				</Grid>
-			)}
+			<Grid item xs={12}>
+				<BoxTextarea>
+					<Textarea rows={1} value={RTMP} readOnly allowCopy />
+				</BoxTextarea>
+			</Grid>
 		</React.Fragment>
 	);
 }

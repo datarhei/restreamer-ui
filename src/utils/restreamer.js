@@ -936,16 +936,16 @@ class Restreamer {
 		return await this._getResources();
 	}
 
-	// Get all HTTP addresses
-	GetHTTPAddresses() {
+	// Get the public HTTP address
+	GetPublicHTTPAddress() {
 		const config = this.ConfigActive();
 		const address = (config.http.secure === true ? 'https://' : 'http://') + config.http.host;
 
-		return [address];
+		return address;
 	}
 
 	// Get all RTMP/SRT/SNAPSHOT+MEMFS/HLS+MEMFS addresses
-	GetAddresses(what, channelId) {
+	GetPublicAddress(what, channelid) {
 		const config = this.ConfigActive();
 		const host = config.hostname;
 
@@ -963,7 +963,7 @@ class Restreamer {
 			}
 		}
 
-		if (what && what === 'rtmp') {
+		if (what === 'rtmp') {
 			// rtmp/s
 			const cfg = config.source.network.rtmp;
 			const port = getPort(cfg.host);
@@ -977,31 +977,56 @@ class Restreamer {
 				`://${host}${port}` +
 				(cfg.app.length !== 0 ? cfg.app : '') +
 				'/' +
-				channelId +
+				channelid +
 				'.stream' +
 				(cfg.token.length !== 0 ? `?token=${cfg.token}` : '');
-		} else if (what && what === 'srt') {
+		} else if (what === 'srt') {
 			// srt
 			const cfg = config.source.network.srt;
 			const port = getPort(cfg.host);
 
 			address =
-				`srt://${host}${port}/?mode=caller&transtype=live&streamid=#!:m=request,r=${channelId}` +
+				`srt://${host}${port}/?mode=caller&transtype=live&streamid=#!:m=request,r=${channelid}` +
 				(cfg.token.length !== 0 ? `,token=${cfg.token}` : '') +
 				(cfg.passphrase.length !== 0 ? `&passphrase=${cfg.passphrase}` : '');
-		} else if (what && what === 'snapshot+memfs') {
+		} else if (what === 'snapshot+memfs') {
 			// snapshot+memfs
 			const port = getPort(config.source.network.hls.host);
 
-			address = (config.http.secure === true ? 'https://' : 'http://') + `${host}${port}/memfs/${channelId}.jpg`;
-		} else {
+			address = (config.http.secure === true ? 'https://' : 'http://') + `${host}${port}/` + this.GetChannelPosterPath(channelid, 'memfs');
+		} else if (what === 'snapshot+diskfs') {
+			// snapshot+diskfs
+			const port = getPort(config.source.network.hls.host);
+
+			address = (config.http.secure === true ? 'https://' : 'http://') + `${host}${port}/` + this.GetChannelPosterPath(channelid, 'diskfs');
+		} else if (what === 'hls+memfs') {
 			// hls+memfs
 			const port = getPort(config.source.network.hls.host);
 
-			address = (config.http.secure === true ? 'https://' : 'http://') + `${host}${port}/memfs/${channelId}.m3u8`;
+			address = (config.http.secure === true ? 'https://' : 'http://') + `${host}${port}/` + this.GetChannelManifestPath(channelid, 'memfs');
+		} else if (what === 'hls+diskfs') {
+			// hls+diskfs
+			const port = getPort(config.source.network.hls.host);
+
+			address = (config.http.secure === true ? 'https://' : 'http://') + `${host}${port}/` + this.GetChannelManifestPath(channelid, 'diskfs');
+		} else if (what === 'player') {
+			// player
+			address = (config.http.secure === true ? 'https://' : 'http://') + `${config.http.host}/` + this.GetChannelPlayerPath(channelid);
 		}
 
-		return [address];
+		return address;
+	}
+
+	// Get the iframe codes for the player
+	GetPublicIframeCode(channelid) {
+		const channel = this.GetChannel(channelid);
+		if (channel === null) {
+			return '';
+		}
+
+		const address = this.GetPublicHTTPAddress();
+
+		return `<iframe src="${address}/${channel.channelid}.html" width="640" height="360" frameborder="no" scrolling="no" allowfullscreen="true"></iframe>`;
 	}
 
 	// Channels
@@ -1182,7 +1207,7 @@ class Restreamer {
 				channelid: channel.channelid,
 				name: channel.name,
 				available: channel.available,
-				thumbnail: this.Address() + '/' + this.GetChannelPosterUrl(channel.channelid),
+				thumbnail: this.GetChannelAddress('snapshot+memfs', channel.channelid),
 				egresses: Array.from(channel.egresses.keys()),
 			});
 		}
@@ -1201,7 +1226,7 @@ class Restreamer {
 			channelid: channel.channelid,
 			name: channel.name,
 			available: channel.available,
-			thumbnail: this.Address() + '/' + this.GetChannelPosterUrl(channel.channelid),
+			thumbnail: this.GetChannelAddress('snapshot+memfs', channel.channelid),
 			egresses: Array.from(channel.egresses.keys()),
 		};
 	}
@@ -1267,14 +1292,44 @@ class Restreamer {
 		return this.channel.channelid;
 	}
 
-	// Get the URL for the stream
-	GetChannelManifestUrl(channelid) {
-		return `memfs/${channelid}.m3u8`;
+	// Get the path for the HLS manifest
+	GetChannelManifestPath(channelid, storage) {
+		if (!storage) {
+			storage = 'memfs';
+		}
+
+		let url = `${channelid}.m3u8`;
+		if (storage === 'memfs') {
+			url = 'memfs/' + url;
+		}
+
+		return url;
 	}
 
-	// Get the URL for the poster image
-	GetChannelPosterUrl(channelid) {
+	// Get the path for the poster image
+	GetChannelPosterPath(channelid, storage) {
 		return `memfs/${channelid}.jpg`;
+	}
+
+	// Get the path for the player
+	GetChannelPlayerPath(channelid) {
+		return `${channelid}.html`;
+	}
+
+	GetChannelAddress(what, channelid) {
+		const address = this.Address();
+
+		if (what === 'hls+memfs') {
+			return `${address}/${this.GetChannelManifestPath(channelid, 'memfs')}`;
+		} else if (what === 'hls+diskfs') {
+			return `${address}/${this.GetChannelManifestPath(channelid, 'diskfs')}`;
+		} else if (what === 'snapshot+memfs') {
+			return `${address}/${this.GetChannelPosterPath(channelid, 'memfs')}`;
+		} else if (what === 'snapshot+diskfs') {
+			return `${address}/${this.GetChannelPosterPath(channelid, 'diskfs')}`;
+		} else if (what === 'player') {
+			return `${address}/${this.GetChannelPlayerPath(channelid)}`;
+		}
 	}
 
 	// Sessions
@@ -1421,59 +1476,6 @@ class Restreamer {
 		return await this.GetDebug(channel.id);
 	}
 
-	GetIngestAddresses(channelid) {
-		const channel = this.GetChannel(channelid);
-		if (channel === null) {
-			return [];
-		}
-
-		const addresses = this.GetHTTPAddresses();
-
-		return addresses.map((address) => {
-			return `${address}/${channel.channelid}.html`;
-		});
-	}
-
-	// Get the iframe codes for the player
-	GetIngestIframeCodes(channelid) {
-		const channel = this.GetChannel(channelid);
-		if (channel === null) {
-			return [];
-		}
-
-		const addresses = this.GetHTTPAddresses();
-
-		const codes = [];
-
-		for (let address of addresses) {
-			codes.push(
-				`<iframe src="${address}/${channel.channelid}.html" width="640" height="360" frameborder="no" scrolling="no" allowfullscreen="true"></iframe>`
-			);
-		}
-
-		return codes;
-	}
-
-	// Get the URL for the HLS manifest
-	GetIngestManifestUrl(channelid) {
-		return this.GetChannelManifestUrl(channelid);
-	}
-
-	// Get the URL for poster image
-	GetIngestPosterUrl(channelid) {
-		return this.GetChannelPosterUrl(channelid);
-	}
-
-	// Get the URL for poster image
-	GetIngestPosterUrlAddresses(channelid) {
-		const poster = this.GetChannelPosterUrl(channelid);
-		const addresses = this.GetHTTPAddresses();
-
-		return addresses.map((address) => {
-			return `${address}/${poster}`;
-		});
-	}
-
 	// Start the ingest process
 	async StartIngest(channelid) {
 		const channel = this.GetChannel(channelid);
@@ -1537,7 +1539,7 @@ class Restreamer {
 	// Upsert the ingest process
 	async UpsertIngest(channelid, global, inputs, outputs, control) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return [null, { message: 'Unknown channel ID' }];
 		}
 
@@ -1602,7 +1604,7 @@ class Restreamer {
 		}
 
 		// Injects a metadata link as title
-		const metadata = `${this.GetHTTPAddresses()[0]}/${channel.channelid}/oembed.json`;
+		const metadata = `${this.GetPublicHTTPAddress()}/${channel.channelid}/oembed.json`;
 		const metadata_options = ['-metadata', `title=${metadata}`, '-metadata', 'service_provider=datarhei-Restreamer'];
 		output.options.push(...metadata_options);
 
@@ -1766,7 +1768,8 @@ class Restreamer {
 			return [null, { message: 'Unknown channel ID' }];
 		}
 
-		const hlsStore = 'memfs';
+		// Set hls storage endpoint
+		const hlsStorage = control.hls.storage;
 
 		const snapshot = {
 			type: 'ffmpeg',
@@ -1775,7 +1778,7 @@ class Restreamer {
 			input: [
 				{
 					id: 'input_0',
-					address: `{${hlsStore}}/${channel.channelid}.m3u8`,
+					address: `{${hlsStorage}}/${channel.channelid}.m3u8`,
 					options: [],
 				},
 			],
@@ -1980,11 +1983,11 @@ class Restreamer {
 			name: metadata.meta.name,
 			description: metadata.meta.description,
 			author_name: metadata.meta.author.name,
-			author_url: this.GetIngestAddresses(channelid)[0],
+			author_url: this.GetPublicAddress('player', channelid),
 			license: metadata.license,
-			iframecode: this.GetIngestIframeCodes(channelid)[0],
-			poster: this.GetIngestPosterUrl(channelid),
-			poster_url: this.GetIngestPosterUrlAddresses(channelid)[0],
+			iframecode: this.GetPublicIframeCode(channelid),
+			poster: this.GetChannelPosterPath(channelid, metadata.control.hls.storage),
+			poster_url: this.GetPublicAddress('snapshot+memfs', channelid),
 			width: 640,
 			height: 360,
 			chromecast: metadata.player.chromecast,
@@ -2026,8 +2029,8 @@ class Restreamer {
 
 		const playerConfig = {
 			...metadata.player,
-			source: this.GetIngestManifestUrl(channelid),
-			poster: this.GetIngestPosterUrl(channelid),
+			source: this.GetChannelManifestPath(channelid, metadata.control.hls.storage),
+			poster: this.GetChannelPosterPath(channelid, metadata.control.hls.storage),
 			license: {
 				license: metadata.license,
 				title: metadata.meta.name,
@@ -2181,7 +2184,7 @@ class Restreamer {
 				channel_creator_description: ingestMetadata.meta.author.description,
 				channel_creator_description_html: ingestMetadata.meta.author.description.replace(/(?:\r\n|\r|\n)/g, '<br />'),
 				channel_license: ingestMetadata.license,
-				channel_poster: this.GetIngestPosterUrl(item.channelid),
+				channel_poster: this.GetChannelPosterPath(item.channelid, ingestMetadata.control.hls.storage),
 				channel_width: 640,
 				channel_height: 360,
 			};
@@ -2830,9 +2833,20 @@ class Restreamer {
 			return null;
 		}
 
-		const regex = /([a-z]+):\/\/[^/]+(?:\/[0-9A-Za-z-_.~/%:=&?]+)?/gm;
+		const regex = /(?:([a-z]+):)?\/[^\s]*/gm;
 		const replace = (s) => {
-			return s.replaceAll(regex, '$1://[anonymized]');
+			return s.replaceAll(regex, (match, scheme) => {
+				if (scheme) {
+					return `${scheme}://[anonymized]`;
+				}
+
+				const pathElm = match.split('/').filter((p) => p.length !== 0);
+				if (pathElm.length < 2) {
+					return match;
+				}
+
+				return `/[anonymized]/${pathElm.pop()}`;
+			});
 		};
 
 		if (p.config) {

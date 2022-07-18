@@ -82,7 +82,6 @@ export default function Main(props) {
 	const [$config, setConfig] = React.useState(null);
 
 	const navigate = useNavigate();
-	const address = props.restreamer.Address() + '/';
 
 	useInterval(async () => {
 		await update();
@@ -282,9 +281,10 @@ export default function Main(props) {
 		return null;
 	}
 
+	const storage = $metadata.control.hls.storage;
 	const channel = props.restreamer.GetChannel(_channelid);
-	const manifest = props.restreamer.GetIngestManifestUrl(_channelid);
-	const poster = props.restreamer.GetIngestPosterUrl(_channelid);
+	const manifest = props.restreamer.GetChannelAddress('hls+' + storage, _channelid);
+	const poster = props.restreamer.GetChannelAddress('snapshot+' + storage, _channelid);
 
 	let title = <Trans>Main channel</Trans>;
 	if (channel && channel.name && channel.name.length !== 0) {
@@ -380,7 +380,7 @@ export default function Main(props) {
 											</Grid>
 										)}
 										{$state.state === 'connected' && (
-											<Player type="videojs-internal" source={address + manifest} poster={address + poster} autoplay mute controls />
+											<Player type="videojs-internal" source={manifest} poster={poster} autoplay mute controls />
 										)}
 									</Grid>
 								</Grid>
@@ -398,7 +398,7 @@ export default function Main(props) {
 											variant="outlined"
 											color="default"
 											size="small"
-											value={props.restreamer.GetAddresses('hls+memfs', _channelid)}
+											value={props.restreamer.GetPublicAddress('hls+' + storage, _channelid)}
 										>
 											<Trans>HLS</Trans>
 										</CopyButton>
@@ -407,7 +407,7 @@ export default function Main(props) {
 												variant="outlined"
 												color="default"
 												size="small"
-												value={props.restreamer.GetAddresses('rtmp', _channelid)}
+												value={props.restreamer.GetPublicAddress('rtmp', _channelid)}
 											>
 												<Trans>RTMP</Trans>
 											</CopyButton>
@@ -417,7 +417,7 @@ export default function Main(props) {
 												variant="outlined"
 												color="default"
 												size="small"
-												value={props.restreamer.GetAddresses('srt', _channelid)}
+												value={props.restreamer.GetPublicAddress('srt', _channelid)}
 											>
 												<Trans>SRT</Trans>
 											</CopyButton>
@@ -426,7 +426,7 @@ export default function Main(props) {
 											variant="outlined"
 											color="default"
 											size="small"
-											value={props.restreamer.GetAddresses('snapshot+memfs', _channelid)}
+											value={props.restreamer.GetPublicAddress('snapshot+memfs', _channelid)}
 										>
 											<Trans>Snapshot</Trans>
 										</CopyButton>

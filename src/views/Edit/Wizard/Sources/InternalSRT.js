@@ -59,7 +59,7 @@ function Source(props) {
 		);
 	}
 
-	const SRTs = S.func.getSRT(config, settings.push.name);
+	const SRT = S.func.getSRT(config, settings.push.name);
 
 	return (
 		<React.Fragment>
@@ -68,13 +68,11 @@ function Source(props) {
 					<Trans>Send stream to this address:</Trans>
 				</Typography>
 			</Grid>
-			{SRTs.length !== 0 && (
-				<Grid item xs={12}>
-					<BoxTextarea>
-						<Textarea rows={SRTs.length} value={SRTs.join('\n')} readOnly allowCopy />
-					</BoxTextarea>
-				</Grid>
-			)}
+			<Grid item xs={12}>
+				<BoxTextarea>
+					<Textarea rows={1} value={SRT} readOnly allowCopy />
+				</BoxTextarea>
+			</Grid>
 		</React.Fragment>
 	);
 }

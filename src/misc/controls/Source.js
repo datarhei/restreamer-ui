@@ -44,37 +44,29 @@ export default function Control(props) {
 
 	const items = [];
 
-	if (props.sources.includes('hls+memfs')) {
-		items.push(
-			<MenuItem key="hls+memfs" value="hls+memfs">
-				HLS (memfs)
-			</MenuItem>
-		);
-	}
+	items.push(
+		<MenuItem key="hls+memfs" value="hls+memfs" disabled={!props.sources.includes('hls+memfs')}>
+			HLS (memfs)
+		</MenuItem>
+	);
 
-	if (props.sources.includes('hls+diskfs')) {
-		items.push(
-			<MenuItem key="hls+diskfs" value="hls+diskfs">
-				HLS (diskfs)
-			</MenuItem>
-		);
-	}
+	items.push(
+		<MenuItem key="hls+diskfs" value="hls+diskfs" disabled={!props.sources.includes('hls+diskfs')}>
+			HLS (diskfs)
+		</MenuItem>
+	);
 
-	if (props.sources.includes('rtmp')) {
-		items.push(
-			<MenuItem key="rtmp" value="rtmp">
-				RTMP
-			</MenuItem>
-		);
-	}
+	items.push(
+		<MenuItem key="rtmp" value="rtmp" disabled={!props.sources.includes('rtmp')}>
+			RTMP
+		</MenuItem>
+	);
 
-	if (props.sources.includes('srt')) {
-		items.push(
-			<MenuItem key="srt" value="srt">
-				SRT
-			</MenuItem>
-		);
-	}
+	items.push(
+		<MenuItem key="srt" value="srt" disabled={!props.sources.includes('srt')}>
+			SRT
+		</MenuItem>
+	);
 
 	return (
 		<Grid container spacing={2}>

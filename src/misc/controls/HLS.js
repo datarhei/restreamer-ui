@@ -62,6 +62,19 @@ export default function Control(props) {
 				</Grid>
 			*/}
 			<Grid item xs={12}>
+				<Select label={<Trans>Storage</Trans>} value={settings.storage} onChange={handleChange('storage')}>
+					<MenuItem value="memfs">
+						<Trans>In-Memory (recommended)</Trans>
+					</MenuItem>
+					<MenuItem value="diskfs">
+						<Trans>Disk</Trans>
+					</MenuItem>
+				</Select>
+				<Typography variant="caption">
+					<Trans>Where to store the HLS playlist and segments.</Trans>
+				</Typography>
+			</Grid>
+			<Grid item xs={12}>
 				<Select label={<Trans>EXT-X-VERSION</Trans>} value={settings.version} onChange={handleChange('version')}>
 					<MenuItem value={3}>3</MenuItem>
 					<MenuItem value={6}>
@@ -100,7 +113,11 @@ export default function Control(props) {
 				</Typography>
 			</Grid>
 			<Grid item xs={12}>
-				<Checkbox label={<Trans>Master playlist (increases browser/client compatibility)</Trans>} checked={settings.master_playlist} onChange={handleChange('master_playlist')} />
+				<Checkbox
+					label={<Trans>Master playlist (increases browser/client compatibility)</Trans>}
+					checked={settings.master_playlist}
+					onChange={handleChange('master_playlist')}
+				/>
 			</Grid>
 			<Grid item xs={12}>
 				<Checkbox label={<Trans>Automatic cleanup of all media data</Trans>} checked={settings.cleanup} onChange={handleChange('cleanup')} />

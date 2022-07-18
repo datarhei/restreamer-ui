@@ -2,6 +2,7 @@
 
 #### v1.1.0 > v1.2.0
 
+-   Add allow writing HLS to disk
 -   Add audio pan filter
 -   Add video rotation filter ([#347](https://github.com/datarhei/restreamer/discussions/347))
 -   Add video h/v flip filter
@@ -27,6 +28,7 @@
 -   Fix VAAPI encoder
 
 Dependency:
+
 -   datarhei Core v16.9.0+
 
 #### v1.0.0 > v1.1.0
