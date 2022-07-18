@@ -1,6 +1,6 @@
 /**	Silvermine Chromecast **/
 .vjs-chromecast-button .vjs-icon-placeholder {
-  background: url('ic_cast_white_24dp.png') center center no-repeat;
+  background: url('ic_cast_white.svg') center center no-repeat;
   background-size: contain;
   display: inline-block;
   width: 20px;

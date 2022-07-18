@@ -7,8 +7,8 @@ dist/videojs-license.min.js
 dist/videojs-license.min.css
 dist/videojs-chromecast.min.js
 dist/videojs-chromecast.min.css
-dist/ic_cast_connected_white_24dp.png
-dist/ic_cast_white_24dp.png
+dist/ic_cast_connected_white.svg
+dist/ic_cast_white.svg
 dist/videojs-airplay.min.js
 dist/videojs-airplay.min.css
-dist/ic_airplay_white_24px.svg
+dist/ic_airplay_white.svg
