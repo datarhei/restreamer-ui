@@ -54,7 +54,6 @@ function VolumeLevel(props) {
 			<MenuItem value="70">70%</MenuItem>
 			<MenuItem value="80">80%</MenuItem>
 			<MenuItem value="90">90%</MenuItem>
-			<MenuItem value="100">100%</MenuItem>
 			<MenuItem value="custom">
 				<Trans>Custom ...</Trans>
 			</MenuItem>
