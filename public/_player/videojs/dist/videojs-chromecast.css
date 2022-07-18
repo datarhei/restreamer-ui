@@ -10,13 +10,13 @@
   cursor: pointer;
 }
 .vjs-chromecast-button:hover .vjs-icon-placeholder {
-  background-image: url('ic_cast_white_24dp.png');
+  background: url('ic_cast_white.svg');
 }
 .vjs-chromecast-button.vjs-chromecast-casting-state .vjs-icon-placeholder {
-  background-image: url('ic_cast_connected_white_24dp.png');
+  background: url('ic_cast_connected_white.svg');
 }
 .vjs-chromecast-button.vjs-chromecast-casting-state:hover .vjs-icon-placeholder {
-  background-image: url('ic_cast_connected_white_24dp.png');
+  background: url('ic_cast_connected_white.svg');
 }
 .vjs-tech-chromecast {
   display: flex;
