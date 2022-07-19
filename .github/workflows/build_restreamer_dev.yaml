@@ -26,13 +26,6 @@ jobs:
         with:
           semver_only: true
 
-      - uses: cardinalby/export-env-action@v1
-        with:
-          envFile: '.github_build/Build.alpine.env'
-          export: 'true'
-          expandWithJobEnv: 'true'
-          expand: 'true'
-
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
