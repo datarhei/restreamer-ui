@@ -64,14 +64,14 @@ export default function Control(props) {
 			<Grid item xs={12}>
 				<Select label={<Trans>Storage</Trans>} value={settings.storage} onChange={handleChange('storage')}>
 					<MenuItem value="memfs">
-						<Trans>In-Memory (recommended)</Trans>
+						<Trans>In-Memory</Trans>
 					</MenuItem>
 					<MenuItem value="diskfs">
 						<Trans>Disk</Trans>
 					</MenuItem>
 				</Select>
 				<Typography variant="caption">
-					<Trans>Where to store the HLS playlist and segments.</Trans>
+					<Trans>Where to store the HLS playlist and segments. In-Memory is recommended.</Trans>
 				</Typography>
 			</Grid>
 			<Grid item xs={12}>
