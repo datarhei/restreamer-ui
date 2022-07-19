@@ -1352,7 +1352,7 @@ class Restreamer {
 		}
 
 		for (let i = 0; i < val.hls.length; i++) {
-			if (val.hls[i].reference !== this.channel.channelid) {
+			if (!val.hls[i].reference.startsWith(this.channel.channelid)) {
 				continue;
 			}
 
@@ -1367,7 +1367,7 @@ class Restreamer {
 		}
 
 		for (let i = 0; i < val.ffmpeg.length; i++) {
-			if (val.ffmpeg[i].reference !== this.channel.channelid) {
+			if (!val.ffmpeg[i].reference.startsWith(this.channel.channelid)) {
 				continue;
 			}
 
@@ -1381,7 +1381,7 @@ class Restreamer {
 		}
 
 		for (let i = 0; i < val.rtmp.length; i++) {
-			if (val.rtmp[i].reference !== this.channel.channelid) {
+			if (!val.rtmp[i].reference.startsWith(this.channel.channelid)) {
 				continue;
 			}
 
