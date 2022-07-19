@@ -341,12 +341,14 @@ const getRTMPAddress = (host, app, name, token, secure) => {
 	return url;
 };
 
-const getSRTAddress = (host, name, token, passphrase) => {
+const getSRTAddress = (host, name, token, passphrase, publish) => {
 	let url =
 		'srt' +
 		'://' +
 		host +
-		'?mode=caller&transtype=live&streamid=#!:m=publish,r=ingest/' +
+		'?mode=caller&transtype=live&streamid=#!:m=' +
+		(publish ? 'publish' : 'request') +
+		',r=ingest/' +
 		name +
 		(token.length !== 0 ? ',token=' + encodeURIComponent(token) : '');
 
@@ -370,7 +372,7 @@ const getRTMP = (config) => {
 };
 
 const getSRT = (config) => {
-	const url = getSRTAddress(config.srt.host, config.srt.name, config.srt.token, config.srt.passphrase);
+	const url = getSRTAddress(config.srt.host, config.srt.name, config.srt.token, config.srt.passphrase, true);
 
 	return url;
 };
@@ -386,7 +388,7 @@ const getLocalRTMP = (config) => {
 };
 
 const getLocalSRT = (config) => {
-	return getSRTAddress(config.srt.local, config.srt.name, config.srt.token, config.srt.passphrase);
+	return getSRTAddress(config.srt.local, config.srt.name, config.srt.token, config.srt.passphrase, false);
 };
 
 const isValidURL = (address) => {
