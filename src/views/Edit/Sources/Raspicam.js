@@ -41,6 +41,10 @@ const createInputs = (settings) => {
 		options: [],
 	};
 
+	input.options.push('-thread_queue_size', '1024');
+	input.options.push('-re');
+	input.options.push('-r', '' + settings.framerate);
+	input.options.push('-use_wallclock_as_timestamps', '1');
 	input.options.push('-f', 'video4linux2');
 	input.options.push('-framerate', '' + settings.framerate);
 	input.options.push('-video_size', settings.size);
