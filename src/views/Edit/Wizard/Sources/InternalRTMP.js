@@ -90,7 +90,7 @@ function SourceIcon(props) {
 
 const id = 'rtmp';
 const type = 'network';
-const name = <Trans>Internal RTMP server</Trans>;
+const name = <Trans>RTMP server</Trans>;
 const capabilities = ['audio', 'video'];
 
 export { id, type, name, capabilities, SourceIcon as icon, Source as component };

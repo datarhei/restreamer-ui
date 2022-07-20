@@ -70,7 +70,7 @@ function SourceIcon(props) {
 
 const id = 'hls';
 const type = 'network';
-const name = <Trans>Internal HLS server</Trans>;
+const name = <Trans>HLS server</Trans>;
 const capabilities = ['audio', 'video'];
 
 export { id, type, name, capabilities, SourceIcon as icon, Source as component };

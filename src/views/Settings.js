@@ -1210,7 +1210,7 @@ export default function Settings(props) {
 							<ErrorTab className="tab" label={<Trans>Authorization</Trans>} value="auth" errors={$tabs.auth.errors} />
 							{$expert === true && <ErrorTab className="tab" label={<Trans>Playback</Trans>} value="playback" errors={$tabs.playback.errors} />}
 							{$expert === true && <ErrorTab className="tab" label={<Trans>Storage</Trans>} value="storage" errors={$tabs.storage.errors} />}
-							<ErrorTab className="tab" label={<Trans>RTMP/S</Trans>} value="rtmp" errors={$tabs.rtmp.errors} />
+							<ErrorTab className="tab" label={<Trans>RTMP</Trans>} value="rtmp" errors={$tabs.rtmp.errors} />
 							<ErrorTab className="tab" label={<Trans>SRT</Trans>} value="srt" errors={$tabs.srt.errors} />
 							{$expert === true && <ErrorTab className="tab" label={<Trans>Logging</Trans>} value="logging" errors={$tabs.logging.errors} />}
 						</Tabs>
@@ -1827,7 +1827,7 @@ export default function Settings(props) {
 							<Grid container spacing={2}>
 								<Grid item xs={12}>
 									<Typography variant="h2">
-										<Trans>RTMP/S</Trans>
+										<Trans>RTMP</Trans>
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
