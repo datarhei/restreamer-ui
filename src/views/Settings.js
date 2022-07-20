@@ -924,6 +924,7 @@ export default function Settings(props) {
 			config.tls.address = ':' + config.tls.address;
 			config.rtmp.address = ':' + config.rtmp.address;
 			config.rtmp.address_tls = ':' + config.rtmp.address_tls;
+			config.rtmp.app = !config.rtmp.app.startsWith('/') ? '/' + config.rtmp.app : config.rtmp.app;
 			config.srt.address = ':' + config.srt.address;
 
 			if (config.tls.auto === true) {
@@ -1882,7 +1883,7 @@ export default function Settings(props) {
 									<TextField
 										label={<Trans>RTMPS Port</Trans>}
 										env={env('rtmp.address_tls')}
-										disabled={env('rtmp.address_tls') || (!config.rtmp.enable_tls) || (!config.tls.auto)}
+										disabled={env('rtmp.address_tls') || !config.rtmp.enable_tls || !config.tls.auto}
 										value={config.rtmp.address_tls}
 										onChange={handleChange('rtmp.address_tls')}
 									/>
@@ -1895,7 +1896,7 @@ export default function Settings(props) {
 									<TextField
 										label={<Trans>App</Trans>}
 										env={env('rtmp.app')}
-										disabled={env('rtmp.app') || (!config.rtmp.enable)}
+										disabled={env('rtmp.app') || !config.rtmp.enable}
 										value={config.rtmp.app}
 										onChange={handleChange('rtmp.app')}
 									/>
@@ -1908,7 +1909,7 @@ export default function Settings(props) {
 									<Password
 										label={<Trans>Token</Trans>}
 										env={env('rtmp.token')}
-										disabled={env('rtmp.token') || (!config.rtmp.enable)}
+										disabled={env('rtmp.token') || !config.rtmp.enable}
 										value={config.rtmp.token}
 										onChange={handleChange('rtmp.token')}
 									/>
@@ -1973,8 +1974,14 @@ export default function Settings(props) {
 										value={config.srt.passphrase}
 										onChange={handleChange('srt.passphrase')}
 										inputProps={{ maxLength: 79 }}
-										error={(config.srt.passphrase && config.srt.passphrase.length < 10)}
-										helperText={config.srt.passphrase && config.srt.passphrase.length < 10 ? (<Trans>Passphrase must be between 10 and 79 characters long</Trans>) : false}
+										error={config.srt.passphrase && config.srt.passphrase.length < 10}
+										helperText={
+											config.srt.passphrase && config.srt.passphrase.length < 10 ? (
+												<Trans>Passphrase must be between 10 and 79 characters long</Trans>
+											) : (
+												false
+											)
+										}
 									/>
 									<ErrorBox configvalue="srt.passphrase" messages={$tabs.srt.messages} />
 									<Typography variant="caption">
