@@ -15,7 +15,7 @@ const description = (
 	<Trans>
 		Transmit your Livestream to an Owncast server.{' '}
 		<Link color="secondary" target="_blank" href="https://owncast.online/quickstart/startstreaming/">
-			Here {' '}
+			Here{' '}
 		</Link>
 		you can find more details about the settings.
 	</Trans>
@@ -93,10 +93,24 @@ function Service(props) {
 				/>
 			</Grid>
 			<Grid item xs={12} md={9}>
-				<TextField variant="outlined" fullWidth placeholder="yourserver/live" label={<Trans>Server URL</Trans>} value={settings.server_url} onChange={handleChange('server_url')} />
+				<TextField
+					variant="outlined"
+					fullWidth
+					placeholder="yourserver/live"
+					label={<Trans>Server URL</Trans>}
+					value={settings.server_url}
+					onChange={handleChange('server_url')}
+				/>
 			</Grid>
 			<Grid item xs={12}>
-				<TextField variant="outlined" fullWidth placeholder="abc123" label={<Trans>Stream Key</Trans>} value={settings.stream_key} onChange={handleChange('stream_key')} />
+				<TextField
+					variant="outlined"
+					fullWidth
+					placeholder="abc123"
+					label={<Trans>Stream key</Trans>}
+					value={settings.stream_key}
+					onChange={handleChange('stream_key')}
+				/>
 			</Grid>
 		</Grid>
 	);

@@ -10,11 +10,7 @@ const id = 'telegram';
 const name = 'Telegram';
 const version = '1.0';
 const stream_key_link = '';
-const description = (
-	<Trans>
-		Transmit a Livestream to a Telegram Channel.
-	</Trans>
-);
+const description = <Trans>Transmit a Livestream to a Telegram Channel.</Trans>;
 const image_copyright = <Trans>Please get in touch with the operator of the service and check what happens.</Trans>;
 const author = {
 	creator: {
@@ -88,10 +84,24 @@ function Service(props) {
 				/>
 			</Grid>
 			<Grid item xs={12} md={9}>
-				<TextField variant="outlined" fullWidth placeholder="dc4-1.rtmp.t.me/s/" label={<Trans>Server URL</Trans>} value={settings.stream_url} onChange={handleChange('stream_url')} />
+				<TextField
+					variant="outlined"
+					fullWidth
+					placeholder="dc4-1.rtmp.t.me/s/"
+					label={<Trans>Server URL</Trans>}
+					value={settings.stream_url}
+					onChange={handleChange('stream_url')}
+				/>
 			</Grid>
 			<Grid item xs={12}>
-				<TextField variant="outlined" fullWidth placeholder="123456:ABCDEF" label={<Trans>Stream Key</Trans>} value={settings.stream_key} onChange={handleChange('stream_key')} />
+				<TextField
+					variant="outlined"
+					fullWidth
+					placeholder="123456:ABCDEF"
+					label={<Trans>Stream key</Trans>}
+					value={settings.stream_key}
+					onChange={handleChange('stream_key')}
+				/>
 			</Grid>
 		</Grid>
 	);
