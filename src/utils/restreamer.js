@@ -2068,7 +2068,7 @@ class Restreamer {
 
 		const settings = {
 			player: 'videojs',
-			playersite: true,
+			playersite: false,
 			channelid: 'current',
 			title: 'restreamer',
 			share: true,

@@ -316,6 +316,12 @@ export default function Edit(props) {
 				notify.Dispatch('warning', 'save:ingest', i18n._(t`Failed to update the player`));
 			}
 
+			// Create/update the playersite
+			res = await props.restreamer.UpdatePlayersite();
+			if (res === false) {
+				notify.Dispatch('warning', 'save:ingest', i18n._(t`Failed to update the playersite`));
+			}
+
 			return true;
 		};
 
@@ -501,7 +507,7 @@ export default function Edit(props) {
 												</Grid>
 											</Grid>
 										</Grid>
-										<Grid item xs={12} display={{xs: 'block', md: 'none'}}>
+										<Grid item xs={12} display={{ xs: 'block', md: 'none' }}>
 											<Divider />
 										</Grid>
 										<Grid item xs={12} md={6}>
