@@ -5,7 +5,7 @@ FROM $NODE_IMAGE
 ARG NODE_SPACE_SIZE=10240
 ENV NODE_OPTIONS="--openssl-legacy-provider --max-old-space-size=$NODE_SPACE_SIZE"
 
-ARG PUBLIC_URL "./"
+ENV PUBLIC_URL "./"
 
 COPY . /ui
 
