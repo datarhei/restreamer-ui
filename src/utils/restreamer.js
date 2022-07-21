@@ -1607,6 +1607,9 @@ class Restreamer {
 		// https://developer.apple.com/documentation/http_live_streaming/about_the_ext-x-version_tag
 		// https://ffmpeg.org/ffmpeg-all.html#Options-53
 
+		// fix Malformed AAC bitstream detected for hls version 7
+		let hls_aac_adtstoasc = false;
+
 		// Returns the raw l/hls parameters for an EXT-X-VERSION
 		const getHLSParams = (lhls, version) => {
 			if (lhls) {
@@ -1646,7 +1649,10 @@ class Restreamer {
 					case 7:
 						// fix Malformed AAC bitstream detected for hls version 7
 						if (output.options.includes('-codec:a') && output.options.includes('copy')) {
-							output.options.push('-bsf:a', 'aac_adtstoasc');
+							if (!tee_muxer) {
+								output.options.push('-bsf:a', 'aac_adtstoasc');
+							}
+							hls_aac_adtstoasc = true;
 						}
 						// mp4 manifest cleanup
 						output.cleanup.push({
@@ -1706,7 +1712,7 @@ class Restreamer {
 			// ['f=hls:start_number=0...]address.m3u8
 			// use tee_muxer formatting
 			output.address =
-				`[${hls_params}]{${hlsStorage}}/${channel.channelid}${bitrate_suffix}.m3u8` +
+				`[${hls_aac_adtstoasc ? 'bsfs/a=aac_adtstoasc:' : ''}${hls_params}]{${hlsStorage}}/${channel.channelid}${bitrate_suffix}.m3u8` +
 				(rtmp_enabled ? `|[f=flv]{rtmp,name=${channel.channelid}.stream}` : '') +
 				(srt_enabled ? `|[f=mpegts]{srt,name=${channel.channelid},mode=publish}` : '');
 		} else {
