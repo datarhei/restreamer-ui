@@ -37,8 +37,6 @@ function createMapping(settings) {
 		'yuv420p',
 		'-realtime',
 		'true',
-		'-vsync',
-		'1',
 	];
 
 	if (settings.gop !== 'auto') {

@@ -49,8 +49,6 @@ function createMapping(settings) {
 		`${settings.fps}`,
 		'-g',
 		`${settings.gop}`,
-		'-vsync',
-		'1'
 	);
 
 	if (settings.gop !== 'auto') {

@@ -18,7 +18,7 @@ function createMapping(settings, stream) {
 	const local = ['-codec:a', 'libmp3lame', '-b:a', `${settings.bitrate}k`, '-shortest'];
 
 	const mapping = {
-		global: [],
+		global: [['-vsync', 'drop']],
 		local: local,
 	};
 

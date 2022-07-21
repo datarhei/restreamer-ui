@@ -30,10 +30,6 @@ function createMapping(settings) {
 		`${settings.fps}`,
 		'-pix_fmt',
 		'yuv420p',
-		'-vsync',
-		'1',
-		'-zerocopy',
-		'1',
 	];
 
 	if (settings.gop !== 'auto') {

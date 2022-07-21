@@ -129,9 +129,6 @@ data = {
 					global: [],
 					local: [
 						'-codec:v', 'copy',
-						'-vsync 0',
-						'-copyts',
-						'-start_at_zero',
 					]
 				}
 			},
@@ -163,7 +160,6 @@ data = {
 						'-r', '25',
 						'-g', '50',
 						'-pix_fmt', 'yuv420p',
-						'-vsync', '1',
 						'-profile:v', 'high',
 						'-tune:v', 'zerolatency',
 					]

@@ -31,8 +31,6 @@ function createMapping(settings) {
 		'0',
 		'-pix_fmt',
 		'yuv420p',
-		'-vsync',
-		'1',
 	];
 
 	if (settings.gop !== 'auto') {

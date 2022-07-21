@@ -1,7 +1,7 @@
 import React from 'react';
 
 function createMapping(settings) {
-	const local = ['-codec:v', 'copy', '-vsync', 'passthrough', '-copyts', '-start_at_zero'];
+	const local = ['-codec:v', 'copy'];
 
 	const mapping = {
 		global: [],
