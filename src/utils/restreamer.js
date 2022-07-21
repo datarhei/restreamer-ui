@@ -1340,7 +1340,7 @@ class Restreamer {
 			bitrate_kbit: 0,
 		};
 
-		const [val, err] = await this._call(this.api.ActiveSessions, ['ffmpeg', 'hls', 'rtmp']);
+		const [val, err] = await this._call(this.api.ActiveSessions, ['ffmpeg', 'hls', 'rtmp', 'srt']);
 		if (err !== null) {
 			return sessions;
 		}
@@ -1387,6 +1387,21 @@ class Restreamer {
 
 			sessions.sessions++;
 			sessions.bitrate_kbit += val.rtmp[i].bandwidth_tx_kbit;
+		}
+
+		// SRT sessions
+
+		if (!val.srt) {
+			val.srt = [];
+		}
+
+		for (let i = 0; i < val.srt.length; i++) {
+			if (!val.srt[i].reference.startsWith(this.channel.channelid)) {
+				continue;
+			}
+
+			sessions.sessions++;
+			sessions.bitrate_kbit += val.srt[i].bandwidth_tx_kbit;
 		}
 
 		return sessions;
