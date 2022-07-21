@@ -75,7 +75,7 @@ export default function Control(props) {
 					{items}
 				</Select>
 				<Typography variant="caption">
-					<Trans>Stream source for publication service.</Trans>
+					<Trans>Stream source for publication service (experimental).</Trans>
 				</Typography>
 			</Grid>
 		</Grid>

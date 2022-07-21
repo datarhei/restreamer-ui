@@ -1669,6 +1669,7 @@ class Restreamer {
 							['hls_delete_threshold', '4'],
 							['hls_segment_type', 'fmp4'],
 							['hls_fmp4_init_filename', `${channel.channelid}.mp4`],
+							['hls_fmp4_init_resend', '1'],
 							['hls_segment_filename', `{${hlsStorage}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d${bitrate_suffix}.mp4`],
 							['method', 'PUT'],
 						];

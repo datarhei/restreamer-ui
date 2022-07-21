@@ -122,8 +122,12 @@ const topics = {
 		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/restreamer-einstellungen/speicherplatz',
 	},
 	'settings-rtmp': {
-		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/system-settings/rtmp	',
+		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/system-settings/rtmp',
 		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/restreamer-einstellungen/rtmp',
+	},
+	'settings-srt': {
+		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/system-settings/srt',
+		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/restreamer-einstellungen/srt',
 	},
 	'settings-logging': {
 		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/system-settings/logging',

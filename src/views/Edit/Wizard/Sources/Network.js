@@ -78,13 +78,27 @@ function Source(props) {
 				</Grid>
 			)}
 			<Grid item md={6} xs={12}>
-				<TextField variant="outlined" fullWidth label={<Trans>Username</Trans>} value={settings.username} onChange={update('', 'username')} disabled={protocol === 'srt'} />
+				<TextField
+					variant="outlined"
+					fullWidth
+					label={<Trans>Username</Trans>}
+					value={settings.username}
+					onChange={update('', 'username')}
+					disabled={protocol === 'srt'}
+				/>
 				<Typography variant="caption">
 					<Trans>Username for the device.</Trans>
 				</Typography>
 			</Grid>
 			<Grid item md={6} xs={12}>
-				<Password variant="outlined" fullWidth label={<Trans>Password</Trans>} value={settings.password} onChange={update('', 'password')} disabled={protocol === 'srt'} />
+				<Password
+					variant="outlined"
+					fullWidth
+					label={<Trans>Password</Trans>}
+					value={settings.password}
+					onChange={update('', 'password')}
+					disabled={protocol === 'srt'}
+				/>
 				<Typography variant="caption">
 					<Trans>Password for the device.</Trans>
 				</Typography>

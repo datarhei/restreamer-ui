@@ -480,7 +480,7 @@ export default function Edit(props) {
 								</Grid>
 								<Grid item xs={12}>
 									<Typography variant="h3">
-										<Trans>HLS Output</Trans>
+										<Trans>HLS output</Trans>
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
@@ -495,7 +495,7 @@ export default function Edit(props) {
 											<Grid container spacing={2}>
 												<Grid item xs={12}>
 													<Typography variant="h3">
-														<Trans>RTMP Output</Trans>
+														<Trans>RTMP output</Trans>
 													</Typography>
 												</Grid>
 												<Grid item xs={12}>
@@ -514,7 +514,7 @@ export default function Edit(props) {
 											<Grid container spacing={2}>
 												<Grid item xs={12}>
 													<Typography variant="h3">
-														<Trans>SRT Output</Trans>
+														<Trans>SRT output</Trans>
 													</Typography>
 												</Grid>
 												<Grid item xs={12}>

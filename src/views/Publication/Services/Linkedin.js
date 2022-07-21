@@ -9,12 +9,12 @@ import Select from '../../../misc/Select';
 import TextField from '@mui/material/TextField';
 
 const id = 'linkedin';
-const name = 'linkedIn';
+const name = 'LinkedIn';
 const version = '1.0';
 const stream_key_link = '';
 const description = (
 	<Trans>
-		Transmit to linkedIn. More details can be found{' '}
+		Transmit to LinkedIn. More details can be found{' '}
 		<Link color="secondary" target="_blank" href="https://www.linkedin.com/help/linkedin/answer/128901/go-live-using-a-custom-stream-rtmp-">
 			here
 		</Link>
@@ -87,8 +87,14 @@ function Service(props) {
 				</Select>
 			</Grid>
 			<Grid item xs={12} md={9}>
-				<TextField variant="outlined" fullWidth label={<Trans>Address</Trans>} value={settings.address} onChange={handleChange('address')} placeholder="{custom_id}.channel.media.azure.net:2935/live/{custom_id}"
-/>
+				<TextField
+					variant="outlined"
+					fullWidth
+					label={<Trans>Address</Trans>}
+					value={settings.address}
+					onChange={handleChange('address')}
+					placeholder="{custom_id}.channel.media.azure.net:2935/live/{custom_id}"
+				/>
 			</Grid>
 		</Grid>
 	);

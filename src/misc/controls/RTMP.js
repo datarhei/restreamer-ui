@@ -44,9 +44,14 @@ export default function Control(props) {
 		<Grid container spacing={2}>
 			{props.enabled && (
 				<Grid item xs={12}>
-					<Checkbox label={<Trans>Enable</Trans>} checked={settings.enable} disabled={!props.enabled && settings.enable !== true} onChange={handleChange('enable')} />
+					<Checkbox
+						label={<Trans>Enable</Trans>}
+						checked={settings.enable}
+						disabled={!props.enabled && settings.enable !== true}
+						onChange={handleChange('enable')}
+					/>
 					<Typography variant="caption">
-						<Trans>Make the channel available as an RTMP stream.</Trans>
+						<Trans>Make the channel available as an RTMP stream (experimental).</Trans>
 					</Typography>
 				</Grid>
 			)}
@@ -54,7 +59,14 @@ export default function Control(props) {
 				<Grid item xs={12}>
 					<BoxText textAlign="center">
 						<Trans>The RTMP output requires the RTMP Server.</Trans>
-						<Button variant="outlined" size="small" style={{marginTop: 10, marginBottom: 3}} fullWidth color="primary" onClick={() => navigate('/settings/rtmp')}>
+						<Button
+							variant="outlined"
+							size="small"
+							style={{ marginTop: 10, marginBottom: 3 }}
+							fullWidth
+							color="primary"
+							onClick={() => navigate('/settings/rtmp')}
+						>
 							<Trans>Enable now</Trans>
 						</Button>
 					</BoxText>

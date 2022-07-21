@@ -16,7 +16,11 @@ const stream_key_link = '';
 const description = (
 	<Trans>
 		Transmit to a Azure Media Services. More details can be found{' '}
-		<Link color="secondary" target="_blank" href="https://azure.microsoft.com/de-de/blog/getting-started-with-live-streaming-using-the-azure-management-portal/">
+		<Link
+			color="secondary"
+			target="_blank"
+			href="https://azure.microsoft.com/de-de/blog/getting-started-with-live-streaming-using-the-azure-management-portal/"
+		>
 			here
 		</Link>
 		.
@@ -88,8 +92,14 @@ function Service(props) {
 				</Select>
 			</Grid>
 			<Grid item xs={12} md={9}>
-				<TextField variant="outlined" fullWidth label={<Trans>Address</Trans>} value={settings.address} onChange={handleChange('address')} placeholder="myAccount.channel.mediaservices.windows.net:1935/live/123456789..."
-/>
+				<TextField
+					variant="outlined"
+					fullWidth
+					label={<Trans>Address</Trans>}
+					value={settings.address}
+					onChange={handleChange('address')}
+					placeholder="myAccount.channel.mediaservices.windows.net:1935/live/123456789..."
+				/>
 			</Grid>
 		</Grid>
 	);

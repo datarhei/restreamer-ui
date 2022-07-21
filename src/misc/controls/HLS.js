@@ -64,7 +64,7 @@ export default function Control(props) {
 			<Grid item xs={12}>
 				<Select label={<Trans>Storage</Trans>} value={settings.storage} onChange={handleChange('storage')}>
 					<MenuItem value="memfs">
-						<Trans>In-Memory</Trans>
+						<Trans>In-memory</Trans>
 					</MenuItem>
 					<MenuItem value="diskfs">
 						<Trans>Disk</Trans>

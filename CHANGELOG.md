@@ -10,7 +10,7 @@
 -   Add audio loudness normalization filter
 -   Add audio resample filter, that was before part of the encoders
 -   Add HLS Master playlist (requires FFmpeg hlsbitrate.patch) (thx Dwaynarang, Electra Player compatibility)
--   Add linkedIn & Azure Media Services to publication services (thx kalashnikov)
+-   Add LinkedIn & Azure Media Services to publication services (thx kalashnikov)
 -   Add AirPlay support with silvermine videojs plugin
 -   Add Chromecast support (thx badincite, [#10](https://github.com/datarhei/restreamer-ui/pull/10))
 -   Add stream distribution across multiple internal servers
@@ -21,8 +21,8 @@
 -   Add Polish translations (thx Robert Rykała)
 -   Mod extends the datarhei Core publication service with srt streaming
 -   Mod allow decoders and encoders to set global options
--   Fix player problem with different stream formats (9:16)
 -   Mod allow trailing slash on Core address
+-   Fix player problem with different stream formats (9:16)
 -   Fix process report naming
 -   Fix publication service icon styles
 -   Fix VAAPI encoder

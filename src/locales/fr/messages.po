@@ -83,14 +83,14 @@ msgstr "Ajouter : {0}"
 
 #: src/views/Edit/Sources/Network.js:421
 #: src/views/Edit/Wizard/Sources/Network.js:66
-#: src/views/Publication/Services/Azure.js:91
+#: src/views/Publication/Services/Azure.js:98
 #: src/views/Publication/Services/Brightcove.js:95
 #: src/views/Publication/Services/Core.js:116
 #: src/views/Publication/Services/DASH.js:192
 #: src/views/Publication/Services/HLS.js:181
 #: src/views/Publication/Services/Icecast.js:160
 #: src/views/Publication/Services/Image2.js:126
-#: src/views/Publication/Services/Linkedin.js:90
+#: src/views/Publication/Services/Linkedin.js:93
 #: src/views/Publication/Services/MPEGTS.js:160
 #: src/views/Publication/Services/RTMP.js:132
 #: src/views/Publication/Services/RTSP.js:150
@@ -365,8 +365,8 @@ msgstr "Choisissez un flux audio"
 
 #: src/views/Edit/Sources/ALSA.js:96
 #: src/views/Edit/Sources/Framebuffer.js:80
-#: src/views/Edit/Sources/Raspicam.js:88
-#: src/views/Edit/Sources/V4L.js:90
+#: src/views/Edit/Sources/Raspicam.js:87
+#: src/views/Edit/Sources/V4L.js:93
 msgid "Choose an input device ..."
 msgstr "Choisissez un périphérique d'entrée ..."
 
@@ -480,7 +480,7 @@ msgstr "Creative Commons"
 #: src/views/Edit/Sources/ALSA.js:101
 #: src/views/Edit/Sources/AVFoundation.js:120
 #: src/views/Edit/Sources/AVFoundation.js:153
-#: src/views/Edit/Sources/V4L.js:96
+#: src/views/Edit/Sources/V4L.js:99
 msgid "Custom ..."
 msgstr "Personnalisé..."
 
@@ -543,7 +543,7 @@ msgstr "Échelle personnalisée"
 msgid "Custom size"
 msgstr "Taille personnalisée"
 
-#: src/views/Edit/Sources/V4L.js:110
+#: src/views/Edit/Sources/V4L.js:113
 msgid "Custom video device"
 msgstr "Dispositif vidéo personnalisé"
 
@@ -716,8 +716,8 @@ msgstr "Edit : {title}"
 msgid "Embed"
 msgstr "Intégrer"
 
-#: src/misc/controls/RTMP.js:47
-#: src/misc/controls/SRT.js:47
+#: src/misc/controls/RTMP.js:48
+#: src/misc/controls/SRT.js:48
 msgid "Enable"
 msgstr "Activer"
 
@@ -744,8 +744,8 @@ msgstr "Activer le flux de sauvegarde"
 msgid "Enable nerd statistics"
 msgstr "Activer les statistiques des nerds"
 
-#: src/misc/controls/RTMP.js:58
-#: src/misc/controls/SRT.js:58
+#: src/misc/controls/RTMP.js:70
+#: src/misc/controls/SRT.js:70
 msgid "Enable now"
 msgstr "Activer maintenant"
 
@@ -770,7 +770,7 @@ msgstr "L'activation de l'authentification de base est fortement conseillée. Si
 msgid "Encoder"
 msgstr "Codeur"
 
-#: src/views/Edit/Summary.js:93
+#: src/views/Edit/Summary.js:95
 #: src/views/Publication/Add.js:441
 #: src/views/Publication/Edit.js:478
 msgid "Encoding"
@@ -799,7 +799,7 @@ msgstr "Saisissez l'adresse de votre source réseau :"
 msgid "Enter username"
 msgstr "Entrez le nom d'utilisateur"
 
-#: src/misc/coders/Encoders/video/H264VideoToolbox.js:66
+#: src/misc/coders/Encoders/video/H264VideoToolbox.js:64
 msgid "Entropy coder"
 msgstr "Codeur d'entropie"
 
@@ -913,7 +913,7 @@ msgstr "Échec de la mise à jour du site des joueurs"
 msgid "Failed to verify the source. Please check the address."
 msgstr "Impossible de vérifier la source. Veuillez vérifier l'adresse."
 
-#: src/views/Edit/Summary.js:99
+#: src/views/Edit/Summary.js:101
 msgid "Filter"
 msgstr "Filtre"
 
@@ -1001,7 +1001,7 @@ msgid "HLS"
 msgstr "HLS"
 
 #: src/views/Edit/index.js:483
-msgid "HLS Output"
+msgid "HLS output"
 msgstr "Sortie HLS"
 
 #: src/views/Edit/Wizard/Sources/InternalHLS.js:73
@@ -1028,7 +1028,7 @@ msgstr "HTTPS (SSL/TLS)"
 msgid "HTTPS port"
 msgstr "Port HTTPS"
 
-#: src/views/Edit/Sources/V4L.js:151
+#: src/views/Edit/Sources/V4L.js:154
 #: src/views/Edit/Wizard/Sources/V4L.js:140
 msgid "Hardware device"
 msgstr "Dispositif matériel"
@@ -1083,9 +1083,6 @@ msgid "In addition to the player, the Restreamer offers a complete landingpage, 
 msgstr "En plus du lecteur, le Restreamer offre une page d'accueil complète, que vous pouvez utiliser pour présenter votre flux en direct facilement et rapidement."
 
 #: src/misc/controls/HLS.js:67
-msgid "In-Memory"
-msgstr "En mémoire"
-
 #: src/views/Settings.js:1647
 msgid "In-memory"
 msgstr "En mémoire"
@@ -1150,7 +1147,7 @@ msgstr "Certification Let's Encrypt"
 msgid "Let's Encrypt requires one or more public domain names and an accessible port 80/TCP."
 msgstr "Let's Encrypt requiert un ou plusieurs noms de domaine publics et un port 80/TCP accessible."
 
-#: src/misc/coders/Encoders/video/H264NVENC.js:114
+#: src/misc/coders/Encoders/video/H264NVENC.js:112
 msgid "Level"
 msgstr "Niveau"
 
@@ -1287,13 +1284,13 @@ msgstr "Canal de la page principale (index.html)."
 msgid "Maintainer:"
 msgstr "Mainteneur :"
 
-#: src/misc/controls/RTMP.js:49
-msgid "Make the channel available as an RTMP stream."
-msgstr "Rendre la chaîne disponible en tant que flux RTMP."
+#: src/misc/controls/RTMP.js:54
+msgid "Make the channel available as an RTMP stream (experimental)."
+msgstr "Rendre la chaîne disponible en tant que flux RTMP (expérimental)."
 
-#: src/misc/controls/SRT.js:49
-msgid "Make the channel available as an SRT stream."
-msgstr "Rendre la chaîne disponible en tant que flux SRT."
+#: src/misc/controls/SRT.js:54
+msgid "Make the channel available as an SRT stream (experimental)."
+msgstr "Rendre la chaîne disponible en tant que flux SRT (expérimental)."
 
 #: src/misc/controls/HLS.js:117
 msgid "Master playlist (increases browser/client compatibility)"
@@ -1419,7 +1416,7 @@ msgid "Network"
 msgstr "Réseau"
 
 #: src/views/Edit/Sources/Network.js:840
-#: src/views/Edit/Wizard/Sources/Network.js:109
+#: src/views/Edit/Wizard/Sources/Network.js:123
 msgid "Network source"
 msgstr "Source du réseau"
 
@@ -1495,7 +1492,7 @@ msgstr "Bruit"
 
 #: src/views/Edit/Sources/AVFoundation.js:145
 #: src/views/Edit/Summary.js:31
-#: src/views/Edit/Summary.js:105
+#: src/views/Edit/Summary.js:107
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:98
 msgid "None"
 msgstr "Aucun"
@@ -1548,7 +1545,7 @@ msgid "Passthrough (copy) should only be disabled if necessary. Each encoding re
 msgstr "Le Passthrough (copie) ne doit être désactivé que si nécessaire. Chaque encodage nécessite des ressources CPU/GPU supplémentaires."
 
 #: src/views/Edit/Sources/Network.js:460
-#: src/views/Edit/Wizard/Sources/Network.js:87
+#: src/views/Edit/Wizard/Sources/Network.js:97
 #: src/views/Login.js:282
 #: src/views/Publication/Services/Akamai.js:134
 #: src/views/Publication/Services/DASH.js:198
@@ -1568,7 +1565,7 @@ msgid "Password for authorization."
 msgstr "Mot de passe pour l'autorisation."
 
 #: src/views/Edit/Sources/Network.js:465
-#: src/views/Edit/Wizard/Sources/Network.js:89
+#: src/views/Edit/Wizard/Sources/Network.js:103
 msgid "Password for the device."
 msgstr "Mot de passe pour l'appareil."
 
@@ -1625,7 +1622,7 @@ msgid "Please check the <0>process log</0>"
 msgstr "Veuillez vérifier le <0>Journal du processus</0>."
 
 #: src/views/Publication/Services/Akamai.js:29
-#: src/views/Publication/Services/Azure.js:25
+#: src/views/Publication/Services/Azure.js:29
 #: src/views/Publication/Services/Bitmovin.js:23
 #: src/views/Publication/Services/Brightcove.js:23
 #: src/views/Publication/Services/CDN77.js:23
@@ -1681,9 +1678,9 @@ msgstr "Port"
 msgid "Position"
 msgstr "Position"
 
-#: src/misc/coders/Encoders/video/H264NVENC.js:72
-#: src/misc/coders/Encoders/video/X264.js:74
-#: src/misc/coders/Encoders/video/X265.js:74
+#: src/misc/coders/Encoders/video/H264NVENC.js:70
+#: src/misc/coders/Encoders/video/X264.js:72
+#: src/misc/coders/Encoders/video/X265.js:72
 msgid "Preset"
 msgstr "Préréglage"
 
@@ -1702,8 +1699,8 @@ msgstr "Clé de flux primaire"
 #: src/views/Edit/Sources/Network.js:660
 #: src/views/Edit/Sources/Network.js:706
 #: src/views/Edit/Sources/Network.js:755
-#: src/views/Edit/Sources/Raspicam.js:117
-#: src/views/Edit/Sources/V4L.js:131
+#: src/views/Edit/Sources/Raspicam.js:116
+#: src/views/Edit/Sources/V4L.js:134
 #: src/views/Edit/Sources/VirtualAudio.js:169
 #: src/views/Edit/Sources/VirtualVideo.js:188
 msgid "Probe"
@@ -1742,10 +1739,10 @@ msgstr "Rapport de processus"
 msgid "Processing & Control"
 msgstr "Traitement et contrôle"
 
-#: src/misc/coders/Encoders/video/H264NVENC.js:97
-#: src/misc/coders/Encoders/video/H264VAAPI.js:87
-#: src/misc/coders/Encoders/video/HEVCVAAPI.js:87
-#: src/misc/coders/Encoders/video/VP9VAAPI.js:87
+#: src/misc/coders/Encoders/video/H264NVENC.js:95
+#: src/misc/coders/Encoders/video/H264VAAPI.js:85
+#: src/misc/coders/Encoders/video/HEVCVAAPI.js:85
+#: src/misc/coders/Encoders/video/VP9VAAPI.js:85
 #: src/misc/coders/settings/Video.js:142
 #: src/views/Edit/Wizard/index.js:622
 msgid "Profile"
@@ -1754,7 +1751,7 @@ msgstr "Profil"
 #: src/views/Edit/Sources/Network.js:623
 #: src/views/Publication/Services/Akamai.js:144
 #: src/views/Publication/Services/Akamai.js:182
-#: src/views/Publication/Services/Azure.js:85
+#: src/views/Publication/Services/Azure.js:89
 #: src/views/Publication/Services/Bitmovin.js:86
 #: src/views/Publication/Services/Brightcove.js:87
 #: src/views/Publication/Services/CDN77.js:90
@@ -1808,9 +1805,9 @@ msgid "Pull or recieve the data:"
 msgstr "Tirer ou recevoir les données :"
 
 #: src/misc/Progress.js:90
-#: src/misc/coders/Encoders/video/H264VAAPI.js:142
-#: src/misc/coders/Encoders/video/HEVCVAAPI.js:142
-#: src/misc/coders/Encoders/video/VP9VAAPI.js:142
+#: src/misc/coders/Encoders/video/H264VAAPI.js:140
+#: src/misc/coders/Encoders/video/HEVCVAAPI.js:140
+#: src/misc/coders/Encoders/video/VP9VAAPI.js:140
 msgid "Quality"
 msgstr "Qualité"
 
@@ -1824,10 +1821,6 @@ msgstr "Mire de test RVB"
 msgid "RTMP"
 msgstr "RTMP"
 
-#: src/views/Edit/index.js:498
-msgid "RTMP Output"
-msgstr "Sortie RTMP"
-
 #: src/views/Settings.js:1871
 msgid "RTMP Port"
 msgstr "Port RTMP"
@@ -1835,6 +1828,10 @@ msgstr "Port RTMP"
 #: src/views/Settings.js:1905
 msgid "RTMP app for publishing."
 msgstr "Application RTMP pour la publication."
+
+#: src/views/Edit/index.js:498
+msgid "RTMP output"
+msgstr "Sortie RTMP"
 
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:93
 #: src/views/Settings.js:1835
@@ -1870,15 +1867,15 @@ msgstr "Adresse d'écoute du serveur RTMPS."
 msgid "RTSP"
 msgstr "RTSP"
 
-#: src/views/Edit/Sources/Raspicam.js:136
+#: src/views/Edit/Sources/Raspicam.js:135
 #: src/views/Edit/Wizard/Sources/Raspicam.js:117
 msgid "Raspberry Pi camera"
 msgstr "Caméra Raspberry Pi"
 
-#: src/misc/coders/Encoders/video/H264NVENC.js:149
-#: src/misc/coders/Encoders/video/H264VAAPI.js:68
-#: src/misc/coders/Encoders/video/HEVCVAAPI.js:68
-#: src/misc/coders/Encoders/video/VP9VAAPI.js:68
+#: src/misc/coders/Encoders/video/H264NVENC.js:147
+#: src/misc/coders/Encoders/video/H264VAAPI.js:66
+#: src/misc/coders/Encoders/video/HEVCVAAPI.js:66
+#: src/misc/coders/Encoders/video/VP9VAAPI.js:66
 msgid "Rate control"
 msgstr "Contrôle du taux"
 
@@ -1920,7 +1917,7 @@ msgstr "La reconnexion à Restreamer Core a échoué."
 
 #: src/views/Edit/Sources/ALSA.js:122
 #: src/views/Edit/Sources/AVFoundation.js:181
-#: src/views/Edit/Sources/V4L.js:117
+#: src/views/Edit/Sources/V4L.js:120
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:135
 #: src/views/Edit/Wizard/Sources/V4L.js:120
 msgid "Refresh"
@@ -2000,7 +1997,7 @@ msgid "SRT"
 msgstr "SRT"
 
 #: src/views/Edit/index.js:517
-msgid "SRT Output"
+msgid "SRT output"
 msgstr "Sortie SRT"
 
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:93
@@ -2094,8 +2091,8 @@ msgstr "Sélectionnez RTMP ou SRT (si activé) pour une latence moindre."
 #: src/views/Edit/Sources/ALSA.js:108
 #: src/views/Edit/Sources/AVFoundation.js:172
 #: src/views/Edit/Sources/Framebuffer.js:99
-#: src/views/Edit/Sources/Raspicam.js:100
-#: src/views/Edit/Sources/V4L.js:103
+#: src/views/Edit/Sources/Raspicam.js:99
+#: src/views/Edit/Sources/V4L.js:106
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:120
 #: src/views/Edit/Wizard/Sources/Raspicam.js:95
 #: src/views/Edit/Wizard/Sources/V4L.js:114
@@ -2341,8 +2338,8 @@ msgid "Stream names"
 msgstr "Noms des cours d'eau"
 
 #: src/misc/controls/Source.js:78
-msgid "Stream source for publication service."
-msgstr "Source de flux pour le service de publication."
+msgid "Stream source for publication service (experimental)."
+msgstr "Source de flux pour le service de publication (expérimental)."
 
 #: src/views/Playersite.js:441
 msgid "Support datarhei Restreamer"
@@ -2384,11 +2381,11 @@ msgstr "Mire (étendue)"
 msgid "Text colors"
 msgstr "Couleurs du texte"
 
-#: src/misc/controls/RTMP.js:56
+#: src/misc/controls/RTMP.js:61
 msgid "The RTMP output requires the RTMP Server."
 msgstr "La sortie RTMP nécessite le serveur RTMP."
 
-#: src/misc/controls/SRT.js:56
+#: src/misc/controls/SRT.js:61
 msgid "The SRT output requires the SRT Server."
 msgstr "La sortie SRT nécessite le serveur SRT."
 
@@ -2715,8 +2712,8 @@ msgstr "Transmet votre vidéo sous forme de flux RTMP avec la clé requise gén�
 msgid "Transmits your video stream with the required key, which was generated in Twitter Producer. You can find more information on seting up a live stream at Twitter's <0>Producer</0>."
 msgstr "Transmet votre flux vidéo avec la clé requise, qui a été générée dans Twitter Producer. Vous trouverez plus d'informations sur la configuration d'un flux en direct sur le site <0>Producteur</0> de Twitter."
 
-#: src/misc/coders/Encoders/video/X264.js:95
-#: src/misc/coders/Encoders/video/X265.js:95
+#: src/misc/coders/Encoders/video/X264.js:93
+#: src/misc/coders/Encoders/video/X265.js:93
 msgid "Tune"
 msgstr "Tune"
 
@@ -2783,7 +2780,7 @@ msgid "User registration"
 msgstr "Enregistrement de l'utilisateur"
 
 #: src/views/Edit/Sources/Network.js:448
-#: src/views/Edit/Wizard/Sources/Network.js:81
+#: src/views/Edit/Wizard/Sources/Network.js:84
 #: src/views/Login.js:272
 #: src/views/Publication/Services/DASH.js:195
 #: src/views/Publication/Services/DaCast.js:131
@@ -2802,7 +2799,7 @@ msgid "Username for authorization."
 msgstr "Nom d'utilisateur pour l'autorisation."
 
 #: src/views/Edit/Sources/Network.js:453
-#: src/views/Edit/Wizard/Sources/Network.js:83
+#: src/views/Edit/Wizard/Sources/Network.js:90
 msgid "Username for the device."
 msgstr "Nom d'utilisateur pour l'appareil."
 
@@ -2819,8 +2816,8 @@ msgid "Video"
 msgstr "Vidéo"
 
 #: src/views/Edit/Sources/AVFoundation.js:126
-#: src/views/Edit/Sources/Raspicam.js:93
-#: src/views/Edit/Sources/V4L.js:109
+#: src/views/Edit/Sources/Raspicam.js:92
+#: src/views/Edit/Sources/V4L.js:112
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:82
 #: src/views/Edit/Wizard/Sources/Raspicam.js:86
 #: src/views/Edit/Wizard/Sources/V4L.js:105

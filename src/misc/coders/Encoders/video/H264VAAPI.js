@@ -48,7 +48,7 @@ function createMapping(settings) {
 		'-r',
 		`${settings.fps}`,
 		'-g',
-		`${settings.gop}`,
+		`${settings.gop}`
 	);
 
 	if (settings.gop !== 'auto') {

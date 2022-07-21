@@ -22,7 +22,6 @@ import * as VideoNone from './video/None';
 import * as VideoRaw from './video/Raw';
 import * as VP9 from './video/VP9';
 
-
 class Registry {
 	constructor(type) {
 		this.type = type;
