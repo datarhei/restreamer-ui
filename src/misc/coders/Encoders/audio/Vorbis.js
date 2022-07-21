@@ -17,7 +17,7 @@ function createMapping(settings, stream) {
 	const local = ['-codec:a', 'vorbis', '-b:a', `${settings.bitrate}k`, '-qscale:a', '3', '-shortest'];
 
 	const mapping = {
-		global: [],
+		global: [['-vsync', 'drop']],
 		local: local,
 	};
 

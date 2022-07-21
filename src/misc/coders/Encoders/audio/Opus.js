@@ -38,7 +38,7 @@ function createMapping(settings, stream) {
 	}
 
 	const mapping = {
-		global: [],
+		global: [['-vsync', 'drop']],
 		local: local,
 	};
 
