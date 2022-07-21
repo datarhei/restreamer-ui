@@ -1,7 +1,7 @@
 {
 	"name": "restreamer-ui",
 	"version": "1.2.0",
-	"bundle": "restreamer-v2.x.x",
+	"bundle": "restreamer-v2.2.0",
 	"private": false,
 	"license": "Apache-2.0",
 	"dependencies": {

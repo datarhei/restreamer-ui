@@ -1,9 +1,11 @@
-FROM node:17.9.0-alpine3.15
+ARG NODE_IMAGE=node:18.6.0-alpine3.15
+
+FROM $NODE_IMAGE
 
 ARG NODE_SPACE_SIZE=10240
 ENV NODE_OPTIONS="--openssl-legacy-provider --max-old-space-size=$NODE_SPACE_SIZE"
 
-ARG PUBLIC_URL "/"
+ARG PUBLIC_URL "./"
 
 COPY . /ui
 
