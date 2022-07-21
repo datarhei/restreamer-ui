@@ -24,7 +24,7 @@ function init(initialState) {
 }
 
 function createMapping(settings) {
-	const mapping = [
+	const local = [
 		'-codec:v',
 		'h264_nvenc',
 		'-preset:v',
@@ -39,25 +39,28 @@ function createMapping(settings) {
 		`${settings.fps}`,
 		'-pix_fmt',
 		'yuv420p',
-		'-vsync',
-		'1',
 	];
 
 	if (settings.gop !== 'auto') {
-		mapping.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);
+		local.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);
 	}
 
 	if (settings.profile !== 'auto') {
-		mapping.push('-profile:v', `${settings.profile}`);
+		local.push('-profile:v', `${settings.profile}`);
 	}
 
 	if (settings.level !== 'auto') {
-		mapping.push('-level:v', `${settings.level}`);
+		local.push('-level:v', `${settings.level}`);
 	}
 
 	if (settings.rc !== 'auto') {
-		mapping.push('-rc:v', `${settings.rc}`);
+		local.push('-rc:v', `${settings.rc}`);
 	}
+
+	const mapping = {
+		global: [],
+		local: local,
+	};
 
 	return mapping;
 }

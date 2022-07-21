@@ -1,5 +1,6 @@
 import * as AVFoundation from './AVFoundation';
 import * as InternalRTMP from './InternalRTMP';
+import * as InternalSRT from './InternalSRT';
 import * as Network from './Network';
 import * as Raspicam from './Raspicam';
 import * as V4L from './V4L';
@@ -35,6 +36,7 @@ const registry = new Registry();
 
 registry.Register(Network);
 registry.Register(InternalRTMP);
+registry.Register(InternalSRT);
 //registry.Register(InternalHLS);
 registry.Register(AVFoundation);
 registry.Register(Raspicam);

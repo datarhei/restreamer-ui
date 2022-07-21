@@ -20,6 +20,11 @@ class Restreamer {
 			address = window.location.protocol + '//' + window.location.host;
 		}
 
+		// Remove the / at the end
+		if (address.slice(-1) === '/') {
+			address = address.slice(0, -1);
+		}
+
 		this.address = address;
 		this.api = new API(this.address);
 
@@ -353,7 +358,9 @@ class Restreamer {
 		}
 
 		compatibility.core.have = this.Version().number;
-		compatibility.ffmpeg.have = this.skills.ffmpeg.version;
+		if (this.skills?.ffmpeg?.version) {
+			compatibility.ffmpeg.have = this.skills.ffmpeg.version;
+		}
 
 		compatibility.core.compatible = SemverSatisfies(compatibility.core.have, compatibility.core.want);
 		compatibility.ffmpeg.compatible = SemverSatisfies(compatibility.ffmpeg.have, compatibility.ffmpeg.want);
@@ -366,8 +373,13 @@ class Restreamer {
 	}
 
 	async _init() {
-		await this._initConfig();
+		const compatibility = this.Compatibility();
+		if (!compatibility.core.compatible) {
+			return;
+		}
+
 		await this._initSkills();
+		await this._initConfig();
 		await this._discoverChannels();
 	}
 
@@ -490,6 +502,7 @@ class Restreamer {
 				input: [],
 				output: [],
 			},
+			filter: [],
 			sources: {
 				network: [],
 				virtualaudio: [],
@@ -511,6 +524,7 @@ class Restreamer {
 			formats: {},
 			protocols: {},
 			devices: {},
+			filter: [],
 			...val,
 		};
 
@@ -551,6 +565,10 @@ class Restreamer {
 
 		for (let hwaccel of val.hwaccels) {
 			skills.decoders.video.push(hwaccel.id);
+		}
+
+		for (let filter of val.filter) {
+			skills.filter.push(filter.id);
 		}
 
 		val.formats = {
@@ -677,14 +695,19 @@ class Restreamer {
 						local: 'localhost',
 						app: '',
 						token: '',
-						name: '',
+					},
+					srt: {
+						enabled: false,
+						host: '',
+						local: 'localhost',
+						token: '',
+						passphrase: '',
 					},
 					hls: {
 						secure: false,
 						host: '',
 						local: 'localhost',
 						credentials: '',
-						name: '',
 					},
 				},
 			},
@@ -754,6 +777,8 @@ class Restreamer {
 			hostname = val.config.host.name[0];
 		}
 
+		config.hostname = hostname;
+
 		// If we're connecting to the API with TLS or if the API is TLS-enabled
 		// we upgrade to TLS.
 		let protocol = 'http:';
@@ -768,8 +793,6 @@ class Restreamer {
 		if (port.length === 0) {
 			port = config.http.secure ? '443' : '80';
 		}
-
-		config.hostname = hostname;
 
 		// Set the HTTP host and only add the port if it is not the default one.
 		config.http.host = config.hostname;
@@ -817,12 +840,32 @@ class Restreamer {
 
 		// This is used for FFmpeg to access the RTMP stream. If the RTMP server is bound to a
 		// specific address, we'll use this one, localhost otherwise.
-		let [rtmp_host, rtmp_port] = splitHostPort(val.config.rtmp.address);
+		const [rtmp_host, rtmp_port] = splitHostPort(val.config.rtmp.address);
 		config.source.network.rtmp.local = rtmp_host.length !== 0 ? rtmp_host : 'localhost';
 		if (rtmp_port !== '1935') {
 			config.source.network.rtmp.host += ':' + rtmp_port;
 			config.source.network.rtmp.local += ':' + rtmp_port;
 		}
+
+		if (config.source.network.rtmp.secure === true) {
+			const [, rtmp_port] = splitHostPort(val.config.rtmp.address_tls);
+			if (rtmp_port !== '1935') {
+				config.source.network.rtmp.host += ':' + rtmp_port;
+			}
+		}
+
+		// SRT
+
+		config.source.network.srt.enabled = val.config.srt.enable;
+		config.source.network.srt.passphrase = val.config.srt.passphrase;
+		config.source.network.srt.token = val.config.srt.token;
+
+		config.source.network.srt.host = config.hostname;
+
+		let [srt_host, srt_port] = splitHostPort(val.config.srt.address);
+		config.source.network.srt.local = srt_host.length !== 0 ? srt_host : 'localhost';
+		config.source.network.srt.host += ':' + srt_port;
+		config.source.network.srt.local += ':' + srt_port;
 
 		// Memfs
 
@@ -844,6 +887,7 @@ class Restreamer {
 
 		config.source.network.rtmp.name = this.channel.channelid;
 		config.source.network.hls.name = this.channel.channelid;
+		config.source.network.srt.name = this.channel.channelid;
 
 		return config;
 	}
@@ -858,6 +902,10 @@ class Restreamer {
 	}
 
 	ConfigOverrides(name) {
+		if (!this.config) {
+			return false;
+		}
+
 		return this.config.overrides.includes(name);
 	}
 
@@ -888,12 +936,97 @@ class Restreamer {
 		return await this._getResources();
 	}
 
-	// Get all HTTP addresses
-	GetHTTPAddresses() {
+	// Get the public HTTP address
+	GetPublicHTTPAddress() {
 		const config = this.ConfigActive();
 		const address = (config.http.secure === true ? 'https://' : 'http://') + config.http.host;
 
-		return [address];
+		return address;
+	}
+
+	// Get all RTMP/SRT/SNAPSHOT+MEMFS/HLS+MEMFS addresses
+	GetPublicAddress(what, channelid) {
+		const config = this.ConfigActive();
+		const host = config.hostname;
+
+		let address = '';
+
+		function getPort(servicePort) {
+			let port = servicePort.split(/:([0-9]+)$/)[1];
+			if (port && !port.includes(':')) {
+				port = `:${port}`;
+			}
+			if (port) {
+				return port;
+			} else {
+				return '';
+			}
+		}
+
+		if (what === 'rtmp') {
+			// rtmp/s
+			const cfg = config.source.network.rtmp;
+			const port = getPort(cfg.host);
+
+			address = 'rtmp';
+			if (cfg.secure) {
+				address += 's';
+			}
+
+			address +=
+				`://${host}${port}` +
+				(cfg.app.length !== 0 ? cfg.app : '') +
+				'/' +
+				channelid +
+				'.stream' +
+				(cfg.token.length !== 0 ? `?token=${cfg.token}` : '');
+		} else if (what === 'srt') {
+			// srt
+			const cfg = config.source.network.srt;
+			const port = getPort(cfg.host);
+
+			address =
+				`srt://${host}${port}/?mode=caller&transtype=live&streamid=#!:m=request,r=${channelid}` +
+				(cfg.token.length !== 0 ? `,token=${cfg.token}` : '') +
+				(cfg.passphrase.length !== 0 ? `&passphrase=${cfg.passphrase}` : '');
+		} else if (what === 'snapshot+memfs') {
+			// snapshot+memfs
+			const port = getPort(config.source.network.hls.host);
+
+			address = (config.http.secure === true ? 'https://' : 'http://') + `${host}${port}/` + this.GetChannelPosterPath(channelid, 'memfs');
+		} else if (what === 'snapshot+diskfs') {
+			// snapshot+diskfs
+			const port = getPort(config.source.network.hls.host);
+
+			address = (config.http.secure === true ? 'https://' : 'http://') + `${host}${port}/` + this.GetChannelPosterPath(channelid, 'diskfs');
+		} else if (what === 'hls+memfs') {
+			// hls+memfs
+			const port = getPort(config.source.network.hls.host);
+
+			address = (config.http.secure === true ? 'https://' : 'http://') + `${host}${port}/` + this.GetChannelManifestPath(channelid, 'memfs');
+		} else if (what === 'hls+diskfs') {
+			// hls+diskfs
+			const port = getPort(config.source.network.hls.host);
+
+			address = (config.http.secure === true ? 'https://' : 'http://') + `${host}${port}/` + this.GetChannelManifestPath(channelid, 'diskfs');
+		} else if (what === 'player') {
+			// player
+			address = (config.http.secure === true ? 'https://' : 'http://') + `${config.http.host}/` + this.GetChannelPlayerPath(channelid);
+		}
+
+		return address;
+	}
+
+	// Get the iframe codes for the player
+	GetPublicIframeCode(channelid) {
+		const channel = this.GetChannel(channelid);
+		if (channel === null) {
+			return '';
+		}
+
+		const address = this.GetPublicHTTPAddress();
+
+		return `<iframe src="${address}/${channel.channelid}.html" width="640" height="360" frameborder="no" scrolling="no" allowfullscreen="true"></iframe>`;
 	}
 
 	// Channels
@@ -1026,7 +1159,7 @@ class Restreamer {
 
 	async DeleteChannel(channelid) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return false;
 		}
 
@@ -1074,7 +1207,7 @@ class Restreamer {
 				channelid: channel.channelid,
 				name: channel.name,
 				available: channel.available,
-				thumbnail: this.Address() + '/' + this.GetChannelPosterUrl(channel.channelid),
+				thumbnail: this.GetChannelAddress('snapshot+memfs', channel.channelid),
 				egresses: Array.from(channel.egresses.keys()),
 			});
 		}
@@ -1093,14 +1226,14 @@ class Restreamer {
 			channelid: channel.channelid,
 			name: channel.name,
 			available: channel.available,
-			thumbnail: this.Address() + '/' + this.GetChannelPosterUrl(channel.channelid),
+			thumbnail: this.GetChannelAddress('snapshot+memfs', channel.channelid),
 			egresses: Array.from(channel.egresses.keys()),
 		};
 	}
 
 	SetChannel(channelid, channel) {
 		let c = this.channels.get(channelid);
-		if (c === null) {
+		if (!c) {
 			return false;
 		}
 
@@ -1115,13 +1248,13 @@ class Restreamer {
 
 	GetChannelEgress(channelid, id) {
 		let channel = this.channels.get(channelid);
-		if (channel === null) {
-			return false;
+		if (!channel) {
+			return null;
 		}
 
 		const egress = channel.egresses.get(id);
-		if (egress === null) {
-			return false;
+		if (!egress) {
+			return null;
 		}
 
 		return {
@@ -1135,7 +1268,7 @@ class Restreamer {
 
 	SetChannelEgress(channelid, id, data) {
 		let channel = this.channels.get(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return false;
 		}
 
@@ -1144,7 +1277,7 @@ class Restreamer {
 
 	DeleteChannelEgress(channelid, id) {
 		let channel = this.channels.get(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return false;
 		}
 
@@ -1159,71 +1292,72 @@ class Restreamer {
 		return this.channel.channelid;
 	}
 
-	// Get the URL for the stream
-	GetChannelManifestUrl(channelid) {
-		return `memfs/${channelid}.m3u8`;
+	// Get the path for the HLS manifest
+	GetChannelManifestPath(channelid, storage) {
+		if (!storage) {
+			storage = 'memfs';
+		}
+
+		let url = `${channelid}.m3u8`;
+		if (storage === 'memfs') {
+			url = 'memfs/' + url;
+		}
+
+		return url;
 	}
 
-	// Get the URL for the poster image
-	GetChannelPosterUrl(channelid) {
+	// Get the path for the poster image
+	GetChannelPosterPath(channelid, storage) {
 		return `memfs/${channelid}.jpg`;
+	}
+
+	// Get the path for the player
+	GetChannelPlayerPath(channelid) {
+		return `${channelid}.html`;
+	}
+
+	GetChannelAddress(what, channelid) {
+		const address = this.Address();
+
+		if (what === 'hls+memfs') {
+			return `${address}/${this.GetChannelManifestPath(channelid, 'memfs')}`;
+		} else if (what === 'hls+diskfs') {
+			return `${address}/${this.GetChannelManifestPath(channelid, 'diskfs')}`;
+		} else if (what === 'snapshot+memfs') {
+			return `${address}/${this.GetChannelPosterPath(channelid, 'memfs')}`;
+		} else if (what === 'snapshot+diskfs') {
+			return `${address}/${this.GetChannelPosterPath(channelid, 'diskfs')}`;
+		} else if (what === 'player') {
+			return `${address}/${this.GetChannelPlayerPath(channelid)}`;
+		}
 	}
 
 	// Sessions
 
-	async CurrentSessions() {
+	async CurrentSessions(protocols) {
 		const sessions = {
 			sessions: 0,
 			bitrate_kbit: 0,
 		};
 
-		const [val, err] = await this._call(this.api.ActiveSessions, ['ffmpeg', 'hls', 'rtmp']);
+		const [val, err] = await this._call(this.api.ActiveSessions, protocols);
 		if (err !== null) {
 			return sessions;
 		}
 
-		// HLS sessions
-
-		if (!val.hls) {
-			val.hls = [];
-		}
-
-		for (let i = 0; i < val.hls.length; i++) {
-			if (val.hls[i].reference !== this.channel.channelid) {
+		for (let p of protocols) {
+			if (!(p in val)) {
 				continue;
 			}
 
-			sessions.sessions++;
-			sessions.bitrate_kbit += val.hls[i].bandwidth_tx_kbit;
-		}
+			for (let s of val[p]) {
+				if (!s.reference.startsWith(this.channel.channelid)) {
+					continue;
+				}
 
-		// ffmpeg sessions
-
-		if (!val.ffmpeg) {
-			val.ffmpeg = [];
-		}
-
-		for (let i = 0; i < val.ffmpeg.length; i++) {
-			if (val.ffmpeg[i].reference !== this.channel.channelid) {
-				continue;
+				sessions.sessions++;
+				sessions.bitrate_kbit += s.bandwidth_tx_kbit;
 			}
-
-			sessions.bitrate_kbit += val.ffmpeg[i].bandwidth_tx_kbit;
-		}
-
-		// RTMP sessions
-
-		if (!val.rtmp) {
-			val.rtmp = [];
-		}
-
-		for (let i = 0; i < val.rtmp.length; i++) {
-			if (val.rtmp[i].reference !== this.channel.channelid) {
-				continue;
-			}
-
-			sessions.sessions++;
-			sessions.bitrate_kbit += val.rtmp[i].bandwidth_tx_kbit;
 		}
 
 		return sessions;
@@ -1313,59 +1447,6 @@ class Restreamer {
 		return await this.GetDebug(channel.id);
 	}
 
-	GetIngestAddresses(channelid) {
-		const channel = this.GetChannel(channelid);
-		if (channel === null) {
-			return [];
-		}
-
-		const addresses = this.GetHTTPAddresses();
-
-		return addresses.map((address) => {
-			return `${address}/${channel.channelid}.html`;
-		});
-	}
-
-	// Get the iframe codes for the player
-	GetIngestIframeCodes(channelid) {
-		const channel = this.GetChannel(channelid);
-		if (channel === null) {
-			return [];
-		}
-
-		const addresses = this.GetHTTPAddresses();
-
-		const codes = [];
-
-		for (let address of addresses) {
-			codes.push(
-				`<iframe src="${address}/${channel.channelid}.html" width="640" height="360" frameborder="no" scrolling="no" allowfullscreen="true"></iframe>`
-			);
-		}
-
-		return codes;
-	}
-
-	// Get the URL for the HLS manifest
-	GetIngestManifestUrl(channelid) {
-		return this.GetChannelManifestUrl(channelid);
-	}
-
-	// Get the URL for poster image
-	GetIngestPosterUrl(channelid) {
-		return this.GetChannelPosterUrl(channelid);
-	}
-
-	// Get the URL for poster image
-	GetIngestPosterUrlAddresses(channelid) {
-		const poster = this.GetChannelPosterUrl(channelid);
-		const addresses = this.GetHTTPAddresses();
-
-		return addresses.map((address) => {
-			return `${address}/${poster}`;
-		});
-	}
-
 	// Start the ingest process
 	async StartIngest(channelid) {
 		const channel = this.GetChannel(channelid);
@@ -1427,9 +1508,9 @@ class Restreamer {
 	}
 
 	// Upsert the ingest process
-	async UpsertIngest(channelid, inputs, outputs, control) {
+	async UpsertIngest(channelid, global, inputs, outputs, control) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return [null, { message: 'Unknown channel ID' }];
 		}
 
@@ -1439,7 +1520,7 @@ class Restreamer {
 			reference: channel.channelid,
 			input: [],
 			output: [],
-			options: ['-err_detect', 'ignore_err'],
+			options: ['-err_detect', 'ignore_err', ...global],
 			autostart: control.process.autostart,
 			reconnect: control.process.reconnect,
 			reconnect_delay_seconds: parseInt(control.process.delay),
@@ -1456,91 +1537,217 @@ class Restreamer {
 			});
 		}
 
+		// Set hls storage endpoint
+		const hlsStorage = control.hls.storage;
+
+		// Set hls variant suffix (Master/Variant playlist)
+		let bitrate_suffix = '';
+		if (control.hls.master_playlist) {
+			bitrate_suffix = '_var0';
+		}
+
 		const output = {
 			id: 'output_0',
-			address: `{memfs}/${channel.channelid}.m3u8`,
+			address: `{${hlsStorage}}/${channel.channelid}${bitrate_suffix}.m3u8`,
 			options: ['-dn', '-sn', ...outputs[0].options.map((o) => '' + o)],
 			cleanup: [
 				{
-					pattern: `memfs:/${channel.channelid}_*.ts`,
-					max_files: parseInt(control.hls.listSize) + 2,
-					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 2) : 0,
+					pattern: `${hlsStorage}:/${channel.channelid}_*${bitrate_suffix}.` + (control.hls.version >= 7 ? 'mp4' : 'ts'),
+					max_files: parseInt(control.hls.listSize) + 6,
+					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
 					purge_on_delete: true,
 				},
 				{
-					pattern: `memfs:/${channel.channelid}.m3u8`,
-					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 2) : 0,
+					pattern: `${hlsStorage}:/${channel.channelid}${bitrate_suffix}.m3u8`,
+					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
 					purge_on_delete: true,
 				},
 			],
 		};
 
-		const metadata = this.GetHTTPAddresses()[0] + '/' + channel.channelid + '/oembed.json';
+		// Add master playlist cleanup
+		if (control.hls.master_playlist) {
+			output.cleanup.push({
+				pattern: `${hlsStorage}:/${channel.channelid}.m3u8`,
+				max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
+				purge_on_delete: true,
+			});
+		}
 
+		// Injects a metadata link as title
+		const metadata = `${this.GetPublicHTTPAddress()}/${channel.channelid}/oembed.json`;
 		const metadata_options = ['-metadata', `title=${metadata}`, '-metadata', 'service_provider=datarhei-Restreamer'];
-
 		output.options.push(...metadata_options);
 
-		if (control.hls.lhls === false) {
-			// ordinary HLS
-			output.options.push(
-				'-f',
-				'hls',
-				'-start_number',
-				'0',
-				'-hls_time',
-				'' + parseInt(control.hls.segmentDuration),
-				'-hls_list_size',
-				'' + parseInt(control.hls.listSize),
-				'-hls_flags',
-				'append_list+delete_segments',
-				'-hls_segment_filename',
-				`{memfs}/${channel.channelid}_%04d.ts`,
-				'-y',
-				'-method',
-				'PUT'
-			);
+		// Fetch core config
+		const core_config = this.ConfigActive();
+
+		// Fetch rtmp settings
+		const rtmp_config = core_config.source.network.rtmp;
+		let rtmp_enabled = false;
+		if (control.rtmp && control.rtmp.enable && rtmp_config.enabled) {
+			rtmp_enabled = true;
+		}
+
+		// Fetch srt settings
+		const srt_config = core_config.source.network.srt;
+		let srt_enabled = false;
+		if (control.srt.enable && srt_config.enabled) {
+			srt_enabled = true;
+		}
+
+		// 'tee_muxer' is required for the delivery of one output to multiple endpoints without processing the input for each output
+		// http://ffmpeg.org/ffmpeg-all.html#tee-1
+		let tee_muxer = false;
+		if (rtmp_enabled || srt_enabled) {
+			tee_muxer = true;
+		}
+
+		// Manifest versions
+		// https://developer.apple.com/documentation/http_live_streaming/about_the_ext-x-version_tag
+		// https://ffmpeg.org/ffmpeg-all.html#Options-53
+
+		// fix Malformed AAC bitstream detected for hls version 7
+		let hls_aac_adtstoasc = false;
+
+		// Returns the raw l/hls parameters for an EXT-X-VERSION
+		const getHLSParams = (lhls, version) => {
+			if (lhls) {
+				// lhls
+				return [
+					['f', 'dash'],
+					['strict', 'experimental'],
+					['hls_playlist', '1'],
+					['init_seg_name', `init-${channel.channelid}.$ext$`],
+					['media_seg_name', `chunk-${channel.channelid}-$Number%05d$.$ext$`],
+					['master_m3u8_publish_rate', '1'],
+					['adaptation_sets', 'id=0,streams=v id=1,streams=a'],
+					['lhls', '1'],
+					['streaming', '1'],
+					['seg_duration', '' + parseInt(control.hls.segmentDuration)],
+					['frag_duration', '0.5'],
+					['use_template', '1'],
+					['remove_at_exit', '0'],
+					['window_size', '' + parseInt(control.hls.listSize)],
+					['http_persistent', '0'],
+					['method', 'PUT'],
+				];
+			} else {
+				// hls
+				switch (version) {
+					case 6:
+						return [
+							['f', 'hls'],
+							['start_number', '0'],
+							['hls_time', '' + parseInt(control.hls.segmentDuration)],
+							['hls_list_size', '' + parseInt(control.hls.listSize)],
+							['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments'],
+							['hls_delete_threshold', '4'],
+							['hls_segment_filename', `{${hlsStorage}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d${bitrate_suffix}.ts`],
+							['method', 'PUT'],
+						];
+					case 7:
+						// fix Malformed AAC bitstream detected for hls version 7
+						if (output.options.includes('-codec:a') && output.options.includes('copy')) {
+							if (!tee_muxer) {
+								output.options.push('-bsf:a', 'aac_adtstoasc');
+							}
+							hls_aac_adtstoasc = true;
+						}
+						// mp4 manifest cleanup
+						output.cleanup.push({
+							pattern: `${hlsStorage}:/${channel.channelid}.mp4`,
+							max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
+							purge_on_delete: true,
+						});
+						return [
+							['f', 'hls'],
+							['start_number', '0'],
+							['hls_time', '' + parseInt(control.hls.segmentDuration)],
+							['hls_list_size', '' + parseInt(control.hls.listSize)],
+							['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments'],
+							['hls_delete_threshold', '4'],
+							['hls_segment_type', 'fmp4'],
+							['hls_fmp4_init_filename', `${channel.channelid}.mp4`],
+							['hls_fmp4_init_resend', '1'],
+							['hls_segment_filename', `{${hlsStorage}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d${bitrate_suffix}.mp4`],
+							['method', 'PUT'],
+						];
+					// case 3
+					default:
+						return [
+							['f', 'hls'],
+							['start_number', '0'],
+							['hls_time', '' + parseInt(control.hls.segmentDuration)],
+							['hls_list_size', '' + parseInt(control.hls.listSize)],
+							['hls_flags', 'append_list+delete_segments+program_date_time'],
+							['hls_delete_threshold', '4'],
+							['hls_segment_filename', `{${hlsStorage}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d${bitrate_suffix}.ts`],
+							['method', 'PUT'],
+						];
+				}
+			}
+		};
+		const hls_params_raw = getHLSParams(control.hls.lhls, control.hls.version);
+
+		// Push master playlist params
+		if (control.hls.master_playlist) {
+			hls_params_raw.push(['master_pl_name', `${channel.channelid}.m3u8`], ['master_pl_publish_rate', `${control.hls.segmentDuration}`]);
+		}
+
+		// Overwrite output files
+		proc.options.push('-y');
+
+		// Returns the l/hls parameters with or without tee_muxer
+		if (tee_muxer) {
+			// f=hls:start_number=0...
+			const hls_params = hls_params_raw
+				.filter((o) => {
+					// unsupported in tee_muxer
+					return !(o[0] === 'segment_format_options' || o[0] === 'max_muxing_queue_size');
+				})
+				.map((o) => o[0] + '=' + o[1])
+				.join(':');
+
+			output.options.push('-flags', '+global_header', '-tag:v', '7', '-tag:a', '10', '-f', 'tee');
+			// ['f=hls:start_number=0...]address.m3u8
+			// use tee_muxer formatting
+			output.address =
+				`[${hls_aac_adtstoasc ? 'bsfs/a=aac_adtstoasc:' : ''}${hls_params}]{${hlsStorage}}/${channel.channelid}${bitrate_suffix}.m3u8` +
+				(rtmp_enabled ? `|[f=flv]{rtmp,name=${channel.channelid}.stream}` : '') +
+				(srt_enabled ? `|[f=mpegts]{srt,name=${channel.channelid},mode=publish}` : '');
 		} else {
-			// Low Latency HLS
-			output.address = `{memfs}/${channel.channelid}.mpd`;
-			output.options.push(
-				'-f',
-				'dash',
-				'-strict',
-				'experimental',
-				'-hls_playlist',
-				'1',
-				'-init_seg_name',
-				`init-${channel.channelid}.$ext$`,
-				'-media_seg_name',
-				`chunk-${channel.channelid}-$Number%05d$.$ext$`,
-				'-master_m3u8_publish_rate',
-				'1',
-				'-adaptation_sets',
-				'id=0,streams=v id=1,streams=a',
-				'-lhls',
-				'1',
-				'-streaming',
-				'1',
-				'-seg_duration',
-				'' + parseInt(control.hls.segmentDuration),
-				'-frag_duration',
-				'0.5',
-				'-use_template',
-				'1',
-				'-remove_at_exit',
-				'0',
-				'-window_size',
-				'' + parseInt(control.hls.listSize),
-				'-http_persistent',
-				'0',
-				'-y',
-				'-method',
-				'PUT'
-			);
+			// ['-f', 'hls', '-start_number', '0', ...]
+			// adding the '-' in front of the first option, then flatten everything
+			const hls_params = hls_params_raw.map((o) => ['-' + o[0], o[1]]).reduce((acc, val) => acc.concat(val), []);
+
+			output.options.push(...hls_params);
 		}
 
 		proc.output.push(output);
+
+		const [val, err] = await this._upsertProcess(channel.id, proc);
+		if (err !== null) {
+			return [val, err];
+		}
+
+		this.SetChannel(channelid, {
+			...channel,
+			available: true,
+		});
+
+		return [val, null];
+	}
+
+	// Upsert the ingest snapshot process
+	async UpsertIngestSnapshot(channelid, control) {
+		const channel = this.GetChannel(channelid);
+		if (channel === null) {
+			return [null, { message: 'Unknown channel ID' }];
+		}
+
+		// Set hls storage endpoint
+		const hlsStorage = control.hls.storage;
 
 		const snapshot = {
 			type: 'ffmpeg',
@@ -1549,7 +1756,7 @@ class Restreamer {
 			input: [
 				{
 					id: 'input_0',
-					address: `#${channel.id}:output=output_0`,
+					address: `{${hlsStorage}}/${channel.channelid}.m3u8`,
 					options: [],
 				},
 			],
@@ -1573,20 +1780,10 @@ class Restreamer {
 			stale_timeout_seconds: 30,
 		};
 
-		let [val, err] = await this._upsertProcess(channel.id, proc);
+		const [val, err] = await this._upsertProcess(channel.id + '_snapshot', snapshot);
 		if (err !== null) {
 			return [val, err];
 		}
-
-		[val, err] = await this._upsertProcess(channel.id + '_snapshot', snapshot);
-		if (err !== null) {
-			return [val, err];
-		}
-
-		this.SetChannel(channelid, {
-			...channel,
-			available: true,
-		});
 
 		return [val, null];
 	}
@@ -1704,10 +1901,16 @@ class Restreamer {
 
 	// Set defaults for the settings of the selfhosted player
 	InitPlayerSettings(initSettings) {
+		if (!initSettings) {
+			initSettings = {};
+		}
+
 		const settings = {
 			autoplay: false,
 			mute: false,
 			statistics: false,
+			chromecast: false,
+			airplay: false,
 			color: {},
 			ga: {},
 			logo: {},
@@ -1751,18 +1954,22 @@ class Restreamer {
 			return false;
 		}
 
+		metadata.player = this.InitPlayerSettings(metadata.player);
+
 		const templateData = {
 			channelid: channelid,
 			name: metadata.meta.name,
 			description: metadata.meta.description,
 			author_name: metadata.meta.author.name,
-			author_url: this.GetIngestAddresses(channelid)[0],
+			author_url: this.GetPublicAddress('player', channelid),
 			license: metadata.license,
-			iframecode: this.GetIngestIframeCodes(channelid)[0],
-			poster: this.GetIngestPosterUrl(channelid),
-			poster_url: this.GetIngestPosterUrlAddresses(channelid)[0],
+			iframecode: this.GetPublicIframeCode(channelid),
+			poster: this.GetChannelPosterPath(channelid, metadata.control.hls.storage),
+			poster_url: this.GetPublicAddress('snapshot+memfs', channelid),
 			width: 640,
 			height: 360,
+			chromecast: metadata.player.chromecast,
+			airplay: metadata.player.airplay,
 		};
 
 		// upload player.html
@@ -1796,16 +2003,12 @@ class Restreamer {
 	}
 
 	async UpdatePlayerConfig(channelid, metadata) {
-		if (!('player' in metadata)) {
-			metadata.player = {};
-		}
-
 		metadata.player = this.InitPlayerSettings(metadata.player);
 
 		const playerConfig = {
 			...metadata.player,
-			source: this.GetIngestManifestUrl(channelid),
-			poster: this.GetIngestPosterUrl(channelid),
+			source: this.GetChannelManifestPath(channelid, metadata.control.hls.storage),
+			poster: this.GetChannelPosterPath(channelid, metadata.control.hls.storage),
 			license: {
 				license: metadata.license,
 				title: metadata.meta.name,
@@ -1843,11 +2046,13 @@ class Restreamer {
 
 		const settings = {
 			player: 'videojs',
-			playersite: true,
+			playersite: false,
 			channelid: 'current',
 			title: 'restreamer',
 			share: true,
 			support: true,
+			chromecast: false,
+			airplay: false,
 			template: '!default',
 			templatename: '',
 			textcolor_title: 'rgba(255,255,255,1)',
@@ -1929,6 +2134,8 @@ class Restreamer {
 				title: settings.title,
 				share: settings.share,
 				support: settings.support,
+				chromecast: settings.chromecast,
+				airplay: settings.airplay,
 				url: this.GetPlayersiteUrl(),
 				textcolor_title: settings.textcolor_title,
 				textcolor_default: settings.textcolor_default,
@@ -1955,7 +2162,7 @@ class Restreamer {
 				channel_creator_description: ingestMetadata.meta.author.description,
 				channel_creator_description_html: ingestMetadata.meta.author.description.replace(/(?:\r\n|\r|\n)/g, '<br />'),
 				channel_license: ingestMetadata.license,
-				channel_poster: this.GetIngestPosterUrl(item.channelid),
+				channel_poster: this.GetChannelPosterPath(item.channelid, ingestMetadata.control.hls.storage),
 				channel_width: 640,
 				channel_height: 360,
 			};
@@ -2059,7 +2266,7 @@ class Restreamer {
 	// Get process information for egress
 	async GetEgress(channelid, id, filter = []) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return;
 		}
 
@@ -2075,7 +2282,7 @@ class Restreamer {
 		let metadata = null;
 
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return M.initEgressMetadata(metadata);
 		}
 
@@ -2089,7 +2296,7 @@ class Restreamer {
 	// Set metadata for egress
 	async SetEgressMetadata(channelid, id, metadata) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return null;
 		}
 
@@ -2107,7 +2314,7 @@ class Restreamer {
 	// Start egress process
 	async StartEgress(channelid, id) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return null;
 		}
 
@@ -2121,7 +2328,7 @@ class Restreamer {
 	// Stop egress process
 	async StopEgress(channelid, id) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return null;
 		}
 
@@ -2135,7 +2342,7 @@ class Restreamer {
 	// Stop all egress processes
 	async StopAllEgresses(channelid) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return;
 		}
 
@@ -2149,7 +2356,7 @@ class Restreamer {
 	// Delete egress process
 	async DeleteEgress(channelid, id) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return null;
 		}
 
@@ -2169,7 +2376,7 @@ class Restreamer {
 	// Get the egress log
 	async GetEgressLog(channelid, id) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return null;
 		}
 
@@ -2183,7 +2390,7 @@ class Restreamer {
 	// Get the egress debug log
 	async GetEgressDebug(channelid, id) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return null;
 		}
 
@@ -2195,9 +2402,9 @@ class Restreamer {
 	}
 
 	// Update an egress process
-	async UpdateEgress(channelid, id, inputs, outputs, control) {
+	async UpdateEgress(channelid, id, global, inputs, outputs, control) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return null;
 		}
 
@@ -2206,13 +2413,26 @@ class Restreamer {
 		}
 
 		const egress = this.GetChannelEgress(channelid, id);
+		if (!egress) {
+			return null;
+		}
 
 		if (!Array.isArray(outputs)) {
 			outputs = [outputs];
 		}
 
-		// from the inputs only the first is used and only
-		// its options are considered.
+		// from the inputs only the first is used and only its options are considered.
+
+		let address = '';
+		if (control.source.source === 'hls+memfs') {
+			address = `{memfs}/${channel.channelid}.m3u8`;
+		} else if (control.source.source === 'hls+diskfs') {
+			address = `{diskfs}/${channel.channelid}.m3u8`;
+		} else if (control.source.source === 'rtmp') {
+			address = `{rtmp,name=${channel.channelid}.stream}`;
+		} else if (control.source.source === 'srt') {
+			address = `{srt,name=${channel.channelid},mode=request}`;
+		}
 
 		const config = {
 			type: 'ffmpeg',
@@ -2221,12 +2441,12 @@ class Restreamer {
 			input: [
 				{
 					id: 'input_0',
-					address: `#${channel.id}:output=output_0`,
+					address: address,
 					options: ['-re', ...inputs[0].options],
 				},
 			],
 			output: [],
-			options: ['-err_detect', 'ignore_err'],
+			options: ['-err_detect', 'ignore_err', ...global],
 			autostart: control.process.autostart,
 			reconnect: control.process.reconnect,
 			reconnect_delay_seconds: parseInt(control.process.delay),
@@ -2252,9 +2472,9 @@ class Restreamer {
 	}
 
 	// Create an egress process
-	async CreateEgress(channelid, service, inputs, outputs, control) {
+	async CreateEgress(channelid, service, global, inputs, outputs, control) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return ['', { message: 'Unknown channel ID' }];
 		}
 
@@ -2269,7 +2489,7 @@ class Restreamer {
 
 		this.SetChannelEgress(channelid, egress.id, egress);
 
-		const [, err] = await this.UpdateEgress(channelid, egress.id, inputs, outputs, control);
+		const [, err] = await this.UpdateEgress(channelid, egress.id, global, inputs, outputs, control);
 		if (err !== null) {
 			this.DeleteChannelEgress(channelid, egress.id);
 		}
@@ -2281,7 +2501,7 @@ class Restreamer {
 
 	async ListIngestEgresses(channelid, services = []) {
 		const channel = this.GetChannel(channelid);
-		if (channel === null) {
+		if (!channel) {
 			return [];
 		}
 
@@ -2591,9 +2811,20 @@ class Restreamer {
 			return null;
 		}
 
-		const regex = /([a-z]+):\/\/[^/]+(?:\/[0-9A-Za-z-_.~/%:=&?]+)?/gm;
+		const regex = /(?:([a-z]+):)?\/[^\s]*/gm;
 		const replace = (s) => {
-			return s.replaceAll(regex, '$1://[anonymized]');
+			return s.replaceAll(regex, (match, scheme) => {
+				if (scheme) {
+					return `${scheme}://[anonymized]`;
+				}
+
+				const pathElm = match.split('/').filter((p) => p.length !== 0);
+				if (pathElm.length < 2) {
+					return match;
+				}
+
+				return `/[anonymized]/${pathElm.pop()}`;
+			});
 		};
 
 		if (p.config) {
@@ -2619,11 +2850,19 @@ class Restreamer {
 				p.state.progress.outputs[i].address = replace(p.state.progress.outputs[i].address);
 			}
 
+			if (!p.state.command) {
+				p.state.command = [];
+			}
+
 			p.state.command = p.state.command.map(replace);
 			p.state.last_logline = replace(p.state.last_logline);
 		}
 
 		if (p.report) {
+			if (!p.report.prelude) {
+				p.report.prelude = [];
+			}
+
 			p.report.prelude = p.report.prelude.map(replace);
 			p.report.log = p.report.log.map((l) => [l[0], replace(l[1])]);
 
@@ -2631,10 +2870,6 @@ class Restreamer {
 				p.report.history[i].prelude = p.report.history[i].prelude.map(replace);
 				p.report.history[i].log = p.report.history[i].log.map((l) => [l[0], replace(l[1])]);
 			}
-		}
-
-		if (p.service) {
-			p.service.token = replace(p.service.token);
 		}
 
 		return p;
@@ -2753,9 +2988,9 @@ class Restreamer {
 
 	async _removePublicEssentials() {
 		await this._deleteAsset('/robots.txt');
-		await this._deleteAsset('/favicon.ico', '/favicon.ico');
-		await this._deleteAsset('/logo192.png', '/logo192.png');
-		await this._deleteAsset('/logo512.png', '/logo512.png');
+		await this._deleteAsset('/favicon.ico');
+		await this._deleteAsset('/logo192.png');
+		await this._deleteAsset('/logo512.png');
 	}
 
 	async _getLocalAssetAsString(localPath) {

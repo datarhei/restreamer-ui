@@ -10,6 +10,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import WarningIcon from '@mui/icons-material/Warning';
 
+import * as M from '../../utils/metadata';
 import useInterval from '../../hooks/useInterval';
 import ActionButton from '../../misc/ActionButton';
 import CopyButton from '../../misc/CopyButton';
@@ -65,6 +66,7 @@ export default function Main(props) {
 		state: 'disconnected',
 		onConnect: null,
 	});
+	const [$metadata, setMetadata] = React.useState(M.getDefaultIngestMetadata());
 	const [$processDetails, setProcessDetails] = React.useState({
 		open: false,
 		data: {
@@ -77,9 +79,9 @@ export default function Main(props) {
 		open: false,
 		data: '',
 	});
+	const [$config, setConfig] = React.useState(null);
 
 	const navigate = useNavigate();
-	const address = props.restreamer.Address() + '/';
 
 	useInterval(async () => {
 		await update();
@@ -87,10 +89,24 @@ export default function Main(props) {
 
 	React.useEffect(() => {
 		(async () => {
+			await load();
 			await update();
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	const load = async () => {
+		const config = props.restreamer.ConfigActive();
+		setConfig(config);
+
+		const metadata = await props.restreamer.GetIngestMetadata(_channelid);
+		setMetadata({
+			...$metadata,
+			...metadata,
+		});
+
+		await update();
+	};
 
 	const update = async () => {
 		const channelid = props.restreamer.SelectChannel(_channelid);
@@ -123,6 +139,18 @@ export default function Main(props) {
 					await onConnect();
 				}, 100);
 				state.onConnect = null;
+			}
+		}
+
+		if ($metadata.control.rtmp.enable) {
+			if (!$config.source.network.rtmp.enabled) {
+				state.state = 'error';
+				state.progress.error = 'RTMP server is not enabled, but required.';
+			}
+		} else if ($metadata.control.srt.enable) {
+			if (!$config.source.network.srt.enabled) {
+				state.state = 'error';
+				state.progress.error = 'SRT server is not enabled, but required.';
 			}
 		}
 
@@ -253,9 +281,10 @@ export default function Main(props) {
 		return null;
 	}
 
+	const storage = $metadata.control.hls.storage;
 	const channel = props.restreamer.GetChannel(_channelid);
-	const manifest = props.restreamer.GetIngestManifestUrl(_channelid);
-	const poster = props.restreamer.GetIngestPosterUrl(_channelid);
+	const manifest = props.restreamer.GetChannelAddress('hls+' + storage, _channelid);
+	const poster = props.restreamer.GetChannelAddress('snapshot+' + storage, _channelid);
 
 	let title = <Trans>Main channel</Trans>;
 	if (channel && channel.name && channel.name.length !== 0) {
@@ -351,7 +380,7 @@ export default function Main(props) {
 											</Grid>
 										)}
 										{$state.state === 'connected' && (
-											<Player type="videojs-internal" source={address + manifest} poster={address + poster} autoplay mute controls />
+											<Player type="videojs-internal" source={manifest} poster={poster} autoplay mute controls />
 										)}
 									</Grid>
 								</Grid>
@@ -365,10 +394,40 @@ export default function Main(props) {
 										<Trans>Content URL</Trans>
 									</Typography>
 									<Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={0.5}>
-										<CopyButton variant="outlined" color="default" size="small" value={address + manifest}>
+										<CopyButton
+											variant="outlined"
+											color="default"
+											size="small"
+											value={props.restreamer.GetPublicAddress('hls+' + storage, _channelid)}
+										>
 											<Trans>HLS</Trans>
 										</CopyButton>
-										<CopyButton variant="outlined" color="default" size="small" value={address + poster}>
+										{$metadata.control.rtmp.enable && (
+											<CopyButton
+												variant="outlined"
+												color="default"
+												size="small"
+												value={props.restreamer.GetPublicAddress('rtmp', _channelid)}
+											>
+												<Trans>RTMP</Trans>
+											</CopyButton>
+										)}
+										{$metadata.control.srt.enable && (
+											<CopyButton
+												variant="outlined"
+												color="default"
+												size="small"
+												value={props.restreamer.GetPublicAddress('srt', _channelid)}
+											>
+												<Trans>SRT</Trans>
+											</CopyButton>
+										)}
+										<CopyButton
+											variant="outlined"
+											color="default"
+											size="small"
+											value={props.restreamer.GetPublicAddress('snapshot+memfs', _channelid)}
+										>
 											<Trans>Snapshot</Trans>
 										</CopyButton>
 									</Stack>

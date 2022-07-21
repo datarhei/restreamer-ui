@@ -24,9 +24,13 @@ function init(initialState) {
 }
 
 function createMapping(settings) {
-	const mapping = [
-		'-vaapi_device',
-		'/dev/dri/renderD128',
+	const global = [];
+	const local = [];
+
+	// https://trac.ffmpeg.org/wiki/Hardware/VAAPI
+	global.push(['-vaapi_device', '/dev/dri/renderD128']);
+
+	local.push(
 		'-vf',
 		'format=nv12,hwupload',
 		'-codec:v',
@@ -35,8 +39,6 @@ function createMapping(settings) {
 		`${settings.profile}`,
 		'-quality',
 		`${settings.quality}`,
-		'-level',
-		`${settings.level}`,
 		'-b:v',
 		`${settings.bitrate}k`,
 		'-maxrate',
@@ -46,16 +48,17 @@ function createMapping(settings) {
 		'-r',
 		`${settings.fps}`,
 		'-g',
-		`${settings.gop}`,
-		'-vsync',
-		'1',
-	];
+		`${settings.gop}`
+	);
 
 	if (settings.gop !== 'auto') {
-		mapping.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);
+		local.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);
 	}
 
-	return mapping;
+	return {
+		global: global,
+		local: local,
+	};
 }
 
 function RateControl(props) {

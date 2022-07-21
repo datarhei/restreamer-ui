@@ -8,7 +8,6 @@ import makeStyles from '@mui/styles/makeStyles';
 import Backdrop from '@mui/material/Backdrop';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
-import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Tab from '@mui/material/Tab';
@@ -32,6 +31,8 @@ import Process from './Process';
 import ProcessControl from '../../misc/controls/Process';
 import ProcessModal from '../../misc/modals/Process';
 import Services from './Services';
+import SourceControl from '../../misc/controls/Source';
+import TabContent from './TabContent';
 import TabPanel from '../../misc/TabPanel';
 import TabsVerticalGrid from '../../misc/TabsVerticalGrid';
 
@@ -43,14 +44,6 @@ const useStyles = makeStyles((theme) => ({
 	link: {
 		marginLeft: 10,
 		wordWrap: 'anywhere',
-	},
-	serviceDescription: {
-		margin: '1em 0em 1em 0em',
-	},
-	serviceIcon: {
-		fontSize: '4rem!important',
-		maxHeight: 64,
-		marginTop: '-0.065em',
 	},
 }));
 
@@ -64,6 +57,7 @@ export default function Edit(props) {
 	const [$ready, setReady] = React.useState(false);
 	const [$settings, setSettings] = React.useState(M.getDefaultEgressMetadata());
 	const [$sources, setSources] = React.useState([]);
+	const [$localSources, setLocalSources] = React.useState([]);
 	const [$tab, setTab] = React.useState('general');
 	const [$progress, setProgress] = React.useState({});
 	const [$processDetails, setProcessDetails] = React.useState({
@@ -141,6 +135,20 @@ export default function Edit(props) {
 				license: ingest.license,
 			});
 
+			const localSources = [];
+
+			localSources.push('hls+' + ingest.control.hls.storage);
+
+			if (ingest.control.rtmp.enable) {
+				localSources.push('rtmp');
+			}
+
+			if (ingest.control.srt.enable) {
+				localSources.push('srt');
+			}
+
+			setLocalSources(localSources);
+
 			const sources = helper.createSourcesFromStreams(ingest.streams);
 			setSources(sources);
 
@@ -214,9 +222,9 @@ export default function Edit(props) {
 	const handleServiceDone = async () => {
 		setSaving(true);
 
-		const [inputs, outputs] = helper.createInputsOutputs($sources, $settings.profiles, $settings.outputs);
+		const [global, inputs, outputs] = helper.createInputsOutputs($sources, $settings.profiles, $settings.outputs);
 
-		const [, err] = await props.restreamer.UpdateEgress(_channelid, id, inputs, outputs, $settings.control);
+		const [, err] = await props.restreamer.UpdateEgress(_channelid, id, global, inputs, outputs, $settings.control);
 		if (err !== null) {
 			setSaving(false);
 			notify.Dispatch('error', 'save:egress:' + _service, i18n._(t`Failed to store publication service (${err.message})`));
@@ -243,12 +251,12 @@ export default function Edit(props) {
 		setUnsavedChanges(true);
 	};
 
-	const handleProcessControlChange = (control, automatic) => {
+	const handleControlChange = (what) => (control, automatic) => {
 		setSettings({
 			...$settings,
 			control: {
 				...$settings.control,
-				process: control,
+				[what]: control,
 			},
 		});
 
@@ -364,7 +372,6 @@ export default function Edit(props) {
 	}
 
 	const ServiceControl = $service.component;
-	const ServiceIcon = $service.icon;
 
 	const title = $settings.name.length === 0 ? $service.name : $settings.name;
 
@@ -384,19 +391,12 @@ export default function Edit(props) {
 					<TabsVerticalGrid>
 						<Tabs orientation="vertical" variant="scrollable" value={$tab} onChange={handleChangeTab} className="tabs">
 							<Tab className="tab" label={<Trans>General</Trans>} value="general" />
+							<Tab className="tab" label={<Trans>Source &amp; Encoding</Trans>} value="encoding" />
 							<Tab className="tab" label={<Trans>Process control</Trans>} value="process" />
-							<Tab className="tab" label={<Trans>Encoding</Trans>} value="encoding" />
 						</Tabs>
 						<TabPanel value={$tab} index="general" className="panel">
-							<Grid container spacing={2}>
-								<Grid item xs={12} md={2}>
-									<ServiceIcon className={classes.serviceIcon} />
-								</Grid>
-								<Grid item xs={12} md={10}>
-									<Typography variant="h1">{$service.name}</Typography>
-									<Typography>v{$service.version}</Typography>
-								</Grid>
-								<Grid item xs={12} className={classes.serviceDescription}>
+							<TabContent service={$service}>
+								<Grid item xs={12} sx={{ margin: '1em 0em 1em 0em' }}>
 									<Typography>{$service.description}</Typography>
 								</Grid>
 								<Grid item xs={12}>
@@ -411,44 +411,20 @@ export default function Edit(props) {
 								<Grid item xs={12}>
 									<ServiceControl settings={$settings.settings} skills={$serviceSkills} metadata={$metadata} onChange={handleServiceChange} />
 								</Grid>
-								<Grid item xs={12}>
-									<Divider />
-								</Grid>
-								<Grid item xs={12}>
-									<Typography>
-										<Trans>Maintainer:</Trans>{' '}
-										<Link color="secondary" target="_blank" href={$service.author.maintainer.link}>
-											{$service.author.maintainer.name}
-										</Link>
-									</Typography>
-								</Grid>
-							</Grid>
+							</TabContent>
 						</TabPanel>
 						<TabPanel value={$tab} index="process" className="panel">
-							<Grid container spacing={2}>
-								<Grid item xs={12} md={2}>
-									<ServiceIcon className={classes.serviceIcon} />
-								</Grid>
-								<Grid item xs={12} md={10}>
-									<Typography variant="h1">{$service.name}</Typography>
-									<Typography>v{$service.version}</Typography>
-								</Grid>
-								<Grid item xs={12} className={classes.serviceDescription}>
-									<Typography>{$service.description}</Typography>
-								</Grid>
+							<TabContent service={$service}>
 								<Grid item xs={12}>
 									<Typography variant="h2">
 										<Trans>Process</Trans>
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
-									<ProcessControl settings={$settings.control.process} onChange={handleProcessControlChange} />
+									<ProcessControl settings={$settings.control.process} onChange={handleControlChange('process')} />
 								</Grid>
 								<Grid item xs={12}>
 									<Grid container spacing={1} className={classes.gridContainer}>
-										<Grid item xs={12}>
-											<Divider />
-										</Grid>
 										{$unsavedChanges === true && (
 											<Grid item xs={12}>
 												<BoxText>
@@ -468,40 +444,37 @@ export default function Edit(props) {
 														<Trans>Process details</Trans>
 													</Link>
 													<Link color="textSecondary" href="#!" onClick={handleProcessDebug} className={classes.link}>
-														<Trans>Process debug</Trans>
+														<Trans>Process report</Trans>
 													</Link>
 												</Grid>
 											</React.Fragment>
 										)}
 									</Grid>
 								</Grid>
-								<Grid item xs={12}>
-									<Divider />
-								</Grid>
-								<Grid item xs={12}>
-									<Typography>
-										<Trans>Maintainer:</Trans>{' '}
-										<Link color="secondary" target="_blank" href={$service.author.maintainer.link}>
-											{$service.author.maintainer.name}
-										</Link>
-									</Typography>
-								</Grid>
-							</Grid>
+							</TabContent>
 						</TabPanel>
 						<TabPanel value={$tab} index="encoding" className="panel">
-							<Grid container spacing={2}>
-								<Grid item xs={12} md={2}>
-									<ServiceIcon className={classes.serviceIcon} />
-								</Grid>
-								<Grid item xs={12} md={10}>
-									<Typography variant="h1">{$service.name}</Typography>
-									<Typography>v{$service.version}</Typography>
-								</Grid>
-								<Grid item xs={12} className={classes.serviceDescription}>
-									<Typography>{$service.description}</Typography>
-								</Grid>
+							<TabContent service={$service}>
 								<Grid item xs={12}>
 									<Typography variant="h2">
+										<Trans>Source &amp; Encoding</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<Typography variant="h3">
+										<Trans>Source</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<Typography variant="subheading">
+										<Trans>Select RTMP or SRT (if enabled) for less latency.</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<SourceControl settings={$settings.control.source} sources={$localSources} onChange={handleControlChange('source')} />
+								</Grid>
+								<Grid item xs={12}>
+									<Typography variant="h3">
 										<Trans>Encoding</Trans>
 									</Typography>
 								</Grid>
@@ -544,18 +517,7 @@ export default function Edit(props) {
 										onChange={handleEncoding('audio')}
 									/>
 								</Grid>
-								<Grid item xs={12}>
-									<Divider />
-								</Grid>
-								<Grid item xs={12}>
-									<Typography>
-										<Trans>Maintainer:</Trans>{' '}
-										<Link color="secondary" target="_blank" href={$service.author.maintainer.link}>
-											{$service.author.maintainer.name}
-										</Link>
-									</Typography>
-								</Grid>
-							</Grid>
+							</TabContent>
 						</TabPanel>
 					</TabsVerticalGrid>
 				</Grid>

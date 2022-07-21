@@ -164,7 +164,7 @@ export default function Wizard(props) {
 		const profiles = data.profiles;
 		const control = data.control;
 
-		const [inputs, outputs] = M.createInputsOutputs(sources, profiles);
+		const [global, inputs, outputs] = M.createInputsOutputs(sources, profiles);
 
 		if (inputs.length === 0 || outputs.length === 0) {
 			notify.Dispatch('error', 'save:ingest', i18n._(t`The input profile is not complete. Please define a video and audio source.`));
@@ -173,7 +173,7 @@ export default function Wizard(props) {
 
 		data.streams = M.createOutputStreams(sources, profiles);
 
-		const [, err] = await props.restreamer.UpsertIngest(_channelid, inputs, outputs, control);
+		const [, err] = await props.restreamer.UpsertIngest(_channelid, global, inputs, outputs, control);
 		if (err !== null) {
 			notify.Dispatch('error', 'save:ingest', err.message);
 			return false;
@@ -182,8 +182,14 @@ export default function Wizard(props) {
 		// Save the metadata
 		await props.restreamer.SetIngestMetadata(_channelid, data);
 
+		// Create update the ingest snapshot process
+		await props.restreamer.UpsertIngestSnapshot(_channelid, control);
+
 		// Create/update the player
 		await props.restreamer.UpdatePlayer(_channelid);
+
+		// Create/update the playersite
+		await props.restreamer.UpdatePlayersite();
 
 		notify.Dispatch('success', 'save:ingest', i18n._(t`Main channel saved`));
 
@@ -227,7 +233,16 @@ export default function Wizard(props) {
 		let knownSources = [];
 		for (let s in $skills.sources) {
 			if (s === 'network') {
-				knownSources.push('network', 'rtmp', 'hls');
+				knownSources.push('network');
+				if ($skills.protocols.input.includes('rtmp')) {
+					knownSources.push('rtmp');
+				}
+				if ($skills.protocols.input.includes('http')) {
+					knownSources.push('hls');
+				}
+				if ($skills.protocols.input.includes('srt')) {
+					knownSources.push('srt');
+				}
 			} else if (s === 'video4linux2') {
 				knownSources.push('video4linux2');
 			} else if (s === 'raspicam') {

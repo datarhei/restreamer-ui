@@ -2,10 +2,12 @@ import React from 'react';
 
 import { Trans } from '@lingui/macro';
 import Grid from '@mui/material/Grid';
+import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 import Checkbox from '../Checkbox';
+import Select from '../Select';
 
 function init(settings) {
 	const initSettings = {
@@ -13,6 +15,9 @@ function init(settings) {
 		segmentDuration: 2,
 		listSize: 6,
 		cleanup: true,
+		version: 3,
+		storage: 'memfs',
+		master_playlist: true,
 		...settings,
 	};
 
@@ -31,7 +36,7 @@ export default function Control(props) {
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
 
-		if (['lhls', 'cleanup'].includes(what)) {
+		if (['lhls', 'cleanup', 'master_playlist'].includes(what)) {
 			settings[what] = !settings[what];
 		} else {
 			settings[what] = value;
@@ -39,6 +44,7 @@ export default function Control(props) {
 
 		props.onChange(settings, false);
 	};
+
 	return (
 		<Grid container spacing={2}>
 			{/*
@@ -55,6 +61,33 @@ export default function Control(props) {
 					</Typography>
 				</Grid>
 			*/}
+			<Grid item xs={12}>
+				<Select label={<Trans>Storage</Trans>} value={settings.storage} onChange={handleChange('storage')}>
+					<MenuItem value="memfs">
+						<Trans>In-memory</Trans>
+					</MenuItem>
+					<MenuItem value="diskfs">
+						<Trans>Disk</Trans>
+					</MenuItem>
+				</Select>
+				<Typography variant="caption">
+					<Trans>Where to store the HLS playlist and segments. In-Memory is recommended.</Trans>
+				</Typography>
+			</Grid>
+			<Grid item xs={12}>
+				<Select label={<Trans>EXT-X-VERSION</Trans>} value={settings.version} onChange={handleChange('version')}>
+					<MenuItem value={3}>3</MenuItem>
+					<MenuItem value={6}>
+						<Trans>6 (+ guaranteed to start with a Key frame)</Trans>
+					</MenuItem>
+					<MenuItem value={7}>
+						<Trans>7 (+ fragmented MP4 format)</Trans>
+					</MenuItem>
+				</Select>
+				<Typography variant="caption">
+					<Trans>Playlist version (M3U8). Version 3 has the best browser/client compatibility.</Trans>
+				</Typography>
+			</Grid>
 			<Grid item xs={12} md={6}>
 				<TextField
 					variant="outlined"
@@ -78,6 +111,13 @@ export default function Control(props) {
 				<Typography variant="caption">
 					<Trans>The maximum number of playlist segments. 0 will contain all the segments. 6 is recommended.</Trans>
 				</Typography>
+			</Grid>
+			<Grid item xs={12}>
+				<Checkbox
+					label={<Trans>Master playlist (increases browser/client compatibility)</Trans>}
+					checked={settings.master_playlist}
+					onChange={handleChange('master_playlist')}
+				/>
 			</Grid>
 			<Grid item xs={12}>
 				<Checkbox label={<Trans>Automatic cleanup of all media data</Trans>} checked={settings.cleanup} onChange={handleChange('cleanup')} />

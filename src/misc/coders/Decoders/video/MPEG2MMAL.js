@@ -9,7 +9,10 @@ function init(initialState) {
 }
 
 function createMapping(settings) {
-	const mapping = ['-c:v', 'mpeg2_mmal'];
+	const mapping = {
+		global: [],
+		local: ['-c:v', 'mpeg2_mmal'],
+	};
 
 	return mapping;
 }

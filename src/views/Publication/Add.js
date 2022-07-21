@@ -10,9 +10,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Backdrop from '@mui/material/Backdrop';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
-import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import TextField from '@mui/material/TextField';
@@ -30,7 +28,9 @@ import Paper from '../../misc/Paper';
 import PaperHeader from '../../misc/PaperHeader';
 import PaperFooter from '../../misc/PaperFooter';
 import ProcessControl from '../../misc/controls/Process';
+import SourceControl from '../../misc/controls/Source';
 import Services from './Services';
+import TabContent from './TabContent';
 import TabPanel from '../../misc/TabPanel';
 import TabsVerticalGrid from '../../misc/TabsVerticalGrid';
 
@@ -40,14 +40,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 	gridContainer: {
 		marginTop: '0.5em',
-	},
-	serviceDescription: {
-		margin: '1em 0em 1em 0em',
-	},
-	serviceIcon: {
-		fontSize: '4rem!important',
-		maxHeight: 64,
-		marginTop: '-0.065em',
 	},
 	buttonGroup: {
 		marginTop: '0.5em',
@@ -66,6 +58,7 @@ export default function Add(props) {
 	const [$service, setService] = React.useState('');
 	const [$settings, setSettings] = React.useState(M.initEgressMetadata({}));
 	const [$sources, setSources] = React.useState([]);
+	const [$localSources, setLocalSources] = React.useState([]);
 	const [$filter, setFilter] = React.useState('all');
 	const [$tab, setTab] = React.useState('general');
 	const [$skills, setSkills] = React.useState(null);
@@ -100,6 +93,20 @@ export default function Add(props) {
 			description: ingest.meta.description,
 			license: ingest.license,
 		});
+
+		const localSources = [];
+
+		localSources.push('hls+' + ingest.control.hls.storage);
+
+		if (ingest.control.rtmp.enable) {
+			localSources.push('rtmp');
+		}
+
+		if (ingest.control.srt.enable) {
+			localSources.push('srt');
+		}
+
+		setLocalSources(localSources);
 
 		setSources(helper.createSourcesFromStreams(ingest.streams));
 	};
@@ -172,9 +179,9 @@ export default function Add(props) {
 	const handleServiceDone = async () => {
 		setSaving(true);
 
-		const [inputs, outputs] = helper.createInputsOutputs($sources, $settings.profiles, $settings.outputs);
+		const [global, inputs, outputs] = helper.createInputsOutputs($sources, $settings.profiles, $settings.outputs);
 
-		const [id, err] = await props.restreamer.CreateEgress(_channelid, $service, inputs, outputs, $settings.control);
+		const [id, err] = await props.restreamer.CreateEgress(_channelid, $service, global, inputs, outputs, $settings.control);
 		if (err !== null) {
 			setSaving(false);
 			notify.Dispatch('error', 'save:egress:' + $service, i18n._(t`Failed to create publication service (${err.message})`));
@@ -204,12 +211,12 @@ export default function Add(props) {
 		});
 	};
 
-	const handleProcessControlChange = (control) => {
+	const handleControlChange = (what) => (control) => {
 		setSettings({
 			...$settings,
 			control: {
 				...$settings.control,
-				process: control,
+				[what]: control,
 			},
 		});
 	};
@@ -241,12 +248,9 @@ export default function Add(props) {
 	let serviceList = [];
 
 	let ServiceControl = null;
-	let ServiceIcon = null;
 	let serviceSkills = null;
 
 	let service = {};
-
-	const enableProcessing = true;
 
 	if ($service === '') {
 		for (let s of Services.List()) {
@@ -307,8 +311,6 @@ export default function Add(props) {
 		}
 
 		ServiceControl = service.component;
-		ServiceIcon = service.icon;
-
 		serviceSkills = helper.conflateServiceSkills(service.requires, $skills);
 	}
 
@@ -370,19 +372,12 @@ export default function Add(props) {
 							<TabsVerticalGrid>
 								<Tabs orientation="vertical" variant="scrollable" value={$tab} onChange={handleChangeTab} className="tabs">
 									<Tab className="tab" label={<Trans>General</Trans>} value="general" />
+									<Tab className="tab" label={<Trans>Source &amp; Encoding</Trans>} value="encoding" />
 									<Tab className="tab" label={<Trans>Process control</Trans>} value="process" />
-									{enableProcessing && <Tab className="tab" label={<Trans>Encoding</Trans>} value="encoding" />}
 								</Tabs>
 								<TabPanel value={$tab} index="general" className="panel">
-									<Grid container spacing={2}>
-										<Grid item xs={12} md={2}>
-											<ServiceIcon className={classes.serviceIcon} />
-										</Grid>
-										<Grid item xs={12} md={10}>
-											<Typography variant="h1">{service.name}</Typography>
-											<Typography>v{service.version}</Typography>
-										</Grid>
-										<Grid item xs={12} className={classes.serviceDescription}>
+									<TabContent service={service}>
+										<Grid item xs={12} sx={{ margin: '1em 0em 1em 0em' }}>
 											<Typography>{service.description}</Typography>
 										</Grid>
 										<Grid item xs={12}>
@@ -403,66 +398,46 @@ export default function Add(props) {
 												onChange={handleServiceChange}
 											/>
 										</Grid>
-										<Grid item xs={12}>
-											<Divider />
-										</Grid>
-										<Grid item xs={12}>
-											<Typography>
-												<Trans>Maintainer:</Trans>{' '}
-												<Link color="secondary" target="_blank" href={service.author.creator.link}>
-													{service.author.maintainer.name}
-												</Link>
-											</Typography>
-										</Grid>
-									</Grid>
+									</TabContent>
 								</TabPanel>
 								<TabPanel value={$tab} index="process" className="panel">
-									<Grid container spacing={2}>
-										<Grid item xs={12} md={2}>
-											<ServiceIcon className={classes.serviceIcon} />
-										</Grid>
-										<Grid item xs={12} md={10}>
-											<Typography variant="h1">{service.name}</Typography>
-											<Typography>v{service.version}</Typography>
-										</Grid>
-										<Grid item xs={12}>
-											<Divider />
-										</Grid>
+									<TabContent service={service}>
 										<Grid item xs={12}>
 											<Typography variant="h2">
 												<Trans>Process</Trans>
 											</Typography>
 										</Grid>
 										<Grid item xs={12}>
-											<ProcessControl settings={$settings.control.process} onChange={handleProcessControlChange} />
+											<ProcessControl settings={$settings.control.process} onChange={handleControlChange('process')} />
 										</Grid>
-										<Grid item xs={12}>
-											<Divider />
-										</Grid>
-										<Grid item xs={12}>
-											<Typography>
-												<Trans>Maintainer:</Trans>{' '}
-												<Link color="secondary" target="_blank" href={service.author.creator.link}>
-													{service.author.maintainer.name}
-												</Link>
-											</Typography>
-										</Grid>
-									</Grid>
+									</TabContent>
 								</TabPanel>
 								<TabPanel value={$tab} index="encoding" className="panel">
-									<Grid container spacing={2}>
-										<Grid item xs={12} md={2}>
-											<ServiceIcon className={classes.serviceIcon} />
-										</Grid>
-										<Grid item xs={12} md={10}>
-											<Typography variant="h1">{service.name}</Typography>
-											<Typography>v{service.version}</Typography>
-										</Grid>
-										<Grid item xs={12}>
-											<Divider />
-										</Grid>
+									<TabContent service={service}>
 										<Grid item xs={12}>
 											<Typography variant="h2">
+												<Trans>Source &amp; Encoding</Trans>
+											</Typography>
+										</Grid>
+										<Grid item xs={12}>
+											<Typography variant="h3">
+												<Trans>Source</Trans>
+											</Typography>
+										</Grid>
+										<Grid item xs={12}>
+											<Typography variant="subheading">
+												<Trans>Select RTMP or SRT (if enabled) for less latency.</Trans>
+											</Typography>
+										</Grid>
+										<Grid item xs={12}>
+											<SourceControl
+												settings={$settings.control.source}
+												sources={$localSources}
+												onChange={handleControlChange('source')}
+											/>
+										</Grid>
+										<Grid item xs={12}>
+											<Typography variant="h3">
 												<Trans>Encoding</Trans>
 											</Typography>
 										</Grid>
@@ -503,18 +478,7 @@ export default function Add(props) {
 												onChange={handleProcessing('audio')}
 											/>
 										</Grid>
-										<Grid item xs={12}>
-											<Divider />
-										</Grid>
-										<Grid item xs={12}>
-											<Typography>
-												<Trans>Maintainer:</Trans>{' '}
-												<Link color="secondary" target="_blank" href={service.author.creator.link}>
-													{service.author.maintainer.name}
-												</Link>
-											</Typography>
-										</Grid>
-									</Grid>
+									</TabContent>
 								</TabPanel>
 							</TabsVerticalGrid>
 						</Grid>

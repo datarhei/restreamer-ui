@@ -1,7 +1,12 @@
 import React from 'react';
 
 function createMapping(settings) {
-	const mapping = ['-codec:v', 'rawvideo'];
+	const local = ['-codec:v', 'rawvideo'];
+
+	const mapping = {
+		global: [],
+		local: local,
+	};
 
 	return mapping;
 }

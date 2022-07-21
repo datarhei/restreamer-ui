@@ -247,6 +247,18 @@ const configValues = {
 			return null;
 		},
 	},
+	'rtmp.address_tls': {
+		tab: 'rtmp',
+		set: (config, value) => {
+			config.rtmp.address_tls = value;
+		},
+		unset: (config) => {
+			delete config.rtmp.address_tls;
+		},
+		validate: (config) => {
+			return null;
+		},
+	},
 	'rtmp.app': {
 		tab: 'rtmp',
 		set: (config, value) => {
@@ -290,6 +302,54 @@ const configValues = {
 		},
 		unset: (config) => {
 			delete config.ffmpeg.log.max_history;
+		},
+		validate: (config) => {
+			return null;
+		},
+	},
+	'srt.enable': {
+		tab: 'srt',
+		set: (config, value) => {
+			config.srt.enable = !config.srt.enable;
+		},
+		unset: (config) => {
+			delete config.srt.enable;
+		},
+		validate: (config) => {
+			return null;
+		},
+	},
+	'srt.address': {
+		tab: 'srt',
+		set: (config, value) => {
+			config.srt.address = value;
+		},
+		unset: (config) => {
+			delete config.srt.address;
+		},
+		validate: (config) => {
+			return null;
+		},
+	},
+	'srt.passphrase': {
+		tab: 'srt',
+		set: (config, value) => {
+			config.srt.passphrase = value;
+		},
+		unset: (config) => {
+			delete config.srt.passphrase;
+		},
+		validate: (config) => {
+			return null;
+		},
+	},
+	'srt.token': {
+		tab: 'srt',
+		set: (config, value) => {
+			config.srt.token = value;
+		},
+		unset: (config) => {
+			delete config.srt.token;
 		},
 		validate: (config) => {
 			return null;
@@ -638,6 +698,7 @@ export default function Settings(props) {
 		playback: { errors: false, messages: [] },
 		storage: { errors: false, messages: [] },
 		rtmp: { errors: false, messages: [] },
+		srt: { errors: false, messages: [] },
 		logging: { errors: false, messages: [] },
 		service: { errors: false, messages: [] },
 	});
@@ -703,9 +764,11 @@ export default function Settings(props) {
 				config.tls.auto = false;
 			}
 
-			config.tls.address = config.tls.address.split(':').join('');
 			config.address = config.address.split(':').join('');
+			config.tls.address = config.tls.address.split(':').join('');
 			config.rtmp.address = config.rtmp.address.split(':').join('');
+			config.rtmp.address_tls = config.rtmp.address_tls.split(':').join('');
+			config.srt.address = config.srt.address.split(':').join('');
 
 			if (config.tls.auto === true) {
 				config.tls.enable = true;
@@ -856,9 +919,13 @@ export default function Settings(props) {
 			config.sessions.session_timeout_sec = toInt(config.sessions.session_timeout_sec);
 			config.sessions.max_bitrate_mbit = toInt(config.sessions.max_bitrate_mbit);
 			config.sessions.max_sessions = toInt(config.sessions.max_sessions);
-			config.tls.address = ':' + config.tls.address;
+
 			config.address = ':' + config.address;
+			config.tls.address = ':' + config.tls.address;
 			config.rtmp.address = ':' + config.rtmp.address;
+			config.rtmp.address_tls = ':' + config.rtmp.address_tls;
+			config.rtmp.app = !config.rtmp.app.startsWith('/') ? '/' + config.rtmp.app : config.rtmp.app;
+			config.srt.address = ':' + config.srt.address;
 
 			if (config.tls.auto === true) {
 				config.tls.enable = true;
@@ -1143,7 +1210,8 @@ export default function Settings(props) {
 							<ErrorTab className="tab" label={<Trans>Authorization</Trans>} value="auth" errors={$tabs.auth.errors} />
 							{$expert === true && <ErrorTab className="tab" label={<Trans>Playback</Trans>} value="playback" errors={$tabs.playback.errors} />}
 							{$expert === true && <ErrorTab className="tab" label={<Trans>Storage</Trans>} value="storage" errors={$tabs.storage.errors} />}
-							<ErrorTab className="tab" label={<Trans>RTMP/S</Trans>} value="rtmp" errors={$tabs.rtmp.errors} />
+							<ErrorTab className="tab" label={<Trans>RTMP</Trans>} value="rtmp" errors={$tabs.rtmp.errors} />
+							<ErrorTab className="tab" label={<Trans>SRT</Trans>} value="srt" errors={$tabs.srt.errors} />
 							{$expert === true && <ErrorTab className="tab" label={<Trans>Logging</Trans>} value="logging" errors={$tabs.logging.errors} />}
 						</Tabs>
 						<TabPanel value={$tab} index="general" className="panel">
@@ -1424,7 +1492,9 @@ export default function Settings(props) {
 									<Checkbox
 										label={<Trans>Login/JWT authorization</Trans>}
 										checked={config.api.auth.enable}
-										disabled={env('api.auth.enable')}
+										// prob: interface enforces auth.
+										// disabled={env('api.auth.enable')}
+										disabled
 										onChange={handleChange('api.auth.enable')}
 									/>{' '}
 									{env('api.auth.enable') && <Env />}
@@ -1757,7 +1827,7 @@ export default function Settings(props) {
 							<Grid container spacing={2}>
 								<Grid item xs={12}>
 									<Typography variant="h2">
-										<Trans>RTMP/S</Trans>
+										<Trans>RTMP</Trans>
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
@@ -1768,39 +1838,37 @@ export default function Settings(props) {
 										onChange={handleChange('rtmp.enable')}
 									/>{' '}
 									{env('rtmp.enable') && <Env style={{ marginRight: '2em' }} />}
+									<ErrorBox configvalue="rtmp.enable" messages={$tabs.rtmp.messages} />
 									<Checkbox
 										label={<Trans>RTMPS server</Trans>}
 										checked={config.rtmp.enable_tls}
-										disabled={env('rtmp.enable_tls') || config.rtmp.enable}
+										disabled={env('rtmp.enable_tls')}
 										onChange={handleChange('rtmp.enable_tls')}
 									/>{' '}
 									{env('rtmp.enable_tls') && <Env />}
-									<ErrorBox configvalue="rtmp.enable" messages={$tabs.rtmp.messages} />
 									<ErrorBox configvalue="rtmp.enable_tls" messages={$tabs.rtmp.messages} />
-								</Grid>
-								{config.rtmp.enable_tls && (
-									<Grid item xs={12}>
+									{config.rtmp.enable_tls && !config.tls.auto && (
 										<Typography variant="caption">
 											<Trans>Requires activation</Trans>{' '}
 											<Link
 												color="secondary"
-												href="#/settings/auth"
+												href="#/settings/network"
 												onClick={() => {
-													setTab('auth');
+													setTab('network');
 												}}
 											>
 												TLS/HTTPS
 											</Link>
 											.
 										</Typography>
-									</Grid>
-								)}
+									)}
+								</Grid>
 								<Grid item xs={12}>
 									<Divider />
 								</Grid>
-								<Grid item xs={6} md={4}>
+								<Grid item xs={6} md={3}>
 									<TextField
-										label={<Trans>Port</Trans>}
+										label={<Trans>RTMP Port</Trans>}
 										env={env('rtmp.address')}
 										disabled={env('rtmp.address') || (!config.rtmp.enable && !config.rtmp.enable_tls)}
 										value={config.rtmp.address}
@@ -1811,11 +1879,24 @@ export default function Settings(props) {
 										<Trans>RTMP server listen address.</Trans>
 									</Typography>
 								</Grid>
-								<Grid item xs={6} md={8}>
+								<Grid item xs={6} md={3}>
+									<TextField
+										label={<Trans>RTMPS Port</Trans>}
+										env={env('rtmp.address_tls')}
+										disabled={env('rtmp.address_tls') || !config.rtmp.enable_tls || !config.tls.auto}
+										value={config.rtmp.address_tls}
+										onChange={handleChange('rtmp.address_tls')}
+									/>
+									<ErrorBox configvalue="rtmp.address_tls" messages={$tabs.rtmp.messages} />
+									<Typography variant="caption">
+										<Trans>RTMPS server listen address.</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12} md={6}>
 									<TextField
 										label={<Trans>App</Trans>}
 										env={env('rtmp.app')}
-										disabled={env('rtmp.app') || (!config.rtmp.enable && !config.rtmp.enable_tls)}
+										disabled={env('rtmp.app') || !config.rtmp.enable}
 										value={config.rtmp.app}
 										onChange={handleChange('rtmp.app')}
 									/>
@@ -1828,13 +1909,83 @@ export default function Settings(props) {
 									<Password
 										label={<Trans>Token</Trans>}
 										env={env('rtmp.token')}
-										disabled={env('rtmp.token') || (!config.rtmp.enable && !config.rtmp.enable_tls)}
+										disabled={env('rtmp.token') || !config.rtmp.enable}
 										value={config.rtmp.token}
 										onChange={handleChange('rtmp.token')}
 									/>
 									<ErrorBox configvalue="rtmp.token" messages={$tabs.rtmp.messages} />
 									<Typography variant="caption">
 										<Trans>RTMP token for publishing and playing. The token is the value of the URL query parameter 'token.'</Trans>
+									</Typography>
+								</Grid>
+							</Grid>
+						</TabPanel>
+						<TabPanel value={$tab} index="srt" className="panel">
+							<Grid container spacing={2}>
+								<Grid item xs={12}>
+									<Typography variant="h2">
+										<Trans>SRT</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<Checkbox
+										label={<Trans>SRT server</Trans>}
+										checked={config.srt.enable}
+										disabled={env('srt.enable')}
+										onChange={handleChange('srt.enable')}
+									/>{' '}
+									{env('srt.enable') && <Env style={{ marginRight: '2em' }} />}
+									<ErrorBox configvalue="srt.enable" messages={$tabs.srt.messages} />
+								</Grid>
+								<Grid item xs={12}>
+									<Divider />
+								</Grid>
+								<Grid item xs={6} md={4}>
+									<TextField
+										label={<Trans>Port</Trans>}
+										env={env('srt.address')}
+										disabled={env('srt.address') || !config.srt.enable}
+										value={config.srt.address}
+										onChange={handleChange('srt.address')}
+									/>
+									<ErrorBox configvalue="srt.address" messages={$tabs.srt.messages} />
+									<Typography variant="caption">
+										<Trans>SRT server listen address.</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={6} md={8}>
+									<Password
+										label={<Trans>Token</Trans>}
+										env={env('srt.token')}
+										disabled={env('srt.token') || !config.srt.enable}
+										value={config.srt.token}
+										onChange={handleChange('srt.token')}
+									/>
+									<ErrorBox configvalue="srt.token" messages={$tabs.srt.messages} />
+									<Typography variant="caption">
+										<Trans>SRT token for publishing and playing. The token is the value of the streamid parameter 'token.'</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<Password
+										label={<Trans>Passphrase</Trans>}
+										env={env('srt.passphrase')}
+										disabled={env('srt.passphrase') || !config.srt.enable}
+										value={config.srt.passphrase}
+										onChange={handleChange('srt.passphrase')}
+										inputProps={{ maxLength: 79 }}
+										error={config.srt.passphrase && config.srt.passphrase.length < 10}
+										helperText={
+											config.srt.passphrase && config.srt.passphrase.length < 10 ? (
+												<Trans>Passphrase must be between 10 and 79 characters long</Trans>
+											) : (
+												false
+											)
+										}
+									/>
+									<ErrorBox configvalue="srt.passphrase" messages={$tabs.srt.messages} />
+									<Typography variant="caption">
+										<Trans>Passphrase for SRT encryption.</Trans>
 									</Typography>
 								</Grid>
 							</Grid>

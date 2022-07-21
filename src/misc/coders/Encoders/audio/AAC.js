@@ -7,9 +7,6 @@ import Audio from '../../settings/Audio';
 function init(initialState) {
 	const state = {
 		bitrate: '64',
-		channels: '2',
-		layout: 'stereo',
-		sampling: '44100',
 		...initialState,
 	};
 
@@ -17,22 +14,16 @@ function init(initialState) {
 }
 
 function createMapping(settings, stream) {
-	let sampling = settings.sampling;
-	let layout = settings.layout;
-
-	if (sampling === 'inherit') {
-		sampling = stream.sampling_hz;
-	}
-
-	if (layout === 'inherit') {
-		layout = stream.layout;
-	}
-
-	const mapping = ['-codec:a', 'aac', '-b:a', `${settings.bitrate}k`, '-shortest', '-af', `aresample=osr=${sampling}:ocl=${layout}`];
+	const local = ['-codec:a', 'aac', '-b:a', `${settings.bitrate}k`, '-shortest'];
 
 	if (stream.codec === 'aac') {
-		mapping.push('-bsf:a', 'aac_adtstoasc');
+		local.push('-bsf:a', 'aac_adtstoasc');
 	}
+
+	const mapping = {
+		global: [],
+		local: local,
+	};
 
 	return mapping;
 }
@@ -59,23 +50,6 @@ function Coder(props) {
 			[what]: value,
 		};
 
-		if (what === 'layout') {
-			let channels = stream.channels;
-
-			switch (value) {
-				case 'mono':
-					channels = 1;
-					break;
-				case 'stereo':
-					channels = 2;
-					break;
-				default:
-					break;
-			}
-
-			newSettings.channels = channels;
-		}
-
 		handleChange(newSettings);
 	};
 
@@ -88,12 +62,6 @@ function Coder(props) {
 		<Grid container spacing={2}>
 			<Grid item xs={12}>
 				<Audio.Bitrate value={settings.bitrate} onChange={update('bitrate')} allowCustom />
-			</Grid>
-			<Grid item xs={12}>
-				<Audio.Sampling value={settings.sampling} onChange={update('sampling')} allowInherit allowCustom />
-			</Grid>
-			<Grid item xs={12}>
-				<Audio.Layout value={settings.layout} onChange={update('layout')} allowInherit />
 			</Grid>
 		</Grid>
 	);
@@ -112,7 +80,7 @@ const type = 'audio';
 const hwaccel = false;
 
 function summarize(settings) {
-	return `${name}, ${settings.bitrate} kbit/s, ${settings.layout}, ${settings.sampling}Hz`;
+	return `${name}, ${settings.bitrate} kbit/s`;
 }
 
 function defaults(stream) {

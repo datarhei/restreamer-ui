@@ -51,7 +51,8 @@ jobs:
           context: .
           file: ./Dockerfile
           build-args: |
-            PUBLIC_URL=/ui
+            PUBLIC_URL=./
+            NODE_IMAGE=${{ env.NODE_IMAGE }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: |

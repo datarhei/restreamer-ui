@@ -31,7 +31,9 @@ import PaperThumb from '../../misc/PaperThumb';
 import ProcessControl from '../../misc/controls/Process';
 import Profile from './Profile';
 import ProfileSummary from './ProfileSummary';
+import RTMPControl from '../../misc/controls/RTMP';
 import SnapshotControl from '../../misc/controls/Snapshot';
+import SRTControl from '../../misc/controls/SRT';
 import TabPanel from '../../misc/TabPanel';
 import TabsVerticalGrid from '../../misc/TabsVerticalGrid';
 
@@ -95,12 +97,10 @@ export default function Edit(props) {
 		setProcess(proc);
 
 		let metadata = await props.restreamer.GetIngestMetadata(_channelid);
-		if (metadata.version && metadata.version === 1) {
-			setData({
-				...$data,
-				...metadata,
-			});
-		}
+		setData({
+			...$data,
+			...metadata,
+		});
 
 		const skills = await props.restreamer.Skills();
 		setSkills(skills);
@@ -284,7 +284,7 @@ export default function Edit(props) {
 			const profiles = $data.profiles;
 			const control = $data.control;
 
-			const [inputs, outputs] = M.createInputsOutputs(sources, profiles);
+			const [global, inputs, outputs] = M.createInputsOutputs(sources, profiles);
 
 			if (inputs.length === 0 || outputs.length === 0) {
 				notify.Dispatch('error', 'save:ingest', i18n._(t`The input profile is not complete. Please define a video and audio source.`));
@@ -292,7 +292,7 @@ export default function Edit(props) {
 			}
 
 			// Create/update the ingest
-			const [, err] = await props.restreamer.UpsertIngest(_channelid, inputs, outputs, control);
+			let [, err] = await props.restreamer.UpsertIngest(_channelid, global, inputs, outputs, control);
 			if (err !== null) {
 				notify.Dispatch('error', 'save:ingest', i18n._(t`Failed to update ingest process (${err.message})`));
 				return false;
@@ -304,10 +304,22 @@ export default function Edit(props) {
 				notify.Dispatch('warning', 'save:ingest', i18n._(t`Failed to save ingest metadata`));
 			}
 
+			// Create/update the ingest snapshot process
+			[, err] = await props.restreamer.UpsertIngestSnapshot(_channelid, control);
+			if (err !== null) {
+				notify.Dispatch('error', 'save:ingest', i18n._(t`Failed to update ingest snapshot process (${err.message})`));
+			}
+
 			// Create/update the player
 			res = await props.restreamer.UpdatePlayer(_channelid);
 			if (res === false) {
 				notify.Dispatch('warning', 'save:ingest', i18n._(t`Failed to update the player`));
+			}
+
+			// Create/update the playersite
+			res = await props.restreamer.UpdatePlayersite();
+			if (res === false) {
+				notify.Dispatch('warning', 'save:ingest', i18n._(t`Failed to update the playersite`));
 			}
 
 			return true;
@@ -468,11 +480,53 @@ export default function Edit(props) {
 								</Grid>
 								<Grid item xs={12}>
 									<Typography variant="h3">
-										<Trans>HLS</Trans>
+										<Trans>HLS output</Trans>
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
 									<HLSControl settings={$data.control.hls} onChange={handleControlChange('hls')} />
+								</Grid>
+								<Grid item xs={12}>
+									<Divider />
+								</Grid>
+								<Grid item xs={12}>
+									<Grid container spacing={2}>
+										<Grid item xs={12} md={6}>
+											<Grid container spacing={2}>
+												<Grid item xs={12}>
+													<Typography variant="h3">
+														<Trans>RTMP output</Trans>
+													</Typography>
+												</Grid>
+												<Grid item xs={12}>
+													<RTMPControl
+														settings={$data.control.rtmp}
+														enabled={$config.source.network.rtmp.enabled}
+														onChange={handleControlChange('rtmp')}
+													/>
+												</Grid>
+											</Grid>
+										</Grid>
+										<Grid item xs={12} display={{ xs: 'block', md: 'none' }}>
+											<Divider />
+										</Grid>
+										<Grid item xs={12} md={6}>
+											<Grid container spacing={2}>
+												<Grid item xs={12}>
+													<Typography variant="h3">
+														<Trans>SRT output</Trans>
+													</Typography>
+												</Grid>
+												<Grid item xs={12}>
+													<SRTControl
+														settings={$data.control.srt}
+														enabled={$config.source.network.srt.enabled}
+														onChange={handleControlChange('srt')}
+													/>
+												</Grid>
+											</Grid>
+										</Grid>
+									</Grid>
 								</Grid>
 								<Grid item xs={12}>
 									<Divider />

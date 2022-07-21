@@ -89,7 +89,7 @@ export default function Publication(props) {
 	};
 
 	const sessions = async () => {
-		const current = await props.restreamer.CurrentSessions();
+		const current = await props.restreamer.CurrentSessions(['ffmpeg', 'hls', 'rtmp', 'srt']);
 
 		setSession({
 			viewer: current.sessions,

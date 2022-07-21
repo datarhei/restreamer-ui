@@ -1,4 +1,5 @@
 import * as Akamai from './Akamai';
+import * as Azure from './Azure';
 import * as Brightcove from './Brightcove';
 import * as CDN77 from './CDN77';
 import * as Core from './Core';
@@ -10,13 +11,16 @@ import * as HLS from './HLS';
 import * as Icecast from './Icecast';
 import * as Image2 from './Image2';
 import * as Instagram from './Instagram';
+import * as Linkedin from './Linkedin';
 import * as Livespotting from './Livespotting';
 import * as MPEGTS from './MPEGTS';
+import * as Owncast from './Owncast';
 import * as Red5 from './Red5';
 import * as Restream from './Restream';
 import * as RTMP from './RTMP';
 import * as RTSP from './RTSP';
 import * as SRT from './SRT';
+import * as Telegram from './Telegram';
 import * as Twitch from './Twitch';
 import * as Twitter from './Twitter';
 import * as UDP from './UDP';
@@ -30,6 +34,11 @@ class Registry {
 	}
 
 	Register(service) {
+		if (service.id.match(/[^0-9a-z]/)) {
+			console.warn(`the service.id "${service.id}" is invalid. only [0-9a-z] is allowed.`);
+			return;
+		}
+
 		this.services.set(service.id, service);
 	}
 
@@ -62,12 +71,16 @@ registry.Register(Twitch);
 registry.Register(Instagram);
 registry.Register(Vimeo);
 registry.Register(Restream);
+registry.Register(Telegram);
+registry.Register(Linkedin);
 registry.Register(Livespotting);
+registry.Register(Azure);
 registry.Register(Brightcove);
 registry.Register(Akamai);
 registry.Register(DaCast);
 registry.Register(CDN77);
 registry.Register(Core);
+registry.Register(Owncast);
 registry.Register(WOWZA);
 registry.Register(Red5);
 registry.Register(Icecast);

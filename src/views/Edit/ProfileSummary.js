@@ -13,11 +13,11 @@ import * as M from '../../utils/metadata';
 import Summary from './Summary';
 
 function IconWizard(props) {
-	return (<AutoFixHighIcon {...props} />);
+	return <AutoFixHighIcon {...props} />;
 }
 
 function IconEdit(props) {
-	return (<EditIcon {...props} />);
+	return <EditIcon {...props} />;
 }
 
 const useStyles = makeStyles((theme) => ({

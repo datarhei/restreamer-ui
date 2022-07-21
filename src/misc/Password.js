@@ -53,6 +53,8 @@ export default function Password(props) {
 				endAdornment={adornment}
 				label={props.label}
 				autoComplete={props.autoComplete}
+				inputProps={props.inputProps}
+				error={props.error}
 			/>
 			{props.helperText && <FormHelperText>{props.helperText}</FormHelperText>}
 		</FormControl>
@@ -67,6 +69,8 @@ Password.defaultProps = {
 	autoComplete: 'current-password',
 	env: false,
 	show: false,
-	helperText: null,
+	helperText: false,
+	inputProps: {},
+	error: false,
 	onChange: function (value) {},
 };

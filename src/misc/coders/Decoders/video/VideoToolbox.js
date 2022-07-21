@@ -9,7 +9,10 @@ function init(initialState) {
 }
 
 function createMapping(settings) {
-	const mapping = ['-hwaccel', 'videotoolbox'];
+	const mapping = {
+		global: [],
+		local: ['-hwaccel', 'videotoolbox'],
+	};
 
 	return mapping;
 }

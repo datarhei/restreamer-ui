@@ -9,7 +9,10 @@ function init(initialState) {
 }
 
 function createMapping(settings) {
-	const mapping = ['-c:v', 'vp8_cuvid'];
+	const mapping = {
+		global: [],
+		local: ['-c:v', 'vp8_cuvid'],
+	};
 
 	return mapping;
 }

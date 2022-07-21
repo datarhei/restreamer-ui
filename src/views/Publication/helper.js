@@ -35,7 +35,7 @@ export function createSourcesFromStreams(streams) {
  * @returns
  */
 export function createInputsOutputs(sources, profiles, outputs) {
-	const [inpts, outpts] = M.createInputsOutputs(sources, profiles);
+	const [global, inpts, outpts] = M.createInputsOutputs(sources, profiles);
 
 	const out = [];
 
@@ -58,7 +58,7 @@ export function createInputsOutputs(sources, profiles, outputs) {
 		out.push(o);
 	}
 
-	return [inpts, out];
+	return [global, inpts, out];
 }
 /**
  * validateRequirements validates the requirements object the each

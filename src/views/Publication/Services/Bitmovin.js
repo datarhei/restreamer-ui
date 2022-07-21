@@ -42,7 +42,7 @@ const requires = {
 };
 
 function ServiceIcon(props) {
-	return <img src={Logo} alt="Bitmovin Logo" style={{ marginBottom: '-6px' }} {...props} />;
+	return <img src={Logo} alt="Bitmovin Logo" {...props} />;
 }
 
 function init(settings) {

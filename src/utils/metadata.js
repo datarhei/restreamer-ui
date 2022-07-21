@@ -3,7 +3,7 @@
 Ingest Metadata Layout:
 
 data = {
-	version: 1,
+	version: "1.2.0",
 	meta: {
 		name: 'Livestream 1',
 		description: 'Live from earth. Powered by datarhei/restreamer.',
@@ -93,15 +93,30 @@ data = {
 					channels: '2',
 					sampling: '44100'
 				},
-				mapping: [
-					'-codec:a', 'aac',
-					'-b:a', '64k',
-					'-bsf:a', 'aac_adtstoasc',
-					'-shortest',
-					'-af', 'aresample=osr=44100:ocl=2'
-				]
+				mapping: {
+					global: [],
+					local: [
+						'-codec:a', 'aac',
+						'-b:a', '64k',
+						'-bsf:a', 'aac_adtstoasc',
+						'-shortest'
+					]
+				}
 			},
 			decoder: null,
+			filter: {
+				graph: 'aresample=osr=44100:ocl=stereo',
+				settings: {
+					aresample: {
+						graph: 'aresample=osr=44100:ocl=stereo',
+						settings: {
+							channels: 2,
+							layout: 'stereo',
+							sampling: 44100
+						}
+					}
+				}
+			},
 		},
 		video: {
 			source: 0,
@@ -110,14 +125,15 @@ data = {
 				coder: 'copy',
 				codec: 'h264',
 				settings: {},
-				mapping: [
-					'-codec:v', 'copy',
-					'-vsync 0',
-					'-copyts',
-					'-start_at_zero',
-				]
+				mapping: {
+					global: [],
+					local: [
+						'-codec:v', 'copy',
+					]
+				}
 			},
 			decoder: null,
+			filter: null,
 		},
 		"or": {},
 		"video": {
@@ -133,19 +149,21 @@ data = {
 					profile: 'auto',
 					tune: 'zerolatency',
 				},
-				mapping: [
-					'-codec:v', 'libx264',
-					'-preset:v', 'ultrafast',
-					'-b:v', '4096k',
-					'-maxrate', '4096k',
-					'-bufsize', '4096k',
-					'-r', '25',
-					'-g', '50',
-					'-pix_fmt', 'yuv420p',
-					'-vsync', '1',
-					'-profile:v', 'high',
-					'-tune:v', 'zerolatency',
-				]
+				mapping: {
+					global: [],
+					local: [
+						'-codec:v', 'libx264',
+						'-preset:v', 'ultrafast',
+						'-b:v', '4096k',
+						'-maxrate', '4096k',
+						'-bufsize', '4096k',
+						'-r', '25',
+						'-g', '50',
+						'-pix_fmt', 'yuv420p',
+						'-profile:v', 'high',
+						'-tune:v', 'zerolatency',
+					]
+				}
 			},
 			decoder: {
 				coder: 'h264_cuvid',
@@ -201,7 +219,7 @@ data = {
 Egress Metadata Layout:
 
 data = {
-	version: 1,
+	version: "1.2.0",
 	name: "foobar",
 	control: {
 		process: {
@@ -222,15 +240,20 @@ data = {
 
 */
 
+import SemverGt from 'semver/functions/gt';
+import SemverCompare from 'semver/functions/compare';
+
 import * as Coders from '../misc/coders/Encoders';
+import * as Filters from '../misc/filters';
+import * as version from '../version';
 
 const defaultMetadata = {
-	version: 1,
+	version: version.Version,
 	playersite: {},
 };
 
 const defaultIngestMetadata = {
-	version: 1,
+	version: version.Version,
 	sources: [],
 	profiles: [{}],
 	streams: [],
@@ -239,6 +262,16 @@ const defaultIngestMetadata = {
 			lhls: false,
 			segmentDuration: 2,
 			listSize: 6,
+			cleanup: true,
+			version: 3,
+			storage: 'memfs',
+			master_playlist: true,
+		},
+		rtmp: {
+			enable: false,
+		},
+		srt: {
+			enable: false,
 		},
 		process: {
 			autostart: true,
@@ -264,7 +297,7 @@ const defaultIngestMetadata = {
 };
 
 const defaultEgressMetadata = {
-	version: 1,
+	version: version.Version,
 	name: '',
 	control: {
 		process: {
@@ -272,6 +305,9 @@ const defaultEgressMetadata = {
 			reconnect: true,
 			delay: 15,
 			staleTimeout: 30,
+		},
+		source: {
+			source: 'hls+memfs',
 		},
 	},
 	outputs: [],
@@ -295,6 +331,12 @@ const getDefaultEgressMetadata = () => {
 	return JSON.parse(JSON.stringify(defaultEgressMetadata));
 };
 
+const initMetadata = (initialMetadata) => {
+	return mergeMetadata(initialMetadata);
+};
+
+const transformers = {};
+
 const mergeMetadata = (metadata, base) => {
 	if (!metadata) {
 		metadata = {};
@@ -311,26 +353,55 @@ const mergeMetadata = (metadata, base) => {
 		...metadata,
 	};
 
-	if (metadata.version !== defaultMetadata.version) {
-		metadata = {
-			...defaultMetadata,
-		};
-	}
-
 	metadata.playersite = {
 		...base.playersite,
 		...metadata.playersite,
 	};
 
-	return metadata;
-};
+	metadata = transformMetadata(metadata, defaultMetadata.version, transformers);
 
-const initMetadata = (initialMetadata) => {
-	return mergeMetadata(initialMetadata);
+	return metadata;
 };
 
 const initIngestMetadata = (initialMetadata) => {
 	return mergeIngestMetadata(initialMetadata);
+};
+
+const ingestTransformers = {
+	'1.2.0': (metadata) => {
+		for (let p = 0; p < metadata.profiles.length; p++) {
+			const profile = metadata.profiles[p];
+
+			if (profile.audio.encoder.coder === 'copy' || profile.audio.encoder.coder === 'none') {
+				continue;
+			}
+
+			const settings = profile.audio.encoder.settings;
+
+			profile.audio.filter = {
+				settings: {
+					aresample: {
+						settings: {
+							channels: settings.channels,
+							layout: settings.layout,
+							sampling: settings.sampling,
+						},
+					},
+				},
+			};
+
+			delete profile.audio.encoder.settings.channels;
+			delete profile.audio.encoder.settings.layout;
+			delete profile.audio.encoder.settings.sampling;
+
+			profile.audio.filter.settings.aresample.graph = Filters.Audio.Get('aresample').createGraph(profile.audio.filter.settings.aresample.settings);
+			profile.audio.filter.graph = profile.audio.filter.settings.aresample.graph;
+		}
+
+		metadata.version = '1.2.0';
+
+		return metadata;
+	},
 };
 
 const mergeIngestMetadata = (metadata, base) => {
@@ -348,12 +419,6 @@ const mergeIngestMetadata = (metadata, base) => {
 		...base,
 		...metadata,
 	};
-
-	if (metadata.version !== defaultMetadata.version) {
-		metadata = {
-			...defaultMetadata,
-		};
-	}
 
 	metadata.meta = {
 		...base.meta,
@@ -414,12 +479,16 @@ const mergeIngestMetadata = (metadata, base) => {
 		}
 	}
 
+	metadata = transformMetadata(metadata, defaultMetadata.version, ingestTransformers);
+
 	return metadata;
 };
 
 const initEgressMetadata = (initialMetadata) => {
 	return mergeEgressMetadata(initialMetadata);
 };
+
+const egressTransformers = {};
 
 const mergeEgressMetadata = (metadata, base) => {
 	if (!metadata) {
@@ -437,12 +506,6 @@ const mergeEgressMetadata = (metadata, base) => {
 		...metadata,
 	};
 
-	if (metadata.version !== defaultMetadata.version) {
-		metadata = {
-			...defaultMetadata,
-		};
-	}
-
 	metadata.control = {
 		...base.control,
 		...metadata.control,
@@ -451,6 +514,11 @@ const mergeEgressMetadata = (metadata, base) => {
 	metadata.control.process = {
 		...base.control.process,
 		...metadata.control.process,
+	};
+
+	metadata.control.source = {
+		...base.control.source,
+		...metadata.control.source,
 	};
 
 	if (!Array.isArray(metadata.outputs)) {
@@ -477,17 +545,15 @@ const mergeEgressMetadata = (metadata, base) => {
 		}
 	}
 
+	metadata = transformMetadata(metadata, defaultMetadata.version, egressTransformers);
+
 	return metadata;
 };
 
 const validateProfile = (sources, profile) => {
 	let validVideo = false;
 
-	if (!('video' in profile)) {
-		profile.video = initProfile({});
-	} else {
-		profile.video = initProfile(profile.video);
-	}
+	profile = initProfile(profile);
 
 	if (profile.video.source !== -1 && profile.video.source < sources.length) {
 		const source = sources[profile.video.source];
@@ -504,12 +570,6 @@ const validateProfile = (sources, profile) => {
 	}
 
 	let validAudio = false;
-
-	if (!('audio' in profile)) {
-		profile.audio = initProfile({});
-	} else {
-		profile.audio = initProfile(profile.audio);
-	}
 
 	if (profile.audio.source !== -1 && profile.audio.source < sources.length) {
 		const source = sources[profile.audio.source];
@@ -547,6 +607,7 @@ const validateProfile = (sources, profile) => {
 const createInputsOutputs = (sources, profiles) => {
 	const source2inputMap = new Map();
 
+	let global = [];
 	const inputs = [];
 	const outputs = [];
 
@@ -559,11 +620,13 @@ const createInputsOutputs = (sources, profiles) => {
 
 		let index = -1;
 
+		global = [...global, ...profile.video.decoder.mapping.global];
+
 		const source = sources[profile.video.source];
 		const stream = source.streams[profile.video.stream];
 		const input = source.inputs[stream.index];
 
-		input.options = [...profile.video.decoder.mapping, ...input.options];
+		input.options = [...profile.video.decoder.mapping.local, ...input.options];
 
 		const id = profile.video.source + ':' + stream.index;
 
@@ -576,14 +639,30 @@ const createInputsOutputs = (sources, profiles) => {
 
 		index = source2inputMap.get(id);
 
-		const options = ['-map', index + ':' + stream.stream, ...profile.video.encoder.mapping];
+		global = [...global, ...profile.video.encoder.mapping.global];
+
+		const local = profile.video.encoder.mapping.local.slice();
+
+		if (profile.video.encoder.coder !== 'copy' && profile.video.filter.graph.length !== 0) {
+			// Check if there's already a video filter in the local mapping
+			let filterIndex = local.indexOf('-filter:v');
+			if (filterIndex !== -1) {
+				local[filterIndex + 1] += ',' + profile.video.filter.graph;
+			} else {
+				local.unshift('-filter:v', profile.video.filter.graph);
+			}
+		}
+
+		const options = ['-map', index + ':' + stream.stream, ...local];
 
 		if (profile.audio.encoder.coder !== 'none' && profile.audio.source !== -1 && profile.audio.stream !== -1) {
+			global = [...global, ...profile.audio.decoder.mapping.global];
+
 			const source = sources[profile.audio.source];
 			const stream = source.streams[profile.audio.stream];
 			const input = source.inputs[stream.index];
 
-			input.options = [...profile.audio.decoder.mapping, ...input.options];
+			input.options = [...profile.audio.decoder.mapping.local, ...input.options];
 
 			const id = profile.audio.source + ':' + stream.index;
 
@@ -594,7 +673,21 @@ const createInputsOutputs = (sources, profiles) => {
 
 			index = source2inputMap.get(id);
 
-			options.push('-map', index + ':' + stream.stream, ...profile.audio.encoder.mapping);
+			global = [...global, ...profile.audio.encoder.mapping.global];
+
+			const local = profile.audio.encoder.mapping.local.slice();
+
+			if (profile.audio.encoder.coder !== 'copy' && profile.audio.filter.graph.length !== 0) {
+				// Check if there's already a audio filter in the local mapping
+				let filterIndex = local.indexOf('-filter:a');
+				if (filterIndex !== -1) {
+					local[filterIndex + 1] += ',' + profile.audio.filter.graph;
+				} else {
+					local.unshift('-filter:a', profile.audio.filter.graph);
+				}
+			}
+
+			options.push('-map', index + ':' + stream.stream, ...local);
 		} else {
 			options.push('-an');
 		}
@@ -605,7 +698,16 @@ const createInputsOutputs = (sources, profiles) => {
 		});
 	}
 
-	return [inputs, outputs];
+	// https://stackoverflow.com/questions/9229645/remove-duplicate-values-from-js-array
+	const uniqBy = (a, key) => {
+		return [...new Map(a.map((x) => [key(x), x])).values()];
+	};
+
+	// global is an array of arrays. Here we remove duplicates and flatten it.
+	global = uniqBy(global, (x) => JSON.stringify(x.sort()));
+	global = global.reduce((acc, val) => acc.concat(val), []);
+
+	return [global, inputs, outputs];
 };
 
 const createOutputStreams = (sources, profiles) => {
@@ -711,21 +813,55 @@ const initProfile = (initialProfile) => {
 		stream: -1,
 		encoder: {},
 		decoder: {},
+		filter: {},
 		...profile.video,
 	};
 
 	profile.video.encoder = {
 		coder: 'none',
 		settings: {},
-		mapping: [],
+		mapping: {},
 		...profile.video.encoder,
 	};
+
+	// mapping used to be an array for input/output specific options
+	if (Array.isArray(profile.video.encoder.mapping)) {
+		profile.video.encoder.mapping = {
+			global: [],
+			local: profile.video.encoder.mapping,
+		};
+	} else {
+		profile.video.encoder.mapping = {
+			global: [],
+			local: [],
+			...profile.video.encoder.mapping,
+		};
+	}
 
 	profile.video.decoder = {
 		coder: 'default',
 		settings: {},
-		mapping: [],
+		mapping: {},
 		...profile.video.decoder,
+	};
+
+	if (Array.isArray(profile.video.decoder.mapping)) {
+		profile.video.decoder.mapping = {
+			global: [],
+			local: profile.video.decoder.mapping,
+		};
+	} else {
+		profile.video.decoder.mapping = {
+			global: [],
+			local: [],
+			...profile.video.decoder.mapping,
+		};
+	}
+
+	profile.video.filter = {
+		graph: '',
+		settings: {},
+		...profile.video.filter,
 	};
 
 	profile.audio = {
@@ -733,21 +869,54 @@ const initProfile = (initialProfile) => {
 		stream: -1,
 		encoder: {},
 		decoder: {},
+		filter: {},
 		...profile.audio,
 	};
 
 	profile.audio.encoder = {
 		coder: 'none',
 		settings: {},
-		mapping: [],
+		mapping: {},
 		...profile.audio.encoder,
 	};
+
+	if (Array.isArray(profile.audio.encoder.mapping)) {
+		profile.audio.encoder.mapping = {
+			global: [],
+			local: profile.audio.encoder.mapping,
+		};
+	} else {
+		profile.audio.encoder.mapping = {
+			global: [],
+			local: [],
+			...profile.audio.encoder.mapping,
+		};
+	}
 
 	profile.audio.decoder = {
 		coder: 'default',
 		settings: {},
-		mapping: [],
+		mapping: {},
 		...profile.audio.decoder,
+	};
+
+	if (Array.isArray(profile.audio.decoder.mapping)) {
+		profile.audio.decoder.mapping = {
+			global: [],
+			local: profile.audio.decoder.mapping,
+		};
+	} else {
+		profile.audio.decoder.mapping = {
+			global: [],
+			local: [],
+			...profile.audio.decoder.mapping,
+		};
+	}
+
+	profile.audio.filter = {
+		graph: '',
+		settings: {},
+		...profile.audio.filter,
 	};
 
 	profile.custom = {
@@ -1023,6 +1192,39 @@ const cleanupProfile = (profile) => {
 		video: profile.video,
 		custom: profile.custom,
 	};
+};
+
+const transformMetadata = (metadata, targetVersion, transformers) => {
+	if (metadata.version === 1) {
+		metadata.version = '1.0.0';
+	}
+
+	if (targetVersion === 1) {
+		targetVersion = '1.0.0';
+	}
+
+	if (metadata.version === targetVersion) {
+		return metadata;
+	}
+
+	// Create a list of all transformers that are greater than the current version
+	// and sort them in ascending order.
+	const tlist = [];
+
+	for (let v in transformers) {
+		if (SemverGt(v, metadata.version)) {
+			tlist.push(v);
+		}
+	}
+
+	tlist.sort(SemverCompare);
+
+	// Apply all found transformers
+	for (let t of tlist) {
+		metadata = transformers[t](metadata);
+	}
+
+	return metadata;
 };
 
 export {

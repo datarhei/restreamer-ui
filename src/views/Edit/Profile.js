@@ -18,6 +18,8 @@ import ProbeModal from '../../misc/modals/Probe';
 import SourceSelect from './SourceSelect';
 import StreamSelect from './StreamSelect';
 
+import FilterSelect from '../../misc/FilterSelect';
+
 export default function Source(props) {
 	const [$sources, setSources] = React.useState({
 		video: M.initSource('video', props.sources[0]),
@@ -212,6 +214,17 @@ export default function Source(props) {
 		});
 	};
 
+	const handleFilter = (type) => (filter) => {
+		const profile = $profile[type];
+
+		profile.filter = filter;
+
+		setProfile({
+			...$profile,
+			[type]: profile,
+		});
+	};
+
 	const handleDone = () => {
 		const sources = M.cleanupSources($sources);
 		const profile = M.cleanupProfile($profile);
@@ -395,6 +408,16 @@ export default function Source(props) {
 												onChange={handleEncoding('video')}
 											/>
 										</Grid>
+										{$profile.video.encoder.coder !== 'none' && $profile.video.encoder.coder !== 'copy' && (
+											<Grid item xs={12}>
+												<FilterSelect
+													type="video"
+													profile={$profile.video}
+													availableFilters={props.skills.filter}
+													onChange={handleFilter('video')}
+												/>
+											</Grid>
+										)}
 									</React.Fragment>
 								)}
 							</React.Fragment>
@@ -457,6 +480,16 @@ export default function Source(props) {
 										onChange={handleEncoding('audio')}
 									/>
 								</Grid>
+								{$profile.audio.encoder.coder !== 'none' && $profile.audio.encoder.coder !== 'copy' && (
+									<Grid item xs={12}>
+										<FilterSelect
+											type="audio"
+											profile={$profile.audio}
+											availableFilters={props.skills.filter}
+											onChange={handleFilter('audio')}
+										/>
+									</Grid>
+								)}
 							</React.Fragment>
 						)}
 						{$profile.custom.selected === true && (
@@ -524,6 +557,16 @@ export default function Source(props) {
 														onChange={handleEncoding('audio')}
 													/>
 												</Grid>
+												{$profile.audio.encoder.coder !== 'none' && $profile.audio.encoder.coder !== 'copy' && (
+													<Grid item xs={12}>
+														<FilterSelect
+															type="audio"
+															profile={$profile.audio}
+															availableFilters={props.skills.filter}
+															onChange={handleFilter('audio')}
+														/>
+													</Grid>
+												)}
 											</React.Fragment>
 										)}
 									</React.Fragment>
