@@ -54,27 +54,29 @@ export default function Summary(props) {
 			encodingSummary = coder.summarize(profile.encoder.settings);
 		}
 
-		if (profile.filter.graph.length !== 0) {
-			let filters = null;
+		if (profile.encoder.coder !== 'none' && profile.encoder.coder !== 'copy') {
+			if (profile.filter.graph.length !== 0) {
+				let filters = null;
 
-			if (props.type === 'video') {
-				filters = Filters.Video;
-			} else if (props.type === 'audio') {
-				filters = Filters.Audio;
-			}
-
-			for (let filter of filters.List()) {
-				const name = filter.filter;
-
-				if (!(name in profile.filter.settings)) {
-					continue;
+				if (props.type === 'video') {
+					filters = Filters.Video;
+				} else if (props.type === 'audio') {
+					filters = Filters.Audio;
 				}
 
-				if (profile.filter.settings[name].graph.length === 0) {
-					continue;
-				}
+				for (let filter of filters.List()) {
+					const name = filter.filter;
 
-				filterSummary.push(filter.summarize(profile.filter.settings[name].settings));
+					if (!(name in profile.filter.settings)) {
+						continue;
+					}
+
+					if (profile.filter.settings[name].graph.length === 0) {
+						continue;
+					}
+
+					filterSummary.push(filter.summarize(profile.filter.settings[name].settings));
+				}
 			}
 		}
 	}
