@@ -1334,74 +1334,30 @@ class Restreamer {
 
 	// Sessions
 
-	async CurrentSessions() {
+	async CurrentSessions(protocols) {
 		const sessions = {
 			sessions: 0,
 			bitrate_kbit: 0,
 		};
 
-		const [val, err] = await this._call(this.api.ActiveSessions, ['ffmpeg', 'hls', 'rtmp', 'srt']);
+		const [val, err] = await this._call(this.api.ActiveSessions, protocols);
 		if (err !== null) {
 			return sessions;
 		}
 
-		// HLS sessions
-
-		if (!val.hls) {
-			val.hls = [];
-		}
-
-		for (let i = 0; i < val.hls.length; i++) {
-			if (!val.hls[i].reference.startsWith(this.channel.channelid)) {
+		for (let p of protocols) {
+			if (!(p in val)) {
 				continue;
 			}
 
-			sessions.sessions++;
-			sessions.bitrate_kbit += val.hls[i].bandwidth_tx_kbit;
-		}
+			for (let s of val[p]) {
+				if (!s.reference.startsWith(this.channel.channelid)) {
+					continue;
+				}
 
-		// ffmpeg sessions
-
-		if (!val.ffmpeg) {
-			val.ffmpeg = [];
-		}
-
-		for (let i = 0; i < val.ffmpeg.length; i++) {
-			if (!val.ffmpeg[i].reference.startsWith(this.channel.channelid)) {
-				continue;
+				sessions.sessions++;
+				sessions.bitrate_kbit += s.bandwidth_tx_kbit;
 			}
-
-			sessions.bitrate_kbit += val.ffmpeg[i].bandwidth_tx_kbit;
-		}
-
-		// RTMP sessions
-
-		if (!val.rtmp) {
-			val.rtmp = [];
-		}
-
-		for (let i = 0; i < val.rtmp.length; i++) {
-			if (!val.rtmp[i].reference.startsWith(this.channel.channelid)) {
-				continue;
-			}
-
-			sessions.sessions++;
-			sessions.bitrate_kbit += val.rtmp[i].bandwidth_tx_kbit;
-		}
-
-		// SRT sessions
-
-		if (!val.srt) {
-			val.srt = [];
-		}
-
-		for (let i = 0; i < val.srt.length; i++) {
-			if (!val.srt[i].reference.startsWith(this.channel.channelid)) {
-				continue;
-			}
-
-			sessions.sessions++;
-			sessions.bitrate_kbit += val.srt[i].bandwidth_tx_kbit;
 		}
 
 		return sessions;
