@@ -34,6 +34,11 @@ class Registry {
 	}
 
 	Register(service) {
+		if (service.id.match(/[^0-9a-z]/)) {
+			console.warn(`the service.id "${service.id}" is invalid. only [0-9a-z] is allowed.`);
+			return;
+		}
+
 		this.services.set(service.id, service);
 	}
 

@@ -10,7 +10,7 @@ import FormInlineButton from '../../../misc/FormInlineButton';
 import Logo from './logos/datarhei.svg';
 import Select from '../../../misc/Select';
 
-const id = 'datarhei_core';
+const id = 'datarheicore';
 const name = 'datarhei Core';
 const version = '1.0';
 const stream_key_link_rtmp = 'https://docs.datarhei.com/restreamer/knowledge-base/manual/system-settings/rtmp';
