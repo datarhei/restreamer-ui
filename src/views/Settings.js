@@ -439,13 +439,25 @@ const configValues = {
 			return null;
 		},
 	},
-	'storage.disk.cache.types': {
+	'storage.disk.cache.types.allow': {
 		tab: 'storage',
 		set: (config, value) => {
-			config.storage.disk.cache.types = value;
+			config.storage.disk.cache.types.allow = value;
 		},
 		unset: (config) => {
-			delete config.storage.disk.cache.types;
+			delete config.storage.disk.cache.types.allow;
+		},
+		validate: (config) => {
+			return null;
+		},
+	},
+	'storage.disk.cache.types.block': {
+		tab: 'storage',
+		set: (config, value) => {
+			config.storage.disk.cache.types.block = value;
+		},
+		unset: (config) => {
+			delete config.storage.disk.cache.types.block;
 		},
 		validate: (config) => {
 			return null;
@@ -756,7 +768,8 @@ export default function Settings(props) {
 				config.storage.cors.allow_all = true;
 			}
 			config.storage.cors.origins = config.storage.cors.origins.join('\n');
-			config.storage.disk.cache.types = config.storage.disk.cache.types.join('\n');
+			config.storage.disk.cache.types.allow = config.storage.disk.cache.types.allow.join('\n');
+			config.storage.disk.cache.types.block = config.storage.disk.cache.types.block.join('\n');
 
 			config.sessions.ip_ignorelist = config.sessions.ip_ignorelist.join('\n');
 
@@ -905,7 +918,8 @@ export default function Settings(props) {
 			}
 			delete config.storage.cors.allow_all;
 
-			config.storage.disk.cache.types = toArray(config.storage.disk.cache.types, '\n');
+			config.storage.disk.cache.types.allow = toArray(config.storage.disk.cache.types.allow, '\n');
+			config.storage.disk.cache.types.block = toArray(config.storage.disk.cache.types.block, '\n');
 
 			config.sessions.ip_ignorelist = toArray(config.sessions.ip_ignorelist, '\n');
 
@@ -1806,19 +1820,34 @@ export default function Settings(props) {
 										<Trans>Maximum file size to put in cache.</Trans>
 									</Typography>
 								</Grid>
-								<Grid item xs={12}>
+								<Grid item xs={6}>
 									<TextField
 										multiline
 										rows={5}
 										label={<Trans>Cache types</Trans>}
-										env={env('storage.disk.cache.types')}
-										disabled={env('storage.disk.cache.types') || !config.storage.disk.cache.enable}
-										value={config.storage.disk.cache.types}
-										onChange={handleChange('storage.disk.cache.types')}
+										env={env('storage.disk.cache.types.allow')}
+										disabled={env('storage.disk.cache.types.allow') || !config.storage.disk.cache.enable}
+										value={config.storage.disk.cache.types.allow}
+										onChange={handleChange('storage.disk.cache.types.allow')}
 									/>
-									<ErrorBox configvalue="storage.disk.cache.types" messages={$tabs.storage.messages} />
+									<ErrorBox configvalue="storage.disk.cache.types.allow" messages={$tabs.storage.messages} />
 									<Typography variant="caption">
 										<Trans>List of file extensions to cache (e.g. ".html"), one per line. Leave empty to cache all file types.</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={6}>
+									<TextField
+										multiline
+										rows={5}
+										label={<Trans>Block cache types</Trans>}
+										env={env('storage.disk.cache.types.block')}
+										disabled={env('storage.disk.cache.types.block') || !config.storage.disk.cache.enable}
+										value={config.storage.disk.cache.types.block}
+										onChange={handleChange('storage.disk.cache.types.block')}
+									/>
+									<ErrorBox configvalue="storage.disk.cache.types.block" messages={$tabs.storage.messages} />
+									<Typography variant="caption">
+										<Trans>List of file extensions not to cache (e.g. ".m3u8"), one per line. Leave empty for none.</Trans>
 									</Typography>
 								</Grid>
 							</Grid>
