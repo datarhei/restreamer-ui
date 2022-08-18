@@ -1,6 +1,7 @@
 ARG NODE_IMAGE=node:18.6.0-alpine3.15
+ARG CADDY_IMAGE=caddy:2.5.2-alpine
 
-FROM $NODE_IMAGE
+FROM $NODE_IMAGE as builder
 
 ARG NODE_SPACE_SIZE=10240
 ENV NODE_OPTIONS="--openssl-legacy-provider --max-old-space-size=$NODE_SPACE_SIZE"
@@ -20,6 +21,13 @@ RUN cd /ui && \
 	npm install && \
 	npm run build
 
+FROM $CADDY_IMAGE
+
+COPY --from=builder /ui/build /ui/build
+COPY --from=builder /ui/Caddyfile /ui/Caddyfile
+
+WORKDIR /ui
+
 EXPOSE 3000
 
-CMD [ "npm", "run", "start" ]
+CMD [ "caddy", "run", "-config", "/ui/Caddyfile" ]
