@@ -722,6 +722,13 @@ class Restreamer {
 					password: '',
 				},
 			},
+			api: {
+				auth: {
+					enable: false,
+					username: '',
+					password: '',
+				},
+			},
 			hostname: '',
 			overrides: [],
 		};
@@ -877,6 +884,14 @@ class Restreamer {
 			config.source.network.hls.credentials = encodeURIComponent(config.memfs.auth.username) + ':' + encodeURIComponent(config.memfs.auth.password);
 		}
 
+		// API Auth
+
+		config.api.auth.enable = val.config.api.auth.enable;
+		config.api.auth.username = val.config.api.auth.username;
+		config.api.auth.password = val.config.api.auth.password;
+
+		// Environment Config Overrides
+
 		config.overrides = val.overrides;
 
 		this.config = config;
@@ -907,6 +922,25 @@ class Restreamer {
 		}
 
 		return this.config.overrides.includes(name);
+	}
+
+	ConfigValue(name) {
+		if (!this.config) {
+			return null;
+		}
+
+		const elms = name.split('.');
+
+		let config = this.config;
+		for (let e of elms) {
+			if (!(e in config)) {
+				return null;
+			}
+
+			config = config[e];
+		}
+
+		return config;
 	}
 
 	// Get system metadata
@@ -1355,7 +1389,9 @@ class Restreamer {
 					continue;
 				}
 
-				sessions.sessions++;
+				if (p !== 'ffmpeg') {
+					sessions.sessions++;
+				}
 				sessions.bitrate_kbit += s.bandwidth_tx_kbit;
 			}
 		}

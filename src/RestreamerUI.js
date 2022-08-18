@@ -196,16 +196,24 @@ export default function RestreamerUI(props) {
 		});
 	};
 
-	const handlePasswordReset = async (username, password) => {
-		const [, err] = await restreamer.current.ConfigSet({
+	const handlePasswordReset = async (username, loginUsername, password, loginPassword) => {
+		const data = {
 			api: {
 				auth: {
 					enable: true,
-					username: username,
-					password: password,
 				},
 			},
-		});
+		};
+
+		if (username.length !== 0) {
+			data.api.auth.username = username;
+		}
+
+		if (password.length !== 0) {
+			data.api.auth.password = password;
+		}
+
+		const [, err] = await restreamer.current.ConfigSet(data);
 		if (err !== null) {
 			notify('error', 'save:settings', `There was an error resetting the password.`);
 			return 'ERROR';
@@ -249,7 +257,7 @@ export default function RestreamerUI(props) {
 		if (restarted === true) {
 			// After the restart the API requires a login and this means the restart happened
 			await restreamer.current.Validate();
-			await restreamer.current.Login(username, password);
+			await restreamer.current.Login(loginUsername, loginPassword);
 
 			window.location.reload();
 		} else {
@@ -368,7 +376,15 @@ export default function RestreamerUI(props) {
 			view = <Views.Incompatible type="ffmpeg" have={$state.compatibility.ffmpeg.have} want={$state.compatibility.ffmpeg.want} />;
 		}
 	} else if ($state.password === true) {
-		view = <Views.Password onReset={handlePasswordReset} />;
+		view = (
+			<Views.Password
+				onReset={handlePasswordReset}
+				username={restreamer.current.ConfigValue('api.auth.username')}
+				usernameOverride={restreamer.current.ConfigOverrides('api.auth.username')}
+				password={restreamer.current.ConfigValue('api.auth.password')}
+				passwordOverride={restreamer.current.ConfigOverrides('api.auth.password')}
+			/>
+		);
 	} else {
 		view = <Router restreamer={restreamer.current} />;
 		resources = handleResources;
