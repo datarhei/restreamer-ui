@@ -1389,9 +1389,18 @@ class Restreamer {
 					continue;
 				}
 
+				// Don't count viewers where nothing is transmitted.
+				if (s.bandwidth_tx_kbit === 0) {
+					continue;
+				}
+
+				// Don't count ffmpeg as session, only the bandwidth, otherwise
+				// the ingest and every running publication service would be
+				// considered as a viewer.
 				if (p !== 'ffmpeg') {
 					sessions.sessions++;
 				}
+
 				sessions.bitrate_kbit += s.bandwidth_tx_kbit;
 			}
 		}
