@@ -1585,25 +1585,28 @@ class Restreamer {
 		// Set hls storage endpoint
 		const hlsStorage = control.hls.storage;
 
-		// Set hls variant suffix (Master/Variant playlist)
-		let bitrate_suffix = '';
-		if (control.hls.master_playlist) {
-			bitrate_suffix = '_var0';
-		}
-
 		const output = {
 			id: 'output_0',
-			address: `{${hlsStorage}}/${channel.channelid}${bitrate_suffix}.m3u8`,
+			address: `{${hlsStorage}}/${channel.channelid}` + (control.hls.master_playlist ? `_{outputid}` : '') + `.m3u8`,
 			options: ['-dn', '-sn', ...outputs[0].options.map((o) => '' + o)],
 			cleanup: [
 				{
-					pattern: `${hlsStorage}:/${channel.channelid}_*${bitrate_suffix}.` + (control.hls.version >= 7 ? 'mp4' : 'ts'),
+					pattern: `${hlsStorage}:/${channel.channelid}**`,
+					max_files: 0,
+					max_file_age_seconds: 0,
+					purge_on_delete: true,
+				},
+				{
+					pattern:
+						`${hlsStorage}:/${channel.channelid}/` +
+						(control.hls.master_playlist ? '{outputid}**.' : '**.') +
+						(control.hls.version >= 7 ? 'mp4' : 'ts'),
 					max_files: parseInt(control.hls.listSize) + 6,
 					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
 					purge_on_delete: true,
 				},
 				{
-					pattern: `${hlsStorage}:/${channel.channelid}${bitrate_suffix}.m3u8`,
+					pattern: `${hlsStorage}:/${channel.channelid}` + (control.hls.master_playlist ? '_{outputid}' : '') + `.m3u8`,
 					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
 					purge_on_delete: true,
 				},
@@ -1688,7 +1691,16 @@ class Restreamer {
 							['hls_list_size', '' + parseInt(control.hls.listSize)],
 							['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments'],
 							['hls_delete_threshold', '4'],
-							['hls_segment_filename', `{${hlsStorage}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d${bitrate_suffix}.ts`],
+							['strftime', '1'],
+							['strftime_mkdir', '1'],
+							[
+								'hls_segment_filename',
+								`{${hlsStorage}` +
+									(tee_muxer ? '^:' : '') +
+									`}/${channel.channelid}/` +
+									(control.hls.master_playlist ? '{outputid}/' : '') +
+									'%Y%m%d/%s.ts',
+							],
 							['method', 'PUT'],
 						];
 					case 7:
@@ -1715,7 +1727,16 @@ class Restreamer {
 							['hls_segment_type', 'fmp4'],
 							['hls_fmp4_init_filename', `${channel.channelid}.mp4`],
 							['hls_fmp4_init_resend', '1'],
-							['hls_segment_filename', `{${hlsStorage}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d${bitrate_suffix}.mp4`],
+							['strftime', '1'],
+							['strftime_mkdir', '1'],
+							[
+								'hls_segment_filename',
+								`{${hlsStorage}` +
+									(tee_muxer ? '^:' : '') +
+									`}/${channel.channelid}/` +
+									(control.hls.master_playlist ? '{outputid}/' : '') +
+									'%Y%m%d/%s.mp4',
+							],
 							['method', 'PUT'],
 						];
 					// case 3
@@ -1727,7 +1748,16 @@ class Restreamer {
 							['hls_list_size', '' + parseInt(control.hls.listSize)],
 							['hls_flags', 'append_list+delete_segments+program_date_time'],
 							['hls_delete_threshold', '4'],
-							['hls_segment_filename', `{${hlsStorage}` + (tee_muxer ? '^:' : '') + `}/${channel.channelid}_%04d${bitrate_suffix}.ts`],
+							['strftime', '1'],
+							['strftime_mkdir', '1'],
+							[
+								'hls_segment_filename',
+								`{${hlsStorage}` +
+									(tee_muxer ? '^:' : '') +
+									`}/${channel.channelid}/` +
+									(control.hls.master_playlist ? '{outputid}/' : '') +
+									'%Y%m%d/%s.ts',
+							],
 							['method', 'PUT'],
 						];
 				}
@@ -1758,7 +1788,9 @@ class Restreamer {
 			// ['f=hls:start_number=0...]address.m3u8
 			// use tee_muxer formatting
 			output.address =
-				`[${hls_aac_adtstoasc ? 'bsfs/a=aac_adtstoasc:' : ''}${hls_params}]{${hlsStorage}}/${channel.channelid}${bitrate_suffix}.m3u8` +
+				`[${hls_aac_adtstoasc ? 'bsfs/a=aac_adtstoasc:' : ''}${hls_params}]{${hlsStorage}}/${channel.channelid}` +
+				(control.hls.master_playlist ? '_{outputid}' : '') +
+				'.m3u8' +
 				(rtmp_enabled ? `|[f=flv]{rtmp,name=${channel.channelid}.stream}` : '') +
 				(srt_enabled ? `|[f=mpegts]{srt,name=${channel.channelid},mode=publish}` : '');
 		} else {
