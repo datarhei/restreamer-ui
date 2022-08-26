@@ -1678,7 +1678,6 @@ class Restreamer {
 					['remove_at_exit', '0'],
 					['window_size', '' + parseInt(control.hls.listSize)],
 					['http_persistent', '0'],
-					['method', 'PUT'],
 				];
 			} else {
 				// hls
@@ -1701,7 +1700,6 @@ class Restreamer {
 									(control.hls.master_playlist ? '{outputid}/' : '') +
 									'%Y%m%d/%s.ts',
 							],
-							['method', 'PUT'],
 						];
 					case 7:
 						// fix Malformed AAC bitstream detected for hls version 7
@@ -1737,7 +1735,6 @@ class Restreamer {
 									(control.hls.master_playlist ? '{outputid}/' : '') +
 									'%Y%m%d/%s.mp4',
 							],
-							['method', 'PUT'],
 						];
 					// case 3
 					default:
@@ -1758,7 +1755,6 @@ class Restreamer {
 									(control.hls.master_playlist ? '{outputid}/' : '') +
 									'%Y%m%d/%s.ts',
 							],
-							['method', 'PUT'],
 						];
 				}
 			}
@@ -1768,6 +1764,11 @@ class Restreamer {
 		// Push master playlist params
 		if (control.hls.master_playlist) {
 			hls_params_raw.push(['master_pl_name', `${channel.channelid}.m3u8`], ['master_pl_publish_rate', `${control.hls.segmentDuration}`]);
+		}
+
+		// Use HTTP method
+		if (control.hls.storage && control.hls.storage !== "diskfs") {
+			hls_params_raw.push(['method', 'PUT']);
 		}
 
 		// Overwrite output files
