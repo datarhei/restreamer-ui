@@ -969,6 +969,17 @@ msgstr "Frequenz (Hz)"
 msgid "GET"
 msgstr "GET"
 
+#: src/views/Publication/Services/Core.js:154
+#: src/views/Publication/Services/Facebook.js:115
+#: src/views/Publication/Services/Facebook.js:133
+#: src/views/Publication/Services/Instagram.js:88
+#: src/views/Publication/Services/Restream.js:120
+#: src/views/Publication/Services/Twitch.js:133
+#: src/views/Publication/Services/Twitter.js:179
+#: src/views/Publication/Services/Youtube.js:177
+msgid "Login"
+msgstr "Login"
+
 #: src/views/Edit/Sources/Network.js:553
 #: src/views/Edit/index.js:412
 #: src/views/Edit/index.js:424

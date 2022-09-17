@@ -15,10 +15,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TabPanel(props) {
 	const classes = useStyles();
-	const { children, value, index, ...other } = props;
+	const { children, value, index, sx, ...other } = props;
 
 	return (
-		<div className={classes.root} role="tabpanel" hidden={value !== index} id={`vertical-tabpanel-${index}`} {...other}>
+		<div className={classes.root} role="tabpanel" hidden={value !== index} id={`vertical-tabpanel-${index}`} style={sx || {}} {...other}>
 			{value === index && (
 				<Box classes={{ root: classes }} p={0}>
 					{children}

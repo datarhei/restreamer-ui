@@ -1,3 +1,5 @@
+import { Construction } from "@mui/icons-material";
+
 class API {
 	constructor(address) {
 		this.base = '/api';
@@ -125,6 +127,7 @@ class API {
 			res.err = {
 				code: response.status,
 				message: response.statusText,
+				details: [],
 			};
 
 			if (isJSON === true) {
@@ -132,6 +135,7 @@ class API {
 
 				if ('code' in body && 'message' in body) {
 					res.err.message = body.message;
+					res.err.details = body?.details
 				} else {
 					res.err.message = body;
 				}
@@ -441,6 +445,53 @@ class API {
 			},
 			body: JSON.stringify(query),
 			expect: 'json',
+		});
+	}
+
+	LoginFb(name, body) {
+		return this._POST(`/v3/process/${encodeURIComponent(name)}/oauth/facebook`, {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(body),
+			expect: 'json',
+		});
+	}
+
+	LogoutFb(name) {
+		return this._POST(`/v3/process/${encodeURIComponent(name)}/oauth/facebook/logout`, {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			expect: 'json',
+		});
+	}
+
+	GetFbAccountInfo(name) {
+		const url = '/v3/process/' + name + '/facebook/account';
+
+		return this._GET(url, {
+			expect: 'json',
+		});
+	}
+
+	CheckAuthFB(name) {
+		const url = '/v3/process/' + name + '/facebook/auth';
+
+		return this._GET(url, {
+			expect: 'json',
+		});
+	}
+
+	CreateFbLiveStream(name, pageId) {
+		const url = '/v3/process/' + name + '/facebook/live';
+
+		return this._POST(url, {
+			expect: 'json',
+			body: JSON.stringify({ page_id: pageId }),
+			headers: {
+				'Content-Type': 'application/json',
+			},
 		});
 	}
 }
