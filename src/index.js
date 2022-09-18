@@ -11,8 +11,8 @@ import fbSDK from './utils/fbSDK';
 import theme from './theme';
 import RestreamerUI from './RestreamerUI';
 
-// let address = window.location.protocol + '//' + window.location.host;
-let address = 'http://127.0.0.1:8080';
+let address = window.location.protocol + '//' + window.location.host;
+// let address = 'http://127.0.0.1:8080';
 
 const urlParams = new URLSearchParams(window.location.search.substring(1));
 if (urlParams.has('address') === true) {
