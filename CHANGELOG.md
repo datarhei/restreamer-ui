@@ -2,6 +2,9 @@
 
 ### v1.2.0 > v1.3.0
 
+-   Mod optimized DVR on DiskFS
+-   Mod updates packages
+-   Fix typo
 -   Fix viewer count (datarhei/restreamer#394)
 -   Fix user registration if username and/or password are set via environment (datarhei/restreamer-ui#13)
 -   Fix Dockerfile, Reduce size, serve production build (datarhei/restreamer-ui#12)

@@ -1582,83 +1582,73 @@ class Restreamer {
 			});
 		}
 
-		// Set hls storage endpoint
-		const hlsStorage = control.hls.storage;
+		// 1. Add output address and options
 
-		const output = {
-			id: 'output_0',
-			address: `{${hlsStorage}}/${channel.channelid}` + (control.hls.master_playlist ? `_{outputid}` : '') + `.m3u8`,
-			options: ['-dn', '-sn', ...outputs[0].options.map((o) => '' + o)],
-			cleanup: [
-				{
-					pattern: `${hlsStorage}:/${channel.channelid}**`,
-					max_files: 0,
-					max_file_age_seconds: 0,
-					purge_on_delete: true,
-				},
-				{
-					pattern:
-						`${hlsStorage}:/${channel.channelid}/` +
-						(control.hls.master_playlist ? '{outputid}**.' : '**.') +
-						(control.hls.version >= 7 ? 'mp4' : 'ts'),
-					max_files: parseInt(control.hls.listSize) + 6,
-					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
-					purge_on_delete: true,
-				},
-				{
-					pattern: `${hlsStorage}:/${channel.channelid}` + (control.hls.master_playlist ? '_{outputid}' : '') + `.m3u8`,
-					max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
-					purge_on_delete: true,
-				},
-			],
-		};
-
-		// Add master playlist cleanup
-		if (control.hls.master_playlist) {
-			output.cleanup.push({
-				pattern: `${hlsStorage}:/${channel.channelid}.m3u8`,
-				max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
-				purge_on_delete: true,
-			});
-		}
-
-		// Injects a metadata link as title
-		const metadata = `${this.GetPublicHTTPAddress()}/${channel.channelid}/oembed.json`;
-		const metadata_options = ['-metadata', `title=${metadata}`, '-metadata', 'service_provider=datarhei-Restreamer'];
-		output.options.push(...metadata_options);
-
-		// Fetch core config
+		// 1.1 Fetch core config
 		const core_config = this.ConfigActive();
 
-		// Fetch rtmp settings
+		// 1.2 Fetch rtmp settings
 		const rtmp_config = core_config.source.network.rtmp;
 		let rtmp_enabled = false;
 		if (control.rtmp && control.rtmp.enable && rtmp_config.enabled) {
 			rtmp_enabled = true;
 		}
 
-		// Fetch srt settings
+		// 1.3 Fetch srt settings
 		const srt_config = core_config.source.network.srt;
 		let srt_enabled = false;
 		if (control.srt.enable && srt_config.enabled) {
 			srt_enabled = true;
 		}
 
-		// 'tee_muxer' is required for the delivery of one output to multiple endpoints without processing the input for each output
+		// 1.4 'tee_muxer' is required for the delivery of one output to multiple endpoints without processing the input for each output
 		// http://ffmpeg.org/ffmpeg-all.html#tee-1
 		let tee_muxer = false;
 		if (rtmp_enabled || srt_enabled) {
 			tee_muxer = true;
 		}
 
+		// 1.5 Set hls filename vars
+		const hlsStorage = control.hls.storage;
+		let segmentPlaylistPath = `${channel.channelid}` + (control.hls.master_playlist ? `_{outputid}` : '');
+		let segmentFilePath = `${channel.channelid}` + (control.hls.master_playlist ? `_{outputid}_%04d` : '_%04d');
+		if (hlsStorage === 'diskfs') {
+			// diskfs (path structure)
+			segmentFilePath = `${channel.channelid}` + (control.hls.master_playlist ? `/{outputid}/%Y%m%d/%s` : '/%Y%m%d/%s');
+		}
+
+		// 1.6 Set hls filenames
+		const hls_master_playlist = `${channel.channelid}.m3u8`;
+		const hls_fmp4_init_filename = `${channel.channelid}.mp4`;
+		const hls_segment_playlist = `{${hlsStorage}}/${segmentPlaylistPath}.m3u8`;
+		const hls_segment_filename =
+			`{${hlsStorage}` + (tee_muxer ? '^:' : '') + `}/${segmentFilePath}.` + (!control.hls.lhls && control.hls.version === 7 ? 'mp4' : 'ts');
+
+		// 2. Add output address
+
+		const output = {
+			id: 'output_0',
+			address: hls_segment_playlist,
+			options: ['-dn', '-sn', ...outputs[0].options.map((o) => '' + o)],
+			cleanup: [],
+		};
+
+		// 3. Extend output options
+
+		// 3.1 Injects a metadata link as title
+		const metadata = `${this.GetPublicHTTPAddress()}/${channel.channelid}/oembed.json`;
+		const metadata_options = ['-metadata', `title=${metadata}`, '-metadata', 'service_provider=datarhei-Restreamer'];
+		output.options.push(...metadata_options);
+
 		// Manifest versions
 		// https://developer.apple.com/documentation/http_live_streaming/about_the_ext-x-version_tag
 		// https://ffmpeg.org/ffmpeg-all.html#Options-53
 
+		// 3.2 Returns the raw l/hls parameters for an EXT-X-VERSION
+
 		// fix Malformed AAC bitstream detected for hls version 7
 		let hls_aac_adtstoasc = false;
 
-		// Returns the raw l/hls parameters for an EXT-X-VERSION
 		const getHLSParams = (lhls, version) => {
 			if (lhls) {
 				// lhls
@@ -1688,18 +1678,9 @@ class Restreamer {
 							['start_number', '0'],
 							['hls_time', '' + parseInt(control.hls.segmentDuration)],
 							['hls_list_size', '' + parseInt(control.hls.listSize)],
-							['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments'],
+							['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments+temp_file'],
 							['hls_delete_threshold', '4'],
-							['strftime', '1'],
-							['strftime_mkdir', '1'],
-							[
-								'hls_segment_filename',
-								`{${hlsStorage}` +
-									(tee_muxer ? '^:' : '') +
-									`}/${channel.channelid}/` +
-									(control.hls.master_playlist ? '{outputid}/' : '') +
-									'%Y%m%d/%s.ts',
-							],
+							['hls_segment_filename', hls_segment_filename],
 						];
 					case 7:
 						// fix Malformed AAC bitstream detected for hls version 7
@@ -1709,32 +1690,17 @@ class Restreamer {
 							}
 							hls_aac_adtstoasc = true;
 						}
-						// mp4 manifest cleanup
-						output.cleanup.push({
-							pattern: `${hlsStorage}:/${channel.channelid}.mp4`,
-							max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
-							purge_on_delete: true,
-						});
 						return [
 							['f', 'hls'],
 							['start_number', '0'],
 							['hls_time', '' + parseInt(control.hls.segmentDuration)],
 							['hls_list_size', '' + parseInt(control.hls.listSize)],
-							['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments'],
+							['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments+temp_file'],
 							['hls_delete_threshold', '4'],
 							['hls_segment_type', 'fmp4'],
-							['hls_fmp4_init_filename', `${channel.channelid}.mp4`],
+							['hls_fmp4_init_filename', hls_fmp4_init_filename],
 							['hls_fmp4_init_resend', '1'],
-							['strftime', '1'],
-							['strftime_mkdir', '1'],
-							[
-								'hls_segment_filename',
-								`{${hlsStorage}` +
-									(tee_muxer ? '^:' : '') +
-									`}/${channel.channelid}/` +
-									(control.hls.master_playlist ? '{outputid}/' : '') +
-									'%Y%m%d/%s.mp4',
-							],
+							['hls_segment_filename', hls_segment_filename],
 						];
 					// case 3
 					default:
@@ -1743,38 +1709,34 @@ class Restreamer {
 							['start_number', '0'],
 							['hls_time', '' + parseInt(control.hls.segmentDuration)],
 							['hls_list_size', '' + parseInt(control.hls.listSize)],
-							['hls_flags', 'append_list+delete_segments+program_date_time'],
+							['hls_flags', 'append_list+delete_segments+program_date_time+temp_file'],
 							['hls_delete_threshold', '4'],
-							['strftime', '1'],
-							['strftime_mkdir', '1'],
-							[
-								'hls_segment_filename',
-								`{${hlsStorage}` +
-									(tee_muxer ? '^:' : '') +
-									`}/${channel.channelid}/` +
-									(control.hls.master_playlist ? '{outputid}/' : '') +
-									'%Y%m%d/%s.ts',
-							],
+							['hls_segment_filename', hls_segment_filename],
 						];
 				}
 			}
 		};
 		const hls_params_raw = getHLSParams(control.hls.lhls, control.hls.version);
 
-		// Push master playlist params
-		if (control.hls.master_playlist) {
-			hls_params_raw.push(['master_pl_name', `${channel.channelid}.m3u8`], ['master_pl_publish_rate', `${control.hls.segmentDuration}`]);
+		// 3.3 Use strftime for DiskFS
+		if (control.hls.storage && control.hls.storage === 'diskfs') {
+			hls_params_raw.push(['strftime', '1'], ['strftime_mkdir', '1']);
 		}
 
-		// Use HTTP method
-		if (control.hls.storage && control.hls.storage !== "diskfs") {
+		// 3.4 Push master playlist params
+		if (control.hls.master_playlist) {
+			hls_params_raw.push(['master_pl_name', hls_master_playlist], ['master_pl_publish_rate', `${control.hls.segmentDuration}`]);
+		}
+
+		// 3.5 Use HTTP method
+		if (control.hls.storage && control.hls.storage !== 'diskfs') {
 			hls_params_raw.push(['method', 'PUT']);
 		}
 
-		// Overwrite output files
+		// 3.6 Overwrite output files
 		proc.options.push('-y');
 
-		// Returns the l/hls parameters with or without tee_muxer
+		// 3.7 Returns the l/hls parameters with or without tee_muxer
 		if (tee_muxer) {
 			// f=hls:start_number=0...
 			const hls_params = hls_params_raw
@@ -1789,9 +1751,7 @@ class Restreamer {
 			// ['f=hls:start_number=0...]address.m3u8
 			// use tee_muxer formatting
 			output.address =
-				`[${hls_aac_adtstoasc ? 'bsfs/a=aac_adtstoasc:' : ''}${hls_params}]{${hlsStorage}}/${channel.channelid}` +
-				(control.hls.master_playlist ? '_{outputid}' : '') +
-				'.m3u8' +
+				`[${hls_aac_adtstoasc ? 'bsfs/a=aac_adtstoasc:' : ''}${hls_params}]${hls_segment_playlist}` +
 				(rtmp_enabled ? `|[f=flv]{rtmp,name=${channel.channelid}.stream}` : '') +
 				(srt_enabled ? `|[f=mpegts]{srt,name=${channel.channelid},mode=publish}` : '');
 		} else {
@@ -1802,6 +1762,60 @@ class Restreamer {
 			output.options.push(...hls_params);
 		}
 
+		// 4. Add output cleanup jobs
+
+		// 4.1 Set hls cleanup filename vars
+		let cleanupSegmentFilePath = `${channel.channelid}` + (control.hls.master_playlist ? `_{outputid}_**` : '_**');
+		if (hlsStorage === 'diskfs') {
+			// diskfs (path structure)
+			cleanupSegmentFilePath = `${channel.channelid}` + (control.hls.master_playlist ? `/{outputid}/**` : '/**');
+		}
+
+		// 4.2 Set hls cleanup filenames
+		const cleanup_global = `${hlsStorage}:/${channel.channelid}**`;
+		const cleanup_hls_master_playlist = `${hlsStorage}:/${channel.channelid}.m3u8`;
+		const cleanup_hls_fmp4_init_filename = `${hlsStorage}:/${channel.channelid}.mp4`;
+		const cleanup_hls_segment_playlist = `${hlsStorage}:/${segmentPlaylistPath}.m3u8`;
+		const cleanup_hls_segment_filename = `${hlsStorage}:/${cleanupSegmentFilePath}.` + (!control.hls.lhls && control.hls.version === 7 ? 'mp4' : 'ts');
+
+		// 4.3 Cleanup id* (process is deleted) + continuously hls_segment_playlist and hls_segment_filename
+		output.cleanup.push(
+			{
+				pattern: cleanup_global,
+				purge_on_delete: true,
+			},
+			{
+				pattern: cleanup_hls_segment_playlist,
+				max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
+				purge_on_delete: true,
+			},
+			{
+				pattern: cleanup_hls_segment_filename,
+				max_files: parseInt(control.hls.listSize) + 6,
+				max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
+				purge_on_delete: true,
+			}
+		);
+
+		// 4.4 Cleanup hls_master_playlist
+		if (control.hls.master_playlist) {
+			output.cleanup.push({
+				pattern: cleanup_hls_master_playlist,
+				max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
+				purge_on_delete: true,
+			});
+		}
+
+		// 4.5 Cleanup hls_fmp4_init_filename
+		if (!control.hls.lhls && control.hls.version === 7) {
+			output.cleanup.push({
+				pattern: cleanup_hls_fmp4_init_filename,
+				max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
+				purge_on_delete: true,
+			});
+		}
+
+		// 5. Push output
 		proc.output.push(output);
 
 		const [val, err] = await this._upsertProcess(channel.id, proc);

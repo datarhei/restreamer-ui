@@ -550,7 +550,7 @@ export default function Edit(props) {
 			<DebugModal
 				open={$processDebug.open}
 				onClose={handleProcessDebug}
-				title={<Trans>Process debug report</Trans>}
+				title={<Trans>Process report</Trans>}
 				data={$processDebug.data}
 				onHelp={handleHelp('process-report')}
 			/>
