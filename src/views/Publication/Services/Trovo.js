@@ -2,25 +2,20 @@ import React from 'react';
 
 import { Trans } from '@lingui/macro';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 
-import Logo from './logos/bitmovin.svg';
+import Logo from './logos/trovo.svg';
 
-const id = 'bitmovin';
-const name = 'Bitmovin';
+import FormInlineButton from '../../../misc/FormInlineButton';
+
+const id = 'trovo';
+const name = 'Trovo';
 const version = '1.0';
-const stream_key_link = '';
+const stream_key_link = 'https://studio.trovo.live/mychannel/stream';
 const description = (
-	<Trans>
-		Transmit the main source to the Bitmovin cloud encoding service, a powerful tool for live streaming. More details about the settings can be founds{' '}
-		<Link color="secondary" target="_blank" href="https://bitmovin.com/docs/encoding/tutorials/create-a-live-encoding-from-an-srt-stream">
-			here
-		</Link>
-		.
-	</Trans>
+	<Trans>Live-Streaming to Trovo Live RTMP Service.</Trans>
 );
-const image_copyright = <Trans>Please contact the operator of the service and check what happens.</Trans>;
+const image_copyright = '';
 const author = {
 	creator: {
 		name: 'datarhei',
@@ -42,14 +37,12 @@ const requires = {
 };
 
 function ServiceIcon(props) {
-	return <img src={Logo} alt="Bitmovin Logo" {...props} />;
+	return <img src={Logo} alt="Trovo Logo" {...props} />;
 }
 
 function init(settings) {
 	const initSettings = {
-		protocol: 'srt://',
-		address: '',
-		port: ':2088',
+		key: '',
 		...settings,
 	};
 
@@ -62,7 +55,7 @@ function Service(props) {
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
 
-		settings.settings[what] = value;
+		settings[what] = value;
 
 		const output = createOutput(settings);
 
@@ -70,11 +63,9 @@ function Service(props) {
 	};
 
 	const createOutput = (settings) => {
-		const options = ['-strict', '-2', '-f', 'mpegts'];
-
 		const output = {
-			address: settings.protocol + settings.ip + settings.port,
-			options: options,
+			address: 'rtmp://livepush.trovo.live/live/' + settings.key,
+			options: ['-f', 'flv'],
 		};
 
 		return output;
@@ -82,14 +73,13 @@ function Service(props) {
 
 	return (
 		<Grid container spacing={2}>
-			<Grid item xs={12} md={3}>
-				<TextField variant="outlined" fullWidth label={<Trans>Protocol</Trans>} value={settings.protocol} readOnly disabled />
-			</Grid>
-			<Grid item xs={12} md={6}>
-				<TextField variant="outlined" fullWidth label={<Trans>IP address</Trans>} value={settings.ip} onChange={handleChange('ip')} />
+			<Grid item xs={12} md={9}>
+				<TextField variant="outlined" fullWidth label={<Trans>Stream key</Trans>} value={settings.key} onChange={handleChange('key')} />
 			</Grid>
 			<Grid item xs={12} md={3}>
-				<TextField variant="outlined" fullWidth label={<Trans>Port</Trans>} value={settings.port} readOnly disabled />
+				<FormInlineButton target="blank" href={stream_key_link} component="a">
+					<Trans>GET</Trans>
+				</FormInlineButton>
 			</Grid>
 		</Grid>
 	);
