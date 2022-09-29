@@ -2,6 +2,7 @@
 
 ### v1.2.0 > v1.3.0
 
+-   Add dlive & Trovo publication services
 -   Mod optimized DVR on DiskFS
 -   Mod updates packages
 -   Fix typo
