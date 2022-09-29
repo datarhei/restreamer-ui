@@ -2,6 +2,8 @@
 
 ### v1.2.0 > v1.3.0
 
+-   Add low_delay option to processing (default: true)
+-   Mod uses the ingest stream for publication (datarhei/restreamer#411)
 -   Add dlive & Trovo publication services
 -   Mod optimized DVR on DiskFS
 -   Mod updates packages

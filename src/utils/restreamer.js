@@ -1593,12 +1593,28 @@ class Restreamer {
 		if (control.rtmp && control.rtmp.enable && rtmp_config.enabled) {
 			rtmp_enabled = true;
 		}
+		if (
+			proc.input[0].address.includes('rtmp://localhost') &&
+			proc.input[0].address.includes(channel.channelid) &&
+			!proc.input[0].address.includes('ingest')
+		) {
+			rtmp_enabled = false;
+			control.rtmp.enable = true;
+		}
 
 		// 1.3 Fetch srt settings
 		const srt_config = core_config.source.network.srt;
 		let srt_enabled = false;
 		if (control.srt.enable && srt_config.enabled) {
 			srt_enabled = true;
+		}
+		if (
+			proc.input[0].address.includes('srt://localhost') &&
+			proc.input[0].address.includes(channel.channelid) &&
+			!proc.input[0].address.includes('ingest')
+		) {
+			srt_enabled = false;
+			control.srt.enable = true;
 		}
 
 		// 1.4 'tee_muxer' is required for the delivery of one output to multiple endpoints without processing the input for each output
@@ -1747,7 +1763,14 @@ class Restreamer {
 				.map((o) => o[0] + '=' + o[1])
 				.join(':');
 
-			output.options.push('-flags', '+global_header', '-tag:v', '7', '-tag:a', '10', '-f', 'tee');
+			// set flags
+			if (control.process.low_delay) {
+				output.options.push('-flags', '+low_delay+global_header');
+			} else {
+				output.options.push('-flags', '+global_header');
+			}
+
+			output.options.push('-tag:v', '7', '-tag:a', '10', '-f', 'tee');
 			// ['f=hls:start_number=0...]address.m3u8
 			// use tee_muxer formatting
 			output.address =
@@ -1758,6 +1781,11 @@ class Restreamer {
 			// ['-f', 'hls', '-start_number', '0', ...]
 			// adding the '-' in front of the first option, then flatten everything
 			const hls_params = hls_params_raw.map((o) => ['-' + o[0], o[1]]).reduce((acc, val) => acc.concat(val), []);
+
+			// set flags
+			if (control.process.low_delay) {
+				output.options.push('-flags', '+low_delay');
+			}
 
 			output.options.push(...hls_params);
 		}
@@ -2552,10 +2580,18 @@ class Restreamer {
 				output.options = [];
 			}
 
+			// set flags
+			let options = [];
+			if (control.process.low_delay) {
+				options.push('-flags', '+low_delay');
+			}
+
+			options.push(...output.options.map((o) => '' + o));
+
 			config.output.push({
 				id: 'output_' + i,
 				address: output.address,
-				options: output.options.map((o) => '' + o),
+				options: options,
 			});
 		}
 

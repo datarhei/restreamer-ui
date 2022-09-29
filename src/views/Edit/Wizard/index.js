@@ -436,7 +436,6 @@ export default function Wizard(props) {
 		);
 	}
 	// STEP 3 - Source Probe
-	// todo: der step kann durch nen backdrop abgelöst werden. dadurch wirkt es schneller
 	else if ($step === 'VIDEO PROBE') {
 		return (
 			<Paper xs={12} md={5} marginBottom="6em" className="PaperM">

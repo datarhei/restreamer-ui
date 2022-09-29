@@ -326,13 +326,13 @@ const isSupportedProtocol = (url, supportedProtocols) => {
 
 const getHLSAddress = (host, credentials, name, secure) => {
 	// Test for IPv6 addresses and put brackets around
-	let url = 'http' + (secure ? 's' : '') + '://' + (credentials.length !== 0 ? credentials + '@' : '') + host + '/memfs/ingest/' + name + '.m3u8';
+	let url = 'http' + (secure ? 's' : '') + '://' + (credentials.length !== 0 ? credentials + '@' : '') + host + '/memfs/' + name + '.m3u8';
 
 	return url;
 };
 
 const getRTMPAddress = (host, app, name, token, secure) => {
-	let url = 'rtmp' + (secure ? 's' : '') + '://' + host + app + '/ingest/' + name + '.stream';
+	let url = 'rtmp' + (secure ? 's' : '') + '://' + host + app + '/' + name + '.stream';
 
 	if (token.length !== 0) {
 		url += '?token=' + encodeURIComponent(token);
@@ -348,7 +348,7 @@ const getSRTAddress = (host, name, token, passphrase, publish) => {
 		host +
 		'?mode=caller&transtype=live&streamid=#!:m=' +
 		(publish ? 'publish' : 'request') +
-		',r=ingest/' +
+		',r=' +
 		name +
 		(token.length !== 0 ? ',token=' + encodeURIComponent(token) : '');
 

@@ -13,6 +13,7 @@ function init(settings) {
 		reconnect: true,
 		delay: 30,
 		staleTimeout: 30,
+		low_delay: true,
 		...settings,
 	};
 
@@ -31,7 +32,7 @@ export default function Control(props) {
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
 
-		if (['autostart', 'reconnect', 'cleanup'].includes(what)) {
+		if (['autostart', 'reconnect', 'low_delay'].includes(what)) {
 			settings[what] = !settings[what];
 		} else {
 			settings[what] = value;
@@ -44,6 +45,7 @@ export default function Control(props) {
 		<Grid container spacing={2}>
 			<Grid item xs={12}>
 				<Checkbox label={<Trans>Reconnect</Trans>} checked={settings.reconnect} onChange={handleChange('reconnect')} />
+				<Checkbox label={<Trans>Low delay</Trans>} checked={settings.low_delay} onChange={handleChange('low_delay')} />
 			</Grid>
 			<Grid item xs={12} md={6}>
 				<TextField
