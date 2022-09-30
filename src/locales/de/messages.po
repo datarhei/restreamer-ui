@@ -34,7 +34,7 @@ msgstr "<0>Details der Überprüfung anzeigen</0>"
 msgid "ALSA"
 msgstr "ALSA"
 
-#: src/views/Settings.js:974
+#: src/views/Settings.js:988
 msgid "API endpoint not found. Settings not saved."
 msgstr "API-Endpunkt nicht gefunden. Einstellungen nicht gespeichert."
 
@@ -50,9 +50,9 @@ msgstr "AVFoundation"
 #: src/views/Edit/index.js:648
 #: src/views/Publication/Add.js:364
 #: src/views/Publication/Edit.js:563
-#: src/views/Settings.js:2123
-#: src/views/Settings.js:2182
-#: src/views/Settings.js:2204
+#: src/views/Settings.js:2152
+#: src/views/Settings.js:2211
+#: src/views/Settings.js:2233
 msgid "Abort"
 msgstr "Abbrechen"
 
@@ -98,7 +98,7 @@ msgstr "Hinzufügen: {0}"
 #: src/views/Publication/Services/SRT.js:161
 #: src/views/Publication/Services/UDP.js:127
 #: src/views/Publication/Services/WOWZA.js:132
-#: src/views/Settings.js:1370
+#: src/views/Settings.js:1384
 msgid "Address"
 msgstr "Adresse"
 
@@ -106,11 +106,11 @@ msgstr "Adresse"
 msgid "Address for the background image."
 msgstr "Adresse des Hintergrundbildes."
 
-#: src/views/Settings.js:1399
+#: src/views/Settings.js:1413
 msgid "Address to listen on for HTTP requests."
 msgstr "Die Adresse für das Abhören von HTTP-Anfragen."
 
-#: src/views/Settings.js:1412
+#: src/views/Settings.js:1426
 msgid "Address to listen on for HTTPS requests."
 msgstr "Die Adresse für das Abhören von HTTPS-Anfragen."
 
@@ -152,15 +152,15 @@ msgstr "Benachrichtigung per E-Mail"
 msgid "All"
 msgstr "Alle"
 
-#: src/views/Settings.js:1231
+#: src/views/Settings.js:1245
 msgid "All important system settings."
 msgstr "Alle wichtigen Systemeinstellungen."
 
-#: src/views/Settings.js:1548
+#: src/views/Settings.js:1562
 msgid "Allow all referrer"
 msgstr "Erlaube alle Referrer"
 
-#: src/views/Settings.js:1588
+#: src/views/Settings.js:1602
 msgid "Allow counting how many viewers the stream has."
 msgstr "Erlaubt das Zählen der Anzahl des Publikums vom Stream."
 
@@ -173,7 +173,7 @@ msgid "An environment variable sets this value."
 msgstr "Eine Umgebungsvariable legt diesen Wert fest."
 
 #: src/views/Publication/Services/Core.js:124
-#: src/views/Settings.js:1897
+#: src/views/Settings.js:1926
 msgid "App"
 msgstr "App"
 
@@ -231,8 +231,8 @@ msgstr "Auth0 ist derzeit nicht verfügbar, da diese Schnittstelle von einer uns
 msgid "Author"
 msgstr "Autor"
 
-#: src/views/Settings.js:1210
-#: src/views/Settings.js:1483
+#: src/views/Settings.js:1224
+#: src/views/Settings.js:1497
 msgid "Authorization"
 msgstr "Autorisierung"
 
@@ -288,7 +288,7 @@ msgstr "Backup stream key"
 msgid "Bandwidth"
 msgstr "Bandbreite"
 
-#: src/views/Settings.js:1441
+#: src/views/Settings.js:1455
 msgid "Bandwidth control"
 msgstr "Bandbreitensteuerung"
 
@@ -297,7 +297,7 @@ msgid "Banner"
 msgstr "Banner"
 
 #: src/views/Login.js:241
-#: src/views/Settings.js:1488
+#: src/views/Settings.js:1502
 msgid "Basic"
 msgstr "Basic"
 
@@ -310,6 +310,10 @@ msgstr "Piep-Faktor"
 msgid "Bitrate"
 msgstr "Bitrate"
 
+#: src/views/Settings.js:1842
+msgid "Block cache types"
+msgstr ""
+
 #: src/views/Edit/Wizard/index.js:1028
 #: src/views/Edit/index.js:564
 msgid "Briefly describe what the audience will see during the live stream."
@@ -319,15 +323,15 @@ msgstr "Beschreiben Sie kurz, was die Zuschauenden während des Live-Streams seh
 msgid "Button color"
 msgstr "Farbe des Knopfes"
 
-#: src/views/Settings.js:1757
+#: src/views/Settings.js:1771
 msgid "Cache for files on /data."
 msgstr "Cache für Dateien auf /data."
 
-#: src/views/Settings.js:1785
+#: src/views/Settings.js:1799
 msgid "Cache time (Seconds)"
 msgstr "Cache-Zeit (Sek)"
 
-#: src/views/Settings.js:1813
+#: src/views/Settings.js:1827
 msgid "Cache types"
 msgstr "Cache-Typen"
 
@@ -347,7 +351,7 @@ msgstr "Kanal \"{0}\" gespeichert"
 msgid "Channels"
 msgstr "Kanäle"
 
-#: src/views/Settings.js:1240
+#: src/views/Settings.js:1254
 msgid "Check for updates"
 msgstr "Nach Updates suchen"
 
@@ -409,11 +413,11 @@ msgstr "Codec"
 msgid "Color"
 msgstr "Farbe"
 
-#: src/views/Settings.js:1350
+#: src/views/Settings.js:1364
 msgid "Config"
 msgstr "Konfiguration"
 
-#: src/views/Password.js:117
+#: src/views/Password.js:134
 msgid "Confirm password"
 msgstr "Bestätigen Sie das Passwort"
 
@@ -457,10 +461,6 @@ msgstr "Inhalts-URL"
 msgid "Cores"
 msgstr "Cores"
 
-#: src/views/Password.js:127
-msgid "Create user"
-msgstr "Benutzer anlegen"
-
 #: src/misc/controls/License/index.js:112
 msgid "Creative Commons"
 msgstr "Creative Commons"
@@ -484,7 +484,7 @@ msgstr "Creative Commons"
 msgid "Custom ..."
 msgstr "Individuell …"
 
-#: src/views/Settings.js:1356
+#: src/views/Settings.js:1370
 msgid "Custom JSON config for datarhei Core."
 msgstr "Individuelle JSON Konfiguration für den datarhei Core."
 
@@ -637,12 +637,12 @@ msgid "Disconnecting ..."
 msgstr "Trennen ..."
 
 #: src/misc/controls/HLS.js:70
-#: src/views/Settings.js:1720
+#: src/views/Settings.js:1734
 msgid "Disk"
 msgstr "Festplatte"
 
-#: src/views/Settings.js:1754
-#: src/views/Settings.js:1762
+#: src/views/Settings.js:1768
+#: src/views/Settings.js:1776
 msgid "Disk cache"
 msgstr "Festplatten Zwischenspeicher"
 
@@ -651,7 +651,7 @@ msgstr "Festplatten Zwischenspeicher"
 msgid "Disk storage"
 msgstr "Festplattenspeicher"
 
-#: src/views/Settings.js:2214
+#: src/views/Settings.js:2243
 msgid "Do you really want to restart the application now?"
 msgstr "Möchten Sie die Anwendung wirklich neu starten?"
 
@@ -758,11 +758,11 @@ msgstr "Primären Stream aktivieren"
 msgid "Enable snapshots"
 msgstr "Momentaufnahme aktivieren"
 
-#: src/views/Settings.js:1503
+#: src/views/Settings.js:1517
 msgid "Enabling authorization is strongly advised. Otherwise, anybody can access this instance."
 msgstr "Es wird dringend empfohlen, die Autorisierung zu aktivieren. Andernfalls kann jeder auf diese Instanz zugreifen."
 
-#: src/views/Settings.js:1663
+#: src/views/Settings.js:1677
 msgid "Enabling basic auth is strongly advised. Otherwise, anybody could write data to /memfs."
 msgstr "Es wird dringend empfohlen, die Basisauthentifizierung zu aktivieren. Andernfalls könnte jeder Daten in /memfs schreiben."
 
@@ -786,7 +786,7 @@ msgstr "Verschlüsselung"
 msgid "Enter a name for the new channel."
 msgstr "Einen Namen für den neuen Kanal eingeben."
 
-#: src/views/Password.js:107
+#: src/views/Password.js:122
 msgid "Enter password"
 msgstr "Passwort eingeben"
 
@@ -795,7 +795,7 @@ msgstr "Passwort eingeben"
 msgid "Enter the address of your network source:"
 msgstr "Adresse des Netzwerkquelle eintragen:"
 
-#: src/views/Password.js:97
+#: src/views/Password.js:110
 msgid "Enter username"
 msgstr "Anmeldename eingeben"
 
@@ -807,7 +807,7 @@ msgstr "Entropy coder"
 #: src/views/Incompatible.js:30
 #: src/views/Invalid.js:29
 #: src/views/Publication/Process.js:63
-#: src/views/Settings.js:1176
+#: src/views/Settings.js:1190
 msgid "Error"
 msgstr "Fehler"
 
@@ -830,7 +830,7 @@ msgstr "Erweitert den Bereich oberhalb der Kanalliste (Live-Chat)."
 msgid "Expands the area under the channel description (comment boxes)."
 msgstr "Erweitert den Bereich unter der Kanalbeschreibung (Kommentarfelder)."
 
-#: src/views/Settings.js:1267
+#: src/views/Settings.js:1281
 msgid "Expert mode"
 msgstr "Expertenmodus"
 
@@ -850,7 +850,7 @@ msgstr "Fußzeile erweitern"
 msgid "Extend header"
 msgstr "Header erweitern"
 
-#: src/views/Settings.js:2087
+#: src/views/Settings.js:2116
 msgid "FFmpeg"
 msgstr "FFmpeg"
 
@@ -983,8 +983,8 @@ msgstr "GET"
 #: src/views/Publication/Services/RTMP.js:145
 #: src/views/Publication/Services/RTSP.js:169
 #: src/views/Publication/Services/SRT.js:177
-#: src/views/Settings.js:1205
-#: src/views/Settings.js:1226
+#: src/views/Settings.js:1219
+#: src/views/Settings.js:1240
 msgid "General"
 msgstr "Allgemein"
 
@@ -1008,7 +1008,7 @@ msgstr "HLS Ausgabe"
 msgid "HLS server"
 msgstr "HLS-Server"
 
-#: src/views/Settings.js:1580
+#: src/views/Settings.js:1594
 msgid "HLS statistic for the In-memory storage"
 msgstr "HLS-Statistik für den In-Memory-Speicher"
 
@@ -1016,15 +1016,15 @@ msgstr "HLS-Statistik für den In-Memory-Speicher"
 msgid "HTTP and HTTPS"
 msgstr "HTTP und HTTPS"
 
-#: src/views/Settings.js:1391
+#: src/views/Settings.js:1405
 msgid "HTTP port"
 msgstr "HTTP Port"
 
-#: src/views/Settings.js:1420
+#: src/views/Settings.js:1434
 msgid "HTTPS (SSL/TLS)"
 msgstr "HTTPS (SSL/TLS)"
 
-#: src/views/Settings.js:1404
+#: src/views/Settings.js:1418
 msgid "HTTPS port"
 msgstr "HTTPS Port"
 
@@ -1049,7 +1049,7 @@ msgstr "Horizontal spiegeln"
 msgid "Hosted Restreamer interface"
 msgstr "Gehostete Restreamer-Oberfläche"
 
-#: src/views/Settings.js:1326
+#: src/views/Settings.js:1340
 msgid "Human readable name on the service."
 msgstr "Von Menschen lesbarer Name des Dienstes."
 
@@ -1057,15 +1057,15 @@ msgstr "Von Menschen lesbarer Name des Dienstes."
 msgid "IP address"
 msgstr "IP-Adresse"
 
-#: src/views/Settings.js:2159
+#: src/views/Settings.js:2188
 msgid "If you changed the ports, it might be that Restreamer Core restarted already, but it is now available on a different port."
 msgstr "Wenn Sie die Ports geändert haben, kann es sein, dass Restreamer Core bereits neu gestartet wurde, aber jetzt auf einem anderen Port verfügbar ist."
 
-#: src/views/Settings.js:2153
+#: src/views/Settings.js:2182
 msgid "If you enabled Let's Encrypt TLS it might take some time to acquire the certificates. Make sure that Restreamer Core is reachable via port 80 from the internet. Please check the console log of Restreamer Core."
 msgstr "Wenn Sie Let’s Encrypt TLS aktiviert haben, kann es einige Zeit dauern, die Zertifikate zu erwerben. Stellen Sie sicher, dass Restreamer Core über Port 80 aus dem Internet erreichbar ist. Bitte überprüfen Sie das Protokoll in der Konsole von Restreamer Core."
 
-#: src/views/Settings.js:1595
+#: src/views/Settings.js:1609
 msgid "Ignore IP ranges"
 msgstr "IP-Bereiche ignorieren"
 
@@ -1083,7 +1083,7 @@ msgid "In addition to the player, the Restreamer offers a complete landingpage, 
 msgstr "Neben dem Player bietet der Restreamer eine komplette Landingpage, mit der Sie Ihren Live-Stream einfach und schnell präsentieren können."
 
 #: src/misc/controls/HLS.js:67
-#: src/views/Settings.js:1647
+#: src/views/Settings.js:1661
 msgid "In-memory"
 msgstr "In-memory"
 
@@ -1139,11 +1139,11 @@ msgstr "Keyframe-Intervall (Sekunden)"
 msgid "Layout"
 msgstr "Layout"
 
-#: src/views/Settings.js:1425
+#: src/views/Settings.js:1439
 msgid "Let's Encrypt certification"
 msgstr "Zertifizierung mit Let’s Encrypt"
 
-#: src/views/Settings.js:1433
+#: src/views/Settings.js:1447
 msgid "Let's Encrypt requires one or more public domain names and an accessible port 80/TCP."
 msgstr "Let’s Encrypt erfordert einen oder mehrere öffentliche Domainnamen und einen zugänglichen Port 80/TCP."
 
@@ -1151,7 +1151,7 @@ msgstr "Let’s Encrypt erfordert einen oder mehrere öffentliche Domainnamen un
 msgid "Level"
 msgstr "Level"
 
-#: src/views/Settings.js:2069
+#: src/views/Settings.js:2098
 msgid "Level of system protocol."
 msgstr "Ebene des Systemprotokolls."
 
@@ -1178,11 +1178,15 @@ msgstr "Link"
 msgid "Link, mouseover"
 msgstr "Link, Mouseover"
 
-#: src/views/Settings.js:1603
+#: src/views/Settings.js:1617
 msgid "List of IP ranges in CIDR notation, e.g., 127.0.0.1/32, that the statistics will not record—one IP range per line. Leave empty to record all sessions."
 msgstr "Liste der IP-Bereiche in CIDR-Notation, z. B. 127.0.0.1/32, die von der Statistik nicht erfasst werden sollen - ein IP-Bereich pro Zeile. Leer lassen, um alle Sitzungen aufzuzeichnen."
 
-#: src/views/Settings.js:1821
+#: src/views/Settings.js:1850
+msgid "List of file extensions not to cache (e.g. \".m3u8\"), one per line. Leave empty for none."
+msgstr ""
+
+#: src/views/Settings.js:1835
 msgid "List of file extensions to cache (e.g. \".html\"), one per line. Leave empty to cache all file types."
 msgstr "Liste der zu cachenden Dateierweiterungen (z. B. \".html\"), eine pro Zeile. Leer lassen, um alle Dateitypen zu cachen."
 
@@ -1210,13 +1214,13 @@ msgstr "Live-Streaming zu Vimeo"
 msgid "Livesource ID"
 msgstr "Livesource-ID"
 
-#: src/views/Settings.js:2021
+#: src/views/Settings.js:2050
 msgid "Log level"
 msgstr "Protokollierungsebene"
 
 #: src/misc/modals/Process.js:90
-#: src/views/Settings.js:1215
-#: src/views/Settings.js:1997
+#: src/views/Settings.js:1229
+#: src/views/Settings.js:2026
 msgid "Logging"
 msgstr "Protokollieren"
 
@@ -1239,7 +1243,7 @@ msgstr "Login fehlgeschlagen: Konnte die API-Details nicht laden"
 msgid "Login failed: {0}"
 msgstr "Login fehlgeschlagen: {0}"
 
-#: src/views/Settings.js:1493
+#: src/views/Settings.js:1507
 msgid "Login/JWT authorization"
 msgstr "Anmeldung/JWT-Autorisierung"
 
@@ -1296,19 +1300,19 @@ msgstr "Macht den Kanal als SRT-Stream verfügbar (experimentell)."
 msgid "Master playlist (increases browser/client compatibility)"
 msgstr "Master playlist (erhöht Kompatibilität mit Browsern/Klienten)"
 
-#: src/views/Settings.js:1780
+#: src/views/Settings.js:1794
 msgid "Maximum allowed cache size, 0 for unlimited."
 msgstr "Maximal zulässige Cache-Größe, 0 für unbegrenzt."
 
-#: src/views/Settings.js:1702
+#: src/views/Settings.js:1716
 msgid "Maximum allowed megabytes of RAM for /memfs, 0 for unlimited."
 msgstr "Maximal erlaubte MB RAM für /memfs, 0 für unbegrenzt."
 
-#: src/views/Settings.js:1746
+#: src/views/Settings.js:1760
 msgid "Maximum allowed megabytes to consume from hard disk. 0 for unlimited."
 msgstr "Maximal erlaubte MB, die von der Festplatte verbraucht werden dürfen. 0 für unbegrenzt."
 
-#: src/views/Settings.js:1462
+#: src/views/Settings.js:1476
 msgid "Maximum bandwidth Mbit/s"
 msgstr "Maximale Bandbreite Mbit/s"
 
@@ -1316,34 +1320,34 @@ msgstr "Maximale Bandbreite Mbit/s"
 msgid "Maximum delay in milliseconds."
 msgstr "Maximale Latenz (Ms)."
 
-#: src/views/Settings.js:1798
+#: src/views/Settings.js:1812
 msgid "Maximum file size (Megabytes)"
 msgstr "Maximale Dateigröße (MB)"
 
-#: src/views/Settings.js:1806
+#: src/views/Settings.js:1820
 msgid "Maximum file size to put in cache."
 msgstr "Maximale Dateigröße, die in den Cache gestellt wird."
 
-#: src/views/Settings.js:2105
+#: src/views/Settings.js:2134
 msgid "Maximum log histroy"
 msgstr "Maximale Protokollhistorie"
 
-#: src/views/Settings.js:2074
-#: src/views/Settings.js:2092
+#: src/views/Settings.js:2103
+#: src/views/Settings.js:2121
 msgid "Maximum log lines"
 msgstr "Maximale Protokollzeilen"
 
-#: src/views/Settings.js:1694
-#: src/views/Settings.js:1738
-#: src/views/Settings.js:1772
+#: src/views/Settings.js:1708
+#: src/views/Settings.js:1752
+#: src/views/Settings.js:1786
 msgid "Maximum size (Megabytes)"
 msgstr "Maximale Größe (Megabytes)"
 
-#: src/views/Settings.js:1612
+#: src/views/Settings.js:1626
 msgid "Maximum viewer idle time (Seconds)"
 msgstr "Maximale Zuschauer Leerzeit (Sekunden)"
 
-#: src/views/Settings.js:1446
+#: src/views/Settings.js:1460
 msgid "Maximum viewers"
 msgstr "Maximale Anzahl von Zuschauenden"
 
@@ -1378,7 +1382,7 @@ msgstr "Mehr über das Urheberrecht von YouTube <0>hier</0>."
 msgid "More about licenses here"
 msgstr "Mehr über die Lizenzen hier"
 
-#: src/views/Settings.js:1295
+#: src/views/Settings.js:1309
 msgid "More about the service"
 msgstr "Mehr über den Service"
 
@@ -1402,7 +1406,7 @@ msgstr "Rechts stumm schalten"
 #: src/misc/controls/Metadata.js:76
 #: src/misc/controls/Metadata.js:98
 #: src/views/Playersite.js:505
-#: src/views/Settings.js:1318
+#: src/views/Settings.js:1332
 msgid "Name"
 msgstr "Name"
 
@@ -1410,8 +1414,8 @@ msgstr "Name"
 msgid "Name for the template. If the name already exists, it will be overwritten."
 msgstr "Templatename. Wenn der Name existiert, wird er überschrieben."
 
-#: src/views/Settings.js:1209
-#: src/views/Settings.js:1365
+#: src/views/Settings.js:1223
+#: src/views/Settings.js:1379
 msgid "Network"
 msgstr "Netzwerk"
 
@@ -1482,7 +1486,7 @@ msgstr "Kein Video"
 msgid "No video stream available"
 msgstr "Kein Videostream verfügbar"
 
-#: src/views/Settings.js:1311
+#: src/views/Settings.js:1325
 msgid "Node ID"
 msgstr "Knoten-ID"
 
@@ -1502,12 +1506,12 @@ msgstr "Keine"
 msgid "Notes"
 msgstr "Hinweise"
 
-#: src/views/Settings.js:2082
-#: src/views/Settings.js:2100
+#: src/views/Settings.js:2111
+#: src/views/Settings.js:2129
 msgid "Number of log lines to keep."
 msgstr "Anzahl der Protokollzeilen, die aufbewahrt werden sollen."
 
-#: src/views/Settings.js:2113
+#: src/views/Settings.js:2142
 msgid "Number of logs to keep for each process."
 msgstr "Anzahl der Protokolle, die je Prozess aufbewahrt werden sollen."
 
@@ -1516,7 +1520,7 @@ msgstr "Anzahl der Protokolle, die je Prozess aufbewahrt werden sollen."
 msgid "OK"
 msgstr "OK"
 
-#: src/views/Settings.js:1567
+#: src/views/Settings.js:1581
 msgid "One referrer per line, e.g. http://www.example.com"
 msgstr "Ein Referrer pro Zeile, wie http://www.beispiel.com"
 
@@ -1528,15 +1532,15 @@ msgstr "Öffnen"
 msgid "Pan"
 msgstr "Schwenken"
 
-#: src/views/Settings.js:1971
+#: src/views/Settings.js:2000
 msgid "Passphrase"
 msgstr "Passwort"
 
-#: src/views/Settings.js:1988
+#: src/views/Settings.js:2017
 msgid "Passphrase for SRT encryption."
 msgstr "Passwort für SRT-Verschlüsselung"
 
-#: src/views/Settings.js:1980
+#: src/views/Settings.js:2009
 msgid "Passphrase must be between 10 and 79 characters long"
 msgstr "Das Passwort muss zwischen 10 und 79 Zeichen lang sein."
 
@@ -1554,13 +1558,13 @@ msgstr "Passthrough (Kopieren) sollte nur bei Bedarf deaktiviert werden. Jede Ko
 #: src/views/Publication/Services/RTSP.js:156
 #: src/views/Publication/Services/Red5.js:157
 #: src/views/Publication/Services/WOWZA.js:178
-#: src/views/Settings.js:1523
-#: src/views/Settings.js:1681
+#: src/views/Settings.js:1537
+#: src/views/Settings.js:1695
 msgid "Password"
 msgstr "Passwort"
 
-#: src/views/Settings.js:1529
-#: src/views/Settings.js:1689
+#: src/views/Settings.js:1543
+#: src/views/Settings.js:1703
 msgid "Password for authorization."
 msgstr "Passwort für die Autorisierung."
 
@@ -1569,7 +1573,7 @@ msgstr "Passwort für die Autorisierung."
 msgid "Password for the device."
 msgstr "Passwort von dem Gerät."
 
-#: src/views/Settings.js:1625
+#: src/views/Settings.js:1639
 msgid "Persist viewer statistics"
 msgstr "Betrachterstatistiken beibehalten"
 
@@ -1586,8 +1590,8 @@ msgid "Platforms"
 msgstr "Plattformen"
 
 #: src/views/Publication/Player.js:326
-#: src/views/Settings.js:1211
-#: src/views/Settings.js:1538
+#: src/views/Settings.js:1225
+#: src/views/Settings.js:1552
 msgid "Playback"
 msgstr "Wiedergabe"
 
@@ -1670,7 +1674,7 @@ msgid "Please wait. Setting up the stream ..."
 msgstr "Bitte warten — einrichten des Streams ..."
 
 #: src/views/Publication/Services/Bitmovin.js:92
-#: src/views/Settings.js:1945
+#: src/views/Settings.js:1974
 msgid "Port"
 msgstr "Port"
 
@@ -1717,11 +1721,6 @@ msgstr "Prozess"
 msgid "Process control"
 msgstr "Prozesskontrolle"
 
-#: src/views/Main/index.js:472
-#: src/views/Publication/Edit.js:553
-msgid "Process debug report"
-msgstr "Prozess-Fehlerbehebungsbericht"
-
 #: src/views/Main/index.js:448
 #: src/views/Main/index.js:464
 #: src/views/Publication/Edit.js:444
@@ -1730,7 +1729,9 @@ msgid "Process details"
 msgstr "Prozess-Details"
 
 #: src/views/Main/index.js:451
+#: src/views/Main/index.js:472
 #: src/views/Publication/Edit.js:447
+#: src/views/Publication/Edit.js:553
 msgid "Process report"
 msgstr "Prozess-Bericht"
 
@@ -1779,7 +1780,7 @@ msgstr "Protokoll"
 msgid "Protocols"
 msgstr "Protokolle"
 
-#: src/views/Settings.js:1375
+#: src/views/Settings.js:1389
 msgid "Public domain/s"
 msgstr "Öffentliceh Domain/s"
 
@@ -1816,16 +1817,16 @@ msgid "RGB test pattern"
 msgstr "RGB-Testbild"
 
 #: src/views/Main/index.js:412
-#: src/views/Settings.js:1213
-#: src/views/Settings.js:1830
+#: src/views/Settings.js:1227
+#: src/views/Settings.js:1859
 msgid "RTMP"
 msgstr "RTMP"
 
-#: src/views/Settings.js:1871
+#: src/views/Settings.js:1900
 msgid "RTMP Port"
 msgstr "RTMP Port"
 
-#: src/views/Settings.js:1905
+#: src/views/Settings.js:1934
 msgid "RTMP app for publishing."
 msgstr "RTMP-App für die Veröffentlichung."
 
@@ -1834,7 +1835,7 @@ msgid "RTMP output"
 msgstr "RTMP Ausgabe"
 
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:93
-#: src/views/Settings.js:1835
+#: src/views/Settings.js:1864
 msgid "RTMP server"
 msgstr "RTMP-Server"
 
@@ -1843,23 +1844,23 @@ msgstr "RTMP-Server"
 msgid "RTMP server is not enabled"
 msgstr "RTMP-Server ist nicht aktiviert"
 
-#: src/views/Settings.js:1879
+#: src/views/Settings.js:1908
 msgid "RTMP server listen address."
 msgstr "RTMP-Server Zugriffsadresse."
 
-#: src/views/Settings.js:1918
+#: src/views/Settings.js:1947
 msgid "RTMP token for publishing and playing. The token is the value of the URL query parameter 'token.'"
 msgstr "RTMP-Token für die Veröffentlichung und Wiedergabe. Das Token ist der Wert des URL-Abfrageparameters „token“."
 
-#: src/views/Settings.js:1884
+#: src/views/Settings.js:1913
 msgid "RTMPS Port"
 msgstr "RTMPS Port"
 
-#: src/views/Settings.js:1843
+#: src/views/Settings.js:1872
 msgid "RTMPS server"
 msgstr "RTMPS-Server"
 
-#: src/views/Settings.js:1892
+#: src/views/Settings.js:1921
 msgid "RTMPS server listen address."
 msgstr "RTMPS-Server Zugriffsadresse"
 
@@ -1907,11 +1908,11 @@ msgstr "Verzögerung beim Wiederherstellen der Verbindung (Sekunden)"
 msgid "Reconnecting in {0}s"
 msgstr "Wiederverbinden in {0}s"
 
-#: src/views/Settings.js:2150
+#: src/views/Settings.js:2179
 msgid "Reconnecting to Restreamer Core failed for the last {RETRIES} seconds."
 msgstr "Die Wiederherstellung der Verbindung zum Restreamer Core ist in den letzten {RETRIES} Sekunden fehlgeschlagen."
 
-#: src/views/Password.js:148
+#: src/views/Password.js:167
 msgid "Reconnecting to Restreamer Core failed."
 msgstr "Die Wiederherstellung der Verbindung zu Restreamer Core ist fehlgeschlagen."
 
@@ -1930,45 +1931,49 @@ msgstr "Aktualisieren"
 msgid "Region"
 msgstr "Region"
 
-#: src/views/Password.js:159
-#: src/views/Settings.js:2170
+#: src/views/Password.js:146
+msgid "Register user"
+msgstr ""
+
+#: src/views/Password.js:178
+#: src/views/Settings.js:2199
 msgid "Reload"
 msgstr "Erneut laden"
 
-#: src/views/Settings.js:1707
+#: src/views/Settings.js:1721
 msgid "Remove the oldest entries if the /memfs is full"
 msgstr "Älteste Einträge entfernen, wenn das /memfs voll ist"
 
-#: src/views/Settings.js:1852
+#: src/views/Settings.js:1881
 msgid "Requires activation"
 msgstr "Aktivierung erforderlich"
 
-#: src/views/Settings.js:1274
-#: src/views/Settings.js:2187
-#: src/views/Settings.js:2200
-#: src/views/Settings.js:2209
+#: src/views/Settings.js:1288
+#: src/views/Settings.js:2216
+#: src/views/Settings.js:2229
+#: src/views/Settings.js:2238
 msgid "Restart"
 msgstr "Neustart"
 
-#: src/views/Settings.js:2178
+#: src/views/Settings.js:2207
 msgid "Restart required"
 msgstr "Neustart erforderlich"
 
-#: src/views/Password.js:136
-#: src/views/Settings.js:2138
+#: src/views/Password.js:155
+#: src/views/Settings.js:2167
 msgid "Restarting"
 msgstr "Neustart"
 
-#: src/views/Password.js:141
-#: src/views/Settings.js:2143
+#: src/views/Password.js:160
+#: src/views/Settings.js:2172
 msgid "Restarting Restreamer Core ..."
 msgstr "Neustart von Restreamer Core …"
 
-#: src/views/Settings.js:1082
+#: src/views/Settings.js:1096
 msgid "Restarting the application failed."
 msgstr "Neustart der Anwendung ist fehlgeschlagen."
 
-#: src/views/Settings.js:1302
+#: src/views/Settings.js:1316
 msgid "Restreamer Service"
 msgstr "Restreamer Service"
 
@@ -1978,7 +1983,7 @@ msgstr "Abrufen von Streamdaten ..."
 
 #: src/views/Edit/Wizard/index.js:1143
 #: src/views/Invalid.js:43
-#: src/views/Settings.js:1183
+#: src/views/Settings.js:1197
 msgid "Retry"
 msgstr "Wiederholen"
 
@@ -1991,8 +1996,8 @@ msgid "Rule"
 msgstr "Regel"
 
 #: src/views/Main/index.js:422
-#: src/views/Settings.js:1214
-#: src/views/Settings.js:1927
+#: src/views/Settings.js:1228
+#: src/views/Settings.js:1956
 msgid "SRT"
 msgstr "SRT"
 
@@ -2001,7 +2006,7 @@ msgid "SRT output"
 msgstr "SRT Ausgabe"
 
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:93
-#: src/views/Settings.js:1932
+#: src/views/Settings.js:1961
 msgid "SRT server"
 msgstr "SRT Server"
 
@@ -2010,11 +2015,11 @@ msgstr "SRT Server"
 msgid "SRT server is not enabled"
 msgstr "Der SRT Server ist nicht aktiviert"
 
-#: src/views/Settings.js:1953
+#: src/views/Settings.js:1982
 msgid "SRT server listen address."
 msgstr "SRT Zugriffsadresse"
 
-#: src/views/Settings.js:1966
+#: src/views/Settings.js:1995
 msgid "SRT token for publishing and playing. The token is the value of the streamid parameter 'token.'"
 msgstr "SRT-Token für die Veröffentlichung und Wiedergabe. Das Token ist der Wert des streamid-Parameters „token“."
 
@@ -2029,7 +2034,7 @@ msgstr "Sampling"
 #: src/views/Publication/Add.js:498
 #: src/views/Publication/Edit.js:533
 #: src/views/Publication/Player.js:457
-#: src/views/Settings.js:2128
+#: src/views/Settings.js:2157
 msgid "Save"
 msgstr "Speichern"
 
@@ -2037,7 +2042,7 @@ msgstr "Speichern"
 msgid "Scale"
 msgstr "Skalierung"
 
-#: src/views/Settings.js:1793
+#: src/views/Settings.js:1807
 msgid "Seconds to keep files in cache."
 msgstr "Sekunden, um Dateien im Cache zu halten."
 
@@ -2053,7 +2058,7 @@ msgstr "Sekunden, bis ein hängender Prozess beendet wird."
 msgid "Seconds until the snapshot/thumbnail of the video source is updated."
 msgstr "Sekunden, bis ein Vorschaubild (JPEG) der Videoquelle aktualisiert wird."
 
-#: src/views/Settings.js:1543
+#: src/views/Settings.js:1557
 msgid "Security"
 msgstr "Sicherheit"
 
@@ -2135,7 +2140,7 @@ msgstr "Auswahl"
 msgid "Selection"
 msgstr "Auswahl"
 
-#: src/views/Settings.js:1258
+#: src/views/Settings.js:1272
 msgid "Send anonymous metrics (helps us for future development)"
 msgstr "Sende anonyme Anwendungsdaten (Hilft den Restreamer kontinuierlich zu verbessern)"
 
@@ -2163,8 +2168,8 @@ msgstr "Server URL"
 
 #: src/Header.js:257
 #: src/views/Login.js:246
-#: src/views/Settings.js:1207
-#: src/views/Settings.js:1288
+#: src/views/Settings.js:1221
+#: src/views/Settings.js:1302
 msgid "Service"
 msgstr "Service"
 
@@ -2173,7 +2178,7 @@ msgstr "Service"
 msgid "Service name"
 msgstr "Name des Dienstes"
 
-#: src/views/Settings.js:1339
+#: src/views/Settings.js:1353
 msgid "Service token for monitoring."
 msgstr "Servicetoken für die Überwachung."
 
@@ -2181,35 +2186,35 @@ msgstr "Servicetoken für die Überwachung."
 msgid "Sessions"
 msgstr "Zuschauer"
 
-#: src/views/Settings.js:1470
+#: src/views/Settings.js:1484
 msgid "Sets a bandwidth limit in Mbit per second for outgoing HLS data transfer. All services, such as RTMP and outgoing processes, are included in the calculation. If the bandwidth is exceeded, HLS viewers receive the HTTP status code 509 (Bandwidth Limit Exceeded). 0 is unlimited."
 msgstr "Legt eine Begrenzung der Bandbreite in Mbit/s für die ausgehende HLS-Datenübertragung fest. Alle Dienste, wie RTMP und ausgehende Prozesse, werden in die Berechnung einbezogen. Wenn die Bandbreite überschritten wird, erhalten HLS-Zuschauende den HTTP-Statuscode 509 (Bandwidth Limit Exceeded). 0 ist unbegrenzt."
 
-#: src/views/Settings.js:1454
+#: src/views/Settings.js:1468
 msgid "Sets a viewer limit for HLS sessions. If the limit is exceeded, HLS viewers receive the HTTP status code 509 (Bandwidth Limit Exceeded). 0 is unlimited."
 msgstr "Legt ein Limit für die Zuschauenden in der HLS-Sitzungen fest. Wenn das Limit überschritten wird, erhalten HLS-Zuschauende den HTTP-Statuscode 509 (Bandbreitenlimit überschritten). 0 ist unbegrenzt."
 
-#: src/views/Settings.js:1293
+#: src/views/Settings.js:1307
 msgid "Setting for connection to the service."
 msgstr "Einstellung für die Anbindung an den Service."
 
-#: src/views/Settings.js:1193
+#: src/views/Settings.js:1207
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: src/views/Settings.js:1195
+#: src/views/Settings.js:1209
 msgid "Settings (expert mode)"
 msgstr "Einstellungen (Experten-Modus)"
 
-#: src/views/Settings.js:1723
+#: src/views/Settings.js:1737
 msgid "Settings for /data path. The access is protected by"
 msgstr "Eintellungen für den /data Pfad. Der Zugriff wird geschützt durch"
 
-#: src/views/Settings.js:1650
+#: src/views/Settings.js:1664
 msgid "Settings for /memfs path."
 msgstr "Einstellung für den /memfs Pfad."
 
-#: src/views/Settings.js:1025
+#: src/views/Settings.js:1039
 msgid "Settings saved. All changes will be applied after restarting the application."
 msgstr "Einstellungen gespeichert. Die Änderungen werden nach einem Neustart der Anwendungen übernommen."
 
@@ -2286,17 +2291,17 @@ msgid "Stale timeout (seconds)"
 msgstr "Zeitüberschreitung (Sekunden)"
 
 #: src/views/Publication/Player.js:325
-#: src/views/Settings.js:1575
+#: src/views/Settings.js:1589
 msgid "Statistics"
 msgstr "Statistiken"
 
 #: src/misc/controls/HLS.js:65
-#: src/views/Settings.js:1212
-#: src/views/Settings.js:1642
+#: src/views/Settings.js:1226
+#: src/views/Settings.js:1656
 msgid "Storage"
 msgstr "Speicherplatz"
 
-#: src/views/Settings.js:1633
+#: src/views/Settings.js:1647
 msgid "Stores the viewer statistics to the disk."
 msgstr "Speichert die Zuschauerstatistik auf der Festplatte."
 
@@ -2352,7 +2357,7 @@ msgstr "Unterstützt HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT und mehr."
 
 #: src/Footer.js:184
 #: src/Header.js:275
-#: src/views/Settings.js:2002
+#: src/views/Settings.js:2031
 msgid "System"
 msgstr "System"
 
@@ -2393,7 +2398,7 @@ msgstr "Die SRT Ausgabe erfordert den SRT-Server."
 msgid "The amplitude (0.0 - 1.0) of the generated audio stream"
 msgstr "Die Amplitude (0,0 - 1,0) des erzeugten Audiostreams"
 
-#: src/views/Settings.js:1278
+#: src/views/Settings.js:1292
 msgid "The application is using an older version of the settings."
 msgstr "Die Applikation verwendet eine ältere Version der Einstellungen."
 
@@ -2443,7 +2448,7 @@ msgstr "Audio-Rauschfarbe"
 msgid "The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission."
 msgstr "Die Person, die ein Werk mit dieser Urkunde verbunden hat, hat das Werk der Allgemeinheit gewidmet, indem sie auf alle ihre Rechte an dem Werk weltweit nach dem Urheberrecht, einschließlich aller verwandten und benachbarten Rechte, verzichtet, soweit dies gesetzlich zulässig ist. Sie können das Werk vervielfältigen, verändern, verbreiten und aufführen, auch für kommerzielle Zwecke, alles ohne um Erlaubnis zu fragen."
 
-#: src/views/Settings.js:1383
+#: src/views/Settings.js:1397
 msgid "The public reachable domain name of the host this Restreamer is running on. Separate multiple domain names by a comma."
 msgstr "Der öffentlich erreichbare Domänenname des Hosts, auf dem der Restreamer läuft. Trennen Sie mehrere Domänennamen durch ein Komma."
 
@@ -2516,11 +2521,11 @@ msgstr "Die Videoquelle stellt keinen kompatiblen Audiokanal zur Verfügung. <0>
 msgid "The video source is compatible. Select the desired resolution:"
 msgstr "Die Videoquelle ist kompatibel. Gewünschte Auflösung auswählen:"
 
-#: src/views/Settings.js:1250
+#: src/views/Settings.js:1264
 msgid "There are updates available. Here you get more information."
 msgstr "Es sind Updates verfügbar. Hier erhalten Sie weitere Informationen."
 
-#: src/views/Settings.js:978
+#: src/views/Settings.js:992
 msgid "There was a problem storing the settings. Settings not saved."
 msgstr "Es gab ein Problem beim Speichern der Einstellungen. Einstellungen nicht gespeichert."
 
@@ -2538,7 +2543,7 @@ msgstr "Beim Hochladen ist ein Fehler aufgetreten: {0}"
 msgid "There was an error setting up the stream."
 msgstr "Es ist ein Fehler beim Einrichten des Streams aufgetreten."
 
-#: src/views/Settings.js:976
+#: src/views/Settings.js:990
 msgid "There were some errors in the settings. Settings not saved."
 msgstr "Es gab einige Fehler in den Einstellungen. Einstellungen nicht gespeichert."
 
@@ -2550,7 +2555,7 @@ msgstr "Es ist keine Methode für die Anmeldung verfügbar."
 msgid "This is a dummy service that explains to you the concepts of service."
 msgstr "Dies ist ein Dummy-Dienst, der Ihnen die Konzepte des Dienstes erklärt."
 
-#: src/views/Password.js:151
+#: src/views/Password.js:170
 msgid "This is not necessarily an error. However, it may take a bit longer for Restreamer Core to restart.."
 msgstr "Bitte Geduld. Es kann einen Moment dauern, bis der Restreamer Core neu gestartet ist …"
 
@@ -2602,13 +2607,13 @@ msgstr "Diese Version der Benutzeroberfläche unterstützt nicht den angeschloss
 msgid "This version of the UI is compatible."
 msgstr "Die verwendete Version der Benutzeroberfläche ist kompatibel."
 
-#: src/views/Settings.js:1620
+#: src/views/Settings.js:1634
 msgid "Time until an inactive viewer connection is treated as closed."
 msgstr "Zeit bis eine inaktive Zuschauerverbindung als geschlossen behandelt wird."
 
-#: src/views/Settings.js:1331
-#: src/views/Settings.js:1910
-#: src/views/Settings.js:1958
+#: src/views/Settings.js:1345
+#: src/views/Settings.js:1939
+#: src/views/Settings.js:1987
 msgid "Token"
 msgstr "Token"
 
@@ -2692,13 +2697,13 @@ msgstr "Übertragen Sie die Hauptquelle an den Bitmovin-Cloud-Encoding-Service, 
 msgid "Transmit the main source to the Restream RTMP Service. More details about the settings can be found <0>here</0>."
 msgstr "Übertragen Sie die Hauptquelle an den Restream RTMP Service. Weitere Details zu den Einstellungen finden Sie <0>hier</0>."
 
+#: src/views/Publication/Services/Linkedin.js:16
+msgid "Transmit to LinkedIn. More details can be found <0>here</0>."
+msgstr ""
+
 #: src/views/Publication/Services/Azure.js:17
 msgid "Transmit to a Azure Media Services. More details can be found <0>here</0>."
 msgstr "Überträgt Ihren Videostream zu Azure Media Services. Weiters Informationen finden sie <0>hier</0>."
-
-#: src/views/Publication/Services/Linkedin.js:16
-msgid "Transmit to linkedIn. More details can be found <0>here</0>."
-msgstr "Überträgt Ihren Videostream zu linkedIn. Weitere Informationen finden sie <0>hier</0>."
 
 #: src/views/Publication/Services/Owncast.js:15
 msgid "Transmit your Livestream to an Owncast server. <0>Here </0>you can find more details about the settings."
@@ -2722,11 +2727,11 @@ msgstr "Optimieren"
 msgid "UDP transport"
 msgstr "UDP-Transport"
 
-#: src/views/Settings.js:1178
+#: src/views/Settings.js:1192
 msgid "Unable to load the config."
 msgstr "Die Konfiguration kann nicht geladen werden."
 
-#: src/views/Settings.js:1313
+#: src/views/Settings.js:1327
 msgid "Unique ident on the service."
 msgstr "Einzigartige Identität für den Service."
 
@@ -2775,7 +2780,7 @@ msgstr "Use your copyright and choose the correct image license. Whether free fo
 msgid "Use your copyright and choose the right image licence. Whether free for all or highly restricted. Briefly discuss what others are allowed to do with your image."
 msgstr "Copyright und die richtige Bildlizenz wählen. Ob frei für alle oder stark eingeschränkt. Überlege kurz, was andere mit dem Video machen dürfen."
 
-#: src/views/Password.js:86
+#: src/views/Password.js:99
 msgid "User registration"
 msgstr "Benutzerregistrierung"
 
@@ -2788,13 +2793,13 @@ msgstr "Benutzerregistrierung"
 #: src/views/Publication/Services/RTSP.js:153
 #: src/views/Publication/Services/Red5.js:146
 #: src/views/Publication/Services/WOWZA.js:168
-#: src/views/Settings.js:1510
-#: src/views/Settings.js:1668
+#: src/views/Settings.js:1524
+#: src/views/Settings.js:1682
 msgid "Username"
 msgstr "Anmeldename"
 
-#: src/views/Settings.js:1516
-#: src/views/Settings.js:1676
+#: src/views/Settings.js:1530
+#: src/views/Settings.js:1690
 msgid "Username for authorization."
 msgstr "Anmeldename für die Autorisierung."
 
@@ -2864,7 +2869,7 @@ msgstr "Willkommen bei Restreamer v2, der Lösung für die schnelle und einfache
 msgid "Where to store the HLS playlist and segments. In-Memory is recommended."
 msgstr "Wo die HLS-Playlist und Segmente gespeichert werden sollen. In-Memory ist empfohlen."
 
-#: src/views/Settings.js:1655
+#: src/views/Settings.js:1669
 msgid "Write protection"
 msgstr "Schreibschutz"
 
@@ -2880,7 +2885,7 @@ msgstr "Ja"
 msgid "You can't abort the wizard because at least one input must be defined."
 msgstr "Sie können den Assistenten nicht abbrechen, da mindestens ein Eingang definiert sein muss."
 
-#: src/views/Settings.js:2192
+#: src/views/Settings.js:2221
 msgid "You have changed the configuration. In order for the changes to take effect, you have to restart the application. Do you want to restart now?"
 msgstr "Konfiguration geändert. Damit die Änderungen wirksam werden muss die Anwendung neu starten. Jetzt neu starten?"
 

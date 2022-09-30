@@ -131,7 +131,7 @@ function Service(props) {
 					label={<Trans>Stream name</Trans>}
 					value={settings.stream_name}
 					onChange={handleChange('stream_name')}
-					placeholder={settings.protocol !== 'srt' ? 'streamId' : 'ingest/streamId'}
+					placeholder={'streamId'}
 				/>
 			</Grid>
 			<Grid item xs={12} md={settings.protocol !== 'srt' ? 9 : 4}>

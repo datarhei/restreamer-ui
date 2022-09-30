@@ -1,5 +1,22 @@
 # Restreamer-UI
 
+### v1.2.0 > v1.3.0
+
+-   Add low_delay option to processing (default: true)
+-   Mod uses the ingest stream for publication (datarhei/restreamer#411)
+-   Add dlive & Trovo publication services
+-   Mod optimized DVR on DiskFS
+-   Mod updates packages
+-   Fix SRT bitstream on tee
+-   Fix typo
+-   Fix viewer count (datarhei/restreamer#394)
+-   Fix user registration if username and/or password are set via environment (datarhei/restreamer-ui#13)
+-   Fix Dockerfile, Reduce size, serve production build (datarhei/restreamer-ui#12)
+
+Dependency:
+
+-   datarhei Core v16.10.0+
+
 #### v1.1.0 > v1.2.0
 
 -   Add allow writing HLS to disk

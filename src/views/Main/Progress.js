@@ -40,10 +40,8 @@ export default function Progress(props) {
 		...divStyle,
 	};
 
-	if (fps && (fps < 10 || speed < 0.8 || speed > 1.2)) {
+	if (fps && (fps < 10 || speed < 1.0)) {
 		fpsStyle.backgroundColor = Palette.background.box_danger;
-	} else if (fps && (speed < 0.9 || speed > 1.1)) {
-		fpsStyle.backgroundColor = Palette.service.main;
 	} else {
 		fpsStyle.backgroundColor = Palette.background.box_default;
 	}

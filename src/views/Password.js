@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import LinearProgress from '@mui/material/LinearProgress';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 import Paper from '../misc/Paper';
@@ -14,6 +13,7 @@ import Password from '../misc/Password';
 import PaperHeader from '../misc/PaperHeader';
 import PaperContent from '../misc/PaperContent';
 import PaperFooter from '../misc/PaperFooter';
+import TextField from '../misc/TextField';
 
 const generatePassword = (length) => {
 	const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -28,11 +28,10 @@ const generatePassword = (length) => {
 
 export default function ResetPassword(props) {
 	const [$login, setLogin] = React.useState({
-		username: 'admin',
-		password: generatePassword(6) + '-' + generatePassword(6) + '-' + generatePassword(6),
-		passwordConfirm: '',
-		showPassword: true,
-		memorized: false,
+		username: props.username.length === 0 ? 'admin' : props.username,
+		password: props.password.length === 0 ? generatePassword(6) + '-' + generatePassword(6) + '-' + generatePassword(6) : props.password,
+		passwordConfirm: props.password.length !== 0 ? props.password : '',
+		showPassword: props.password.length === 0 ? true : false,
 	});
 	const [$restart, setRestart] = React.useState({
 		restarting: false,
@@ -48,7 +47,21 @@ export default function ResetPassword(props) {
 			timeout: false,
 		});
 
-		const res = await props.onReset($login.username, $login.password);
+		// If the username and/or password are set by an environment variable (override == true), then don't
+		// store that password to the config file. By setting them as empty string, the currently stored
+		// values won't be changed.
+
+		let username = $login.username;
+		if (props.usernameOverride) {
+			username = '';
+		}
+
+		let password = $login.password;
+		if (props.passwordOverride) {
+			password = '';
+		}
+
+		const res = await props.onReset(username, $login.username, password, $login.password);
 		switch (res) {
 			case 'ERROR':
 				setRestart({
@@ -98,6 +111,8 @@ export default function ResetPassword(props) {
 									value={$login.username}
 									onChange={handleChange('username')}
 									autoComplete="username"
+									disabled={props.usernameOverride}
+									env={props.usernameOverride}
 								/>
 							</Grid>
 							<Grid item xs={12}>
@@ -108,6 +123,8 @@ export default function ResetPassword(props) {
 									onChange={handleChange('password')}
 									show={$login.showPassword}
 									autoComplete="current-password"
+									disabled={props.passwordOverride}
+									env={props.passwordOverride}
 								/>
 							</Grid>
 							<Grid item xs={12}>
@@ -117,6 +134,8 @@ export default function ResetPassword(props) {
 									label={<Trans>Confirm password</Trans>}
 									onChange={handleChange('passwordConfirm')}
 									show={$login.showPassword}
+									disabled={props.passwordOverride}
+									env={props.passwordOverride}
 								/>
 							</Grid>
 							<Grid item xs={12}>
@@ -124,7 +143,7 @@ export default function ResetPassword(props) {
 							</Grid>
 							<Grid item xs={12}>
 								<Button variant="outlined" color="primary" fullWidth size="large" disabled={invalid} type="submit" onClick={handleReset}>
-									<Trans>Create user</Trans>
+									<Trans>Register user</Trans>
 								</Button>
 							</Grid>
 						</Grid>
@@ -168,4 +187,8 @@ export default function ResetPassword(props) {
 
 ResetPassword.defaultProps = {
 	onReset: function (username, password) {},
+	username: '',
+	usernameOverride: false,
+	password: '',
+	passwordOverride: false,
 };

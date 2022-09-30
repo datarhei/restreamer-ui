@@ -15,6 +15,9 @@ export default function Player(props) {
 			liveui: true,
 			responsive: true,
 			fluid: true,
+			plugins: {
+				reloadSourceOnError: {}
+			},
 			sources: [{ src: props.source, type: 'application/x-mpegURL' }],
 		};
 
