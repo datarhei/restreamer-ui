@@ -1,5 +1,13 @@
 # Restreamer-UI
 
+### v1.3.0 > v1.4.0
+
+-   Add email field for Let's Encrypt certification
+
+Dependency:
+
+-   datarhei Core v16.11.0+
+
 ### v1.2.0 > v1.3.0
 
 -   Add low_delay option to processing (default: true)
