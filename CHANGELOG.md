@@ -6,7 +6,7 @@
 
 Dependency:
 
--   datarhei Core v16.11.0+
+-   datarhei Core v16.10.1+
 
 ### v1.2.0 > v1.3.0
 
