@@ -175,6 +175,18 @@ const configValues = {
 			return null;
 		},
 	},
+	'tls.email': {
+		tab: 'network',
+		set: (config, value) => {
+			config.tls.email = value;
+		},
+		unset: (config) => {
+			delete config.tls.email;
+		},
+		validate: (config) => {
+			return null;
+		},
+	},
 	'api.auth.enable': {
 		tab: 'auth',
 		set: (config, value) => {
@@ -1445,6 +1457,22 @@ export default function Settings(props) {
 									<ErrorBox configvalue="tls.auto" messages={$tabs.network.messages} />
 									<Typography variant="caption">
 										<Trans>Let's Encrypt requires one or more public domain names and an accessible port 80/TCP.</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<TextField
+										label={<Trans>Email</Trans>}
+										env={env('tls.email')}
+										disabled={env('tls.email') || !config.tls.auto}
+										value={config.tls.email}
+										onChange={handleChange('tls.email')}
+									/>
+									<ErrorBox configvalue="tls.email" messages={$tabs.network.messages} />
+									<Typography variant="caption">
+										<Trans>
+											Please enter your email address to signify agreement with the Let's Encrypt CA's terms of service and to be notified
+											in case of issues.
+										</Trans>
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
