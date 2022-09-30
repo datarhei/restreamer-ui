@@ -7,6 +7,7 @@
 -   Add dlive & Trovo publication services
 -   Mod optimized DVR on DiskFS
 -   Mod updates packages
+-   Fix SRT bitstream on tee
 -   Fix typo
 -   Fix viewer count (datarhei/restreamer#394)
 -   Fix user registration if username and/or password are set via environment (datarhei/restreamer-ui#13)

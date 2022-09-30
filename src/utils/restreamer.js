@@ -1776,7 +1776,7 @@ class Restreamer {
 			output.address =
 				`[${hls_aac_adtstoasc ? 'bsfs/a=aac_adtstoasc:' : ''}${hls_params}]${hls_segment_playlist}` +
 				(rtmp_enabled ? `|[f=flv]{rtmp,name=${channel.channelid}.stream}` : '') +
-				(srt_enabled ? `|[f=mpegts]{srt,name=${channel.channelid},mode=publish}` : '');
+				(srt_enabled ? `|[bsfs/v=dump_extra=freq=keyframe:f=mpegts]{srt,name=${channel.channelid},mode=publish}` : '');
 		} else {
 			// ['-f', 'hls', '-start_number', '0', ...]
 			// adding the '-' in front of the first option, then flatten everything
