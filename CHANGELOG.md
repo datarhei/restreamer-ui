@@ -1,5 +1,9 @@
 # Restreamer-UI
 
+### v1.4.0 > v1.4.1
+
+-   Fix removes SRT bitstream on tee (OBS > RTMP > SRT is faulty)
+
 ### v1.3.0 > v1.4.0
 
 -   Add email field for Let's Encrypt certification
