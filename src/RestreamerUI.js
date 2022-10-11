@@ -203,6 +203,7 @@ export default function RestreamerUI(props) {
 					enable: true,
 				},
 			},
+			version: 3,
 		};
 
 		if (username.length !== 0) {
