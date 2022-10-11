@@ -384,7 +384,7 @@ const getLocalHLS = (config, name) => {
 };
 
 const getLocalRTMP = (config) => {
-	return getRTMPAddress(config.rtmp.local, config.rtmp.app, config.rtmp.name, config.rtmp.token, config.rtmp.secure);
+	return getRTMPAddress(config.rtmp.local, config.rtmp.app, config.rtmp.name, config.rtmp.token, false);
 };
 
 const getLocalSRT = (config) => {
