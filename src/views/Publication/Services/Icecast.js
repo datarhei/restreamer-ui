@@ -87,6 +87,8 @@ function Service(props) {
 			} else {
 				settings.options[what] = value;
 			}
+		} else {
+			settings[what] = value;
 		}
 
 		const output = createOutput(settings);

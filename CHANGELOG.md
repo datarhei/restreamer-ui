@@ -2,6 +2,8 @@
 
 ### v1.4.0 > v1.4.1
 
+-   Fix use of TLS for input from local RTMP server
+-   Fix Icecast publication service settings
 -   Fix removes SRT bitstream on tee (OBS > RTMP > SRT is faulty)
 
 ### v1.3.0 > v1.4.0
@@ -14,9 +16,9 @@ Dependency:
 
 ### v1.2.0 > v1.3.0
 
+-   Add dlive & Trovo publication services
 -   Add low_delay option to processing (default: true)
 -   Mod uses the ingest stream for publication (datarhei/restreamer#411)
--   Add dlive & Trovo publication services
 -   Mod optimized DVR on DiskFS
 -   Mod updates packages
 -   Fix SRT bitstream on tee
