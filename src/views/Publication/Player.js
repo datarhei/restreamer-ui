@@ -238,6 +238,42 @@ export default function Edit(props) {
 		});
 	};
 
+	const handleLogoReset = (event) => {
+		// For the cleanup of the core, we need to check the following:
+		// 1. is the image on the core or external?
+		// 2. is the image used somewhere else?
+		// 3. OK via dialog
+
+		handleChange(
+			'image',
+			'logo'
+		)({
+			target: {
+				value: '',
+			},
+		});
+
+		handleChange(
+			'position',
+			'logo'
+		)({
+			target: {
+				value: 'top-left',
+			},
+		});
+
+		handleChange(
+			'link',
+			'logo'
+		)({
+			target: {
+				value: '',
+			},
+		});
+
+		setSaving(false);
+	};
+
 	const handleDone = async () => {
 		setSaving(true);
 
@@ -453,9 +489,16 @@ export default function Edit(props) {
 						</Button>
 					}
 					buttonsRight={
-						<Button variant="outlined" color="primary" onClick={handleDone}>
-							<Trans>Save</Trans>
-						</Button>
+						<React.Fragment>
+							<Button variant="outlined" color="primary" onClick={handleDone}>
+								<Trans>Save</Trans>
+							</Button>
+							{$settings.logo.image && $tab === 'logo' && (
+								<Button variant="outlined" color="secondary" onClick={handleLogoReset}>
+									<Trans>Reset logo</Trans>
+								</Button>
+							)}
+						</React.Fragment>
 					}
 				/>
 			</Paper>

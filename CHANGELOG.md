@@ -1,10 +1,14 @@
 # Restreamer-UI
 
+### v1.4.1 > v1.5.0
+
+-   Add reset button to hide a player logo (datarhei/restreamer#431)
+
 ### v1.4.0 > v1.4.1
 
--   Fix videojs-overlay logo size (now responsive)
+-   Fix videojs-overlay logo size (datarhei/restreamer#431)
 -   Fix use of TLS for input from local RTMP server
--   Fix Icecast publication service settings
+-   Fix Icecast publication service settings (datarhei/restreamer#429)
 -   Fix removes SRT bitstream on tee (OBS > RTMP > SRT is faulty)
 
 ### v1.3.0 > v1.4.0
