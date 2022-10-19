@@ -278,7 +278,7 @@ const defaultIngestMetadata = {
 			reconnect: true,
 			delay: 15,
 			staleTimeout: 30,
-			low_delay: true,
+			low_delay: false,
 		},
 		snapshot: {
 			enable: true,
