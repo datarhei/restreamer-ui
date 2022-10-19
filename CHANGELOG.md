@@ -2,6 +2,7 @@
 
 ### v1.4.0 > v1.4.1
 
+-   Fix videojs-overlay logo size (now responsive)
 -   Fix use of TLS for input from local RTMP server
 -   Fix Icecast publication service settings
 -   Fix removes SRT bitstream on tee (OBS > RTMP > SRT is faulty)
