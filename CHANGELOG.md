@@ -3,6 +3,7 @@
 ### v1.4.0 > v1.5.0
 
 -   Add reset button to hide a player logo (datarhei/restreamer#431)
+-   Mod adds Istafeed.me as StreamKey service to Instagram's publishing service
 -   Mod renames "Low delay" to "Low latency (buffer)" and set false as default (requires more feedback)
 -   Fix videojs-overlay logo size (datarhei/restreamer#431)
 -   Fix use of TLS for input from local RTMP server
