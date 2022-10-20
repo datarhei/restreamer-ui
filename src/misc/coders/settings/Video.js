@@ -203,6 +203,53 @@ Size.defaultProps = {
 	onChange: function (event) {},
 };
 
+function Height(props) {
+	const { i18n } = useLingui();
+	const height = [
+		{ value: '4320', label: '4320' },
+		{ value: '2880', label: '2880' },
+		{ value: '2160', label: '2160' },
+		{ value: '1800', label: '1800' },
+		{ value: '1600', label: '1600' },
+		{ value: '1440', label: '1440' },
+		{ value: '1080', label: '1080' },
+		{ value: '900', label: '900' },
+		{ value: '720', label: '720' },
+		{ value: '540', label: '540' },
+		{ value: '360', label: '360' },
+	];
+
+	if (props.allowNone === true) {
+		height.unshift({ value: 'none', label: 'none' });
+	}
+
+	if (props.allowCustom === true) {
+		height.push({ value: 'custom', label: i18n._(t`Custom ...`) });
+	}
+
+	return (
+		<SelectCustom
+			options={height}
+			label={props.label}
+			customLabel={props.customLabel}
+			value={props.value}
+			onChange={props.onChange}
+			variant={props.variant}
+			allowNone={props.allowNone}
+			allowCustom={props.allowCustom}
+		/>
+	);
+}
+
+Height.defaultProps = {
+	allowNone: false,
+	allowCustom: false,
+	variant: 'outlined',
+	label: <Trans>Height</Trans>,
+	customLabel: <Trans>Custom size</Trans>,
+	onChange: function (event) {},
+};
+
 function Format(props) {
 	const { i18n } = useLingui();
 	const sizes = [
@@ -248,5 +295,6 @@ export default {
 	Framerate,
 	Profile,
 	Size,
+	Height,
 	Format,
 };

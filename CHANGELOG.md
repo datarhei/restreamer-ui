@@ -2,6 +2,7 @@
 
 ### v1.4.0 > v1.5.0
 
+-   Add scale filter to non-hwaccel encoders
 -   Add PeerTube and Media Network to publication services (plattforms, software)
 -   Add reset button to hide a player logo (datarhei/restreamer#431)
 -   Mod adds Istafeed.me as StreamKey service to Instagram's publishing service
