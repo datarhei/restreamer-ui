@@ -4,6 +4,7 @@
 
 -   Add scale filter to non-hwaccel encoders
 -   Add PeerTube and Media Network to publication services (plattforms, software)
+-   Mod simplifies the setup of Restreamer-to-Restreamer connections
 -   Add reset button to hide a player logo (datarhei/restreamer#431)
 -   Mod adds Istafeed.me as StreamKey service to Instagram's publishing service
 -   Mod renames "Low delay" to "Low latency (buffer)" and set false as default (requires more feedback)
