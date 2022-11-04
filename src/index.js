@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import '@fontsource/dosis';
@@ -16,12 +16,11 @@ if (urlParams.has('address') === true) {
 	address = urlParams.get('address');
 }
 
-ReactDOM.render(
+createRoot(document.getElementById('root')).render(
 	<StyledEngineProvider injectFirst>
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			<RestreamerUI address={address} />
 		</ThemeProvider>
-	</StyledEngineProvider>,
-	document.getElementById('root')
+	</StyledEngineProvider>
 );
