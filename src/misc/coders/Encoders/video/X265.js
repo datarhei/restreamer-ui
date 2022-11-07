@@ -16,6 +16,7 @@ function init(initialState) {
 		gop: '2',
 		profile: 'auto',
 		tune: 'zerolatency',
+		fps_mode: 'passthrough',
 		...initialState,
 	};
 
@@ -49,6 +50,13 @@ function createMapping(settings) {
 			'-keyint_min',
 			`${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`
 		);
+	}
+
+	if (settings.fps_mode !== 'passthrough') {
+		local.push(
+			'-fps_mode',
+			`${settings.fps_mode}`
+		)
 	}
 
 	if (settings.profile !== 'auto') {
@@ -107,6 +115,20 @@ Tune.defaultProps = {
 	onChange: function (event) {},
 };
 
+function FpsMode(props) {
+	return (
+		<Select label={<Trans>Frames per second mode</Trans>} value={props.value} onChange={props.onChange}>
+			<MenuItem value="passthrough">Frame is passed (Passthrough)</MenuItem>
+			<MenuItem value="cfr">Constant frame rate (CFR)</MenuItem>
+		</Select>
+	);
+}
+
+FpsMode.defaultProps = {
+	value: '',
+	onChange: function (event) {},
+};
+
 function Coder(props) {
 	const settings = init(props.settings);
 
@@ -139,11 +161,14 @@ function Coder(props) {
 			<Grid item xs={12}>
 				<Video.Bitrate value={settings.bitrate} onChange={update('bitrate')} allowCustom />
 			</Grid>
-			<Grid item xs={12}>
+			<Grid item xs={12} md={6}>
 				<Video.Framerate value={settings.fps} onChange={update('fps')} allowCustom />
 			</Grid>
-			<Grid item xs={12}>
+			<Grid item xs={12} md={6}>
 				<Video.GOP value={settings.gop} onChange={update('gop')} allowAuto allowCustom />
+			</Grid>
+			<Grid item xs={12}>
+				<FpsMode value={settings.fps_mode} onChange={update('fps_mode')} />
 			</Grid>
 			<Grid item xs={6}>
 				<Preset value={settings.preset} onChange={update('preset')} />

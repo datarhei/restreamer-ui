@@ -2,6 +2,7 @@
 
 ### v1.4.0 > v1.5.0
 
+-   Add `fps_mode` to x264, x265, vp9 encoder
 -   Add scale filter to non-hwaccel encoders
 -   Add PeerTube and Media Network to publication services (plattforms, software)
 -   Mod simplifies the setup of Restreamer-to-Restreamer connections
