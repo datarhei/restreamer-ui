@@ -219,10 +219,6 @@ function Height(props) {
 		{ value: '360', label: '360' },
 	];
 
-	if (props.allowNone === true) {
-		height.unshift({ value: 'none', label: 'none' });
-	}
-
 	if (props.allowCustom === true) {
 		height.push({ value: 'custom', label: i18n._(t`Custom ...`) });
 	}
@@ -235,7 +231,6 @@ function Height(props) {
 			value={props.value}
 			onChange={props.onChange}
 			variant={props.variant}
-			allowNone={props.allowNone}
 			allowCustom={props.allowCustom}
 		/>
 	);
@@ -246,6 +241,49 @@ Height.defaultProps = {
 	allowCustom: false,
 	variant: 'outlined',
 	label: <Trans>Height</Trans>,
+	customLabel: <Trans>Custom size</Trans>,
+	onChange: function (event) {},
+};
+
+function Width(props) {
+	const { i18n } = useLingui();
+	const width = [
+		{ value: '7680', label: '7680' },
+		{ value: '5120', label: '5120' },
+		{ value: '4096', label: '4096' },
+		{ value: '3840', label: '3840' },
+		{ value: '3200', label: '3200' },
+		{ value: '2560', label: '2560' },
+		{ value: '2048', label: '2048' },
+		{ value: '1920', label: '1920' },
+		{ value: '1600', label: '1600' },
+		{ value: '1280', label: '1280' },
+		{ value: '960', label: '960' },
+		{ value: '640', label: '640' },
+	];
+
+	if (props.allowCustom === true) {
+		width.push({ value: 'custom', label: i18n._(t`Custom ...`) });
+	}
+
+	return (
+		<SelectCustom
+			options={width}
+			label={props.label}
+			customLabel={props.customLabel}
+			value={props.value}
+			onChange={props.onChange}
+			variant={props.variant}
+			allowCustom={props.allowCustom}
+		/>
+	);
+}
+
+Width.defaultProps = {
+	allowNone: false,
+	allowCustom: false,
+	variant: 'outlined',
+	label: <Trans>Width</Trans>,
 	customLabel: <Trans>Custom size</Trans>,
 	onChange: function (event) {},
 };
@@ -295,6 +333,7 @@ export default {
 	Framerate,
 	Profile,
 	Size,
+	Width,
 	Height,
 	Format,
 };
