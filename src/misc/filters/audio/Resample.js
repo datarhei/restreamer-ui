@@ -34,7 +34,7 @@ function createGraph(settings) {
 	}
 
 	if (layout !== 'inherit') {
-		mapping.push(`ocl=${layout}`);
+		mapping.push(`ochl=${layout}`);
 	}
 
 	if (mapping.length === 0) {
