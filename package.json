@@ -6,6 +6,8 @@
 	"license": "Apache-2.0",
 	"dependencies": {
 		"@auth0/auth0-spa-js": "^2.0.0",
+		"@babel/plugin-syntax-flow": "^7.14.5",
+		"@babel/plugin-transform-react-jsx": "^7.14.9",
 		"@clappr/core": "^0.4.22",
 		"@clappr/hlsjs-playback": "^0.6.0",
 		"@clappr/plugins": "^0.4.16",
@@ -41,8 +43,8 @@
 		"react-device-detect": "^2.2.2",
 		"react-dom": "^18.2.0",
 		"react-markdown": "^8.0.3",
-		"react-router-dom": "^6.3.0",
-		"react-scripts": "^4.0.3",
+		"react-router-dom": "^6.4.3",
+		"react-scripts": "5.0.1",
 		"semver": "^7.3.8",
 		"typescript": "^4.8.4",
 		"url-parse": "^1.5.10",
@@ -87,11 +89,9 @@
 		"@babel/core": "^7.19.6",
 		"@lingui/cli": "^3.14.0",
 		"babel-core": "^7.0.0-bridge.0",
+		"eslint-config-react-app": "^7.0.1",
 		"prettier": "^2.7.1",
 		"react-error-overlay": "^6.0.11"
 	},
-	"resolutions": {
-		"url-parse@1.5.3": "patch:url-parse@npm:1.5.3#.yarn/patches/url-parse-npm-1.5.3-225ab9cae7.patch",
-		"react-error-overlay": "6.0.9"
-	}
+	"resolutions": {}
 }
