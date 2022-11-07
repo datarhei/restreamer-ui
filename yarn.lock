@@ -1086,28 +1086,6 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@clappr/core@^0.4.22":
-  version "0.4.22"
-  resolved "https://registry.yarnpkg.com/@clappr/core/-/core-0.4.22.tgz#3918b07b956db2d2055f23c0910ac87c717f59c4"
-  integrity sha512-Qer7W4rpiWFUjzfKop1WSpuHQd0/Zg6VLez5VU3fwujEUoULDO/KO/xjRkDg7zcpWbpELonG7DQ2sfoMIC1oNA==
-
-"@clappr/hlsjs-playback@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@clappr/hlsjs-playback/-/hlsjs-playback-0.6.0.tgz#e4b19d66177f161b546171bd6ef3b70df6f2a13d"
-  integrity sha512-aw56rTB1V5YiCryximSwSEKgvtISmrsMhRNUnsMshUoSGZi3mAxT1Wiab+ShHInPRtbu4HWgZzDJpIy+a/+i8w==
-
-"@clappr/plugins@^0.4.16":
-  version "0.4.16"
-  resolved "https://registry.yarnpkg.com/@clappr/plugins/-/plugins-0.4.16.tgz#4a682c89b8249c35e92ccbf37707847d4e4189d7"
-  integrity sha512-fiTGrOEmFzbhtJLHIWPfZ/Pt2uG3tzsXm1RVGQUi28aT1LnX6C7WpWROPev/vaULNV8ZoWcit3uBnw38amzZPQ==
-
-"@clappr/stats-plugin@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@clappr/stats-plugin/-/stats-plugin-0.2.0.tgz#ef50df3c072913081081489031b193a9aded0806"
-  integrity sha512-WjBeU06v3o8ZwJi2KPHVNq298U6IDJBj6j5jLppQmy+vsHRTbVa8juW5VjPAMqYiCZCyDGsG7iC8jcoetw3RNg==
-  dependencies:
-    lodash.get "^4.4.2"
-
 "@csstools/normalize.css@*":
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-12.0.0.tgz#a9583a75c3f150667771f30b60d9f059473e62c4"

@@ -356,9 +356,7 @@ export default function Edit(props) {
 					<Grid item xs={12}>
 						<TabsHorizontal value={$tab} onChange={handleChangeTab}>
 							<Tab className="tab" label={<Trans>Embed</Trans>} value="embed" />
-							{$player === 'clappr' && <Tab className="tab" label={<Trans>Color</Trans>} value="colors" />}
 							<Tab className="tab" label={<Trans>Logo</Trans>} value="logo" />
-							{$player === 'clappr' && <Tab className="tab" label={<Trans>Statistics</Trans>} value="statistic" />}
 							<Tab className="tab" label={<Trans>Playback</Trans>} value="playback" />
 						</TabsHorizontal>
 						<TabPanel value={$tab} index="embed">

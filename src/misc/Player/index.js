@@ -1,10 +1,9 @@
 import React from 'react';
 
-import Clappr from './clappr';
 import VideoJS from './videojs';
 
 export default function Player(props) {
-	const type = props.type ? props.type : 'clappr';
+	const type = props.type ? props.type : 'videojs-internal';
 
 	if (type === 'videojs-internal' || type === 'videojs-public') {
 		const config = {
@@ -16,7 +15,7 @@ export default function Player(props) {
 			responsive: true,
 			fluid: true,
 			plugins: {
-				reloadSourceOnError: {}
+				reloadSourceOnError: {},
 			},
 			sources: [{ src: props.source, type: 'application/x-mpegURL' }],
 		};
@@ -79,57 +78,6 @@ export default function Player(props) {
 				}}
 			/>
 		);
-	} else {
-		const config = {
-			poster: props.poster,
-			autoPlay: props.autoplay,
-			mute: props.mute,
-			disableCanAutoPlay: true,
-			playback: {
-				playInline: true,
-				hlsjsConfig: {
-					enableWorker: false,
-				},
-			},
-			chromeless: !props.controls,
-			height: '100%',
-			width: '100%',
-			mediacontrol: {
-				seekbar: props.colors.seekbar,
-				buttons: props.colors.buttons,
-			},
-		};
-
-		if (props.logo.image.length !== 0) {
-			config.watermark = props.logo.image + '?' + Math.random();
-			config.position = props.logo.position;
-
-			if (props.logo.link.length !== 0) {
-				config.watermarkLink = props.logo.link;
-			}
-		}
-
-		if (props.ga.account.length !== 0) {
-			config.gaAccount = props.ga.account;
-
-			if (props.ga.name.length !== 0) {
-				config.gaTrackerName = props.ga.name;
-			}
-		}
-
-		if (props.statistics === true) {
-			config.plugins.push('ClapprStats', 'clapprNerdStats');
-			config.clapprStats = {
-				runEach: 1000,
-				onReport: (metrics) => {},
-			};
-			config.clapprNerdStats = {
-				shortcut: ['command+shift+s', 'ctrl+shift+s'],
-				iconPosition: 'top-right',
-			};
-		}
-
-		return <Clappr source={props.source} config={config} />;
 	}
 }
 
