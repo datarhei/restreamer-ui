@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Trans } from '@lingui/macro';
+import makeStyles from '@mui/styles/makeStyles';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import ReactMarkdown from 'react-markdown';
@@ -8,10 +9,22 @@ import SemverGt from 'semver/functions/gt';
 import SemverLte from 'semver/functions/lte';
 import SemverValid from 'semver/functions/valid';
 
+import BoxText from './BoxText';
 import Dialog from './modals/Dialog';
+
+const useStyles = makeStyles((theme) => ({
+	h1: theme.typography.h1,
+	h2: theme.typography.h2,
+	h3: theme.typography.h3,
+	h4: theme.typography.h4,
+	a: {
+		color: theme.palette.secondary.main,
+	},
+}));
 
 export default function Changelog(props) {
 	const [$data, setData] = React.useState('');
+	const classes = useStyles();
 
 	React.useEffect(() => {
 		(async () => {
@@ -90,12 +103,20 @@ export default function Changelog(props) {
 		return null;
 	}
 
+	const renderers = {
+		h1: (props) => <h1 className={classes.h1} {...props}>{props.children}</h1>,
+		h2: (props) => <h2 className={classes.h2} {...props}>{props.children}</h2>,
+		h3: (props) => <h3 className={classes.h3} {...props}>{props.children}</h3>,
+		h4: (props) => <h4 className={classes.h4} {...props}>{props.children}</h4>,
+		a: (props) => <a className={classes.a} target="_blank" {...props}>{props.children}</a>,
+	}
+
 	return (
 		<Dialog
 			open={props.open}
 			onClose={props.onClose}
 			title={<Trans>Changelog</Trans>}
-			maxWidth={980}
+			maxWidth={600}
 			buttonsRight={
 				<Button variant="outlined" color="primary" onClick={props.onClose}>
 					<Trans>Dismiss</Trans>
@@ -104,7 +125,11 @@ export default function Changelog(props) {
 		>
 			<Grid container spacing={2}>
 				<Grid item xs={12}>
-					<ReactMarkdown>{$data}</ReactMarkdown>
+					<BoxText alignItems="left">
+						<ReactMarkdown
+							components={renderers}
+						>{$data}</ReactMarkdown>
+					</BoxText>
 				</Grid>
 			</Grid>
 		</Dialog>
