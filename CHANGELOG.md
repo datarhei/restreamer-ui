@@ -5,8 +5,9 @@
 -   Add `fps_mode` to x264, x265, vp9 encoder
 -   Add scale filter to non-hwaccel encoders
 -   Add PeerTube and Media Network to publication services (plattforms, software)
--   Mod simplifies the setup of Restreamer-to-Restreamer connections
 -   Add reset button to hide a player logo (datarhei/restreamer#431)
+-   Mod improves display of progress data
+-   Mod simplifies the setup of Restreamer-to-Restreamer connections
 -   Mod adds Istafeed.me as StreamKey service to Instagram's publishing service
 -   Mod renames "Low delay" to "Low latency (buffer)" and set false as default (requires more feedback)
 -   Fix videojs-overlay logo size (datarhei/restreamer#431)

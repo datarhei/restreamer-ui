@@ -10,8 +10,8 @@ import Palette from '../../theme/base/palette';
 
 export default function Progress(props) {
 	const uptime = props.progress.time;
-	const bitrate = props.progress.bitrate.toFixed(2);
-	const fps = Math.round(props.progress.fps);
+	const bitrate = props.progress.bitrate;
+	const fps = props.progress.fps;
 	const speed = props.progress.speed;
 
 	const valueStyle = {
@@ -40,7 +40,7 @@ export default function Progress(props) {
 		...divStyle,
 	};
 
-	if (fps && (fps < 10 || speed < 1.0)) {
+	if (fps && uptime > 30 && (fps < 10 || speed < 0.99 || speed > 1.01)) {
 		fpsStyle.backgroundColor = Palette.background.box_danger;
 	} else {
 		fpsStyle.backgroundColor = Palette.background.box_default;
@@ -61,7 +61,7 @@ export default function Progress(props) {
 			<Grid item xs={4}>
 				<div style={bitrateStyle}>
 					<Typography variant="body1" style={valueStyle}>
-						<Number value={bitrate} minDigits={2} />
+						<Number value={bitrate} digits={0} />
 					</Typography>
 					<Typography variant="body2">
 						<Trans>kbit/s</Trans>
@@ -71,7 +71,7 @@ export default function Progress(props) {
 			<Grid item xs={4}>
 				<div style={fpsStyle}>
 					<Typography variant="body1" style={valueStyle}>
-						<Number value={fps} digits={2} />
+						<Number value={fps} digits={0} />
 					</Typography>
 					<Typography variant="body2">
 						<Trans>FPS</Trans>

@@ -57,7 +57,7 @@ export default function Progress(props) {
 			<Grid item xs={12}>
 				<Typography variant="h4">
 					<strong>
-						<Number value={Math.round(progress.fps)} />
+						<Number value={progress.fps} digits={2} minDigits={2} />
 					</strong>
 				</Typography>
 				<Typography variant="body2" gutterBottom>
@@ -70,7 +70,7 @@ export default function Progress(props) {
 			<Grid item xs={12}>
 				<Typography variant="h4">
 					<strong>
-						<Number value={progress.bitrate} minDigits={2} />
+						<Number value={progress.bitrate} digits={2} minDigits={2} />
 					</strong>
 				</Typography>
 				<Typography variant="body2" gutterBottom>
@@ -83,7 +83,7 @@ export default function Progress(props) {
 			<Grid item xs={12}>
 				<Typography variant="h4">
 					<strong>
-						<Number value={progress.q} digits={2} />
+						<Number value={progress.q} digits={2} minDigits={2} />
 					</strong>
 				</Typography>
 				<Typography variant="body2" gutterBottom>
@@ -96,7 +96,7 @@ export default function Progress(props) {
 			<Grid item xs={12}>
 				<Typography variant="h4">
 					<strong>
-						<Number value={progress.speed} minDigits={2} />
+						<Number value={progress.speed} digits={2} minDigits={2} />
 					</strong>
 				</Typography>
 				<Typography variant="body2" gutterBottom>
@@ -108,7 +108,9 @@ export default function Progress(props) {
 			</Grid>
 			<Grid item xs={12}>
 				<Typography variant="h4">
-					<strong>{!isNaN(Math.round((props.drop * 100) / props.frames)) || 0}%</strong>
+					<strong>
+						<Number value={!isNaN((props.drop * 100) / props.frames) || 0} digits={2} minDigits={2} />%
+					</strong>
 				</Typography>
 				<Typography variant="body2" gutterBottom>
 					<Trans>Frame drops</Trans>
@@ -120,7 +122,7 @@ export default function Progress(props) {
 			<Grid item xs={12}>
 				<Typography variant="h4">
 					<strong>
-						<Number value={Math.round(progress.dup)} />
+						<Number value={progress.dup} digits={2} minDigits={2} />
 					</strong>
 				</Typography>
 				<Typography variant="body2" gutterBottom>
