@@ -457,8 +457,7 @@ export default function Add(props) {
 												streams={$sources[0].streams}
 												profile={$settings.profiles[0].video}
 												codecs={serviceSkills.codecs.video}
-												availableEncoders={$skills.encoders.video}
-												availableDecoders={$skills.decoders.video}
+												skills={$skills}
 												onChange={handleProcessing('video')}
 											/>
 										</Grid>
@@ -473,8 +472,7 @@ export default function Add(props) {
 												streams={$sources[0].streams}
 												profile={$settings.profiles[0].audio}
 												codecs={serviceSkills.codecs.audio}
-												availableEncoders={$skills.encoders.audio}
-												availableDecoders={$skills.decoders.audio}
+												skills={$skills}
 												onChange={handleProcessing('audio')}
 											/>
 										</Grid>

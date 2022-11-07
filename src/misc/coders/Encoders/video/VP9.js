@@ -1,4 +1,5 @@
 import React from 'react';
+import SemverSatisfies from 'semver/functions/satisfies';
 
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
@@ -20,7 +21,12 @@ function init(initialState) {
 	return state;
 }
 
-function createMapping(settings) {
+function createMapping(settings, skills) {
+	let ffversion = 4;
+	if (SemverSatisfies(skills.ffmpeg.version, '^5.0.0')) {
+		ffversion = 5;
+	}
+
 	const local = [
 		'-codec:v',
 		'libvpx-vp9',
@@ -47,11 +53,10 @@ function createMapping(settings) {
 		);
 	}
 
-	if (settings.fps_mode !== 'passthrough') {
-		local.push(
-			'-fps_mode',
-			`${settings.fps_mode}`
-		)
+	if (ffversion === 5) {
+		if (settings.fps_mode !== 'passthrough') {
+			local.push('-fps_mode', `${settings.fps_mode}`);
+		}
 	}
 
 	const mapping = {
@@ -78,6 +83,10 @@ FpsMode.defaultProps = {
 
 function Coder(props) {
 	const settings = init(props.settings);
+	let ffversion = 4;
+	if (SemverSatisfies(props.skills.ffmpeg.version, '^5.0.0')) {
+		ffversion = 5;
+	}
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -86,7 +95,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings), automatic);
+		props.onChange(newSettings, createMapping(newSettings, props.skills), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -114,9 +123,11 @@ function Coder(props) {
 			<Grid item xs={12} md={6}>
 				<Video.GOP value={settings.gop} onChange={update('gop')} allowAuto allowCustom />
 			</Grid>
-			<Grid item xs={12}>
-				<FpsMode value={settings.fps_mode} onChange={update('fps_mode')} />
-			</Grid>
+			{ffversion === 5 && (
+				<Grid item xs={12}>
+					<FpsMode value={settings.fps_mode} onChange={update('fps_mode')} />
+				</Grid>
+			)}
 		</Grid>
 	);
 }
@@ -124,6 +135,7 @@ function Coder(props) {
 Coder.defaultProps = {
 	stream: {},
 	settings: {},
+	skills: {},
 	onChange: function (settings, mapping) {},
 };
 
@@ -137,12 +149,12 @@ function summarize(settings) {
 	return `${name}, ${settings.bitrate} kbit/s, ${settings.fps} FPS, Preset: ${settings.preset}, Profile: ${settings.profile}`;
 }
 
-function defaults() {
+function defaults(skills) {
 	const settings = init({});
 
 	return {
 		settings: settings,
-		mapping: createMapping(settings),
+		mapping: createMapping(settings, skills),
 	};
 }
 
