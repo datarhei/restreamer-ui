@@ -14,7 +14,7 @@ function init(initialState) {
 		bitrate: '4096',
 		fps: '25',
 		gop: '2',
-		fps_mode: 'passthrough',
+		fps_mode: 'auto',
 		...initialState,
 	};
 
@@ -54,9 +54,7 @@ function createMapping(settings, skills) {
 	}
 
 	if (ffversion === 5) {
-		if (settings.fps_mode !== 'passthrough') {
-			local.push('-fps_mode', `${settings.fps_mode}`);
-		}
+		local.push('-fps_mode', `${settings.fps_mode}`);
 	}
 
 	const mapping = {
@@ -70,8 +68,10 @@ function createMapping(settings, skills) {
 function FpsMode(props) {
 	return (
 		<Select label={<Trans>Frames per second mode</Trans>} value={props.value} onChange={props.onChange}>
-			<MenuItem value="passthrough">Frame is passed (Passthrough)</MenuItem>
-			<MenuItem value="cfr">Constant frame rate (CFR)</MenuItem>
+			<MenuItem value="passthrough"><Trans>Frame is passed (Passthrough)</Trans></MenuItem>
+			<MenuItem value="cfr"><Trans>Constant frame rate (CFR)</Trans></MenuItem>
+			<MenuItem value="vfr"><Trans>Variable frame rate (VFR)</Trans></MenuItem>
+			<MenuItem value="auto"><Trans>Chooses between CRF and VFR (Auto)</Trans></MenuItem>
 		</Select>
 	);
 }
