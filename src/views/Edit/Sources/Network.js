@@ -346,11 +346,9 @@ const getSRTAddress = (host, name, token, passphrase, publish) => {
 		'srt' +
 		'://' +
 		host +
-		'?mode=caller&transtype=live&streamid=#!:m=' +
-		(publish ? 'publish' : 'request') +
-		',r=' +
-		name +
-		(token.length !== 0 ? ',token=' + encodeURIComponent(token) : '');
+		'?mode=caller&transtype=live&streamid=' +
+		name + ',mode:' + (publish ? 'publish' : 'request') +
+		(token.length !== 0 ? ',token:' + encodeURIComponent(token) : '');
 
 	if (passphrase.length !== 0) {
 		url += '&passphrase=' + encodeURIComponent(passphrase);

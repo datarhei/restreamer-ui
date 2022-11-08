@@ -1020,8 +1020,8 @@ class Restreamer {
 			const port = getPort(cfg.host);
 
 			address =
-				`srt://${host}${port}/?mode=caller&transtype=live&streamid=#!:m=request,r=${channelid}` +
-				(cfg.token.length !== 0 ? `,token=${cfg.token}` : '') +
+				`srt://${host}${port}/?mode=caller&transtype=live&streamid=${channelid},mode:request` +
+				(cfg.token.length !== 0 ? `,token:${cfg.token}` : '') +
 				(cfg.passphrase.length !== 0 ? `&passphrase=${cfg.passphrase}` : '');
 		} else if (what === 'snapshot+memfs') {
 			// snapshot+memfs

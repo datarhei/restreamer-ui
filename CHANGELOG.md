@@ -2,15 +2,20 @@
 
 ### v1.4.0 > v1.5.0
 
+-   Add skills props to encoder and decoder components
 -   Add `fps_mode` to x264, x265, vp9 encoder
--   Add scale filter to non-hwaccel encoders
+-   Add `scale` filter to non-hwaccel encoders
 -   Add PeerTube and Media Network to publication services (plattforms, software)
--   Add reset button to hide a player logo (datarhei/restreamer#431)
+-   Add reset button to hide a player logo ([#431](https://github.com/datarhei/restreamer/issues/431))
+-   Mod switches to the improved SRT syntax (thx to SA Consulting)
 -   Mod improves display of progress data
+-   Mod uses deprecated param ocl - now ochl (ff5)
 -   Mod simplifies the setup of Restreamer-to-Restreamer connections
 -   Mod adds Istafeed.me as StreamKey service to Instagram's publishing service
 -   Mod renames "Low delay" to "Low latency (buffer)" and set false as default (requires more feedback)
--   Fix videojs-overlay logo size (datarhei/restreamer#431)
+-   Del removes support for clappr player
+-   Fix npm dependencies (security fixes)
+-   Fix videojs-overlay logo size ([#431](https://github.com/datarhei/restreamer/issues/431))
 -   Fix use of TLS for input from local RTMP server
 -   Fix Icecast publication service settings (datarhei/restreamer#429)
 -   Fix removes SRT bitstream on tee (OBS > RTMP > SRT is faulty)

@@ -115,11 +115,11 @@ export default function Changelog(props) {
 		<Dialog
 			open={props.open}
 			onClose={props.onClose}
-			title={<Trans>Changelog</Trans>}
+			title={<Trans>Update details (Changelog)</Trans>}
 			maxWidth={600}
 			buttonsRight={
 				<Button variant="outlined" color="primary" onClick={props.onClose}>
-					<Trans>Dismiss</Trans>
+					<Trans>Close</Trans>
 				</Button>
 			}
 		>

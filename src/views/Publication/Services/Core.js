@@ -114,6 +114,14 @@ function Service(props) {
 						settings.v2_stream_id = url.hash.split('&')[0];
 						settings.v2_passphrase = '';
 					}
+				} else if (url.query) {
+					if (url.query.includes('passphrase=')) {
+						settings.v2_stream_id = url.query.split('streamid=')[1].split('&')[0];
+						settings.v2_passphrase = url.query.split('&passphrase=')[1].split('&')[0];
+					} else {
+						settings.v2_stream_id = url.query.split('streamid=')[1];
+						settings.v2_passphrase = '';
+					}
 				} else {
 					settings.v2_stream_id = '';
 					settings.v2_passphrase = '';
@@ -123,6 +131,8 @@ function Service(props) {
 				if (url.query) {
 					if (url.query.includes('token=')) {
 						settings.v2_token = url.query.split('token=')[1].split('&')[0];
+					} else if (url.query.includes('token:')) {
+						settings.v2_token = url.query.split('token:')[1].split('&')[0];
 					} else {
 						settings.v2_token = '';
 					}
