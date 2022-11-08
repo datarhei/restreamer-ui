@@ -118,22 +118,6 @@ Tune.defaultProps = {
 	onChange: function (event) {},
 };
 
-function FpsMode(props) {
-	return (
-		<Select label={<Trans>Frames per second mode</Trans>} value={props.value} onChange={props.onChange}>
-			<MenuItem value="passthrough"><Trans>Frame is passed (Passthrough)</Trans></MenuItem>
-			<MenuItem value="cfr"><Trans>Constant frame rate (CFR)</Trans></MenuItem>
-			<MenuItem value="vfr"><Trans>Variable frame rate (VFR)</Trans></MenuItem>
-			<MenuItem value="auto"><Trans>Chooses between CRF and VFR (Auto)</Trans></MenuItem>
-		</Select>
-	);
-}
-
-FpsMode.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
 function Coder(props) {
 	const settings = init(props.settings);
 	let ffversion = 4;
@@ -178,7 +162,7 @@ function Coder(props) {
 			</Grid>
 			{ffversion === 5 && (
 				<Grid item xs={12}>
-					<FpsMode value={settings.fps_mode} onChange={update('fps_mode')} />
+					<Video.FpsMode value={settings.fps_mode} onChange={update('fps_mode')} />
 				</Grid>
 			)}
 			<Grid item xs={6}>

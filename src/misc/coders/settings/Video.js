@@ -327,6 +327,30 @@ Format.defaultProps = {
 	onChange: function (event) {},
 };
 
+function FpsMode(props) {
+	return (
+		<Select label={<Trans>Framerate mode</Trans>} value={props.value} onChange={props.onChange}>
+			<MenuItem value="passthrough">
+				<Trans>Frame is passed through (Passthrough)</Trans>
+			</MenuItem>
+			<MenuItem value="cfr">
+				<Trans>Constant frame rate (CFR)</Trans>
+			</MenuItem>
+			<MenuItem value="vfr">
+				<Trans>Variable frame rate (VFR)</Trans>
+			</MenuItem>
+			<MenuItem value="auto">
+				<Trans>Choose between CFR and VFR (Auto)</Trans>
+			</MenuItem>
+		</Select>
+	);
+}
+
+FpsMode.defaultProps = {
+	value: '',
+	onChange: function (event) {},
+};
+
 export default {
 	Bitrate,
 	GOP,
@@ -336,4 +360,5 @@ export default {
 	Width,
 	Height,
 	Format,
+	FpsMode,
 };
