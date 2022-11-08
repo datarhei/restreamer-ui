@@ -65,7 +65,7 @@ jobs:
           file: ./Dockerfile
           build-args: |
             PUBLIC_URL=/ui
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
