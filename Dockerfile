@@ -13,7 +13,9 @@ COPY . /ui
 WORKDIR /ui
 
 RUN cd /ui && \
- 	yarn install --network-timeout 600000 && \
+	yarn set version berry && \
+	yarn config set httpTimeout 600000 && \
+ 	yarn install && \
  	yarn run build
 
 FROM $CADDY_IMAGE
