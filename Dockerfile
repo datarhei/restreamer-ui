@@ -13,7 +13,7 @@ COPY . /ui
 WORKDIR /ui
 
 RUN cd /ui && \
- 	yarn install && \
+ 	yarn install --network-timeout 600000 && \
  	yarn run build
 
 FROM $CADDY_IMAGE
