@@ -20,7 +20,8 @@ const description = (
 		Live-Streaming to Instagram Live RTMP Service. The stream key requires a service such as{' '}
 		<Link color="secondary" target="_blank" href="https://instafeed.me/">
 			Instafeed.me
-		</Link>{' '} or {' '}
+		</Link>{' '}
+		or{' '}
 		<Link color="secondary" target="_blank" href="https://yellowduck.tv/">
 			Yellow Duck
 		</Link>
@@ -94,7 +95,7 @@ function Service(props) {
 			<Grid item xs={12} md={9}>
 				<TextField variant="outlined" fullWidth label={<Trans>Stream key</Trans>} value={settings.key} onChange={handleChange('key')} />
 			</Grid>
-			{(!settings.service_instafeed && !settings.service_yellowduck) && (
+			{!settings.service_instafeed && !settings.service_yellowduck && (
 				<Grid item xs={12} md={3}>
 					<FormInlineButton target="blank" component="a" disabled>
 						<Trans>GET</Trans>
@@ -116,8 +117,18 @@ function Service(props) {
 				</Grid>
 			)}
 			<Grid item xs={12}>
-				<Checkbox label={<Trans>Instafeed.me</Trans>} checked={settings.service_instafeed} onChange={handleChange('service_instafeed')} disabled={settings.service_yellowduck} />
-				<Checkbox label={<Trans>Yellow Duck</Trans>} checked={settings.service_yellowduck} onChange={handleChange('service_yellowduck')} disabled={settings.service_instafeed} />
+				<Checkbox
+					label={<Trans>Instafeed.me</Trans>}
+					checked={settings.service_instafeed}
+					onChange={handleChange('service_instafeed')}
+					disabled={settings.service_yellowduck}
+				/>
+				<Checkbox
+					label={<Trans>Yellow Duck</Trans>}
+					checked={settings.service_yellowduck}
+					onChange={handleChange('service_yellowduck')}
+					disabled={settings.service_instafeed}
+				/>
 			</Grid>
 		</Grid>
 	);

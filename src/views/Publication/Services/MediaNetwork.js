@@ -12,9 +12,7 @@ const id = 'medianetwork';
 const name = 'Media Network';
 const version = '1.0';
 const stream_key_link = 'https://www.mediaserver.express/';
-const description = (
-	<Trans>Live-Streaming to Media Network RTMP Service.</Trans>
-);
+const description = <Trans>Live-Streaming to Media Network RTMP Service.</Trans>;
 const image_copyright = '';
 const author = {
 	creator: {

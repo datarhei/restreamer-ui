@@ -347,7 +347,9 @@ const getSRTAddress = (host, name, token, passphrase, publish) => {
 		'://' +
 		host +
 		'?mode=caller&transtype=live&streamid=' +
-		name + ',mode:' + (publish ? 'publish' : 'request') +
+		name +
+		',mode:' +
+		(publish ? 'publish' : 'request') +
 		(token.length !== 0 ? ',token:' + encodeURIComponent(token) : '');
 
 	if (passphrase.length !== 0) {

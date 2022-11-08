@@ -12,9 +12,7 @@ const id = 'dlive';
 const name = 'dlive';
 const version = '1.0';
 const stream_key_link = 'https://dlive.tv/s/dashboard';
-const description = (
-	<Trans>Live-Streaming to dlive Live RTMP Service.</Trans>
-);
+const description = <Trans>Live-Streaming to dlive Live RTMP Service.</Trans>;
 const image_copyright = '';
 const author = {
 	creator: {

@@ -65,8 +65,8 @@ export default function Changelog(props) {
 		let copy = true;
 
 		for (let i = 0; i < lines.length; i++) {
-			if (lines[i].startsWith('### ')) {
-				let version = lines[i].replace('### ', '');
+			if (lines[i].startsWith('## ')) {
+				let version = lines[i].replace('## ', '');
 
 				if (SemverValid(version) === null) {
 					if (copy === true) {
@@ -104,12 +104,32 @@ export default function Changelog(props) {
 	}
 
 	const renderers = {
-		h1: (props) => <h1 className={classes.h1} {...props}>{props.children}</h1>,
-		h2: (props) => <h2 className={classes.h2} {...props}>{props.children}</h2>,
-		h3: (props) => <h3 className={classes.h3} {...props}>{props.children}</h3>,
-		h4: (props) => <h4 className={classes.h4} {...props}>{props.children}</h4>,
-		a: (props) => <a className={classes.a} target="_blank" {...props}>{props.children}</a>,
-	}
+		h1: (props) => (
+			<h1 className={classes.h1} {...props}>
+				{props.children}
+			</h1>
+		),
+		h2: (props) => (
+			<h2 className={classes.h2} {...props}>
+				{props.children}
+			</h2>
+		),
+		h3: (props) => (
+			<h3 className={classes.h3} {...props}>
+				{props.children}
+			</h3>
+		),
+		h4: (props) => (
+			<h4 className={classes.h4} {...props}>
+				{props.children}
+			</h4>
+		),
+		a: (props) => (
+			<a className={classes.a} target="_blank" {...props}>
+				{props.children}
+			</a>
+		),
+	};
 
 	return (
 		<Dialog
@@ -126,9 +146,7 @@ export default function Changelog(props) {
 			<Grid container spacing={2}>
 				<Grid item xs={12}>
 					<BoxText alignItems="left">
-						<ReactMarkdown
-							components={renderers}
-						>{$data}</ReactMarkdown>
+						<ReactMarkdown components={renderers}>{$data}</ReactMarkdown>
 					</BoxText>
 				</Grid>
 			</Grid>

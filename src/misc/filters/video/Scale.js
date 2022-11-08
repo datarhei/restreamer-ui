@@ -41,10 +41,18 @@ function createGraph(settings) {
 function Mode(props) {
 	return (
 		<Select label={<Trans>Scale</Trans>} value={props.value} onChange={props.onChange}>
-			<MenuItem value="none"><Trans>None</Trans></MenuItem>
-			<MenuItem value="fix"><Trans>Fix size</Trans></MenuItem>
-			<MenuItem value="height"><Trans>By height</Trans></MenuItem>
-			<MenuItem value="width"><Trans>By width</Trans></MenuItem>
+			<MenuItem value="none">
+				<Trans>None</Trans>
+			</MenuItem>
+			<MenuItem value="fix">
+				<Trans>Fix size</Trans>
+			</MenuItem>
+			<MenuItem value="height">
+				<Trans>By height</Trans>
+			</MenuItem>
+			<MenuItem value="width">
+				<Trans>By width</Trans>
+			</MenuItem>
 		</Select>
 	);
 }

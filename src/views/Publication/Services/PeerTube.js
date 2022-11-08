@@ -13,11 +13,7 @@ const id = 'peertube';
 const name = 'PeerTube';
 const version = '1.0';
 const stream_key_link = '/videos/upload#go-live';
-const description = (
-	<Trans>
-		Live-Streaming to PeerTube v3+ RTMP/S Service.
-	</Trans>
-);
+const description = <Trans>Live-Streaming to PeerTube v3+ RTMP/S Service.</Trans>;
 const image_copyright = '';
 const author = {
 	creator: {
@@ -83,7 +79,14 @@ function Service(props) {
 	return (
 		<Grid container spacing={2}>
 			<Grid item xs={12} md={12}>
-				<TextField variant="outlined" fullWidth label={<Trans>Instance domain</Trans>} placeholder="joinpeertube.org" value={settings.domain} onChange={handleChange('domain')} />
+				<TextField
+					variant="outlined"
+					fullWidth
+					label={<Trans>Instance domain</Trans>}
+					placeholder="joinpeertube.org"
+					value={settings.domain}
+					onChange={handleChange('domain')}
+				/>
 			</Grid>
 			<Grid item xs={12} md={9}>
 				<TextField variant="outlined" fullWidth label={<Trans>Stream key</Trans>} value={settings.key} onChange={handleChange('key')} />
