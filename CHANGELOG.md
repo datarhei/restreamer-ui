@@ -1,6 +1,6 @@
 # Restreamer-UI
 
-### v1.4.0 > v1.5.0
+## v1.4.0 > v1.5.0
 
 -   Add skills props to encoder and decoder components
 -   Add `fps_mode` to x264, x265, vp9 encoder
@@ -20,7 +20,11 @@
 -   Fix Icecast publication service settings (datarhei/restreamer#429)
 -   Fix removes SRT bitstream on tee (OBS > RTMP > SRT is faulty)
 
-### v1.3.0 > v1.4.0
+Dependency:
+
+-   datarhei Core v16.11.0+
+
+## v1.3.0 > v1.4.0
 
 -   Add email field for Let's Encrypt certification
 
@@ -28,7 +32,7 @@ Dependency:
 
 -   datarhei Core v16.10.1+
 
-### v1.2.0 > v1.3.0
+## v1.2.0 > v1.3.0
 
 -   Add dlive & Trovo publication services
 -   Add low_delay option to processing (default: true)
@@ -45,7 +49,7 @@ Dependency:
 
 -   datarhei Core v16.10.0+
 
-#### v1.1.0 > v1.2.0
+## v1.1.0 > v1.2.0
 
 -   Add allow writing HLS to disk
 -   Add audio pan filter
@@ -76,7 +80,7 @@ Dependency:
 
 -   datarhei Core v16.9.0+
 
-#### v1.0.0 > v1.1.0
+## v1.0.0 > v1.1.0
 
 -   Add compatibility list for encoders
 -   Add "HLS cleanup" as an optional function ([Philipp Trenz](https://github.com/philipptrenz))
