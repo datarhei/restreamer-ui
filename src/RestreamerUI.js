@@ -543,7 +543,9 @@ export default function RestreamerUI(props) {
 						onState={handleStateChannel}
 					/>
 				)}
-				{expand && <Changelog open={$changelog.open} onClose={handleCloseChangelog} current={$changelog.current} previous={$changelog.previous} />}
+				{expand && $changelog.open && (
+					<Changelog open={$changelog.open} onClose={handleCloseChangelog} current={$changelog.current} previous={$changelog.previous} />
+				)}
 			</NotifyProvider>
 		</I18n>
 	);
