@@ -175,10 +175,10 @@ export default function RestreamerUI(props) {
 
 			if (metadata === null) {
 				if (channels.length === 1) {
-					const progress = await restreamer.current.GetIngestProgress(channels[0].id);
+					const progress = await restreamer.current.GetIngestProgress(channels[0].channelid);
 					if (progress.valid === false) {
-						metadata = M.initMetadata(metadata);
 						// assume fresh installation
+						metadata = M.initMetadata(metadata);
 						await restreamer.current.SetMetadata({
 							...metadata,
 							bundle: {
