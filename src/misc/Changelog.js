@@ -13,11 +13,37 @@ import BoxText from './BoxText';
 import Dialog from './modals/Dialog';
 
 const useStyles = makeStyles((theme) => ({
-	h1: theme.typography.h1,
-	h2: theme.typography.h2,
-	h3: theme.typography.h3,
-	h4: theme.typography.h4,
+	h1: {
+		fontFamily: theme.typography.h1.fontFamily,
+		fontSize: theme.typography.h1.fontSize,
+		marginTop: '.5rem',
+		marginBottom: '-1rem',
+	},
+	h2: {
+		fontFamily: theme.typography.h2.fontFamily,
+		fontSize: theme.typography.h2.fontSize,
+		paddingTop: '1.5rem',
+		marginBottom: theme.typography.h2.marginBottom,
+		'&::after': {
+			content: '"     "',
+			display: 'block',
+			height: 1,
+			backgroundColor: theme.palette.primary.contrastText,
+		},
+	},
+	h3: {
+		fontFamily: theme.typography.h3.fontFamily,
+		fontSize: theme.typography.h3.fontSize,
+		paddingTop: '.5rem',
+		marginBottom: theme.typography.h3.marginBottom,
+	},
+	h4: {
+		fontFamily: theme.typography.h4.fontFamily,
+		fontSize: theme.typography.h4.fontSize,
+		marginBottom: theme.typography.h4.marginBottom,
+	},
 	a: {
+		fontWeight: 'bold',
 		color: theme.palette.secondary.main,
 	},
 }));
