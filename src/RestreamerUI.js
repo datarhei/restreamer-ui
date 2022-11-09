@@ -66,6 +66,7 @@ export default function RestreamerUI(props) {
 	});
 	const [$metadata, setMetadata] = React.useState({});
 	const [$changelog, setChangelog] = React.useState({
+		open: false,
 		current: '',
 		previous: '',
 	});
@@ -173,16 +174,20 @@ export default function RestreamerUI(props) {
 			}
 
 			if (metadata === null) {
-				if (channels.length === 0) {
-					// assume fresh installation
-					await restreamer.current.SetMetadata({
-						...metadata,
-						bundle: {
-							...metadata.bundle,
-							version: current,
-						},
-					});
-					return false;
+				if (channels.length === 1) {
+					const progress = await restreamer.current.GetIngestProgress(channels[0].id);
+					if (progress.valid === false) {
+						metadata = M.initMetadata(metadata);
+						// assume fresh installation
+						await restreamer.current.SetMetadata({
+							...metadata,
+							bundle: {
+								...metadata.bundle,
+								version: current,
+							},
+						});
+						return false;
+					}
 				}
 			}
 
