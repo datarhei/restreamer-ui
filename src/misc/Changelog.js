@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid';
 import ReactMarkdown from 'react-markdown';
 import SemverGt from 'semver/functions/gt';
 import SemverLte from 'semver/functions/lte';
+import SemverEq from 'semver/functions/eq';
 import SemverValid from 'semver/functions/valid';
 
 import BoxText from './BoxText';
@@ -110,10 +111,18 @@ export default function Changelog(props) {
 					previous = version;
 				}
 
-				if (SemverLte(version, current) && SemverGt(version, previous)) {
-					copy = true;
+				if (SemverEq(current, previous)) {
+					if (SemverEq(version, current)) {
+						copy = true;
+					} else {
+						copy = false;
+					}
 				} else {
-					copy = false;
+					if (SemverLte(version, current) && SemverGt(version, previous)) {
+						copy = true;
+					} else {
+						copy = false;
+					}
 				}
 			}
 

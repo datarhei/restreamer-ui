@@ -944,8 +944,12 @@ class Restreamer {
 	}
 
 	// Get system metadata
-	async GetMetadata() {
+	async GetMetadata(defaults = true) {
 		let metadata = await this._getMetadata();
+
+		if (defaults === false) {
+			return metadata;
+		}
 
 		return M.initMetadata(metadata);
 	}

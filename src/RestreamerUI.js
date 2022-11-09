@@ -14,6 +14,7 @@ import ChannelList from './misc/ChannelList';
 import Footer from './Footer';
 import I18n from './I18n';
 import Header from './Header';
+import * as M from './utils/metadata';
 import Restreamer from './utils/restreamer';
 import Router from './Router';
 import Views from './views';
@@ -51,7 +52,6 @@ export default function RestreamerUI(props) {
 		password: false,
 		updates: false,
 		service: false,
-		changelog: false,
 	});
 	const [$ready, setReady] = React.useState(false);
 	const [$snack, setSnack] = React.useState({
@@ -160,26 +160,49 @@ export default function RestreamerUI(props) {
 	};
 
 	const checkChangelog = async () => {
-		let showChangelog = false;
+		let showChangelog = true;
 
 		if (restreamer.current.IsConnected() === true) {
-			let metadata = await restreamer.current.GetMetadata();
+			let metadata = await restreamer.current.GetMetadata(false);
+			const channels = await restreamer.current.ListChannels();
 			let current = Version.replace('restreamer-', '');
 			let previous = '';
 
-			if ('version' in metadata.ui) {
-				if (SemverValid(metadata.ui.version) !== null) {
-					previous = metadata.ui.version;
-				} else {
-					showChangelog = true;
-				}
-			} else {
-				showChangelog = true;
+			if (SemverValid(current) === null) {
+				showChangelog = false;
 			}
 
-			if (showChangelog === false) {
-				if (SemverGt(current, previous)) {
-					showChangelog = true;
+			if (metadata === null) {
+				if (channels.length === 0) {
+					// assume fresh installation
+					await restreamer.current.SetMetadata({
+						...metadata,
+						bundle: {
+							...metadata.bundle,
+							version: current,
+						},
+					});
+					return false;
+				}
+			}
+
+			metadata = M.initMetadata(metadata);
+
+			if ('version' in metadata.bundle) {
+				if (SemverValid(metadata.bundle.version) !== null) {
+					previous = metadata.bundle.version;
+				}
+			}
+
+			if (showChangelog === true) {
+				if (SemverValid(previous) === null) {
+					previous = '';
+				}
+
+				if (previous.length !== 0) {
+					if (!SemverGt(current, previous)) {
+						showChangelog = false;
+					}
 				}
 			}
 
@@ -197,6 +220,21 @@ export default function RestreamerUI(props) {
 		}
 
 		return showChangelog;
+	};
+
+	const handleCloseChangelog = async () => {
+		await restreamer.current.SetMetadata({
+			...$metadata,
+			bundle: {
+				...$metadata.bundle,
+				version: $changelog.current,
+			},
+		});
+
+		setChangelog({
+			...$changelog,
+			open: false,
+		});
 	};
 
 	const handleLogin = async (username, password) => {
@@ -384,21 +422,6 @@ export default function RestreamerUI(props) {
 	const handleCloseSnack = () => {
 		setSnack({
 			...$snack,
-			open: false,
-		});
-	};
-
-	const handleCloseChangelog = async () => {
-		await restreamer.current.SetMetadata({
-			...$metadata,
-			ui: {
-				...$metadata.ui,
-				version: $changelog.current,
-			},
-		});
-
-		setChangelog({
-			...$changelog,
 			open: false,
 		});
 	};

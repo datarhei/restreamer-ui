@@ -250,7 +250,7 @@ import * as version from '../version';
 const defaultMetadata = {
 	version: version.Version,
 	playersite: {},
-	ui: {},
+	bundle: {},
 };
 
 const defaultIngestMetadata = {
@@ -360,9 +360,9 @@ const mergeMetadata = (metadata, base) => {
 		...metadata.playersite,
 	};
 
-	metadata.ui = {
-		...base.ui,
-		...metadata.ui,
+	metadata.bundle = {
+		...base.bundle,
+		...metadata.bundle,
 	};
 
 	metadata = transformMetadata(metadata, defaultMetadata.version, transformers);
