@@ -8,6 +8,7 @@
 -   Add scale filter to non-hwaccel encoders
 -   Add PeerTube and Media Network to publication services (plattforms, software)
 -   Add reset button to hide a player logo ([#431](https://github.com/datarhei/restreamer/issues/431))
+-   Mod expands V4L2_M2M options (an unstable RPI 64bit encoder)
 -   Mod indicates a faulty cache configuration
 -   Mod switches to the improved SRT syntax (thx to SA Consulting)
 -   Mod improves display of progress data
