@@ -53,6 +53,7 @@ export default function Add(props) {
 	const classes = useStyles();
 	const { i18n } = useLingui();
 	const navigate = useNavigate();
+	const [$ready, setReady] = React.useState(false);
 	const { channelid: _channelid } = useParams();
 	const notify = React.useContext(NotifyContext);
 	const [$service, setService] = React.useState('');
@@ -68,6 +69,7 @@ export default function Add(props) {
 		license: '',
 	});
 	const [$saving, setSaving] = React.useState(false);
+	const [$invalid, setInvalid] = React.useState(false);
 
 	React.useEffect(() => {
 		(async () => {
@@ -76,10 +78,16 @@ export default function Add(props) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	React.useEffect(() => {
+		if ($invalid === true) {
+			navigate('/', { replace: true });
+		}
+	}, [navigate, $invalid]);
+
 	const load = async () => {
 		const channelid = props.restreamer.SelectChannel(_channelid);
 		if (channelid === '' || channelid !== _channelid) {
-			navigate('/', { replace: true });
+			setInvalid(true);
 			return;
 		}
 
@@ -109,6 +117,8 @@ export default function Add(props) {
 		setLocalSources(localSources);
 
 		setSources(helper.createSourcesFromStreams(ingest.streams));
+
+		setReady(true);
 	};
 
 	const handleFilterChange = (event, value) => {
@@ -239,9 +249,7 @@ export default function Add(props) {
 		H(topic);
 	};
 
-	const channelid = props.restreamer.SelectChannel(_channelid);
-	if (channelid === '' || channelid !== _channelid) {
-		navigate('/', { replace: true });
+	if ($ready === false) {
 		return null;
 	}
 

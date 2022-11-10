@@ -79,6 +79,7 @@ export default function Edit(props) {
 		title: '',
 		message: '',
 	});
+	const [$invalid, setInvalid] = React.useState('');
 
 	React.useEffect(() => {
 		(async () => {
@@ -87,17 +88,23 @@ export default function Edit(props) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	React.useEffect(() => {
+		if ($invalid.length !== 0) {
+			navigate($invalid, { replace: true });
+		}
+	}, [navigate, $invalid]);
+
 	const mount = async () => {
 		const channelid = props.restreamer.SelectChannel(_channelid);
 		if (channelid === '' || channelid !== _channelid) {
-			navigate('/', { replace: true });
+			setInvalid('/');
 			return;
 		}
 
 		const proc = await props.restreamer.GetIngest(channelid, ['state', 'metadata']);
 		if (proc === null) {
 			notify.Dispatch('warning', 'notfound:ingest', i18n._(t`Main channel not found`));
-			navigate(`/${_channelid}/`);
+			setInvalid(`/${_channelid}/`);
 			return;
 		}
 
@@ -303,12 +310,6 @@ export default function Edit(props) {
 	};
 
 	if ($ready === false) {
-		return null;
-	}
-
-	const channelid = props.restreamer.SelectChannel(_channelid);
-	if (channelid === '' || channelid !== _channelid) {
-		navigate('/', { replace: true });
 		return null;
 	}
 

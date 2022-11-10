@@ -83,6 +83,7 @@ export default function Edit(props) {
 	const [$saving, setSaving] = React.useState(false);
 	const [$service, setService] = React.useState(null);
 	const [$serviceSkills, setServiceSkills] = React.useState(null);
+	const [$invalid, setInvalid] = React.useState('');
 
 	useInterval(async () => {
 		await update(false);
@@ -95,17 +96,23 @@ export default function Edit(props) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	React.useEffect(() => {
+		if ($invalid.length !== 0) {
+			navigate($invalid, { replace: true });
+		}
+	}, [navigate, $invalid]);
+
 	const update = async (isFirst) => {
 		const channelid = props.restreamer.SelectChannel(_channelid);
 		if (channelid === '' || channelid !== _channelid) {
-			navigate('/', { replace: true });
+			setInvalid('/');
 			return;
 		}
 
 		const proc = await props.restreamer.GetEgress(_channelid, id, ['state']);
 		if (proc === null) {
 			notify.Dispatch('warning', 'notfound:egress:' + _service, i18n._(t`Publication service not found`));
-			navigate(`/${_channelid}`);
+			setInvalid(`/${_channelid}`);
 			return;
 		}
 
@@ -115,7 +122,7 @@ export default function Edit(props) {
 			const s = Services.Get(_service);
 			if (s === null) {
 				notify.Dispatch('warning', 'notfound:egress:' + _service, i18n._(t`Publication service not found`));
-				navigate(`/${_channelid}/`);
+				setInvalid(`/${_channelid}/`);
 				return null;
 			}
 
@@ -362,12 +369,6 @@ export default function Edit(props) {
 	};
 
 	if ($ready === false) {
-		return null;
-	}
-
-	const channelid = props.restreamer.SelectChannel(_channelid);
-	if (channelid === '' || channelid !== _channelid) {
-		navigate('/', { replace: true });
 		return null;
 	}
 

@@ -54,6 +54,7 @@ export default function Wizard(props) {
 		step: 'TYPE',
 	});
 	const [$ready, setReady] = React.useState(false);
+	const [$invalid, setInvalid] = React.useState(false);
 
 	React.useEffect(() => {
 		(async () => {
@@ -62,10 +63,16 @@ export default function Wizard(props) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	React.useEffect(() => {
+		if ($invalid === true) {
+			navigate('/', { replace: true });
+		}
+	}, [navigate, $invalid]);
+
 	const load = async () => {
 		const channelid = props.restreamer.SelectChannel(_channelid);
 		if (channelid === '' || channelid !== _channelid) {
-			navigate('/', { replace: true });
+			setInvalid(true);
 			return;
 		}
 

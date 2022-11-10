@@ -78,6 +78,7 @@ export default function Edit(props) {
 		target: '',
 		what: '',
 	});
+	const [$invalid, setInvalid] = React.useState(false);
 
 	React.useEffect(() => {
 		(async () => {
@@ -86,10 +87,16 @@ export default function Edit(props) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	React.useEffect(() => {
+		if ($invalid === true) {
+			navigate('/', { replace: true });
+		}
+	}, [navigate, $invalid]);
+
 	const load = async () => {
 		const channelid = props.restreamer.SelectChannel(_channelid);
 		if (channelid === '' || channelid !== _channelid) {
-			navigate('/', { replace: true });
+			setInvalid(true);
 			return;
 		}
 
@@ -380,12 +387,6 @@ export default function Edit(props) {
 	};
 
 	if ($ready === false) {
-		return null;
-	}
-
-	const channelid = props.restreamer.SelectChannel(_channelid);
-	if (channelid === '' || channelid !== _channelid) {
-		navigate('/', { replace: true });
 		return null;
 	}
 
