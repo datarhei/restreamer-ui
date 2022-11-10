@@ -3,17 +3,24 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ChannelSelector(props) {
 	const navigate = useNavigate();
+	const [$channelid, setChannelid] = React.useState('');
 
 	React.useEffect(() => {
 		onMount();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const onMount = () => {
-		const channelid = props.restreamer.GetCurrentChannelID();
+	React.useEffect(() => {
+		navigate(`/${$channelid}`, { replace: true });
+	}, [navigate, $channelid]);
 
-		navigate(`/${channelid}`, { replace: true });
+	const onMount = () => {
+		setChannelid(props.channelid);
 	};
 
 	return null;
 }
+
+ChannelSelector.defaultProps = {
+	channelid: '',
+};
