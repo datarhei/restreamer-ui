@@ -105,11 +105,11 @@ function createMapping(settings, skills) {
 		'-avoid_negative_ts',
 		'disabled',
 		'-max_muxing_queue_size',
-		'2048'
+		'2048',
 	];
 
 	if (settings.gop !== 'auto') {
-		local.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`,);
+		local.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);
 		local.push('-keyint_min', `${parseInt(settings.fps)}`);
 	}
 
@@ -164,8 +164,9 @@ function Coder(props) {
 		<Grid container spacing={2}>
 			<Grid item xs={12}>
 				<BoxText color="danger">
-					<Trans>V4L2_M2M is unstable and experimental.</Trans><br />
-					<Trans>For Raspberry Pi (3/4), OpenMAX IL, which requires a 32-bit operating system, is recommended.</Trans>
+					<Trans>V4L2_M2M is unstable and experimental.</Trans>
+					<br />
+					<Trans>For Raspberry Pi (3/4) OpenMAX IL is recommended, which requires a 32-bit operating system.</Trans>
 				</BoxText>
 			</Grid>
 			<Grid item xs={12}>
@@ -177,7 +178,7 @@ function Coder(props) {
 			<Grid item xs={12}>
 				<Video.GOP value={settings.gop} onChange={update('gop')} allowAuto allowCustom />
 				<Typography variant="caption">
-					<Trans>Increasing the HLS segment length by 2-3 * keyframe interval is recommended (Processing & Control.)</Trans>
+					<Trans>Increasing the HLS segment length by 2-3 * keyframe interval is recommended (Processing & Control).</Trans>
 				</Typography>
 			</Grid>
 			{ffversion === 5 && (
@@ -186,7 +187,7 @@ function Coder(props) {
 				</Grid>
 			)}
 			<Grid item xs={12}>
-				<TextField label={<Trans>Force key framesr</Trans>} type="text" value={settings.force_key_frames} onChange={update('force_key_frames')} />
+				<TextField label={<Trans>Force key frames</Trans>} type="text" value={settings.force_key_frames} onChange={update('force_key_frames')} />
 			</Grid>
 			<Grid item xs={6}>
 				<TextField label={<Trans>Capture buffer</Trans>} type="number" value={settings.num_capture_buffers} onChange={update('num_capture_buffers')} />
