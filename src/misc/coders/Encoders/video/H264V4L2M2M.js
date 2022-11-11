@@ -165,7 +165,7 @@ function Coder(props) {
 			<Grid item xs={12}>
 				<BoxText color="danger">
 					<Trans>V4L2_M2M is unstable and experimental.</Trans><br />
-					<Trans>For Raspberry Pi (3/4), OMX, which requires a 32-bit operating system, is recommended.</Trans>
+					<Trans>For Raspberry Pi (3/4), OpenMAX IL, which requires a 32-bit operating system, is recommended.</Trans>
 				</BoxText>
 			</Grid>
 			<Grid item xs={12}>
