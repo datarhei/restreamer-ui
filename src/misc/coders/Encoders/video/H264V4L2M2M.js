@@ -215,12 +215,12 @@ function summarize(settings) {
 	return `${name}, ${settings.bitrate} kbit/s, ${settings.fps} FPS, Profile: ${settings.profile}`;
 }
 
-function defaults() {
+function defaults(skills) {
 	const settings = init({});
 
 	return {
 		settings: settings,
-		mapping: createMapping(settings),
+		mapping: createMapping(settings, skills),
 	};
 }
 
