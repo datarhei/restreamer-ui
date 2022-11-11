@@ -1830,7 +1830,7 @@ export default function Settings(props) {
 										helperText={
 											parseInt(config.storage.disk.cache.max_file_size_mbytes) > parseInt(config.storage.disk.cache.max_size_mbytes) &&
 											parseInt(config.storage.disk.cache.max_size_mbytes) !== 0 ? (
-												<Trans>Must be larger than maximum file size in cache</Trans>
+												<Trans>Must be larger than maximum file size in cache.</Trans>
 											) : (
 												''
 											)
@@ -1870,7 +1870,7 @@ export default function Settings(props) {
 										helperText={
 											parseInt(config.storage.disk.cache.max_file_size_mbytes) > parseInt(config.storage.disk.cache.max_size_mbytes) &&
 											parseInt(config.storage.disk.cache.max_size_mbytes) !== 0 ? (
-												<Trans>Must be smaller than maximum cache size</Trans>
+												<Trans>Must be smaller than maximum cache size.</Trans>
 											) : (
 												''
 											)

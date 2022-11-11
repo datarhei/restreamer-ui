@@ -164,9 +164,9 @@ function Coder(props) {
 		<Grid container spacing={2}>
 			<Grid item xs={12}>
 				<BoxText color="danger">
-					<Trans>V4L2_M2M is unstable and experimental.</Trans>
+					<Trans>V4L2_M2M is experimental.</Trans>
 					<br />
-					<Trans>For Raspberry Pi (3/4) OpenMAX IL is recommended, which requires a 32-bit operating system.</Trans>
+					<Trans>We recommend OpenMAX IL for Raspberry PI (3/4) with a 32-bit operating system.</Trans>
 				</BoxText>
 			</Grid>
 			<Grid item xs={12}>
@@ -178,7 +178,7 @@ function Coder(props) {
 			<Grid item xs={12}>
 				<Video.GOP value={settings.gop} onChange={update('gop')} allowAuto allowCustom />
 				<Typography variant="caption">
-					<Trans>Increasing the HLS segment length by 2-3 * keyframe interval is recommended (Processing & Control).</Trans>
+					<Trans>To stabilize the system, increase the HLS segment length for the keyframe interval by 2-3 * (Processing and Control).</Trans>
 				</Typography>
 			</Grid>
 			{ffversion === 5 && (
