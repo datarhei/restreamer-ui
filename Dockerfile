@@ -1,5 +1,5 @@
-ARG NODE_IMAGE=node:18.6.0-alpine3.15
-ARG CADDY_IMAGE=caddy:2.5.2-alpine
+ARG NODE_IMAGE=node:19.0-alpine3.16
+ARG CADDY_IMAGE=caddy:2.6.2-alpine
 
 FROM $NODE_IMAGE as builder
 
@@ -13,13 +13,10 @@ COPY . /ui
 WORKDIR /ui
 
 RUN cd /ui && \
-	npm config set fetch-retries 10 && \
-	npm config set fetch-retry-mintimeout 100000 && \
-	npm config set fetch-retry-maxtimeout 600000 && \
-	npm config set cache-min 3600 && \
-	npm config ls -l && \
-	npm install && \
-	npm run build
+	yarn set version berry && \
+	yarn config set httpTimeout 600000 && \
+ 	yarn install && \
+ 	yarn run build
 
 FROM $CADDY_IMAGE
 
@@ -30,4 +27,4 @@ WORKDIR /ui
 
 EXPOSE 3000
 
-CMD [ "caddy", "run", "-config", "/ui/Caddyfile" ]
+CMD [ "caddy", "run", "--config", "/ui/Caddyfile" ]

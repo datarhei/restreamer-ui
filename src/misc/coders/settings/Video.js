@@ -203,6 +203,91 @@ Size.defaultProps = {
 	onChange: function (event) {},
 };
 
+function Height(props) {
+	const { i18n } = useLingui();
+	const height = [
+		{ value: '4320', label: '4320' },
+		{ value: '2880', label: '2880' },
+		{ value: '2160', label: '2160' },
+		{ value: '1800', label: '1800' },
+		{ value: '1600', label: '1600' },
+		{ value: '1440', label: '1440' },
+		{ value: '1080', label: '1080' },
+		{ value: '900', label: '900' },
+		{ value: '720', label: '720' },
+		{ value: '540', label: '540' },
+		{ value: '360', label: '360' },
+	];
+
+	if (props.allowCustom === true) {
+		height.push({ value: 'custom', label: i18n._(t`Custom ...`) });
+	}
+
+	return (
+		<SelectCustom
+			options={height}
+			label={props.label}
+			customLabel={props.customLabel}
+			value={props.value}
+			onChange={props.onChange}
+			variant={props.variant}
+			allowCustom={props.allowCustom}
+		/>
+	);
+}
+
+Height.defaultProps = {
+	allowNone: false,
+	allowCustom: false,
+	variant: 'outlined',
+	label: <Trans>Height</Trans>,
+	customLabel: <Trans>Custom size</Trans>,
+	onChange: function (event) {},
+};
+
+function Width(props) {
+	const { i18n } = useLingui();
+	const width = [
+		{ value: '7680', label: '7680' },
+		{ value: '5120', label: '5120' },
+		{ value: '4096', label: '4096' },
+		{ value: '3840', label: '3840' },
+		{ value: '3200', label: '3200' },
+		{ value: '2560', label: '2560' },
+		{ value: '2048', label: '2048' },
+		{ value: '1920', label: '1920' },
+		{ value: '1600', label: '1600' },
+		{ value: '1280', label: '1280' },
+		{ value: '960', label: '960' },
+		{ value: '640', label: '640' },
+	];
+
+	if (props.allowCustom === true) {
+		width.push({ value: 'custom', label: i18n._(t`Custom ...`) });
+	}
+
+	return (
+		<SelectCustom
+			options={width}
+			label={props.label}
+			customLabel={props.customLabel}
+			value={props.value}
+			onChange={props.onChange}
+			variant={props.variant}
+			allowCustom={props.allowCustom}
+		/>
+	);
+}
+
+Width.defaultProps = {
+	allowNone: false,
+	allowCustom: false,
+	variant: 'outlined',
+	label: <Trans>Width</Trans>,
+	customLabel: <Trans>Custom size</Trans>,
+	onChange: function (event) {},
+};
+
 function Format(props) {
 	const { i18n } = useLingui();
 	const sizes = [
@@ -242,11 +327,38 @@ Format.defaultProps = {
 	onChange: function (event) {},
 };
 
+function FpsMode(props) {
+	return (
+		<Select label={<Trans>Framerate mode</Trans>} value={props.value} onChange={props.onChange}>
+			<MenuItem value="passthrough">
+				<Trans>Frame is passed through (Passthrough)</Trans>
+			</MenuItem>
+			<MenuItem value="cfr">
+				<Trans>Constant frame rate (CFR)</Trans>
+			</MenuItem>
+			<MenuItem value="vfr">
+				<Trans>Variable frame rate (VFR)</Trans>
+			</MenuItem>
+			<MenuItem value="auto">
+				<Trans>Choose between CFR and VFR (Auto)</Trans>
+			</MenuItem>
+		</Select>
+	);
+}
+
+FpsMode.defaultProps = {
+	value: '',
+	onChange: function (event) {},
+};
+
 export default {
 	Bitrate,
 	GOP,
 	Framerate,
 	Profile,
 	Size,
+	Width,
+	Height,
 	Format,
+	FpsMode,
 };

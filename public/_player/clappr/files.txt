@@ -1,4 +1,0 @@
-dist/clappr.min.js.map
-dist/clappr.min.js
-dist/clappr-stats.min.js
-dist/clappr-nerd-stats.min.js

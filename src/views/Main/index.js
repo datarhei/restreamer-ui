@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Main(props) {
 	const classes = useStyles();
+	const navigate = useNavigate();
 	const { channelid: _channelid } = useParams();
 	const [$state, setState] = React.useState({
 		ready: false,
@@ -80,8 +81,7 @@ export default function Main(props) {
 		data: '',
 	});
 	const [$config, setConfig] = React.useState(null);
-
-	const navigate = useNavigate();
+	const [$invalid, setInvalid] = React.useState(false);
 
 	useInterval(async () => {
 		await update();
@@ -94,6 +94,12 @@ export default function Main(props) {
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	React.useEffect(() => {
+		if ($invalid === true) {
+			navigate('/', { replace: true });
+		}
+	}, [navigate, $invalid]);
 
 	const load = async () => {
 		const config = props.restreamer.ConfigActive();
@@ -111,7 +117,7 @@ export default function Main(props) {
 	const update = async () => {
 		const channelid = props.restreamer.SelectChannel(_channelid);
 		if (channelid === '' || channelid !== _channelid) {
-			navigate('/', { replace: true });
+			setInvalid(true);
 			return;
 		}
 
@@ -273,12 +279,6 @@ export default function Main(props) {
 
 	if ($state.valid === false) {
 		return <Welcome />;
-	}
-
-	const channelid = props.restreamer.SelectChannel(_channelid);
-	if (channelid === '' || channelid !== _channelid) {
-		navigate('/', { replace: true });
-		return null;
 	}
 
 	const storage = $metadata.control.hls.storage;

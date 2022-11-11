@@ -14,9 +14,15 @@ import ChannelList from './misc/ChannelList';
 import Footer from './Footer';
 import I18n from './I18n';
 import Header from './Header';
+import * as M from './utils/metadata';
 import Restreamer from './utils/restreamer';
 import Router from './Router';
 import Views from './views';
+import { UI as Version } from './version';
+import Changelog from './misc/Changelog';
+
+import SemverGt from 'semver/functions/gt';
+import SemverValid from 'semver/functions/valid';
 
 const useStyles = makeStyles((theme) => ({
 	MainHeader: {
@@ -57,6 +63,12 @@ export default function RestreamerUI(props) {
 		open: false,
 		channelid: '',
 		channels: [],
+	});
+	const [$metadata, setMetadata] = React.useState({});
+	const [$changelog, setChangelog] = React.useState({
+		open: false,
+		current: '',
+		previous: '',
 	});
 
 	const restreamer = React.useRef(null);
@@ -131,6 +143,8 @@ export default function RestreamerUI(props) {
 
 		const valid = await restreamer.current.Validate();
 
+		await checkChangelog();
+
 		setState({
 			...$state,
 			initialized: true,
@@ -146,8 +160,93 @@ export default function RestreamerUI(props) {
 		setReady(true);
 	};
 
+	const checkChangelog = async () => {
+		let showChangelog = true;
+
+		if (restreamer.current.IsConnected() === true) {
+			let metadata = await restreamer.current.GetMetadata(false);
+			const channels = await restreamer.current.ListChannels();
+			let current = Version.replace('restreamer-', '');
+			let previous = '';
+
+			if (SemverValid(current) === null) {
+				showChangelog = false;
+			}
+
+			if (metadata === null) {
+				if (channels.length === 1) {
+					const progress = await restreamer.current.GetIngestProgress(channels[0].channelid);
+					if (progress.valid === false) {
+						// assume fresh installation
+						metadata = M.initMetadata(metadata);
+						await restreamer.current.SetMetadata({
+							...metadata,
+							bundle: {
+								...metadata.bundle,
+								version: current,
+							},
+						});
+						return false;
+					}
+				}
+			}
+
+			metadata = M.initMetadata(metadata);
+
+			if ('version' in metadata.bundle) {
+				if (SemverValid(metadata.bundle.version) !== null) {
+					previous = metadata.bundle.version;
+				}
+			}
+
+			if (showChangelog === true) {
+				if (SemverValid(previous) === null) {
+					previous = '';
+				}
+
+				if (previous.length !== 0) {
+					if (!SemverGt(current, previous)) {
+						showChangelog = false;
+					}
+				}
+			}
+
+			setMetadata({
+				...$metadata,
+				...metadata,
+			});
+
+			setChangelog({
+				...$changelog,
+				open: showChangelog,
+				current: current,
+				previous: previous,
+			});
+		}
+
+		return showChangelog;
+	};
+
+	const handleCloseChangelog = async () => {
+		await restreamer.current.SetMetadata({
+			...$metadata,
+			bundle: {
+				...$metadata.bundle,
+				version: $changelog.current,
+			},
+		});
+
+		setChangelog({
+			...$changelog,
+			open: false,
+		});
+	};
+
 	const handleLogin = async (username, password) => {
 		const connected = await restreamer.current.Login(username, password);
+
+		await checkChangelog();
+
 		setState({
 			...$state,
 			connected: connected,
@@ -203,6 +302,7 @@ export default function RestreamerUI(props) {
 					enable: true,
 				},
 			},
+			version: 3,
 		};
 
 		if (username.length !== 0) {
@@ -356,38 +456,42 @@ export default function RestreamerUI(props) {
 		return null;
 	};
 
-	let view = <Views.Initializing />;
-	if ($state.valid === false) {
-		view = <Views.Invalid address={restreamer.current.Address()} />;
-	} else if ($state.connected === false) {
-		view = (
-			<Views.Login
-				onLogin={handleLogin}
-				auths={restreamer.current.Auths()}
-				hasService={$state.service}
-				address={restreamer.current.Address()}
-				onAuth0={handleAuth0}
-			/>
-		);
-	} else if ($state.compatibility.compatible === false) {
-		if ($state.compatibility.core.compatible === false) {
-			view = <Views.Incompatible type="core" have={$state.compatibility.core.have} want={$state.compatibility.core.want} />;
-		} else if ($state.compatibility.ffmpeg.compatible === false) {
-			view = <Views.Incompatible type="ffmpeg" have={$state.compatibility.ffmpeg.have} want={$state.compatibility.ffmpeg.want} />;
-		}
-	} else if ($state.password === true) {
-		view = (
-			<Views.Password
-				onReset={handlePasswordReset}
-				username={restreamer.current.ConfigValue('api.auth.username')}
-				usernameOverride={restreamer.current.ConfigOverrides('api.auth.username')}
-				password={restreamer.current.ConfigValue('api.auth.password')}
-				passwordOverride={restreamer.current.ConfigOverrides('api.auth.password')}
-			/>
-		);
+	let view = null;
+	if ($state.initialized === false) {
+		view = <Views.Initializing />;
 	} else {
-		view = <Router restreamer={restreamer.current} />;
-		resources = handleResources;
+		if ($state.valid === false) {
+			view = <Views.Invalid address={restreamer.current.Address()} />;
+		} else if ($state.connected === false) {
+			view = (
+				<Views.Login
+					onLogin={handleLogin}
+					auths={restreamer.current.Auths()}
+					hasService={$state.service}
+					address={restreamer.current.Address()}
+					onAuth0={handleAuth0}
+				/>
+			);
+		} else if ($state.compatibility.compatible === false) {
+			if ($state.compatibility.core.compatible === false) {
+				view = <Views.Incompatible type="core" have={$state.compatibility.core.have} want={$state.compatibility.core.want} />;
+			} else if ($state.compatibility.ffmpeg.compatible === false) {
+				view = <Views.Incompatible type="ffmpeg" have={$state.compatibility.ffmpeg.have} want={$state.compatibility.ffmpeg.want} />;
+			}
+		} else if ($state.password === true) {
+			view = (
+				<Views.Password
+					onReset={handlePasswordReset}
+					username={restreamer.current.ConfigValue('api.auth.username')}
+					usernameOverride={restreamer.current.ConfigOverrides('api.auth.username')}
+					password={restreamer.current.ConfigValue('api.auth.password')}
+					passwordOverride={restreamer.current.ConfigOverrides('api.auth.password')}
+				/>
+			);
+		} else {
+			view = <Router restreamer={restreamer.current} />;
+			resources = handleResources;
+		}
 	}
 
 	const expand = $state.connected && $state.compatibility.compatible && !$state.password;
@@ -443,6 +547,9 @@ export default function RestreamerUI(props) {
 						onAdd={handleAddChannel}
 						onState={handleStateChannel}
 					/>
+				)}
+				{expand && $changelog.open && (
+					<Changelog open={$changelog.open} onClose={handleCloseChangelog} current={$changelog.current} previous={$changelog.previous} />
 				)}
 			</NotifyProvider>
 		</I18n>

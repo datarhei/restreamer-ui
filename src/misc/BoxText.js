@@ -47,8 +47,8 @@ export default function Component(props) {
 	return (
 		<Stack
 			direction="column"
-			justifyContent="center"
-			alignItems="center"
+			justifyContent={props.justifyContent}
+			alignItems={props.alignItems}
 			textAlign={props.textAlign}
 			spacing={1}
 			className={
@@ -64,4 +64,6 @@ export default function Component(props) {
 Component.defaultProps = {
 	color: 'light',
 	textAlign: 'left',
+	alignItems: 'center',
+	justifyContent: 'center',
 };

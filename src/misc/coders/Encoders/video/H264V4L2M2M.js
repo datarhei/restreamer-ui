@@ -1,15 +1,26 @@
 import React from 'react';
+import SemverSatisfies from 'semver/functions/satisfies';
 
 import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 
+import { Trans } from '@lingui/macro';
+
+import BoxText from '../../../BoxText';
+import TextField from '../../../TextField';
 import Video from '../../settings/Video';
 
 function init(initialState) {
 	const state = {
 		bitrate: '4096',
 		fps: '25',
-		gop: '2',
+		gop: '4',
 		profile: 'auto',
+		force_key_frames: 'expr:gte(t,n_forced*1)',
+		num_capture_buffers: '256',
+		num_output_buffers: '512',
+		fps_mode: 'cfr',
+
 		...initialState,
 	};
 
@@ -64,10 +75,20 @@ Codec Controls
 				4: High
  */
 
-function createMapping(settings) {
+function createMapping(settings, skills) {
+	let ffversion = 4;
+	if (SemverSatisfies(skills.ffmpeg.version, '^5.0.0')) {
+		ffversion = 5;
+	}
 	const local = [
 		'-codec:v',
 		'h264_v4l2m2m',
+		'-num_capture_buffers',
+		`${settings.num_capture_buffers}`,
+		'-num_output_buffers',
+		`${settings.num_output_buffers}`,
+		'-force_key_frames',
+		`${settings.force_key_frames}`,
 		'-b:v',
 		`${settings.bitrate}k`,
 		'-maxrate',
@@ -78,10 +99,22 @@ function createMapping(settings) {
 		`${settings.fps}`,
 		'-pix_fmt',
 		'yuv420p',
+		'-sc_threshold',
+		'0',
+		'-copyts',
+		'-avoid_negative_ts',
+		'disabled',
+		'-max_muxing_queue_size',
+		'2048',
 	];
 
 	if (settings.gop !== 'auto') {
 		local.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);
+		local.push('-keyint_min', `${parseInt(settings.fps)}`);
+	}
+
+	if (ffversion === 5) {
+		local.push('-fps_mode', `${settings.fps_mode}`);
 	}
 
 	if (settings.profile !== 'auto') {
@@ -98,6 +131,10 @@ function createMapping(settings) {
 
 function Coder(props) {
 	const settings = init(props.settings);
+	let ffversion = 4;
+	if (SemverSatisfies(props.skills.ffmpeg.version, '^5.0.0')) {
+		ffversion = 5;
+	}
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -106,7 +143,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings), automatic);
+		props.onChange(newSettings, createMapping(newSettings, props.skills), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -126,6 +163,13 @@ function Coder(props) {
 	return (
 		<Grid container spacing={2}>
 			<Grid item xs={12}>
+				<BoxText color="danger">
+					<Trans>V4L2_M2M is experimental.</Trans>
+					<br />
+					<Trans>We recommend OpenMAX IL for Raspberry PI (3/4) with a 32-bit operating system.</Trans>
+				</BoxText>
+			</Grid>
+			<Grid item xs={12}>
 				<Video.Bitrate value={settings.bitrate} onChange={update('bitrate')} allowCustom />
 			</Grid>
 			<Grid item xs={12}>
@@ -133,6 +177,23 @@ function Coder(props) {
 			</Grid>
 			<Grid item xs={12}>
 				<Video.GOP value={settings.gop} onChange={update('gop')} allowAuto allowCustom />
+				<Typography variant="caption">
+					<Trans>To stabilize the system, increase the HLS segment length for the keyframe interval by 2-3 * (Processing and Control).</Trans>
+				</Typography>
+			</Grid>
+			{ffversion === 5 && (
+				<Grid item xs={12}>
+					<Video.FpsMode value={settings.fps_mode} onChange={update('fps_mode')} />
+				</Grid>
+			)}
+			<Grid item xs={12}>
+				<TextField label={<Trans>Force key frames</Trans>} type="text" value={settings.force_key_frames} onChange={update('force_key_frames')} />
+			</Grid>
+			<Grid item xs={6}>
+				<TextField label={<Trans>Capture buffer</Trans>} type="number" value={settings.num_capture_buffers} onChange={update('num_capture_buffers')} />
+			</Grid>
+			<Grid item xs={6}>
+				<TextField label={<Trans>Output buffer</Trans>} type="number" value={settings.num_output_buffers} onChange={update('num_output_buffers')} />
 			</Grid>
 		</Grid>
 	);
@@ -141,6 +202,7 @@ function Coder(props) {
 Coder.defaultProps = {
 	stream: {},
 	settings: {},
+	skills: {},
 	onChange: function (settings, mapping) {},
 };
 
@@ -154,12 +216,12 @@ function summarize(settings) {
 	return `${name}, ${settings.bitrate} kbit/s, ${settings.fps} FPS, Profile: ${settings.profile}`;
 }
 
-function defaults() {
+function defaults(skills) {
 	const settings = init({});
 
 	return {
 		settings: settings,
-		mapping: createMapping(settings),
+		mapping: createMapping(settings, skills),
 	};
 }
 

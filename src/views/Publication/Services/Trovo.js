@@ -12,9 +12,7 @@ const id = 'trovo';
 const name = 'Trovo';
 const version = '1.0';
 const stream_key_link = 'https://studio.trovo.live/mychannel/stream';
-const description = (
-	<Trans>Live-Streaming to Trovo Live RTMP Service.</Trans>
-);
+const description = <Trans>Live-Streaming to Trovo Live RTMP Service.</Trans>;
 const image_copyright = '';
 const author = {
 	creator: {

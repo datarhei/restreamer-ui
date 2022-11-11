@@ -123,13 +123,10 @@
 
 /* overlay */
 
-.vjs-public .vjs-overlay > a > img {
-	width: 100%;
-}
-
-.vjs-public .vjs-overlay-no-background {
-	max-width: 28% !important;
-	max-height: 28% !important;
+.vjs-public .vjs-overlay-no-background > img,
+.vjs-public .vjs-overlay-no-background > a > img {
+	max-width: 100% !important;
+	max-height: calc(18vw);
 }
 
 .vjs-public .vjs-overlay-top-left {
@@ -161,7 +158,6 @@
 .vjs-public .vjs-license-top-level-header {
 	background: unset !important;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-	min-width: 100px;
 }
 
 .vjs-public .vjs-lock-open {

@@ -79,6 +79,7 @@ export default function Edit(props) {
 		title: '',
 		message: '',
 	});
+	const [$invalid, setInvalid] = React.useState('');
 
 	React.useEffect(() => {
 		(async () => {
@@ -87,17 +88,23 @@ export default function Edit(props) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	React.useEffect(() => {
+		if ($invalid.length !== 0) {
+			navigate($invalid, { replace: true });
+		}
+	}, [navigate, $invalid]);
+
 	const mount = async () => {
 		const channelid = props.restreamer.SelectChannel(_channelid);
 		if (channelid === '' || channelid !== _channelid) {
-			navigate('/', { replace: true });
+			setInvalid('/');
 			return;
 		}
 
 		const proc = await props.restreamer.GetIngest(channelid, ['state', 'metadata']);
 		if (proc === null) {
 			notify.Dispatch('warning', 'notfound:ingest', i18n._(t`Main channel not found`));
-			navigate(`/${_channelid}/`);
+			setInvalid(`/${_channelid}/`);
 			return;
 		}
 
@@ -238,6 +245,42 @@ export default function Edit(props) {
 		});
 	};
 
+	const handleLogoReset = (event) => {
+		// For the cleanup of the core, we need to check the following:
+		// 1. is the image on the core or external?
+		// 2. is the image used somewhere else?
+		// 3. OK via dialog
+
+		handleChange(
+			'image',
+			'logo'
+		)({
+			target: {
+				value: '',
+			},
+		});
+
+		handleChange(
+			'position',
+			'logo'
+		)({
+			target: {
+				value: 'top-left',
+			},
+		});
+
+		handleChange(
+			'link',
+			'logo'
+		)({
+			target: {
+				value: '',
+			},
+		});
+
+		setSaving(false);
+	};
+
 	const handleDone = async () => {
 		setSaving(true);
 
@@ -267,12 +310,6 @@ export default function Edit(props) {
 	};
 
 	if ($ready === false) {
-		return null;
-	}
-
-	const channelid = props.restreamer.SelectChannel(_channelid);
-	if (channelid === '' || channelid !== _channelid) {
-		navigate('/', { replace: true });
 		return null;
 	}
 
@@ -320,9 +357,7 @@ export default function Edit(props) {
 					<Grid item xs={12}>
 						<TabsHorizontal value={$tab} onChange={handleChangeTab}>
 							<Tab className="tab" label={<Trans>Embed</Trans>} value="embed" />
-							{$player === 'clappr' && <Tab className="tab" label={<Trans>Color</Trans>} value="colors" />}
 							<Tab className="tab" label={<Trans>Logo</Trans>} value="logo" />
-							{$player === 'clappr' && <Tab className="tab" label={<Trans>Statistics</Trans>} value="statistic" />}
 							<Tab className="tab" label={<Trans>Playback</Trans>} value="playback" />
 						</TabsHorizontal>
 						<TabPanel value={$tab} index="embed">
@@ -453,9 +488,16 @@ export default function Edit(props) {
 						</Button>
 					}
 					buttonsRight={
-						<Button variant="outlined" color="primary" onClick={handleDone}>
-							<Trans>Save</Trans>
-						</Button>
+						<React.Fragment>
+							<Button variant="outlined" color="primary" onClick={handleDone}>
+								<Trans>Save</Trans>
+							</Button>
+							{$settings.logo.image && $tab === 'logo' && (
+								<Button variant="outlined" color="secondary" onClick={handleLogoReset}>
+									<Trans>Reset logo</Trans>
+								</Button>
+							)}
+						</React.Fragment>
 					}
 				/>
 			</Paper>

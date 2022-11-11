@@ -403,8 +403,7 @@ export default function Source(props) {
 												streams={$sources.video.streams}
 												profile={$profile.video}
 												codecs={['copy', 'h264']}
-												availableEncoders={props.skills.encoders.video}
-												availableDecoders={props.skills.decoders.video}
+												skills={props.skills}
 												onChange={handleEncoding('video')}
 											/>
 										</Grid>
@@ -476,7 +475,7 @@ export default function Source(props) {
 										streams={$sources.video.streams}
 										profile={$profile.audio}
 										codecs={['copy', 'aac', 'mp3']}
-										availableEncoders={props.skills.encoders.audio}
+										skills={props.skills}
 										onChange={handleEncoding('audio')}
 									/>
 								</Grid>
@@ -553,7 +552,7 @@ export default function Source(props) {
 														streams={$sources.audio.streams}
 														profile={$profile.audio}
 														codecs={['copy', 'aac', 'mp3']}
-														availableEncoders={props.skills.encoders.audio}
+														skills={props.skills}
 														onChange={handleEncoding('audio')}
 													/>
 												</Grid>

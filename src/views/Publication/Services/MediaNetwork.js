@@ -4,15 +4,15 @@ import { Trans } from '@lingui/macro';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 
-import Logo from './logos/dlive.svg';
+import Logo from './logos/medianetworks.svg';
 
 import FormInlineButton from '../../../misc/FormInlineButton';
 
-const id = 'dlive';
-const name = 'dlive';
+const id = 'medianetwork';
+const name = 'Media Network';
 const version = '1.0';
-const stream_key_link = 'https://dlive.tv/s/dashboard';
-const description = <Trans>Live-Streaming to dlive Live RTMP Service.</Trans>;
+const stream_key_link = 'https://www.mediaserver.express/';
+const description = <Trans>Live-Streaming to Media Network RTMP Service.</Trans>;
 const image_copyright = '';
 const author = {
 	creator: {
@@ -35,7 +35,7 @@ const requires = {
 };
 
 function ServiceIcon(props) {
-	return <img src={Logo} alt="dlive Logo" {...props} />;
+	return <img src={Logo} alt="Media Network Logo" {...props} />;
 }
 
 function init(settings) {
@@ -62,7 +62,7 @@ function Service(props) {
 
 	const createOutput = (settings) => {
 		const output = {
-			address: 'rtmp://stream.dlive.tv/live/' + settings.key,
+			address: 'rtmp://ingest.mediaserver.express/live/' + settings.key,
 			options: ['-f', 'flv'],
 		};
 

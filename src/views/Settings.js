@@ -1414,6 +1414,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={12} md={6}>
 									<TextField
+										type="number"
 										label={<Trans>HTTP port</Trans>}
 										env={env('address')}
 										disabled={env('address')}
@@ -1427,6 +1428,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={12} md={6}>
 									<TextField
+										type="number"
 										label={<Trans>HTTPS port</Trans>}
 										env={env('tls.address')}
 										disabled={env('tls.address') || !config.tls.auto}
@@ -1485,6 +1487,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={12} md={12}>
 									<TextField
+										type="number"
 										label={<Trans>Maximum viewers</Trans>}
 										env={env('sessions.max_sessions')}
 										disabled={env('sessions.max_sessions')}
@@ -1501,6 +1504,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={12} md={12}>
 									<TextField
+										type="number"
 										label={<Trans>Maximum bandwidth Mbit/s</Trans>}
 										env={env('sessions.max_bitrate_mbit')}
 										disabled={env('sessions.max_bitrate_mbit')}
@@ -1650,7 +1654,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={12}>
 									<TextField
-										type="num"
+										type="number"
 										label={<Trans>Maximum viewer idle time (Seconds)</Trans>}
 										env={env('sessions.session_timeout_sec')}
 										disabled={env('sessions.session_timeout_sec') || !config.sessions.enable}
@@ -1733,6 +1737,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={12}>
 									<TextField
+										type="number"
 										label={<Trans>Maximum size (Megabytes)</Trans>}
 										env={env('storage.memory.max_size_mbytes')}
 										disabled={env('storage.memory.max_size_mbytes')}
@@ -1777,6 +1782,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={12}>
 									<TextField
+										type="number"
 										label={<Trans>Maximum size (Megabytes)</Trans>}
 										value={config.storage.disk.max_size_mbytes}
 										env={env('storage.memory.max_size_mbytes')}
@@ -1811,11 +1817,24 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={12}>
 									<TextField
+										type="number"
 										label={<Trans>Maximum size (Megabytes)</Trans>}
 										env={env('storage.disk.cache.max_size_mbytes')}
 										disabled={env('storage.disk.cache.max_size_mbytes') || !config.storage.disk.cache.enable}
 										value={config.storage.disk.cache.max_size_mbytes}
 										onChange={handleChange('storage.disk.cache.max_size_mbytes')}
+										error={
+											parseInt(config.storage.disk.cache.max_file_size_mbytes) > parseInt(config.storage.disk.cache.max_size_mbytes) &&
+											parseInt(config.storage.disk.cache.max_size_mbytes) !== 0
+										}
+										helperText={
+											parseInt(config.storage.disk.cache.max_file_size_mbytes) > parseInt(config.storage.disk.cache.max_size_mbytes) &&
+											parseInt(config.storage.disk.cache.max_size_mbytes) !== 0 ? (
+												<Trans>Must be larger than maximum file size in cache.</Trans>
+											) : (
+												''
+											)
+										}
 									/>
 									<ErrorBox configvalue="storage.disk.cache.max_size_mbytes" messages={$tabs.storage.messages} />
 									<Typography variant="caption">
@@ -1824,6 +1843,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={12} md={6}>
 									<TextField
+										type="number"
 										label={<Trans>Cache time (Seconds)</Trans>}
 										env={env('storage.disk.cache.ttl_seconds')}
 										disabled={env('storage.disk.cache.ttl_seconds') || !config.storage.disk.cache.enable}
@@ -1837,11 +1857,24 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={12} md={6}>
 									<TextField
+										type="number"
 										label={<Trans>Maximum file size (Megabytes)</Trans>}
 										env={env('storage.disk.cache.max_file_size_mbytes')}
 										disabled={env('storage.disk.cache.max_file_size_mbytes') || !config.storage.disk.cache.enable}
 										value={config.storage.disk.cache.max_file_size_mbytes}
 										onChange={handleChange('storage.disk.cache.max_file_size_mbytes')}
+										error={
+											parseInt(config.storage.disk.cache.max_file_size_mbytes) > parseInt(config.storage.disk.cache.max_size_mbytes) &&
+											parseInt(config.storage.disk.cache.max_size_mbytes) !== 0
+										}
+										helperText={
+											parseInt(config.storage.disk.cache.max_file_size_mbytes) > parseInt(config.storage.disk.cache.max_size_mbytes) &&
+											parseInt(config.storage.disk.cache.max_size_mbytes) !== 0 ? (
+												<Trans>Must be smaller than maximum cache size.</Trans>
+											) : (
+												''
+											)
+										}
 									/>
 									<ErrorBox configvalue="storage.disk.cache.max_file_size_mbytes" messages={$tabs.storage.messages} />
 									<Typography variant="caption">
@@ -1925,6 +1958,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={6} md={3}>
 									<TextField
+										type="number"
 										label={<Trans>RTMP Port</Trans>}
 										env={env('rtmp.address')}
 										disabled={env('rtmp.address') || (!config.rtmp.enable && !config.rtmp.enable_tls)}
@@ -1938,6 +1972,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={6} md={3}>
 									<TextField
+										type="number"
 										label={<Trans>RTMPS Port</Trans>}
 										env={env('rtmp.address_tls')}
 										disabled={env('rtmp.address_tls') || !config.rtmp.enable_tls || !config.tls.auto}
@@ -1999,6 +2034,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={6} md={4}>
 									<TextField
+										type="number"
 										label={<Trans>Port</Trans>}
 										env={env('srt.address')}
 										disabled={env('srt.address') || !config.srt.enable}
@@ -2128,6 +2164,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={6}>
 									<TextField
+										type="number"
 										label={<Trans>Maximum log lines</Trans>}
 										value={config.log.max_lines}
 										env={env('log.max_lines')}
@@ -2146,6 +2183,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={6}>
 									<TextField
+										type="number"
 										label={<Trans>Maximum log lines</Trans>}
 										value={config.ffmpeg.log.max_lines}
 										env={env('ffmpeg.log.max_lines')}
@@ -2159,6 +2197,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={6}>
 									<TextField
+										type="number"
 										label={<Trans>Maximum log histroy</Trans>}
 										value={config.ffmpeg.log.max_history}
 										env={env('ffmpeg.log.max_history')}

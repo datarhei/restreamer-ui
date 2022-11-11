@@ -250,6 +250,7 @@ import * as version from '../version';
 const defaultMetadata = {
 	version: version.Version,
 	playersite: {},
+	bundle: {},
 };
 
 const defaultIngestMetadata = {
@@ -278,7 +279,7 @@ const defaultIngestMetadata = {
 			reconnect: true,
 			delay: 15,
 			staleTimeout: 30,
-			low_delay: true,
+			low_delay: false,
 		},
 		snapshot: {
 			enable: true,
@@ -357,6 +358,11 @@ const mergeMetadata = (metadata, base) => {
 	metadata.playersite = {
 		...base.playersite,
 		...metadata.playersite,
+	};
+
+	metadata.bundle = {
+		...base.bundle,
+		...metadata.bundle,
 	};
 
 	metadata = transformMetadata(metadata, defaultMetadata.version, transformers);

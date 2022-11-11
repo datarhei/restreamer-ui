@@ -4,15 +4,16 @@ import { Trans } from '@lingui/macro';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 
-import Logo from './logos/dlive.svg';
+import Logo from './logos/peertube.svg';
 
+import Checkbox from '../../../misc/Checkbox';
 import FormInlineButton from '../../../misc/FormInlineButton';
 
-const id = 'dlive';
-const name = 'dlive';
+const id = 'peertube';
+const name = 'PeerTube';
 const version = '1.0';
-const stream_key_link = 'https://dlive.tv/s/dashboard';
-const description = <Trans>Live-Streaming to dlive Live RTMP Service.</Trans>;
+const stream_key_link = '/videos/upload#go-live';
+const description = <Trans>Live-Streaming to PeerTube v3+ RTMP/S Service.</Trans>;
 const image_copyright = '';
 const author = {
 	creator: {
@@ -26,7 +27,7 @@ const author = {
 };
 const category = 'platform';
 const requires = {
-	protocols: ['rtmp'],
+	protocols: ['rtmp', 'rtmps'],
 	formats: ['flv'],
 	codecs: {
 		audio: ['aac', 'mp3'],
@@ -35,11 +36,13 @@ const requires = {
 };
 
 function ServiceIcon(props) {
-	return <img src={Logo} alt="dlive Logo" {...props} />;
+	return <img src={Logo} alt="PeerTube Logo" {...props} />;
 }
 
 function init(settings) {
 	const initSettings = {
+		rtmps: false,
+		domain: '',
 		key: '',
 		...settings,
 	};
@@ -53,7 +56,11 @@ function Service(props) {
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
 
-		settings[what] = value;
+		if (['rtmps'].includes(what)) {
+			settings[what] = !settings[what];
+		} else {
+			settings[what] = value;
+		}
 
 		const output = createOutput(settings);
 
@@ -62,7 +69,7 @@ function Service(props) {
 
 	const createOutput = (settings) => {
 		const output = {
-			address: 'rtmp://stream.dlive.tv/live/' + settings.key,
+			address: `${settings.rtmps ? 'rtmps' : 'rtmp'}://${settings.domain}:${settings.rtmps ? '1936' : '1935'}/live/${settings.key}`,
 			options: ['-f', 'flv'],
 		};
 
@@ -71,13 +78,26 @@ function Service(props) {
 
 	return (
 		<Grid container spacing={2}>
+			<Grid item xs={12} md={12}>
+				<TextField
+					variant="outlined"
+					fullWidth
+					label={<Trans>Instance domain</Trans>}
+					placeholder="joinpeertube.org"
+					value={settings.domain}
+					onChange={handleChange('domain')}
+				/>
+			</Grid>
 			<Grid item xs={12} md={9}>
 				<TextField variant="outlined" fullWidth label={<Trans>Stream key</Trans>} value={settings.key} onChange={handleChange('key')} />
 			</Grid>
 			<Grid item xs={12} md={3}>
-				<FormInlineButton target="blank" href={stream_key_link} component="a">
+				<FormInlineButton target="blank" href={`https://${settings.domain}${stream_key_link}`} component="a" disabled={settings.domain === ''}>
 					<Trans>GET</Trans>
 				</FormInlineButton>
+			</Grid>
+			<Grid item xs={12}>
+				<Checkbox label={<Trans>Enable RTMPS transfer</Trans>} checked={settings.rtmps} onChange={handleChange('rtmps')} />
 			</Grid>
 		</Grid>
 	);

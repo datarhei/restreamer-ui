@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Navigate, Routes, HashRouter } from 'react-router-dom';
+import { Route, Navigate, Routes, HashRouter as DOMRouter } from 'react-router-dom';
 
 import Views from './views';
 
@@ -11,9 +11,9 @@ export default function Router(props) {
 	const channelid = props.restreamer.GetCurrentChannelID();
 
 	return (
-		<HashRouter>
+		<DOMRouter>
 			<Routes>
-				<Route path="/" element={<Views.ChannelSelect restreamer={props.restreamer} />} />
+				<Route path="/" element={<Views.ChannelSelect channelid={channelid} />} />
 				<Route path="/playersite" element={<Views.Playersite restreamer={props.restreamer} />} />
 				<Route path="/settings" element={<Views.Settings restreamer={props.restreamer} />} />
 				<Route path="/settings/:tab" element={<Views.Settings restreamer={props.restreamer} />} />
@@ -26,7 +26,7 @@ export default function Router(props) {
 				<Route path="/:channelid/publication/:service/:index" element={<Views.EditService key={channelid} restreamer={props.restreamer} />} />
 				<Route path="*" render={() => <Navigate to="/" replace />} />
 			</Routes>
-		</HashRouter>
+		</DOMRouter>
 	);
 }
 

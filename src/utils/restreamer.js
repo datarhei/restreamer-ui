@@ -2,7 +2,7 @@ import { i18n } from '@lingui/core';
 import { t } from '@lingui/macro';
 import { v4 as uuidv4 } from 'uuid';
 import jwt_decode from 'jwt-decode';
-import Handlebars from 'handlebars';
+import Handlebars from 'handlebars/dist/cjs/handlebars';
 import SemverSatisfies from 'semver/functions/satisfies';
 import SemverGt from 'semver/functions/gt';
 import SemverGte from 'semver/functions/gte';
@@ -944,8 +944,12 @@ class Restreamer {
 	}
 
 	// Get system metadata
-	async GetMetadata() {
+	async GetMetadata(defaults = true) {
 		let metadata = await this._getMetadata();
+
+		if (defaults === false) {
+			return metadata;
+		}
 
 		return M.initMetadata(metadata);
 	}
@@ -1020,8 +1024,8 @@ class Restreamer {
 			const port = getPort(cfg.host);
 
 			address =
-				`srt://${host}${port}/?mode=caller&transtype=live&streamid=#!:m=request,r=${channelid}` +
-				(cfg.token.length !== 0 ? `,token=${cfg.token}` : '') +
+				`srt://${host}${port}/?mode=caller&transtype=live&streamid=${channelid},mode:request` +
+				(cfg.token.length !== 0 ? `,token:${cfg.token}` : '') +
 				(cfg.passphrase.length !== 0 ? `&passphrase=${cfg.passphrase}` : '');
 		} else if (what === 'snapshot+memfs') {
 			// snapshot+memfs
@@ -1776,7 +1780,7 @@ class Restreamer {
 			output.address =
 				`[${hls_aac_adtstoasc ? 'bsfs/a=aac_adtstoasc:' : ''}${hls_params}]${hls_segment_playlist}` +
 				(rtmp_enabled ? `|[f=flv]{rtmp,name=${channel.channelid}.stream}` : '') +
-				(srt_enabled ? `|[bsfs/v=dump_extra=freq=keyframe:f=mpegts]{srt,name=${channel.channelid},mode=publish}` : '');
+				(srt_enabled ? `|[f=mpegts]{srt,name=${channel.channelid},mode=publish}` : '');
 		} else {
 			// ['-f', 'hls', '-start_number', '0', ...]
 			// adding the '-' in front of the first option, then flatten everything

@@ -67,6 +67,7 @@ function Coder(props) {
 Coder.defaultProps = {
 	stream: {},
 	settings: {},
+	skills: {},
 	onChange: function (settings, mapping) {},
 };
 

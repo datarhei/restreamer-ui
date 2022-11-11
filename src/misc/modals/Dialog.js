@@ -45,9 +45,15 @@ const useStyles = makeStyles((theme) => ({
 const Component = React.forwardRef((props, ref) => {
 	const classes = useStyles();
 
+	const paperStyle = {};
+
+	if (props.maxWidth > 0) {
+		paperStyle.maxWidth = props.maxWidth + 'px';
+	}
+
 	return (
 		<Modal open={props.open} onClose={props.onClose} className="modal" disableScrollLock>
-			<Paper className={classes.modalPaper} elevation={0} ref={ref} tabIndex={-1}>
+			<Paper className={classes.modalPaper} elevation={0} ref={ref} tabIndex={-1} style={paperStyle}>
 				<Grid container spacing={0}>
 					<Grid item xs={12} className={classes.modalHeader}>
 						<Typography variant="button">{props.title}</Typography>
@@ -86,4 +92,5 @@ Component.defaultProps = {
 	onHelp: null,
 	buttonsRight: null,
 	buttonsLefts: null,
+	maxWidth: -1,
 };
