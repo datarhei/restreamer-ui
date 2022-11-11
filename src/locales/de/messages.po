@@ -960,8 +960,8 @@ msgid "For Javascripts."
 msgstr "Für Javascripte."
 
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:169
-msgid "For Raspberry Pi (3/4) OpenMAX IL is recommended, which requires a 32-bit operating system."
-msgstr "Für Raspberry Pi (3/4) wird empfohlen OpenMax IL zu benutzen, was ein 32-Bit Betriebssystem erfordert."
+#~ msgid "For Raspberry Pi (3/4) OpenMAX IL is recommended, which requires a 32-bit operating system."
+#~ msgstr "Für Raspberry Pi (3/4) wird empfohlen OpenMax IL zu benutzen, was ein 32-Bit Betriebssystem erfordert."
 
 #: src/views/Playersite.js:728
 msgid "For Stylesheets."
@@ -1160,8 +1160,8 @@ msgid "Incompatible"
 msgstr "Inkompatibel"
 
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:181
-msgid "Increasing the HLS segment length by 2-3 * keyframe interval is recommended (Processing & Control)."
-msgstr "Es wird empfohlen, die HLS Segmentlänge um 2-3 mal den Keyframe-Intervall zu verlängern (Verarbeitung & Steuerung)."
+#~ msgid "Increasing the HLS segment length by 2-3 * keyframe interval is recommended (Processing & Control)."
+#~ msgstr "Es wird empfohlen, die HLS Segmentlänge um 2-3 mal den Keyframe-Intervall zu verlängern (Verarbeitung & Steuerung)."
 
 #: src/misc/filters/audio/Pan.js:47
 #: src/misc/filters/audio/Volume.js:46
@@ -1494,12 +1494,20 @@ msgid "More about the service"
 msgstr "Mehr über den Service"
 
 #: src/views/Settings.js:1833
-msgid "Must be larger than maximum file size in cache"
-msgstr "Muss größer sein als die maximale Dateigröße im Cache"
+#~ msgid "Must be larger than maximum file size in cache"
+#~ msgstr "Muss größer sein als die maximale Dateigröße im Cache"
+
+#: src/views/Settings.js:1833
+msgid "Must be larger than maximum file size in cache."
+msgstr "Muss größer sein als die maximale Dateigröße im Cache."
 
 #: src/views/Settings.js:1873
-msgid "Must be smaller than maximum cache size"
-msgstr "Muss kleiner sein als die maximale Cache-Größe"
+#~ msgid "Must be smaller than maximum cache size"
+#~ msgstr "Muss kleiner sein als die maximale Cache-Größe"
+
+#: src/views/Settings.js:1873
+msgid "Must be smaller than maximum cache size."
+msgstr " Muss kleiner sein als die maximale Cachegröße."
 
 #: src/views/Publication/Player.js:476
 msgid "Mute"
@@ -2769,6 +2777,10 @@ msgstr "Die verwendete Version der Benutzeroberfläche ist kompatibel."
 msgid "Time until an inactive viewer connection is treated as closed."
 msgstr "Zeit bis eine inaktive Zuschauerverbindung als geschlossen behandelt wird."
 
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:181
+msgid "To stabilize the system, increase the HLS segment length for the keyframe interval by 2-3 * (Processing and Control)."
+msgstr "Um das System zu stabilisieren, erhöhen Sie die HLS-Segmentlänge für das Keyframe-Intervall um 2-3 * (Verarbeitung und Steuerung)."
+
 #: src/views/Settings.js:1357
 #: src/views/Settings.js:2002
 #: src/views/Settings.js:2051
@@ -2975,8 +2987,12 @@ msgid "Username for the device."
 msgstr "Anmeldename von dem Gerät."
 
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:167
-msgid "V4L2_M2M is unstable and experimental."
-msgstr "V4L2_M2M ist unstabil und experimentell."
+msgid "V4L2_M2M is experimental."
+msgstr "V4L2_M2M ist experimentell."
+
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:167
+#~ msgid "V4L2_M2M is unstable and experimental."
+#~ msgstr "V4L2_M2M ist unstabil und experimentell."
 
 #: src/views/Publication/Services/Livespotting.js:88
 msgid "VPU ID"
@@ -3034,6 +3050,10 @@ msgstr "Virtuelle-Quelle"
 #: src/misc/filters/audio/Volume.js:44
 msgid "Volume"
 msgstr "Lautstärke"
+
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:169
+msgid "We recommend OpenMAX IL for Raspberry PI (3/4) with a 32-bit operating system."
+msgstr "Wir empfehlen OpenMAX IL für Raspberry PI (3/4) mit einem 32-Bit-Betriebssystem."
 
 #: src/views/Welcome.js:27
 msgid "Welcome to Restreamer v2, the solution for fast and easy video publishing. Free for private and commercial use. Further help in the <0>docs</0>."
