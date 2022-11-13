@@ -131,13 +131,14 @@ const initSkills = (initialSkills) => {
 
 	const skills = {
 		ffmpeg: {},
+		formats: {},
 		protocols: {},
 		...initialSkills,
 	};
 
 	skills.ffmpeg = {
 		version: '0.0.0',
-		...skills.version,
+		...skills.ffmpeg,
 	};
 
 	skills.formats = {
