@@ -1,5 +1,9 @@
 # Restreamer-UI
 
+## v1.5.0 > v1.5.1
+
+-   Fix FFmpeg version check for RTSP sources (datarhei/restreamer#455)
+
 ## v1.4.0 > v1.5.0
 
 -   Add changelog viewer
