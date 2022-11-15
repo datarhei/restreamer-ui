@@ -51,6 +51,7 @@
 		"start": "react-scripts start",
 		"build": "react-scripts --optimize-for-size build",
 		"test": "react-scripts test",
+		"test-ci": "react-scripts test --watchAll=false",
 		"eject": "react-scripts eject",
 		"i18n-extract": "lingui extract",
 		"i18n-extract:clean": "lingui extract --clean",
