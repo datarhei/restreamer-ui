@@ -108,7 +108,7 @@ const initConfig = (initialConfig) => {
 		local: 'localhost',
 		token: '',
 		passphrase: '',
-		name: '',
+		name: 'external',
 		...config.srt,
 	};
 
@@ -181,8 +181,10 @@ const createInputs = (settings, config, skills) => {
 	if (settings.mode === 'push') {
 		if (settings.push.type === 'hls') {
 			input.address = getLocalHLS(config);
+			input.options.push('-analyzeduration', '20000000');
 		} else if (settings.push.type === 'rtmp') {
 			input.address = getLocalRTMP(config);
+			input.options.push('-analyzeduration', '3000000');
 		} else if (settings.push.type === 'srt') {
 			input.address = getLocalSRT(config);
 		} else {
@@ -315,14 +317,14 @@ const isAuthProtocol = (url) => {
 const isSupportedProtocol = (url, supportedProtocols) => {
 	const protocol = getProtocol(url);
 	if (protocol.length === 0) {
-		return 0;
+		return false;
 	}
 
 	if (!supportedProtocols.includes(protocol)) {
-		return -1;
+		return false;
 	}
 
-	return 1;
+	return true;
 };
 
 const getHLSAddress = (host, credentials, name, secure) => {
@@ -428,7 +430,7 @@ function Pull(props) {
 					<Trans>Supports HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT and more.</Trans>
 				</Typography>
 			</Grid>
-			{supportedProtocol === -1 && (
+			{!supportedProtocol ? (
 				<Grid item xs={12} align="center">
 					<BoxText color="dark">
 						<WarningIcon fontSize="large" color="error" />
@@ -437,8 +439,7 @@ function Pull(props) {
 						</Typography>
 					</BoxText>
 				</Grid>
-			)}
-			{supportedProtocol === 1 && (
+			) : (
 				<React.Fragment>
 					{authProtocol && (
 						<React.Fragment>
@@ -602,7 +603,7 @@ function Push(props) {
 	const supportsRTMP = isSupportedProtocol('rtmp://', props.skills.protocols.input);
 	const supportsSRT = isSupportedProtocol('srt://', props.skills.protocols.input);
 
-	if (!supportsRTMP && supportsSRT) {
+	if (!supportsRTMP && !supportsSRT) {
 		return (
 			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
 				<Grid item xs={12} align="center">
