@@ -52,17 +52,21 @@ test('source:network pull', async () => {
 	const Source = Network.component;
 	let { getByLabelText, queryByText, rerender } = render(<Source onChange={handleChange} />);
 
+	expect(queryByText(`This protocol is unknown or not supported by the available FFmpeg binary.`)).toBe(null);
+
 	const input = getByLabelText('Address');
 	fireEvent.change(input, { target: { value: 'rtsp://127.0.0.1/live/stream' } });
 
 	expect($settings.mode).toBe('pull');
 	expect($settings.address).toBe('rtsp://127.0.0.1/live/stream');
 
+	rerender(<Source settings={$settings} onChange={handleChange} />);
+
 	expect(queryByText(`This protocol is unknown or not supported by the available FFmpeg binary.`)).toBeInTheDocument();
 
 	rerender(<Source settings={$settings} skills={$skills_ffmpeg5} onChange={handleChange} />);
 
-	expect(queryByText(`The available FFmpeg binary doesn't support any of the required protocols.`)).toBe(null);
+	expect(queryByText(`This protocol is unknown or not supported by the available FFmpeg binary.`)).toBe(null);
 });
 
 const pullmatrix = {
