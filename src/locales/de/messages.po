@@ -93,7 +93,7 @@ msgstr "Neuen Kanal hinzufügen"
 msgid "Add: {0}"
 msgstr "Hinzufügen: {0}"
 
-#: src/views/Edit/Sources/Network.js:421
+#: src/views/Edit/Sources/Network.js:424
 #: src/views/Edit/Wizard/Sources/Network.js:66
 #: src/views/Publication/Services/Azure.js:98
 #: src/views/Publication/Services/Brightcove.js:95
@@ -134,7 +134,7 @@ msgstr "Farben und den Hintergrund der Publikationsseite nach Belieben anpassen.
 msgid "Advanced monitoring"
 msgstr "Erweiterte Systemüberwachung"
 
-#: src/views/Edit/Sources/Network.js:474
+#: src/views/Edit/Sources/Network.js:476
 #: src/views/Publication/Services/DASH.js:204
 #: src/views/Publication/Services/HLS.js:193
 #: src/views/Publication/Services/Icecast.js:172
@@ -743,7 +743,7 @@ msgstr "Einbetten"
 msgid "Enable"
 msgstr "Aktivieren"
 
-#: src/views/Edit/Sources/Network.js:684
+#: src/views/Edit/Sources/Network.js:686
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:55
 msgid "Enable RTMP server ..."
 msgstr "RTMP-Server aktivieren …"
@@ -752,7 +752,7 @@ msgstr "RTMP-Server aktivieren …"
 msgid "Enable RTMPS transfer"
 msgstr "Erlauber RTMPS-Transfer"
 
-#: src/views/Edit/Sources/Network.js:733
+#: src/views/Edit/Sources/Network.js:735
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:55
 msgid "Enable SRT server ..."
 msgstr "SRT Server aktivieren ..."
@@ -816,7 +816,7 @@ msgstr "Einen Namen für den neuen Kanal eingeben."
 msgid "Enter password"
 msgstr "Passwort eingeben"
 
-#: src/views/Edit/Sources/Network.js:414
+#: src/views/Edit/Sources/Network.js:417
 #: src/views/Edit/Wizard/Sources/Network.js:59
 msgid "Enter the address of your network source:"
 msgstr "Adresse des Netzwerkquelle eintragen:"
@@ -967,7 +967,7 @@ msgstr "Für Javascripte."
 msgid "For Stylesheets."
 msgstr "Für Stylesheets."
 
-#: src/views/Edit/Sources/Network.js:521
+#: src/views/Edit/Sources/Network.js:523
 msgid "Force input framerate"
 msgstr "Bildfrequenz für die Eingabe erzwingen"
 
@@ -992,7 +992,7 @@ msgid "Framebuffer"
 msgstr "Bildspeicher"
 
 #: src/misc/coders/settings/Video.js:135
-#: src/views/Edit/Sources/Network.js:534
+#: src/views/Edit/Sources/Network.js:536
 msgid "Framerate"
 msgstr "Bildfrequenz"
 
@@ -1020,7 +1020,7 @@ msgstr "Frequenz (Hz)"
 msgid "GET"
 msgstr "GET"
 
-#: src/views/Edit/Sources/Network.js:553
+#: src/views/Edit/Sources/Network.js:555
 #: src/views/Edit/index.js:413
 #: src/views/Edit/index.js:425
 #: src/views/Playersite.js:350
@@ -1067,7 +1067,7 @@ msgstr "HLS-Server"
 msgid "HLS statistic for the In-memory storage"
 msgstr "HLS-Statistik für den In-Memory-Speicher"
 
-#: src/views/Edit/Sources/Network.js:511
+#: src/views/Edit/Sources/Network.js:513
 msgid "HTTP and HTTPS"
 msgstr "HTTP und HTTPS"
 
@@ -1542,7 +1542,7 @@ msgstr "Templatename. Wenn der Name existiert, wird er überschrieben."
 msgid "Network"
 msgstr "Netzwerk"
 
-#: src/views/Edit/Sources/Network.js:840
+#: src/views/Edit/Sources/Network.js:842
 #: src/views/Edit/Wizard/Sources/Network.js:123
 msgid "Network source"
 msgstr "Netzwerk-Quelle"
@@ -1673,7 +1673,7 @@ msgstr "Das Passwort muss zwischen 10 und 79 Zeichen lang sein."
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "Passthrough (Kopieren) sollte nur bei Bedarf deaktiviert werden. Jede Kodierung erfordert zusätzliche CPU/GPU-Ressourcen."
 
-#: src/views/Edit/Sources/Network.js:460
+#: src/views/Edit/Sources/Network.js:462
 #: src/views/Edit/Wizard/Sources/Network.js:97
 #: src/views/Login.js:282
 #: src/views/Publication/Services/Akamai.js:134
@@ -1693,7 +1693,7 @@ msgstr "Passwort"
 msgid "Password for authorization."
 msgstr "Passwort für die Autorisierung."
 
-#: src/views/Edit/Sources/Network.js:465
+#: src/views/Edit/Sources/Network.js:467
 #: src/views/Edit/Wizard/Sources/Network.js:103
 msgid "Password for the device."
 msgstr "Passwort von dem Gerät."
@@ -1826,10 +1826,10 @@ msgstr "Primärer Stream-Schlüssel"
 #: src/views/Edit/Sources/ALSA.js:136
 #: src/views/Edit/Sources/AVFoundation.js:201
 #: src/views/Edit/Sources/Framebuffer.js:110
-#: src/views/Edit/Sources/Network.js:589
-#: src/views/Edit/Sources/Network.js:660
-#: src/views/Edit/Sources/Network.js:706
-#: src/views/Edit/Sources/Network.js:755
+#: src/views/Edit/Sources/Network.js:591
+#: src/views/Edit/Sources/Network.js:662
+#: src/views/Edit/Sources/Network.js:708
+#: src/views/Edit/Sources/Network.js:757
 #: src/views/Edit/Sources/Raspicam.js:116
 #: src/views/Edit/Sources/V4L.js:134
 #: src/views/Edit/Sources/VirtualAudio.js:169
@@ -1881,7 +1881,7 @@ msgstr "Verarbeitung & Steuerung"
 msgid "Profile"
 msgstr "Profil"
 
-#: src/views/Edit/Sources/Network.js:623
+#: src/views/Edit/Sources/Network.js:625
 #: src/views/Publication/Services/Akamai.js:144
 #: src/views/Publication/Services/Akamai.js:182
 #: src/views/Publication/Services/Azure.js:89
@@ -1932,7 +1932,7 @@ msgstr "Publikationen"
 #~ msgid "Pull Mode"
 #~ msgstr "Abholmodus"
 
-#: src/views/Edit/Sources/Network.js:812
+#: src/views/Edit/Sources/Network.js:814
 msgid "Pull or recieve the data:"
 msgstr "Daten abholen oder empfangen:"
 
@@ -1974,7 +1974,7 @@ msgstr "RTMP-Ausgabe"
 msgid "RTMP server"
 msgstr "RTMP-Server"
 
-#: src/views/Edit/Sources/Network.js:679
+#: src/views/Edit/Sources/Network.js:681
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:50
 msgid "RTMP server is not enabled"
 msgstr "RTMP-Server ist nicht aktiviert"
@@ -1999,7 +1999,7 @@ msgstr "RTMPS-Server"
 msgid "RTMPS server listen address."
 msgstr "RTMPS-Server Zugriffsadresse"
 
-#: src/views/Edit/Sources/Network.js:483
+#: src/views/Edit/Sources/Network.js:485
 msgid "RTSP"
 msgstr "RTSP"
 
@@ -2019,7 +2019,7 @@ msgstr "Ratenkontrolle"
 msgid "Ratio"
 msgstr "Verhältnis"
 
-#: src/views/Edit/Sources/Network.js:516
+#: src/views/Edit/Sources/Network.js:518
 msgid "Read input at native speed"
 msgstr "Eingabe mit nativer Geschwindigkeit lesen"
 
@@ -2157,7 +2157,7 @@ msgstr "SRT-Ausgabe"
 msgid "SRT server"
 msgstr "SRT Server"
 
-#: src/views/Edit/Sources/Network.js:728
+#: src/views/Edit/Sources/Network.js:730
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:50
 msgid "SRT server is not enabled"
 msgstr "Der SRT Server ist nicht aktiviert"
@@ -2302,9 +2302,9 @@ msgstr "Auswahl"
 msgid "Send anonymous metrics (helps us for future development)"
 msgstr "Sende anonyme Anwendungsdaten (Hilft den Restreamer kontinuierlich zu verbessern)"
 
-#: src/views/Edit/Sources/Network.js:650
-#: src/views/Edit/Sources/Network.js:696
-#: src/views/Edit/Sources/Network.js:745
+#: src/views/Edit/Sources/Network.js:652
+#: src/views/Edit/Sources/Network.js:698
+#: src/views/Edit/Sources/Network.js:747
 #: src/views/Edit/Wizard/Sources/InternalHLS.js:48
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:68
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:68
@@ -2417,7 +2417,7 @@ msgstr "Vorschaubild"
 msgid "Social-login (OAuth2, 2FA)"
 msgstr "Social-login (OAuth2, 2FA)"
 
-#: src/views/Edit/Sources/Network.js:500
+#: src/views/Edit/Sources/Network.js:502
 msgid "Socket timeout (microseconds)"
 msgstr "Socket-Zeitüberschreitung (Mikrosekunden)"
 
@@ -2512,7 +2512,7 @@ msgstr "Stream-Quelle für Publikations-Service (experimentell)."
 msgid "Support datarhei Restreamer"
 msgstr "Unterstütze datarhei Restreamer"
 
-#: src/views/Edit/Sources/Network.js:427
+#: src/views/Edit/Sources/Network.js:430
 #: src/views/Edit/Wizard/Sources/Network.js:72
 msgid "Supports HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT and more."
 msgstr "Unterstützt HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT und mehr."
@@ -2568,7 +2568,7 @@ msgstr "Die Amplitude (0,0 - 1,0) des erzeugten Audiostreams"
 msgid "The application is using an older version of the settings."
 msgstr "Die Applikation verwendet eine ältere Version der Einstellungen."
 
-#: src/views/Edit/Sources/Network.js:611
+#: src/views/Edit/Sources/Network.js:613
 msgid "The available FFmpeg binary doesn't support any of the required protocols."
 msgstr "Die verfügbare FFmpeg-Version unterstützt keines der erforderlichen Protokolle."
 
@@ -2753,7 +2753,7 @@ msgstr "Dies ist ein Hinweis auf die urheberrechtlichen Bestimmungen für das Zi
 #~ msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms."
 #~ msgstr "Diese Lizenz erlaubt es Wiederverwendern, das Material in jedem Medium oder Format zu verbreiten, zu remixen, anzupassen und darauf aufzubauen, solange der Urheber genannt wird. Die Lizenz erlaubt die kommerzielle Nutzung. Wenn Sie das Material umarbeiten, anpassen oder darauf aufbauen, müssen Sie das geänderte Material unter identischen Bedingungen lizenzieren."
 
-#: src/views/Edit/Sources/Network.js:435
+#: src/views/Edit/Sources/Network.js:438
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
 msgstr "Dieses Protokoll ist entweder unbekannt oder nicht verfügbar mit der verfügbaren FFmpeg-Version."
 
@@ -2896,7 +2896,7 @@ msgstr "Überträgt Ihren Videostream mit dem erforderlichen Schlüssel, der in 
 msgid "Tune"
 msgstr "Optimieren"
 
-#: src/views/Edit/Sources/Network.js:488
+#: src/views/Edit/Sources/Network.js:490
 #: src/views/Edit/Wizard/Sources/Network.js:77
 msgid "UDP transport"
 msgstr "UDP-Transport"
@@ -2962,7 +2962,7 @@ msgstr "Copyright und die richtige Bildlizenz wählen. Ob frei für alle oder st
 msgid "User registration"
 msgstr "Benutzerregistrierung"
 
-#: src/views/Edit/Sources/Network.js:448
+#: src/views/Edit/Sources/Network.js:450
 #: src/views/Edit/Wizard/Sources/Network.js:84
 #: src/views/Login.js:272
 #: src/views/Publication/Services/DASH.js:195
@@ -2981,7 +2981,7 @@ msgstr "Anmeldename"
 msgid "Username for authorization."
 msgstr "Anmeldename für die Autorisierung."
 
-#: src/views/Edit/Sources/Network.js:453
+#: src/views/Edit/Sources/Network.js:455
 #: src/views/Edit/Wizard/Sources/Network.js:90
 msgid "Username for the device."
 msgstr "Anmeldename von dem Gerät."
@@ -3188,8 +3188,8 @@ msgstr "kbit/s"
 #: src/views/Edit/Sources/AVFoundation.js:149
 #: src/views/Edit/Sources/AVFoundation.js:153
 #: src/views/Edit/Sources/Framebuffer.js:80
-#: src/views/Edit/Sources/Network.js:813
-#: src/views/Edit/Sources/Network.js:814
+#: src/views/Edit/Sources/Network.js:815
+#: src/views/Edit/Sources/Network.js:816
 #: src/views/Edit/Sources/Raspicam.js:87
 #: src/views/Edit/Sources/V4L.js:93
 #: src/views/Edit/Sources/V4L.js:99

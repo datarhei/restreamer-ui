@@ -12,6 +12,7 @@ import { messages as IT } from './locales/it/messages.js';
 import { messages as PL } from './locales/pl/messages.js';
 import { messages as PT } from './locales/pt/messages.js';
 import { messages as RU } from './locales/ru/messages.js';
+import { messages as KO } from './locales/ko/messages.js';
 import * as Storage from './utils/storage';
 
 i18n.loadLocaleData('en', { plurals: plurals.en });
@@ -22,6 +23,7 @@ i18n.loadLocaleData('it', { plurals: plurals.it });
 i18n.loadLocaleData('pl', { plurals: plurals.pl });
 i18n.loadLocaleData('pt', { plurals: plurals.pt });
 i18n.loadLocaleData('ru', { plurals: plurals.ru });
+i18n.loadLocaleData('ko', { plurals: plurals.ko });
 i18n.load({
 	en: EN,
 	de: DE,
@@ -31,6 +33,7 @@ i18n.load({
 	pl: PL,
 	pt: PT,
 	ru: RU,
+	ko: KO,
 });
 
 const getLanguage = (defaultLanguage, supportedLanguages) => {
@@ -59,7 +62,7 @@ const getBrowserLanguage = (defaultLanguage) => {
 	return match[0].toLowerCase();
 };
 
-i18n.activate(getLanguage('en', ['en', 'de', 'es', 'fr', 'it', 'pl', 'pt', 'ru']));
+i18n.activate(getLanguage('en', ['en', 'de', 'es', 'fr', 'it', 'pl', 'pt', 'ru', 'ko']));
 
 export default function Provider(props) {
 	return <I18nProvider i18n={i18n}>{props.children}</I18nProvider>;
