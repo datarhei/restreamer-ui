@@ -9,6 +9,7 @@ import * as Scale from './video/Scale';
 import * as Transpose from './video/Transpose';
 import * as HFlip from './video/HFlip';
 import * as VFlip from './video/VFlip';
+import * as Bwdif from './video/Bwdif';
 
 // Register filters type: audio/video
 class Registry {
@@ -56,6 +57,7 @@ videoRegistry.Register(Scale);
 videoRegistry.Register(Transpose);
 videoRegistry.Register(HFlip);
 videoRegistry.Register(VFlip);
+videoRegistry.Register(Bwdif);
 
 // Export registrys for ../SelectFilters.js
 export { audioRegistry as Audio, videoRegistry as Video };

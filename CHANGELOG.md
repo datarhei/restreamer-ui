@@ -1,8 +1,12 @@
 # Restreamer-UI
 
+## v1.5.1 > v1.6.0
+
+-   Add Bob Weaver Deinterlacing Filter ([#465](https://github.com/datarhei/restreamer/issues/465))
+
 ## v1.5.0 > v1.5.1
 
--   Fix FFmpeg version check for RTSP sources (datarhei/restreamer#455)
+-   Fix FFmpeg version check for RTSP sources ([#455](https://github.com/datarhei/restreamer/issues/455))
 -   Fix requires Core >= v16.11.0 and FFmpeg >= 5.1.0
 
 ## v1.4.0 > v1.5.0
