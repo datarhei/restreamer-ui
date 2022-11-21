@@ -155,9 +155,7 @@ const type = 'video';
 const hwaccel = false;
 
 function summarize(settings) {
-	if (settings.mode !== 'none') {
-		return `${name}`;
-	}
+	return `${name}`;
 }
 
 function defaults() {
