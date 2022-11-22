@@ -17,11 +17,11 @@ const topics = {
 		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/edit-livestream/license',
 		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/streameinstellungen/lizenz',
 	},
-	'login': {
+	login: {
 		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/login',
 		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/dashboard',
 	},
-	'main': {
+	main: {
 		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/main-screen',
 		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/hauptbildschirm',
 	},
@@ -73,7 +73,7 @@ const topics = {
 		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/process-report',
 		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/prozess-details',
 	},
-	'publication': {
+	publication: {
 		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/publications',
 		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/publication-services',
 	},

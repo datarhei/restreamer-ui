@@ -23,7 +23,7 @@ function init(initialState) {
 	return state;
 }
 
-function createMapping(settings) {
+function createMapping(settings, stream, skills) {
 	const local = [
 		'-codec:v',
 		'h264_nvenc',
@@ -171,7 +171,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings), automatic);
+		props.onChange(newSettings, createMapping(newSettings, props.stream, props.skills), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -232,12 +232,12 @@ function summarize(settings) {
 	return `${name}, ${settings.bitrate} kbit/s, ${settings.fps} FPS, Profile: ${settings.profile}`;
 }
 
-function defaults() {
+function defaults(stream, skills) {
 	const settings = init({});
 
 	return {
 		settings: settings,
-		mapping: createMapping(settings),
+		mapping: createMapping(settings, stream, skills),
 	};
 }
 

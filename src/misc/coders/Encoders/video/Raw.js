@@ -1,6 +1,6 @@
 import React from 'react';
 
-function createMapping(settings) {
+function createMapping(settings, stream, skills) {
 	const local = ['-codec:v', 'rawvideo'];
 
 	const mapping = {
@@ -21,7 +21,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings), automatic);
+		props.onChange(newSettings, createMapping(newSettings, props.stream, props.skills), automatic);
 	};
 
 	React.useEffect(() => {
@@ -43,10 +43,10 @@ function summarize(settings) {
 	return `${name}`;
 }
 
-function defaults() {
+function defaults(stream, skills) {
 	return {
 		settings: {},
-		mapping: createMapping({}),
+		mapping: createMapping({}, stream, skills),
 	};
 }
 

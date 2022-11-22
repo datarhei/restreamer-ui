@@ -75,7 +75,7 @@ Codec Controls
 				4: High
  */
 
-function createMapping(settings, skills) {
+function createMapping(settings, stream, skills) {
 	let ffversion = 4;
 	if (SemverSatisfies(skills.ffmpeg.version, '^5.0.0')) {
 		ffversion = 5;
@@ -143,7 +143,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings, props.skills), automatic);
+		props.onChange(newSettings, createMapping(newSettings, props.stream, props.skills), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -216,12 +216,12 @@ function summarize(settings) {
 	return `${name}, ${settings.bitrate} kbit/s, ${settings.fps} FPS, Profile: ${settings.profile}`;
 }
 
-function defaults(skills) {
+function defaults(stream, skills) {
 	const settings = init({});
 
 	return {
 		settings: settings,
-		mapping: createMapping(settings, skills),
+		mapping: createMapping(settings, stream, skills),
 	};
 }
 

@@ -19,7 +19,7 @@ function init(initialState) {
 	return state;
 }
 
-function createMapping(settings, stream) {
+function createMapping(settings, stream, skills) {
 	let sampling = settings.sampling;
 	let layout = settings.layout;
 
@@ -90,7 +90,6 @@ Delay.defaultProps = {
 
 function Coder(props) {
 	const settings = init(props.settings);
-	const stream = props.stream;
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -99,7 +98,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings, stream), automatic);
+		props.onChange(newSettings, createMapping(newSettings, props.stream, props.skills), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -147,12 +146,12 @@ function summarize(settings) {
 	return `${name}, ${settings.bitrate} kbit/s`;
 }
 
-function defaults(stream) {
+function defaults(stream, skills) {
 	const settings = init({});
 
 	return {
 		settings: settings,
-		mapping: createMapping(settings, stream),
+		mapping: createMapping(settings, stream, skills),
 	};
 }
 

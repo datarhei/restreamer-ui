@@ -1,6 +1,6 @@
 import React from 'react';
 
-function createMapping(settings, stream) {
+function createMapping(settings, stream, skills) {
 	const local = ['-codec:a', 'copy'];
 
 	//if (stream.codec === 'aac') {
@@ -17,7 +17,6 @@ function createMapping(settings, stream) {
 
 function Coder(props) {
 	const settings = {};
-	const stream = props.stream;
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -26,7 +25,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings, stream), automatic);
+		props.onChange(newSettings, createMapping(newSettings, props.stream, props.skills), automatic);
 	};
 
 	React.useEffect(() => {
@@ -54,12 +53,12 @@ function summarize(settings) {
 	return `${name}`;
 }
 
-function defaults(stream) {
+function defaults(stream, skills) {
 	const settings = {};
 
 	return {
 		settings: settings,
-		mapping: createMapping(settings, stream),
+		mapping: createMapping(settings, stream, skills),
 	};
 }
 

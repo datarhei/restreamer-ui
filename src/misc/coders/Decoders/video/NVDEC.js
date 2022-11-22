@@ -8,7 +8,7 @@ function init(initialState) {
 	return state;
 }
 
-function createMapping(settings) {
+function createMapping(settings, stream, skills) {
 	const mapping = {
 		global: [],
 		local: ['-hwaccel', 'cuda', '-hwaccel_output_format', 'cuda'],
@@ -27,7 +27,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings), automatic);
+		props.onChange(newSettings, createMapping(newSettings, props.stream, props.skills), automatic);
 	};
 
 	React.useEffect(() => {
@@ -53,12 +53,12 @@ const codecs = ['h264', 'hevc', 'mpeg1', 'mpeg2', 'mpeg4', 'vp8', 'vp9', 'vc1'];
 const type = 'video';
 const hwaccel = true;
 
-function defaults() {
+function defaults(stream, skills) {
 	const settings = init({});
 
 	return {
 		settings: settings,
-		mapping: createMapping(settings),
+		mapping: createMapping(settings, stream, skills),
 	};
 }
 
