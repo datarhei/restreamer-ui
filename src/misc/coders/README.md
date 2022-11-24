@@ -22,7 +22,7 @@ export { coder, name, codecs, type, hwaccel, defaults, Coder as component };
 
 ### defaults
 
-The `defaults()` function returns the default settings and mappings for this decoder. It is an object of this shape:
+The `defaults(stream, skills)` function returns the default settings and mappings for this decoder. It is an object of this shape:
 
 ```
 {
@@ -80,7 +80,7 @@ export { coder, name, codec, type, hwaccel, summarize, defaults, Coder as compon
 
 ### defaults
 
-The `defaults()` function returns the default settings and mappings for this encoder. It is an object of this shape:
+The `defaults(stream, skills)` function returns the default settings and mappings for this encoder. It is an object of this shape:
 
 ```
 {

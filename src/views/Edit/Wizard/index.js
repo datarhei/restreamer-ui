@@ -2,33 +2,32 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useLingui } from '@lingui/react';
-import { Trans, t } from '@lingui/macro';
+import { t } from '@lingui/macro';
 import Backdrop from '@mui/material/Backdrop';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
-import Divider from '@mui/material/Divider';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
 import MenuItem from '@mui/material/MenuItem';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
 import Typography from '@mui/material/Typography';
-import WarningIcon from '@mui/icons-material/Warning';
 
 import * as Decoders from '../../../misc/coders/Decoders';
 import * as Encoders from '../../../misc/coders/Encoders';
 import * as M from '../../../utils/metadata';
-import BoxText from '../../../misc/BoxText';
 import FullSources from '../Sources';
 import H from '../../../utils/help';
-import LicenseControl from '../../../misc/controls/License';
-import MetadataControl from '../../../misc/controls/Metadata';
 import NotifyContext from '../../../contexts/Notify';
-import Paper from '../../../misc/Paper';
-import PaperHeader from '../../../misc/PaperHeader';
 import Sources from './Sources';
-import Select from '../../../misc/Select';
+
+import Source from './Source';
+import Video from './Video';
+import VideoProfile from './VideoProfile';
+import Audio from './Audio';
+import Abort from './Abort';
+import Error from './Error';
+import Saving from './Saving';
+import Probe from './Probe';
+import License from './License';
+import Metadata from './Metadata';
 
 export default function Wizard(props) {
 	const { i18n } = useLingui();
@@ -281,37 +280,7 @@ export default function Wizard(props) {
 		}
 
 		// STEP 1 - Source Type Selection
-		return (
-			<Paper xs={12} sm={9} md={6} marginBottom="6em" className="PaperM">
-				<PaperHeader spacing={2} variant="h1" title={<Trans>Video setup</Trans>} onAbort={handleAbort} onHelp={handleHelp('video-setup')} />
-				<Grid container spacing={2}>
-					<Grid item xs={12}>
-						<Typography>
-							<Trans>
-								Select whether you pull the stream from a <strong>network source</strong> (such as a network camera) or the{' '}
-								<strong>internal RTMP server</strong> (e.g., OBS streams to the Restreamer).
-							</Trans>
-						</Typography>
-					</Grid>
-					<Grid item xs={12}>
-						<Divider />
-					</Grid>
-					<Grid item xs={12}>
-						<Grid container spacing={2}>
-							{availableSources}
-						</Grid>
-					</Grid>
-					<Grid item xs={12}>
-						<Divider />
-					</Grid>
-					<Grid item xs={12}>
-						<Button variant="outlined" fullWidth color="default" onClick={handleAdvanced}>
-							<Trans>Advanced setup</Trans>
-						</Button>
-					</Grid>
-				</Grid>
-			</Paper>
-		);
+		return <Source onAbort={handleAbort} onHelp={handleHelp('video-setup')} onAdvanced={handleAdvanced} sources={availableSources} />;
 	} else if ($step === 'VIDEO SETTINGS') {
 		handleNext = async () => {
 			// probing ...
@@ -372,106 +341,45 @@ export default function Wizard(props) {
 
 		// STEP 2 - Source Settings
 		return (
-			<Paper xs={12} sm={9} md={6} marginBottom="6em" className="PaperM">
-				<PaperHeader spacing={2} variant="h1" title={<Trans>Video setup</Trans>} onAbort={handleAbort} onHelp={handleHelp('video-settings')} />
-				<Grid container spacing={2}>
-					<Grid item xs={12}>
-						<Divider />
-					</Grid>
-					<Component
-						knownDevices={$skills.sources[s.type]}
-						config={$config.source[s.type]}
-						settings={$sources.video.settings}
-						skills={$skills}
-						onChange={handleChange}
-						onRefresh={handleRefresh}
-					/>
-					<Grid item xs={12}>
-						{$probe.status === 'error' && (
-							<BoxText color="dark">
-								<WarningIcon fontSize="large" color="error" />
-								<Typography textAlign="center">
-									{$sourceid === 'rtmp' || $sourceid === 'hls' ? (
-										<Trans>No live stream was detected. Please check the software that sends the stream.</Trans>
-									) : (
-										<Trans>Failed to verify the source. Please check the address.</Trans>
-									)}
-								</Typography>
-							</BoxText>
-						)}
-						{$probe.status === 'nostream' && (
-							<BoxText color="dark">
-								<WarningIcon fontSize="large" color="error" />
-								<Typography textAlign="center">
-									<Trans>The source doesn't provide any video streams. Please check the device.</Trans>
-								</Typography>
-							</BoxText>
-						)}
-						{$probe.status === 'nocoder' && (
-							<BoxText color="dark">
-								<WarningIcon fontSize="large" color="error" />
-								<Typography textAlign="center">
-									<Trans>
-										The source doesn't provide any compatible video streams. Please check the{' '}
-										<Link color="secondary" target="_blank" href="https://github.com/datarhei/restreamer">
-											requirements
-										</Link>
-										.
-									</Trans>
-								</Typography>
-							</BoxText>
-						)}
-					</Grid>
-					<Grid item xs={12}>
-						<Divider />
-					</Grid>
-					<Grid item xs={3}>
-						<Button variant="outlined" color="default" fullWidth onClick={handleBack}>
-							<Trans>Back</Trans>
-						</Button>
-					</Grid>
-					<Grid item xs={9}>
-						<Button variant="outlined" fullWidth color="primary" disabled={!$sources.video.ready} onClick={handleNext}>
-							<Trans>Next</Trans>
-						</Button>
-					</Grid>
-				</Grid>
+			<Video
+				onAbort={handleAbort}
+				onHelp={handleHelp('video-settings')}
+				onBack={handleBack}
+				onNext={handleNext}
+				status={$probe.status}
+				sourceid={$sourceid}
+				ready={$sources.video.ready}
+			>
+				<Component
+					knownDevices={$skills.sources[s.type]}
+					config={$config.source[s.type]}
+					settings={$sources.video.settings}
+					skills={$skills}
+					onChange={handleChange}
+					onRefresh={handleRefresh}
+				/>
 				<Backdrop open={$skillsRefresh}>
 					<CircularProgress color="inherit" />
 				</Backdrop>
-			</Paper>
+			</Video>
 		);
 	}
 	// STEP 3 - Source Probe
 	else if ($step === 'VIDEO PROBE') {
-		return (
-			<Paper xs={12} md={5} marginBottom="6em" className="PaperM">
-				<PaperHeader spacing={2} variant="h1" onAbort={handleAbort} />
-				<Grid container justifyContent="center" spacing={2} align="center">
-					<Grid item xs={12}>
-						<CircularProgress color="inherit" />
-					</Grid>
-					<Grid item xs={12}>
-						<Typography textAlign="center">
-							<Trans>Please wait. Probe stream data ...</Trans>
-						</Typography>
-					</Grid>
-				</Grid>
-			</Paper>
-		);
+		return <Probe onAbort={handleAbort} />;
 	} else if ($step === 'VIDEO RESULT') {
 		handleNext = () => {
 			const streams = $sources.video.streams;
 			const videoprofile = $profile.video;
 
 			const encoder = Encoders.Video.Get(videoprofile.encoder.coder);
-			let defaults = encoder.defaults();
+			let defaults = encoder.defaults({}, $skills);
 
 			videoprofile.encoder.settings = defaults.settings;
 			videoprofile.encoder.mapping = defaults.mapping;
 
 			const decoder = Decoders.Video.Get(videoprofile.decoder.coder);
-			defaults = decoder.defaults();
+			defaults = decoder.defaults({}, $skills);
 
 			videoprofile.decoder.settings = defaults.settings;
 			videoprofile.decoder.mapping = defaults.mapping;
@@ -613,68 +521,22 @@ export default function Wizard(props) {
 
 		// STEP 4 - Video Profile Selection
 		return (
-			<Paper xs={12} sm={9} md={6} marginBottom="6em" className="PaperM">
-				<PaperHeader spacing={2} variant="h1" title={<Trans>Video setup</Trans>} onAbort={handleAbort} onHelp={handleHelp('video-result')} />
-				<Grid container spacing={2}>
-					<Grid item xs={12}>
-						<Divider />
-					</Grid>
-					<Grid item xs={12}>
-						<Typography>
-							<Trans>The video source is compatible. Select the desired resolution:</Trans>
-						</Typography>
-					</Grid>
-					<Grid item xs={12}>
-						<Select label={<Trans>Profile</Trans>} value={$profile.video.stream} onChange={handleStreamChange}>
-							{streamList}
-						</Select>
-					</Grid>
-					{compatible === false && (
-						<React.Fragment>
-							{encodersList.length === 0 ? (
-								<Grid item xs={12}>
-									<Typography>
-										<Trans>Your stream needs to be encoded, but there's no suitable encoder available.</Trans>
-									</Typography>
-								</Grid>
-							) : (
-								<React.Fragment>
-									<Grid item xs={12}>
-										<Typography>
-											<Trans>Your stream needs to be encoded. Choose the desired encoder:</Trans>
-										</Typography>
-									</Grid>
-									{decodersList.length >= 2 && (
-										<Grid item xs={12}>
-											<Select label={<Trans>Decoder</Trans>} value={$profile.video.decoder.coder} onChange={handleDecoderChange}>
-												{decodersList}
-											</Select>
-										</Grid>
-									)}
-									<Grid item xs={12}>
-										<Select label={<Trans>Encoder</Trans>} value={$profile.video.encoder.coder} onChange={handleEncoderChange}>
-											{encodersList}
-										</Select>
-									</Grid>
-								</React.Fragment>
-							)}
-						</React.Fragment>
-					)}
-					<Grid item xs={12}>
-						<Divider />
-					</Grid>
-					<Grid item xs={3}>
-						<Button variant="outlined" color="default" fullWidth onClick={handleBack}>
-							<Trans>Back</Trans>
-						</Button>
-					</Grid>
-					<Grid item xs={9}>
-						<Button variant="outlined" fullWidth color="primary" disabled={compatible === false && encodersList.length === 0} onClick={handleNext}>
-							<Trans>Next</Trans>
-						</Button>
-					</Grid>
-				</Grid>
-			</Paper>
+			<VideoProfile
+				onAbort={handleAbort}
+				onHelp={handleHelp('video-result')}
+				onBack={handleBack}
+				onNext={handleNext}
+				compatible={compatible}
+				stream={$profile.video.stream}
+				streamList={streamList}
+				onStreamChange={handleStreamChange}
+				decoder={$profile.video.decoder.coder}
+				decodersList={decodersList}
+				onDecoderChange={handleDecoderChange}
+				encoder={$profile.video.encoder.coder}
+				encodersList={encodersList}
+				onEncoderChange={handleEncoderChange}
+			/>
 		);
 	} else if ($step === 'AUDIO SETTINGS') {
 		handleNext = async () => {
@@ -845,118 +707,24 @@ export default function Wizard(props) {
 		}
 
 		return (
-			<Paper xs={12} sm={9} md={6} marginBottom="6em" className="PaperM">
-				<PaperHeader spacing={2} variant="h1" title={<Trans>Audio setup</Trans>} onAbort={handleAbort} onHelp={handleHelp('audio-settings')} />
-				<Grid container spacing={2}>
-					<Grid item xs={12}>
-						<Divider />
-					</Grid>
-					<Grid item xs={12}>
-						{$probe.status === 'error' && (
-							<BoxText color="dark">
-								<WarningIcon fontSize="large" color="error" />
-								<Typography textAlign="center">
-									<Trans>Failed to verify the source. Please check the address.</Trans>
-								</Typography>
-							</BoxText>
-						)}
-						{$probe.status === 'nostream' && (
-							<BoxText color="dark">
-								<WarningIcon fontSize="large" color="error" />
-								<Typography textAlign="center">
-									<Trans>The source doesn't provide any audio streams.</Trans>
-								</Typography>
-							</BoxText>
-						)}
-						{$probe.status === 'nocoder' && (
-							<BoxText color="dark">
-								<WarningIcon fontSize="large" color="error" />
-								<Typography textAlign="center">
-									<Trans>The source doesn't provide any compatible audio streams.</Trans>
-								</Typography>
-							</BoxText>
-						)}
-					</Grid>
-					<Grid item xs={12}>
-						<RadioGroup row value={radioValue} onChange={handleStream}>
-							<Grid container spacing={2}>
-								{streamList.length === 0 && (
-									<Grid item xs={12}>
-										<Typography>
-											<Trans>
-												The video source doesn't provide any compatible audio stream. <strong>Silence audio</strong> is recommended.
-												Services e.g. YouTube, Facebook &amp; Co. require an audio channel.
-											</Trans>
-										</Typography>
-									</Grid>
-								)}
-								{streamList.length !== 0 && (
-									<React.Fragment>
-										<Grid item xs={12}>
-											<FormControlLabel value="video" control={<Radio />} label={i18n._(t`Audio from device`)} />
-										</Grid>
-										<Grid item xs={12}>
-											<Select label={<Trans>Stream</Trans>} value={profile.stream} onChange={handleAudioStreamChange}>
-												{streamList}
-											</Select>
-										</Grid>
-									</React.Fragment>
-								)}
-								{deviceList.length !== 0 && (
-									<React.Fragment>
-										<Grid item xs={12}>
-											<FormControlLabel value="alsa" control={<Radio />} label={i18n._(t`Audio from device`)} />
-										</Grid>
-										<Grid item xs={12}>
-											<Select label={<Trans>Device</Trans>} value={source.settings.address} onChange={handleAudioDeviceChange}>
-												{deviceList}
-											</Select>
-										</Grid>
-									</React.Fragment>
-								)}
-								<Grid item xs={12}>
-									<div>
-										<FormControlLabel value="silence" control={<Radio />} label={i18n._(t`Silence Audio`)} />
-									</div>
-									<div>
-										<FormControlLabel value="none" control={<Radio />} label={i18n._(t`No audio`)} />
-									</div>
-								</Grid>
-							</Grid>
-						</RadioGroup>
-					</Grid>
-					<Grid item xs={12}>
-						<Divider />
-					</Grid>
-					<Grid item xs={3}>
-						<Button variant="outlined" color="default" fullWidth onClick={handleBack}>
-							<Trans>Back</Trans>
-						</Button>
-					</Grid>
-					<Grid item xs={9}>
-						<Button variant="outlined" fullWidth color="primary" onClick={handleNext}>
-							<Trans>Next</Trans>
-						</Button>
-					</Grid>
-				</Grid>
-			</Paper>
+			<Audio
+				onAbort={handleAbort}
+				onHelp={handleHelp('audio-settings')}
+				onBack={handleBack}
+				onNext={handleNext}
+				status={$probe.status}
+				source={radioValue}
+				onSource={handleStream}
+				streamList={streamList}
+				deviceList={deviceList}
+				stream={profile.stream}
+				onAudioStreamChange={handleAudioStreamChange}
+				address={source.settings.address}
+				onAudioDeviceChange={handleAudioDeviceChange}
+			/>
 		);
 	} else if ($step === 'AUDIO PROBE') {
-		return (
-			<Paper xs={12} md={5} marginBottom="6em" className="PaperM">
-				<PaperHeader spacing={2} variant="h1" onAbort={handleAbort} />
-				<Grid container justifyContent="center" spacing={2} align="center">
-					<Grid item xs={12}>
-						<CircularProgress color="inherit" />
-					</Grid>
-					<Grid item xs={12}>
-						<Typography>
-							<Trans>Please wait. Probe stream data ...</Trans>
-						</Typography>
-					</Grid>
-				</Grid>
-			</Paper>
-		);
+		return <Probe onAbort={handleAbort} />;
 	} else if ($step === 'AUDIO RESULT') {
 		handleNext = () => {
 			let stream = null;
@@ -981,7 +749,7 @@ export default function Wizard(props) {
 				}
 
 				const encoder = Encoders.Audio.Get(profile.coder);
-				const defaults = encoder.defaults(stream);
+				const defaults = encoder.defaults(stream, $skills);
 
 				profile.encoder.settings = defaults.settings;
 				profile.encoder.mapping = defaults.mapping;
@@ -1023,35 +791,14 @@ export default function Wizard(props) {
 		};
 
 		return (
-			<Paper xs={12} sm={9} md={6} marginBottom="6em" className="PaperM">
-				<PaperHeader spacing={2} variant="h1" title={<Trans>Metadata</Trans>} onAbort={handleAbort} onHelp={handleHelp('audio-result')} />
-				<Grid container spacing={2}>
-					<Grid item xs={12}>
-						<Divider />
-					</Grid>
-					<Grid item xs={12}>
-						<Typography>
-							<Trans>Briefly describe what the audience will see during the live stream.</Trans>
-						</Typography>
-					</Grid>
-					<Grid item xs={12}>
-						<MetadataControl settings={$data.meta} onChange={handleMetadataChange} />
-					</Grid>
-					<Grid item xs={12}>
-						<Divider />
-					</Grid>
-					<Grid item xs={3}>
-						<Button variant="outlined" color="default" fullWidth onClick={handleBack}>
-							<Trans>Back</Trans>
-						</Button>
-					</Grid>
-					<Grid item xs={9}>
-						<Button variant="outlined" fullWidth color="primary" onClick={handleNext}>
-							<Trans>Next</Trans>
-						</Button>
-					</Grid>
-				</Grid>
-			</Paper>
+			<Metadata
+				onAbort={handleAbort}
+				onHelp={handleHelp('audio-result')}
+				onBack={handleBack}
+				onNext={handleNext}
+				onChange={handleMetadataChange}
+				metadata={$data.meta}
+			/>
 		);
 	} else if ($step === 'LICENSE') {
 		handleNext = async () => {
@@ -1078,55 +825,17 @@ export default function Wizard(props) {
 		};
 
 		return (
-			<Paper xs={12} sm={9} md={6} marginBottom="6em" className="PaperM">
-				<PaperHeader spacing={2} variant="h1" title={<Trans>License</Trans>} onAbort={handleAbort} onHelp={handleHelp('license')} />
-				<Grid container spacing={2}>
-					<Grid item xs={12}>
-						<Divider />
-					</Grid>
-					<Grid item xs={12}>
-						<Typography>
-							<Trans>
-								Use your copyright and choose the correct image license. Whether free for all or highly restricted. Briefly discuss what others
-								are allowed to do with your image.
-							</Trans>
-						</Typography>
-					</Grid>
-					<Grid item xs={12}>
-						<LicenseControl license={$data.license} onChange={handleLicenseChange} />
-					</Grid>
-					<Grid item xs={12}>
-						<Divider />
-					</Grid>
-					<Grid item xs={3}>
-						<Button variant="outlined" color="default" fullWidth onClick={handleBack}>
-							<Trans>Back</Trans>
-						</Button>
-					</Grid>
-					<Grid item xs={9}>
-						<Button variant="outlined" color="primary" fullWidth onClick={handleNext}>
-							<Trans>Save</Trans>
-						</Button>
-					</Grid>
-				</Grid>
-			</Paper>
+			<License
+				onAbort={handleAbort}
+				onHelp={handleHelp('license')}
+				onBack={handleBack}
+				onNext={handleNext}
+				onChange={handleLicenseChange}
+				license={$data.license}
+			/>
 		);
 	} else if ($step === 'SAVING') {
-		return (
-			<Paper xs={12} md={5} marginBottom="6em" className="PaperM">
-				<PaperHeader spacing={2} variant="h1" onAbort={handleAbort} />
-				<Grid container justifyContent="center" spacing={2} align="center">
-					<Grid item xs={12}>
-						<CircularProgress color="inherit" />
-					</Grid>
-					<Grid item xs={12}>
-						<Typography>
-							<Trans>Please wait. Setting up the stream ...</Trans>
-						</Typography>
-					</Grid>
-				</Grid>
-			</Paper>
-		);
+		return <Saving onAbort={handleAbort} />;
 	} else if ($step === 'DONE') {
 		return null;
 	} else if ($step === 'ERROR') {
@@ -1134,24 +843,7 @@ export default function Wizard(props) {
 			setStep('TYPE');
 		};
 
-		return (
-			<Paper xs={12} sm={8} md={6} marginBottom="6em" className="PaperM">
-				<PaperHeader spacing={3} variant="h1" title={<Trans>Error</Trans>} onAbort={handleAbort} onHelp={handleHelp('error')} />
-				<Grid container spacing={3}>
-					<BoxText color="dark">
-						<WarningIcon fontSize="large" color="error" />
-						<Typography textAlign="center">
-							<Trans>There was an error setting up the stream.</Trans>
-						</Typography>
-					</BoxText>
-					<Grid item xs={12}>
-						<Button variant="outlined" fullWidth color="primary" onClick={handleNext}>
-							<Trans>Retry</Trans>
-						</Button>
-					</Grid>
-				</Grid>
-			</Paper>
-		);
+		return <Error onAbort={handleAbort} onHelp={handleHelp('error')} />;
 	} else if ($step === 'ABORT') {
 		const nchannels = props.restreamer.ListChannels().length;
 
@@ -1169,46 +861,12 @@ export default function Wizard(props) {
 			navigate(`/`);
 		};
 
-		return (
-			<Paper xs={12} sm={8} md={6} marginBottom="6em" className="PaperM">
-				<PaperHeader spacing={3} variant="h1" title={<Trans>Abort</Trans>} onHelp={handleHelp('abort')} />
-				<Grid container spacing={3}>
-					{nchannels <= 1 ? (
-						<React.Fragment>
-							<Grid item xs={12}>
-								<Typography>
-									<Trans>You can't abort the wizard because at least one input must be defined.</Trans>
-								</Typography>
-							</Grid>
-							<Grid item xs={12}>
-								<Button variant="outlined" color="primary" fullWidth onClick={handleBack}>
-									<Trans>Back</Trans>
-								</Button>
-							</Grid>
-						</React.Fragment>
-					) : (
-						<React.Fragment>
-							<Grid item xs={12}>
-								<Typography>
-									<Trans>Are you sure you want to abort the wizard?</Trans>
-								</Typography>
-							</Grid>
-							<Grid item xs={6}>
-								<Button variant="outlined" color="default" fullWidth onClick={handleNext}>
-									<Trans>Yes</Trans>
-								</Button>
-							</Grid>
-							<Grid item xs={6}>
-								<Button variant="outlined" color="primary" fullWidth onClick={handleBack}>
-									<Trans>No</Trans>
-								</Button>
-							</Grid>
-						</React.Fragment>
-					)}
-				</Grid>
-			</Paper>
-		);
+		return <Abort onHelp={handleHelp('abort')} onBack={handleBack} onNext={handleNext} nchannels={nchannels} />;
 	}
 
 	return null;
 }
+
+Wizard.defaultProps = {
+	restreamer: null,
+};

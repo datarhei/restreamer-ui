@@ -92,7 +92,7 @@ function Filter(props) {
 	return (
 		<React.Fragment>
 			<Grid item xs={settings.mode === 'none' ? 12 : 4}>
-				<Mode allowNone allowCustom label={<Trans>Scale</Trans>} value={settings.mode} onChange={update('mode')}></Mode>
+				<Mode value={settings.mode} onChange={update('mode')}></Mode>
 			</Grid>
 			{settings.mode === 'fix' && (
 				<Grid item xs={8}>

@@ -28,6 +28,7 @@ export default function EncodingSelect(props) {
 
 	const handleDecoderChange = (event) => {
 		const decoder = profile.decoder;
+		const stream = props.streams[profile.stream];
 		decoder.coder = event.target.value;
 
 		// If the coder changes, use the coder's default settings
@@ -39,7 +40,7 @@ export default function EncodingSelect(props) {
 		}
 
 		if (c !== null) {
-			const defaults = c.defaults(props.skills);
+			const defaults = c.defaults(stream, props.skills);
 			decoder.settings = defaults.settings;
 			decoder.mapping = defaults.mapping;
 		}
@@ -58,6 +59,7 @@ export default function EncodingSelect(props) {
 
 	const handleEncoderChange = (event) => {
 		const encoder = profile.encoder;
+		const stream = props.streams[profile.stream];
 		encoder.coder = event.target.value;
 
 		// If the coder changes, use the coder's default settings
@@ -69,7 +71,7 @@ export default function EncodingSelect(props) {
 		}
 
 		if (c !== null) {
-			const defaults = c.defaults(props.skills);
+			const defaults = c.defaults(stream, props.skills);
 			encoder.settings = defaults.settings;
 			encoder.mapping = defaults.mapping;
 		}
@@ -197,6 +199,8 @@ export default function EncodingSelect(props) {
 			);
 		}
 	}
+
+	// TODO: in case there's no decoder for a codec it should be mentioned.
 
 	return (
 		<Grid container spacing={2}>

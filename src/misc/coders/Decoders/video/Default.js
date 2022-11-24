@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Helper from '../../helper';
+
 function init(initialState) {
 	const state = {
 		...initialState,
@@ -8,7 +10,10 @@ function init(initialState) {
 	return state;
 }
 
-function createMapping(settings) {
+function createMapping(settings, stream, skills) {
+	stream = Helper.InitStream(stream);
+	skills = Helper.InitSkills(skills);
+
 	const mapping = {
 		global: [],
 		local: [],
@@ -19,6 +24,8 @@ function createMapping(settings) {
 
 function Coder(props) {
 	const settings = init(props.settings);
+	const stream = Helper.InitStream(props.stream);
+	const skills = Helper.InitSkills(props.skills);
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -27,7 +34,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings), automatic);
+		props.onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
 	};
 
 	React.useEffect(() => {
@@ -51,12 +58,12 @@ const codecs = [];
 const type = 'video';
 const hwaccel = false;
 
-function defaults() {
+function defaults(stream, skills) {
 	const settings = init({});
 
 	return {
 		settings: settings,
-		mapping: createMapping(settings),
+		mapping: createMapping(settings, stream, skills),
 	};
 }
 

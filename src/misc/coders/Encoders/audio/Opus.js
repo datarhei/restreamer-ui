@@ -8,6 +8,7 @@ import { Trans, t } from '@lingui/macro';
 
 import Audio from '../../settings/Audio';
 import SelectCustom from '../../../../misc/SelectCustom';
+import Helper from '../../helper';
 
 function init(initialState) {
 	const state = {
@@ -19,7 +20,10 @@ function init(initialState) {
 	return state;
 }
 
-function createMapping(settings, stream) {
+function createMapping(settings, stream, skills) {
+	stream = Helper.InitStream(stream);
+	skills = Helper.InitSkills(skills);
+
 	let sampling = settings.sampling;
 	let layout = settings.layout;
 
@@ -90,7 +94,8 @@ Delay.defaultProps = {
 
 function Coder(props) {
 	const settings = init(props.settings);
-	const stream = props.stream;
+	const stream = Helper.InitStream(props.stream);
+	const skills = Helper.InitSkills(props.skills);
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -99,7 +104,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings, stream), automatic);
+		props.onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -147,12 +152,12 @@ function summarize(settings) {
 	return `${name}, ${settings.bitrate} kbit/s`;
 }
 
-function defaults(stream) {
+function defaults(stream, skills) {
 	const settings = init({});
 
 	return {
 		settings: settings,
-		mapping: createMapping(settings, stream),
+		mapping: createMapping(settings, stream, skills),
 	};
 }
 
