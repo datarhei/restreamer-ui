@@ -4,6 +4,7 @@
 
 -   Add Bob Weaver Deinterlacing Filter ([#465](https://github.com/datarhei/restreamer/issues/465))
 -   Add tests for wizard, network source, and coders
+-   Add Korean translation (thanks to Jihaeng)
 -   Mod splitting wizard in components
 -   Fix wrong call to encoder defaults ([#467](https://github.com/datarhei/restreamer/issues/467))
 
