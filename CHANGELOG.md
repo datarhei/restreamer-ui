@@ -3,6 +3,7 @@
 ## v1.5.1 > v1.6.0
 
 -   Add Bob Weaver Deinterlacing Filter ([#465](https://github.com/datarhei/restreamer/issues/465))
+-   Fix wrong call to encoder defaults ([#467](https://github.com/datarhei/restreamer/issues/467)
 
 ## v1.5.0 > v1.5.1
 
