@@ -237,10 +237,12 @@ export function conflateServiceSkills(requires, skills) {
  * @param {*} type Either 'audio' or 'video'
  * @param {*} streams List of available streams
  * @param {*} codecs List of target codecs
- * @param {*} encoders list of available (to ffmpeg) encoders
+ * @param {*} skills FFmpeg skills
  * @returns {boolean} Whether the provided profile is valid
  */
-export function preselectProfile(profile, type, streams, codecs, encoders) {
+export function preselectProfile(profile, type, streams, codecs, skills) {
+	const encoders = skills.encoders[type];
+
 	/**
 	 * Checks if the given profile makes sense, i.e. matches to the available
 	 * streams and codecs.
@@ -325,7 +327,7 @@ export function preselectProfile(profile, type, streams, codecs, encoders) {
 				if (coder === null) {
 					profile.encoder.coder = 'none';
 				} else {
-					const defaults = coder.defaults();
+					const defaults = coder.defaults(streams[i], skills);
 					profile.encoder.coder = coder.coder;
 					profile.encoder.settings = defaults.settings;
 					profile.encoder.mapping = defaults.mapping;
@@ -338,7 +340,7 @@ export function preselectProfile(profile, type, streams, codecs, encoders) {
 
 			let coder = type === 'audio' ? Coders.Audio.Get('copy') : Coders.Video.Get('copy');
 
-			const defaults = coder.defaults();
+			const defaults = coder.defaults(streams[i], skills);
 
 			profile.encoder.settings = defaults.settings;
 			profile.encoder.mapping = defaults.mapping;

@@ -162,8 +162,8 @@ export default function Edit(props) {
 			const settings = await props.restreamer.GetEgressMetadata(_channelid, id);
 
 			const profiles = settings.profiles;
-			profiles[0].video = helper.preselectProfile(profiles[0].video, 'video', ingest.streams, serviceSkills.codecs.video, skills.encoders.video);
-			profiles[0].audio = helper.preselectProfile(profiles[0].audio, 'audio', ingest.streams, serviceSkills.codecs.audio, skills.encoders.audio);
+			profiles[0].video = helper.preselectProfile(profiles[0].video, 'video', ingest.streams, serviceSkills.codecs.video, skills);
+			profiles[0].audio = helper.preselectProfile(profiles[0].audio, 'audio', ingest.streams, serviceSkills.codecs.audio, skills);
 
 			settings.profiles = profiles;
 			settings.streams = M.createOutputStreams(sources, profiles);

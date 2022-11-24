@@ -15,8 +15,6 @@ import H from '../utils/help';
 export default function EncodingSelect(props) {
 	const { i18n } = useLingui();
 
-	console.log(props.streams);
-
 	const profile = props.profile;
 	let availableEncoders = [];
 	let availableDecoders = [];

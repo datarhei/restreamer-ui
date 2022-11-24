@@ -139,8 +139,8 @@ export default function Add(props) {
 			const serviceSkills = helper.conflateServiceSkills(s.requires, $skills);
 
 			const profiles = $settings.profiles;
-			profiles[0].video = helper.preselectProfile(profiles[0].video, 'video', $sources[0].streams, serviceSkills.codecs.video, $skills.encoders.video);
-			profiles[0].audio = helper.preselectProfile(profiles[0].audio, 'audio', $sources[0].streams, serviceSkills.codecs.audio, $skills.encoders.audio);
+			profiles[0].video = helper.preselectProfile(profiles[0].video, 'video', $sources[0].streams, serviceSkills.codecs.video, $skills);
+			profiles[0].audio = helper.preselectProfile(profiles[0].audio, 'audio', $sources[0].streams, serviceSkills.codecs.audio, $skills);
 
 			setSettings({
 				...$settings,
