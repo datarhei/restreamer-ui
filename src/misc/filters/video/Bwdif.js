@@ -130,13 +130,13 @@ function Filter(props) {
 			{settings.enabled && (
 				<React.Fragment>
 					<Grid item xs={12}>
-						<Mode label={<Trans>Deinterlace mode</Trans>} value={settings.mode} onChange={update('mode')}></Mode>
+						<Mode value={settings.mode} onChange={update('mode')}></Mode>
 					</Grid>
 					<Grid item xs={6}>
-						<Parity label={<Trans>Deinterlace parity</Trans>} value={settings.parity} onChange={update('parity')}></Parity>
+						<Parity value={settings.parity} onChange={update('parity')}></Parity>
 					</Grid>
 					<Grid item xs={6}>
-						<Deint label={<Trans>Deinterlace deint</Trans>} value={settings.deint} onChange={update('deint')}></Deint>
+						<Deint value={settings.deint} onChange={update('deint')}></Deint>
 					</Grid>
 				</React.Fragment>
 			)}
