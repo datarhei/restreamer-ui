@@ -1,6 +1,11 @@
 import React from 'react';
 
+import Helper from '../../helper';
+
 function createMapping(settings, stream, skills) {
+	stream = Helper.InitStream(stream);
+	skills = Helper.InitSkills(skills);
+
 	const local = ['-codec:v', 'rawvideo'];
 
 	const mapping = {
@@ -13,6 +18,8 @@ function createMapping(settings, stream, skills) {
 
 function Coder(props) {
 	const settings = {};
+	const stream = Helper.InitStream(props.stream);
+	const skills = Helper.InitSkills(props.skills);
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -21,7 +28,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings, props.stream, props.skills), automatic);
+		props.onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
 	};
 
 	React.useEffect(() => {

@@ -8,6 +8,7 @@ import { Trans } from '@lingui/macro';
 
 import Select from '../../../Select';
 import Video from '../../settings/Video';
+import Helper from '../../helper';
 
 function init(initialState) {
 	const state = {
@@ -25,6 +26,9 @@ function init(initialState) {
 }
 
 function createMapping(settings, stream, skills) {
+	stream = Helper.InitStream(stream);
+	skills = Helper.InitSkills(skills);
+
 	let ffversion = 4;
 	if (SemverSatisfies(skills.ffmpeg.version, '^5.0.0')) {
 		ffversion = 5;
@@ -120,8 +124,11 @@ Tune.defaultProps = {
 
 function Coder(props) {
 	const settings = init(props.settings);
+	const stream = Helper.InitStream(props.stream);
+	const skills = Helper.InitSkills(props.skills);
+
 	let ffversion = 4;
-	if (SemverSatisfies(props.skills.ffmpeg.version, '^5.0.0')) {
+	if (SemverSatisfies(skills.ffmpeg.version, '^5.0.0')) {
 		ffversion = 5;
 	}
 
@@ -132,7 +139,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings, props.stream, props.skills), automatic);
+		props.onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
 	};
 
 	const update = (what) => (event) => {
