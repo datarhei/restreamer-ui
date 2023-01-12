@@ -15,15 +15,15 @@ msgstr ""
 
 #: src/views/Publication/Services/Core.js:192
 msgid "1. Switch to the interface of the target Restreamer."
-msgstr ""
+msgstr "1. Mudar para a interface do Restreamer alvo."
 
 #: src/views/Publication/Services/Core.js:194
 msgid "2. Create a new channel and select RTMP or SRT server."
-msgstr ""
+msgstr "2. Criar um novo canal e selecionar servidor RTMP ou SRT."
 
 #: src/views/Publication/Services/Core.js:196
 msgid "3. Copy the URL and paste it in the \"Target address\" field."
-msgstr ""
+msgstr "3. Copie o URL e cole-o no campo \"Endereço de destino\"."
 
 #: src/misc/controls/HLS.js:81
 msgid "6 (+ guaranteed to start with a Key frame)"
@@ -162,7 +162,7 @@ msgstr "Todos"
 
 #: src/misc/filters/video/Bwdif.js:80
 msgid "All frames"
-msgstr ""
+msgstr "Todos os quadros"
 
 #: src/views/Settings.js:1257
 msgid "All important system settings."
@@ -244,7 +244,7 @@ msgstr "Autorização"
 
 #: src/misc/filters/video/Bwdif.js:65
 msgid "Auto"
-msgstr ""
+msgstr "Auto"
 
 #: src/misc/controls/HLS.js:123
 msgid "Automatic cleanup of all media data"
@@ -322,11 +322,11 @@ msgstr "Taxa de bits"
 
 #: src/views/Settings.js:1903
 msgid "Block cache types"
-msgstr ""
+msgstr "Tipos de cache em bloco"
 
 #: src/misc/filters/video/Bwdif.js:62
 msgid "Bottom field"
-msgstr ""
+msgstr "Campo inferior"
 
 #: src/views/Edit/Wizard/Metadata.js:24
 #: src/views/Edit/index.js:565
@@ -339,11 +339,11 @@ msgstr "Cor do botão"
 
 #: src/misc/filters/video/Scale.js:51
 msgid "By height"
-msgstr ""
+msgstr "Por altura"
 
 #: src/misc/filters/video/Scale.js:54
 msgid "By width"
-msgstr ""
+msgstr "Por largura"
 
 #: src/views/Settings.js:1805
 msgid "Cache for files on /data."
@@ -359,7 +359,7 @@ msgstr "Tipos de cachês"
 
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:200
 msgid "Capture buffer"
-msgstr ""
+msgstr "Tampão de captura"
 
 #: src/views/Edit/Sources/AVFoundation.js:197
 msgid "Capture clicks"
@@ -383,7 +383,7 @@ msgstr "Verifique os requisitos"
 
 #: src/misc/coders/settings/Video.js:343
 msgid "Choose between CFR and VFR (Auto)"
-msgstr ""
+msgstr "Escolha entre CFR e VFR (Auto)"
 
 #: src/views/Login.js:367
 msgid "Choose tenant ..."
@@ -456,7 +456,7 @@ msgstr "A conexão com o Restreamer Core falhou provavelmente por causa do conte
 
 #: src/misc/coders/settings/Video.js:337
 msgid "Constant frame rate (CFR)"
-msgstr ""
+msgstr "Taxa de quadros constante (CFR)"
 
 #: src/misc/controls/Metadata.js:70
 #: src/views/Playersite.js:675
@@ -570,19 +570,19 @@ msgstr "Predefinição"
 
 #: src/misc/filters/video/Bwdif.js:128
 msgid "Deinterlace (bwdif)"
-msgstr ""
+msgstr "Deinterlace (bwdif)"
 
 #: src/misc/filters/video/Bwdif.js:78
 msgid "Deinterlace deint"
-msgstr ""
+msgstr "Deinterlace deint"
 
 #: src/misc/filters/video/Bwdif.js:39
 msgid "Deinterlace mode"
-msgstr ""
+msgstr "Modo de desinterlaçamento"
 
 #: src/misc/filters/video/Bwdif.js:57
 msgid "Deinterlace parity"
-msgstr ""
+msgstr "Desinterlaçar a paridade"
 
 #: src/misc/coders/Encoders/audio/Opus.js:90
 msgid "Delay"
@@ -706,11 +706,11 @@ msgstr "EXT-X-VERSION"
 
 #: src/misc/filters/video/Bwdif.js:44
 msgid "Each field"
-msgstr ""
+msgstr "Cada campo"
 
 #: src/misc/filters/video/Bwdif.js:41
 msgid "Each frames"
-msgstr ""
+msgstr "Cada armação"
 
 #: src/views/Edit/index.js:404
 msgid "Edit"
@@ -726,7 +726,7 @@ msgstr "Edição: {título}"
 
 #: src/views/Settings.js:1466
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: src/views/Publication/Player.js:359
 msgid "Embed"
@@ -744,7 +744,7 @@ msgstr "Habilitar servidor RTMP ..."
 
 #: src/views/Publication/Services/PeerTube.js:100
 msgid "Enable RTMPS transfer"
-msgstr ""
+msgstr "Habilitar a transferência de RTMPS"
 
 #: src/views/Edit/Sources/Network.js:747
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:55
@@ -893,7 +893,7 @@ msgstr "Terminar"
 
 #: src/misc/filters/video/Scale.js:48
 msgid "Fix size"
-msgstr ""
+msgstr "Tamanho fixo"
 
 #: src/views/Edit/Sources/VirtualVideo.js:182
 msgid "Flags"
@@ -913,7 +913,7 @@ msgstr "Forçar o frame de entrada"
 
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:197
 msgid "Force key frames"
-msgstr ""
+msgstr "Forçar quadros-chave"
 
 #: src/misc/coders/settings/Video.js:325
 msgid "Format"
@@ -925,7 +925,7 @@ msgstr "Gotas de moldura"
 
 #: src/misc/coders/settings/Video.js:334
 msgid "Frame is passed through (Passthrough)"
-msgstr ""
+msgstr "A moldura é atravessada (Passthrough)"
 
 #: src/views/Edit/Sources/Framebuffer.js:129
 msgid "Framebuffer"
@@ -938,7 +938,7 @@ msgstr "Framerate"
 
 #: src/misc/coders/settings/Video.js:332
 msgid "Framerate mode"
-msgstr ""
+msgstr "Modo Framerate"
 
 #: src/views/Edit/Sources/VirtualAudio.js:145
 msgid "Frequency (Hz)"
@@ -1034,7 +1034,7 @@ msgstr "Manchete"
 
 #: src/misc/coders/settings/Video.js:243
 msgid "Height"
-msgstr ""
+msgstr "Altura"
 
 #: src/misc/filters/video/HFlip.js:65
 msgid "Horizontal Flip"
@@ -1110,11 +1110,11 @@ msgstr "Injetar 4"
 
 #: src/views/Publication/Services/Instagram.js:121
 msgid "Instafeed.me"
-msgstr ""
+msgstr "Instafeed.me"
 
 #: src/views/Publication/Services/PeerTube.js:85
 msgid "Instance domain"
-msgstr ""
+msgstr "Domínio da instância"
 
 #: src/misc/controls/Snapshot.js:50
 msgid "Interval (seconds)"
@@ -1179,7 +1179,7 @@ msgstr "Lista de faixas de IP na notação CIDR, por exemplo, 127.0.0.0.1/32, qu
 
 #: src/views/Settings.js:1911
 msgid "List of file extensions not to cache (e.g. \".m3u8\"), one per line. Leave empty for none."
-msgstr ""
+msgstr "Lista de extensões de arquivo que não são para cache (por exemplo, \".m3u8\"), uma por linha. Deixar vazio para nenhuma."
 
 #: src/views/Settings.js:1896
 msgid "List of file extensions to cache (e.g. \".html\"), one per line. Leave empty to cache all file types."
@@ -1195,19 +1195,19 @@ msgstr "Live-Streaming para o serviço RTMP ao vivo no Facebook"
 
 #: src/views/Publication/Services/Instagram.js:19
 msgid "Live-Streaming to Instagram Live RTMP Service. The stream key requires a service such as <0>Instafeed.me</0> or <1>Yellow Duck</1>."
-msgstr ""
+msgstr "Live-Streaming para Instagram Live RTMP Service. A chave de fluxo requer um serviço como <0>Instafeed.me</0> ou <1>Yellow Duck</1>."
 
 #: src/views/Publication/Services/MediaNetwork.js:15
 msgid "Live-Streaming to Media Network RTMP Service."
-msgstr ""
+msgstr "Live-Streaming to Media Network RTMP Service."
 
 #: src/views/Publication/Services/PeerTube.js:16
 msgid "Live-Streaming to PeerTube v3+ RTMP/S Service."
-msgstr ""
+msgstr "Live-Streaming para PeerTube v3+ RTMP/S Service."
 
 #: src/views/Publication/Services/Trovo.js:15
 msgid "Live-Streaming to Trovo Live RTMP Service."
-msgstr ""
+msgstr "Live-Streaming para Trovo Live RTMP Service."
 
 #: src/views/Publication/Services/Twitch.js:17
 msgid "Live-Streaming to Twitch Live RTMP Service."
@@ -1219,7 +1219,7 @@ msgstr "Live-Streaming para Vimeo Live RTMP Service"
 
 #: src/views/Publication/Services/DLive.js:15
 msgid "Live-Streaming to dlive Live RTMP Service."
-msgstr ""
+msgstr "Live-Streaming para viver Live RTMP Service."
 
 #: src/views/Publication/Services/Livespotting.js:94
 msgid "Livesource ID"
@@ -1260,7 +1260,7 @@ msgstr "Normalização do ruído"
 
 #: src/misc/controls/Process.js:48
 msgid "Low latency (Buffer)"
-msgstr ""
+msgstr "Baixa latência (Buffer)"
 
 #: src/Footer.js:208
 msgid "MB"
@@ -1293,7 +1293,7 @@ msgstr "Tornar o canal disponível como um fluxo SRT (experimental)."
 
 #: src/misc/filters/video/Bwdif.js:83
 msgid "Marked frames"
-msgstr ""
+msgstr "Molduras marcadas"
 
 #: src/misc/controls/HLS.js:117
 msgid "Master playlist (increases browser/client compatibility)"
@@ -1387,11 +1387,11 @@ msgstr "Mais sobre o serviço"
 
 #: src/views/Settings.js:1833
 msgid "Must be larger than maximum file size in cache."
-msgstr ""
+msgstr "Deve ser maior que o tamanho máximo do arquivo em cache."
 
 #: src/views/Settings.js:1873
 msgid "Must be smaller than maximum cache size."
-msgstr ""
+msgstr "Deve ser menor que o tamanho máximo do cache."
 
 #: src/views/Publication/Player.js:476
 msgid "Mute"
@@ -1513,7 +1513,7 @@ msgstr "Aberto"
 
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:203
 msgid "Output buffer"
-msgstr ""
+msgstr "Buffer de saída"
 
 #: src/misc/filters/audio/Pan.js:45
 msgid "Pan"
@@ -1634,7 +1634,7 @@ msgstr "Favor contatar o operador do serviço e verificar o que acontece."
 
 #: src/views/Settings.js:1474
 msgid "Please enter your email address to signify agreement with the Let's Encrypt CA's terms of service and to be notified in case of issues."
-msgstr ""
+msgstr "Por favor, digite seu endereço de e-mail para assinar um acordo com os termos de serviço do Let's Encrypt CA e para ser notificado em caso de problemas."
 
 #: src/views/Publication/Services/Owncast.js:23
 #: src/views/Publication/Services/Telegram.js:14
@@ -1896,7 +1896,7 @@ msgstr "Região"
 
 #: src/views/Password.js:146
 msgid "Register user"
-msgstr ""
+msgstr "Registrar usuário"
 
 #: src/views/Password.js:178
 #: src/views/Settings.js:2266
@@ -1913,7 +1913,7 @@ msgstr "Requer ativação"
 
 #: src/views/Publication/Player.js:497
 msgid "Reset logo"
-msgstr ""
+msgstr "Restabelecer o logotipo"
 
 #: src/views/Settings.js:1300
 #: src/views/Settings.js:2283
@@ -1942,7 +1942,7 @@ msgstr "Serviço de Restreamer"
 
 #: src/views/Publication/Services/Core.js:189
 msgid "Restreamer instructions"
-msgstr ""
+msgstr "Instruções do Restreamer"
 
 #: src/views/Main/index.js:273
 msgid "Retrieving stream data ..."
@@ -2014,7 +2014,7 @@ msgstr "Escala"
 #: src/misc/filters/video/Scale.js:104
 #: src/misc/filters/video/Scale.js:109
 msgid "Scale size"
-msgstr ""
+msgstr "Tamanho da escala"
 
 #: src/views/Settings.js:1855
 msgid "Seconds to keep files in cache."
@@ -2293,7 +2293,7 @@ msgstr "Nomes dos fluxos"
 
 #: src/misc/controls/Source.js:78
 msgid "Stream source for publication service (experimental)."
-msgstr "Fonte de fluxo para o serviço de publicação (experimental)."
+msgstr "Fonte do fluxo para o serviço de publicação (experimental)."
 
 #: src/views/Playersite.js:441
 msgid "Support datarhei Restreamer"
@@ -2312,7 +2312,7 @@ msgstr "Sistema"
 
 #: src/views/Publication/Services/Core.js:179
 msgid "Target address"
-msgstr ""
+msgstr "Endereço alvo"
 
 #: src/views/Playersite.js:351
 #: src/views/Playersite.js:456
@@ -2489,7 +2489,7 @@ msgstr "Tempo até que uma conexão inativa do visor seja tratada como fechada."
 
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:188
 msgid "To stabilize the system, increase the HLS segment length for the keyframe interval by 2-3 * (Processing and Control)."
-msgstr ""
+msgstr "Para estabilizar o sistema, aumentar o comprimento do segmento HLS para o intervalo do quadro-chave em 2-3 * (Processamento e Controle)."
 
 #: src/views/Settings.js:1357
 #: src/views/Settings.js:2002
@@ -2499,7 +2499,7 @@ msgstr "Token"
 
 #: src/misc/filters/video/Bwdif.js:59
 msgid "Top field"
-msgstr ""
+msgstr "Campo superior"
 
 #: src/views/Publication/Services/Telegram.js:13
 msgid "Transmit a Livestream to a Telegram Channel."
@@ -2579,7 +2579,7 @@ msgstr "Transmitir a fonte principal para o Serviço RTMP da Restream. Mais deta
 
 #: src/views/Publication/Services/Linkedin.js:16
 msgid "Transmit to LinkedIn. More details can be found <0>here</0>."
-msgstr ""
+msgstr "Transmitir para o LinkedIn. Mais detalhes podem ser encontrados <0>aqui</0>."
 
 #: src/views/Publication/Services/Azure.js:17
 msgid "Transmit to a Azure Media Services. More details can be found <0>here</0>."
@@ -2625,7 +2625,7 @@ msgstr "Não selecionado"
 
 #: src/misc/Changelog.js:173
 msgid "Update details (Changelog)"
-msgstr ""
+msgstr "Detalhes de atualização (Changelog)"
 
 #: src/views/Playersite.js:498
 #: src/views/Playersite.js:515
@@ -2694,7 +2694,7 @@ msgstr "Nome de usuário para o dispositivo."
 
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:174
 msgid "V4L2_M2M is experimental."
-msgstr ""
+msgstr "V4L2_M2M é experimental."
 
 #: src/views/Publication/Services/Livespotting.js:88
 msgid "VPU ID"
@@ -2702,7 +2702,7 @@ msgstr "ID DA VPU"
 
 #: src/misc/coders/settings/Video.js:340
 msgid "Variable frame rate (VFR)"
-msgstr ""
+msgstr "Taxa de quadros variável (VFR)"
 
 #: src/misc/filters/video/VFlip.js:65
 msgid "Vertical Flip"
@@ -2755,7 +2755,7 @@ msgstr "Volume"
 
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:176
 msgid "We recommend OpenMAX IL for Raspberry PI (3/4) with a 32-bit operating system."
-msgstr ""
+msgstr "Recomendamos o OpenMAX IL for Raspberry PI (3/4) com um sistema operacional de 32 bits."
 
 #: src/views/Welcome.js:27
 msgid "Welcome to Restreamer v2, the solution for fast and easy video publishing. Free for private and commercial use. Further help in the <0>docs</0>."
@@ -2767,7 +2767,7 @@ msgstr "Onde armazenar a lista de reprodução e segmentos da HLS. In-Memory é 
 
 #: src/misc/coders/settings/Video.js:286
 msgid "Width"
-msgstr ""
+msgstr "Largura"
 
 #: src/views/Settings.js:1701
 msgid "Write protection"
@@ -2775,7 +2775,7 @@ msgstr "Proteção de escrita"
 
 #: src/views/Publication/Services/Instagram.js:127
 msgid "Yellow Duck"
-msgstr ""
+msgstr "Pato Amarelo"
 
 #: src/views/Edit/Wizard/Abort.js:38
 msgid "Yes"
@@ -2930,4 +2930,4 @@ msgstr "kbit/s"
 #: src/views/Settings.js:1051
 #: src/views/Settings.js:1108
 msgid "{0}"
-msgstr ""
+msgstr "{0}"

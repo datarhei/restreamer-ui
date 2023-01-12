@@ -162,7 +162,7 @@ msgstr "모두"
 
 #: src/misc/filters/video/Bwdif.js:80
 msgid "All frames"
-msgstr ""
+msgstr "모든 프레임"
 
 #: src/views/Settings.js:1257
 msgid "All important system settings."
@@ -244,7 +244,7 @@ msgstr "사용자 인증"
 
 #: src/misc/filters/video/Bwdif.js:65
 msgid "Auto"
-msgstr ""
+msgstr "자동"
 
 #: src/misc/controls/HLS.js:123
 msgid "Automatic cleanup of all media data"
@@ -326,7 +326,7 @@ msgstr "불허할 캐시 유형"
 
 #: src/misc/filters/video/Bwdif.js:62
 msgid "Bottom field"
-msgstr ""
+msgstr "하단 필드"
 
 #: src/views/Edit/Wizard/Metadata.js:24
 #: src/views/Edit/index.js:565
@@ -570,19 +570,19 @@ msgstr "기본"
 
 #: src/misc/filters/video/Bwdif.js:128
 msgid "Deinterlace (bwdif)"
-msgstr ""
+msgstr "디인터레이스 (bwdif)"
 
 #: src/misc/filters/video/Bwdif.js:78
 msgid "Deinterlace deint"
-msgstr ""
+msgstr "디인터레이스 대상(deint)"
 
 #: src/misc/filters/video/Bwdif.js:39
 msgid "Deinterlace mode"
-msgstr ""
+msgstr "디인터레이스 모드"
 
 #: src/misc/filters/video/Bwdif.js:57
 msgid "Deinterlace parity"
-msgstr ""
+msgstr "디인터레이스 기준(parity)"
 
 #: src/misc/coders/Encoders/audio/Opus.js:90
 msgid "Delay"
@@ -706,11 +706,11 @@ msgstr "EXT-X-VERSION"
 
 #: src/misc/filters/video/Bwdif.js:44
 msgid "Each field"
-msgstr ""
+msgstr "각 필드"
 
 #: src/misc/filters/video/Bwdif.js:41
 msgid "Each frames"
-msgstr ""
+msgstr "각 프레임"
 
 #: src/views/Edit/index.js:404
 msgid "Edit"
@@ -1293,7 +1293,7 @@ msgstr "채널을 SRT 스트림으로 준비합니다. (시범기능)"
 
 #: src/misc/filters/video/Bwdif.js:83
 msgid "Marked frames"
-msgstr ""
+msgstr "표시된 프레임"
 
 #: src/misc/controls/HLS.js:117
 msgid "Master playlist (increases browser/client compatibility)"
@@ -2499,7 +2499,7 @@ msgstr "토큰"
 
 #: src/misc/filters/video/Bwdif.js:59
 msgid "Top field"
-msgstr ""
+msgstr "상단 필드"
 
 #: src/views/Publication/Services/Telegram.js:13
 msgid "Transmit a Livestream to a Telegram Channel."
