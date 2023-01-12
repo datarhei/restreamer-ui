@@ -43,6 +43,7 @@ export default function LanguageSelect(props) {
 	return (
 		<Select className={classes.root} variant="standard" displayEmpty value={i18n.locale} onChange={handleChange}>
 			<MenuItem value="en">English</MenuItem>
+			<MenuItem value="da">Dansk</MenuItem>
 			<MenuItem value="de">Deutsch</MenuItem>
 			<MenuItem value="es">Español</MenuItem>
 			<MenuItem value="fr">Français</MenuItem>
