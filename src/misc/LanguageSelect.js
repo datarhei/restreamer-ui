@@ -45,6 +45,7 @@ export default function LanguageSelect(props) {
 			<MenuItem value="en">English</MenuItem>
 			<MenuItem value="da">Dansk</MenuItem>
 			<MenuItem value="de">Deutsch</MenuItem>
+			<MenuItem value="el">Ελληνικά</MenuItem>
 			<MenuItem value="es">Español</MenuItem>
 			<MenuItem value="fr">Français</MenuItem>
 			<MenuItem value="it">Italiano</MenuItem>

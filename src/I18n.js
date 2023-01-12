@@ -7,6 +7,7 @@ import * as plurals from 'make-plural/plurals';
 import { messages as EN } from './locales/en/messages.js';
 import { messages as DA } from './locales/da/messages.js';
 import { messages as DE } from './locales/de/messages.js';
+import { messages as EL } from './locales/el/messages.js';
 import { messages as ES } from './locales/es/messages.js';
 import { messages as FR } from './locales/fr/messages.js';
 import { messages as IT } from './locales/it/messages.js';
@@ -21,6 +22,7 @@ import * as Storage from './utils/storage';
 i18n.loadLocaleData('en', { plurals: plurals.en });
 i18n.loadLocaleData('da', { plurals: plurals.da });
 i18n.loadLocaleData('de', { plurals: plurals.de });
+i18n.loadLocaleData('el', { plurals: plurals.el });
 i18n.loadLocaleData('es', { plurals: plurals.es });
 i18n.loadLocaleData('fr', { plurals: plurals.fr });
 i18n.loadLocaleData('it', { plurals: plurals.it });
@@ -34,6 +36,7 @@ i18n.load({
 	en: EN,
 	da: DA,
 	de: DE,
+	el: EL,
 	es: ES,
 	fr: FR,
 	it: IT,
@@ -71,7 +74,7 @@ const getBrowserLanguage = (defaultLanguage) => {
 	return match[0].toLowerCase();
 };
 
-i18n.activate(getLanguage('en', ['en', 'da', 'de', 'es', 'fr', 'it', 'ko', 'pl', 'pt', 'ru', 'sl', 'tr']));
+i18n.activate(getLanguage('en', ['en', 'da', 'de', 'el', 'es', 'fr', 'it', 'ko', 'pl', 'pt', 'ru', 'sl', 'tr']));
 
 export default function Provider(props) {
 	return <I18nProvider i18n={i18n}>{props.children}</I18nProvider>;
