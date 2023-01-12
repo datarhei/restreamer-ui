@@ -2,6 +2,11 @@
 
 ## v1.6.0 > x.x.x
 
+-   Add heuristic to find core address if UI is proxied
+-   Add Turkish translation (thanks to Ramazan Sancar) ([#22](https://github.com/datarhei/restreamer-ui/issues/22))
+-   Add Danish translation (Thanks to Filip Stadler and Info)
+-   Add Slovenian translation (thanks to Grega)
+-   Add Greek translation
 -   Fix positioning of the deinterlacing filter ([#465](https://github.com/datarhei/restreamer/issues/465))
 
 ## v1.5.1 > v1.6.0
