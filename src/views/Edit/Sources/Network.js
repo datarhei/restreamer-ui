@@ -73,6 +73,9 @@ const initSettings = (initialSettings) => {
 	settings.general = {
 		fflags: ['genpts'],
 		thread_queue_size: 512,
+		copyts: false,
+		start_at_zero: false,
+		use_wallclock_as_timestamps: false,
 		...settings.general,
 	};
 
@@ -179,6 +182,18 @@ const createInputs = (settings, config, skills) => {
 	}
 
 	input.options.push('-thread_queue_size', settings.general.thread_queue_size);
+
+	if (settings.general.copyts) {
+		input.options.push('-copyts');
+	}
+
+	if (settings.general.start_at_zero) {
+		input.options.push('-start_at_zero');
+	}
+
+	if (settings.general.use_wallclock_as_timestamps) {
+		input.options.push('-use_wallclock_as_timestamps', '1');
+	}
 
 	if (settings.mode === 'push') {
 		if (settings.push.type === 'hls') {
@@ -590,6 +605,23 @@ function Pull(props) {
 													<MultiSelectOption value="sortdts" name="sortdts" />
 												</MultiSelect>
 											</Grid>
+											<Grid item xs={12}>
+												<Checkbox
+													label={<Trans>copyts</Trans>}
+													checked={settings.general.copyts}
+													onChange={props.onChange('general', 'copyts')}
+												/>
+												<Checkbox
+													label={<Trans>start_at_zero</Trans>}
+													checked={settings.general.start_at_zero}
+													onChange={props.onChange('general', 'start_at_zero')}
+												/>
+												<Checkbox
+													label={<Trans>use_wallclock_as_timestamps</Trans>}
+													checked={settings.general.use_wallclock_as_timestamps}
+													onChange={props.onChange('general', 'use_wallclock_as_timestamps')}
+												/>
+											</Grid>
 										</Grid>
 									</AccordionDetails>
 								</Accordion>
@@ -799,7 +831,7 @@ function Source(props) {
 				settings.rtsp[what] = value;
 			}
 		} else if (section === 'general') {
-			if ([].includes(what)) {
+			if (['copyts', 'start_at_zero', 'use_wallclock_as_timestamps'].includes(what)) {
 				settings.general[what] = !settings.general[what];
 			} else {
 				settings.general[what] = value;
