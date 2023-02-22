@@ -46,6 +46,10 @@ msgstr "<0>Se probe data</0>"
 msgid "ALSA"
 msgstr "ALSA"
 
+#: src/views/Settings.js:1000
+msgid "API endpoint not found. Settings not saved."
+msgstr "API endpoint ikke fundet. Indstillingerne er ikke gemt."
+
 #: src/views/Edit/Sources/AVFoundation.js:221
 msgid "AVFoundation"
 msgstr "AVFoundation"
@@ -89,7 +93,7 @@ msgstr "Tilføj ny kanal"
 msgid "Add: {0}"
 msgstr "Tilføj: {0}"
 
-#: src/views/Edit/Sources/Network.js:427
+#: src/views/Edit/Sources/Network.js:452
 #: src/views/Edit/Wizard/Sources/Network.js:66
 #: src/views/Publication/Services/Azure.js:98
 #: src/views/Publication/Services/Brightcove.js:95
@@ -130,7 +134,7 @@ msgstr "Du kan justere farverne og baggrunden på publikationssiden som du vil."
 msgid "Advanced monitoring"
 msgstr "Avanceret overvågning"
 
-#: src/views/Edit/Sources/Network.js:481
+#: src/views/Edit/Sources/Network.js:506
 #: src/views/Publication/Services/DASH.js:204
 #: src/views/Publication/Services/HLS.js:193
 #: src/views/Publication/Services/Icecast.js:172
@@ -210,6 +214,11 @@ msgstr "Lyd enhed"
 #: src/views/Edit/Sources/AVFoundation.js:159
 msgid "Audio device"
 msgstr "Audio enhed"
+
+#: src/views/Edit/Wizard/Audio.js:72
+#: src/views/Edit/Wizard/Audio.js:84
+msgid "Audio from device"
+msgstr "Lyd fra enhed"
 
 #: src/views/Edit/Profile.js:447
 #: src/views/Edit/ProfileSummary.js:90
@@ -369,6 +378,10 @@ msgstr "Fang klik"
 msgid "Capture cursor"
 msgstr "Fang markør"
 
+#: src/views/Edit/index.js:346
+msgid "Channel \"{0}\" saved"
+msgstr "Kanal \"{0}\" gemt"
+
 #: src/views/Edit/Sources/ALSA.js:129
 msgid "Channels"
 msgstr "Kanaler"
@@ -381,9 +394,28 @@ msgstr "Check opdatering"
 msgid "Check the requirements"
 msgstr "Check nødvendigheder"
 
+#: src/views/Edit/StreamSelect.js:53
+msgid "Choose a video stream"
+msgstr "Vælg en video stream"
+
+#: src/views/Edit/StreamSelect.js:68
+msgid "Choose an audio stream"
+msgstr "Vælg en audio stream"
+
+#: src/views/Edit/Sources/ALSA.js:96
+#: src/views/Edit/Sources/Framebuffer.js:80
+#: src/views/Edit/Sources/Raspicam.js:87
+#: src/views/Edit/Sources/V4L.js:93
+msgid "Choose an input device ..."
+msgstr "Vælg input enhed..."
+
 #: src/misc/coders/settings/Video.js:343
 msgid "Choose between CFR and VFR (Auto)"
 msgstr "Vælg mellem CFR og VFR (Auto)"
+
+#: src/misc/EncodingSelect.js:215
+msgid "Choose codec ..."
+msgstr "Vælg codec ..."
 
 #: src/views/Login.js:367
 msgid "Choose tenant ..."
@@ -472,11 +504,32 @@ msgstr "Indhold URL"
 msgid "Cores"
 msgstr "Cores"
 
+#: src/views/Password.js:127
+#~ msgid "Create user"
+#~ msgstr "Opret bruger"
+
 #: src/misc/controls/License/index.js:112
 msgid "Creative Commons"
 msgstr "Creative Commons"
 
+#: src/misc/coders/Encoders/audio/Opus.js:65
+#: src/misc/coders/settings/Audio.js:25
+#: src/misc/coders/settings/Audio.js:71
+#: src/misc/coders/settings/Audio.js:122
+#: src/misc/coders/settings/Video.js:31
+#: src/misc/coders/settings/Video.js:70
+#: src/misc/coders/settings/Video.js:115
+#: src/misc/coders/settings/Video.js:181
+#: src/misc/coders/settings/Video.js:223
+#: src/misc/coders/settings/Video.js:266
+#: src/misc/coders/settings/Video.js:305
+#: src/misc/filters/audio/Resample.js:63
+#: src/misc/filters/audio/Resample.js:114
 #: src/misc/filters/audio/Volume.js:58
+#: src/views/Edit/Sources/ALSA.js:101
+#: src/views/Edit/Sources/AVFoundation.js:120
+#: src/views/Edit/Sources/AVFoundation.js:153
+#: src/views/Edit/Sources/V4L.js:99
 msgid "Custom ..."
 msgstr "Tilrettet..."
 
@@ -549,6 +602,12 @@ msgstr "Brugerdefineret videoenhed"
 msgid "Custom video index"
 msgstr "Brugerdefineret videoindeks"
 
+#: src/misc/CopyButton.js:20
+#: src/misc/TextFieldCopy.js:33
+#: src/misc/Textarea.js:46
+msgid "Data copied to clipboard"
+msgstr "Data kopieret til udklipsholderen"
+
 #: src/views/Edit/Sources/VirtualVideo.js:167
 msgid "Death color"
 msgstr "Død farve"
@@ -562,6 +621,10 @@ msgstr "Decibel (dB)"
 msgid "Decoder"
 msgstr "Afkoder"
 
+#: src/views/Edit/Sources/AVFoundation.js:115
+#: src/views/Edit/Sources/AVFoundation.js:149
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:76
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:105
 #: src/views/Playersite.js:467
 #: src/views/Playersite.js:542
 #: src/views/Playersite.js:586
@@ -737,7 +800,7 @@ msgstr "Indlejre"
 msgid "Enable"
 msgstr "Aktiver"
 
-#: src/views/Edit/Sources/Network.js:698
+#: src/views/Edit/Sources/Network.js:766
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:55
 msgid "Enable RTMP server ..."
 msgstr "Aktiver RTMP server ..."
@@ -746,7 +809,7 @@ msgstr "Aktiver RTMP server ..."
 msgid "Enable RTMPS transfer"
 msgstr "Aktivering af RTMPS-overførsel"
 
-#: src/views/Edit/Sources/Network.js:747
+#: src/views/Edit/Sources/Network.js:815
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:55
 msgid "Enable SRT server ..."
 msgstr "Aktiver SRT-server ..."
@@ -810,7 +873,7 @@ msgstr "Indtast et navn for den nye kanal."
 msgid "Enter password"
 msgstr "Indtast adgangskode"
 
-#: src/views/Edit/Sources/Network.js:420
+#: src/views/Edit/Sources/Network.js:445
 #: src/views/Edit/Wizard/Sources/Network.js:59
 msgid "Enter the address of your network source:"
 msgstr "Indtast adressen på din netværkskilde:"
@@ -830,6 +893,12 @@ msgstr "Entropicoder"
 #: src/views/Settings.js:1202
 msgid "Error"
 msgstr "Fejl"
+
+#: src/misc/CopyButton.js:22
+#: src/misc/TextFieldCopy.js:35
+#: src/misc/Textarea.js:48
+msgid "Error while copying data to clipboard"
+msgstr "Fejl under kopiering af data til udklipsholderen"
 
 #: src/views/Main/index.js:353
 #: src/views/Publication/Process.js:64
@@ -873,10 +942,54 @@ msgstr "FFmpeg"
 msgid "FPS"
 msgstr "FPS"
 
+#: src/views/Publication/Add.js:197
+msgid "Failed to create publication service ({0})"
+msgstr "Det lykkedes ikke at oprette en publikationstjeneste ({0})"
+
+#: src/views/Playersite.js:310
+msgid "Failed to create publication website files."
+msgstr "Det lykkedes ikke at oprette filer til publikationswebstedet."
+
 #: src/views/Edit/Profile.js:354
 #: src/views/Edit/Profile.js:503
 msgid "Failed to probe the source. Please check the <0>probe details</0>."
 msgstr "Mislykkes probe hos kilde. Undersøg <0> probe oplysninger</0>."
+
+#: src/utils/restreamer.js:446
+msgid "Failed to refresh token: {0}"
+msgstr "Det lykkedes ikke at opdatere token: {0}"
+
+#: src/views/Edit/index.js:311
+msgid "Failed to save ingest metadata"
+msgstr "Det mislykkedes at gemme indlæsningsmetadata"
+
+#: src/views/Edit/index.js:186
+msgid "Failed to stop process"
+msgstr "Det er ikke lykkedes at stoppe processen"
+
+#: src/views/Playersite.js:303
+msgid "Failed to store player size setting."
+msgstr "Det lykkedes ikke at gemme indstillingen for spillerstørrelse."
+
+#: src/views/Publication/Edit.js:237
+msgid "Failed to store publication service ({0})"
+msgstr "Det lykkedes ikke at gemme publikationstjenesten ({0})"
+
+#: src/views/Edit/index.js:304
+msgid "Failed to update ingest process ({0})"
+msgstr "Opdatering af indlæsningsprocessen mislykkedes ({0})"
+
+#: src/views/Edit/index.js:317
+msgid "Failed to update ingest snapshot process ({0})"
+msgstr "Opdatering af processen for indtastning af snapshot mislykkedes ({0})"
+
+#: src/views/Edit/index.js:323
+msgid "Failed to update the player"
+msgstr "Opdatering af spilleren mislykkedes"
+
+#: src/views/Edit/index.js:329
+msgid "Failed to update the playersite"
+msgstr "Opdatering af spillersiden mislykkedes"
 
 #: src/views/Edit/Wizard/Audio.js:35
 #: src/views/Edit/Wizard/Video.js:33
@@ -903,11 +1016,15 @@ msgstr "Flag"
 msgid "For Javascripts."
 msgstr "For Javascripts."
 
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:169
+#~ msgid "For Raspberry Pi (3/4) OpenMAX IL is recommended, which requires a 32-bit operating system."
+#~ msgstr "Til Raspberry Pi (3/4) anbefales OpenMAX IL, som kræver et 32-bit operativsystem."
+
 #: src/views/Playersite.js:728
 msgid "For Stylesheets."
 msgstr "Til stilark."
 
-#: src/views/Edit/Sources/Network.js:528
+#: src/views/Edit/Sources/Network.js:553
 msgid "Force input framerate"
 msgstr "Tving input framerate"
 
@@ -932,7 +1049,7 @@ msgid "Framebuffer"
 msgstr "Framebuffer"
 
 #: src/misc/coders/settings/Video.js:135
-#: src/views/Edit/Sources/Network.js:541
+#: src/views/Edit/Sources/Network.js:566
 msgid "Framerate"
 msgstr "Framerate"
 
@@ -960,7 +1077,7 @@ msgstr "Frekvens (Hz)"
 msgid "GET"
 msgstr "GET"
 
-#: src/views/Edit/Sources/Network.js:560
+#: src/views/Edit/Sources/Network.js:595
 #: src/views/Edit/index.js:413
 #: src/views/Edit/index.js:425
 #: src/views/Playersite.js:350
@@ -991,6 +1108,10 @@ msgstr "Google Analytics Tracker Name"
 msgid "HLS"
 msgstr "HLS"
 
+#: src/views/Edit/index.js:483
+#~ msgid "HLS Output"
+#~ msgstr "HLS Output"
+
 #: src/views/Edit/index.js:484
 msgid "HLS output"
 msgstr "HLS-output"
@@ -1003,7 +1124,7 @@ msgstr "HLS-server"
 msgid "HLS statistic for the In-memory storage"
 msgstr "HLS-statistik for lagring i hukommelse"
 
-#: src/views/Edit/Sources/Network.js:518
+#: src/views/Edit/Sources/Network.js:543
 msgid "HTTP and HTTPS"
 msgstr "HTTP og HTTPS"
 
@@ -1048,6 +1169,10 @@ msgstr "Hosted Restreamer-grænseflade"
 msgid "Human readable name on the service."
 msgstr "Menneskeligt læsbart navn på tjenesten."
 
+#: src/views/Publication/Services/Bitmovin.js:89
+#~ msgid "IP address"
+#~ msgstr "IP-adresse"
+
 #: src/views/Settings.js:2255
 msgid "If you changed the ports, it might be that Restreamer Core restarted already, but it is now available on a different port."
 msgstr "Hvis du har ændret portene, kan det være, at Restreamer Core allerede er genstartet, men at den nu er tilgængelig på en anden port."
@@ -1074,6 +1199,10 @@ msgid "In addition to the player, the Restreamer offers a complete landingpage, 
 msgstr "Ud over afspilleren tilbyder Restreamer en komplet landingpage, som du kan bruge til at præsentere din live stream nemt og hurtigt."
 
 #: src/misc/controls/HLS.js:67
+#~ msgid "In-Memory"
+#~ msgstr "In-Memory"
+
+#: src/misc/controls/HLS.js:67
 #: src/views/Settings.js:1693
 msgid "In-memory"
 msgstr "In-memory"
@@ -1087,7 +1216,15 @@ msgstr "Lagring i hukommelsen"
 msgid "Incompatible"
 msgstr "Uforenlig"
 
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:181
+#~ msgid "Increasing the HLS segment length by 2-3 * keyframe interval is recommended (Processing & Control)."
+#~ msgstr "Det anbefales at øge HLS-segmentets længde med 2-3 * keyframe-interval (Processing & Control)."
+
+#: src/misc/coders/settings/Audio.js:67
+#: src/misc/coders/settings/Audio.js:118
 #: src/misc/filters/audio/Pan.js:47
+#: src/misc/filters/audio/Resample.js:59
+#: src/misc/filters/audio/Resample.js:110
 #: src/misc/filters/audio/Volume.js:46
 msgid "Inherit"
 msgstr "Arve"
@@ -1194,8 +1331,16 @@ msgid "Live-Streaming to Facebook Live RTMP service"
 msgstr "Live-streaming til Facebook Live RTMP-tjeneste"
 
 #: src/views/Publication/Services/Instagram.js:19
+#~ msgid "Live-Streaming to Instagram Live RTMP Service. The stream key requires a service such as <0>Instafeed.me</0>  or  <1>Yellow Duck</1>."
+#~ msgstr "Live-streaming til Instagram Live RTMP-tjeneste. Streamnøglen kræver en tjeneste som <0>Instafeed.me</0> eller <1>Yellow Duck</1>."
+
+#: src/views/Publication/Services/Instagram.js:19
 msgid "Live-Streaming to Instagram Live RTMP Service. The stream key requires a service such as <0>Instafeed.me</0> or <1>Yellow Duck</1>."
 msgstr "Live-streaming til Instagram Live RTMP-tjeneste. Streamnøglen kræver en tjeneste som <0>Instafeed.me</0> eller <1>Yellow Duck</1>."
+
+#: src/views/Publication/Services/Instagram.js:17
+#~ msgid "Live-Streaming to Instagram Live RTMP Service. The stream key requires a service such as <0>Yellow Duck</0>."
+#~ msgstr "Live-streaming til Instagram Live RTMP-tjeneste. Streamnøglen kræver en tjeneste som <0>Yellow Duck</0>."
 
 #: src/views/Publication/Services/MediaNetwork.js:15
 msgid "Live-Streaming to Media Network RTMP Service."
@@ -1242,6 +1387,18 @@ msgstr "Logning"
 msgid "Login"
 msgstr "Log på"
 
+#: src/utils/restreamer.js:268
+#: src/utils/restreamer.js:273
+#: src/utils/restreamer.js:302
+#: src/utils/restreamer.js:307
+msgid "Login failed: Couldn't load API details"
+msgstr "Login mislykkedes: Kunne ikke indlæse API-detaljer"
+
+#: src/utils/restreamer.js:259
+#: src/utils/restreamer.js:293
+msgid "Login failed: {0}"
+msgstr "Login mislykkedes: {0}"
+
 #: src/views/Settings.js:1539
 msgid "Login/JWT authorization"
 msgstr "Login/JWT-autorisation"
@@ -1275,6 +1432,14 @@ msgstr "Hoved kilde"
 msgid "Main channel"
 msgstr "Hovedkanal"
 
+#: src/views/Publication/Player.js:106
+msgid "Main channel not found"
+msgstr "Hovedkanal ikke fundet"
+
+#: src/views/Edit/Wizard/index.js:200
+msgid "Main channel saved"
+msgstr "Hoved kanal gemt"
+
 #: src/views/Playersite.js:412
 msgid "Main page channel (index.html)."
 msgstr "Kanalen på hovedsiden (index.html)."
@@ -1287,9 +1452,17 @@ msgstr "Vedligeholder:"
 msgid "Make the channel available as an RTMP stream (experimental)."
 msgstr "Gør kanalen tilgængelig som en RTMP-stream (eksperimentel)."
 
+#: src/misc/controls/RTMP.js:49
+#~ msgid "Make the channel available as an RTMP stream."
+#~ msgstr "Gør kanalen tilgængelig som en RTMP-stream."
+
 #: src/misc/controls/SRT.js:54
 msgid "Make the channel available as an SRT stream (experimental)."
 msgstr "Gør kanalen tilgængelig som en SRT-stream (eksperimentel)."
+
+#: src/misc/controls/SRT.js:49
+#~ msgid "Make the channel available as an SRT stream."
+#~ msgstr "Gør kanalen tilgængelig som en SRT-stream."
 
 #: src/misc/filters/video/Bwdif.js:83
 msgid "Marked frames"
@@ -1386,8 +1559,16 @@ msgid "More about the service"
 msgstr "Mere om tjenesten"
 
 #: src/views/Settings.js:1833
+#~ msgid "Must be larger than maximum file size in cache"
+#~ msgstr "Skal være større end den maksimale filstørrelse i cache"
+
+#: src/views/Settings.js:1833
 msgid "Must be larger than maximum file size in cache."
 msgstr "Skal være større end den maksimale filstørrelse i cache."
+
+#: src/views/Settings.js:1873
+#~ msgid "Must be smaller than maximum cache size"
+#~ msgstr "Skal være mindre end den maksimale cache-størrelse"
 
 #: src/views/Settings.js:1873
 msgid "Must be smaller than maximum cache size."
@@ -1426,7 +1607,7 @@ msgstr "Navn på skabelonen. Hvis navnet allerede findes, overskrives det."
 msgid "Network"
 msgstr "Netværk"
 
-#: src/views/Edit/Sources/Network.js:854
+#: src/views/Edit/Sources/Network.js:922
 #: src/views/Edit/Wizard/Sources/Network.js:123
 msgid "Network source"
 msgstr "Netværkskilde"
@@ -1451,12 +1632,26 @@ msgid "No"
 msgstr "Nej"
 
 #: src/views/Edit/Sources/NoAudio.js:45
+#: src/views/Edit/Wizard/Audio.js:98
 msgid "No audio"
 msgstr "Igen lyd"
+
+#: src/views/Edit/StreamSelect.js:62
+msgid "No audio stream available"
+msgstr "Ingen lydstrøm tilgængelig"
+
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:70
+#: src/views/Edit/Wizard/Sources/V4L.js:99
+msgid "No input device available"
+msgstr "Ingen input-enhed tilgængelig"
 
 #: src/views/Edit/Wizard/Video.js:31
 msgid "No live stream was detected. Please check the software that sends the stream."
 msgstr "Der blev ikke fundet nogen live stream. Kontroller venligst den software, der sender strømmen."
+
+#: src/views/Edit/Summary.js:29
+msgid "No source selected"
+msgstr "Igen kilde valgt"
 
 #: src/views/Edit/SourceSelect.js:174
 msgid "No sources available"
@@ -1475,12 +1670,23 @@ msgstr "Der er ikke fundet noget egnet filter."
 msgid "No video"
 msgstr "Ingen video"
 
+#: src/views/Edit/StreamSelect.js:47
+msgid "No video stream available"
+msgstr "Igen stream tilgængelige"
+
 #: src/views/Settings.js:1337
 msgid "Node ID"
 msgstr "Node ID"
 
+#: src/views/Edit/Sources/VirtualAudio.js:90
+msgid "Noise"
+msgstr "Støj"
+
 #: src/misc/filters/video/Scale.js:45
+#: src/views/Edit/Sources/AVFoundation.js:145
+#: src/views/Edit/Summary.js:31
 #: src/views/Edit/Summary.js:107
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:98
 msgid "None"
 msgstr "Igen"
 
@@ -1536,7 +1742,7 @@ msgstr "Passphrase skal være mellem 10 og 79 tegn lang"
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "Passthrough (kopi) bør kun deaktiveres, hvis det er nødvendigt. Hver kodning kræver ekstra CPU/GPU-ressourcer."
 
-#: src/views/Edit/Sources/Network.js:467
+#: src/views/Edit/Sources/Network.js:492
 #: src/views/Edit/Wizard/Sources/Network.js:97
 #: src/views/Login.js:282
 #: src/views/Publication/Services/Akamai.js:134
@@ -1556,7 +1762,7 @@ msgstr "kodeord"
 msgid "Password for authorization."
 msgstr "kodeord til godkendelse."
 
-#: src/views/Edit/Sources/Network.js:472
+#: src/views/Edit/Sources/Network.js:497
 #: src/views/Edit/Wizard/Sources/Network.js:103
 msgid "Password for the device."
 msgstr "Adgangskode til enheden."
@@ -1590,6 +1796,10 @@ msgstr "Spiller"
 #: src/views/Publication/Player.js:366
 msgid "Player URL"
 msgstr "Spiller-URL"
+
+#: src/views/Publication/Player.js:297
+msgid "Player settings saved"
+msgstr "Afspiller setup gemt"
 
 #: src/Header.js:267
 #: src/views/Playersite.js:375
@@ -1684,10 +1894,10 @@ msgstr "Primær stream key"
 #: src/views/Edit/Sources/ALSA.js:136
 #: src/views/Edit/Sources/AVFoundation.js:201
 #: src/views/Edit/Sources/Framebuffer.js:110
-#: src/views/Edit/Sources/Network.js:603
-#: src/views/Edit/Sources/Network.js:674
-#: src/views/Edit/Sources/Network.js:720
-#: src/views/Edit/Sources/Network.js:769
+#: src/views/Edit/Sources/Network.js:671
+#: src/views/Edit/Sources/Network.js:742
+#: src/views/Edit/Sources/Network.js:788
+#: src/views/Edit/Sources/Network.js:837
 #: src/views/Edit/Sources/Raspicam.js:116
 #: src/views/Edit/Sources/V4L.js:134
 #: src/views/Edit/Sources/VirtualAudio.js:169
@@ -1705,6 +1915,11 @@ msgstr "Proces"
 #: src/views/Publication/Edit.js:396
 msgid "Process control"
 msgstr "Proceskontrol"
+
+#: src/views/Main/index.js:472
+#: src/views/Publication/Edit.js:553
+#~ msgid "Process debug report"
+#~ msgstr "Fejlfindingsrapport om processen"
 
 #: src/views/Main/index.js:448
 #: src/views/Main/index.js:464
@@ -1734,7 +1949,7 @@ msgstr "Behandler & kontrol"
 msgid "Profile"
 msgstr "Profil"
 
-#: src/views/Edit/Sources/Network.js:637
+#: src/views/Edit/Sources/Network.js:705
 #: src/views/Publication/Services/Akamai.js:144
 #: src/views/Publication/Services/Akamai.js:182
 #: src/views/Publication/Services/Azure.js:89
@@ -1768,11 +1983,24 @@ msgstr "Protokoller"
 msgid "Public domain/s"
 msgstr "Offentligt domæne/offentlige domæner"
 
+#: src/views/Publication/Edit.js:114
+#: src/views/Publication/Edit.js:124
+msgid "Publication service not found"
+msgstr "Publicerings service ikke fundet"
+
+#: src/views/Playersite.js:319
+msgid "Publication website settings saved"
+msgstr "Gemte indstillinger for publikationswebsted"
+
 #: src/views/Main/Publication.js:163
 msgid "Publications"
 msgstr "Publiceringer"
 
-#: src/views/Edit/Sources/Network.js:826
+#: src/views/Edit/Sources/Network.js:895
+msgid "Pull Mode"
+msgstr "Pull-tilstand"
+
+#: src/views/Edit/Sources/Network.js:894
 msgid "Pull or recieve the data:"
 msgstr "Træk eller modtag dataene:"
 
@@ -1783,11 +2011,19 @@ msgstr "Træk eller modtag dataene:"
 msgid "Quality"
 msgstr "Kvalitet"
 
+#: src/views/Edit/Sources/VirtualVideo.js:118
+msgid "RGB test pattern"
+msgstr "RGB test mønster"
+
 #: src/views/Main/index.js:412
 #: src/views/Settings.js:1239
 #: src/views/Settings.js:1920
 msgid "RTMP"
 msgstr "RTMP"
+
+#: src/views/Edit/index.js:498
+#~ msgid "RTMP Output"
+#~ msgstr "RTMP-udgang"
 
 #: src/views/Settings.js:1962
 msgid "RTMP Port"
@@ -1806,7 +2042,7 @@ msgstr "RTMP-udgang"
 msgid "RTMP server"
 msgstr "RTMP-server"
 
-#: src/views/Edit/Sources/Network.js:693
+#: src/views/Edit/Sources/Network.js:761
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:50
 msgid "RTMP server is not enabled"
 msgstr "RTMP server ikke aktiv"
@@ -1831,7 +2067,7 @@ msgstr "RTMPS-server"
 msgid "RTMPS server listen address."
 msgstr "RTMPS-serverens lytteadresse."
 
-#: src/views/Edit/Sources/Network.js:490
+#: src/views/Edit/Sources/Network.js:515
 msgid "RTSP"
 msgstr "RTSP"
 
@@ -1851,9 +2087,13 @@ msgstr "Styring af sats"
 msgid "Ratio"
 msgstr "Forhold"
 
-#: src/views/Edit/Sources/Network.js:523
+#: src/views/Edit/Sources/Network.js:548
 msgid "Read input at native speed"
 msgstr "Læs input normal hastighed"
+
+#: src/views/Edit/Sources/Network.js:896
+msgid "Receive Mode"
+msgstr "Modtage tilstand"
 
 #: src/misc/ActionButton.js:32
 #: src/misc/ActionButton.js:53
@@ -1936,6 +2176,10 @@ msgstr "Genstart af"
 msgid "Restarting Restreamer Core ..."
 msgstr "Genstart af Restreamer Core ..."
 
+#: src/views/Settings.js:1108
+msgid "Restarting the application failed."
+msgstr "Genstart af programmet mislykkedes."
+
 #: src/views/Settings.js:1328
 msgid "Restreamer Service"
 msgstr "Restreamer-tjeneste"
@@ -1968,6 +2212,10 @@ msgstr "Regel"
 msgid "SRT"
 msgstr "SRT"
 
+#: src/views/Edit/index.js:517
+#~ msgid "SRT Output"
+#~ msgstr "SRT-udgang"
+
 #: src/views/Edit/index.js:518
 msgid "SRT output"
 msgstr "SRT-udgang"
@@ -1977,7 +2225,7 @@ msgstr "SRT-udgang"
 msgid "SRT server"
 msgstr "SRT-server"
 
-#: src/views/Edit/Sources/Network.js:742
+#: src/views/Edit/Sources/Network.js:810
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:50
 msgid "SRT server is not enabled"
 msgstr "SRT-serveren er ikke aktiveret"
@@ -2010,6 +2258,10 @@ msgstr "Gem"
 msgid "Scale"
 msgstr "Skalering"
 
+#: src/misc/filters/video/Scale.js:62
+#~ msgid "Scale by height"
+#~ msgstr "Skala efter højde"
+
 #: src/misc/filters/video/Scale.js:99
 #: src/misc/filters/video/Scale.js:104
 #: src/misc/filters/video/Scale.js:109
@@ -2035,6 +2287,10 @@ msgstr "Sekunder før snapshot/billede af videokilde opdateres."
 #: src/views/Settings.js:1589
 msgid "Security"
 msgstr "Sikkerhed"
+
+#: src/views/Publication/Services/Core.js:145
+#~ msgid "Security passphrase"
+#~ msgstr "Sikkerhedskode"
 
 #: src/views/Publication/Services/Livespotting.js:103
 msgid "Security token"
@@ -2077,6 +2333,10 @@ msgstr "Vælg en enhed:"
 msgid "Select audio source:"
 msgstr "Vælg lydkilde:"
 
+#: src/views/Edit/Sources/VirtualVideo.js:114
+msgid "Select source ..."
+msgstr "Vælg kilde ..."
+
 #: src/views/Edit/Sources/VirtualVideo.js:108
 msgid "Select video source:"
 msgstr "Vælg videokilde:"
@@ -2109,9 +2369,9 @@ msgstr "Udvælgelse"
 msgid "Send anonymous metrics (helps us for future development)"
 msgstr "Send anonyme målinger (hjælper os med fremtidig udvikling)"
 
-#: src/views/Edit/Sources/Network.js:664
-#: src/views/Edit/Sources/Network.js:710
-#: src/views/Edit/Sources/Network.js:759
+#: src/views/Edit/Sources/Network.js:732
+#: src/views/Edit/Sources/Network.js:778
+#: src/views/Edit/Sources/Network.js:827
 #: src/views/Edit/Wizard/Sources/InternalHLS.js:48
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:68
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:68
@@ -2179,6 +2439,10 @@ msgstr "Indstillinger for /data-stien. Adgangen er beskyttet af"
 msgid "Settings for /memfs path."
 msgstr "Indstillinger for /memfs-stien."
 
+#: src/views/Settings.js:1051
+msgid "Settings saved. All changes will be applied after restarting the application."
+msgstr "Indstillinger gemt. Alle ændringer vil blive anvendt efter genstart af programmet."
+
 #: src/views/Playersite.js:417
 msgid "Share button"
 msgstr "Del-knap"
@@ -2190,6 +2454,18 @@ msgstr "Viser en reference til projektet."
 #: src/views/Login.js:332
 msgid "Sign up (free)"
 msgstr "Tilmeld dig (gratis)"
+
+#: src/views/Edit/Sources/VirtualAudio.js:89
+msgid "Silence"
+msgstr "Stille"
+
+#: src/views/Edit/Wizard/Audio.js:95
+msgid "Silence Audio"
+msgstr "Stille Audio"
+
+#: src/views/Edit/Sources/VirtualAudio.js:91
+msgid "Sine"
+msgstr "Sinus"
 
 #: src/views/Playersite.js:381
 msgid "Sitename"
@@ -2208,7 +2484,7 @@ msgstr "Øjebliksbillde"
 msgid "Social-login (OAuth2, 2FA)"
 msgstr "Social-login (OAuth2, 2FA)"
 
-#: src/views/Edit/Sources/Network.js:507
+#: src/views/Edit/Sources/Network.js:532
 msgid "Socket timeout (microseconds)"
 msgstr "Socket timeout (mikrosekunder)"
 
@@ -2253,6 +2529,8 @@ msgstr "Opbevaring"
 msgid "Stores the viewer statistics to the disk."
 msgstr "Gemmer seerstatistikkerne på disken."
 
+#: src/views/Edit/StreamSelect.js:30
+#: src/views/Edit/StreamSelect.js:36
 #: src/views/Edit/StreamSelect.js:81
 #: src/views/Edit/Wizard/Audio.js:75
 msgid "Stream"
@@ -2295,11 +2573,15 @@ msgstr "Stream navne"
 msgid "Stream source for publication service (experimental)."
 msgstr "Streamkilde til publikationstjeneste (eksperimentel)."
 
+#: src/misc/controls/Source.js:78
+#~ msgid "Stream source for publication service."
+#~ msgstr "Streamkilde til publikationstjeneste."
+
 #: src/views/Playersite.js:441
 msgid "Support datarhei Restreamer"
 msgstr "Støtte datarhei Restreamer"
 
-#: src/views/Edit/Sources/Network.js:433
+#: src/views/Edit/Sources/Network.js:458
 #: src/views/Edit/Wizard/Sources/Network.js:72
 msgid "Supports HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT and more."
 msgstr "Understøtter HTTP (HLS, DASH), RTP, RTSP, RTSP, RTMP, SRT og meget mere."
@@ -2327,6 +2609,14 @@ msgstr "Skabelon, der skal bruges til at oprette webstedet for publikationen. Me
 msgid "Terms"
 msgstr "Betingelser"
 
+#: src/views/Edit/Sources/VirtualVideo.js:116
+msgid "Test pattern"
+msgstr "Test mønster"
+
+#: src/views/Edit/Sources/VirtualVideo.js:117
+msgid "Test pattern (extended)"
+msgstr "Test mønster (udvidet)"
+
 #: src/views/Playersite.js:535
 msgid "Text colors"
 msgstr "Tekstfarver"
@@ -2347,7 +2637,7 @@ msgstr "Amplituden (0,0 - 1,0) af den genererede lydstrøm"
 msgid "The application is using an older version of the settings."
 msgstr "Programmet bruger en ældre version af indstillingerne."
 
-#: src/views/Edit/Sources/Network.js:625
+#: src/views/Edit/Sources/Network.js:693
 msgid "The available FFmpeg binary doesn't support any of the required protocols."
 msgstr "Den tilgængelige binære FFmpeg-version understøtter ikke nogen af de nødvendige protokoller."
 
@@ -2359,9 +2649,22 @@ msgstr "Bitraten for lydstrømmen."
 msgid "The carrier frequency"
 msgstr "Bærerfrekvensen"
 
+#: src/views/Edit/index.js:371
+msgid "The channel \"{0}\" could not be deleted"
+msgstr "Kanalen \"{0}\" kunne ikke slettes"
+
+#: src/views/Edit/index.js:380
+msgid "The channel \"{0}\" has been deleted"
+msgstr "Kanalen \"{0}\" er blevet slettet"
+
 #: src/views/Edit/index.js:659
 msgid "The deletion of this channel can not be recovered. All publications of this channel will be removed."
 msgstr "Sletning af denne kanal kan ikke genoprettes. Alle publikationer af denne kanal vil blive fjernet."
+
+#: src/views/Edit/Wizard/index.js:176
+#: src/views/Edit/index.js:297
+msgid "The input profile is not complete. Please define a video and audio source."
+msgstr "Input profil er ikke komplet. Definer Video og Audio kilde."
 
 #: src/misc/coders/settings/Audio.js:86
 #: src/misc/filters/audio/Resample.js:78
@@ -2376,9 +2679,29 @@ msgstr "Det maksimale antal playlist-segmenter. 0 vil indeholde alle segmenter. 
 msgid "The noise color"
 msgstr "Støjens farve"
 
+#: src/misc/controls/License/index.js:60
+msgid "The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission."
+msgstr "Du må kopiere og rette og fordele, samt anvende dette kommercielt og ukommercielt frit uden at spørge om lov."
+
 #: src/views/Settings.js:1409
 msgid "The public reachable domain name of the host this Restreamer is running on. Separate multiple domain names by a comma."
 msgstr "Det offentlige domænenavn, der kan nås, for den vært, som Restreamer kører på. Adskil flere domænenavne med et komma."
+
+#: src/views/Publication/Edit.js:285
+msgid "The publication service \"{0}\" could not be deleted"
+msgstr "Publicerings service \"{0}\" kan ikke fjernes"
+
+#: src/views/Publication/Add.js:205
+msgid "The publication service \"{0}\" has been created"
+msgstr "Publicerings service \"{0}\" er oprettet"
+
+#: src/views/Publication/Edit.js:291
+msgid "The publication service \"{0}\" has been deleted"
+msgstr "Publicerings service \"{0}\" fjernet"
+
+#: src/views/Publication/Add.js:203
+msgid "The publication service has been created"
+msgstr "Publicerings service \"{0}\" er blevet oprettet"
 
 #: src/misc/coders/settings/Audio.js:137
 #: src/misc/filters/audio/Resample.js:129
@@ -2396,6 +2719,10 @@ msgstr "Den valgte fil er for stor ({0} bytes). Kun {1} bytes er tilladt."
 #: src/views/Publication/Player.js:182
 msgid "The selected file type ({0}) is not allowed. Allowed file types are {types}"
 msgstr "Den valgte filtype ({0}) er ikke tilladt. Tilladte filtyper er {types}"
+
+#: src/views/Publication/Edit.js:245
+msgid "The settings for \"{0}\" have been saved"
+msgstr "Konfiguration til \"{0}\" er gemt"
 
 #: src/views/Edit/Wizard/Audio.js:43
 msgid "The source doesn't provide any audio streams."
@@ -2433,6 +2760,10 @@ msgstr "Video kilde er kompatibel. Vælg opløsning:"
 msgid "There are updates available. Here you get more information."
 msgstr "Der er opdateringer til rådighed. Her får du flere oplysninger."
 
+#: src/views/Settings.js:1004
+msgid "There was a problem storing the settings. Settings not saved."
+msgstr "Der var et problem med at gemme indstillingerne. Indstillingerne blev ikke gemt."
+
 #: src/views/Invalid.js:32
 msgid "There was an error connecting to Restreamer Core at {0}."
 msgstr "Der var en fejl ved forbindelsen til Restreamer Core på {0}."
@@ -2446,6 +2777,10 @@ msgstr "Der opstod en fejl under upload: {0}"
 #: src/views/Edit/Wizard/Error.js:21
 msgid "There was an error setting up the stream."
 msgstr "Der var en fejl i opsætning af stream."
+
+#: src/views/Settings.js:1002
+msgid "There were some errors in the settings. Settings not saved."
+msgstr "Der var nogle fejl i konfiguration. Konfiguration ikke gemt."
 
 #: src/views/Login.js:257
 msgid "There's no login method available."
@@ -2463,7 +2798,31 @@ msgstr "Dette er ikke nødvendigvis en fejl. Det kan dog tage lidt længere tid 
 msgid "This is to mention the copyright regulations for the target of this service."
 msgstr "Dette er for at nævne de ophavsretlige regler for målet for denne tjeneste."
 
-#: src/views/Edit/Sources/Network.js:443
+#: src/misc/controls/License/index.js:95
+msgid "This license allows reusers to copy and distribute the material in any medium or format in unadapted form only, and only so long as attribution is given to the creator. The license allows for commercial use."
+msgstr "Denne licens tillader genbrugere at kopiere og distribuere materialet i ethvert medium eller format i ubearbejdet form, og kun så længe skaberen angives som kilde. Licensen giver mulighed for kommerciel brug."
+
+#: src/misc/controls/License/index.js:102
+msgid "This license allows reusers to copy and distribute the material in any medium or format in unadapted form only, for noncommercial purposes only, and only so long as attribution is given to the creator."
+msgstr "Denne licens tillader genbrugere at kopiere og distribuere materialet i ethvert medium eller format i ubearbejdet form, kun til ikke-kommercielle formål og kun så længe skaberen er nævnt."
+
+#: src/misc/controls/License/index.js:81
+msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format for noncommercial purposes only, and only so long as attribution is given to the creator."
+msgstr "Denne licens tillader genbrugere at distribuere, remixe, tilpasse og bygge videre på materialet i ethvert medie eller format til ikke-kommercielle formål, og kun så længe skaberen er nævnt."
+
+#: src/misc/controls/License/index.js:88
+msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format for noncommercial purposes only, and only so long as attribution is given to the creator. If you remix, adapt, or build upon the material, you must license the modified material under identical terms."
+msgstr "Denne licens tillader genbrugere at distribuere, remixe, tilpasse og bygge videre på materialet i ethvert medie eller format til ikke-kommercielle formål, og kun så længe skaberen er nævnt. Hvis du remixer, tilpasser eller bygger videre på materialet, skal du give licens til det ændrede materiale på de samme vilkår."
+
+#: src/misc/controls/License/index.js:67
+msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use."
+msgstr "Denne licens tillader genbrugere at distribuere, remixe, tilpasse og bygge videre på materialet i ethvert medium eller format, så længe skaberen angives. Licensen giver mulighed for kommerciel brug."
+
+#: src/misc/controls/License/index.js:74
+msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms."
+msgstr "Denne licens tillader genbrugere at distribuere, remixe, tilpasse og bygge videre på materialet i ethvert medium eller format, så længe skaberen angives. Licensen giver mulighed for kommerciel brug. Hvis du remixer, tilpasser eller bygger videre på materialet, skal du give licens til det ændrede materiale på de samme vilkår."
+
+#: src/views/Edit/Sources/Network.js:468
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
 msgstr "Denne protokol er ukendt eller understøttes ikke af den tilgængelige binære FFmpeg-protokol."
 
@@ -2573,6 +2932,10 @@ msgstr "Overfør hovedkilden til en livespotting.com Ressource. Du kan finde fle
 msgid "Transmit the main source to the Akamai (MSL) Media Services Live. More details about the MSL Encoder settings can be found on <0>here</0>."
 msgstr "Overfør hovedkilden til Akamai (MSL) Media Services Live. Du kan finde flere oplysninger om MSL Encoder-indstillingerne på <0>her</0>."
 
+#: src/views/Publication/Services/Bitmovin.js:15
+#~ msgid "Transmit the main source to the Bitmovin cloud encoding service, a powerful tool for live streaming. More details about the settings can be founds <0>here</0>."
+#~ msgstr "Overfør hovedkilden til Bitmovin cloud-kodningstjenesten, som er et effektivt værktøj til live streaming. Du kan finde flere oplysninger om indstillingerne <0>her</0>."
+
 #: src/views/Publication/Services/Restream.js:18
 msgid "Transmit the main source to the Restream RTMP Service. More details about the settings can be found <0>here</0>."
 msgstr "Overfører hovedkilden til Restream RTMP-tjenesten. Du kan finde flere oplysninger om indstillingerne <0>her</0>."
@@ -2584,6 +2947,10 @@ msgstr "Overfør til LinkedIn. Du kan finde flere oplysninger <0>her</0>."
 #: src/views/Publication/Services/Azure.js:17
 msgid "Transmit to a Azure Media Services. More details can be found <0>here</0>."
 msgstr "Overfør til en Azure Media Services. Du kan finde flere oplysninger <0>her</0>."
+
+#: src/views/Publication/Services/Linkedin.js:16
+#~ msgid "Transmit to linkedIn. More details can be found <0>here</0>."
+#~ msgstr "Overfør til linkedIn. Du kan finde flere oplysninger <0>her</0>."
 
 #: src/views/Publication/Services/Owncast.js:15
 msgid "Transmit your Livestream to an Owncast server. <0>Here </0>you can find more details about the settings."
@@ -2602,7 +2969,7 @@ msgstr "Overfører din videostream med den nødvendige nøgle, som blev generere
 msgid "Tune"
 msgstr "Afstemning"
 
-#: src/views/Edit/Sources/Network.js:495
+#: src/views/Edit/Sources/Network.js:520
 #: src/views/Edit/Wizard/Sources/Network.js:77
 msgid "UDP transport"
 msgstr "UDP-transport"
@@ -2668,7 +3035,7 @@ msgstr "Brug din ophavsret, og vælg den rigtige billedlicens. Uanset om den er 
 msgid "User registration"
 msgstr "Registrering af brugere"
 
-#: src/views/Edit/Sources/Network.js:455
+#: src/views/Edit/Sources/Network.js:480
 #: src/views/Edit/Wizard/Sources/Network.js:84
 #: src/views/Login.js:272
 #: src/views/Publication/Services/DASH.js:195
@@ -2687,7 +3054,7 @@ msgstr "Brugernavn"
 msgid "Username for authorization."
 msgstr "Brugernavn for "
 
-#: src/views/Edit/Sources/Network.js:460
+#: src/views/Edit/Sources/Network.js:485
 #: src/views/Edit/Wizard/Sources/Network.js:90
 msgid "Username for the device."
 msgstr "Brugernavn til enheden."
@@ -2695,6 +3062,10 @@ msgstr "Brugernavn til enheden."
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:174
 msgid "V4L2_M2M is experimental."
 msgstr "V4L2_M2M er eksperimentel."
+
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:167
+#~ msgid "V4L2_M2M is unstable and experimental."
+#~ msgstr "V4L2_M2M er ustabilt og eksperimentelt."
 
 #: src/views/Publication/Services/Livespotting.js:88
 msgid "VPU ID"
@@ -2773,6 +3144,10 @@ msgstr "Bredde"
 msgid "Write protection"
 msgstr "Beskyttelse mod skrivning"
 
+#: src/views/Edit/Sources/VirtualVideo.js:119
+msgid "YUV test pattern"
+msgstr "YUV-testmønster"
+
 #: src/views/Publication/Services/Instagram.js:127
 msgid "Yellow Duck"
 msgstr "Gul and"
@@ -2806,6 +3181,22 @@ msgstr "Din stream skal kodes, men der er ingen egnet encoder tilgængelig."
 msgid "Your stream needs to be encoded. Choose the desired encoder:"
 msgstr "Din stream skal være kodet. Vælg den ønskede encoder:"
 
+#: src/views/Edit/Sources/Network.js:646
+msgid "avoid_negative_ts"
+msgstr "avoid_negative_ts"
+
+#: src/views/Edit/Sources/VirtualAudio.js:114
+msgid "blue"
+msgstr "blå"
+
+#: src/views/Edit/Sources/VirtualAudio.js:113
+msgid "brown"
+msgstr "brun"
+
+#: src/views/Edit/Sources/Network.js:630
+msgid "copyts"
+msgstr "copyts"
+
 #: src/views/Publication/Player.js:369
 msgid "iframe code"
 msgstr "iframe-kode"
@@ -2816,118 +3207,26 @@ msgstr "iframe-kode"
 msgid "kbit/s"
 msgstr "kbit/s"
 
-#: src/misc/CopyButton.js:20
-#: src/misc/CopyButton.js:22
-#: src/misc/EncodingSelect.js:215
-#: src/misc/TextFieldCopy.js:33
-#: src/misc/TextFieldCopy.js:35
-#: src/misc/Textarea.js:46
-#: src/misc/Textarea.js:48
-#: src/misc/coders/Encoders/audio/Opus.js:65
-#: src/misc/coders/settings/Audio.js:25
-#: src/misc/coders/settings/Audio.js:67
-#: src/misc/coders/settings/Audio.js:71
-#: src/misc/coders/settings/Audio.js:118
-#: src/misc/coders/settings/Audio.js:122
-#: src/misc/coders/settings/Video.js:31
-#: src/misc/coders/settings/Video.js:70
-#: src/misc/coders/settings/Video.js:115
-#: src/misc/coders/settings/Video.js:181
-#: src/misc/coders/settings/Video.js:223
-#: src/misc/coders/settings/Video.js:266
-#: src/misc/coders/settings/Video.js:305
-#: src/misc/controls/License/index.js:60
-#: src/misc/controls/License/index.js:67
-#: src/misc/controls/License/index.js:74
-#: src/misc/controls/License/index.js:81
-#: src/misc/controls/License/index.js:88
-#: src/misc/controls/License/index.js:95
-#: src/misc/controls/License/index.js:102
-#: src/misc/filters/audio/Resample.js:59
-#: src/misc/filters/audio/Resample.js:63
-#: src/misc/filters/audio/Resample.js:110
-#: src/misc/filters/audio/Resample.js:114
-#: src/utils/restreamer.js:259
-#: src/utils/restreamer.js:268
-#: src/utils/restreamer.js:273
-#: src/utils/restreamer.js:293
-#: src/utils/restreamer.js:302
-#: src/utils/restreamer.js:307
-#: src/utils/restreamer.js:446
-#: src/views/Edit/Sources/ALSA.js:96
-#: src/views/Edit/Sources/ALSA.js:101
-#: src/views/Edit/Sources/AVFoundation.js:115
-#: src/views/Edit/Sources/AVFoundation.js:120
-#: src/views/Edit/Sources/AVFoundation.js:145
-#: src/views/Edit/Sources/AVFoundation.js:149
-#: src/views/Edit/Sources/AVFoundation.js:153
-#: src/views/Edit/Sources/Framebuffer.js:80
-#: src/views/Edit/Sources/Network.js:827
-#: src/views/Edit/Sources/Network.js:828
-#: src/views/Edit/Sources/Raspicam.js:87
-#: src/views/Edit/Sources/V4L.js:93
-#: src/views/Edit/Sources/V4L.js:99
-#: src/views/Edit/Sources/VirtualAudio.js:89
-#: src/views/Edit/Sources/VirtualAudio.js:90
-#: src/views/Edit/Sources/VirtualAudio.js:91
-#: src/views/Edit/Sources/VirtualAudio.js:111
 #: src/views/Edit/Sources/VirtualAudio.js:112
-#: src/views/Edit/Sources/VirtualAudio.js:113
-#: src/views/Edit/Sources/VirtualAudio.js:114
-#: src/views/Edit/Sources/VirtualAudio.js:115
+msgid "pink"
+msgstr "lyserød"
+
+#: src/views/Edit/Sources/Network.js:635
+msgid "start_at_zero"
+msgstr "start_at_zero"
+
+#: src/views/Edit/Sources/Network.js:640
+msgid "use_wallclock_as_timestamps"
+msgstr "use_wallclock_as_timestamps"
+
 #: src/views/Edit/Sources/VirtualAudio.js:116
-#: src/views/Edit/Sources/VirtualVideo.js:114
-#: src/views/Edit/Sources/VirtualVideo.js:116
-#: src/views/Edit/Sources/VirtualVideo.js:117
-#: src/views/Edit/Sources/VirtualVideo.js:118
-#: src/views/Edit/Sources/VirtualVideo.js:119
-#: src/views/Edit/StreamSelect.js:30
-#: src/views/Edit/StreamSelect.js:36
-#: src/views/Edit/StreamSelect.js:47
-#: src/views/Edit/StreamSelect.js:53
-#: src/views/Edit/StreamSelect.js:62
-#: src/views/Edit/StreamSelect.js:68
-#: src/views/Edit/Summary.js:29
-#: src/views/Edit/Summary.js:31
-#: src/views/Edit/Wizard/Audio.js:72
-#: src/views/Edit/Wizard/Audio.js:84
-#: src/views/Edit/Wizard/Audio.js:95
-#: src/views/Edit/Wizard/Audio.js:98
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:70
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:76
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:98
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:105
-#: src/views/Edit/Wizard/Sources/V4L.js:99
-#: src/views/Edit/Wizard/index.js:176
-#: src/views/Edit/Wizard/index.js:200
-#: src/views/Edit/index.js:186
-#: src/views/Edit/index.js:297
-#: src/views/Edit/index.js:304
-#: src/views/Edit/index.js:311
-#: src/views/Edit/index.js:317
-#: src/views/Edit/index.js:323
-#: src/views/Edit/index.js:329
-#: src/views/Edit/index.js:346
-#: src/views/Edit/index.js:371
-#: src/views/Edit/index.js:380
-#: src/views/Playersite.js:303
-#: src/views/Playersite.js:310
-#: src/views/Playersite.js:319
-#: src/views/Publication/Add.js:197
-#: src/views/Publication/Add.js:203
-#: src/views/Publication/Add.js:205
-#: src/views/Publication/Edit.js:114
-#: src/views/Publication/Edit.js:124
-#: src/views/Publication/Edit.js:237
-#: src/views/Publication/Edit.js:245
-#: src/views/Publication/Edit.js:285
-#: src/views/Publication/Edit.js:291
-#: src/views/Publication/Player.js:106
-#: src/views/Publication/Player.js:297
-#: src/views/Settings.js:1000
-#: src/views/Settings.js:1002
-#: src/views/Settings.js:1004
-#: src/views/Settings.js:1051
-#: src/views/Settings.js:1108
-msgid "{0}"
-msgstr "{0}"
+msgid "velvet"
+msgstr "fløjl"
+
+#: src/views/Edit/Sources/VirtualAudio.js:115
+msgid "violet"
+msgstr "violet"
+
+#: src/views/Edit/Sources/VirtualAudio.js:111
+msgid "white"
+msgstr "hvid"

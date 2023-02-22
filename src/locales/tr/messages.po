@@ -40,11 +40,15 @@ msgstr "<0>Uyumluluk listesi</0>"
 #: src/views/Edit/Profile.js:393
 #: src/views/Edit/Profile.js:542
 msgid "<0>Show probe details</0>"
-msgstr "<0>Sonda ayrıntılarını göster</0>"
+msgstr "<0>İnceleme ayrıntılarını göster</0>"
 
 #: src/views/Edit/Sources/ALSA.js:156
 msgid "ALSA"
 msgstr "ALSA"
+
+#: src/views/Settings.js:1000
+msgid "API endpoint not found. Settings not saved."
+msgstr "API uç noktası bulunamadı. Ayarlar kaydedilmedi."
 
 #: src/views/Edit/Sources/AVFoundation.js:221
 msgid "AVFoundation"
@@ -89,7 +93,7 @@ msgstr "Yeni kanal ekle"
 msgid "Add: {0}"
 msgstr "Ekle: {0}"
 
-#: src/views/Edit/Sources/Network.js:427
+#: src/views/Edit/Sources/Network.js:452
 #: src/views/Edit/Wizard/Sources/Network.js:66
 #: src/views/Publication/Services/Azure.js:98
 #: src/views/Publication/Services/Brightcove.js:95
@@ -130,7 +134,7 @@ msgstr "Yayın sitesi renklerini ve arka planını istediğiniz gibi ayarlayın.
 msgid "Advanced monitoring"
 msgstr "Gelişmiş izleme"
 
-#: src/views/Edit/Sources/Network.js:481
+#: src/views/Edit/Sources/Network.js:506
 #: src/views/Publication/Services/DASH.js:204
 #: src/views/Publication/Services/HLS.js:193
 #: src/views/Publication/Services/Icecast.js:172
@@ -210,6 +214,11 @@ msgstr "Ses aygıtı"
 #: src/views/Edit/Sources/AVFoundation.js:159
 msgid "Audio device"
 msgstr "Ses cihazı"
+
+#: src/views/Edit/Wizard/Audio.js:72
+#: src/views/Edit/Wizard/Audio.js:84
+msgid "Audio from device"
+msgstr "Cihazdan gelen ses"
 
 #: src/views/Edit/Profile.js:447
 #: src/views/Edit/ProfileSummary.js:90
@@ -291,7 +300,7 @@ msgstr "Yedekleme akışı"
 
 #: src/views/Publication/Services/Facebook.js:124
 msgid "Backup stream key"
-msgstr "Yedek akış anahtarı"
+msgstr "Yedek yayın anahtarı"
 
 #: src/Footer.js:256
 #: src/Footer.js:269
@@ -369,6 +378,10 @@ msgstr "Tıklamaları yakalayın"
 msgid "Capture cursor"
 msgstr "İmleci yakala"
 
+#: src/views/Edit/index.js:346
+msgid "Channel \"{0}\" saved"
+msgstr "Kanal \"{0}\" kaydedildi"
+
 #: src/views/Edit/Sources/ALSA.js:129
 msgid "Channels"
 msgstr "Kanallar"
@@ -381,9 +394,28 @@ msgstr "Güncellemeleri kontrol edin"
 msgid "Check the requirements"
 msgstr "Gereksinimleri kontrol edin"
 
+#: src/views/Edit/StreamSelect.js:53
+msgid "Choose a video stream"
+msgstr "Bir video akışı seçin"
+
+#: src/views/Edit/StreamSelect.js:68
+msgid "Choose an audio stream"
+msgstr "Bir ses akışı seçin"
+
+#: src/views/Edit/Sources/ALSA.js:96
+#: src/views/Edit/Sources/Framebuffer.js:80
+#: src/views/Edit/Sources/Raspicam.js:87
+#: src/views/Edit/Sources/V4L.js:93
+msgid "Choose an input device ..."
+msgstr "Bir giriş cihazı seçin ..."
+
 #: src/misc/coders/settings/Video.js:343
 msgid "Choose between CFR and VFR (Auto)"
 msgstr "CFR veya VFR arasında seçim yap (Otomatik)"
+
+#: src/misc/EncodingSelect.js:215
+msgid "Choose codec ..."
+msgstr "Kodek seçin ..."
 
 #: src/views/Login.js:367
 msgid "Choose tenant ..."
@@ -422,7 +454,7 @@ msgstr "Renk"
 
 #: src/views/Settings.js:1376
 msgid "Config"
-msgstr "Konfigürasyon"
+msgstr "Yapılandırma"
 
 #: src/views/Password.js:134
 msgid "Confirm password"
@@ -472,11 +504,32 @@ msgstr "İçerik URL'si"
 msgid "Cores"
 msgstr "Çekirdekler"
 
+#: src/views/Password.js:127
+#~ msgid "Create user"
+#~ msgstr "Kullanıcı oluştur"
+
 #: src/misc/controls/License/index.js:112
 msgid "Creative Commons"
 msgstr "Creative Commons"
 
+#: src/misc/coders/Encoders/audio/Opus.js:65
+#: src/misc/coders/settings/Audio.js:25
+#: src/misc/coders/settings/Audio.js:71
+#: src/misc/coders/settings/Audio.js:122
+#: src/misc/coders/settings/Video.js:31
+#: src/misc/coders/settings/Video.js:70
+#: src/misc/coders/settings/Video.js:115
+#: src/misc/coders/settings/Video.js:181
+#: src/misc/coders/settings/Video.js:223
+#: src/misc/coders/settings/Video.js:266
+#: src/misc/coders/settings/Video.js:305
+#: src/misc/filters/audio/Resample.js:63
+#: src/misc/filters/audio/Resample.js:114
 #: src/misc/filters/audio/Volume.js:58
+#: src/views/Edit/Sources/ALSA.js:101
+#: src/views/Edit/Sources/AVFoundation.js:120
+#: src/views/Edit/Sources/AVFoundation.js:153
+#: src/views/Edit/Sources/V4L.js:99
 msgid "Custom ..."
 msgstr "Özel ..."
 
@@ -519,7 +572,7 @@ msgstr "Özel kare hızı"
 
 #: src/misc/coders/settings/Video.js:91
 msgid "Custom keyframe interval"
-msgstr "Özel ana kare aralığı"
+msgstr "Özel animasyon kare aralığı"
 
 #: src/misc/coders/settings/Audio.js:98
 #: src/misc/filters/audio/Resample.js:90
@@ -549,9 +602,15 @@ msgstr "Özel video cihazı"
 msgid "Custom video index"
 msgstr "Özel video dizini"
 
+#: src/misc/CopyButton.js:20
+#: src/misc/TextFieldCopy.js:33
+#: src/misc/Textarea.js:46
+msgid "Data copied to clipboard"
+msgstr "Panoya kopyalanan veriler"
+
 #: src/views/Edit/Sources/VirtualVideo.js:167
 msgid "Death color"
-msgstr "Ölüm rengi"
+msgstr "Yayın kapalı rengi"
 
 #: src/misc/filters/audio/Volume.js:74
 msgid "Decibels (dB)"
@@ -560,8 +619,12 @@ msgstr "Desibel (dB)"
 #: src/misc/EncodingSelect.js:223
 #: src/views/Edit/Wizard/VideoProfile.js:48
 msgid "Decoder"
-msgstr "Dekoder"
+msgstr "Kod Çözücü"
 
+#: src/views/Edit/Sources/AVFoundation.js:115
+#: src/views/Edit/Sources/AVFoundation.js:149
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:76
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:105
 #: src/views/Playersite.js:467
 #: src/views/Playersite.js:542
 #: src/views/Playersite.js:586
@@ -653,7 +716,7 @@ msgstr "Disk önbelleği"
 #: src/Footer.js:315
 #: src/Footer.js:328
 msgid "Disk storage"
-msgstr "Disk depolama"
+msgstr "Disk kapasitesi"
 
 #: src/views/Settings.js:2310
 msgid "Do you really want to restart the application now?"
@@ -661,7 +724,7 @@ msgstr "Uygulamayı gerçekten şimdi yeniden başlatmak istiyor musunuz?"
 
 #: src/views/Edit/index.js:646
 msgid "Do you want to delete \"{0}\"?"
-msgstr "\"{0}\"ı silmek istiyor musunuz?"
+msgstr "\"{0}\" silmek istiyor musunuz?"
 
 #: src/views/Publication/Edit.js:559
 msgid "Do you want to delete {title}?"
@@ -694,7 +757,7 @@ msgstr "Çoğaltılmış çerçeveler"
 
 #: src/views/Publication/Player.js:325
 msgid "EDIT: Player"
-msgstr "DÜZENLEME: Oyuncu"
+msgstr "DÜZENLEME: Oynatıcı"
 
 #: src/views/Playersite.js:346
 msgid "EDIT: Publication Website"
@@ -737,7 +800,7 @@ msgstr "Siteye Ekle"
 msgid "Enable"
 msgstr "Etkinleştir"
 
-#: src/views/Edit/Sources/Network.js:698
+#: src/views/Edit/Sources/Network.js:766
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:55
 msgid "Enable RTMP server ..."
 msgstr "RTMP sunucusunu etkinleştir ..."
@@ -746,14 +809,14 @@ msgstr "RTMP sunucusunu etkinleştir ..."
 msgid "Enable RTMPS transfer"
 msgstr "RTMPS aktarımını etkinleştir"
 
-#: src/views/Edit/Sources/Network.js:747
+#: src/views/Edit/Sources/Network.js:815
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:55
 msgid "Enable SRT server ..."
 msgstr "SRT sunucusunu etkinleştir ..."
 
 #: src/views/Edit/Sources/VirtualAudio.js:162
 msgid "Enable a periodic beep every second with this value times the carrier frequency"
-msgstr "Taşıyıcı frekansının bu değerle çarpımıyla her saniyede bir periyodik bip sesini etkinleştirin"
+msgstr "Taşıyıcı frekansının bu değerle çarpımıyla her saniye de bir periyodik bip sesini etkinleştirin"
 
 #: src/views/Publication/Services/Dummy.js:278
 #: src/views/Publication/Services/Facebook.js:139
@@ -810,7 +873,7 @@ msgstr "Yeni kanal için bir ad girin."
 msgid "Enter password"
 msgstr "Şifre girin"
 
-#: src/views/Edit/Sources/Network.js:420
+#: src/views/Edit/Sources/Network.js:445
 #: src/views/Edit/Wizard/Sources/Network.js:59
 msgid "Enter the address of your network source:"
 msgstr "Ağ kaynağınızın adresini girin:"
@@ -830,6 +893,12 @@ msgstr "Entropi kodlayıcı"
 #: src/views/Settings.js:1202
 msgid "Error"
 msgstr "Hata"
+
+#: src/misc/CopyButton.js:22
+#: src/misc/TextFieldCopy.js:35
+#: src/misc/Textarea.js:48
+msgid "Error while copying data to clipboard"
+msgstr "Veriler panoya kopyalanırken hata oluştu"
 
 #: src/views/Main/index.js:353
 #: src/views/Publication/Process.js:64
@@ -873,10 +942,54 @@ msgstr "FFmpeg"
 msgid "FPS"
 msgstr "FPS"
 
+#: src/views/Publication/Add.js:197
+msgid "Failed to create publication service ({0})"
+msgstr "Yayın hizmeti oluşturulamadı ({0})"
+
+#: src/views/Playersite.js:310
+msgid "Failed to create publication website files."
+msgstr "Yayın web sitesi dosyaları oluşturulamadı."
+
 #: src/views/Edit/Profile.js:354
 #: src/views/Edit/Profile.js:503
 msgid "Failed to probe the source. Please check the <0>probe details</0>."
-msgstr "Kaynak araştırması başarısız oldu. Lütfen <0>probe ayrıntılarını</0> kontrol edin."
+msgstr "Kaynak araştırması başarısız oldu. Lütfen <0>inceleme detaylarını</0> kontrol edin."
+
+#: src/utils/restreamer.js:446
+msgid "Failed to refresh token: {0}"
+msgstr "Yenileme tokeni hatalı: {0}"
+
+#: src/views/Edit/index.js:311
+msgid "Failed to save ingest metadata"
+msgstr "Alma meta verileri kaydedilemedi"
+
+#: src/views/Edit/index.js:186
+msgid "Failed to stop process"
+msgstr "İşlem durdurulamadı"
+
+#: src/views/Playersite.js:303
+msgid "Failed to store player size setting."
+msgstr "Oyuncu boyutu ayarı kaydedilemedi."
+
+#: src/views/Publication/Edit.js:237
+msgid "Failed to store publication service ({0})"
+msgstr "Yayın hizmeti depolanamadı ({0})"
+
+#: src/views/Edit/index.js:304
+msgid "Failed to update ingest process ({0})"
+msgstr "Alma işlemi güncellenemedi ({0})"
+
+#: src/views/Edit/index.js:317
+msgid "Failed to update ingest snapshot process ({0})"
+msgstr "Anlık görüntü alma işlemi güncellenemedi ({0})"
+
+#: src/views/Edit/index.js:323
+msgid "Failed to update the player"
+msgstr "Oynatıcı güncellenemedi"
+
+#: src/views/Edit/index.js:329
+msgid "Failed to update the playersite"
+msgstr "Oyuncu sitesi güncellenemedi"
 
 #: src/views/Edit/Wizard/Audio.js:35
 #: src/views/Edit/Wizard/Video.js:33
@@ -889,7 +1002,7 @@ msgstr "Filtre"
 
 #: src/views/Edit/Profile.js:591
 msgid "Finish"
-msgstr "Bitirmek"
+msgstr "Tamamla"
 
 #: src/misc/filters/video/Scale.js:48
 msgid "Fix size"
@@ -903,11 +1016,15 @@ msgstr "Bayraklar"
 msgid "For Javascripts."
 msgstr "Javascripts için."
 
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:169
+#~ msgid "For Raspberry Pi (3/4) OpenMAX IL is recommended, which requires a 32-bit operating system."
+#~ msgstr "Raspberry Pi (3/4) için 32 bit işletim sistemi gerektiren OpenMAX IL önerilir."
+
 #: src/views/Playersite.js:728
 msgid "For Stylesheets."
 msgstr "Stil Sayfaları için."
 
-#: src/views/Edit/Sources/Network.js:528
+#: src/views/Edit/Sources/Network.js:553
 msgid "Force input framerate"
 msgstr "Giriş kare hızını zorla"
 
@@ -932,7 +1049,7 @@ msgid "Framebuffer"
 msgstr "Framebuffer"
 
 #: src/misc/coders/settings/Video.js:135
-#: src/views/Edit/Sources/Network.js:541
+#: src/views/Edit/Sources/Network.js:566
 msgid "Framerate"
 msgstr "Çerçeve hızı"
 
@@ -960,7 +1077,7 @@ msgstr "Frekans (Hz)"
 msgid "GET"
 msgstr "GET"
 
-#: src/views/Edit/Sources/Network.js:560
+#: src/views/Edit/Sources/Network.js:595
 #: src/views/Edit/index.js:413
 #: src/views/Edit/index.js:425
 #: src/views/Playersite.js:350
@@ -981,15 +1098,19 @@ msgstr "Genel"
 
 #: src/views/Publication/Player.js:448
 msgid "Google Analytics ID"
-msgstr "Google Analytics Kimliği"
+msgstr "Google Analiz Kimliği"
 
 #: src/views/Publication/Player.js:458
 msgid "Google Analytics Tracker Name"
-msgstr "Google Analytics İzleyici Adı"
+msgstr "Google Analiz İzleyici Adı"
 
 #: src/views/Main/index.js:403
 msgid "HLS"
 msgstr "HLS"
+
+#: src/views/Edit/index.js:483
+#~ msgid "HLS Output"
+#~ msgstr "HLS Çıktısı"
 
 #: src/views/Edit/index.js:484
 msgid "HLS output"
@@ -1003,7 +1124,7 @@ msgstr "HLS sunucu"
 msgid "HLS statistic for the In-memory storage"
 msgstr "Bellek içi depolama için HLS istatistiği"
 
-#: src/views/Edit/Sources/Network.js:518
+#: src/views/Edit/Sources/Network.js:543
 msgid "HTTP and HTTPS"
 msgstr "HTTP ve HTTPS"
 
@@ -1048,6 +1169,10 @@ msgstr "Barındırılan Restreamer arayüzü"
 msgid "Human readable name on the service."
 msgstr "Hizmette insan tarafından okunabilir ad."
 
+#: src/views/Publication/Services/Bitmovin.js:89
+#~ msgid "IP address"
+#~ msgstr "IP adresi"
+
 #: src/views/Settings.js:2255
 msgid "If you changed the ports, it might be that Restreamer Core restarted already, but it is now available on a different port."
 msgstr "Bağlantı noktalarını değiştirdiyseniz, Restreamer Core zaten yeniden başlatılmış olabilir, ancak şimdi farklı bir bağlantı noktasında kullanılabilir."
@@ -1074,6 +1199,10 @@ msgid "In addition to the player, the Restreamer offers a complete landingpage, 
 msgstr "Oynatıcıya ek olarak Restreamer, canlı yayınınızı kolay ve hızlı bir şekilde sunmak için kullanabileceğiniz eksiksiz bir açılış sayfası sunar."
 
 #: src/misc/controls/HLS.js:67
+#~ msgid "In-Memory"
+#~ msgstr "Bellek İçi"
+
+#: src/misc/controls/HLS.js:67
 #: src/views/Settings.js:1693
 msgid "In-memory"
 msgstr "Bellek içi"
@@ -1087,7 +1216,15 @@ msgstr "Bellek içi depolama"
 msgid "Incompatible"
 msgstr "Uyumsuz"
 
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:181
+#~ msgid "Increasing the HLS segment length by 2-3 * keyframe interval is recommended (Processing & Control)."
+#~ msgstr "HLS segment uzunluğunun 2-3 * anahtar kare aralığı kadar artırılması önerilir (İşleme ve Kontrol)."
+
+#: src/misc/coders/settings/Audio.js:67
+#: src/misc/coders/settings/Audio.js:118
 #: src/misc/filters/audio/Pan.js:47
+#: src/misc/filters/audio/Resample.js:59
+#: src/misc/filters/audio/Resample.js:110
 #: src/misc/filters/audio/Volume.js:46
 msgid "Inherit"
 msgstr "Miras"
@@ -1194,8 +1331,16 @@ msgid "Live-Streaming to Facebook Live RTMP service"
 msgstr "Facebook Live RTMP hizmetine Canlı Yayın"
 
 #: src/views/Publication/Services/Instagram.js:19
+#~ msgid "Live-Streaming to Instagram Live RTMP Service. The stream key requires a service such as <0>Instafeed.me</0>  or  <1>Yellow Duck</1>."
+#~ msgstr "Instagram Live RTMP Hizmetine Canlı Akış. Akış anahtarı <0>Instafeed.me</0> veya <1>Yellow Duck</1> gibi bir hizmet gerektirir."
+
+#: src/views/Publication/Services/Instagram.js:19
 msgid "Live-Streaming to Instagram Live RTMP Service. The stream key requires a service such as <0>Instafeed.me</0> or <1>Yellow Duck</1>."
 msgstr "Instagram Live RTMP Hizmetine Canlı Akış. Akış anahtarı <0>Instafeed.me</0> veya <1>Yellow Duck</1> gibi bir hizmet gerektirir."
+
+#: src/views/Publication/Services/Instagram.js:17
+#~ msgid "Live-Streaming to Instagram Live RTMP Service. The stream key requires a service such as <0>Yellow Duck</0>."
+#~ msgstr "Instagram Live RTMP Hizmetine Canlı Akış. Akış anahtarı <0>Yellow Duck</0> gibi bir hizmet gerektirir."
 
 #: src/views/Publication/Services/MediaNetwork.js:15
 msgid "Live-Streaming to Media Network RTMP Service."
@@ -1211,7 +1356,7 @@ msgstr "Trovo Live RTMP Hizmetine Canlı Akış."
 
 #: src/views/Publication/Services/Twitch.js:17
 msgid "Live-Streaming to Twitch Live RTMP Service."
-msgstr "Twitch Live RTMP Hizmetine Canlı Yayın."
+msgstr "Twitch Canlı RTMP Hizmetine Canlı Yayın."
 
 #: src/views/Publication/Services/Vimeo.js:12
 msgid "Live-Streaming to Vimeo Live RTMP Service"
@@ -1223,7 +1368,7 @@ msgstr "dlive Canlı RTMP Hizmetine Canlı Akış."
 
 #: src/views/Publication/Services/Livespotting.js:94
 msgid "Livesource ID"
-msgstr "Yaşam Kaynağı Kimliği"
+msgstr "Canlı Kaynak Kimliği"
 
 #: src/views/Settings.js:2114
 msgid "Log level"
@@ -1240,7 +1385,19 @@ msgstr "Günlük kaydı"
 #: src/views/Login.js:406
 #: src/views/Publication/Services/Akamai.js:124
 msgid "Login"
-msgstr "Giriş"
+msgstr "Giriş yap"
+
+#: src/utils/restreamer.js:268
+#: src/utils/restreamer.js:273
+#: src/utils/restreamer.js:302
+#: src/utils/restreamer.js:307
+msgid "Login failed: Couldn't load API details"
+msgstr "Giriş başarısız oldu: API ayrıntıları yüklenemedi"
+
+#: src/utils/restreamer.js:259
+#: src/utils/restreamer.js:293
+msgid "Login failed: {0}"
+msgstr "Giriş başarısız oldu: {0}"
 
 #: src/views/Settings.js:1539
 msgid "Login/JWT authorization"
@@ -1275,21 +1432,37 @@ msgstr "Ana Kaynak"
 msgid "Main channel"
 msgstr "Ana kanal"
 
+#: src/views/Publication/Player.js:106
+msgid "Main channel not found"
+msgstr "Ana kanal bulunamadı"
+
+#: src/views/Edit/Wizard/index.js:200
+msgid "Main channel saved"
+msgstr "Ana kanal kaydedildi"
+
 #: src/views/Playersite.js:412
 msgid "Main page channel (index.html)."
 msgstr "Ana sayfa kanalı (index.html)."
 
 #: src/views/Publication/TabContent.js:49
 msgid "Maintainer:"
-msgstr "Bakımcı:"
+msgstr "Geliştirici:"
 
 #: src/misc/controls/RTMP.js:54
 msgid "Make the channel available as an RTMP stream (experimental)."
 msgstr "Kanalı bir RTMP akışı olarak kullanılabilir hale getirin (deneysel)."
 
+#: src/misc/controls/RTMP.js:49
+#~ msgid "Make the channel available as an RTMP stream."
+#~ msgstr "Kanalı bir RTMP akışı olarak kullanılabilir hale getirin."
+
 #: src/misc/controls/SRT.js:54
 msgid "Make the channel available as an SRT stream (experimental)."
 msgstr "Kanalı bir SRT akışı olarak kullanılabilir hale getirin (deneysel)."
+
+#: src/misc/controls/SRT.js:49
+#~ msgid "Make the channel available as an SRT stream."
+#~ msgstr "Kanalı bir SRT akışı olarak kullanılabilir hale getirin."
 
 #: src/misc/filters/video/Bwdif.js:83
 msgid "Marked frames"
@@ -1356,7 +1529,7 @@ msgstr "Bellek"
 
 #: src/views/Edit/index.js:415
 msgid "Meta information"
-msgstr "Meta bilgi"
+msgstr "Meta bilgisi"
 
 #: src/views/Edit/Wizard/Metadata.js:17
 #: src/views/Edit/index.js:560
@@ -1365,7 +1538,7 @@ msgstr "Metadata"
 
 #: src/views/Edit/Sources/VirtualVideo.js:158
 msgid "Mold"
-msgstr "Küf"
+msgstr "Kalıp"
 
 #: src/views/Publication/Services/Twitter.js:30
 msgid "More about Twitter's copyright <0>here</0>."
@@ -1386,8 +1559,16 @@ msgid "More about the service"
 msgstr "Hizmet hakkında daha fazla bilgi"
 
 #: src/views/Settings.js:1833
+#~ msgid "Must be larger than maximum file size in cache"
+#~ msgstr "Önbellekteki maksimum dosya boyutundan büyük olmalıdır"
+
+#: src/views/Settings.js:1833
 msgid "Must be larger than maximum file size in cache."
 msgstr "Önbellekteki maksimum dosya boyutundan daha büyük olmalıdır."
+
+#: src/views/Settings.js:1873
+#~ msgid "Must be smaller than maximum cache size"
+#~ msgstr "Maksimum önbellek boyutundan daha küçük olmalıdır"
 
 #: src/views/Settings.js:1873
 msgid "Must be smaller than maximum cache size."
@@ -1415,7 +1596,7 @@ msgstr "Sessiz sağ"
 #: src/views/Playersite.js:505
 #: src/views/Settings.js:1344
 msgid "Name"
-msgstr "İsim"
+msgstr "Adı"
 
 #: src/views/Playersite.js:510
 msgid "Name for the template. If the name already exists, it will be overwritten."
@@ -1426,7 +1607,7 @@ msgstr "Şablon için ad. İsim zaten mevcutsa, üzerine yazılacaktır."
 msgid "Network"
 msgstr "Ağ"
 
-#: src/views/Edit/Sources/Network.js:854
+#: src/views/Edit/Sources/Network.js:922
 #: src/views/Edit/Wizard/Sources/Network.js:123
 msgid "Network source"
 msgstr "Ağ kaynağı"
@@ -1451,12 +1632,26 @@ msgid "No"
 msgstr "Hayır"
 
 #: src/views/Edit/Sources/NoAudio.js:45
+#: src/views/Edit/Wizard/Audio.js:98
 msgid "No audio"
 msgstr "Ses yok"
+
+#: src/views/Edit/StreamSelect.js:62
+msgid "No audio stream available"
+msgstr "Ses akışı mevcut değil"
+
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:70
+#: src/views/Edit/Wizard/Sources/V4L.js:99
+msgid "No input device available"
+msgstr "Giriş cihazı mevcut değil"
 
 #: src/views/Edit/Wizard/Video.js:31
 msgid "No live stream was detected. Please check the software that sends the stream."
 msgstr "Canlı yayın algılanmadı. Lütfen akışı gönderen yazılımı kontrol edin."
+
+#: src/views/Edit/Summary.js:29
+msgid "No source selected"
+msgstr "Kaynak seçilmedi"
 
 #: src/views/Edit/SourceSelect.js:174
 msgid "No sources available"
@@ -1475,12 +1670,23 @@ msgstr "Uygun filtre bulunamadı."
 msgid "No video"
 msgstr "Video yok"
 
+#: src/views/Edit/StreamSelect.js:47
+msgid "No video stream available"
+msgstr "Video akışı yok"
+
 #: src/views/Settings.js:1337
 msgid "Node ID"
 msgstr "Düğüm Kimliği"
 
+#: src/views/Edit/Sources/VirtualAudio.js:90
+msgid "Noise"
+msgstr "Gürültü"
+
 #: src/misc/filters/video/Scale.js:45
+#: src/views/Edit/Sources/AVFoundation.js:145
+#: src/views/Edit/Summary.js:31
 #: src/views/Edit/Summary.js:107
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:98
 msgid "None"
 msgstr "Hiçbiri"
 
@@ -1536,7 +1742,7 @@ msgstr "Parola 10 ila 79 karakter uzunluğunda olmalıdır"
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "Passthrough (kopyalama) yalnızca gerekli olduğunda devre dışı bırakılmalıdır. Her kodlama ek CPU/GPU kaynakları gerektirir."
 
-#: src/views/Edit/Sources/Network.js:467
+#: src/views/Edit/Sources/Network.js:492
 #: src/views/Edit/Wizard/Sources/Network.js:97
 #: src/views/Login.js:282
 #: src/views/Publication/Services/Akamai.js:134
@@ -1556,7 +1762,7 @@ msgstr "Şifre"
 msgid "Password for authorization."
 msgstr "Yetkilendirme için şifre."
 
-#: src/views/Edit/Sources/Network.js:472
+#: src/views/Edit/Sources/Network.js:497
 #: src/views/Edit/Wizard/Sources/Network.js:103
 msgid "Password for the device."
 msgstr "Cihaz için şifre."
@@ -1591,10 +1797,14 @@ msgstr "Oyuncu"
 msgid "Player URL"
 msgstr "Oyuncu URL'si"
 
+#: src/views/Publication/Player.js:297
+msgid "Player settings saved"
+msgstr "Oynatıcı ayarları kaydedildi"
+
 #: src/Header.js:267
 #: src/views/Playersite.js:375
 msgid "Playersite"
-msgstr "Playersite"
+msgstr "Oynatıcı Sitesi"
 
 #: src/views/Publication/Services/DASH.js:348
 #: src/views/Publication/Services/HLS.js:288
@@ -1607,7 +1817,7 @@ msgstr "Oynatma listesi sürümü (M3U8). Sürüm 3 en iyi tarayıcı/istemci uy
 
 #: src/views/Main/index.js:358
 msgid "Please check the <0>process log</0>"
-msgstr "Lütfen <0>işlem günlüğünü</0> kontrol edin"
+msgstr "Lütfen <0>process log</0> kontrol edin"
 
 #: src/views/Publication/Services/Akamai.js:29
 #: src/views/Publication/Services/Azure.js:29
@@ -1684,16 +1894,16 @@ msgstr "Birincil akış anahtarı"
 #: src/views/Edit/Sources/ALSA.js:136
 #: src/views/Edit/Sources/AVFoundation.js:201
 #: src/views/Edit/Sources/Framebuffer.js:110
-#: src/views/Edit/Sources/Network.js:603
-#: src/views/Edit/Sources/Network.js:674
-#: src/views/Edit/Sources/Network.js:720
-#: src/views/Edit/Sources/Network.js:769
+#: src/views/Edit/Sources/Network.js:671
+#: src/views/Edit/Sources/Network.js:742
+#: src/views/Edit/Sources/Network.js:788
+#: src/views/Edit/Sources/Network.js:837
 #: src/views/Edit/Sources/Raspicam.js:116
 #: src/views/Edit/Sources/V4L.js:134
 #: src/views/Edit/Sources/VirtualAudio.js:169
 #: src/views/Edit/Sources/VirtualVideo.js:188
 msgid "Probe"
-msgstr "Sonda"
+msgstr "Prob"
 
 #: src/views/Edit/index.js:548
 #: src/views/Publication/Add.js:415
@@ -1705,6 +1915,11 @@ msgstr "İşlem"
 #: src/views/Publication/Edit.js:396
 msgid "Process control"
 msgstr "Süreç kontrolü"
+
+#: src/views/Main/index.js:472
+#: src/views/Publication/Edit.js:553
+#~ msgid "Process debug report"
+#~ msgstr "Süreç hata ayıklama raporu"
 
 #: src/views/Main/index.js:448
 #: src/views/Main/index.js:464
@@ -1734,7 +1949,7 @@ msgstr "İşleme ve Kontrol"
 msgid "Profile"
 msgstr "Profil"
 
-#: src/views/Edit/Sources/Network.js:637
+#: src/views/Edit/Sources/Network.js:705
 #: src/views/Publication/Services/Akamai.js:144
 #: src/views/Publication/Services/Akamai.js:182
 #: src/views/Publication/Services/Azure.js:89
@@ -1768,11 +1983,24 @@ msgstr "Protokoller"
 msgid "Public domain/s"
 msgstr "Kamu malı/ları"
 
+#: src/views/Publication/Edit.js:114
+#: src/views/Publication/Edit.js:124
+msgid "Publication service not found"
+msgstr "Yayın hizmeti bulunamadı"
+
+#: src/views/Playersite.js:319
+msgid "Publication website settings saved"
+msgstr "Yayın web sitesi ayarları kaydedildi"
+
 #: src/views/Main/Publication.js:163
 msgid "Publications"
 msgstr "Yayınlar"
 
-#: src/views/Edit/Sources/Network.js:826
+#: src/views/Edit/Sources/Network.js:895
+msgid "Pull Mode"
+msgstr "Çekme Modu"
+
+#: src/views/Edit/Sources/Network.js:894
 msgid "Pull or recieve the data:"
 msgstr "Verileri çekin veya alın:"
 
@@ -1783,11 +2011,19 @@ msgstr "Verileri çekin veya alın:"
 msgid "Quality"
 msgstr "Kalite"
 
+#: src/views/Edit/Sources/VirtualVideo.js:118
+msgid "RGB test pattern"
+msgstr "RGB test deseni"
+
 #: src/views/Main/index.js:412
 #: src/views/Settings.js:1239
 #: src/views/Settings.js:1920
 msgid "RTMP"
 msgstr "RTMP"
+
+#: src/views/Edit/index.js:498
+#~ msgid "RTMP Output"
+#~ msgstr "RTMP Çıkışı"
 
 #: src/views/Settings.js:1962
 msgid "RTMP Port"
@@ -1795,7 +2031,7 @@ msgstr "RTMP Bağlantı Noktası"
 
 #: src/views/Settings.js:1997
 msgid "RTMP app for publishing."
-msgstr "Yayınlama için RTMP uygulaması."
+msgstr "Yayınlamak için RTMP uygulaması."
 
 #: src/views/Edit/index.js:499
 msgid "RTMP output"
@@ -1806,7 +2042,7 @@ msgstr "RTMP çıkışı"
 msgid "RTMP server"
 msgstr "RTMP sunucusu"
 
-#: src/views/Edit/Sources/Network.js:693
+#: src/views/Edit/Sources/Network.js:761
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:50
 msgid "RTMP server is not enabled"
 msgstr "RTMP sunucusu etkin değil"
@@ -1831,7 +2067,7 @@ msgstr "RTMPS sunucusu"
 msgid "RTMPS server listen address."
 msgstr "RTMPS sunucusu dinleme adresi."
 
-#: src/views/Edit/Sources/Network.js:490
+#: src/views/Edit/Sources/Network.js:515
 msgid "RTSP"
 msgstr "RTSP"
 
@@ -1851,9 +2087,13 @@ msgstr "Oran kontrolü"
 msgid "Ratio"
 msgstr "Oran"
 
-#: src/views/Edit/Sources/Network.js:523
+#: src/views/Edit/Sources/Network.js:548
 msgid "Read input at native speed"
-msgstr "Girişi yerel hızda okuyun"
+msgstr "Girdiyi yerel hızda okuyun"
+
+#: src/views/Edit/Sources/Network.js:896
+msgid "Receive Mode"
+msgstr "Alma Modu"
 
 #: src/misc/ActionButton.js:32
 #: src/misc/ActionButton.js:53
@@ -1869,7 +2109,7 @@ msgstr "Yeniden bağlanma gecikmesi (saniye)"
 #: src/views/Publication/Process.js:68
 #: src/views/Publication/Process.js:81
 msgid "Reconnecting in {0}s"
-msgstr "{0}'larda yeniden bağlanma"
+msgstr "{0} sn içinde yeniden bağlanıyor"
 
 #: src/views/Settings.js:2246
 msgid "Reconnecting to Restreamer Core failed for the last {RETRIES} seconds."
@@ -1936,6 +2176,10 @@ msgstr "Yeniden Başlatma"
 msgid "Restarting Restreamer Core ..."
 msgstr "Restreamer Çekirdeği Yeniden Başlatılıyor ..."
 
+#: src/views/Settings.js:1108
+msgid "Restarting the application failed."
+msgstr "Uygulama yeniden başlatılamadı."
+
 #: src/views/Settings.js:1328
 msgid "Restreamer Service"
 msgstr "Restreamer Hizmeti"
@@ -1946,13 +2190,13 @@ msgstr "Restreamer talimatları"
 
 #: src/views/Main/index.js:273
 msgid "Retrieving stream data ..."
-msgstr "Akış verilerini alma ..."
+msgstr "Akış verileri alınıyor..."
 
 #: src/views/Edit/Wizard/Error.js:26
 #: src/views/Invalid.js:43
 #: src/views/Settings.js:1209
 msgid "Retry"
-msgstr "Yeniden Dene"
+msgstr "Yeniden dene"
 
 #: src/misc/filters/video/Transpose.js:46
 msgid "Rotate"
@@ -1968,6 +2212,10 @@ msgstr "Kural"
 msgid "SRT"
 msgstr "SRT"
 
+#: src/views/Edit/index.js:517
+#~ msgid "SRT Output"
+#~ msgstr "SRT Çıkışı"
+
 #: src/views/Edit/index.js:518
 msgid "SRT output"
 msgstr "SRT çıkışı"
@@ -1977,7 +2225,7 @@ msgstr "SRT çıkışı"
 msgid "SRT server"
 msgstr "SRT sunucusu"
 
-#: src/views/Edit/Sources/Network.js:742
+#: src/views/Edit/Sources/Network.js:810
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:50
 msgid "SRT server is not enabled"
 msgstr "SRT sunucu etkin değil"
@@ -1993,7 +2241,7 @@ msgstr "Yayınlama ve oynatma için SRT belirteci. Belirteç, streamid parametre
 #: src/misc/coders/settings/Audio.js:148
 #: src/misc/filters/audio/Resample.js:140
 msgid "Sampling"
-msgstr "Örnekleme"
+msgstr "Örnek"
 
 #: src/views/Edit/Wizard/License.js:43
 #: src/views/Edit/index.js:615
@@ -2008,7 +2256,11 @@ msgstr "Kaydet"
 #: src/misc/filters/video/Scale.js:43
 #: src/views/Edit/Sources/VirtualVideo.js:148
 msgid "Scale"
-msgstr "Ölçü"
+msgstr "Ölçekle"
+
+#: src/misc/filters/video/Scale.js:62
+#~ msgid "Scale by height"
+#~ msgstr "Yüksekliğe göre ölçeklendirin"
 
 #: src/misc/filters/video/Scale.js:99
 #: src/misc/filters/video/Scale.js:104
@@ -2026,15 +2278,19 @@ msgstr "Bir işlem yeniden başlatılana kadar geçen saniye."
 
 #: src/misc/controls/Process.js:74
 msgid "Seconds until a staled process is terminated."
-msgstr "Saklanan bir işlem sonlandırılana kadar geçen saniye."
+msgstr "Kararlı bir işlem sonlandırılıncaya kadar geçen saniye."
 
 #: src/misc/controls/Snapshot.js:56
 msgid "Seconds until the snapshot/thumbnail of the video source is updated."
-msgstr "Video kaynağının anlık görüntüsü/thumbnail'i güncellenene kadar geçen saniye."
+msgstr "Video kaynağının anlık görüntüsü/küçük resmi güncellenene kadar geçen saniye."
 
 #: src/views/Settings.js:1589
 msgid "Security"
 msgstr "Güvenlik"
+
+#: src/views/Publication/Services/Core.js:145
+#~ msgid "Security passphrase"
+#~ msgstr "Güvenlik kelimesi"
 
 #: src/views/Publication/Services/Livespotting.js:103
 msgid "Security token"
@@ -2046,7 +2302,7 @@ msgstr "Seekbar rengi"
 
 #: src/misc/controls/HLS.js:95
 msgid "Segment length (seconds)"
-msgstr "Segment uzunluğu (saniye)"
+msgstr "Bölüm uzunluğu (saniye)"
 
 #: src/misc/controls/HLS.js:100
 msgid "Segment will be cut on the following keyframe after this time has passed. 2 is recommended."
@@ -2055,7 +2311,7 @@ msgstr "Segment, bu süre geçtikten sonra bir sonraki ana karede kesilecektir. 
 #: src/views/Publication/Services/DASH.js:429
 #: src/views/Publication/Services/HLS.js:358
 msgid "Segmentation"
-msgstr "Segmentasyon"
+msgstr "Parçalara ayrılma"
 
 #: src/views/Publication/Add.js:437
 #: src/views/Publication/Edit.js:471
@@ -2076,6 +2332,10 @@ msgstr "Bir cihaz seçin:"
 #: src/views/Edit/Sources/VirtualAudio.js:84
 msgid "Select audio source:"
 msgstr "Ses kaynağını seçin:"
+
+#: src/views/Edit/Sources/VirtualVideo.js:114
+msgid "Select source ..."
+msgstr "Kaynak seçin..."
 
 #: src/views/Edit/Sources/VirtualVideo.js:108
 msgid "Select video source:"
@@ -2109,9 +2369,9 @@ msgstr "Seçim"
 msgid "Send anonymous metrics (helps us for future development)"
 msgstr "Anonim ölçümler gönderin (gelecekteki gelişim için bize yardımcı olur)"
 
-#: src/views/Edit/Sources/Network.js:664
-#: src/views/Edit/Sources/Network.js:710
-#: src/views/Edit/Sources/Network.js:759
+#: src/views/Edit/Sources/Network.js:732
+#: src/views/Edit/Sources/Network.js:778
+#: src/views/Edit/Sources/Network.js:827
 #: src/views/Edit/Wizard/Sources/InternalHLS.js:48
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:68
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:68
@@ -2179,6 +2439,10 @@ msgstr "Veri yolu için ayarlar. Erişim şu şekilde korunur"
 msgid "Settings for /memfs path."
 msgstr "Memfs yolu için ayarlar."
 
+#: src/views/Settings.js:1051
+msgid "Settings saved. All changes will be applied after restarting the application."
+msgstr "Ayarlar kaydedildi. Tüm değişiklikler uygulama yeniden başlatıldıktan sonra uygulanacaktır."
+
 #: src/views/Playersite.js:417
 msgid "Share button"
 msgstr "Paylaş düğmesi"
@@ -2191,6 +2455,18 @@ msgstr "Projeye bir referans gösterir."
 msgid "Sign up (free)"
 msgstr "Kaydolun (ücretsiz)"
 
+#: src/views/Edit/Sources/VirtualAudio.js:89
+msgid "Silence"
+msgstr "Sessizlik"
+
+#: src/views/Edit/Wizard/Audio.js:95
+msgid "Silence Audio"
+msgstr "Sesi Sustur"
+
+#: src/views/Edit/Sources/VirtualAudio.js:91
+msgid "Sine"
+msgstr "Sinüs"
+
 #: src/views/Playersite.js:381
 msgid "Sitename"
 msgstr "Site adı"
@@ -2202,13 +2478,13 @@ msgstr "Boyut"
 #: src/views/Edit/index.js:537
 #: src/views/Main/index.js:431
 msgid "Snapshot"
-msgstr "Anlık Görüntü"
+msgstr "Anlık görüntü"
 
 #: src/views/Login.js:316
 msgid "Social-login (OAuth2, 2FA)"
 msgstr "Sosyal giriş (OAuth2, 2FA)"
 
-#: src/views/Edit/Sources/Network.js:507
+#: src/views/Edit/Sources/Network.js:532
 msgid "Socket timeout (microseconds)"
 msgstr "Soket zaman aşımı (mikrosaniye)"
 
@@ -2253,6 +2529,8 @@ msgstr "Depolama"
 msgid "Stores the viewer statistics to the disk."
 msgstr "Görüntüleyici istatistiklerini diske kaydeder."
 
+#: src/views/Edit/StreamSelect.js:30
+#: src/views/Edit/StreamSelect.js:36
 #: src/views/Edit/StreamSelect.js:81
 #: src/views/Edit/Wizard/Audio.js:75
 msgid "Stream"
@@ -2289,17 +2567,21 @@ msgstr "Akış adı"
 
 #: src/views/Publication/Services/Akamai.js:167
 msgid "Stream names"
-msgstr "Akış isimleri"
+msgstr "Akış adları"
 
 #: src/misc/controls/Source.js:78
 msgid "Stream source for publication service (experimental)."
 msgstr "Yayın hizmeti için akış kaynağı (deneysel)."
 
+#: src/misc/controls/Source.js:78
+#~ msgid "Stream source for publication service."
+#~ msgstr "Yayın hizmeti için akış kaynağı."
+
 #: src/views/Playersite.js:441
 msgid "Support datarhei Restreamer"
 msgstr "Destek datarhei Restreamer"
 
-#: src/views/Edit/Sources/Network.js:433
+#: src/views/Edit/Sources/Network.js:458
 #: src/views/Edit/Wizard/Sources/Network.js:72
 msgid "Supports HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT and more."
 msgstr "HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT ve daha fazlasını destekler."
@@ -2327,6 +2609,14 @@ msgstr "Yayın web sitesini oluşturmak için kullanılacak şablon. Sil düğme
 msgid "Terms"
 msgstr "Şartlar"
 
+#: src/views/Edit/Sources/VirtualVideo.js:116
+msgid "Test pattern"
+msgstr "Test şablonu"
+
+#: src/views/Edit/Sources/VirtualVideo.js:117
+msgid "Test pattern (extended)"
+msgstr "Test şablonu (genişletilmiş)"
+
 #: src/views/Playersite.js:535
 msgid "Text colors"
 msgstr "Metin renkleri"
@@ -2347,7 +2637,7 @@ msgstr "Oluşturulan ses akışının genliği (0.0 - 1.0)"
 msgid "The application is using an older version of the settings."
 msgstr "Uygulama, ayarların eski bir sürümünü kullanıyor."
 
-#: src/views/Edit/Sources/Network.js:625
+#: src/views/Edit/Sources/Network.js:693
 msgid "The available FFmpeg binary doesn't support any of the required protocols."
 msgstr "Mevcut FFmpeg ikili dosyası gerekli protokollerin hiçbirini desteklemiyor."
 
@@ -2359,9 +2649,22 @@ msgstr "Ses akışının bit hızı."
 msgid "The carrier frequency"
 msgstr "Taşıyıcı frekansı"
 
+#: src/views/Edit/index.js:371
+msgid "The channel \"{0}\" could not be deleted"
+msgstr "\"{0}\" kanalı silinemedi"
+
+#: src/views/Edit/index.js:380
+msgid "The channel \"{0}\" has been deleted"
+msgstr "\"{0}\" kanalı silindi"
+
 #: src/views/Edit/index.js:659
 msgid "The deletion of this channel can not be recovered. All publications of this channel will be removed."
 msgstr "Bu kanalın silinmesi geri alınamaz. Bu kanalın tüm yayınları kaldırılacaktır."
+
+#: src/views/Edit/Wizard/index.js:176
+#: src/views/Edit/index.js:297
+msgid "The input profile is not complete. Please define a video and audio source."
+msgstr "Giriş profili tamamlanmadı. Lütfen bir video ve ses kaynağı tanımlayın."
 
 #: src/misc/coders/settings/Audio.js:86
 #: src/misc/filters/audio/Resample.js:78
@@ -2376,9 +2679,29 @@ msgstr "Çalma listesi segmentlerinin maksimum sayısı. 0 tüm segmentleri içe
 msgid "The noise color"
 msgstr "Gürültü rengi"
 
+#: src/misc/controls/License/index.js:60
+msgid "The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission."
+msgstr "Bir çalışmayı bu senetle ilişkilendiren kişi, yasaların izin verdiği ölçüde, tüm ilgili ve komşu haklar da dahil olmak üzere, telif hakkı yasası uyarınca dünya çapında çalışma üzerindeki tüm haklarından feragat ederek çalışmayı kamu malı haline getirmiştir. Çalışmayı, ticari amaçlarla bile olsa, izin almaksızın kopyalayabilir, değiştirebilir, dağıtabilir ve icra edebilirsiniz."
+
 #: src/views/Settings.js:1409
 msgid "The public reachable domain name of the host this Restreamer is running on. Separate multiple domain names by a comma."
 msgstr "Bu Restreamer'ın üzerinde çalıştığı ana bilgisayarın genel erişilebilir alan adı. Birden fazla alan adını virgülle ayırın."
+
+#: src/views/Publication/Edit.js:285
+msgid "The publication service \"{0}\" could not be deleted"
+msgstr "\"{0}\" yayın hizmeti silinemedi"
+
+#: src/views/Publication/Add.js:205
+msgid "The publication service \"{0}\" has been created"
+msgstr "\"{0}\" yayın hizmeti oluşturuldu"
+
+#: src/views/Publication/Edit.js:291
+msgid "The publication service \"{0}\" has been deleted"
+msgstr "\"{0}\" yayın hizmeti silindi"
+
+#: src/views/Publication/Add.js:203
+msgid "The publication service has been created"
+msgstr "Yayın hizmeti oluşturuldu"
 
 #: src/misc/coders/settings/Audio.js:137
 #: src/misc/filters/audio/Resample.js:129
@@ -2389,7 +2712,7 @@ msgstr "Ses akışının örnekleme hızı."
 #: src/views/Playersite.js:227
 #: src/views/Publication/Player.js:193
 msgid "The selected file is too big ({0} bytes). Only {1} bytes are allowed."
-msgstr "Seçilen dosya çok büyük ({0} bayt). Yalnızca {1} bayta izin verilir."
+msgstr "Seçilen dosya çok büyük ({0} bayt). Yalnızca {1} bayt'a izin verilir."
 
 #: src/views/Playersite.js:141
 #: src/views/Playersite.js:216
@@ -2397,13 +2720,17 @@ msgstr "Seçilen dosya çok büyük ({0} bayt). Yalnızca {1} bayta izin verilir
 msgid "The selected file type ({0}) is not allowed. Allowed file types are {types}"
 msgstr "Seçilen dosya türüne ({0}) izin verilmiyor. İzin verilen dosya türleri şunlardır {types}"
 
+#: src/views/Publication/Edit.js:245
+msgid "The settings for \"{0}\" have been saved"
+msgstr "\"{0}\" için ayarlar kaydedildi"
+
 #: src/views/Edit/Wizard/Audio.js:43
 msgid "The source doesn't provide any audio streams."
 msgstr "Kaynak herhangi bir ses akışı sağlamıyor."
 
 #: src/views/Edit/Profile.js:519
 msgid "The source doesn't provide any audio streams. Please check the <0>probe details</0>."
-msgstr "Kaynak herhangi bir ses akışı sağlamıyor. Lütfen <0>probe ayrıntılarını</0> kontrol edin."
+msgstr "Kaynak herhangi bir ses akışı sağlamıyor. Lütfen <0>inceleme ayrıntılarını</0> kontrol edin."
 
 #: src/views/Edit/Wizard/Audio.js:51
 msgid "The source doesn't provide any compatible audio streams."
@@ -2415,7 +2742,7 @@ msgstr "Kaynak herhangi bir uyumlu video akışı sağlamıyor. Lütfen <0>gerek
 
 #: src/views/Edit/Profile.js:370
 msgid "The source doesn't provide any video streams. Please check the <0>probe details</0>."
-msgstr "Kaynak herhangi bir video akışı sağlamıyor. Lütfen <0>probe ayrıntılarını</0> kontrol edin."
+msgstr "Kaynak herhangi bir video akışı sağlamıyor. Lütfen <0>inceleme ayrıntılarını</0> kontrol edin."
 
 #: src/views/Edit/Wizard/Video.js:42
 msgid "The source doesn't provide any video streams. Please check the device."
@@ -2433,6 +2760,10 @@ msgstr "Video kaynağı uyumludur. İstediğiniz çözünürlüğü seçin:"
 msgid "There are updates available. Here you get more information."
 msgstr "Mevcut güncellemeler var. Buradan daha fazla bilgi alabilirsiniz."
 
+#: src/views/Settings.js:1004
+msgid "There was a problem storing the settings. Settings not saved."
+msgstr "Ayarların kaydedilmesinde bir sorun oluştu. Ayarlar kaydedilmedi."
+
 #: src/views/Invalid.js:32
 msgid "There was an error connecting to Restreamer Core at {0}."
 msgstr "Restreamer Core'a {0} adresinden bağlanırken bir hata oluştu."
@@ -2446,6 +2777,10 @@ msgstr "Yükleme sırasında bir hata oluştu: {0}"
 #: src/views/Edit/Wizard/Error.js:21
 msgid "There was an error setting up the stream."
 msgstr "Akışın kurulumunda bir hata oluştu."
+
+#: src/views/Settings.js:1002
+msgid "There were some errors in the settings. Settings not saved."
+msgstr "Ayarlarda bazı hatalar vardı. Ayarlar kaydedilmedi."
 
 #: src/views/Login.js:257
 msgid "There's no login method available."
@@ -2463,7 +2798,31 @@ msgstr "Bu mutlaka bir hata değildir. Ancak, Restreamer Core'un yeniden başlat
 msgid "This is to mention the copyright regulations for the target of this service."
 msgstr "Bu, bu hizmetin hedefi için telif hakkı düzenlemelerinden bahsetmektir."
 
-#: src/views/Edit/Sources/Network.js:443
+#: src/misc/controls/License/index.js:95
+msgid "This license allows reusers to copy and distribute the material in any medium or format in unadapted form only, and only so long as attribution is given to the creator. The license allows for commercial use."
+msgstr "Bu lisans, yeniden kullanıcıların materyali herhangi bir ortamda veya formatta yalnızca uyarlanmamış biçimde ve yalnızca yaratıcısına atıfta bulunulduğu sürece kopyalamasına ve dağıtmasına izin verir. Lisans ticari kullanıma izin verir."
+
+#: src/misc/controls/License/index.js:102
+msgid "This license allows reusers to copy and distribute the material in any medium or format in unadapted form only, for noncommercial purposes only, and only so long as attribution is given to the creator."
+msgstr "Bu lisans, yeniden kullanıcıların materyali herhangi bir ortamda veya formatta uyarlanmamış biçimde, yalnızca ticari olmayan amaçlarla ve yalnızca yaratıcısına atıfta bulunulduğu sürece kopyalamasına ve dağıtmasına izin verir."
+
+#: src/misc/controls/License/index.js:81
+msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format for noncommercial purposes only, and only so long as attribution is given to the creator."
+msgstr "Bu lisans, yeniden kullanıcıların, yalnızca ticari olmayan amaçlarla ve yalnızca yaratıcıya atıfta bulunulduğu sürece, materyali herhangi bir ortamda veya formatta dağıtmasına, yeniden düzenlemesine, uyarlamasına ve üzerine inşa etmesine izin verir."
+
+#: src/misc/controls/License/index.js:88
+msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format for noncommercial purposes only, and only so long as attribution is given to the creator. If you remix, adapt, or build upon the material, you must license the modified material under identical terms."
+msgstr "Bu lisans, yeniden kullanıcıların materyali yalnızca ticari olmayan amaçlarla ve yalnızca oluşturucuya atıfta bulunulduğu sürece herhangi bir ortamda veya formatta dağıtmasına, yeniden düzenlemesine, uyarlamasına ve üzerine inşa etmesine izin verir. Materyali yeniden karıştırır, uyarlar veya üzerine inşa ederseniz, değiştirilmiş materyali aynı koşullar altında lisanslamanız gerekir."
+
+#: src/misc/controls/License/index.js:67
+msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use."
+msgstr "Bu lisans, yaratıcıya atıfta bulunulduğu sürece, yeniden kullanıcıların materyali herhangi bir ortam veya formatta dağıtmasına, remikslemesine, uyarlamasına ve üzerine inşa etmesine izin verir. Lisans ticari kullanıma izin verir."
+
+#: src/misc/controls/License/index.js:74
+msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms."
+msgstr "Bu lisans, yaratıcıya atıfta bulunulduğu sürece, yeniden kullanıcıların materyali herhangi bir ortam veya formatta dağıtmasına, remikslemesine, uyarlamasına ve üzerine inşa etmesine izin verir. Lisans ticari kullanıma izin verir. Materyali yeniden karıştırır, uyarlar veya üzerine inşa ederseniz, değiştirilmiş materyali aynı koşullar altında lisanslamanız gerekir."
+
+#: src/views/Edit/Sources/Network.js:468
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
 msgstr "Bu profil bilinmiyor ya da FFmpeg tarafından desteklenmiyor."
 
@@ -2495,7 +2854,7 @@ msgstr "Sistemi stabilize etmek için, ana kare aralığı için HLS segment uzu
 #: src/views/Settings.js:2002
 #: src/views/Settings.js:2051
 msgid "Token"
-msgstr "Jeton"
+msgstr "Token"
 
 #: src/misc/filters/video/Bwdif.js:59
 msgid "Top field"
@@ -2573,6 +2932,10 @@ msgstr "Ana kaynağı bir livespotting.com Ressource'a aktarın. Ayarlar hakkın
 msgid "Transmit the main source to the Akamai (MSL) Media Services Live. More details about the MSL Encoder settings can be found on <0>here</0>."
 msgstr "Ana kaynağı Akamai (MSL) Media Services Live'a iletin. MSL Kodlayıcı ayarları hakkında daha fazla ayrıntı <0>burada</0> bulunabilir."
 
+#: src/views/Publication/Services/Bitmovin.js:15
+#~ msgid "Transmit the main source to the Bitmovin cloud encoding service, a powerful tool for live streaming. More details about the settings can be founds <0>here</0>."
+#~ msgstr "Ana kaynağı, canlı akış için güçlü bir araç olan Bitmovin bulut kodlama hizmetine aktarın. Ayarlar hakkında daha fazla ayrıntı <0>burada</0> bulunabilir."
+
 #: src/views/Publication/Services/Restream.js:18
 msgid "Transmit the main source to the Restream RTMP Service. More details about the settings can be found <0>here</0>."
 msgstr "Ana kaynağı Restream RTMP Hizmetine iletin. Ayarlar hakkında daha fazla ayrıntı <0>burada</0> bulunabilir."
@@ -2584,6 +2947,10 @@ msgstr "LinkedIn'e aktarın. Daha fazla ayrıntı <0>burada</0> bulunabilir."
 #: src/views/Publication/Services/Azure.js:17
 msgid "Transmit to a Azure Media Services. More details can be found <0>here</0>."
 msgstr "Azure Media Services'a aktarın. Daha fazla ayrıntı <0>burada</0> bulunabilir."
+
+#: src/views/Publication/Services/Linkedin.js:16
+#~ msgid "Transmit to linkedIn. More details can be found <0>here</0>."
+#~ msgstr "linkedIn'e aktarın. Daha fazla ayrıntı <0>burada</0> bulunabilir."
 
 #: src/views/Publication/Services/Owncast.js:15
 msgid "Transmit your Livestream to an Owncast server. <0>Here </0>you can find more details about the settings."
@@ -2602,7 +2969,7 @@ msgstr "Video akışınızı, Twitter Producer'da oluşturulan gerekli anahtarla
 msgid "Tune"
 msgstr "Tune"
 
-#: src/views/Edit/Sources/Network.js:495
+#: src/views/Edit/Sources/Network.js:520
 #: src/views/Edit/Wizard/Sources/Network.js:77
 msgid "UDP transport"
 msgstr "UDP aktarımı"
@@ -2668,7 +3035,7 @@ msgstr "Telif hakkınızı kullanın ve doğru görsel lisansını seçin. İste
 msgid "User registration"
 msgstr "Kullanıcı kaydı"
 
-#: src/views/Edit/Sources/Network.js:455
+#: src/views/Edit/Sources/Network.js:480
 #: src/views/Edit/Wizard/Sources/Network.js:84
 #: src/views/Login.js:272
 #: src/views/Publication/Services/DASH.js:195
@@ -2687,7 +3054,7 @@ msgstr "Kullanıcı Adı"
 msgid "Username for authorization."
 msgstr "Yetkilendirme için kullanıcı adı."
 
-#: src/views/Edit/Sources/Network.js:460
+#: src/views/Edit/Sources/Network.js:485
 #: src/views/Edit/Wizard/Sources/Network.js:90
 msgid "Username for the device."
 msgstr "Cihaz için kullanıcı adı."
@@ -2696,9 +3063,13 @@ msgstr "Cihaz için kullanıcı adı."
 msgid "V4L2_M2M is experimental."
 msgstr "V4L2_M2M deneyseldir."
 
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:167
+#~ msgid "V4L2_M2M is unstable and experimental."
+#~ msgstr "V4L2_M2M kararsız ve deneyseldir."
+
 #: src/views/Publication/Services/Livespotting.js:88
 msgid "VPU ID"
-msgstr "VPU KIMLIĞI"
+msgstr "VPU Kimliği"
 
 #: src/misc/coders/settings/Video.js:340
 msgid "Variable frame rate (VFR)"
@@ -2759,7 +3130,7 @@ msgstr "32-bit işletim sistemine sahip Raspberry PI (3/4) için OpenMAX IL'yi �
 
 #: src/views/Welcome.js:27
 msgid "Welcome to Restreamer v2, the solution for fast and easy video publishing. Free for private and commercial use. Further help in the <0>docs</0>."
-msgstr "Hızlı ve kolay video yayınlama çözümü Restreamer v2'ye hoş geldiniz. Özel ve ticari kullanım için ücretsiz. Daha fazla yardım için <0>docs</0>."
+msgstr "Hızlı ve kolay video yayınlama çözümü Restreamer v2'ye hoş geldiniz. Özel ve ticari kullanım için ücretsiz. Daha fazla yardım için <0>belgelere</0>."
 
 #: src/misc/controls/HLS.js:74
 msgid "Where to store the HLS playlist and segments. In-Memory is recommended."
@@ -2772,6 +3143,10 @@ msgstr "Genişlik"
 #: src/views/Settings.js:1701
 msgid "Write protection"
 msgstr "Koruma yazın"
+
+#: src/views/Edit/Sources/VirtualVideo.js:119
+msgid "YUV test pattern"
+msgstr "YUV test deseni"
 
 #: src/views/Publication/Services/Instagram.js:127
 msgid "Yellow Duck"
@@ -2806,6 +3181,22 @@ msgstr "Akışınızın kodlanması gerekiyor, ancak uygun bir kodlayıcı mevcu
 msgid "Your stream needs to be encoded. Choose the desired encoder:"
 msgstr "Akışınızın kodlanması gerekir. İstediğiniz kodlayıcıyı seçin:"
 
+#: src/views/Edit/Sources/Network.js:646
+msgid "avoid_negative_ts"
+msgstr "avoid_negative_ts"
+
+#: src/views/Edit/Sources/VirtualAudio.js:114
+msgid "blue"
+msgstr "mavi"
+
+#: src/views/Edit/Sources/VirtualAudio.js:113
+msgid "brown"
+msgstr "kahverengi"
+
+#: src/views/Edit/Sources/Network.js:630
+msgid "copyts"
+msgstr "copyts"
+
 #: src/views/Publication/Player.js:369
 msgid "iframe code"
 msgstr "iframe kodu"
@@ -2816,118 +3207,26 @@ msgstr "iframe kodu"
 msgid "kbit/s"
 msgstr "kbit/s"
 
-#: src/misc/CopyButton.js:20
-#: src/misc/CopyButton.js:22
-#: src/misc/EncodingSelect.js:215
-#: src/misc/TextFieldCopy.js:33
-#: src/misc/TextFieldCopy.js:35
-#: src/misc/Textarea.js:46
-#: src/misc/Textarea.js:48
-#: src/misc/coders/Encoders/audio/Opus.js:65
-#: src/misc/coders/settings/Audio.js:25
-#: src/misc/coders/settings/Audio.js:67
-#: src/misc/coders/settings/Audio.js:71
-#: src/misc/coders/settings/Audio.js:118
-#: src/misc/coders/settings/Audio.js:122
-#: src/misc/coders/settings/Video.js:31
-#: src/misc/coders/settings/Video.js:70
-#: src/misc/coders/settings/Video.js:115
-#: src/misc/coders/settings/Video.js:181
-#: src/misc/coders/settings/Video.js:223
-#: src/misc/coders/settings/Video.js:266
-#: src/misc/coders/settings/Video.js:305
-#: src/misc/controls/License/index.js:60
-#: src/misc/controls/License/index.js:67
-#: src/misc/controls/License/index.js:74
-#: src/misc/controls/License/index.js:81
-#: src/misc/controls/License/index.js:88
-#: src/misc/controls/License/index.js:95
-#: src/misc/controls/License/index.js:102
-#: src/misc/filters/audio/Resample.js:59
-#: src/misc/filters/audio/Resample.js:63
-#: src/misc/filters/audio/Resample.js:110
-#: src/misc/filters/audio/Resample.js:114
-#: src/utils/restreamer.js:259
-#: src/utils/restreamer.js:268
-#: src/utils/restreamer.js:273
-#: src/utils/restreamer.js:293
-#: src/utils/restreamer.js:302
-#: src/utils/restreamer.js:307
-#: src/utils/restreamer.js:446
-#: src/views/Edit/Sources/ALSA.js:96
-#: src/views/Edit/Sources/ALSA.js:101
-#: src/views/Edit/Sources/AVFoundation.js:115
-#: src/views/Edit/Sources/AVFoundation.js:120
-#: src/views/Edit/Sources/AVFoundation.js:145
-#: src/views/Edit/Sources/AVFoundation.js:149
-#: src/views/Edit/Sources/AVFoundation.js:153
-#: src/views/Edit/Sources/Framebuffer.js:80
-#: src/views/Edit/Sources/Network.js:827
-#: src/views/Edit/Sources/Network.js:828
-#: src/views/Edit/Sources/Raspicam.js:87
-#: src/views/Edit/Sources/V4L.js:93
-#: src/views/Edit/Sources/V4L.js:99
-#: src/views/Edit/Sources/VirtualAudio.js:89
-#: src/views/Edit/Sources/VirtualAudio.js:90
-#: src/views/Edit/Sources/VirtualAudio.js:91
-#: src/views/Edit/Sources/VirtualAudio.js:111
 #: src/views/Edit/Sources/VirtualAudio.js:112
-#: src/views/Edit/Sources/VirtualAudio.js:113
-#: src/views/Edit/Sources/VirtualAudio.js:114
-#: src/views/Edit/Sources/VirtualAudio.js:115
+msgid "pink"
+msgstr "pembe"
+
+#: src/views/Edit/Sources/Network.js:635
+msgid "start_at_zero"
+msgstr "start_at_zero"
+
+#: src/views/Edit/Sources/Network.js:640
+msgid "use_wallclock_as_timestamps"
+msgstr "use_wallclock_as_timestamps"
+
 #: src/views/Edit/Sources/VirtualAudio.js:116
-#: src/views/Edit/Sources/VirtualVideo.js:114
-#: src/views/Edit/Sources/VirtualVideo.js:116
-#: src/views/Edit/Sources/VirtualVideo.js:117
-#: src/views/Edit/Sources/VirtualVideo.js:118
-#: src/views/Edit/Sources/VirtualVideo.js:119
-#: src/views/Edit/StreamSelect.js:30
-#: src/views/Edit/StreamSelect.js:36
-#: src/views/Edit/StreamSelect.js:47
-#: src/views/Edit/StreamSelect.js:53
-#: src/views/Edit/StreamSelect.js:62
-#: src/views/Edit/StreamSelect.js:68
-#: src/views/Edit/Summary.js:29
-#: src/views/Edit/Summary.js:31
-#: src/views/Edit/Wizard/Audio.js:72
-#: src/views/Edit/Wizard/Audio.js:84
-#: src/views/Edit/Wizard/Audio.js:95
-#: src/views/Edit/Wizard/Audio.js:98
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:70
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:76
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:98
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:105
-#: src/views/Edit/Wizard/Sources/V4L.js:99
-#: src/views/Edit/Wizard/index.js:176
-#: src/views/Edit/Wizard/index.js:200
-#: src/views/Edit/index.js:186
-#: src/views/Edit/index.js:297
-#: src/views/Edit/index.js:304
-#: src/views/Edit/index.js:311
-#: src/views/Edit/index.js:317
-#: src/views/Edit/index.js:323
-#: src/views/Edit/index.js:329
-#: src/views/Edit/index.js:346
-#: src/views/Edit/index.js:371
-#: src/views/Edit/index.js:380
-#: src/views/Playersite.js:303
-#: src/views/Playersite.js:310
-#: src/views/Playersite.js:319
-#: src/views/Publication/Add.js:197
-#: src/views/Publication/Add.js:203
-#: src/views/Publication/Add.js:205
-#: src/views/Publication/Edit.js:114
-#: src/views/Publication/Edit.js:124
-#: src/views/Publication/Edit.js:237
-#: src/views/Publication/Edit.js:245
-#: src/views/Publication/Edit.js:285
-#: src/views/Publication/Edit.js:291
-#: src/views/Publication/Player.js:106
-#: src/views/Publication/Player.js:297
-#: src/views/Settings.js:1000
-#: src/views/Settings.js:1002
-#: src/views/Settings.js:1004
-#: src/views/Settings.js:1051
-#: src/views/Settings.js:1108
-msgid "{0}"
-msgstr "{0}"
+msgid "velvet"
+msgstr "kadife"
+
+#: src/views/Edit/Sources/VirtualAudio.js:115
+msgid "violet"
+msgstr "menekşe"
+
+#: src/views/Edit/Sources/VirtualAudio.js:111
+msgid "white"
+msgstr "beyaz"
