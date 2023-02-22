@@ -67,6 +67,7 @@ const initSettings = (initialSettings) => {
 		forceFramerate: false,
 		framerate: 25,
 		userAgent: '',
+		http_proxy: '',
 		...settings.http,
 	};
 
@@ -76,6 +77,7 @@ const initSettings = (initialSettings) => {
 		copyts: false,
 		start_at_zero: false,
 		use_wallclock_as_timestamps: false,
+		avoid_negative_ts: 'auto',
 		...settings.general,
 	};
 
@@ -195,6 +197,10 @@ const createInputs = (settings, config, skills) => {
 		input.options.push('-use_wallclock_as_timestamps', '1');
 	}
 
+	if (ffmpeg_version === 5) {
+		input.options.push('-avoid_negative_ts', settings.general.avoid_negative_ts);
+	}
+
 	if (settings.mode === 'push') {
 		if (settings.push.type === 'hls') {
 			input.address = getLocalHLS(config);
@@ -243,6 +249,10 @@ const createInputs = (settings, config, skills) => {
 
 			if (settings.http.userAgent.length !== 0) {
 				input.options.push('-user_agent', settings.http.userAgent);
+			}
+
+			if (settings.http.http_proxy.length !== 0) {
+				input.options.push('-http_proxy', settings.http.http_proxy);
 			}
 		}
 	}
@@ -568,6 +578,16 @@ function Pull(props) {
 															onChange={props.onChange('http', 'userAgent')}
 														/>
 													</Grid>
+													<Grid item xs={12}>
+														<TextField
+															variant="outlined"
+															fullWidth
+															label="HTTP proxy"
+															value={settings.http.http_proxy}
+															onChange={props.onChange('http', 'http_proxy')}
+															placeholder="https://123.123.123.123:443"
+														/>
+													</Grid>
 												</React.Fragment>
 											)}
 											<Grid item xs={12}>
@@ -621,6 +641,22 @@ function Pull(props) {
 													checked={settings.general.use_wallclock_as_timestamps}
 													onChange={props.onChange('general', 'use_wallclock_as_timestamps')}
 												/>
+											</Grid>
+											<Grid item xs={12}>
+												<Select type="select" label={<Trans>avoid_negative_ts</Trans>} value={settings.general.avoid_negative_ts} onChange={props.onChange('general', 'avoid_negative_ts')}>
+													<MenuItem value="make_non_negative">
+														make_non_negative
+													</MenuItem>
+													<MenuItem value="make_zero">
+														make_zero
+													</MenuItem>
+													<MenuItem value="auto">
+														auto (default)
+													</MenuItem>
+													<MenuItem value="disabled">
+														disabled
+													</MenuItem>
+												</Select>
 											</Grid>
 										</Grid>
 									</AccordionDetails>

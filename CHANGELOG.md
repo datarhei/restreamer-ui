@@ -2,12 +2,15 @@
 
 ## v1.6.0 > x.x.x
 
--   Add copyts, start_at_zero and use_wallclock_as_timestamps option
+-   Add avoid_negative_ts input option
+-   Add http_proxy input option ([#513](https://github.com/datarhei/restreamer/issues/513))
+-   Add copyts, start_at_zero and use_wallclock_as_timestamps input options
 -   Add heuristic to find core address if UI is proxied
 -   Add Turkish translation (thanks to Ramazan Sancar) ([#22](https://github.com/datarhei/restreamer-ui/issues/22))
 -   Add Danish translation (Thanks to Filip Stadler and Info)
 -   Add Slovenian translation (thanks to Grega)
 -   Add Greek translation
+-   Mod updates npm dependencies
 -   Fix positioning of the deinterlacing filter ([#465](https://github.com/datarhei/restreamer/issues/465))
 
 ## v1.5.1 > v1.6.0
