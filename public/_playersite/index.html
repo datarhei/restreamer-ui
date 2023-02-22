@@ -698,10 +698,10 @@
 		var license = '{{channel_license}}';
 		var license_url = '';
 		var license_name = 'unknown';
-		if (license === 'CC0 4.0') {
+		if (license === 'CC0 1.0') {
 			license_name = 'CC0 1.0 Universal'
 			license_url = 'https://creativecommons.org/publicdomain/zero/1.0/';
-			license_image = 'https://creativecommons.org/publicdomain/zero/1.0/';
+			license_image = 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/pd.png';
 		} else if (license === 'CC BY 4.0') {
 			license_name = 'CC BY 4.0'
 			license_url = 'https://creativecommons.org/licenses/by/4.0/';
@@ -725,7 +725,7 @@
 		} else if (license === 'CC BY-NC-ND 4.0') {
 			license_name = 'CC BY-NC-ND 4.0';
 			license_url = 'https://creativecommons.org/licenses/by-nc-nd/4.0/';
-			license_image = 'https://creativecommons.org/licenses/by-nc-nd/4.0/';
+			license_image = 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-nd.png';
 		}
 		document.getElementById("license").setAttribute("href", license_url);
 		document.getElementById("license_image").src = license_image;
