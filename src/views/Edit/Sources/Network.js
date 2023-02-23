@@ -72,6 +72,11 @@ const initSettings = (initialSettings) => {
 	};
 
 	settings.general = {
+		analyzeduration: 5000000,
+		analyzeduration_rtmp: 3000000,
+		analyzeduration_http: 20000000,
+		probesize: 5000000,
+		max_probe_packets: 2500,
 		fflags: ['genpts'],
 		thread_queue_size: 512,
 		copyts: false,
@@ -179,35 +184,11 @@ const createInputs = (settings, config, skills) => {
 		options: [],
 	};
 
-	if (settings.general.fflags.length !== 0) {
-		input.options.push('-fflags', '+' + settings.general.fflags.join('+'));
-	}
-
-	input.options.push('-thread_queue_size', settings.general.thread_queue_size);
-
-	if (settings.general.copyts) {
-		input.options.push('-copyts');
-	}
-
-	if (settings.general.start_at_zero) {
-		input.options.push('-start_at_zero');
-	}
-
-	if (settings.general.use_wallclock_as_timestamps) {
-		input.options.push('-use_wallclock_as_timestamps', '1');
-	}
-
-	if (ffmpeg_version === 5) {
-		input.options.push('-avoid_negative_ts', settings.general.avoid_negative_ts);
-	}
-
 	if (settings.mode === 'push') {
 		if (settings.push.type === 'hls') {
 			input.address = getLocalHLS(config);
-			input.options.push('-analyzeduration', '20000000');
 		} else if (settings.push.type === 'rtmp') {
 			input.address = getLocalRTMP(config);
-			input.options.push('-analyzeduration', '3000000');
 		} else if (settings.push.type === 'srt') {
 			input.address = getLocalSRT(config);
 		} else {
@@ -217,7 +198,66 @@ const createInputs = (settings, config, skills) => {
 		input.address = settings.address;
 	}
 
+	// registrate protocol by address
 	const protocol = getProtocolClass(input.address);
+
+	// general settings (pull/push)
+	if (settings.general.fflags.length !== 0) {
+		input.options.push('-fflags', '+' + settings.general.fflags.join('+'));
+	}
+	input.options.push('-thread_queue_size', settings.general.thread_queue_size);
+	if (settings.general.probesize !== 5000000) {
+		input.options.push('-probesize', settings.general.probesize);
+	}
+	if (settings.general.max_probe_packets !== 2500) {
+		input.options.push('-max_probe_packets', settings.general.max_probe_packets);
+	}
+	if (settings.general.copyts) {
+		input.options.push('-copyts');
+	}
+	if (settings.general.start_at_zero) {
+		input.options.push('-start_at_zero');
+	}
+	if (settings.general.use_wallclock_as_timestamps) {
+		input.options.push('-use_wallclock_as_timestamps', '1');
+	}
+	if (ffmpeg_version === 5 && settings.general.avoid_negative_ts !== 'auto') {
+		input.options.push('-avoid_negative_ts', settings.general.avoid_negative_ts);
+	}
+
+	// general settings > analyzeduration by protocol
+	//
+	// old settings:
+	// analyzeduration: 20s for http and 3s for rtmp streams
+	if (settings.mode === 'push') {
+		if (settings.push.type === 'hls') {
+			if (settings.general.analyzeduration_http !== 5000000) {
+				input.options.push('-analyzeduration', settings.general.analyzeduration_http);
+			}
+		} else if (settings.push.type === 'rtmp') {
+			if (settings.general.analyzeduration_rtmp !== 5000000) {
+				input.options.push('-analyzeduration', settings.general.analyzeduration_rtmp);
+			}
+		} else if (settings.push.type === 'srt') {
+			if (settings.general.analyzeduration !== 5000000) {
+				input.options.push('-analyzeduration', settings.general.analyzeduration);
+			}
+		}
+	} else {
+		if (protocol === 'http') {
+			if (settings.general.analyzeduration_http !== 5000000) {
+				input.options.push('-analyzeduration', settings.general.analyzeduration_http);
+			}
+		} else if (protocol === 'rtmp') {
+			if (settings.general.analyzeduration_rtmp !== 5000000) {
+				input.options.push('-analyzeduration', settings.general.analyzeduration_rtmp);
+			}
+		} else {
+			if (settings.general.analyzeduration !== 5000000) {
+				input.options.push('-analyzeduration', settings.general.analyzeduration);
+			}
+		}
+	}
 
 	if (settings.mode === 'pull') {
 		input.address = addUsernamePassword(input.address, settings.username, settings.password);
@@ -234,11 +274,7 @@ const createInputs = (settings, config, skills) => {
 			} else {
 				input.options.push('-rtsp_transport', 'tcp');
 			}
-		} else if (protocol === 'rtmp') {
-			input.options.push('-analyzeduration', '3000000');
 		} else if (protocol === 'http') {
-			input.options.push('-analyzeduration', '20000000');
-
 			if (settings.http.readNative === true) {
 				input.options.push('-re');
 			}
@@ -430,10 +466,239 @@ const isValidURL = (address) => {
 	return true;
 };
 
+function AdvancedSettings(props) {
+	const settings = props.settings;
+	const protocolClass = getProtocolClass(settings.address);
+
+	return (
+		<Grid item xs={12}>
+			<Accordion className="accordion">
+				<AccordionSummary elevation={0} expandIcon={<ArrowDropDownIcon />}>
+					<Typography>
+						<Trans>Advanced settings</Trans>
+					</Typography>
+				</AccordionSummary>
+				<AccordionDetails>
+					<Grid container spacing={2}>
+						{protocolClass === 'rtsp' && (
+							<React.Fragment>
+								<Grid item xs={12}>
+									<Typography variant="h3">
+										<Trans>RTSP</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<Checkbox label={<Trans>UDP transport</Trans>} checked={settings.rtsp.udp} onChange={props.onChange('rtsp', 'udp')} />
+								</Grid>
+								<Grid item xs={12}>
+									<TextField
+										variant="outlined"
+										type="number"
+										min="0"
+										step="1"
+										fullWidth
+										label={<Trans>Socket timeout (microseconds)</Trans>}
+										value={settings.rtsp.stimeout}
+										onChange={props.onChange('rtsp', 'stimeout')}
+									/>
+								</Grid>
+							</React.Fragment>
+						)}
+						{protocolClass === 'http' && (
+							<React.Fragment>
+								<Grid item xs={12}>
+									<Typography variant="h3">
+										<Trans>HTTP and HTTPS</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<Checkbox
+										label={<Trans>Read input at native speed</Trans>}
+										checked={settings.http.readNative}
+										onChange={props.onChange('http', 'readNative')}
+									/>
+									<Checkbox
+										label={<Trans>Force input framerate</Trans>}
+										checked={settings.http.forceFramerate}
+										onChange={props.onChange('http', 'forceFramerate')}
+									/>
+								</Grid>
+								{settings.http.forceFramerate === true && (
+									<Grid item xs={12}>
+										<TextField
+											variant="outlined"
+											type="number"
+											min="0"
+											step="1"
+											fullWidth
+											label={<Trans>Framerate</Trans>}
+											value={settings.http.framerate}
+											onChange={props.onChange('http', 'framerate')}
+										/>
+									</Grid>
+								)}
+								<Grid item xs={12}>
+									<TextField
+										variant="outlined"
+										fullWidth
+										label="User-Agent"
+										value={settings.http.userAgent}
+										onChange={props.onChange('http', 'userAgent')}
+									/>
+								</Grid>
+								<Grid item xs={12}>
+									<TextField
+										variant="outlined"
+										fullWidth
+										label="HTTP proxy"
+										value={settings.http.http_proxy}
+										onChange={props.onChange('http', 'http_proxy')}
+										placeholder="https://123.123.123.123:443"
+									/>
+								</Grid>
+							</React.Fragment>
+						)}
+						<Grid item xs={12}>
+							<Typography variant="h3">
+								<Trans>General</Trans>
+							</Typography>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								type="number"
+								min="0"
+								step="1"
+								fullWidth
+								label="thread_queue_size"
+								value={settings.general.thread_queue_size}
+								onChange={props.onChange('general', 'thread_queue_size')}
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								type="number"
+								min="32"
+								step="1"
+								fullWidth
+								label="probesize (bytes)"
+								value={settings.general.probesize}
+								onChange={props.onChange('general', 'probesize')}
+							/>
+							<Typography variant="caption">
+								<Trans>Mininum 32, default 5000000</Trans>
+							</Typography>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								type="number"
+								min="1"
+								step="1"
+								fullWidth
+								label="max_probe_packets"
+								value={settings.general.max_probe_packets}
+								onChange={props.onChange('general', 'max_probe_packets')}
+							/>
+							<Typography variant="caption">
+								<Trans>Default 2500</Trans>
+							</Typography>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								type="number"
+								min="1"
+								step="1"
+								fullWidth
+								label="analyzeduration (microseconds)"
+								value={
+									settings.mode === 'push'
+										? settings.push.type === 'hls'
+											? settings.general.analyzeduration_http
+											: settings.push.type === 'rtmp'
+											? settings.general.analyzeduration_rtmp
+											: settings.general.analyzeduration
+										: protocolClass === 'http'
+										? settings.general.analyzeduration_http
+										: protocolClass === 'rtmp'
+										? settings.general.analyzeduration_rtmp
+										: settings.general.analyzeduration
+								}
+								onChange={props.onChange(
+									'general',
+									settings.mode === 'push'
+										? settings.push.type === 'hls'
+											? 'analyzeduration_http'
+											: settings.push.type === 'rtmp'
+											? 'analyzeduration_rtmp'
+											: 'analyzeduration'
+										: protocolClass === 'http'
+										? 'analyzeduration_http'
+										: protocolClass === 'rtmp'
+										? 'analyzeduration_rtmp'
+										: 'analyzeduration'
+								)}
+							/>
+							<Typography variant="caption">
+								<Trans>Default 5000000 (5 seconds)</Trans>
+							</Typography>
+						</Grid>
+						<Grid item xs={12}>
+							<MultiSelect
+								type="select"
+								label="flags"
+								value={settings.general.fflags}
+								onChange={props.onChange('general', 'fflags')}
+							>
+								<MultiSelectOption value="discardcorrupt" name="discardcorrupt" />
+								<MultiSelectOption value="fastseek" name="fastseek" />
+								<MultiSelectOption value="genpts" name="genpts" />
+								<MultiSelectOption value="igndts" name="igndts" />
+								<MultiSelectOption value="ignidx" name="ignidx" />
+								<MultiSelectOption value="nobuffer" name="nobuffer" />
+								<MultiSelectOption value="nofillin" name="nofillin" />
+								<MultiSelectOption value="noparse" name="noparse" />
+								<MultiSelectOption value="sortdts" name="sortdts" />
+							</MultiSelect>
+						</Grid>
+						<Grid item xs={12}>
+							<Checkbox label={<Trans>copyts</Trans>} checked={settings.general.copyts} onChange={props.onChange('general', 'copyts')} />
+							<Checkbox
+								label={<Trans>start_at_zero</Trans>}
+								checked={settings.general.start_at_zero}
+								onChange={props.onChange('general', 'start_at_zero')}
+							/>
+							<Checkbox
+								label={<Trans>use_wallclock_as_timestamps</Trans>}
+								checked={settings.general.use_wallclock_as_timestamps}
+								onChange={props.onChange('general', 'use_wallclock_as_timestamps')}
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<Select
+								type="select"
+								label={<Trans>avoid_negative_ts</Trans>}
+								value={settings.general.avoid_negative_ts}
+								onChange={props.onChange('general', 'avoid_negative_ts')}
+							>
+								<MenuItem value="make_non_negative">make_non_negative</MenuItem>
+								<MenuItem value="make_zero">make_zero</MenuItem>
+								<MenuItem value="auto">auto (default)</MenuItem>
+								<MenuItem value="disabled">disabled</MenuItem>
+							</Select>
+						</Grid>
+					</Grid>
+				</AccordionDetails>
+			</Accordion>
+		</Grid>
+	);
+}
+
 function Pull(props) {
 	const classes = useStyles();
 	const settings = props.settings;
-	const protocolClass = getProtocolClass(settings.address);
 	const authProtocol = isAuthProtocol(settings.address);
 	const validURL = isValidURL(settings.address);
 	const supportedProtocol = isSupportedProtocol(settings.address, props.skills.protocols.input);
@@ -499,169 +764,7 @@ function Pull(props) {
 									</Grid>
 								</React.Fragment>
 							)}
-							<Grid item xs={12}>
-								<Accordion className="accordion">
-									<AccordionSummary elevation={0} expandIcon={<ArrowDropDownIcon />}>
-										<Typography>
-											<Trans>Advanced settings</Trans>
-										</Typography>
-									</AccordionSummary>
-									<AccordionDetails>
-										<Grid container spacing={2}>
-											{protocolClass === 'rtsp' && (
-												<React.Fragment>
-													<Grid item xs={12}>
-														<Typography variant="h3">
-															<Trans>RTSP</Trans>
-														</Typography>
-													</Grid>
-													<Grid item xs={12}>
-														<Checkbox
-															label={<Trans>UDP transport</Trans>}
-															checked={settings.rtsp.udp}
-															onChange={props.onChange('rtsp', 'udp')}
-														/>
-													</Grid>
-													<Grid item xs={12}>
-														<TextField
-															variant="outlined"
-															type="number"
-															min="0"
-															step="1"
-															fullWidth
-															label={<Trans>Socket timeout (microseconds)</Trans>}
-															value={settings.rtsp.stimeout}
-															onChange={props.onChange('rtsp', 'stimeout')}
-														/>
-													</Grid>
-												</React.Fragment>
-											)}
-											{protocolClass === 'http' && (
-												<React.Fragment>
-													<Grid item xs={12}>
-														<Typography variant="h3">
-															<Trans>HTTP and HTTPS</Trans>
-														</Typography>
-													</Grid>
-													<Grid item xs={12}>
-														<Checkbox
-															label={<Trans>Read input at native speed</Trans>}
-															checked={settings.http.readNative}
-															onChange={props.onChange('http', 'readNative')}
-														/>
-														<Checkbox
-															label={<Trans>Force input framerate</Trans>}
-															checked={settings.http.forceFramerate}
-															onChange={props.onChange('http', 'forceFramerate')}
-														/>
-													</Grid>
-													{settings.http.forceFramerate === true && (
-														<Grid item xs={12}>
-															<TextField
-																variant="outlined"
-																type="number"
-																min="0"
-																step="1"
-																fullWidth
-																label={<Trans>Framerate</Trans>}
-																value={settings.http.framerate}
-																onChange={props.onChange('http', 'framerate')}
-															/>
-														</Grid>
-													)}
-													<Grid item xs={12}>
-														<TextField
-															variant="outlined"
-															fullWidth
-															label="User-Agent"
-															value={settings.http.userAgent}
-															onChange={props.onChange('http', 'userAgent')}
-														/>
-													</Grid>
-													<Grid item xs={12}>
-														<TextField
-															variant="outlined"
-															fullWidth
-															label="HTTP proxy"
-															value={settings.http.http_proxy}
-															onChange={props.onChange('http', 'http_proxy')}
-															placeholder="https://123.123.123.123:443"
-														/>
-													</Grid>
-												</React.Fragment>
-											)}
-											<Grid item xs={12}>
-												<Typography variant="h3">
-													<Trans>General</Trans>
-												</Typography>
-											</Grid>
-											<Grid item xs={12}>
-												<TextField
-													variant="outlined"
-													type="number"
-													min="0"
-													step="1"
-													fullWidth
-													label="thread_queue_size"
-													value={settings.general.thread_queue_size}
-													onChange={props.onChange('general', 'thread_queue_size')}
-												/>
-											</Grid>
-											<Grid item xs={12}>
-												<MultiSelect
-													type="select"
-													label="flags"
-													value={settings.general.fflags}
-													onChange={props.onChange('general', 'fflags')}
-												>
-													<MultiSelectOption value="discardcorrupt" name="discardcorrupt" />
-													<MultiSelectOption value="fastseek" name="fastseek" />
-													<MultiSelectOption value="genpts" name="genpts" />
-													<MultiSelectOption value="igndts" name="igndts" />
-													<MultiSelectOption value="ignidx" name="ignidx" />
-													<MultiSelectOption value="nobuffer" name="nobuffer" />
-													<MultiSelectOption value="nofillin" name="nofillin" />
-													<MultiSelectOption value="noparse" name="noparse" />
-													<MultiSelectOption value="sortdts" name="sortdts" />
-												</MultiSelect>
-											</Grid>
-											<Grid item xs={12}>
-												<Checkbox
-													label={<Trans>copyts</Trans>}
-													checked={settings.general.copyts}
-													onChange={props.onChange('general', 'copyts')}
-												/>
-												<Checkbox
-													label={<Trans>start_at_zero</Trans>}
-													checked={settings.general.start_at_zero}
-													onChange={props.onChange('general', 'start_at_zero')}
-												/>
-												<Checkbox
-													label={<Trans>use_wallclock_as_timestamps</Trans>}
-													checked={settings.general.use_wallclock_as_timestamps}
-													onChange={props.onChange('general', 'use_wallclock_as_timestamps')}
-												/>
-											</Grid>
-											<Grid item xs={12}>
-												<Select type="select" label={<Trans>avoid_negative_ts</Trans>} value={settings.general.avoid_negative_ts} onChange={props.onChange('general', 'avoid_negative_ts')}>
-													<MenuItem value="make_non_negative">
-														make_non_negative
-													</MenuItem>
-													<MenuItem value="make_zero">
-														make_zero
-													</MenuItem>
-													<MenuItem value="auto">
-														auto (default)
-													</MenuItem>
-													<MenuItem value="disabled">
-														disabled
-													</MenuItem>
-												</Select>
-											</Grid>
-										</Grid>
-									</AccordionDetails>
-								</Accordion>
-							</Grid>
+							<AdvancedSettings {...props}></AdvancedSettings>
 						</React.Fragment>
 					)}
 				</React.Fragment>
@@ -737,6 +840,7 @@ function PushHLS(props) {
 					<Textarea rows={1} value={HLS} readOnly allowCopy />
 				</BoxTextarea>
 			</Grid>
+			<AdvancedSettings {...props} />
 			<Grid item xs={12}>
 				<FormInlineButton onClick={props.onProbe}>
 					<Trans>Probe</Trans>
@@ -783,6 +887,7 @@ function PushRTMP(props) {
 						<Textarea rows={1} value={RTMP} readOnly allowCopy />
 					</BoxTextarea>
 				</Grid>
+				<AdvancedSettings {...props} />
 				<Grid item xs={12}>
 					<FormInlineButton onClick={props.onProbe}>
 						<Trans>Probe</Trans>
@@ -832,6 +937,7 @@ function PushSRT(props) {
 						<Textarea rows={1} value={SRT} readOnly allowCopy />
 					</BoxTextarea>
 				</Grid>
+				<AdvancedSettings {...props} />
 				<Grid item xs={12}>
 					<FormInlineButton onClick={props.onProbe}>
 						<Trans>Probe</Trans>

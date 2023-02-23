@@ -2,6 +2,7 @@
 
 ## v1.6.0 > x.x.x
 
+-   Add analyzeduration, probesize and max_probe_packets input options
 -   Add avoid_negative_ts input option
 -   Add http_proxy input option ([#513](https://github.com/datarhei/restreamer/issues/513))
 -   Add copyts, start_at_zero and use_wallclock_as_timestamps input options
@@ -10,6 +11,7 @@
 -   Add Danish translation (Thanks to Filip Stadler and Info)
 -   Add Slovenian translation (thanks to Grega)
 -   Add Greek translation
+-   Mod allows general input settings for pull and push streams
 -   Mod updates npm dependencies
 -   Fix Creative Commons icons
 -   Fix positioning of the deinterlacing filter ([#465](https://github.com/datarhei/restreamer/issues/465))
