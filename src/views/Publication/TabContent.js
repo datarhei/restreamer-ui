@@ -47,7 +47,7 @@ export default function TabContent(props) {
 			<Grid item xs={12}>
 				<Typography>
 					<Trans>Maintainer:</Trans>{' '}
-					<Link color="secondary" target="_blank" href={props.service.author.creator.link}>
+					<Link color="secondary" target="_blank" href={props.service.author.maintainer.link}>
 						{props.service.author.maintainer.name}
 					</Link>
 				</Typography>

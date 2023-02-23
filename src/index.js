@@ -10,6 +10,9 @@ import theme from './theme';
 import RestreamerUI from './RestreamerUI';
 
 let address = window.location.protocol + '//' + window.location.host;
+if (window.location.pathname.endsWith('/ui/')) {
+	address += window.location.pathname.replace(/ui\/$/, '');
+}
 
 const urlParams = new URLSearchParams(window.location.search.substring(1));
 if (urlParams.has('address') === true) {

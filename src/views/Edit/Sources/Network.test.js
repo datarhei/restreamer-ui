@@ -84,10 +84,20 @@ const pullmatrix = {
 			forceFramerate: true,
 			framerate: 25,
 			userAgent: 'foobaz/1',
+			http_proxy: '',
 		},
 		general: {
+			analyzeduration: 5000000,
+			analyzeduration_rtmp: 3000000,
+			analyzeduration_http: 20000000,
+			probesize: 5000000,
+			max_probe_packets: 2500,
 			fflags: ['genpts'],
 			thread_queue_size: 512,
+			copyts: false,
+			start_at_zero: false,
+			use_wallclock_as_timestamps: false,
+			avoid_negative_ts: 'auto',
 		},
 	},
 	tests: [],
@@ -109,7 +119,7 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg4,
 		input: {
 			address: 'rtmp://admin:foobar@127.0.0.1/live/stream',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', '3000000'],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000],
 		},
 	},
 	{
@@ -118,7 +128,7 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg4,
 		input: {
 			address: 'http://admin:foobar@127.0.0.1/live/stream.m3u8',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', '20000000', '-re', '-r', 25, '-user_agent', 'foobaz/1'],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 20000000, '-re', '-r', 25, '-user_agent', 'foobaz/1'],
 		},
 	},
 	{
@@ -145,7 +155,7 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg5,
 		input: {
 			address: 'rtmp://admin:foobar@127.0.0.1/live/stream',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', '3000000'],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000],
 		},
 	},
 	{
@@ -154,7 +164,7 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg5,
 		input: {
 			address: 'http://admin:foobar@127.0.0.1/live/stream.m3u8',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', '20000000', '-re', '-r', 25, '-user_agent', 'foobaz/1'],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 20000000, '-re', '-r', 25, '-user_agent', 'foobaz/1'],
 		},
 	},
 	{
@@ -276,7 +286,7 @@ pushmatrix.tests = [
 		config: $config,
 		input: {
 			address: 'rtmp://localhost/live/external.stream?token=foobar',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', '3000000'],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000],
 		},
 	},
 	{
@@ -296,7 +306,7 @@ pushmatrix.tests = [
 		config: $config,
 		input: {
 			address: 'rtmp://localhost/live/external.stream?token=foobar',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', '3000000'],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000],
 		},
 	},
 	{
