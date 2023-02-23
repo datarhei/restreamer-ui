@@ -1,6 +1,6 @@
 # Restreamer-UI
 
-## v1.6.0 > x.x.x
+## v1.6.0 > v1.7.0
 
 -   Add analyzeduration, probesize and max_probe_packets input options
 -   Add avoid_negative_ts input option
