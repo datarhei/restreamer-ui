@@ -1,5 +1,9 @@
 # Restreamer-UI
 
+## v1.7.0 > v1.x.x
+
+-   Fix internal player skin (volume bar)
+
 ## v1.6.0 > v1.7.0
 
 -   Add analyzeduration, probesize and max_probe_packets input options
