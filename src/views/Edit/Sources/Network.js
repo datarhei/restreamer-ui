@@ -587,7 +587,9 @@ function AdvancedSettings(props) {
 								onChange={props.onChange('general', 'probesize')}
 							/>
 							<Typography variant="caption">
-								<Trans>Mininum 32, default 5000000</Trans>
+								<Trans>
+									Mininum {32}, default {5000000}
+								</Trans>
 							</Typography>
 						</Grid>
 						<Grid item xs={12}>
@@ -602,7 +604,7 @@ function AdvancedSettings(props) {
 								onChange={props.onChange('general', 'max_probe_packets')}
 							/>
 							<Typography variant="caption">
-								<Trans>Default 2500</Trans>
+								<Trans>Default {2500}</Trans>
 							</Typography>
 						</Grid>
 						<Grid item xs={12}>
@@ -642,16 +644,13 @@ function AdvancedSettings(props) {
 								)}
 							/>
 							<Typography variant="caption">
-								<Trans>Default 5000000 (5 seconds)</Trans>
+								<Trans>
+									Default {5000000} ({5} seconds)
+								</Trans>
 							</Typography>
 						</Grid>
 						<Grid item xs={12}>
-							<MultiSelect
-								type="select"
-								label="flags"
-								value={settings.general.fflags}
-								onChange={props.onChange('general', 'fflags')}
-							>
+							<MultiSelect type="select" label="flags" value={settings.general.fflags} onChange={props.onChange('general', 'fflags')}>
 								<MultiSelectOption value="discardcorrupt" name="discardcorrupt" />
 								<MultiSelectOption value="fastseek" name="fastseek" />
 								<MultiSelectOption value="genpts" name="genpts" />
