@@ -3,6 +3,7 @@
 ## v1.7.0 > v1.x.x
 
 -   Fix internal player skin (volume bar)
+-   Fix help buttons for other languages than English and German ([#24](https://github.com/datarhei/restreamer-ui/issues/24))
 
 ## v1.6.0 > v1.7.0
 

@@ -209,7 +209,7 @@ function getTopicURL(topic, locale) {
 	if (!(locale in topics[topic])) {
 		// If locale doesn't exist, return default locale (en) URL
 		// This requires that "en" exists for all topics.
-		return topic[topic].en;
+		return topics[topic].en;
 	}
 
 	return topics[topic][locale];
