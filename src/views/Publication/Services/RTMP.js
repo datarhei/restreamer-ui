@@ -151,7 +151,7 @@ function Service(props) {
 									fullWidth
 									type="text"
 									label="rtmp_app"
-									value={settings.rtmp_app}
+									value={settings.options.rtmp_app}
 									onChange={handleChange('rtmp_app')}
 								/>
 							</Grid>
@@ -161,7 +161,7 @@ function Service(props) {
 									fullWidth
 									type="text"
 									label="rtmp_playpath"
-									value={settings.rtmp_playpath}
+									value={settings.options.rtmp_playpath}
 									onChange={handleChange('rtmp_playpath')}
 								/>
 							</Grid>
@@ -171,7 +171,7 @@ function Service(props) {
 									fullWidth
 									type="text"
 									label="rtmp_pageurl"
-									value={settings.rtmp_pageurl}
+									value={settings.options.rtmp_pageurl}
 									onChange={handleChange('rtmp_pageurl')}
 								/>
 							</Grid>
@@ -181,7 +181,7 @@ function Service(props) {
 									fullWidth
 									type="text"
 									label="rtmp_tcurl"
-									value={settings.rtmp_tcurl}
+									value={settings.options.rtmp_tcurl}
 									onChange={handleChange('rtmp_tcurl')}
 								/>
 							</Grid>
@@ -191,7 +191,7 @@ function Service(props) {
 									fullWidth
 									type="text"
 									label="rtmp_conn"
-									value={settings.rtmp_conn}
+									value={settings.options.rtmp_conn}
 									onChange={handleChange('rtmp_conn')}
 								/>
 							</Grid>
@@ -201,7 +201,7 @@ function Service(props) {
 									fullWidth
 									type="text"
 									label="rtmp_flashver"
-									value={settings.rtmp_flashver}
+									value={settings.options.rtmp_flashver}
 									onChange={handleChange('rtmp_flashver')}
 								/>
 							</Grid>
@@ -212,7 +212,7 @@ function Service(props) {
 										fullWidth
 										type="number"
 										label="rtmp_flush_interval"
-										value={settings.rtmp_flush_interval}
+										value={settings.options.rtmp_flush_interval}
 										onChange={handleChange('rtmp_flush_interval')}
 									/>
 								</Grid>
@@ -228,7 +228,7 @@ function Service(props) {
 									fullWidth
 									type="text"
 									label="rtmp_swfhash"
-									value={settings.rtmp_swfhash}
+									value={settings.options.rtmp_swfhash}
 									onChange={handleChange('rtmp_swfhash')}
 								/>
 							</Grid>
@@ -238,7 +238,7 @@ function Service(props) {
 									fullWidth
 									type="number"
 									label="rtmp_swfsize"
-									value={settings.rtmp_swfsize}
+									value={settings.options.rtmp_swfsize}
 									onChange={handleChange('rtmp_swfsize')}
 								/>
 							</Grid>
