@@ -82,11 +82,21 @@ function Service(props) {
 	const settings = init(props.settings);
 
 	const handleChange = (what) => (event) => {
-		const value = event.target.value;
+		let value = event.target.value;
 
 		if (what in settings.options) {
 			settings.options[what] = value;
 		} else {
+			if (what === 'address') {
+				const matches = value.match(/(rtmp.):\/\//);
+				if (matches !== null) {
+					if (props.skills.protocols.includes(matches[1])) {
+						settings['protocol'] = matches[0];
+						value = value.replace(matches[0], '');
+					}
+				}
+			}
+
 			settings[what] = value;
 		}
 
@@ -130,6 +140,15 @@ function Service(props) {
 			</Grid>
 			<Grid item xs={12} md={9}>
 				<TextField variant="outlined" fullWidth type="url" label={<Trans>Address</Trans>} value={settings.address} onChange={handleChange('address')} />
+			</Grid>
+			<Grid item xs={12}>
+				<TextField
+					variant="outlined"
+					fullWidth
+					label={<Trans>Stream Key</Trans>}
+					value={settings.options.rtmp_playpath}
+					onChange={handleChange('rtmp_playpath')}
+				/>
 			</Grid>
 			<Grid item xs={12}>
 				<Accordion className="accordion">
