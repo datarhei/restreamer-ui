@@ -438,11 +438,11 @@
 								</div>
 								<div class="col-xs-12 channel-list-inside">
 									{{#each channels}}
-									<a class="channel-list-link" href="/playersite_{{this.channelid}}.html" target="_self">
+									<a class="channel-list-link" href="playersite_{{this.channelid}}.html" target="_self">
 										<div class="row channel-list-l1 {{#ifEquals @root.channel_id this.channelid}}channel-list-selected{{/ifEquals}}">
 											<div class="col-xs-12 middle-xs channel-list-l2">
 												<span id="channel_list_badge_{{this.channelid}}_1" class="channel-list-badge">LIVE</span>
-												<img src="/memfs/{{this.channelid}}.jpg" class="channel-list-image">
+												<img src="memfs/{{this.channelid}}.jpg" class="channel-list-image">
 												<div class="row">
 													<div class="channel-list-description">
 														{{this.name}}
@@ -498,11 +498,11 @@
 				</div>
 				<div class="col-xs-12 col-sm-12">
 					{{#each channels}}
-					<a class="channel-list-link" href="/playersite_{{this.channelid}}.html" target="_self">
+					<a class="channel-list-link" href="playersite_{{this.channelid}}.html" target="_self">
 						<div class="row channel-list-l1 {{#ifEquals @root.channel_id this.channelid}}channel-list-selected{{/ifEquals}}">
 							<div class="col-xs-12 middle-xs channel-list-l2">
 								<span id="channel_list_badge_{{this.channelid}}_2" class="channel-list-badge">LIVE</span>
-								<img src="/memfs/{{this.channelid}}.jpg" class="channel-list-image">
+								<img src="memfs/{{this.channelid}}.jpg" class="channel-list-image">
 								<div class="row">
 									<div class="channel-list-description">
 										{{this.name}}

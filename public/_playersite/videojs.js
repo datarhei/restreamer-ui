@@ -7,7 +7,7 @@ var config = {
 	responsive: true,
 	fluid: true,
 	// Needed to append the url orgin in order for the source to properly pass to the cast device
-	sources: [{ src: window.location.origin + '/' + playerConfig.source, type: 'application/x-mpegURL' }],
+	sources: [{ src: playerConfig.source, type: 'application/x-mpegURL' }],
 	plugins: {
 		license: playerConfig.license,
 	},
