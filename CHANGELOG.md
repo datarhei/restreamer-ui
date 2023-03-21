@@ -1,12 +1,12 @@
 # Restreamer-UI
 
 ## v1.7.0 > v1.x.x
-
 -   Add Add stream key field and protocol detection to RTMP publication service
 -   Fix proxy error on the playersite ([#525](https://github.com/datarhei/restreamer/issues/525))
 -   Fix saving RTMP advanced options ([#518](https://github.com/datarhei/restreamer/issues/518))
 -   Fix help buttons for other languages than English and German ([#24](https://github.com/datarhei/restreamer-ui/issues/24))
 -   Fix internal player skin (volume bar)
+-   Fix security hints (npm dep.)
 
 ## v1.6.0 > v1.7.0
 
