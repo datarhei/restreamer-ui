@@ -2,6 +2,7 @@
 
 ## v1.7.0 > v1.x.x
 -   Add Add stream key field and protocol detection to RTMP publication service
+-   Fix imprint, terms and credit without share ([#525](https://github.com/datarhei/restreamer/issues/529))
 -   Fix proxy error on the playersite ([#525](https://github.com/datarhei/restreamer/issues/525))
 -   Fix saving RTMP advanced options ([#518](https://github.com/datarhei/restreamer/issues/518))
 -   Fix help buttons for other languages than English and German ([#24](https://github.com/datarhei/restreamer-ui/issues/24))

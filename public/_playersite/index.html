@@ -619,6 +619,7 @@
 	{{/if}}{{/if}}
 
 	<script>
+		{{#if share}}
 		var modal_share = document.getElementById("modal-share");
 		var btn_share = document.getElementById("btn-share");
 		var close_share = document.getElementById("close-share");
@@ -628,6 +629,7 @@
 		close_share.onclick = function() {
 			modal_share.style.display = "none";
 		}
+		{{/if}}
 		{{#if imprint_html}}
 		var modal_imprint = document.getElementById("modal-imprint");
 		var btn_imprint = document.getElementById("btn-imprint");
@@ -664,7 +666,9 @@
 		var close = document.getElementsByClassName("close")[0];
 
 		close.onclick = function() {
+			{{#if share}}
 			modal_share.style.display = "none";
+			{{/if}}
 			{{#if imprint_html}}
 			modal_imprint.style.display = "none";
 			{{/if}}
@@ -676,20 +680,29 @@
 			{{/if}}{{/if}}
 		}
 		window.onclick = function(event) {
-			if (event.target == modal_share) {
-				modal_share.style.display = "none";
-			{{#if imprint_html}}
-			} else if (event.target == modal_imprint) {
-				modal_imprint.style.display = "none";
-			{{/if}}
-			{{#if terms_html}}
-			} else if (event.target == modal_terms) {
-				modal_terms.style.display = "none";
-			{{/if}}
-			{{#if channel_creator_name}}{{#if channel_creator_description_html}}
-			} else if (event.target == modal_creator) {
-				modal_creator.style.display = "none";
-			{{/if}}{{/if}}
+			switch(event.target) {
+				{{#if share}}
+				case modal_share:
+					modal_share.style.display = "none";
+				  	break;
+				{{/if}}
+				{{#if imprint_html}}
+				case modal_imprint:
+					modal_imprint.style.display = "none";
+					break;
+				{{/if}}
+				{{#if terms_html}}
+				case modal_terms:
+					modal_terms.style.display = "none";
+					break;
+				{{/if}}
+				{{#if channel_creator_name}}{{#if channel_creator_description_html}}
+				case modal_creator:
+					modal_creator.style.display = "none";
+					break;
+				{{/if}}{{/if}}
+				default:
+					break;
 			}
 		}
 	</script>
