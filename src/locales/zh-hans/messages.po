@@ -5,7 +5,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: Restreamer\n"
-"Language: sl\n"
+"Language: zh-Hans\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
@@ -15,32 +15,32 @@ msgstr ""
 
 #: src/views/Publication/Services/Core.js:192
 msgid "1. Switch to the interface of the target Restreamer."
-msgstr "1. Preklopite na vmesnik ciljnega predvajalnika."
+msgstr "1. 切换到目标 Restreamer 的界面。"
 
 #: src/views/Publication/Services/Core.js:194
 msgid "2. Create a new channel and select RTMP or SRT server."
-msgstr "2. Ustvarite nov kanal in izberite strežnik RTMP ali SRT."
+msgstr "2. 创建一个新的频道并选择 RTMP 或 SRT 服务。"
 
 #: src/views/Publication/Services/Core.js:196
 msgid "3. Copy the URL and paste it in the \"Target address\" field."
-msgstr "3. Kopirajte URL in ga prilepite v polje \"Ciljni naslov\"."
+msgstr "3. 复制 URL 并粘贴在 \"目标地址\" 字段。"
 
 #: src/misc/controls/HLS.js:81
 msgid "6 (+ guaranteed to start with a Key frame)"
-msgstr "6 (+ zajamčen začetek z okvirjem ključa)"
+msgstr "6 (+ 保证以关键帧开始)"
 
 #: src/misc/controls/HLS.js:84
 msgid "7 (+ fragmented MP4 format)"
-msgstr "7 (+ razdrobljen format MP4)"
+msgstr "7 (+ fragmented MP4 格式)"
 
 #: src/misc/EncodingSelect.js:237
 msgid "<0>Compatibility list</0>"
-msgstr "<0>Seznam združljivosti</0>"
+msgstr "<0>兼容性列表</0>"
 
 #: src/views/Edit/Profile.js:393
 #: src/views/Edit/Profile.js:542
 msgid "<0>Show probe details</0>"
-msgstr "<0>Podrobnosti preizkusa</0>"
+msgstr "<0>显示媒体信息头详情</0>"
 
 #: src/views/Edit/Sources/ALSA.js:156
 msgid "ALSA"
@@ -48,7 +48,7 @@ msgstr "ALSA"
 
 #: src/views/Settings.js:1000
 msgid "API endpoint not found. Settings not saved."
-msgstr "Končna točka API ni bila najdena. Nastavitve niso shranjene."
+msgstr "未找到 API endpoint。设置没有保存。"
 
 #: src/views/Edit/Sources/AVFoundation.js:221
 msgid "AVFoundation"
@@ -66,32 +66,32 @@ msgstr "AVFoundation"
 #: src/views/Settings.js:2278
 #: src/views/Settings.js:2300
 msgid "Abort"
-msgstr "Prekliči"
+msgstr "取消"
 
 #: src/Header.js:283
 #: src/Header.js:324
 msgid "About"
-msgstr "O"
+msgstr "关于"
 
 #: src/misc/ChannelList.js:369
 msgid "Add"
-msgstr "Dodaj"
+msgstr "添加"
 
 #: src/views/Publication/Add.js:331
 msgid "Add Publication"
-msgstr "Dodaj objavo"
+msgstr "添加串流输出"
 
 #: src/views/Playersite.js:708
 msgid "Add external widgets and styles to the publication site. You can find some examples on the help page."
-msgstr "Dodajanje zunanjih gradnikov in slogov na spletno mesto objave. Nekaj primerov najdete na strani s pomočjo."
+msgstr "将外部小部件和样式添加到站点。您可以在帮助页面上找到一些示例。"
 
 #: src/misc/ChannelList.js:353
 msgid "Add new channel"
-msgstr "Dodajanje novega kanala"
+msgstr "添加新频道"
 
 #: src/views/Publication/Add.js:334
 msgid "Add: {0}"
-msgstr "Dodaj: {0}"
+msgstr "添加：{0}"
 
 #: src/views/Edit/Sources/Network.js:716
 #: src/views/Edit/Wizard/Sources/Network.js:66
@@ -112,27 +112,27 @@ msgstr "Dodaj: {0}"
 #: src/views/Publication/Services/WOWZA.js:132
 #: src/views/Settings.js:1396
 msgid "Address"
-msgstr "Naslov"
+msgstr "地址"
 
 #: src/views/Playersite.js:645
 msgid "Address for the background image."
-msgstr "Povezava do slike za ozadje."
+msgstr "背景图片的地址。"
 
 #: src/views/Settings.js:1426
 msgid "Address to listen on for HTTP requests."
-msgstr "Naslov za sprejem HTTP zahtev."
+msgstr "HTTP请求监听的地址。"
 
 #: src/views/Settings.js:1440
 msgid "Address to listen on for HTTPS requests."
-msgstr "Naslov za sprejem HTTPS zahtev."
+msgstr "HTTPS请求监听地址。"
 
 #: src/views/Playersite.js:530
 msgid "Adjust publication site colors and background as you like."
-msgstr "Barve in ozadje mesta za objavo prilagodite po želji."
+msgstr "根据喜好调整发布站点的颜色和背景。"
 
 #: src/views/Login.js:322
 msgid "Advanced monitoring"
-msgstr "Napredno spremljanje"
+msgstr "高级监控"
 
 #: src/views/Edit/Sources/Network.js:478
 #: src/views/Publication/Services/DASH.js:204
@@ -145,11 +145,11 @@ msgstr "Napredno spremljanje"
 #: src/views/Publication/Services/SRT.js:170
 #: src/views/Publication/Services/UDP.js:133
 msgid "Advanced settings"
-msgstr "Napredne nastavitve"
+msgstr "高级设置"
 
 #: src/views/Edit/Wizard/Source.js:38
 msgid "Advanced setup"
-msgstr "Napredna nastavitev"
+msgstr "高级设置"
 
 #: src/views/Playersite.js:433
 #: src/views/Publication/Player.js:478
@@ -158,35 +158,35 @@ msgstr "AirPlay"
 
 #: src/views/Login.js:325
 msgid "Alerting by email"
-msgstr "Opozarjanje po e-pošti"
+msgstr "邮件通知"
 
 #: src/views/Publication/Add.js:354
 msgid "All"
-msgstr "Vse"
+msgstr "全部"
 
 #: src/misc/filters/video/Bwdif.js:80
 msgid "All frames"
-msgstr "Vsi okvirji"
+msgstr "所有帧"
 
 #: src/views/Settings.js:1257
 msgid "All important system settings."
-msgstr "Vse pomembne sistemske nastavitve."
+msgstr "所有重要的系统设置。"
 
 #: src/views/Settings.js:1594
 msgid "Allow all referrer"
-msgstr "Dovolite vse napotitelje"
+msgstr "允许所有来源"
 
 #: src/views/Settings.js:1634
 msgid "Allow counting how many viewers the stream has."
-msgstr "Omogoča štetje, koliko gledalcev ima tok."
+msgstr "允许统计媒体流播放量。"
 
 #: src/views/Edit/Sources/VirtualAudio.js:126
 msgid "Amplitude"
-msgstr "Zvočna amplituda"
+msgstr "幅度"
 
 #: src/misc/Env.js:41
 msgid "An environment variable sets this value."
-msgstr "To vrednost določa spremenljivka okolja."
+msgstr "设置该值的环境变量。"
 
 #: src/views/Settings.js:1989
 msgid "App"
@@ -196,76 +196,76 @@ msgstr "App"
 #: src/views/Publication/Services/Red5.js:126
 #: src/views/Publication/Services/WOWZA.js:148
 msgid "Application"
-msgstr "Aplikacija"
+msgstr "Application"
 
 #: src/views/Edit/Wizard/Abort.js:33
 msgid "Are you sure you want to abort the wizard?"
-msgstr "Ali ste prepričani, da želite prekiniti čarovnika?"
+msgstr "确定要终止向导吗？"
 
 #: src/views/Publication/Add.js:474
 msgid "Audio"
-msgstr "Zvok"
+msgstr "音频"
 
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:111
 msgid "Audio Device"
-msgstr "Zvočna naprava"
+msgstr "音频设备"
 
 #: src/views/Edit/Sources/ALSA.js:114
 #: src/views/Edit/Sources/AVFoundation.js:159
 msgid "Audio device"
-msgstr "Zvočna naprava"
+msgstr "音频设备"
 
 #: src/views/Edit/Wizard/Audio.js:72
 #: src/views/Edit/Wizard/Audio.js:84
 msgid "Audio from device"
-msgstr "Zvok iz naprave"
+msgstr "来自设备的音频"
 
 #: src/views/Edit/Profile.js:447
 #: src/views/Edit/ProfileSummary.js:90
 #: src/views/Publication/Edit.js:506
 msgid "Audio settings"
-msgstr "Nastavitve zvoka"
+msgstr "音频设置"
 
 #: src/views/Edit/Wizard/Audio.js:25
 msgid "Audio setup"
-msgstr "Nastavitev zvoka"
+msgstr "音频设置"
 
 #: src/views/Login.js:236
 msgid "Auth0"
-msgstr "Preverjanje pristnosti (Auth0)"
+msgstr "Auth0"
 
 #: src/views/Login.js:365
 msgid "Auth0 Tenant"
-msgstr "Auth0 Najemnik"
+msgstr "Auth0 Tenant"
 
 #: src/views/Login.js:356
 msgid "Auth0 is currently not available because this interface is loaded from an insecure origin."
-msgstr "Auth0 trenutno ni na voljo, ker je ta vmesnik naložen iz nezanesljivega izvora."
+msgstr "Auth0 当前不可用，因为此接口是从不安全的来源加载的。"
 
 #: src/misc/controls/Metadata.js:71
 msgid "Author"
-msgstr "Avtor"
+msgstr "作者"
 
 #: src/views/Settings.js:1236
 #: src/views/Settings.js:1529
 msgid "Authorization"
-msgstr "Avtorizacija"
+msgstr "权限"
 
 #: src/misc/filters/video/Bwdif.js:65
 msgid "Auto"
-msgstr "Samodejno"
+msgstr "自动"
 
 #: src/misc/controls/HLS.js:123
 msgid "Automatic cleanup of all media data"
-msgstr "Samodejno čiščenje vseh medijskih podatkov"
+msgstr "自动清理所有媒体数据"
 
 #: src/views/Publication/Player.js:475
 msgid "Autoplay"
-msgstr "Samodejno predvajanje"
+msgstr "自动播放"
 
 #: src/views/Playersite.js:461
 msgid "Available"
-msgstr "Na voljo"
+msgstr "可用的"
 
 #: src/views/Edit/Profile.js:583
 #: src/views/Edit/Wizard/Abort.js:25
@@ -276,150 +276,150 @@ msgstr "Na voljo"
 #: src/views/Edit/Wizard/VideoProfile.js:67
 #: src/views/Publication/Add.js:498
 msgid "Back"
-msgstr "Nazaj"
+msgstr "返回"
 
 #: src/views/Playersite.js:579
 msgid "Background colors"
-msgstr "Barve ozadja"
+msgstr "背景颜色"
 
 #: src/views/Playersite.js:632
 msgid "Background image"
-msgstr "Slika v ozadju"
+msgstr "背景图"
 
 #: src/views/Publication/Services/Akamai.js:196
 msgid "Backup URL"
-msgstr "Nadomesten URL"
+msgstr "备份地址"
 
 #: src/views/Publication/Services/DaCast.js:182
 msgid "Backup server"
-msgstr "Varnostni strežnik"
+msgstr "备用线路"
 
 #: src/views/Publication/Services/Youtube.js:182
 msgid "Backup stream"
-msgstr "Nadomesten vir"
+msgstr "备份媒体流"
 
 #: src/views/Publication/Services/Facebook.js:124
 msgid "Backup stream key"
-msgstr "Ključ varnostnega toka"
+msgstr "备用线路的 key"
 
 #: src/Footer.js:256
 #: src/Footer.js:269
 msgid "Bandwidth"
-msgstr "Pasovna širina"
+msgstr "带宽"
 
 #: src/views/Settings.js:1485
 msgid "Bandwidth control"
-msgstr "Pretočna kontrola"
+msgstr "带宽限制"
 
 #: src/misc/modals/Process.js:81
 msgid "Banner"
-msgstr "Baner"
+msgstr "横幅"
 
 #: src/views/Login.js:241
 #: src/views/Settings.js:1534
 msgid "Basic"
-msgstr "Osnovni"
+msgstr "常规"
 
 #: src/views/Edit/Sources/VirtualAudio.js:157
 msgid "Beep factor"
-msgstr "Dejavnik piskanja"
+msgstr "蜂鸣系数"
 
 #: src/misc/coders/settings/Audio.js:50
 #: src/misc/coders/settings/Video.js:51
 msgid "Bitrate"
-msgstr "Bitrate"
+msgstr "比特率"
 
 #: src/views/Settings.js:1903
 msgid "Block cache types"
-msgstr "Vrste blokovnega predpomnilnika"
+msgstr "禁止缓存的文件类型"
 
 #: src/misc/filters/video/Bwdif.js:62
 msgid "Bottom field"
-msgstr "Spodnje polje"
+msgstr "底部区域"
 
 #: src/views/Edit/Wizard/Metadata.js:24
 #: src/views/Edit/index.js:565
 msgid "Briefly describe what the audience will see during the live stream."
-msgstr "Na kratko opišite, kaj bodo gledalci videli med prenosom v živo."
+msgstr "简要描述观众将在直播中看到的内容。"
 
 #: src/views/Publication/Player.js:390
 msgid "Button color"
-msgstr "Barva gumba"
+msgstr "按钮颜色"
 
 #: src/misc/filters/video/Scale.js:51
 msgid "By height"
-msgstr "Po višini"
+msgstr "按高度"
 
 #: src/misc/filters/video/Scale.js:54
 msgid "By width"
-msgstr "Po širini"
+msgstr "按宽度"
 
 #: src/views/Settings.js:1805
 msgid "Cache for files on /data."
-msgstr "Predpomnilnik za datoteke na /data."
+msgstr "缓存 /data 路径下的文件。"
 
 #: src/views/Settings.js:1847
 msgid "Cache time (Seconds)"
-msgstr "Čas predpomnilnika (sekunde)"
+msgstr "缓存时间（秒）"
 
 #: src/views/Settings.js:1888
 msgid "Cache types"
-msgstr "Vrste predpomnilnika"
+msgstr "缓存类型"
 
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:200
 msgid "Capture buffer"
-msgstr "Buffer za zajemanje"
+msgstr "捕获缓冲区"
 
 #: src/views/Edit/Sources/AVFoundation.js:197
 msgid "Capture clicks"
-msgstr "Zajem klikov"
+msgstr "捕获点击"
 
 #: src/views/Edit/Sources/AVFoundation.js:194
 msgid "Capture cursor"
-msgstr "Kazalec za zajemanje"
+msgstr "捕获指针"
 
 #: src/views/Edit/index.js:346
 msgid "Channel \"{0}\" saved"
-msgstr "Kanal \"{0}\" shranjen"
+msgstr "已保存频道 \"{0}\""
 
 #: src/views/Edit/Sources/ALSA.js:129
 msgid "Channels"
-msgstr "Kanali"
+msgstr "频道"
 
 #: src/views/Settings.js:1266
 msgid "Check for updates"
-msgstr "Preveri za posodobitve"
+msgstr "检查更新"
 
 #: src/views/Publication/Add.js:284
 msgid "Check the requirements"
-msgstr "Preveri zahteve"
+msgstr "检查"
 
 #: src/views/Edit/StreamSelect.js:53
 msgid "Choose a video stream"
-msgstr "Izberi video vir"
+msgstr "选择一个视频流"
 
 #: src/views/Edit/StreamSelect.js:68
 msgid "Choose an audio stream"
-msgstr "Izberi zvočni vir"
+msgstr "选择一个音频流"
 
 #: src/views/Edit/Sources/ALSA.js:96
 #: src/views/Edit/Sources/Framebuffer.js:80
 #: src/views/Edit/Sources/Raspicam.js:87
 #: src/views/Edit/Sources/V4L.js:93
 msgid "Choose an input device ..."
-msgstr "Izberi vhodno napravo ..."
+msgstr "选择一个输入设备 ..."
 
 #: src/misc/coders/settings/Video.js:343
 msgid "Choose between CFR and VFR (Auto)"
-msgstr "Izbira med CFR in VFR (samodejno)"
+msgstr "在 CFR 和 VFR 中选择（自动）"
 
 #: src/misc/EncodingSelect.js:215
 msgid "Choose codec ..."
-msgstr "Izberi kodek ..."
+msgstr "选择编码器 ..."
 
 #: src/views/Login.js:367
 msgid "Choose tenant ..."
-msgstr "Izberite najemnika..."
+msgstr "选择 tenant ..."
 
 #: src/views/Playersite.js:425
 #: src/views/Publication/Player.js:477
@@ -429,7 +429,7 @@ msgstr "Chromecast"
 #: src/views/Publication/Services/DASH.js:309
 #: src/views/Publication/Services/HLS.js:249
 msgid "Chunk"
-msgstr "Chunk"
+msgstr "块"
 
 #: src/misc/Changelog.js:177
 #: src/misc/ModalContent.js:77
@@ -438,75 +438,75 @@ msgstr "Chunk"
 #: src/views/Publication/Edit.js:526
 #: src/views/Publication/Player.js:487
 msgid "Close"
-msgstr "Zapri"
+msgstr "关闭"
 
 #: src/views/Playersite.js:354
 msgid "Code injection"
-msgstr "Vbrizgavanje kode"
+msgstr "代码注入"
 
 #: src/misc/EncodingSelect.js:213
 msgid "Codec"
-msgstr "Kodek"
+msgstr "编码器"
 
 #: src/views/Edit/Sources/VirtualAudio.js:110
 msgid "Color"
-msgstr "Barva"
+msgstr "颜色"
 
 #: src/views/Settings.js:1376
 msgid "Config"
-msgstr "Konfiguracija"
+msgstr "配置"
 
 #: src/views/Password.js:134
 msgid "Confirm password"
-msgstr "Potrditev gesla"
+msgstr "确认密码"
 
 #: src/misc/ActionButton.js:38
 msgid "Connect"
-msgstr "Poveži"
+msgstr "连接"
 
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:157
 msgid "Connected device"
-msgstr "Povezana naprava"
+msgstr "已连接的设备"
 
 #: src/views/Publication/Process.js:54
 msgid "Connected since <0/>"
-msgstr "Povezan od <0/>"
+msgstr "连接建立于"
 
 #: src/misc/ActionButton.js:12
 #: src/views/Main/index.js:334
 #: src/views/Publication/Process.js:40
 msgid "Connecting ..."
-msgstr "Povezujem ..."
+msgstr "连接中 ..."
 
 #: src/views/Initializing.js:21
 msgid "Connecting to Restreamer Core ..."
-msgstr "Povezovanje z Restreamer Core ..."
+msgstr "连接到 Restreamer Core ..."
 
 #: src/views/Invalid.js:36
 msgid "Connecting to Restreamer Core failed probably because of mixed content."
-msgstr "Povezava z jedrom Restreamerja ni uspela, verjetno zaradi mešane vsebine."
+msgstr "连接到 Restreamer Core 失败，原因可能是 mixed content。"
 
 #: src/misc/coders/settings/Video.js:337
 msgid "Constant frame rate (CFR)"
-msgstr "Konstantna hitrost sličic (CFR)"
+msgstr "固定帧率（CFR）"
 
 #: src/misc/controls/Metadata.js:70
 #: src/views/Playersite.js:675
 #: src/views/Playersite.js:692
 msgid "Content"
-msgstr "Vsebina"
+msgstr "内容"
 
 #: src/views/Main/index.js:394
 msgid "Content URL"
-msgstr "URL vsebine"
+msgstr "内容 URL"
 
 #: src/Footer.js:193
 msgid "Cores"
-msgstr "Jedra"
+msgstr "Cores"
 
 #: src/misc/controls/License/index.js:112
 msgid "Creative Commons"
-msgstr "Creative Commons"
+msgstr "创作许可"
 
 #: src/misc/coders/Encoders/audio/Opus.js:65
 #: src/misc/coders/settings/Audio.js:25
@@ -527,95 +527,95 @@ msgstr "Creative Commons"
 #: src/views/Edit/Sources/AVFoundation.js:153
 #: src/views/Edit/Sources/V4L.js:99
 msgid "Custom ..."
-msgstr "Po meri ..."
+msgstr "自定义 ..."
 
 #: src/views/Settings.js:1382
 msgid "Custom JSON config for datarhei Core."
-msgstr "Konfiguracija JSON po meri za datarhei Core."
+msgstr "自定义 datarhei Core 的 JSON 配置。"
 
 #: src/views/Edit/Sources/ALSA.js:115
 msgid "Custom audio device"
-msgstr "Zvočna naprava po meri"
+msgstr "自定义音频设备"
 
 #: src/views/Edit/Sources/AVFoundation.js:160
 msgid "Custom audio index"
-msgstr "Zvočni indeks po meri"
+msgstr "自定义音频索引"
 
 #: src/misc/coders/settings/Audio.js:51
 #: src/misc/coders/settings/Video.js:52
 msgid "Custom bitrate (kbit/s)"
-msgstr "Bitna hitrost po meri (kbit/s)"
+msgstr "自定义比特率（kbit/s）"
 
 #: src/views/Playersite.js:703
 msgid "Custom code injection"
-msgstr "Vbrizgavanje kode po meri"
+msgstr "自定义代码注入"
 
 #: src/misc/coders/Encoders/audio/Opus.js:91
 msgid "Custom delay"
-msgstr "Zakasnitev po meri"
+msgstr "自定义延迟"
 
 #: src/views/Edit/Sources/Framebuffer.js:88
 msgid "Custom device"
-msgstr "Naprava po meri"
+msgstr "自定义设备"
 
 #: src/misc/coders/settings/Video.js:326
 msgid "Custom format"
-msgstr "Format po meri"
+msgstr "自定义格式"
 
 #: src/misc/coders/settings/Video.js:136
 msgid "Custom framerate"
-msgstr "Kadriranje po meri"
+msgstr "自定义帧率"
 
 #: src/misc/coders/settings/Video.js:91
 msgid "Custom keyframe interval"
-msgstr "Interval med ključnimi okviri po meri"
+msgstr "自定义关键帧间隔"
 
 #: src/misc/coders/settings/Audio.js:98
 #: src/misc/filters/audio/Resample.js:90
 msgid "Custom layout"
-msgstr "Postavitev po meri"
+msgstr "自定义 layout"
 
 #: src/misc/coders/settings/Audio.js:149
 #: src/misc/filters/audio/Resample.js:141
 msgid "Custom sampling (Hz)"
-msgstr "Vzorčenje po meri (Hz)"
+msgstr "自定义采样率（Hz）"
 
 #: src/views/Edit/Sources/VirtualVideo.js:149
 msgid "Custom scale"
-msgstr "Lestvica po meri"
+msgstr "自定义缩放"
 
 #: src/misc/coders/settings/Video.js:202
 #: src/misc/coders/settings/Video.js:244
 #: src/misc/coders/settings/Video.js:287
 msgid "Custom size"
-msgstr "Velikost po meri"
+msgstr "自定义尺寸"
 
 #: src/views/Edit/Sources/V4L.js:113
 msgid "Custom video device"
-msgstr "Video naprava po meri"
+msgstr "自定义视频设备"
 
 #: src/views/Edit/Sources/AVFoundation.js:127
 msgid "Custom video index"
-msgstr "Indeks videoposnetkov po meri"
+msgstr "自定义视频索引"
 
 #: src/misc/CopyButton.js:20
 #: src/misc/TextFieldCopy.js:33
 #: src/misc/Textarea.js:46
 msgid "Data copied to clipboard"
-msgstr "Podatki, kopirani v odložišče"
+msgstr "已复制到剪贴板"
 
 #: src/views/Edit/Sources/VirtualVideo.js:167
 msgid "Death color"
-msgstr "Barva smrti"
+msgstr "Death color"
 
 #: src/misc/filters/audio/Volume.js:74
 msgid "Decibels (dB)"
-msgstr "Decibeli (dB)"
+msgstr "分贝（dB）"
 
 #: src/misc/EncodingSelect.js:223
 #: src/views/Edit/Wizard/VideoProfile.js:48
 msgid "Decoder"
-msgstr "Dekoder"
+msgstr "解码器"
 
 #: src/views/Edit/Sources/AVFoundation.js:115
 #: src/views/Edit/Sources/AVFoundation.js:149
@@ -625,39 +625,39 @@ msgstr "Dekoder"
 #: src/views/Playersite.js:542
 #: src/views/Playersite.js:586
 msgid "Default"
-msgstr "Privzeto"
+msgstr "默认"
 
 #: src/views/Edit/Sources/Network.js:607
 msgid "Default {0}"
-msgstr "Privzeto {0}"
+msgstr "默认 {0}"
 
 #: src/views/Edit/Sources/Network.js:647
 msgid "Default {0} ({1} seconds)"
-msgstr "Privzeto {0} ({1} sekund)"
+msgstr "默认 {0} （{1} 秒）"
 
 #: src/misc/filters/video/Bwdif.js:128
 msgid "Deinterlace (bwdif)"
-msgstr "Prepletanje (bwdif)"
+msgstr "去隔行（bwdif）"
 
 #: src/misc/filters/video/Bwdif.js:78
 msgid "Deinterlace deint"
-msgstr "Odprava prepletanja deint"
+msgstr "去隔行 deint"
 
 #: src/misc/filters/video/Bwdif.js:39
 msgid "Deinterlace mode"
-msgstr "Način prepletanja"
+msgstr "去隔行模式"
 
 #: src/misc/filters/video/Bwdif.js:57
 msgid "Deinterlace parity"
-msgstr "Odprava prepletanja paritete"
+msgstr "去隔行校验"
 
 #: src/misc/coders/Encoders/audio/Opus.js:90
 msgid "Delay"
-msgstr "Zakasnitev"
+msgstr "延迟"
 
 #: src/views/Edit/Sources/ALSA.js:132
 msgid "Delay (ms)"
-msgstr "Zakasnitev (ms)"
+msgstr "延迟（ms）"
 
 #: src/views/Edit/index.js:618
 #: src/views/Edit/index.js:654
@@ -665,83 +665,83 @@ msgstr "Zakasnitev (ms)"
 #: src/views/Publication/Edit.js:535
 #: src/views/Publication/Edit.js:567
 msgid "Delete"
-msgstr "Odstrani"
+msgstr "删除"
 
 #: src/views/Publication/Edit.js:572
 msgid "Deleting a publication service cannot be reversed. The publication stops immediately."
-msgstr "Brisanja storitve objave ni mogoče preklicati. Objava se takoj ustavi."
+msgstr "删除串流输出服务无法撤消。串流输出立即停止。"
 
 #: src/views/Publication/Services/Twitter.js:141
 #: src/views/Publication/Services/Youtube.js:167
 msgid "Delivering mode"
-msgstr "Način dostave"
+msgstr "递送模式"
 
 #: src/misc/controls/Metadata.js:85
 #: src/misc/controls/Metadata.js:110
 msgid "Description"
-msgstr "Opis"
+msgstr "描述"
 
 #: src/views/Playersite.js:352
 #: src/views/Playersite.js:525
 msgid "Design"
-msgstr "Oblikovanje"
+msgstr "设计"
 
 #: src/views/Edit/Sources/Framebuffer.js:87
 #: src/views/Edit/Wizard/Audio.js:87
 #: src/views/Publication/Services/Framebuffer.js:93
 msgid "Device"
-msgstr "Naprava"
+msgstr "设备"
 
 #: src/misc/ActionButton.js:24
 #: src/misc/ActionButton.js:45
 #: src/misc/ActionButton.js:59
 msgid "Disconnect"
-msgstr "Prekini"
+msgstr "断开连接"
 
 #: src/views/Edit/index.js:635
 msgid "Disconnect & Continue"
-msgstr "Odklop in nadaljevanje"
+msgstr "断连 & 继续"
 
 #: src/misc/ActionButton.js:18
 #: src/views/Publication/Process.js:47
 msgid "Disconnecting ..."
-msgstr "Prekinjam ..."
+msgstr "正在断开连接 ..."
 
 #: src/misc/controls/HLS.js:70
 #: src/views/Settings.js:1767
 msgid "Disk"
-msgstr "Disk"
+msgstr "硬盘"
 
 #: src/views/Settings.js:1802
 #: src/views/Settings.js:1810
 msgid "Disk cache"
-msgstr "Diskovni predpomnilnik"
+msgstr "硬盘缓存"
 
 #: src/Footer.js:315
 #: src/Footer.js:328
 msgid "Disk storage"
-msgstr "Shranjevanje diskov"
+msgstr "硬盘存储"
 
 #: src/views/Settings.js:2310
 msgid "Do you really want to restart the application now?"
-msgstr "Ali res želite zdaj znova zagnati aplikacijo?"
+msgstr "确定要立刻重启应用吗？"
 
 #: src/views/Edit/index.js:646
 msgid "Do you want to delete \"{0}\"?"
-msgstr "Ali želite izbrisati \"{0}\"?"
+msgstr "确定要删除 \"{0}\" 吗？"
 
 #: src/views/Publication/Edit.js:559
 msgid "Do you want to delete {title}?"
-msgstr "Ali želite izbrisati {title}?"
+msgstr "确定要删除 {title} 吗？"
 
 #: src/views/Edit/index.js:627
 msgid "Do you want to disconnect \"{0}\"?"
-msgstr "Želite prekiniti povezavo \"{0}\"?"
+msgstr "确定要断开 \"{0}\" 的连接吗？"
 
 #: src/Header.js:289
 #: src/Header.js:330
 msgid "Docs"
-msgstr "Dokumenti"
+msgstr "文档"
 
 #: src/views/Publication/Services/DASH.js:501
 #: src/views/Publication/Services/HLS.js:496
@@ -753,19 +753,19 @@ msgstr "Dokumenti"
 #: src/views/Publication/Services/SRT.js:428
 #: src/views/Publication/Services/UDP.js:241
 msgid "Documentation"
-msgstr "Dokumentacija"
+msgstr "文档"
 
 #: src/misc/Progress.js:129
 msgid "Dup. frames"
-msgstr "Dvojni okvirji"
+msgstr "重复帧"
 
 #: src/views/Publication/Player.js:325
 msgid "EDIT: Player"
-msgstr "EDIT: Igralec"
+msgstr "编辑：播放器"
 
 #: src/views/Playersite.js:346
 msgid "EDIT: Publication Website"
-msgstr "EDIT: Spletna stran publikacije"
+msgstr "编辑：发布的站点"
 
 #: src/misc/controls/HLS.js:78
 msgid "EXT-X-VERSION"
@@ -773,122 +773,122 @@ msgstr "EXT-X-VERSION"
 
 #: src/misc/filters/video/Bwdif.js:44
 msgid "Each field"
-msgstr "Vsako polje"
+msgstr "每个区域"
 
 #: src/misc/filters/video/Bwdif.js:41
 msgid "Each frames"
-msgstr "Vsak okvir"
+msgstr "每一帧"
 
 #: src/views/Edit/index.js:404
 msgid "Edit"
-msgstr "Uredi"
+msgstr "编辑"
 
 #: src/views/Edit/index.js:430
 msgid "Edit the audio and video sources for the live stream. Add a description, and set your desired content license."
-msgstr "Uredite vire zvoka in videa za prenos v živo. Dodajte opis in nastavite želeno licenco za vsebino."
+msgstr "编辑直播流的音频和视频源。添加描述，并设置您想要的内容许可。"
 
 #: src/views/Publication/Edit.js:385
 msgid "Edit: {title}"
-msgstr "Uredi: {title}"
+msgstr "编辑：{title}"
 
 #: src/views/Settings.js:1466
 msgid "Email"
-msgstr "E-pošta"
+msgstr "邮箱"
 
 #: src/views/Publication/Player.js:359
 msgid "Embed"
-msgstr "Vdelaj"
+msgstr "内嵌"
 
 #: src/misc/controls/RTMP.js:48
 #: src/misc/controls/SRT.js:48
 msgid "Enable"
-msgstr "Omogočite"
+msgstr "启用"
 
 #: src/views/Edit/Sources/Network.js:869
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:55
 msgid "Enable RTMP server ..."
-msgstr "Omogoči strežnik RTMP ..."
+msgstr "启用 RTMP 服务 ..."
 
 #: src/views/Publication/Services/PeerTube.js:100
 msgid "Enable RTMPS transfer"
-msgstr "Omogoči prenos RTMPS"
+msgstr "启用 RTMPS 传输"
 
 #: src/views/Edit/Sources/Network.js:919
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:55
 msgid "Enable SRT server ..."
-msgstr "Omogočite strežnik SRT ..."
+msgstr "启用 SRT 服务器 ..."
 
 #: src/views/Edit/Sources/VirtualAudio.js:162
 msgid "Enable a periodic beep every second with this value times the carrier frequency"
-msgstr "Omogočite periodični zvočni signal vsako sekundo s to vrednostjo, pomnoženo z nosilno frekvenco."
+msgstr "启用以此值乘以载波频率的每秒周期蜂鸣"
 
 #: src/views/Publication/Services/Dummy.js:278
 #: src/views/Publication/Services/Facebook.js:139
 msgid "Enable backup stream"
-msgstr "Omogočite rezervni tok"
+msgstr "允许备份媒体流"
 
 #: src/views/Publication/Player.js:465
 msgid "Enable nerd statistics"
-msgstr "Omogočite statistiko nerdov"
+msgstr "允许数据统计"
 
 #: src/misc/controls/RTMP.js:70
 #: src/misc/controls/SRT.js:70
 msgid "Enable now"
-msgstr "Omogoči zdaj"
+msgstr "现在启用"
 
 #: src/views/Publication/Services/Dummy.js:277
 #: src/views/Publication/Services/Facebook.js:138
 msgid "Enable primary stream"
-msgstr "Omogočite primarni tok"
+msgstr "启用主媒体流"
 
 #: src/misc/controls/Snapshot.js:44
 msgid "Enable snapshots"
-msgstr "Omogočanje posnetkov"
+msgstr "允许快照"
 
 #: src/views/Settings.js:1549
 msgid "Enabling authorization is strongly advised. Otherwise, anybody can access this instance."
-msgstr "Omogočanje avtorizacije je zelo priporočljivo. V nasprotnem primeru lahko do tega primerka dostopa vsakdo."
+msgstr "强烈建议启用身份验证。否则，任何人都可以访问和控制该实例。"
 
 #: src/views/Settings.js:1709
 msgid "Enabling basic auth is strongly advised. Otherwise, anybody could write data to /memfs."
-msgstr "Priporočamo, da omogočite osnovno avtentikacijo. V nasprotnem primeru lahko podatke v /memfs zapiše kdor koli."
+msgstr "强烈建议启用基本身份验证。否则，任何人都可以向 /memfs 中写入数据。"
 
 #: src/views/Edit/Wizard/VideoProfile.js:54
 msgid "Encoder"
-msgstr "Enkoder"
+msgstr "编码器"
 
 #: src/views/Edit/Summary.js:95
 #: src/views/Publication/Add.js:449
 #: src/views/Publication/Edit.js:479
 msgid "Encoding"
-msgstr "Enkodiranje"
+msgstr "编码"
 
 #: src/views/Publication/Services/HLS.js:445
 #: src/views/Publication/Services/RTMP.js:241
 #: src/views/Publication/Services/SRT.js:372
 msgid "Encryption"
-msgstr "Zaščita"
+msgstr "加密"
 
 #: src/misc/ChannelList.js:376
 msgid "Enter a name for the new channel."
-msgstr "Vnesite ime novega kanala."
+msgstr "输入新频道的名字。"
 
 #: src/views/Password.js:122
 msgid "Enter password"
-msgstr "Vnesite geslo"
+msgstr "输入密码"
 
 #: src/views/Edit/Sources/Network.js:709
 #: src/views/Edit/Wizard/Sources/Network.js:59
 msgid "Enter the address of your network source:"
-msgstr "Vnesite naslov vira omrežja:"
+msgstr "输入网络源地址："
 
 #: src/views/Password.js:110
 msgid "Enter username"
-msgstr "Vnesite uporabniško ime"
+msgstr "输入用户名"
 
 #: src/misc/coders/Encoders/video/H264VideoToolbox.js:68
 msgid "Entropy coder"
-msgstr "Kodirnik entropije"
+msgstr "加密编码器"
 
 #: src/views/Edit/Wizard/Error.js:16
 #: src/views/Incompatible.js:30
@@ -896,46 +896,46 @@ msgstr "Kodirnik entropije"
 #: src/views/Publication/Process.js:63
 #: src/views/Settings.js:1202
 msgid "Error"
-msgstr "Napaka"
+msgstr "错误"
 
 #: src/misc/CopyButton.js:22
 #: src/misc/TextFieldCopy.js:35
 #: src/misc/Textarea.js:48
 msgid "Error while copying data to clipboard"
-msgstr "Napaka pri kopiranju podatkov v odložišče"
+msgstr "复制到剪贴板时出现错误"
 
 #: src/views/Main/index.js:353
 #: src/views/Publication/Process.js:64
 msgid "Error: {0}"
-msgstr "Napaka: {0}"
+msgstr "错误：{0}"
 
 #: src/views/Playersite.js:748
 msgid "Expands the area above the channel list (live chat)."
-msgstr "Razširi območje nad seznamom kanalov (klepet v živo)."
+msgstr "扩展频道列表上方的区域（实时聊天）。"
 
 #: src/views/Playersite.js:768
 msgid "Expands the area under the channel description (comment boxes)."
-msgstr "Razširi območje pod opisom kanala (polja za komentarje)."
+msgstr "扩展频道描述下的区域（评论）。"
 
 #: src/views/Settings.js:1293
 msgid "Expert mode"
-msgstr "Strokovni način"
+msgstr "专家模式"
 
 #: src/views/Playersite.js:733
 msgid "Extend channel list"
-msgstr "Razširitev seznama kanalov"
+msgstr "扩展频道列表"
 
 #: src/views/Playersite.js:753
 msgid "Extend content"
-msgstr "Razširitev vsebine"
+msgstr "扩展内容"
 
 #: src/views/Playersite.js:773
 msgid "Extend footer"
-msgstr "Razširitev noge"
+msgstr "扩展底栏"
 
 #: src/views/Playersite.js:713
 msgid "Extend header"
-msgstr "Razširitev glave"
+msgstr "扩展顶栏"
 
 #: src/views/Settings.js:2181
 msgid "FFmpeg"
@@ -944,122 +944,122 @@ msgstr "FFmpeg"
 #: src/misc/Progress.js:64
 #: src/views/Main/Progress.js:77
 msgid "FPS"
-msgstr "FPS"
+msgstr "帧率"
 
 #: src/views/Publication/Add.js:197
 msgid "Failed to create publication service ({0})"
-msgstr "Ni uspelo ustvariti storitve objave ({0})"
+msgstr "创建串流输出服务失败（{0}）"
 
 #: src/views/Playersite.js:310
 msgid "Failed to create publication website files."
-msgstr "Ni uspelo ustvariti datotek spletne strani objave."
+msgstr "创建发布站点文件失败。"
 
 #: src/views/Edit/Profile.js:354
 #: src/views/Edit/Profile.js:503
 msgid "Failed to probe the source. Please check the <0>probe details</0>."
-msgstr "Ni uspelo preveriti vira. Prosimo, preverite <0>podrobnosti o sondi</0>."
+msgstr "探测媒体信息头失败。请检查 <0>媒体头详情</0>。"
 
 #: src/utils/restreamer.js:446
 msgid "Failed to refresh token: {0}"
-msgstr "Ni uspelo osvežiti žetona: {0}"
+msgstr "刷新 token 失败：{0}"
 
 #: src/views/Edit/index.js:311
 msgid "Failed to save ingest metadata"
-msgstr "Ni uspelo shraniti metapodatkov o zaužitju"
+msgstr "保存摄取元数据失败"
 
 #: src/views/Edit/index.js:186
 msgid "Failed to stop process"
-msgstr "Ni uspelo zaustaviti procesa"
+msgstr "终止进程失败"
 
 #: src/views/Playersite.js:303
 msgid "Failed to store player size setting."
-msgstr "Ni uspelo shraniti nastavitve velikosti predvajalnika."
+msgstr "保存播放器尺寸设置失败。"
 
 #: src/views/Publication/Edit.js:237
 msgid "Failed to store publication service ({0})"
-msgstr "Ni uspelo shraniti storitve objave ({0})"
+msgstr "保存串流输出服务失败（{0}）"
 
 #: src/views/Edit/index.js:304
 msgid "Failed to update ingest process ({0})"
-msgstr "Ni uspelo posodobiti procesa zaužitja ({0})"
+msgstr "更新摄取进程失败（{0}）"
 
 #: src/views/Edit/index.js:317
 msgid "Failed to update ingest snapshot process ({0})"
-msgstr "Ni uspelo posodobiti procesa zajetja posnetka ({0})"
+msgstr "无法更新摄取快照进程 ({0})"
 
 #: src/views/Edit/index.js:323
 msgid "Failed to update the player"
-msgstr "Ni uspelo posodobiti predvajalnika"
+msgstr "更新播放器失败"
 
 #: src/views/Edit/index.js:329
 msgid "Failed to update the playersite"
-msgstr "Ni uspelo posodobiti mesta igralcev"
+msgstr "无法上传播放器页"
 
 #: src/views/Edit/Wizard/Audio.js:35
 #: src/views/Edit/Wizard/Video.js:33
 msgid "Failed to verify the source. Please check the address."
-msgstr "Ni uspelo preveriti vira. Preverite naslov."
+msgstr "验证媒体源失败。请检查地址。"
 
 #: src/views/Edit/Summary.js:101
 msgid "Filter"
-msgstr "Filter"
+msgstr "过滤器"
 
 #: src/views/Edit/Profile.js:591
 msgid "Finish"
-msgstr "Zaključi"
+msgstr "完成"
 
 #: src/misc/filters/video/Scale.js:48
 msgid "Fix size"
-msgstr "Določite velikost"
+msgstr "固定大小"
 
 #: src/views/Edit/Sources/VirtualVideo.js:182
 msgid "Flags"
-msgstr "Zastave"
+msgstr "选项"
 
 #: src/views/Playersite.js:788
 msgid "For Javascripts."
-msgstr "Za Javascripts."
+msgstr "For Javascripts."
 
 #: src/views/Playersite.js:728
 msgid "For Stylesheets."
-msgstr "Za slogovne liste."
+msgstr "For Stylesheets."
 
 #: src/views/Edit/Sources/Network.js:521
 msgid "Force input framerate"
-msgstr "Vsilite vhodno frekvenco sličic"
+msgstr "强制输入帧率"
 
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:197
 msgid "Force key frames"
-msgstr "Prisilni okvirji ključev"
+msgstr "强制帧率"
 
 #: src/misc/coders/settings/Video.js:325
 msgid "Format"
-msgstr "Zapis"
+msgstr "格式"
 
 #: src/misc/Progress.js:116
 msgid "Frame drops"
-msgstr "Padci okvirjev"
+msgstr "丢弃帧"
 
 #: src/misc/coders/settings/Video.js:334
 msgid "Frame is passed through (Passthrough)"
-msgstr "Okvir je posredovan (Passthrough)"
+msgstr "帧直通（Passthrough）"
 
 #: src/views/Edit/Sources/Framebuffer.js:129
 msgid "Framebuffer"
-msgstr "Framebuffer"
+msgstr "帧缓冲"
 
 #: src/misc/coders/settings/Video.js:135
 #: src/views/Edit/Sources/Network.js:534
 msgid "Framerate"
-msgstr "Frammerate"
+msgstr "帧率"
 
 #: src/misc/coders/settings/Video.js:332
 msgid "Framerate mode"
-msgstr "Način hitrosti posnetka"
+msgstr "帧率模式"
 
 #: src/views/Edit/Sources/VirtualAudio.js:145
 msgid "Frequency (Hz)"
-msgstr "Frekvenca (Hz)"
+msgstr "频率（Hz）"
 
 #: src/views/Publication/Services/DLive.js:79
 #: src/views/Publication/Services/Facebook.js:115
@@ -1094,7 +1094,7 @@ msgstr "GET"
 #: src/views/Settings.js:1231
 #: src/views/Settings.js:1252
 msgid "General"
-msgstr "Splošno"
+msgstr "常规"
 
 #: src/views/Publication/Player.js:448
 msgid "Google Analytics ID"
@@ -1110,23 +1110,23 @@ msgstr "HLS"
 
 #: src/views/Edit/index.js:484
 msgid "HLS output"
-msgstr "Izhod HLS"
+msgstr "HLS 输出"
 
 #: src/views/Edit/Wizard/Sources/InternalHLS.js:73
 msgid "HLS server"
-msgstr "Strežnik HLS"
+msgstr "HLS 服务器"
 
 #: src/views/Settings.js:1626
 msgid "HLS statistic for the In-memory storage"
-msgstr "Statistika HLS za shranjevanje v pomnilniku"
+msgstr "内存存储器的HLS统计"
 
 #: src/views/Edit/Sources/Network.js:511
 msgid "HTTP and HTTPS"
-msgstr "HTTP in HTTPS"
+msgstr "HTTP 和 HTTPS"
 
 #: src/views/Settings.js:1418
 msgid "HTTP port"
-msgstr "Vrata HTTP"
+msgstr "HTTP 端口"
 
 #: src/views/Settings.js:1448
 msgid "HTTPS (SSL/TLS)"
@@ -1134,75 +1134,75 @@ msgstr "HTTPS (SSL/TLS)"
 
 #: src/views/Settings.js:1432
 msgid "HTTPS port"
-msgstr "Vrata HTTPS"
+msgstr "HTTPS 端口"
 
 #: src/views/Edit/Sources/V4L.js:154
 #: src/views/Edit/Wizard/Sources/V4L.js:140
 msgid "Hardware device"
-msgstr "Strojna naprava"
+msgstr "硬件设备"
 
 #: src/views/Playersite.js:595
 msgid "Header"
-msgstr "Naslov"
+msgstr "顶栏"
 
 #: src/views/Playersite.js:551
 msgid "Headline"
-msgstr "Naslov"
+msgstr "提要"
 
 #: src/misc/coders/settings/Video.js:243
 msgid "Height"
-msgstr "Višina"
+msgstr "高度"
 
 #: src/misc/filters/video/HFlip.js:65
 msgid "Horizontal Flip"
-msgstr "Vodoravni flip"
+msgstr "水平翻转"
 
 #: src/views/Login.js:319
 msgid "Hosted Restreamer interface"
-msgstr "Gostovani vmesnik Restreamer"
+msgstr "托管的 Restreamer 接口"
 
 #: src/views/Settings.js:1352
 msgid "Human readable name on the service."
-msgstr "Človeku berljivo ime storitve."
+msgstr "服务的易读名称。"
 
 #: src/views/Settings.js:2255
 msgid "If you changed the ports, it might be that Restreamer Core restarted already, but it is now available on a different port."
-msgstr "Če ste spremenili vrata, se je morda Restreamer Core že ponovno zagnal, vendar je zdaj na voljo na drugih vratih."
+msgstr "如果更改了端口，Restreamer Core 可能已经重新启动，但它现在可以在不同的端口上使用。"
 
 #: src/views/Settings.js:2249
 msgid "If you enabled Let's Encrypt TLS it might take some time to acquire the certificates. Make sure that Restreamer Core is reachable via port 80 from the internet. Please check the console log of Restreamer Core."
-msgstr "Če ste omogočili funkcijo Let's Encrypt TLS, bo pridobivanje potrdil morda trajalo nekaj časa. Prepričajte se, da je Restreamer Core iz interneta dosegljiv prek vrat 80. Preverite dnevnik konzole Restreamer Core."
+msgstr "如果启用了 Let's Encrypt TLS，则可能需要一些时间来获取证书。确保可以通过端口 80 从互联网访问 Restreamer Core。请检查 Restreamer Core 的控制台日志。"
 
 #: src/views/Settings.js:1641
 msgid "Ignore IP ranges"
-msgstr "Ignoriranje območij IP"
+msgstr "忽略 IP 范围"
 
 #: src/views/Playersite.js:640
 #: src/views/Publication/Player.js:404
 msgid "Image URL"
-msgstr "URL naslov slike"
+msgstr "图片 URL"
 
 #: src/views/Playersite.js:665
 msgid "Imprint"
-msgstr "Odtis"
+msgstr "水印"
 
 #: src/views/Playersite.js:368
 msgid "In addition to the player, the Restreamer offers a complete landingpage, which you can use to present your live stream easily and quickly."
-msgstr "Poleg predvajalnika Restreamer ponuja tudi popolno pristajalno stran, ki jo lahko uporabite za enostavno in hitro predstavitev prenosa v živo."
+msgstr "除了播放器之外，Restreamer 还提供了一个完整的展示页面，您可以使用它轻松快速地展示您的直播。"
 
 #: src/misc/controls/HLS.js:67
 #: src/views/Settings.js:1693
 msgid "In-memory"
-msgstr "V pomnilniku"
+msgstr "In-memory"
 
 #: src/Footer.js:285
 #: src/Footer.js:298
 msgid "In-memory storage"
-msgstr "Shranjevanje v pomnilniku"
+msgstr "In-memory 存储"
 
 #: src/views/Publication/Add.js:281
 msgid "Incompatible"
-msgstr "Nezdružljivo"
+msgstr "不兼容"
 
 #: src/misc/coders/settings/Audio.js:67
 #: src/misc/coders/settings/Audio.js:118
@@ -1211,189 +1211,189 @@ msgstr "Nezdružljivo"
 #: src/misc/filters/audio/Resample.js:110
 #: src/misc/filters/audio/Volume.js:46
 msgid "Inherit"
-msgstr "Dediči"
+msgstr "继承"
 
 #: src/views/Playersite.js:723
 msgid "Inject 1"
-msgstr "Vbrizgavanje 1"
+msgstr "注入 1"
 
 #: src/views/Playersite.js:743
 msgid "Inject 2"
-msgstr "Vbrizgavanje 2"
+msgstr "注入 2"
 
 #: src/views/Playersite.js:763
 msgid "Inject 3"
-msgstr "Vbrizgavanje 3"
+msgstr "注入 3"
 
 #: src/views/Playersite.js:783
 msgid "Inject 4"
-msgstr "Vbrizgavanje 4"
+msgstr "注入 4"
 
 #: src/views/Publication/Services/Instagram.js:121
 msgid "Instafeed.me"
-msgstr "Instafeed.me"
+msgstr "instafeed.me"
 
 #: src/views/Publication/Services/PeerTube.js:85
 msgid "Instance domain"
-msgstr "Domena instance"
+msgstr "实例域名"
 
 #: src/misc/controls/Snapshot.js:50
 msgid "Interval (seconds)"
-msgstr "Interval (sekunde)"
+msgstr "间隔（秒）"
 
 #: src/Header.js:295
 #: src/Header.js:336
 msgid "Issue alert"
-msgstr "Opozorilo o problemu"
+msgstr "问题警告"
 
 #: src/misc/coders/settings/Video.js:90
 msgid "Keyframe interval (seconds)"
-msgstr "Interval med ključnimi kadri (sekunde)"
+msgstr "关键帧间隔（秒）"
 
 #: src/misc/coders/settings/Audio.js:97
 #: src/misc/filters/audio/Resample.js:89
 msgid "Layout"
-msgstr "Postavitev"
+msgstr "布局"
 
 #: src/views/Settings.js:1453
 msgid "Let's Encrypt certification"
-msgstr "Certificiranje Let's Encrypt"
+msgstr "Let's Encrypt 证书"
 
 #: src/views/Settings.js:1461
 msgid "Let's Encrypt requires one or more public domain names and an accessible port 80/TCP."
-msgstr "Program Let's Encrypt zahteva eno ali več javnih domenskih imen in dostopna vrata 80/TCP."
+msgstr "Let's Encrypt 需要一个或多个公共域名和可访问的 TCP 端口 80。"
 
 #: src/misc/coders/Encoders/video/H264NVENC.js:116
 msgid "Level"
-msgstr "Raven"
+msgstr "Level"
 
 #: src/views/Settings.js:2162
 msgid "Level of system protocol."
-msgstr "Raven sistemskega protokola."
+msgstr "系统协议的等级。"
 
 #: src/views/Edit/Wizard/License.js:17
 #: src/views/Edit/index.js:416
 #: src/views/Edit/index.js:580
 msgid "License"
-msgstr "Licenca"
+msgstr "许可证"
 
 #: src/views/Edit/Sources/VirtualVideo.js:176
 msgid "Life color"
-msgstr "Barva življenja"
+msgstr "Life color"
 
 #: src/views/Playersite.js:622
 msgid "Linecolor"
-msgstr "Linecolor"
+msgstr "线颜色"
 
 #: src/views/Playersite.js:560
 #: src/views/Publication/Player.js:434
 msgid "Link"
-msgstr "Povezava"
+msgstr "链接"
 
 #: src/views/Playersite.js:569
 msgid "Link, mouseover"
-msgstr "Povezava, premik z miško"
+msgstr "链接，鼠标悬停时"
 
 #: src/views/Settings.js:1649
 msgid "List of IP ranges in CIDR notation, e.g., 127.0.0.1/32, that the statistics will not record—one IP range per line. Leave empty to record all sessions."
-msgstr "Seznam območij IP v zapisu CIDR, npr. 127.0.0.1/32, ki jih statistika ne bo zabeležila - eno območje IP na vrstico. Pustite prazno, če želite beležiti vse seje."
+msgstr "以 CIDR 表示法表示的 IP 范围列表，例如 127.0.0.1/32，统计信息不会记录 - 每行一个 IP 范围。留空以记录所有会话。"
 
 #: src/views/Settings.js:1911
 msgid "List of file extensions not to cache (e.g. \".m3u8\"), one per line. Leave empty for none."
-msgstr "Seznam končnic datotek, ki jih ne želite predpomniti (npr. \".m3u8\"), po ena v vrstici. Pustite prazno za nobena."
+msgstr "不缓存的文件扩展名（例如 \".m3u8\"），每行一个。如果没有请留空。"
 
 #: src/views/Settings.js:1896
 msgid "List of file extensions to cache (e.g. \".html\"), one per line. Leave empty to cache all file types."
-msgstr "Seznam končnic datotek za predpomnilnik (npr. \".html\"), po ena v vrstici. Pustite prazno, če želite predpomnilnik za vse vrste datotek."
+msgstr "要缓存文件的扩展名列表（例如 \".html\"），每行一个。留空以缓存所有类型的文件。"
 
 #: src/misc/controls/HLS.js:107
 msgid "List size (segments)"
-msgstr "Velikost seznama (segmenti)"
+msgstr "列表大小（segments）"
 
 #: src/views/Publication/Services/Facebook.js:16
 msgid "Live-Streaming to Facebook Live RTMP service"
-msgstr "Prenos v živo v storitev Facebook Live RTMP"
+msgstr "直播串流到 Facebook Live RTMP 服务"
 
 #: src/views/Publication/Services/Instagram.js:19
 msgid "Live-Streaming to Instagram Live RTMP Service. The stream key requires a service such as <0>Instafeed.me</0> or <1>Yellow Duck</1>."
-msgstr "Prenos v živo v storitev Instagram Live RTMP. Ključ prenosa zahteva storitev, kot je <0>Instafeed.me</0> ali <1>Yellow Duck</1>."
+msgstr "串流到 Instagram 直播 RTMP 服务。流密钥需要诸如 <0>Instafeed.me</0> 或 <1>Yellow Duck</1> 之类的服务。"
 
 #: src/views/Publication/Services/MediaNetwork.js:15
 msgid "Live-Streaming to Media Network RTMP Service."
-msgstr "Prenos v živo v storitev RTMP medijskega omrežja."
+msgstr "将直播流传输到 Media Network RTMP 服务。"
 
 #: src/views/Publication/Services/PeerTube.js:16
 msgid "Live-Streaming to PeerTube v3+ RTMP/S Service."
-msgstr "Prenos v živo v storitev PeerTube v3+ RTMP/S."
+msgstr "将直播流传输到 PeerTube V3+ RTMP/S 服务。"
 
 #: src/views/Publication/Services/Trovo.js:15
 msgid "Live-Streaming to Trovo Live RTMP Service."
-msgstr "Prenos v živo v storitev Trovo Live RTMP."
+msgstr "将直播流传输到 Trove Live RTMP 服务。"
 
 #: src/views/Publication/Services/Twitch.js:17
 msgid "Live-Streaming to Twitch Live RTMP Service."
-msgstr "Prenos v živo v storitev Twitch Live RTMP."
+msgstr "串流到 Twitch Live RTMP 服务。"
 
 #: src/views/Publication/Services/Vimeo.js:12
 msgid "Live-Streaming to Vimeo Live RTMP Service"
-msgstr "Prenos v živo v storitev Vimeo Live RTMP"
+msgstr "串流到 Vimeo Live RTMP 服务"
 
 #: src/views/Publication/Services/DLive.js:15
 msgid "Live-Streaming to dlive Live RTMP Service."
-msgstr "Prenos v živo v storitev dlive Live RTMP."
+msgstr "将直播流传输到 dlive Live RTMP 服务。"
 
 #: src/views/Publication/Services/Livespotting.js:94
 msgid "Livesource ID"
-msgstr "ID življenjskega vira"
+msgstr "Livesource ID"
 
 #: src/views/Settings.js:2114
 msgid "Log level"
-msgstr "Raven dnevnika"
+msgstr "日志等级"
 
 #: src/misc/modals/Process.js:90
 #: src/views/Settings.js:1241
 #: src/views/Settings.js:2090
 msgid "Logging"
-msgstr "Prijava"
+msgstr "日志"
 
 #: src/views/Login.js:297
 #: src/views/Login.js:391
 #: src/views/Login.js:406
 #: src/views/Publication/Services/Akamai.js:124
 msgid "Login"
-msgstr "Prijava"
+msgstr "登录"
 
 #: src/utils/restreamer.js:268
 #: src/utils/restreamer.js:273
 #: src/utils/restreamer.js:302
 #: src/utils/restreamer.js:307
 msgid "Login failed: Couldn't load API details"
-msgstr "Prijava ni uspela: Ni bilo mogoče naložiti podrobnosti API"
+msgstr "登录失败：无法加载 API 详情"
 
 #: src/utils/restreamer.js:259
 #: src/utils/restreamer.js:293
 msgid "Login failed: {0}"
-msgstr "Prijava ni uspela: {0}"
+msgstr "登录失败：{0}"
 
 #: src/views/Settings.js:1539
 msgid "Login/JWT authorization"
-msgstr "Prijava/JWT avtorizacija"
+msgstr "登录/JWT 认证"
 
 #: src/views/Publication/Player.js:360
 msgid "Logo"
-msgstr "Logotip"
+msgstr "图标"
 
 #: src/Header.js:307
 msgid "Logout"
-msgstr "Odjava"
+msgstr "退出登录"
 
 #: src/misc/filters/audio/Loudnorm.js:66
 msgid "Loudness Normalization"
-msgstr "Normalizacija glasnosti"
+msgstr "响度归一化"
 
 #: src/misc/controls/Process.js:48
 msgid "Low latency (Buffer)"
-msgstr "Majhna zakasnitev (medpomnilnik)"
+msgstr "低延迟（缓冲）"
 
 #: src/Footer.js:208
 msgid "MB"
@@ -1401,158 +1401,158 @@ msgstr "MB"
 
 #: src/views/Edit/index.js:393
 msgid "Main Source"
-msgstr "Glavni vir"
+msgstr "主媒体流"
 
 #: src/views/Main/index.js:289
 #: src/views/Playersite.js:389
 msgid "Main channel"
-msgstr "Glavni kanal"
+msgstr "主频道"
 
 #: src/views/Publication/Player.js:106
 msgid "Main channel not found"
-msgstr "Glavni kanal ni najden"
+msgstr "未找到主频道"
 
 #: src/views/Edit/Wizard/index.js:200
 msgid "Main channel saved"
-msgstr "Shranjen glavni kanal"
+msgstr "已保存主频道"
 
 #: src/views/Playersite.js:412
 msgid "Main page channel (index.html)."
-msgstr "Kanal glavne strani (index.html)."
+msgstr "主页频道（index.html）。"
 
 #: src/views/Publication/TabContent.js:49
 msgid "Maintainer:"
-msgstr "Vzdrževalec:"
+msgstr "管理者："
 
 #: src/misc/controls/RTMP.js:54
 msgid "Make the channel available as an RTMP stream (experimental)."
-msgstr "Kanal je na voljo kot tok RTMP (eksperimentalno)."
+msgstr "使频道可用作 RTMP 流（实验）。"
 
 #: src/misc/controls/SRT.js:54
 msgid "Make the channel available as an SRT stream (experimental)."
-msgstr "Kanal je na voljo kot tok SRT (eksperimentalno)."
+msgstr "使频道可用作 SRT 流（实验）。"
 
 #: src/misc/filters/video/Bwdif.js:83
 msgid "Marked frames"
-msgstr "Označeni okvirji"
+msgstr "标记的帧"
 
 #: src/misc/controls/HLS.js:117
 msgid "Master playlist (increases browser/client compatibility)"
-msgstr "Glavni seznam predvajanja (poveča združljivost brskalnikov/odjemalcev)"
+msgstr "Master playlist（增加浏览器/客户端兼容性）"
 
 #: src/views/Settings.js:1841
 msgid "Maximum allowed cache size, 0 for unlimited."
-msgstr "Največja dovoljena velikost predpomnilnika, 0 za neomejeno."
+msgstr "允许的最大缓存大小，0 表示无限制。"
 
 #: src/views/Settings.js:1749
 msgid "Maximum allowed megabytes of RAM for /memfs, 0 for unlimited."
-msgstr "Največji dovoljeni megabajti pomnilnika RAM za /memfs, 0 za neomejeno."
+msgstr "/memfs 允许占用的最大内存字节数，0 表示无限制。"
 
 #: src/views/Settings.js:1794
 msgid "Maximum allowed megabytes to consume from hard disk. 0 for unlimited."
-msgstr "Največja dovoljena poraba megabajtov s trdega diska. 0 za neomejeno."
+msgstr "允许占用硬盘的最大字节数。0 表示无限制。"
 
 #: src/views/Settings.js:1508
 msgid "Maximum bandwidth Mbit/s"
-msgstr "Največja pasovna širina Mbit/s"
+msgstr "最大带宽 Mbit/s"
 
 #: src/misc/coders/Encoders/audio/Opus.js:80
 msgid "Maximum delay in milliseconds."
-msgstr "Največja zamuda v milisekundah."
+msgstr "最大延迟毫秒数。"
 
 #: src/views/Settings.js:1861
 msgid "Maximum file size (Megabytes)"
-msgstr "Največja velikost datoteke (v megabajtih)"
+msgstr "最大文件大小（MB）"
 
 #: src/views/Settings.js:1881
 msgid "Maximum file size to put in cache."
-msgstr "Največja velikost datoteke, ki jo je treba shraniti v predpomnilnik."
+msgstr "缓存中的最大文件大小。"
 
 #: src/views/Settings.js:2201
 msgid "Maximum log histroy"
-msgstr "Največji histroj dnevnika"
+msgstr "日志历史上限"
 
 #: src/views/Settings.js:2168
 #: src/views/Settings.js:2187
 msgid "Maximum log lines"
-msgstr "Največje število vrstic dnevnika"
+msgstr "日志最大行数"
 
 #: src/views/Settings.js:1741
 #: src/views/Settings.js:1786
 #: src/views/Settings.js:1821
 msgid "Maximum size (Megabytes)"
-msgstr "Največja velikost (v megabajtih)"
+msgstr "最大大小（MB）"
 
 #: src/views/Settings.js:1658
 msgid "Maximum viewer idle time (Seconds)"
-msgstr "Najdaljši čas mirovanja gledalca (sekunde)"
+msgstr "最大观众空闲时间（秒）"
 
 #: src/views/Settings.js:1491
 msgid "Maximum viewers"
-msgstr "Največ gledalcev"
+msgstr "最大观众数"
 
 #: src/Footer.js:202
 msgid "Memory"
-msgstr "Spomin"
+msgstr "内存"
 
 #: src/views/Edit/index.js:415
 msgid "Meta information"
-msgstr "Meta informacije"
+msgstr "元数据"
 
 #: src/views/Edit/Wizard/Metadata.js:17
 #: src/views/Edit/index.js:560
 msgid "Metadata"
-msgstr "Metapodatki"
+msgstr "元数据"
 
 #: src/views/Edit/Sources/Network.js:590
 msgid "Mininum {0}, default {1}"
-msgstr "Mininum {0}, privzeto {1}"
+msgstr "最小 {0}，默认 {1}"
 
 #: src/views/Edit/Sources/VirtualVideo.js:158
 msgid "Mold"
-msgstr "Plesni"
+msgstr "Mold"
 
 #: src/views/Publication/Services/Twitter.js:30
 msgid "More about Twitter's copyright <0>here</0>."
-msgstr "Več o avtorskih pravicah Twitterja <0>tukaj</0>."
+msgstr "更多关于 Twitter 版权信息，请点击<0>这里</0>。"
 
 #: src/views/Publication/Services/Youtube.js:31
 msgid "More about YouTube's copyright <0>here</0>."
-msgstr "Več o avtorskih pravicah v YouTubu <0>tukaj</0>."
+msgstr "关于 YouTube 的版权，请点击<0>这里</0>。"
 
 #: src/views/Publication/Services/Facebook.js:17
 #: src/views/Publication/Services/Twitch.js:18
 #: src/views/Publication/Services/Vimeo.js:14
 msgid "More about licenses here"
-msgstr "Več o licencah tukaj"
+msgstr "关于许可证的更多信息"
 
 #: src/views/Settings.js:1321
 msgid "More about the service"
-msgstr "Več o storitvi"
+msgstr "关于服务的更多信息"
 
 #: src/views/Settings.js:1833
 msgid "Must be larger than maximum file size in cache."
-msgstr "Mora biti večja od največje velikosti datoteke v predpomnilniku."
+msgstr "必须大于缓存中的最大文件大小。"
 
 #: src/views/Settings.js:1873
 msgid "Must be smaller than maximum cache size."
-msgstr "Mora biti manjši od največje velikosti predpomnilnika."
+msgstr "必须小于最大缓存大小。"
 
 #: src/views/Publication/Player.js:476
 msgid "Mute"
-msgstr "Izklopite glasnost"
+msgstr "静音"
 
 #: src/misc/filters/audio/Pan.js:57
 msgid "Mute a channel."
-msgstr "Izklopite zvok kanala."
+msgstr "静音声道。"
 
 #: src/misc/filters/audio/Pan.js:50
 msgid "Mute left"
-msgstr "Izklop mikrofona na levi strani"
+msgstr "静音左声道"
 
 #: src/misc/filters/audio/Pan.js:53
 msgid "Mute right"
-msgstr "Utišajte desno stran"
+msgstr "静音右声道"
 
 #: src/misc/ChannelList.js:380
 #: src/misc/controls/Metadata.js:76
@@ -1560,91 +1560,91 @@ msgstr "Utišajte desno stran"
 #: src/views/Playersite.js:505
 #: src/views/Settings.js:1344
 msgid "Name"
-msgstr "Ime"
+msgstr "名称"
 
 #: src/views/Playersite.js:510
 msgid "Name for the template. If the name already exists, it will be overwritten."
-msgstr "Ime predloge. Če ime že obstaja, se prepiše."
+msgstr "模板名称。如果名称已存在，则覆盖已有模板。"
 
 #: src/views/Settings.js:1235
 #: src/views/Settings.js:1391
 msgid "Network"
-msgstr "Omrežje"
+msgstr "网络"
 
 #: src/views/Edit/Sources/Network.js:1027
 #: src/views/Edit/Wizard/Sources/Network.js:123
 msgid "Network source"
-msgstr "Vir omrežja"
+msgstr "网络源"
 
 #: src/views/Edit/Wizard/Audio.js:114
 #: src/views/Edit/Wizard/Metadata.js:40
 #: src/views/Edit/Wizard/Video.js:71
 #: src/views/Edit/Wizard/VideoProfile.js:78
 msgid "Next"
-msgstr "Naslednji"
+msgstr "下一步"
 
 #: src/views/Edit/Profile.js:435
 msgid "Next: Audio"
-msgstr "Naslednji: Zvok"
+msgstr "下一步：音频"
 
 #: src/views/Welcome.js:39
 msgid "Next: Video setup"
-msgstr "Naslednji: Nastavitev videoposnetka"
+msgstr "下一步：视频设置"
 
 #: src/views/Edit/Wizard/Abort.js:43
 msgid "No"
-msgstr "Ne"
+msgstr "否"
 
 #: src/views/Edit/Sources/NoAudio.js:45
 #: src/views/Edit/Wizard/Audio.js:98
 msgid "No audio"
-msgstr "Brez zvoka"
+msgstr "无音频"
 
 #: src/views/Edit/StreamSelect.js:62
 msgid "No audio stream available"
-msgstr "Zvočni tok ni na voljo"
+msgstr "没有可用的音频流"
 
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:70
 #: src/views/Edit/Wizard/Sources/V4L.js:99
 msgid "No input device available"
-msgstr "Vhodna naprava ni na voljo"
+msgstr "没有可用的输入设备"
 
 #: src/views/Edit/Wizard/Video.js:31
 msgid "No live stream was detected. Please check the software that sends the stream."
-msgstr "Tok v živo ni bil zaznan. Preverite programsko opremo, ki pošilja tok."
+msgstr "未检测到直播流。请检查发送直播流的软件。"
 
 #: src/views/Edit/Summary.js:29
 msgid "No source selected"
-msgstr "Ni izbran noben vir"
+msgstr "未选择媒体源"
 
 #: src/views/Edit/SourceSelect.js:174
 msgid "No sources available"
-msgstr "Viri niso na voljo"
+msgstr "没有可用的媒体源"
 
 #: src/misc/EncodingSelect.js:175
 msgid "No suitable encoder found."
-msgstr "Ni bil najden ustrezen kodirnik."
+msgstr "未找到合适的编码器。"
 
 #: src/misc/FilterSelect.js:106
 msgid "No suitable filter found."
-msgstr "Ni bil najden ustrezen filter."
+msgstr "没有合适的过滤器。"
 
 #: src/views/Main/index.js:315
 #: src/views/Publication/Player.js:334
 msgid "No video"
-msgstr "Brez videoposnetka"
+msgstr "没有视频"
 
 #: src/views/Edit/StreamSelect.js:47
 msgid "No video stream available"
-msgstr "Video tok ni na voljo"
+msgstr "没有可用的视频流"
 
 #: src/views/Settings.js:1337
 msgid "Node ID"
-msgstr "ID vozlišča"
+msgstr "Node ID"
 
 #: src/views/Edit/Sources/VirtualAudio.js:90
 msgid "Noise"
-msgstr "Hrup"
+msgstr "噪音"
 
 #: src/misc/filters/video/Scale.js:45
 #: src/views/Edit/Sources/AVFoundation.js:145
@@ -1652,59 +1652,59 @@ msgstr "Hrup"
 #: src/views/Edit/Summary.js:107
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:98
 msgid "None"
-msgstr "Ni"
+msgstr "无"
 
 #: src/views/Playersite.js:353
 #: src/views/Playersite.js:660
 msgid "Notes"
-msgstr "Opombe"
+msgstr "说明"
 
 #: src/views/Settings.js:2176
 #: src/views/Settings.js:2195
 msgid "Number of log lines to keep."
-msgstr "Število vrstic dnevnika, ki jih želite ohraniti."
+msgstr "保存日志的行数。"
 
 #: src/views/Settings.js:2209
 msgid "Number of logs to keep for each process."
-msgstr "Število dnevnikov, ki se hranijo za vsak proces."
+msgstr "每个进程保存日志的行数。"
 
 #: src/views/Playersite.js:829
 #: src/views/Publication/Player.js:513
 msgid "OK"
-msgstr "V REDU"
+msgstr "确定"
 
 #: src/views/Settings.js:1613
 msgid "One referrer per line, e.g. http://www.example.com"
-msgstr "En referer v vsaki vrstici, npr. http://www.example.com"
+msgstr "每行一个来源，例如 http://www.example.com"
 
 #: src/views/Playersite.js:814
 msgid "Open"
-msgstr "Odpri"
+msgstr "打开"
 
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:203
 msgid "Output buffer"
-msgstr "Izhodni buffer"
+msgstr "输出缓冲区"
 
 #: src/misc/filters/audio/Pan.js:45
 msgid "Pan"
-msgstr "Pan"
+msgstr "平移"
 
 #: src/views/Publication/Services/Core.js:221
 #: src/views/Settings.js:2064
 msgid "Passphrase"
-msgstr "Passphrase"
+msgstr "密码"
 
 #: src/views/Settings.js:2081
 msgid "Passphrase for SRT encryption."
-msgstr "geslo za šifriranje SRT."
+msgstr "SRT 加密的密码。"
 
 #: src/views/Settings.js:2073
 msgid "Passphrase must be between 10 and 79 characters long"
-msgstr "geslo mora biti dolgo od 10 do 79 znakov."
+msgstr "密码长度必须介于 10 和 79 之间"
 
 #: src/views/Publication/Edit.js:484
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
-msgstr "Prepust (kopiranje) lahko onemogočite le, če je to potrebno. Vsako kodiranje zahteva dodatne vire CPU/GPU."
+msgstr "仅在必要时才应禁用直通（复制）。每种编码都需要额外的 CPU/GPU 资源。"
 
 #: src/views/Edit/Sources/Network.js:756
 #: src/views/Edit/Wizard/Sources/Network.js:97
@@ -1719,69 +1719,69 @@ msgstr "Prepust (kopiranje) lahko onemogočite le, če je to potrebno. Vsako kod
 #: src/views/Settings.js:1569
 #: src/views/Settings.js:1727
 msgid "Password"
-msgstr "Geslo"
+msgstr "密码"
 
 #: src/views/Settings.js:1575
 #: src/views/Settings.js:1735
 msgid "Password for authorization."
-msgstr "Geslo za avtorizacijo."
+msgstr "用于身份验证密码。"
 
 #: src/views/Edit/Sources/Network.js:761
 #: src/views/Edit/Wizard/Sources/Network.js:103
 msgid "Password for the device."
-msgstr "Geslo za napravo."
+msgstr "设备密码。"
 
 #: src/views/Settings.js:1671
 msgid "Persist viewer statistics"
-msgstr "Ohranite statistiko gledalcev"
+msgstr "保存观众统计数据"
 
 #: src/views/Publication/Services/Framebuffer.js:102
 msgid "Pixel format"
-msgstr "Format pikslov"
+msgstr "像素格式"
 
 #: src/views/Login.js:311
 msgid "Plan: <0>Starter</0>"
-msgstr "Načrt: <0>Začetnik</0>"
+msgstr "计划：<0>起步</0>"
 
 #: src/views/Publication/Add.js:357
 msgid "Platforms"
-msgstr "Platforme"
+msgstr "直播平台"
 
 #: src/views/Publication/Player.js:361
 #: src/views/Settings.js:1237
 #: src/views/Settings.js:1584
 msgid "Playback"
-msgstr "Predvajanje"
+msgstr "回放"
 
 #: src/views/Main/Egress.js:100
 msgid "Player"
-msgstr "Igralec"
+msgstr "播放器"
 
 #: src/views/Publication/Player.js:366
 msgid "Player URL"
-msgstr "URL igralca"
+msgstr "播放器 URL"
 
 #: src/views/Publication/Player.js:297
 msgid "Player settings saved"
-msgstr "Shranjene nastavitve predvajalnika"
+msgstr "已保存播放器设置"
 
 #: src/Header.js:267
 #: src/views/Playersite.js:375
 msgid "Playersite"
-msgstr "Spletna stran za igralce"
+msgstr "播放页"
 
 #: src/views/Publication/Services/DASH.js:348
 #: src/views/Publication/Services/HLS.js:288
 msgid "Playlist"
-msgstr "Seznam predvajanja"
+msgstr "播放列表"
 
 #: src/misc/controls/HLS.js:88
 msgid "Playlist version (M3U8). Version 3 has the best browser/client compatibility."
-msgstr "Različica seznama predvajanja (M3U8). Različica 3 ima najboljšo združljivost z brskalniki/odjemalci."
+msgstr "Playlist 版本（M3U8）。版本 3 有最好的浏览器/客户端兼容性。"
 
 #: src/views/Main/index.js:358
 msgid "Please check the <0>process log</0>"
-msgstr "Preverite <0>dnevnik procesa</0>"
+msgstr "请检查 <0>进程日志</0>"
 
 #: src/views/Publication/Services/Akamai.js:29
 #: src/views/Publication/Services/Azure.js:29
@@ -1804,56 +1804,56 @@ msgstr "Preverite <0>dnevnik procesa</0>"
 #: src/views/Publication/Services/UDP.js:31
 #: src/views/Publication/Services/WOWZA.js:28
 msgid "Please contact the operator of the service and check what happens."
-msgstr "Obrnite se na operaterja storitve in preverite, kaj se dogaja."
+msgstr "请联系服务管理员并检查情况。"
 
 #: src/views/Settings.js:1474
 msgid "Please enter your email address to signify agreement with the Let's Encrypt CA's terms of service and to be notified in case of issues."
-msgstr "Vnesite svoj e-poštni naslov, da se strinjate s pogoji uporabe storitve Let's Encrypt CA in da boste obveščeni v primeru težav."
+msgstr "请输入您的电子邮件地址以表示同意 Let's Encrypt CA 的服务条款，并在出现问题时收到通知。"
 
 #: src/views/Publication/Services/Owncast.js:23
 #: src/views/Publication/Services/Telegram.js:14
 msgid "Please get in touch with the operator of the service and check what happens."
-msgstr "Stopite v stik z operaterjem storitve in preverite, kaj se bo zgodilo."
+msgstr "请与该服务的运营商联系并检查发生了什么。"
 
 #: src/views/Playersite.js:122
 #: src/views/Playersite.js:197
 #: src/views/Publication/Player.js:163
 msgid "Please select a file to upload."
-msgstr "Izberite datoteko, ki jo želite naložiti."
+msgstr "请选择要上传的文件。"
 
 #: src/views/Publication/Add.js:454
 msgid "Please use \"Passthrough (copy)\" if possible. Encoding requires additional CPU/GPU resources."
-msgstr "Če je mogoče, uporabite \"Passthrough (kopija)\". Kodiranje zahteva dodatne vire CPU/GPU."
+msgstr "请尽可能使用 \"直通（复制）\"。编码需要额外的 CPU/GPU 资源。"
 
 #: src/views/Edit/Wizard/Probe.js:21
 msgid "Please wait. Probe stream data ..."
-msgstr "Počakajte. Podatki o toku sonde ..."
+msgstr "请等待。正在读取媒体流数据 ..."
 
 #: src/views/Edit/Wizard/Saving.js:21
 msgid "Please wait. Setting up the stream ..."
-msgstr "Počakajte. Nastavitev toka ..."
+msgstr "请等待。正在设置媒体流 ..."
 
 #: src/views/Settings.js:2038
 msgid "Port"
-msgstr "Pristanišče"
+msgstr "端口"
 
 #: src/views/Publication/Player.js:419
 msgid "Position"
-msgstr "Položaj"
+msgstr "位置"
 
 #: src/misc/coders/Encoders/video/H264NVENC.js:74
 #: src/misc/coders/Encoders/video/X264.js:87
 #: src/misc/coders/Encoders/video/X265.js:87
 msgid "Preset"
-msgstr "Prednastavljeno"
+msgstr "预设"
 
 #: src/views/Publication/Services/Youtube.js:181
 msgid "Primary stream"
-msgstr "Primarni tok"
+msgstr "主媒体流"
 
 #: src/views/Publication/Services/Facebook.js:106
 msgid "Primary stream key"
-msgstr "Ključ primarnega toka"
+msgstr "主线路 key"
 
 #: src/views/Edit/Sources/ALSA.js:136
 #: src/views/Edit/Sources/AVFoundation.js:201
@@ -1867,37 +1867,37 @@ msgstr "Ključ primarnega toka"
 #: src/views/Edit/Sources/VirtualAudio.js:169
 #: src/views/Edit/Sources/VirtualVideo.js:188
 msgid "Probe"
-msgstr "Sonda"
+msgstr "检测媒体流信息"
 
 #: src/views/Edit/index.js:548
 #: src/views/Publication/Add.js:415
 #: src/views/Publication/Edit.js:421
 msgid "Process"
-msgstr "Proces"
+msgstr "串流进程"
 
 #: src/views/Publication/Add.js:384
 #: src/views/Publication/Edit.js:396
 msgid "Process control"
-msgstr "Nadzor procesa"
+msgstr "进程控制"
 
 #: src/views/Main/index.js:448
 #: src/views/Main/index.js:464
 #: src/views/Publication/Edit.js:445
 #: src/views/Publication/Edit.js:544
 msgid "Process details"
-msgstr "Podrobnosti o postopku"
+msgstr "进程详情"
 
 #: src/views/Main/index.js:451
 #: src/views/Main/index.js:472
 #: src/views/Publication/Edit.js:448
 #: src/views/Publication/Edit.js:552
 msgid "Process report"
-msgstr "Poročilo o postopku"
+msgstr "进程报告"
 
 #: src/views/Edit/index.js:414
 #: src/views/Edit/index.js:476
 msgid "Processing & Control"
-msgstr "Obdelava in nadzor"
+msgstr "串流进程和控制"
 
 #: src/misc/coders/Encoders/video/H264NVENC.js:99
 #: src/misc/coders/Encoders/video/H264VAAPI.js:89
@@ -1906,7 +1906,7 @@ msgstr "Obdelava in nadzor"
 #: src/misc/coders/settings/Video.js:142
 #: src/views/Edit/Wizard/VideoProfile.js:27
 msgid "Profile"
-msgstr "Profil"
+msgstr "Profile"
 
 #: src/views/Edit/Sources/Network.js:807
 #: src/views/Publication/Services/Akamai.js:144
@@ -1932,47 +1932,47 @@ msgstr "Profil"
 #: src/views/Publication/Services/UDP.js:124
 #: src/views/Publication/Services/WOWZA.js:122
 msgid "Protocol"
-msgstr "Protokol"
+msgstr "协议"
 
 #: src/views/Publication/Add.js:363
 msgid "Protocols"
-msgstr "Protokoli"
+msgstr "串流协议"
 
 #: src/views/Settings.js:1401
 msgid "Public domain/s"
-msgstr "Javna domena/e"
+msgstr "公有域名"
 
 #: src/views/Publication/Edit.js:114
 #: src/views/Publication/Edit.js:124
 msgid "Publication service not found"
-msgstr "Storitev objave ni bila najdena"
+msgstr "找不到串流输出服务"
 
 #: src/views/Playersite.js:319
 msgid "Publication website settings saved"
-msgstr "Shranjene nastavitve spletnega mesta objave"
+msgstr "已保存发布页设置"
 
 #: src/views/Main/Publication.js:163
 msgid "Publications"
-msgstr "Publikacije"
+msgstr "串流输出"
 
 #: src/views/Edit/Sources/Network.js:1000
 msgid "Pull Mode"
-msgstr "Način vlečenja"
+msgstr "拉取模式"
 
 #: src/views/Edit/Sources/Network.js:999
 msgid "Pull or recieve the data:"
-msgstr "Izvlecite ali prejmite podatke:"
+msgstr "拉取或接收数据："
 
 #: src/misc/Progress.js:90
 #: src/misc/coders/Encoders/video/H264VAAPI.js:146
 #: src/misc/coders/Encoders/video/HEVCVAAPI.js:146
 #: src/misc/coders/Encoders/video/VP9VAAPI.js:146
 msgid "Quality"
-msgstr "Kakovost"
+msgstr "质量"
 
 #: src/views/Edit/Sources/VirtualVideo.js:118
 msgid "RGB test pattern"
-msgstr "Preskusni vzorec RGB"
+msgstr "RGB 测试模式"
 
 #: src/views/Main/index.js:412
 #: src/views/Settings.js:1239
@@ -1982,45 +1982,45 @@ msgstr "RTMP"
 
 #: src/views/Settings.js:1962
 msgid "RTMP Port"
-msgstr "Pristanišče RTMP"
+msgstr "RTMP 端口"
 
 #: src/views/Settings.js:1997
 msgid "RTMP app for publishing."
-msgstr "Aplikacija RTMP za objavo."
+msgstr "串流输出的 RTMP app。"
 
 #: src/views/Edit/index.js:499
 msgid "RTMP output"
-msgstr "Izhod RTMP"
+msgstr "RTMP 输出"
 
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:93
 #: src/views/Settings.js:1925
 msgid "RTMP server"
-msgstr "Strežnik RTMP"
+msgstr "RTMP 服务器"
 
 #: src/views/Edit/Sources/Network.js:864
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:50
 msgid "RTMP server is not enabled"
-msgstr "Strežnik RTMP ni omogočen"
+msgstr "未启用 RTMP 服务器"
 
 #: src/views/Settings.js:1970
 msgid "RTMP server listen address."
-msgstr "Naslov za poslušanje strežnika RTMP."
+msgstr "RTMP 服务器监听地址。"
 
 #: src/views/Settings.js:2010
 msgid "RTMP token for publishing and playing. The token is the value of the URL query parameter 'token.'"
-msgstr "žeton RTMP za objavo in predvajanje. Token je vrednost parametra poizvedbe URL 'token'."
+msgstr "用于发布和播放的 RTMP token。该 token 将作为 URL 参数 'token' 使用。"
 
 #: src/views/Settings.js:1976
 msgid "RTMPS Port"
-msgstr "Pristanišče RTMPS"
+msgstr "RTMPS 端口"
 
 #: src/views/Settings.js:1933
 msgid "RTMPS server"
-msgstr "Strežnik RTMPS"
+msgstr "RTMPS 服务器"
 
 #: src/views/Settings.js:1984
 msgid "RTMPS server listen address."
-msgstr "Naslov za poslušanje strežnika RTMPS."
+msgstr "RTMP 服务器监听地址。"
 
 #: src/views/Edit/Sources/Network.js:487
 msgid "RTSP"
@@ -2029,50 +2029,50 @@ msgstr "RTSP"
 #: src/views/Edit/Sources/Raspicam.js:135
 #: src/views/Edit/Wizard/Sources/Raspicam.js:117
 msgid "Raspberry Pi camera"
-msgstr "Kamera Raspberry Pi"
+msgstr "树莓派相机"
 
 #: src/misc/coders/Encoders/video/H264NVENC.js:151
 #: src/misc/coders/Encoders/video/H264VAAPI.js:70
 #: src/misc/coders/Encoders/video/HEVCVAAPI.js:70
 #: src/misc/coders/Encoders/video/VP9VAAPI.js:70
 msgid "Rate control"
-msgstr "Nadzor hitrosti"
+msgstr "帧率控制"
 
 #: src/views/Edit/Sources/VirtualVideo.js:161
 msgid "Ratio"
-msgstr "Razmerje"
+msgstr "比率"
 
 #: src/views/Edit/Sources/Network.js:516
 msgid "Read input at native speed"
-msgstr "Branje vhodnih podatkov z izvirno hitrostjo"
+msgstr "以原始速率读取输入"
 
 #: src/views/Edit/Sources/Network.js:1001
 msgid "Receive Mode"
-msgstr "Način sprejema"
+msgstr "接收模式"
 
 #: src/misc/ActionButton.js:32
 #: src/misc/ActionButton.js:53
 #: src/misc/controls/Process.js:47
 msgid "Reconnect"
-msgstr "Ponovna povezava"
+msgstr "重连"
 
 #: src/misc/controls/Process.js:55
 msgid "Reconnect delay (seconds)"
-msgstr "Zakasnitev ponovne povezave (sekunde)"
+msgstr "重连延时（秒）"
 
 #: src/views/Main/index.js:369
 #: src/views/Publication/Process.js:68
 #: src/views/Publication/Process.js:81
 msgid "Reconnecting in {0}s"
-msgstr "Ponovno povezovanje v {0}s"
+msgstr "在 {0} 秒后重连"
 
 #: src/views/Settings.js:2246
 msgid "Reconnecting to Restreamer Core failed for the last {RETRIES} seconds."
-msgstr "Ponovno vzpostavljanje povezave z jedrom Restreamer Core v zadnjih {RETRIES} sekundah ni uspelo."
+msgstr "在最后 {RETRIES} 秒内重连 Restreamer Core 失败。"
 
 #: src/views/Password.js:167
 msgid "Reconnecting to Restreamer Core failed."
-msgstr "Ponovno vzpostavljanje povezave z jedrom Restreamer Core ni uspelo."
+msgstr "重连 Restreamer Core 失败。"
 
 #: src/views/Edit/Sources/ALSA.js:122
 #: src/views/Edit/Sources/AVFoundation.js:181
@@ -2080,86 +2080,86 @@ msgstr "Ponovno vzpostavljanje povezave z jedrom Restreamer Core ni uspelo."
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:135
 #: src/views/Edit/Wizard/Sources/V4L.js:120
 msgid "Refresh"
-msgstr "Osvežitev"
+msgstr "刷新"
 
 #: src/views/Publication/Services/Restream.js:86
 #: src/views/Publication/Services/Twitch.js:78
 #: src/views/Publication/Services/Twitter.js:150
 #: src/views/Publication/Services/Twitter.js:166
 msgid "Region"
-msgstr "Regija"
+msgstr "区域"
 
 #: src/views/Password.js:146
 msgid "Register user"
-msgstr "Registracija uporabnika"
+msgstr "注册用户"
 
 #: src/views/Password.js:178
 #: src/views/Settings.js:2266
 msgid "Reload"
-msgstr "Ponovno polnjenje"
+msgstr "重新加载"
 
 #: src/views/Settings.js:1754
 msgid "Remove the oldest entries if the /memfs is full"
-msgstr "Odstranite najstarejše vnose, če je /memfs poln"
+msgstr "如果 /memfs 已满则移除最早的内容"
 
 #: src/views/Settings.js:1942
 msgid "Requires activation"
-msgstr "Zahteva aktivacijo"
+msgstr "需要激活"
 
 #: src/views/Publication/Player.js:497
 msgid "Reset logo"
-msgstr "Ponastavitev logotipa"
+msgstr "重置图标"
 
 #: src/views/Settings.js:1300
 #: src/views/Settings.js:2283
 #: src/views/Settings.js:2296
 #: src/views/Settings.js:2305
 msgid "Restart"
-msgstr "Ponovni zagon"
+msgstr "重启"
 
 #: src/views/Settings.js:2274
 msgid "Restart required"
-msgstr "Potreben ponovni zagon"
+msgstr "需要重启"
 
 #: src/views/Password.js:155
 #: src/views/Settings.js:2234
 msgid "Restarting"
-msgstr "Ponovni zagon spletne strani"
+msgstr "正在重启"
 
 #: src/views/Password.js:160
 #: src/views/Settings.js:2239
 msgid "Restarting Restreamer Core ..."
-msgstr "Ponovni zagon jedra Restreamerja ..."
+msgstr "重在重启 Restreamer Core ..."
 
 #: src/views/Settings.js:1108
 msgid "Restarting the application failed."
-msgstr "Ponovni zagon aplikacije ni uspel."
+msgstr "重启应用失败。"
 
 #: src/views/Settings.js:1328
 msgid "Restreamer Service"
-msgstr "Storitev ponastavljanja"
+msgstr "Restreamer 服务"
 
 #: src/views/Publication/Services/Core.js:189
 msgid "Restreamer instructions"
-msgstr "Navodila za ponovno snemanje"
+msgstr "Restreamer 指南"
 
 #: src/views/Main/index.js:273
 msgid "Retrieving stream data ..."
-msgstr "Pridobivanje podatkov o toku ..."
+msgstr "正在获取媒体流数据 ..."
 
 #: src/views/Edit/Wizard/Error.js:26
 #: src/views/Invalid.js:43
 #: src/views/Settings.js:1209
 msgid "Retry"
-msgstr "Ponovitev"
+msgstr "重试"
 
 #: src/misc/filters/video/Transpose.js:46
 msgid "Rotate"
-msgstr "Obračanje"
+msgstr "旋转"
 
 #: src/views/Edit/Sources/VirtualVideo.js:155
 msgid "Rule"
-msgstr "Pravilo"
+msgstr "规则"
 
 #: src/views/Main/index.js:422
 #: src/views/Settings.js:1240
@@ -2169,30 +2169,30 @@ msgstr "SRT"
 
 #: src/views/Edit/index.js:518
 msgid "SRT output"
-msgstr "Izhod SRT"
+msgstr "SRT 输出"
 
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:93
 #: src/views/Settings.js:2024
 msgid "SRT server"
-msgstr "Strežnik SRT"
+msgstr "SRT 服务器"
 
 #: src/views/Edit/Sources/Network.js:914
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:50
 msgid "SRT server is not enabled"
-msgstr "Strežnik SRT ni omogočen"
+msgstr "SRT 服务器不可用"
 
 #: src/views/Settings.js:2046
 msgid "SRT server listen address."
-msgstr "Naslov za poslušanje strežnika SRT."
+msgstr "SRT 服务器监听地址。"
 
 #: src/views/Settings.js:2059
 msgid "SRT token for publishing and playing. The token is the value of the streamid parameter 'token.'"
-msgstr "Žeton SRT za objavo in predvajanje. Token je vrednost parametra streamid 'token'."
+msgstr "SRT 用于发布和播放的 token。该 token 是 streamed 参数 'token' 的值。"
 
 #: src/misc/coders/settings/Audio.js:148
 #: src/misc/filters/audio/Resample.js:140
 msgid "Sampling"
-msgstr "Vzorčenje"
+msgstr "采样"
 
 #: src/views/Edit/Wizard/License.js:43
 #: src/views/Edit/index.js:615
@@ -2202,64 +2202,64 @@ msgstr "Vzorčenje"
 #: src/views/Publication/Player.js:493
 #: src/views/Settings.js:2224
 msgid "Save"
-msgstr "Shrani"
+msgstr "保存"
 
 #: src/misc/filters/video/Scale.js:43
 #: src/views/Edit/Sources/VirtualVideo.js:148
 msgid "Scale"
-msgstr "Lestvica"
+msgstr "缩放"
 
 #: src/misc/filters/video/Scale.js:99
 #: src/misc/filters/video/Scale.js:104
 #: src/misc/filters/video/Scale.js:109
 msgid "Scale size"
-msgstr "Velikost lestvice"
+msgstr "缩放尺寸"
 
 #: src/views/Settings.js:1855
 msgid "Seconds to keep files in cache."
-msgstr "Sekunde za shranjevanje datotek v predpomnilniku."
+msgstr "文件在缓存中保存的时间。"
 
 #: src/misc/controls/Process.js:61
 msgid "Seconds until a process is restarted."
-msgstr "Sekunde do ponovnega zagona procesa."
+msgstr "进程重启等待的时间。"
 
 #: src/misc/controls/Process.js:74
 msgid "Seconds until a staled process is terminated."
-msgstr "Sekunde do zaključka procesa, ki je bil zaustavljen."
+msgstr "前进程终止等待时间。"
 
 #: src/misc/controls/Snapshot.js:56
 msgid "Seconds until the snapshot/thumbnail of the video source is updated."
-msgstr "Sekunde do posodobitve posnetka/malenkosti vira videoposnetka."
+msgstr "视频流缩略图更新等待时间。"
 
 #: src/views/Settings.js:1589
 msgid "Security"
-msgstr "Varnost"
+msgstr "安全性"
 
 #: src/views/Publication/Services/Livespotting.js:103
 msgid "Security token"
-msgstr "Varnostni žeton"
+msgstr "Security token"
 
 #: src/views/Publication/Player.js:380
 msgid "Seekbar color"
-msgstr "Barva vidnega polja"
+msgstr "进度条颜色"
 
 #: src/misc/controls/HLS.js:95
 msgid "Segment length (seconds)"
-msgstr "Dolžina segmenta (sekunde)"
+msgstr "Segment 长度（秒）"
 
 #: src/misc/controls/HLS.js:100
 msgid "Segment will be cut on the following keyframe after this time has passed. 2 is recommended."
-msgstr "Segment bo po preteku tega časa prekinjen na naslednjem ključnem okvirju. Priporočljivo je 2."
+msgstr "该值所示时间过后，片段将在下一个关键帧被剪切。推荐值是2。"
 
 #: src/views/Publication/Services/DASH.js:429
 #: src/views/Publication/Services/HLS.js:358
 msgid "Segmentation"
-msgstr "Segmentacija"
+msgstr "分片"
 
 #: src/views/Publication/Add.js:437
 #: src/views/Publication/Edit.js:471
 msgid "Select RTMP or SRT (if enabled) for less latency."
-msgstr "Izberite RTMP ali SRT (če je omogočeno) za manjšo zakasnitev."
+msgstr "选择 RTMP 或 SRT （如果可用）以减少延迟。"
 
 #: src/views/Edit/Sources/ALSA.js:108
 #: src/views/Edit/Sources/AVFoundation.js:172
@@ -2270,47 +2270,47 @@ msgstr "Izberite RTMP ali SRT (če je omogočeno) za manjšo zakasnitev."
 #: src/views/Edit/Wizard/Sources/Raspicam.js:95
 #: src/views/Edit/Wizard/Sources/V4L.js:114
 msgid "Select a device:"
-msgstr "Izberite napravo:"
+msgstr "选择一个设备："
 
 #: src/views/Edit/Sources/VirtualAudio.js:84
 msgid "Select audio source:"
-msgstr "Izberite vir zvoka:"
+msgstr "选择音频源："
 
 #: src/views/Edit/Sources/VirtualVideo.js:114
 msgid "Select source ..."
-msgstr "Izberite vir ..."
+msgstr "选择媒体源 ..."
 
 #: src/views/Edit/Sources/VirtualVideo.js:108
 msgid "Select video source:"
-msgstr "Izberite vir videoposnetka:"
+msgstr "选择视频源："
 
 #: src/views/Edit/Wizard/Source.js:19
 msgid "Select whether you pull the stream from a <0>network source</0> (such as a network camera) or the <1>internal RTMP server</1> (e.g., OBS streams to the Restreamer)."
-msgstr "Izberite, ali boste tok prenesli iz <0>omrežnega vira</0> (na primer omrežne kamere) ali <1>internega strežnika RTMP</1> (npr. tokovi OBS v napravo Restreamer)."
+msgstr "选择从<0>网络源</0>（例如网络摄像头）还是<1>内部RTMP服务器</1>（例如， OBS 串流到 Restreamer）拉取媒体流。"
 
 #: src/misc/EncodingSelect.js:209
 msgid "Select your encoding setting:"
-msgstr "Izberite nastavitev kodiranja:"
+msgstr "选择编码设置："
 
 #: src/misc/FilterSelect.js:121
 msgid "Select your filter settings (optional):"
-msgstr "Izberite nastavitve filtra (neobvezno):"
+msgstr "选择过滤器设置（可选）："
 
 #: src/views/Playersite.js:604
 msgid "Selected"
-msgstr "Izbrani"
+msgstr "选中的"
 
 #: src/views/Playersite.js:395
 msgid "Selected channel"
-msgstr "Izbrani kanal"
+msgstr "选中的频道"
 
 #: src/views/Playersite.js:465
 msgid "Selection"
-msgstr "Izbor"
+msgstr "选项"
 
 #: src/views/Settings.js:1284
 msgid "Send anonymous metrics (helps us for future development)"
-msgstr "Pošljite anonimne metrike (pomagajo nam pri prihodnjem razvoju)"
+msgstr "发送匿名数据（用于未来的开发）"
 
 #: src/views/Edit/Sources/Network.js:834
 #: src/views/Edit/Sources/Network.js:881
@@ -2319,121 +2319,121 @@ msgstr "Pošljite anonimne metrike (pomagajo nam pri prihodnjem razvoju)"
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:68
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:68
 msgid "Send stream to this address:"
-msgstr "Pošljite tok na ta naslov:"
+msgstr "将媒体流发送到该地址："
 
 #: src/views/Publication/Services/Framebuffer.js:16
 msgid "Send video to Framebuffer"
-msgstr "Pošlji videoposnetek v Framebuffer"
+msgstr "发送视频到帧缓冲"
 
 #: src/views/Publication/Services/DaCast.js:120
 msgid "Server"
-msgstr "Strežnik"
+msgstr "服务器"
 
 #: src/views/Publication/Services/Owncast.js:100
 #: src/views/Publication/Services/Telegram.js:91
 msgid "Server URL"
-msgstr "URL strežnika"
+msgstr "服务器 URL"
 
 #: src/Header.js:257
 #: src/views/Login.js:246
 #: src/views/Settings.js:1233
 #: src/views/Settings.js:1314
 msgid "Service"
-msgstr "Storitev"
+msgstr "服务"
 
 #: src/views/Publication/Add.js:395
 #: src/views/Publication/Edit.js:407
 msgid "Service name"
-msgstr "Ime storitve"
+msgstr "服务名称"
 
 #: src/views/Settings.js:1365
 msgid "Service token for monitoring."
-msgstr "Storitveni žeton za spremljanje."
+msgstr "用于监视的服务 token。"
 
 #: src/Footer.js:240
 msgid "Sessions"
-msgstr "Seje"
+msgstr "会话"
 
 #: src/views/Settings.js:1516
 msgid "Sets a bandwidth limit in Mbit per second for outgoing HLS data transfer. All services, such as RTMP and outgoing processes, are included in the calculation. If the bandwidth is exceeded, HLS viewers receive the HTTP status code 509 (Bandwidth Limit Exceeded). 0 is unlimited."
-msgstr "Nastavi omejitev pasovne širine v Mbit na sekundo za izhodni prenos podatkov HLS. V izračun so vključene vse storitve, kot so RTMP in odhodni procesi. Če je pasovna širina presežena, gledalci HLS prejmejo kodo stanja HTTP 509 (Presežena omejitev pasovne širine). 0 pomeni neomejeno."
+msgstr "为传出 HLS 数据传输设置带宽限制，以 Mbit/s 为单位。所有服务，例如 RTMP 和传出流程，都包含在计算中。如果超出带宽，HLS 查看器会收到 HTTP 状态代码 509（超出带宽限制）。 0 表示无限制。"
 
 #: src/views/Settings.js:1499
 msgid "Sets a viewer limit for HLS sessions. If the limit is exceeded, HLS viewers receive the HTTP status code 509 (Bandwidth Limit Exceeded). 0 is unlimited."
-msgstr "Nastavi omejitev gledalcev za seje HLS. Če je omejitev presežena, gledalci HLS prejmejo kodo stanja HTTP 509 (omejitev pasovne širine presežena). 0 pomeni neomejeno."
+msgstr "设置 HLS 会话的查看者限制。如果超出限制，HLS 查看器会收到 HTTP 状态代码 509（超出带宽限制）。 0 表示无限制。"
 
 #: src/views/Settings.js:1319
 msgid "Setting for connection to the service."
-msgstr "Nastavitev za povezavo s storitvijo."
+msgstr "连接性设置。"
 
 #: src/views/Settings.js:1219
 msgid "Settings"
-msgstr "Nastavitve"
+msgstr "设置"
 
 #: src/views/Settings.js:1221
 msgid "Settings (expert mode)"
-msgstr "Nastavitve (strokovni način)"
+msgstr "设置（专家模式）"
 
 #: src/views/Settings.js:1770
 msgid "Settings for /data path. The access is protected by"
-msgstr "Nastavitve za pot /data. Dostop je zaščiten z"
+msgstr "/data 路径相关设置。访问保护方式为"
 
 #: src/views/Settings.js:1696
 msgid "Settings for /memfs path."
-msgstr "Nastavitve za pot /memfs."
+msgstr "/memfs 路径相关设置。"
 
 #: src/views/Settings.js:1051
 msgid "Settings saved. All changes will be applied after restarting the application."
-msgstr "Shranjene nastavitve. Vse spremembe se bodo uporabile po ponovnem zagonu aplikacije."
+msgstr "已保存设置。所有更改将在重启后应用。"
 
 #: src/views/Playersite.js:417
 msgid "Share button"
-msgstr "Gumb za deljenje"
+msgstr "分享按钮"
 
 #: src/views/Playersite.js:447
 msgid "Shows a reference to the project."
-msgstr "Prikaže referenco na projekt."
+msgstr "显示对项目的引用。"
 
 #: src/views/Login.js:332
 msgid "Sign up (free)"
-msgstr "Prijavite se (brezplačno)"
+msgstr "注册（免费）"
 
 #: src/views/Edit/Sources/VirtualAudio.js:89
 msgid "Silence"
-msgstr "Tišina"
+msgstr "静音"
 
 #: src/views/Edit/Wizard/Audio.js:95
 msgid "Silence Audio"
-msgstr "Tišina zvoka"
+msgstr "静音音频"
 
 #: src/views/Edit/Sources/VirtualAudio.js:91
 msgid "Sine"
-msgstr "Sine"
+msgstr "波形"
 
 #: src/views/Playersite.js:381
 msgid "Sitename"
-msgstr "Ime spletnega mesta"
+msgstr "站点名称"
 
 #: src/misc/coders/settings/Video.js:201
 msgid "Size"
-msgstr "Velikost"
+msgstr "大小"
 
 #: src/views/Edit/index.js:537
 #: src/views/Main/index.js:431
 msgid "Snapshot"
-msgstr "Posnetek"
+msgstr "截图"
 
 #: src/views/Login.js:316
 msgid "Social-login (OAuth2, 2FA)"
-msgstr "Prijava v družabnem omrežju (OAuth2, 2FA)"
+msgstr "通过社交媒体登录（OAuth2, 2FA）"
 
 #: src/views/Edit/Sources/Network.js:500
 msgid "Socket timeout (microseconds)"
-msgstr "Časovna omejitev vtičnice (mikrosekunde)"
+msgstr "Socket 超时（毫秒）"
 
 #: src/views/Publication/Add.js:360
 msgid "Software"
-msgstr "Programska oprema"
+msgstr "软件"
 
 #: src/misc/controls/Source.js:74
 #: src/views/Edit/Sources/VirtualAudio.js:88
@@ -2441,43 +2441,43 @@ msgstr "Programska oprema"
 #: src/views/Publication/Add.js:432
 #: src/views/Publication/Edit.js:466
 msgid "Source"
-msgstr "Vir:"
+msgstr "媒体源"
 
 #: src/views/Publication/Add.js:383
 #: src/views/Publication/Add.js:427
 #: src/views/Publication/Edit.js:395
 #: src/views/Publication/Edit.js:461
 msgid "Source & Encoding"
-msgstr "Vir in kodiranje"
+msgstr "媒体源 & 编码"
 
 #: src/misc/Progress.js:103
 msgid "Speed"
-msgstr "Hitrost"
+msgstr "速度"
 
 #: src/misc/controls/Process.js:69
 msgid "Stale timeout (seconds)"
-msgstr "Časovna omejitev za zastaranje (sekunde)"
+msgstr "Stale 超时（秒）"
 
 #: src/views/Settings.js:1621
 msgid "Statistics"
-msgstr "Statistika"
+msgstr "统计"
 
 #: src/misc/controls/HLS.js:65
 #: src/views/Settings.js:1238
 #: src/views/Settings.js:1688
 msgid "Storage"
-msgstr "Shranjevanje"
+msgstr "存储"
 
 #: src/views/Settings.js:1679
 msgid "Stores the viewer statistics to the disk."
-msgstr "Na disk shrani statistiko pregledovalnika."
+msgstr "将观众统计数据保存到硬盘。"
 
 #: src/views/Edit/StreamSelect.js:30
 #: src/views/Edit/StreamSelect.js:36
 #: src/views/Edit/StreamSelect.js:81
 #: src/views/Edit/Wizard/Audio.js:75
 msgid "Stream"
-msgstr "Tok"
+msgstr "媒体流"
 
 #: src/views/Publication/Services/RTMP.js:148
 msgid "Stream Key"
@@ -2486,7 +2486,7 @@ msgstr ""
 #: src/views/Publication/Services/Akamai.js:156
 #: src/views/Publication/Services/CDN77.js:102
 msgid "Stream URL"
-msgstr "URL toka"
+msgstr "媒体流 URL"
 
 #: src/views/Publication/Services/CDN77.js:113
 #: src/views/Publication/Services/DLive.js:75
@@ -2504,471 +2504,471 @@ msgstr "URL toka"
 #: src/views/Publication/Services/Vimeo.js:73
 #: src/views/Publication/Services/Youtube.js:173
 msgid "Stream key"
-msgstr "Ključ toka"
+msgstr "Stream key"
 
 #: src/views/Publication/Services/Brightcove.js:101
 #: src/views/Publication/Services/Red5.js:136
 #: src/views/Publication/Services/WOWZA.js:158
 msgid "Stream name"
-msgstr "Ime toka"
+msgstr "Stream name"
 
 #: src/views/Publication/Services/Akamai.js:167
 msgid "Stream names"
-msgstr "Imena tokov"
+msgstr "Stream names"
 
 #: src/misc/controls/Source.js:78
 msgid "Stream source for publication service (experimental)."
-msgstr "Vir toka za storitev objave (eksperimentalno)."
+msgstr "发布服务的媒体源（实验性）。"
 
 #: src/views/Playersite.js:441
 msgid "Support datarhei Restreamer"
-msgstr "Podpora datarhei Restreamer"
+msgstr "赞助 datarhei Restreamer"
 
 #: src/views/Edit/Sources/Network.js:722
 #: src/views/Edit/Wizard/Sources/Network.js:72
 msgid "Supports HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT and more."
-msgstr "Podpira HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT in druge."
+msgstr "支持 HTTP (HLS, DASH), RT, RTSP, RTMP, SRT 以及其他。"
 
 #: src/Footer.js:184
 #: src/Header.js:275
 #: src/views/Settings.js:2095
 msgid "System"
-msgstr "Sistem"
+msgstr "系统"
 
 #: src/views/Publication/Services/Core.js:179
 msgid "Target address"
-msgstr "Ciljni naslov"
+msgstr "目标地址"
 
 #: src/views/Playersite.js:351
 #: src/views/Playersite.js:456
 msgid "Template"
-msgstr "Predloga"
+msgstr "模板"
 
 #: src/views/Playersite.js:478
 msgid "Template to be used for creating the publication website. The delete button removes the selection from the system."
-msgstr "Predloga, ki se uporablja za ustvarjanje spletnega mesta publikacije. Gumb za brisanje izbire odstrani izbiro iz sistema."
+msgstr "用于创建发布站点的模板。删除按钮从系统中删除选择。"
 
 #: src/views/Playersite.js:682
 msgid "Terms"
-msgstr "Pogoji"
+msgstr "条款"
 
 #: src/views/Edit/Sources/VirtualVideo.js:116
 msgid "Test pattern"
-msgstr "Preskusni vzorec"
+msgstr "测试模式"
 
 #: src/views/Edit/Sources/VirtualVideo.js:117
 msgid "Test pattern (extended)"
-msgstr "Preskusni vzorec (razširjen)"
+msgstr "测试模式（扩展）"
 
 #: src/views/Playersite.js:535
 msgid "Text colors"
-msgstr "Barve besedila"
+msgstr "文本颜色"
 
 #: src/misc/controls/RTMP.js:61
 msgid "The RTMP output requires the RTMP Server."
-msgstr "Za izhod RTMP je potreben strežnik RTMP."
+msgstr "RTMP 输出需要 RTMP 服务器。"
 
 #: src/misc/controls/SRT.js:61
 msgid "The SRT output requires the SRT Server."
-msgstr "Za izhod SRT je potreben strežnik SRT."
+msgstr "SRT 输出需要 SRT 服务器。"
 
 #: src/views/Edit/Sources/VirtualAudio.js:131
 msgid "The amplitude (0.0 - 1.0) of the generated audio stream"
-msgstr "Amplituda (0,0 - 1,0) ustvarjenega zvočnega toka"
+msgstr "生成音频流的幅度（0.0 - 1.0）"
 
 #: src/views/Settings.js:1304
 msgid "The application is using an older version of the settings."
-msgstr "Aplikacija uporablja starejšo različico nastavitev."
+msgstr "该应用使用旧版本的设置。"
 
 #: src/views/Edit/Sources/Network.js:795
 msgid "The available FFmpeg binary doesn't support any of the required protocols."
-msgstr "Razpoložljivi binarni program FFmpeg ne podpira nobenega od zahtevanih protokolov."
+msgstr "可用的 FFmpeg 不支持任何一种要求的协议。"
 
 #: src/misc/coders/settings/Audio.js:40
 msgid "The bitrate of the audio stream."
-msgstr "Bitna hitrost zvočnega toka."
+msgstr "音频流的比特率。"
 
 #: src/views/Edit/Sources/VirtualAudio.js:150
 msgid "The carrier frequency"
-msgstr "Nosilna frekvenca"
+msgstr "载波频率"
 
 #: src/views/Edit/index.js:371
 msgid "The channel \"{0}\" could not be deleted"
-msgstr "Kanala \"{0}\" ni bilo mogoče izbrisati"
+msgstr "无法删除频道 \"{0}\""
 
 #: src/views/Edit/index.js:380
 msgid "The channel \"{0}\" has been deleted"
-msgstr "Kanal \"{0}\" je bil izbrisan"
+msgstr "已删除频道 \"{0}\""
 
 #: src/views/Edit/index.js:659
 msgid "The deletion of this channel can not be recovered. All publications of this channel will be removed."
-msgstr "Izbrisa tega kanala ni mogoče obnoviti. Vse objave tega kanala bodo odstranjene."
+msgstr "此频道删除后无法恢复。该频道的所有串流输出将被删除。"
 
 #: src/views/Edit/Wizard/index.js:176
 #: src/views/Edit/index.js:297
 msgid "The input profile is not complete. Please define a video and audio source."
-msgstr "Vhodni profil ni popoln. Opredelite vir videa in zvoka."
+msgstr "输入设置不完整。请设置视频源和音频源。"
 
 #: src/misc/coders/settings/Audio.js:86
 #: src/misc/filters/audio/Resample.js:78
 msgid "The layout of the audio stream."
-msgstr "Postavitev zvočnega toka."
+msgstr "音频流的布局。"
 
 #: src/misc/controls/HLS.js:112
 msgid "The maximum number of playlist segments. 0 will contain all the segments. 6 is recommended."
-msgstr "Največje število segmentov seznama predvajanja. 0 vsebuje vse segmente. Priporočljivo je 6."
+msgstr "最大的 playlist segments 数量。0 表示包含所有 segment。推荐值为 6。"
 
 #: src/views/Edit/Sources/VirtualAudio.js:119
 msgid "The noise color"
-msgstr "Barva šuma"
+msgstr "噪音颜色"
 
 #: src/misc/controls/License/index.js:60
 msgid "The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission."
-msgstr "Oseba, ki je delo povezala s tem dejanjem, je delo namenila javni domeni tako, da se je odpovedala vsem svojim pravicam do dela po vsem svetu v skladu z zakonom o avtorskih pravicah, vključno z vsemi sorodnimi in sosedskimi pravicami, kolikor je to dovoljeno z zakonom. Delo lahko kopirate, spreminjate, razširjate in izvajate, tudi v komercialne namene, vse to brez prošnje za dovoljenje."
+msgstr "在法律允许的范围内，根据版权法，包括所有相关和邻接权利在内，将作品与此契约相关联的人放弃了他或她在全球范围内对作品的所有权利，从而将作品投入公共领域。您可以复制、修改、分发和执行作品，甚至可以用于商业目的，所有这些都无需征得许可。"
 
 #: src/views/Settings.js:1409
 msgid "The public reachable domain name of the host this Restreamer is running on. Separate multiple domain names by a comma."
-msgstr "Javno dosegljivo ime domene gostitelja, v katerem deluje ta predvajalnik. Več domenskih imen ločite z vejico."
+msgstr "运行 Restreamer 主机的公网域名。用逗号分隔多个域名。"
 
 #: src/views/Publication/Edit.js:285
 msgid "The publication service \"{0}\" could not be deleted"
-msgstr "Storitve objave \"{0}\" ni bilo mogoče izbrisati"
+msgstr "无法删除串流输出服务 \"{0}\""
 
 #: src/views/Publication/Add.js:205
 msgid "The publication service \"{0}\" has been created"
-msgstr "Storitev objave \"{0}\" je bila ustvarjena"
+msgstr "已创建串流输出服务 \"{0}\""
 
 #: src/views/Publication/Edit.js:291
 msgid "The publication service \"{0}\" has been deleted"
-msgstr "Storitev objave \"{0}\" je bila izbrisana"
+msgstr "已删除串流输出服务 \"{0}\""
 
 #: src/views/Publication/Add.js:203
 msgid "The publication service has been created"
-msgstr "Storitev objave je bila ustvarjena"
+msgstr "已创建串流输出服务"
 
 #: src/misc/coders/settings/Audio.js:137
 #: src/misc/filters/audio/Resample.js:129
 msgid "The sample rate of the audio stream."
-msgstr "Vzorčna frekvenca zvočnega toka."
+msgstr "音频流采样率。"
 
 #: src/views/Playersite.js:152
 #: src/views/Playersite.js:227
 #: src/views/Publication/Player.js:193
 msgid "The selected file is too big ({0} bytes). Only {1} bytes are allowed."
-msgstr "Izbrana datoteka je prevelika ({0} bajtov). Dovoljeni so samo {1} bajti."
+msgstr "选择的文件过大（{0} 字节）。只允许 {1} 字节大小。"
 
 #: src/views/Playersite.js:141
 #: src/views/Playersite.js:216
 #: src/views/Publication/Player.js:182
 msgid "The selected file type ({0}) is not allowed. Allowed file types are {types}"
-msgstr "Izbrana vrsta datoteke ({0}) ni dovoljena. Dovoljene vrste datotek so {types}"
+msgstr "不允许选择该类型（{0}）的文件。允许的文件类型为 {types}"
 
 #: src/views/Publication/Edit.js:245
 msgid "The settings for \"{0}\" have been saved"
-msgstr "Nastavitve za \"{0}\" so bile shranjene"
+msgstr "已保存 \"{0}\" 的设置"
 
 #: src/views/Edit/Wizard/Audio.js:43
 msgid "The source doesn't provide any audio streams."
-msgstr "Vir ne zagotavlja nobenih zvočnih tokov."
+msgstr "媒体源没有提供音频流。"
 
 #: src/views/Edit/Profile.js:519
 msgid "The source doesn't provide any audio streams. Please check the <0>probe details</0>."
-msgstr "Vir ne zagotavlja nobenih zvočnih tokov. Preverite <0>podrobnosti sonde</0>."
+msgstr "媒体源没有提供音频流。请检查 <0>媒体头详情</0>。"
 
 #: src/views/Edit/Wizard/Audio.js:51
 msgid "The source doesn't provide any compatible audio streams."
-msgstr "Vir ne zagotavlja združljivih zvočnih tokov."
+msgstr "媒体源没有提供兼容的音频流。"
 
 #: src/views/Edit/Wizard/Video.js:50
 msgid "The source doesn't provide any compatible video streams. Please check the <0>requirements</0>."
-msgstr "Vir ne zagotavlja združljivih videoprenosov. Preverite <0>zahteve</0>."
+msgstr "媒体源没有提供兼容的音频流。请检查 <0>媒体头详情</0>。"
 
 #: src/views/Edit/Profile.js:370
 msgid "The source doesn't provide any video streams. Please check the <0>probe details</0>."
-msgstr "Vir ne zagotavlja nobenih videoprenosov. Preverite <0>podrobnosti sonde</0>."
+msgstr "媒体源没有提供视频流。请检查 <0>媒体头详情</0>。"
 
 #: src/views/Edit/Wizard/Video.js:42
 msgid "The source doesn't provide any video streams. Please check the device."
-msgstr "Vir ne zagotavlja nobenih videoprenosov. Preverite napravo."
+msgstr "媒体源没有提供视频流。请检查设备。"
 
 #: src/views/Edit/Wizard/Audio.js:62
 msgid "The video source doesn't provide any compatible audio stream. <0>Silence audio</0> is recommended. Services e.g. YouTube, Facebook & Co. require an audio channel."
-msgstr "Vir videoposnetka ne zagotavlja združljivega zvočnega toka. Priporoča se <0>Tihi zvok</0>. Storitve, kot so YouTube, Facebook in druge, zahtevajo zvočni kanal."
+msgstr "该视频源没有提供任何兼容的音频流。推荐<0>静音音频</0>。YouTube、Facebook 等服务要求有音频通道。"
 
 #: src/views/Edit/Wizard/VideoProfile.js:23
 msgid "The video source is compatible. Select the desired resolution:"
-msgstr "Vir videoposnetka je združljiv. Izberite želeno ločljivost:"
+msgstr "视频源不兼容。选择期望的解决方案："
 
 #: src/views/Settings.js:1276
 msgid "There are updates available. Here you get more information."
-msgstr "Na voljo so posodobitve. Tukaj dobite več informacij."
+msgstr "有可用的更新。这里获取更多信息。"
 
 #: src/views/Settings.js:1004
 msgid "There was a problem storing the settings. Settings not saved."
-msgstr "Pri shranjevanju nastavitev je prišlo do težave. Nastavitve niso shranjene."
+msgstr "保存设置时出现错误。设置未保存。"
 
 #: src/views/Invalid.js:32
 msgid "There was an error connecting to Restreamer Core at {0}."
-msgstr "Pri povezovanju z jedrom Restreamer Core je prišlo do napake na naslovu {0}."
+msgstr "在 {0} 连接到 Restreamer Core 时出现错误。"
 
 #: src/views/Playersite.js:165
 #: src/views/Playersite.js:240
 #: src/views/Publication/Player.js:206
 msgid "There was an error during upload: {0}"
-msgstr "Med nalaganjem je prišlo do napake: {0}"
+msgstr "上传时出现错误：{0}"
 
 #: src/views/Edit/Wizard/Error.js:21
 msgid "There was an error setting up the stream."
-msgstr "Pri nastavljanju toka je prišlo do napake."
+msgstr "媒体流设置过程中出现了错误。"
 
 #: src/views/Settings.js:1002
 msgid "There were some errors in the settings. Settings not saved."
-msgstr "V nastavitvah je bilo nekaj napak. Nastavitve niso bile shranjene."
+msgstr "设置中有错误。设置未保存。"
 
 #: src/views/Login.js:257
 msgid "There's no login method available."
-msgstr "Na voljo ni načina prijave."
+msgstr "没有可用的登录方式。"
 
 #: src/views/Publication/Services/Dummy.js:26
 msgid "This is a dummy service that explains to you the concepts of service."
-msgstr "To je navidezna storitev, ki vam razloži koncepte storitve."
+msgstr "这是一个虚拟服务，向您解释服务的概念。"
 
 #: src/views/Password.js:170
 msgid "This is not necessarily an error. However, it may take a bit longer for Restreamer Core to restart.."
-msgstr "To ni nujno napaka. Vendar lahko traja nekoliko dlje, da se Restreamer Core ponovno zažene."
+msgstr "这不一定是错误。但是，Restreamer Core 重启可能需要更长的时间。"
 
 #: src/views/Publication/Services/Dummy.js:31
 msgid "This is to mention the copyright regulations for the target of this service."
-msgstr "Pri tem je treba omeniti predpise o avtorskih pravicah za ciljno skupino te storitve."
+msgstr "这是针对本服务对象的版权规定。"
 
 #: src/misc/controls/License/index.js:95
 msgid "This license allows reusers to copy and distribute the material in any medium or format in unadapted form only, and only so long as attribution is given to the creator. The license allows for commercial use."
-msgstr "Ta licenca omogoča ponovni uporabi kopiranje in razširjanje gradiva v katerem koli mediju ali formatu samo v neprilagojeni obliki in samo pod pogojem, da je naveden avtor. Licenca dovoljuje komercialno uporabo."
+msgstr "该许可允许再利用者以任何媒体或格式仅以未经改编的形式复制和分发材料，并且前提是要注明创作者的身份。该许可证允许用于商业用途。"
 
 #: src/misc/controls/License/index.js:102
 msgid "This license allows reusers to copy and distribute the material in any medium or format in unadapted form only, for noncommercial purposes only, and only so long as attribution is given to the creator."
-msgstr "Ta licenca omogoča ponovni uporabi kopiranje in razširjanje gradiva v katerem koli mediju ali formatu v neprilagojeni obliki, samo v nekomercialne namene in samo pod pogojem, da je naveden avtor."
+msgstr "此许可允许再利用者以任何媒体或格式以未经改编的形式复制和分发材料，仅用于非商业目的，并且仅在注明创作者姓名的情况下。"
 
 #: src/misc/controls/License/index.js:81
 msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format for noncommercial purposes only, and only so long as attribution is given to the creator."
-msgstr "Ta licenca omogoča ponovni uporabi distribucijo, remiks, prilagoditev in nadgradnjo gradiva v katerem koli mediju ali formatu samo v nekomercialne namene in le, če je naveden avtor."
+msgstr "此许可允许重用者以任何媒体或格式分发、重新混合、改编和构建材料，仅用于非商业目的，并且仅在注明创作者身份的情况下。"
 
 #: src/misc/controls/License/index.js:88
 msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format for noncommercial purposes only, and only so long as attribution is given to the creator. If you remix, adapt, or build upon the material, you must license the modified material under identical terms."
-msgstr "Ta licenca omogoča ponovni uporabi distribucijo, remiks, prilagoditev in nadgradnjo gradiva v katerem koli mediju ali formatu samo v nekomercialne namene in le, če je naveden avtor. Če gradivo remiksirate, prilagajate ali gradite na njem, morate spremenjeno gradivo licencirati pod enakimi pogoji."
+msgstr "此许可允许重用者以任何媒体或格式分发、重新混合、改编和构建材料，仅用于非商业目的，并且仅在注明创作者身份的情况下。如果您重新混合、改编或构建这些材料，您必须根据相同的条款许可修改后的材料。"
 
 #: src/misc/controls/License/index.js:67
 msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use."
-msgstr "Ta licenca omogoča ponovni uporabi, da gradivo distribuirajo, remiksirajo, prilagajajo in nadgrajujejo v katerem koli mediju ali formatu, če navedejo avtorja. Licenca dovoljuje komercialno uporabo."
+msgstr "该许可证允许再利用者以任何媒体或格式分发、重新混合、改编和构建材料，只要注明创作者的署名即可。该许可证允许用于商业用途。"
 
 #: src/misc/controls/License/index.js:74
 msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms."
-msgstr "Ta licenca omogoča ponovni uporabi, da gradivo distribuirajo, remiksirajo, prilagajajo in nadgrajujejo v katerem koli mediju ali formatu, če navedejo avtorja. Licenca dovoljuje komercialno uporabo. Če gradivo remiksirate, prilagodite ali gradite na njem, morate spremenjeno gradivo licencirati pod enakimi pogoji."
+msgstr "该许可证允许再利用者以任何媒体或格式分发、重新混合、改编和构建材料，只要注明创作者的署名即可。该许可证允许用于商业用途。如果您重新混合、改编或构建这些材料，您必须根据相同的条款许可修改后的材料。"
 
 #: src/views/Edit/Sources/Network.js:732
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
-msgstr "Ta protokol je neznan ali ga razpoložljivi binarni program FFmpeg ne podpira."
+msgstr "该协议未知或不被当前可用的 FFmpeg 支持。"
 
 #: src/views/Edit/index.js:640
 msgid "This source cannot be edited while it is in use. To continue, you have to disconnect the source."
-msgstr "Tega vira med uporabo ni mogoče urejati. Če želite nadaljevati, morate vir odklopiti."
+msgstr "此源在使用中无法编辑。要继续，您必须断开信号源。"
 
 #: src/views/Incompatible.js:21
 msgid "This version of the UI doesn't support the available FFmpeg binary ({0}). The UI requires {1}. Please use a supported FFmpeg binary."
-msgstr "Ta različica uporabniškega vmesnika ne podpira razpoložljive binarne datoteke FFmpeg ({0}). Uporabniški vmesnik zahteva {1}. Uporabite podprto binarno datoteko FFmpeg."
+msgstr "该版本的 UI 不支持可用的 FFmpeg 二进制文件（{0}）。UI 需要 {1}。请使用支持的 FFmpeg 二进制文件。"
 
 #: src/views/Incompatible.js:14
 msgid "This version of the UI doesn't support the connected Core ({0}). The UI requires {1}. Please use a compatible version of the UI."
-msgstr "Ta različica uporabniškega vmesnika ne podpira povezanega jedra ({0}). Uporabniški vmesnik zahteva {1}. Uporabite združljivo različico uporabniškega vmesnika."
+msgstr "该版本的 UI 不支持已连接的 Core（{0}）。UI 需要 {1}。请使用支持的 Core 版本。"
 
 #: src/views/Incompatible.js:10
 msgid "This version of the UI is compatible."
-msgstr "Ta različica uporabniškega vmesnika je združljiva."
+msgstr "该版本的 UI 是兼容的。"
 
 #: src/views/Settings.js:1666
 msgid "Time until an inactive viewer connection is treated as closed."
-msgstr "Čas, dokler se neaktivna povezava gledalca ne obravnava kot zaprta."
+msgstr "超出该时间的不活动查看器连接将被视为已关闭。"
 
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:188
 msgid "To stabilize the system, increase the HLS segment length for the keyframe interval by 2-3 * (Processing and Control)."
-msgstr "Za stabilizacijo sistema povečajte dolžino segmenta HLS za interval ključnih slik za 2-3 * (Obdelava in nadzor)."
+msgstr "为了稳定系统，将关键帧间隔的 HLS 段长度增加 2-3 *（处理和控制）。"
 
 #: src/views/Settings.js:1357
 #: src/views/Settings.js:2002
 #: src/views/Settings.js:2051
 msgid "Token"
-msgstr "Žeton"
+msgstr "Token"
 
 #: src/misc/filters/video/Bwdif.js:59
 msgid "Top field"
-msgstr "Vrhunsko področje"
+msgstr "顶部区域"
 
 #: src/views/Publication/Services/Telegram.js:13
 msgid "Transmit a Livestream to a Telegram Channel."
-msgstr "Prenos živega prenosa v kanal Telegram."
+msgstr "将直播流传输到 Telegram 频道。"
 
 #: src/views/Publication/Services/Image2.js:25
 msgid "Transmit snapshots of the main source to an HTTP/S Server. More details about the settings can be found <0>here</0>."
-msgstr "Prenos posnetkov glavnega vira v strežnik HTTP/S. Več podrobnosti o nastavitvah je na voljo <0>tukaj</0>."
+msgstr "将主媒体源的快照传输到 HTTP/S 服务器。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/Icecast.js:21
 msgid "Transmit the audio channel of the main source to an Icecast Server. More details about the settings can be found <0>here</0>."
-msgstr "Prenos zvočnega kanala glavnega vira v strežnik Icecast. Več podrobnosti o nastavitvah lahko najdete <0>tukaj</0>."
+msgstr "将主媒体源源的快照传输到 Icecast 服务器。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/HLS.js:29
 msgid "Transmit the main source as HTTP-Live-Streaming (HLS) to an HTTP/S Server. More details about the settings can be found <0>here</0>."
-msgstr "Prenos glavnega vira v strežnik HTTP/S v obliki prenosa v živo (HLS). Več podrobnosti o nastavitvah najdete <0>tu</0>."
+msgstr "将主媒体源作为 HTTP 直播流（HLS）传输到 HTTP/S 服务器。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/DASH.js:27
 msgid "Transmit the main source as MPEG-DASH to an HTTP/S Server. More details about the settings can be found <0>here</0>."
-msgstr "Prenos glavnega vira kot MPEG-DASH v strežnik HTTP/S. Več podrobnosti o nastavitvah lahko najdete <0>tu</0>."
+msgstr "将主媒体源作为 MPEG-DAS 传输到 HTTP/S 服务器。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/Brightcove.js:15
 msgid "Transmit the main source to a Brightcove Live Service. More details about the settings can be found <0>here</0>."
-msgstr "Posredujte glavni vir v storitev Brightcove Live. Več podrobnosti o nastavitvah najdete <0>tukaj</0>."
+msgstr "将主媒体源传输到 Brightcove Live 服务器。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/CDN77.js:15
 msgid "Transmit the main source to an CDN77 RTMP Service. More about the setup <0>here</0>."
-msgstr "Prenos glavnega vira v storitev CDN77 RTMP. Več o nastavitvi <0>tukaj</0>."
+msgstr "将主媒体源传输到 CDN77 RTMP 服务器。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/DaCast.js:18
 msgid "Transmit the main source to an DaCast RTMP Service. More about the setup <0>here</0>."
-msgstr "Prenos glavnega vira v storitev DaCast RTMP. Več o nastavitvi <0>tukaj</0>."
+msgstr "将主媒体源传输到 DaCast RTMP 服务器。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/MPEGTS.js:27
 msgid "Transmit the main source to an MPEG-TS Service. More details about the settings can be found here <0>here</0>."
-msgstr "Prenos glavnega vira v storitev MPEG-TS. Več podrobnosti o nastavitvah je na voljo tukaj <0>tu</0>."
+msgstr "将主媒体源传输到 MPEG-TS 服务器。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/RTMP.js:24
 msgid "Transmit the main source to an RTMP(e|s|t|te|ts) Server. More details about the settings can be found <0>here</0>."
-msgstr "Prenos glavnega vira v strežnik RTMP(e|s|t|te|ts). Več podrobnosti o nastavitvah lahko najdete <0>tukaj</0>."
+msgstr "将主媒体源传输到 RTMP(e|s|t|te|ts) 服务器。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/RTSP.js:28
 msgid "Transmit the main source to an RTSP Server. More details about the settings can be found <0>here</0>."
-msgstr "Prenos glavnega vira v strežnik RTSP. Več podrobnosti o nastavitvah je na voljo <0>tukaj</0>."
+msgstr "将主媒体源传输到 RTSP 服务器。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/Red5.js:17
 msgid "Transmit the main source to an Red5/Pro Server. More details about the settings can be found <0>here</0>."
-msgstr "Prenos glavnega vira v strežnik Red5/Pro. Več podrobnosti o nastavitvah lahko najdete <0>tukaj</0>."
+msgstr "将主媒体源传输到 Red5/Pro 服务器。有关该设置的更多信息，请查看<0>这里</0>。"
 
 #: src/views/Publication/Services/SRT.js:25
 msgid "Transmit the main source to an SRT Server. More details about the settings can be found <0>here</0>."
-msgstr "Prenos glavnega vira v strežnik SRT. Več podrobnosti o nastavitvah je na voljo <0>tukaj</0>."
+msgstr "将主媒体源传输到 SRT 服务器。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/UDP.js:23
 msgid "Transmit the main source to an UDP Server. More details about the settings can be found <0>here</0>."
-msgstr "Prenos glavnega vira v strežnik UDP. Več podrobnosti o nastavitvah je na voljo <0>tukaj</0>."
+msgstr "将主媒体源传输到 UDP 服务器。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/WOWZA.js:20
 msgid "Transmit the main source to an WOWZA Server. More details about the settings can be found <0>here</0>."
-msgstr "Prenos glavnega vira v strežnik WOWZA. Več podrobnosti o nastavitvah lahko najdete <0>tu</0>."
+msgstr "将主媒体源传输到 WOWZA 服务器。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/Core.js:19
 msgid "Transmit the main source to an datarhei Core Ressource. More details about the settings can be found <0>here</0>."
-msgstr "Prenos glavnega vira na datarhei Core Ressource. Več podrobnosti o nastavitvah lahko najdete <0>tu</0>."
+msgstr "将主媒体源传输到 datarhei Core 资源。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/Livespotting.js:15
 msgid "Transmit the main source to an livespotting.com Ressource. More details about the settings can be found <0>here</0>."
-msgstr "Glavni vir prenesite v vir livespotting.com Ressource. Več podrobnosti o nastavitvah lahko najdete <0>tukaj</0>."
+msgstr "将主媒体源传输到 livespotting.com 资源。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/Akamai.js:17
 msgid "Transmit the main source to the Akamai (MSL) Media Services Live. More details about the MSL Encoder settings can be found on <0>here</0>."
-msgstr "Prenos glavnega vira v medijske storitve Akamai (MSL) v živo. Več podrobnosti o nastavitvah kodirnika MSL najdete na <0>tu</0>."
+msgstr "将主媒体源传输到 Akamai (MSL) Media Service Live。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/Restream.js:18
 msgid "Transmit the main source to the Restream RTMP Service. More details about the settings can be found <0>here</0>."
-msgstr "Prenos glavnega vira v storitev Restream RTMP. Več podrobnosti o nastavitvah lahko najdete <0>tukaj</0>."
+msgstr "将主媒体源传输到 Restream RTMP 服务器。有关设置的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/Linkedin.js:16
 msgid "Transmit to LinkedIn. More details can be found <0>here</0>."
-msgstr "Pošljite v omrežje LinkedIn. Več podrobnosti najdete <0>tu</0>."
+msgstr "串流到 LinkedIn。<0>这里</0>查看更多详情。"
 
 #: src/views/Publication/Services/Azure.js:17
 msgid "Transmit to a Azure Media Services. More details can be found <0>here</0>."
-msgstr "Prenos v Azure Media Services. Več podrobnosti lahko najdete <0>tukaj</0>."
+msgstr "传输到 Azure Media Services。<0>这里</0>查看更多信息。"
 
 #: src/views/Publication/Services/Owncast.js:15
 msgid "Transmit your Livestream to an Owncast server. <0>Here </0>you can find more details about the settings."
-msgstr "Prenesite svoj prenos v živo v strežnik Owncast. <0>Tudi </0>najdete več podrobnosti o nastavitvah."
+msgstr "将直播流传输到 Owncast 服务器。<0>这里</0>查看该设置的更多信息。"
 
 #: src/views/Publication/Services/Youtube.js:21
 msgid "Transmits your video as an RTMP stream with the required key generated in YouTube Studio. You can find more information on setting up a live stream at YouTube's <0>Creator Academy</0>."
-msgstr "Vaš videoposnetek se prenese kot tok RTMP z zahtevanim ključem, ustvarjenim v programu YouTube Studio. Več informacij o vzpostavitvi prenosa v živo najdete na spletni strani <0>Creator Academy</0> podjetja YouTube."
+msgstr "将主媒体作为一个 RTMP 流与在 YouTube Studio 中生成的秘钥传输。有关在 YouTube 的 Creator Academy 中设置直播流的更多详细信息，请访问<0>这里</0>。"
 
 #: src/views/Publication/Services/Twitter.js:20
 msgid "Transmits your video stream with the required key, which was generated in Twitter Producer. You can find more information on seting up a live stream at Twitter's <0>Producer</0>."
-msgstr "Prenaša vaš videoprenos z zahtevanim ključem, ki je bil ustvarjen v programu Twitter Producer. Več informacij o vzpostavitvi prenosa v živo najdete na spletnem mestu Twitter <0>Producer</0>."
+msgstr "将媒体流与在 Twitter Producer 中生成的秘钥传输。有关在 Twitter 的 Producer 中设置直播流的更多详细信息，请访问<0>这里</0>。"
 
 #: src/misc/coders/Encoders/video/X264.js:108
 #: src/misc/coders/Encoders/video/X265.js:108
 msgid "Tune"
-msgstr "Uglaševanje"
+msgstr "Tune"
 
 #: src/views/Edit/Sources/Network.js:491
 #: src/views/Edit/Wizard/Sources/Network.js:77
 msgid "UDP transport"
-msgstr "Prenos UDP"
+msgstr "UDP 传输"
 
 #: src/views/Settings.js:1204
 msgid "Unable to load the config."
-msgstr "Konfiguracije ni mogoče naložiti."
+msgstr "无法加载配置。"
 
 #: src/views/Settings.js:1339
 msgid "Unique ident on the service."
-msgstr "Edinstvena identiteta storitve."
+msgstr "服务的唯一标识。"
 
 #: src/views/Main/Egress.js:96
 msgid "Unknown"
-msgstr "Neznano"
+msgstr "未知的"
 
 #: src/views/Playersite.js:613
 msgid "Unselected"
-msgstr "Neizbrano"
+msgstr "未选中"
 
 #: src/misc/Changelog.js:173
 msgid "Update details (Changelog)"
-msgstr "Podrobnosti posodobitve (Changelog)"
+msgstr "更新详情（Changelog）"
 
 #: src/views/Playersite.js:498
 #: src/views/Playersite.js:515
 #: src/views/Playersite.js:650
 #: src/views/Publication/Player.js:411
 msgid "Upload"
-msgstr "Naložite"
+msgstr "上传"
 
 #: src/views/Playersite.js:281
 msgid "Uploading the file failed"
-msgstr "Nalaganje datoteke ni uspelo"
+msgstr "上传文件失败"
 
 #: src/views/Publication/Player.js:236
 msgid "Uploading the logo failed"
-msgstr "Nalaganje logotipa ni bilo uspešno"
+msgstr "图标上传失败"
 
 #: src/Footer.js:165
 #: src/misc/Progress.js:51
 #: src/views/Main/Progress.js:57
 msgid "Uptime"
-msgstr "Čas delovanja"
+msgstr "在线时长"
 
 #: src/views/Login.js:343
 msgid "Use Auth0 for your running Restreamer Core. More <0>details</0>."
-msgstr "Uporabite Auth0 za delujoče jedro Restreamer Core. Več <0>podrobnosti</0>."
+msgstr "为你的 Restreamer Core 启用 Auth0。<0>查看更多详情</0>。"
 
 #: src/views/Edit/index.js:439
 msgid "Use the wizard (<0/>) for a quick and easy setup, or edit (<1/>) the sources directly in custom mode."
-msgstr "Za hitro in enostavno nastavitev uporabite čarovnika (<0/>) ali pa vire urejate (<1/>) neposredno v načinu po meri."
+msgstr "使用向导 (<0/>) 快速设置，或者直接在自定义模式中编辑 (<1/>) 源。"
 
 #: src/views/Edit/Wizard/License.js:24
 msgid "Use your copyright and choose the correct image license. Whether free for all or highly restricted. Briefly discuss what others are allowed to do with your image."
-msgstr "Uporabite svoje avtorske pravice in izberite pravilno licenco za slike. Naj bo brezplačna za vse ali zelo omejena. Na kratko razpravljajte o tem, kaj lahko drugi počnejo z vašo sliko."
+msgstr "使用您的版权并选择正确的图像许可。无论是对所有人免费还是受到高度限制。简要讨论其他人可以用您的形象做什么。"
 
 #: src/views/Edit/index.js:585
 msgid "Use your copyright and choose the right image licence. Whether free for all or highly restricted. Briefly discuss what others are allowed to do with your image."
-msgstr "Uporabite svoje avtorske pravice in izberite pravo licenco za slike. Ne glede na to, ali je brezplačna za vse ali zelo omejena. Na kratko razpravljajte o tem, kaj lahko drugi počnejo z vašo sliko."
+msgstr "使用您的版权并选择正确的图像许可。无论是对所有人免费还是受到高度限制。简要讨论其他人可以用您的形象做什么。"
 
 #: src/views/Password.js:99
 msgid "User registration"
-msgstr "Registracija uporabnika"
+msgstr "用户注册"
 
 #: src/views/Edit/Sources/Network.js:744
 #: src/views/Edit/Wizard/Sources/Network.js:84
@@ -2982,21 +2982,21 @@ msgstr "Registracija uporabnika"
 #: src/views/Settings.js:1556
 #: src/views/Settings.js:1714
 msgid "Username"
-msgstr "Uporabniško ime"
+msgstr "用户名"
 
 #: src/views/Settings.js:1562
 #: src/views/Settings.js:1722
 msgid "Username for authorization."
-msgstr "Uporabniško ime za avtorizacijo."
+msgstr "用于身份认证的用户名。"
 
 #: src/views/Edit/Sources/Network.js:749
 #: src/views/Edit/Wizard/Sources/Network.js:90
 msgid "Username for the device."
-msgstr "Uporabniško ime za napravo."
+msgstr "设备用户名。"
 
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:174
 msgid "V4L2_M2M is experimental."
-msgstr "V4L2_M2M je eksperimentalen."
+msgstr "V4L2_M2M 是实验性的。"
 
 #: src/views/Publication/Services/Livespotting.js:88
 msgid "VPU ID"
@@ -3004,15 +3004,15 @@ msgstr "VPU ID"
 
 #: src/misc/coders/settings/Video.js:340
 msgid "Variable frame rate (VFR)"
-msgstr "Spremenljiva hitrost sličic (VFR)"
+msgstr "可变帧率（VFR）"
 
 #: src/misc/filters/video/VFlip.js:65
 msgid "Vertical Flip"
-msgstr "Navpični flip"
+msgstr "垂直翻转"
 
 #: src/views/Publication/Add.js:459
 msgid "Video"
-msgstr "Videoposnetek"
+msgstr "视频"
 
 #: src/views/Edit/Sources/AVFoundation.js:126
 #: src/views/Edit/Sources/Raspicam.js:92
@@ -3021,96 +3021,96 @@ msgstr "Videoposnetek"
 #: src/views/Edit/Wizard/Sources/Raspicam.js:86
 #: src/views/Edit/Wizard/Sources/V4L.js:105
 msgid "Video device"
-msgstr "Video naprava"
+msgstr "视频设备"
 
 #: src/views/Edit/Profile.js:333
 #: src/views/Edit/ProfileSummary.js:66
 #: src/views/Publication/Edit.js:491
 msgid "Video settings"
-msgstr "Nastavitve videoposnetkov"
+msgstr "视频设置"
 
 #: src/views/Edit/Wizard/Source.js:15
 #: src/views/Edit/Wizard/Video.js:19
 #: src/views/Edit/Wizard/VideoProfile.js:16
 msgid "Video setup"
-msgstr "Nastavitev videoposnetka"
+msgstr "视频设置"
 
 #: src/views/Edit/Sources/VideoAudio.js:45
 msgid "Video source"
-msgstr "Vir videoposnetka"
+msgstr "视频源"
 
 #: src/Footer.js:227
 #: src/Footer.js:232
 #: src/Footer.js:245
 #: src/views/Main/Publication.js:173
 msgid "Viewer"
-msgstr "Pregledovalnik"
+msgstr "观看者"
 
 #: src/views/Edit/Sources/VirtualAudio.js:187
 #: src/views/Edit/Sources/VirtualVideo.js:206
 msgid "Virtual source"
-msgstr "Virtualni vir"
+msgstr "虚拟源"
 
 #: src/misc/filters/audio/Volume.js:44
 msgid "Volume"
-msgstr "Zvezek"
+msgstr "音量"
 
 #: src/misc/coders/Encoders/video/H264V4L2M2M.js:176
 msgid "We recommend OpenMAX IL for Raspberry PI (3/4) with a 32-bit operating system."
-msgstr "Priporočamo OpenMAX IL za Raspberry PI (3/4) z 32-bitnim operacijskim sistemom."
+msgstr "对于 Raspberry PI (3/4)，推荐使用 32 位操作系统的 OpenMAX IL。"
 
 #: src/views/Welcome.js:27
 msgid "Welcome to Restreamer v2, the solution for fast and easy video publishing. Free for private and commercial use. Further help in the <0>docs</0>."
-msgstr "Dobrodošli v Restreamerju v2, rešitvi za hitro in enostavno objavljanje videoposnetkov. Brezplačno za zasebno in komercialno uporabo. Dodatna pomoč v <0>dokumentih</0>."
+msgstr "欢迎使用 Restreamer v2，这是一种快速简便的视频发布解决方案。免费供私人和商业使用。 如需进一步的帮助，请查看 <0>文档</0>。"
 
 #: src/misc/controls/HLS.js:74
 msgid "Where to store the HLS playlist and segments. In-Memory is recommended."
-msgstr "Kam shraniti seznam predvajanja HLS in segmente. Priporočljivo je v pomnilniku."
+msgstr "存储 HLM playlist 和 segments 的位置。推荐 In-Memory。"
 
 #: src/misc/coders/settings/Video.js:286
 msgid "Width"
-msgstr "Širina"
+msgstr "宽度"
 
 #: src/views/Settings.js:1701
 msgid "Write protection"
-msgstr "Zaščita pri pisanju"
+msgstr "写保护"
 
 #: src/views/Edit/Sources/VirtualVideo.js:119
 msgid "YUV test pattern"
-msgstr "Preskusni vzorec YUV"
+msgstr "YUV 测试模式"
 
 #: src/views/Publication/Services/Instagram.js:127
 msgid "Yellow Duck"
-msgstr "Rumena raca"
+msgstr "Yellow Duck"
 
 #: src/views/Edit/Wizard/Abort.js:38
 msgid "Yes"
-msgstr "Da"
+msgstr "是"
 
 #: src/views/Edit/Wizard/Abort.js:20
 msgid "You can't abort the wizard because at least one input must be defined."
-msgstr "Čarovnika ne morete prekiniti, ker mora biti opredeljen vsaj en vnos."
+msgstr "现在不能中止向导，因为至少必须定义一个输入。"
 
 #: src/views/Settings.js:2288
 msgid "You have changed the configuration. In order for the changes to take effect, you have to restart the application. Do you want to restart now?"
-msgstr "Spremenili ste konfiguracijo. Da bi spremembe začele veljati, morate znova zagnati aplikacijo. Ali želite zdaj znova zagnati aplikacijo?"
+msgstr "配置已更改。请重启应用以使更改生效。要立刻重启吗？"
 
 #: src/views/Main/index.js:376
 #: src/views/Publication/Process.js:73
 msgid "You have to reconnect manually"
-msgstr "Ponovno povezavo morate vzpostaviti ročno."
+msgstr "需要手动重连"
 
 #: src/views/Publication/Edit.js:433
 msgid "You have unsaved changes. Please save them before you can control the service again."
-msgstr "Spremembe niso shranjene. Pred ponovnim nadzorom storitve jih shranite."
+msgstr "有未保存的更改。请保存以再次管理服务。"
 
 #: src/views/Edit/Wizard/VideoProfile.js:36
 msgid "Your stream needs to be encoded, but there's no suitable encoder available."
-msgstr "Vaš tok je treba kodirati, vendar ni na voljo ustreznega kodirnika."
+msgstr "源需要被编码，但没有合适的编码器可用。"
 
 #: src/views/Edit/Wizard/VideoProfile.js:43
 msgid "Your stream needs to be encoded. Choose the desired encoder:"
-msgstr "Vaš tok je treba kodirati. Izberite želeni kodirnik:"
+msgstr "媒体流需要被编码。请选择编码器："
 
 #: src/views/Edit/Sources/Network.js:681
 msgid "avoid_negative_ts"
@@ -3118,11 +3118,11 @@ msgstr "avoid_negative_ts"
 
 #: src/views/Edit/Sources/VirtualAudio.js:114
 msgid "blue"
-msgstr "modra"
+msgstr "蓝色"
 
 #: src/views/Edit/Sources/VirtualAudio.js:113
 msgid "brown"
-msgstr "rjava"
+msgstr "棕色"
 
 #: src/views/Edit/Sources/Network.js:666
 msgid "copyts"
@@ -3130,7 +3130,7 @@ msgstr "copyts"
 
 #: src/views/Publication/Player.js:369
 msgid "iframe code"
-msgstr "koda iframe"
+msgstr "iframe 代码"
 
 #: src/misc/Progress.js:77
 #: src/views/Main/Progress.js:67
@@ -3140,7 +3140,7 @@ msgstr "kbit/s"
 
 #: src/views/Edit/Sources/VirtualAudio.js:112
 msgid "pink"
-msgstr "roza"
+msgstr "粉色"
 
 #: src/views/Edit/Sources/Network.js:668
 msgid "start_at_zero"
@@ -3152,12 +3152,12 @@ msgstr "use_wallclock_as_timestamps"
 
 #: src/views/Edit/Sources/VirtualAudio.js:116
 msgid "velvet"
-msgstr "žamet"
+msgstr "天鹅绒"
 
 #: src/views/Edit/Sources/VirtualAudio.js:115
 msgid "violet"
-msgstr "vijolična"
+msgstr "紫罗兰"
 
 #: src/views/Edit/Sources/VirtualAudio.js:111
 msgid "white"
-msgstr "bela"
+msgstr "白色"

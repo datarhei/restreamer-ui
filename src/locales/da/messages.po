@@ -104,7 +104,7 @@ msgstr "Tilføj: {0}"
 #: src/views/Publication/Services/Image2.js:126
 #: src/views/Publication/Services/Linkedin.js:93
 #: src/views/Publication/Services/MPEGTS.js:160
-#: src/views/Publication/Services/RTMP.js:132
+#: src/views/Publication/Services/RTMP.js:142
 #: src/views/Publication/Services/RTSP.js:150
 #: src/views/Publication/Services/Red5.js:115
 #: src/views/Publication/Services/SRT.js:161
@@ -140,7 +140,7 @@ msgstr "Avanceret overvågning"
 #: src/views/Publication/Services/Icecast.js:172
 #: src/views/Publication/Services/Image2.js:132
 #: src/views/Publication/Services/MPEGTS.js:166
-#: src/views/Publication/Services/RTMP.js:138
+#: src/views/Publication/Services/RTMP.js:157
 #: src/views/Publication/Services/RTSP.js:162
 #: src/views/Publication/Services/SRT.js:170
 #: src/views/Publication/Services/UDP.js:133
@@ -748,7 +748,7 @@ msgstr "Dokumenter"
 #: src/views/Publication/Services/Icecast.js:240
 #: src/views/Publication/Services/Image2.js:171
 #: src/views/Publication/Services/MPEGTS.js:355
-#: src/views/Publication/Services/RTMP.js:250
+#: src/views/Publication/Services/RTMP.js:269
 #: src/views/Publication/Services/RTSP.js:235
 #: src/views/Publication/Services/SRT.js:428
 #: src/views/Publication/Services/UDP.js:241
@@ -864,7 +864,7 @@ msgid "Encoding"
 msgstr "Kodning"
 
 #: src/views/Publication/Services/HLS.js:445
-#: src/views/Publication/Services/RTMP.js:222
+#: src/views/Publication/Services/RTMP.js:241
 #: src/views/Publication/Services/SRT.js:372
 msgid "Encryption"
 msgstr "Kryptering"
@@ -1088,7 +1088,7 @@ msgstr "GET"
 #: src/views/Publication/Services/HLS.js:200
 #: src/views/Publication/Services/Icecast.js:179
 #: src/views/Publication/Services/Image2.js:139
-#: src/views/Publication/Services/RTMP.js:145
+#: src/views/Publication/Services/RTMP.js:164
 #: src/views/Publication/Services/RTSP.js:169
 #: src/views/Publication/Services/SRT.js:177
 #: src/views/Settings.js:1231
@@ -1924,7 +1924,7 @@ msgstr "Profil"
 #: src/views/Publication/Services/Linkedin.js:84
 #: src/views/Publication/Services/MPEGTS.js:154
 #: src/views/Publication/Services/Owncast.js:88
-#: src/views/Publication/Services/RTMP.js:122
+#: src/views/Publication/Services/RTMP.js:132
 #: src/views/Publication/Services/RTSP.js:144
 #: src/views/Publication/Services/Red5.js:105
 #: src/views/Publication/Services/SRT.js:158
@@ -2478,6 +2478,10 @@ msgstr "Gemmer seerstatistikkerne på disken."
 #: src/views/Edit/Wizard/Audio.js:75
 msgid "Stream"
 msgstr "Stream"
+
+#: src/views/Publication/Services/RTMP.js:148
+msgid "Stream Key"
+msgstr ""
 
 #: src/views/Publication/Services/Akamai.js:156
 #: src/views/Publication/Services/CDN77.js:102

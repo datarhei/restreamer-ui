@@ -17,6 +17,7 @@ import { messages as PT } from './locales/pt/messages.js';
 import { messages as RU } from './locales/ru/messages.js';
 import { messages as SL } from './locales/sl/messages.js';
 import { messages as TR } from './locales/tr/messages.js';
+import { messages as ZH } from './locales/zh-hans/messages.js';
 import * as Storage from './utils/storage';
 
 i18n.loadLocaleData('en', { plurals: plurals.en });
@@ -32,6 +33,7 @@ i18n.loadLocaleData('pt', { plurals: plurals.pt });
 i18n.loadLocaleData('ru', { plurals: plurals.ru });
 i18n.loadLocaleData('sl', { plurals: plurals.sl });
 i18n.loadLocaleData('tr', { plurals: plurals.tr });
+i18n.loadLocaleData('zh-hans', { plurals: plurals.zh });
 i18n.load({
 	en: EN,
 	da: DA,
@@ -46,16 +48,30 @@ i18n.load({
 	ru: RU,
 	sl: SL,
 	tr: TR,
+	'zh-hans': ZH,
 });
 
-const getLanguage = (defaultLanguage, supportedLanguages) => {
-	let lang = Storage.Get('language');
-	if (supportedLanguages.indexOf(lang) === -1) {
-		lang = getBrowserLanguage(defaultLanguage);
+const aliases = {
+	'pt-br': 'pt',
+	'zh-cn': 'zh-hans',
+};
+
+const getAlias = (lang) => {
+	if (lang in aliases) {
+		return aliases[lang];
 	}
 
+	return lang;
+};
+
+const getLanguage = (defaultLanguage, supportedLanguages) => {
+	let lang = getAlias(Storage.Get('language'));
 	if (supportedLanguages.indexOf(lang) === -1) {
-		lang = defaultLanguage;
+		lang = getAlias(getBrowserLanguage(defaultLanguage));
+
+		if (supportedLanguages.indexOf(lang) === -1) {
+			lang = defaultLanguage;
+		}
 	}
 
 	Storage.Set('language', lang);
@@ -66,7 +82,7 @@ const getLanguage = (defaultLanguage, supportedLanguages) => {
 const getBrowserLanguage = (defaultLanguage) => {
 	let lang = window.navigator.language;
 
-	const match = lang.match(/^[a-z]+/);
+	const match = lang.match(/^[a-z]+(-[a-z]+)?/i);
 	if (!match) {
 		return defaultLanguage;
 	}
@@ -74,7 +90,7 @@ const getBrowserLanguage = (defaultLanguage) => {
 	return match[0].toLowerCase();
 };
 
-i18n.activate(getLanguage('en', ['en', 'da', 'de', 'el', 'es', 'fr', 'it', 'ko', 'pl', 'pt', 'ru', 'sl', 'tr']));
+i18n.activate(getLanguage('en', ['en', 'da', 'de', 'el', 'es', 'fr', 'it', 'ko', 'pl', 'pt', 'ru', 'sl', 'tr', 'zh-hans']));
 
 export default function Provider(props) {
 	return <I18nProvider i18n={i18n}>{props.children}</I18nProvider>;
