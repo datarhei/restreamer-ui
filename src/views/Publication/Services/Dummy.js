@@ -146,6 +146,38 @@ function init(settings) {
 	return initSettings;
 }
 
+// createOutput creates the FFmpeg output options based on the settings,
+// skills, metadata, and/or streams. It returns an array of arrays of options
+// for each output.
+//
+// This function should be exported, such that it can be called from the
+// outside in case e.g. the streams changed (due to changes in the encoding
+// settings) and the output options depend on that information.
+function createOutputs(settings, skills, metadata, streams) {
+	settings = init(settings);
+	const outputs = [];
+
+	if (settings.stream_key.length === 0) {
+		return outputs;
+	}
+
+	if (settings.rtmp_primary) {
+		outputs.push({
+			address: 'rtmp://a.rtmp.youtube.com/live2/' + settings.stream_key,
+			options: ['-codec', 'copy', '-f', 'flv'],
+		});
+	}
+
+	if (settings.rtmp_backup) {
+		outputs.push({
+			address: 'rtmp://b.rtmp.youtube.com/live2?backup=1/' + settings.stream_key,
+			options: ['-codec', 'copy', '-f', 'flv'],
+		});
+	}
+
+	return outputs;
+}
+
 // Service is a React component that implements a service.
 //
 // A service receives these props:
@@ -223,8 +255,6 @@ function init(settings) {
 // service. Its state is managed by the parent React component.
 function Service(props) {
 	const settings = init(props.settings);
-	const skills = props.skills;
-	const metadata = props.metadata;
 
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
@@ -235,36 +265,12 @@ function Service(props) {
 			settings[what] = value;
 		}
 
-		const outputs = createOutput(settings);
+		const outputs = createOutputs(settings, props.skills, props.metadata, props.streams);
 
 		props.onChange(outputs, settings);
 	};
 
-	const createOutput = (settings) => {
-		const outputs = [];
-
-		if (settings.stream_key.length === 0) {
-			return outputs;
-		}
-
-		if (settings.rtmp_primary) {
-			outputs.push({
-				address: 'rtmp://a.rtmp.youtube.com/live2/' + settings.stream_key,
-				options: ['-codec', 'copy', '-f', 'flv'],
-			});
-		}
-
-		if (settings.rtmp_backup) {
-			outputs.push({
-				address: 'rtmp://b.rtmp.youtube.com/live2?backup=1/' + settings.stream_key,
-				options: ['-codec', 'copy', '-f', 'flv'],
-			});
-		}
-
-		return outputs;
-	};
-
-	if (skills === null) {
+	if (props.skills === null) {
 		return null;
 	}
 
@@ -297,4 +303,17 @@ Service.propTypes = {
 	streams: PropTypes.array.isRequired,
 };
 
-export { id, name, version, stream_key_link, description, image_copyright, author, category, requires, ServiceIcon as icon, Service as component };
+export {
+	id,
+	name,
+	version,
+	stream_key_link,
+	description,
+	image_copyright,
+	author,
+	category,
+	requires,
+	ServiceIcon as icon,
+	Service as component,
+	createOutputs,
+};

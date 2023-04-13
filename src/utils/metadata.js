@@ -557,7 +557,7 @@ const mergeEgressMetadata = (metadata, base) => {
 	return metadata;
 };
 
-const validateProfile = (sources, profile) => {
+const validateProfile = (sources, profile, requireVideo = true) => {
 	let validVideo = false;
 
 	profile = initProfile(profile);
@@ -604,14 +604,16 @@ const validateProfile = (sources, profile) => {
 
 	let complete = true;
 
-	if (profile.video.encoder.coder === 'none' || profile.video.source === -1 || profile.video.stream === -1) {
-		complete = false;
+	if (requireVideo === true) {
+		if (profile.video.encoder.coder === 'none' || profile.video.source === -1 || profile.video.stream === -1) {
+			complete = false;
+		}
 	}
 
 	return complete;
 };
 
-const createInputsOutputs = (sources, profiles) => {
+const createInputsOutputs = (sources, profiles, requireVideo = true) => {
 	const source2inputMap = new Map();
 
 	let global = [];
@@ -620,7 +622,7 @@ const createInputsOutputs = (sources, profiles) => {
 
 	// For each profile get the source and do the proper mapping
 	for (let profile of profiles) {
-		const complete = validateProfile(sources, profile);
+		const complete = validateProfile(sources, profile, requireVideo);
 		if (complete === false) {
 			continue;
 		}
@@ -717,37 +719,39 @@ const createInputsOutputs = (sources, profiles) => {
 	return [global, inputs, outputs];
 };
 
-const createOutputStreams = (sources, profiles) => {
+const createOutputStreams = (sources, profiles, requireVideo = true) => {
 	const streams = [];
 
 	// Generate a list of output streams from the profiles
 	for (let profile of profiles) {
-		const complete = validateProfile(sources, profile);
+		const complete = validateProfile(sources, profile, requireVideo);
 		if (complete === false) {
 			continue;
 		}
 
-		const source = sources[profile.video.source];
-		const stream = source.streams[profile.video.stream];
+		if (profile.video.encoder.coder !== 'none' && profile.video.source !== -1 && profile.video.stream !== -1) {
+			const source = sources[profile.video.source];
+			const stream = source.streams[profile.video.stream];
 
-		const s = initStream({
-			index: 0,
-			stream: streams.length,
-			type: stream.type,
-			width: stream.width,
-			height: stream.height,
-		});
+			const s = initStream({
+				index: 0,
+				stream: streams.length,
+				type: stream.type,
+				width: stream.width,
+				height: stream.height,
+			});
 
-		if (profile.video.encoder.coder !== 'copy') {
-			const encoder = Coders.Video.Get(profile.video.encoder.coder);
-			if (encoder) {
-				s.codec = encoder.codec;
+			if (profile.video.encoder.coder !== 'copy') {
+				const encoder = Coders.Video.Get(profile.video.encoder.coder);
+				if (encoder) {
+					s.codec = encoder.codec;
+				}
+			} else {
+				s.codec = stream.codec;
 			}
-		} else {
-			s.codec = stream.codec;
-		}
 
-		streams.push(s);
+			streams.push(s);
+		}
 
 		if (profile.audio.encoder.coder !== 'none' && profile.audio.source !== -1 && profile.audio.stream !== -1) {
 			const source = sources[profile.audio.source];

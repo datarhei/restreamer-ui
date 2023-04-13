@@ -56,7 +56,6 @@ function init(settings, metadata) {
 		protocol: 'icecast://',
 		address: '',
 		options: {},
-		profiles: {},
 		...settings,
 	};
 
@@ -75,6 +74,61 @@ function init(settings, metadata) {
 	return initSettings;
 }
 
+function createOutputs(settings, skills, metadata, streams) {
+	settings = init(settings, metadata);
+	let hasVideo = false;
+	let audioCodec = '';
+
+	for (let i = 0; i < streams.length; i++) {
+		if (streams[i].type === 'video') {
+			hasVideo = true;
+		} else if (streams[i].type === 'audio') {
+			audioCodec = streams[i].codec;
+		}
+	}
+
+	const options = [];
+
+	for (let key in settings.options) {
+		if (settings.options[key].length === 0) {
+			continue;
+		}
+
+		options.push('-' + key, String(settings.options[key]));
+	}
+
+	// https://gist.github.com/keiya/c8a5cbd4fe2594ddbb3390d9cf7dcac9#file-readme-md
+	// https://wiki.xiph.org/Icecast_Server/Streaming_WebM_to_Icecast_with_FFmpeg
+
+	if (hasVideo === true) {
+		options.push('-f', 'webm', '-cluster_size_limit', '2', '-cluster_time_limit', '5100', '-content_type', 'video/webm');
+	} else {
+		switch (audioCodec) {
+			case 'aac':
+				options.push('-content_type', 'audio/aac', '-f', 'adts');
+				break;
+			case 'vorbis':
+				options.push('-content_type', 'audio/ogg', '-f', 'ogg');
+				break;
+			case 'opus':
+				options.push('-content_type', 'audio/ogg', '-f', 'opus');
+				break;
+			case 'mp3':
+				options.push('-content_type', 'audio/mpeg', '-f', 'mp3');
+				break;
+			default:
+				break;
+		}
+	}
+
+	const output = {
+		address: settings.protocol + settings.address,
+		options: options,
+	};
+
+	return [output];
+}
+
 function Service(props) {
 	const settings = init(props.settings, props.metadata);
 
@@ -91,63 +145,9 @@ function Service(props) {
 			settings[what] = value;
 		}
 
-		const output = createOutput(settings);
+		const outputs = createOutputs(settings, props.skills, props.metadata, props.streams);
 
-		props.onChange([output], settings);
-	};
-
-	const createOutput = (settings) => {
-		let hasVideo = false;
-		let audioCodec = '';
-
-		for (let i = 0; i < props.streams.length; i++) {
-			if (props.streams[i].type === 'video') {
-				hasVideo = true;
-			} else if (props.streams[i].type === 'audio') {
-				audioCodec = props.streams[i].codec;
-			}
-		}
-
-		const options = [];
-
-		for (let key in settings.options) {
-			if (settings.options[key].length === 0) {
-				continue;
-			}
-
-			options.push('-' + key, String(settings.options[key]));
-		}
-
-		// https://gist.github.com/keiya/c8a5cbd4fe2594ddbb3390d9cf7dcac9#file-readme-md
-		// https://wiki.xiph.org/Icecast_Server/Streaming_WebM_to_Icecast_with_FFmpeg
-
-		if (hasVideo === true) {
-			options.push('-f', 'webm', '-cluster_size_limit', '2', '-cluster_time_limit', '5100', '-content_type', 'video/webm');
-		} else {
-			switch (audioCodec) {
-				case 'aac':
-					options.push('-content_type', 'audio/aac', '-f', 'adts');
-					break;
-				case 'vorbis':
-					options.push('-content_type', 'audio/ogg', '-f', 'ogg');
-					break;
-				case 'opus':
-					options.push('-content_type', 'audio/ogg', '-f', 'opus');
-					break;
-				case 'mp3':
-					options.push('-content_type', 'audio/mpeg', '-f', 'mp3');
-					break;
-				default:
-					break;
-			}
-		}
-
-		const output = {
-			address: settings.protocol + settings.address,
-			options: options,
-		};
-
-		return output;
+		props.onChange(outputs, settings);
 	};
 
 	return (
@@ -259,4 +259,17 @@ Service.defaultProps = {
 	onChange: function (output, settings) {},
 };
 
-export { id, name, version, stream_key_link, description, image_copyright, author, category, requires, ServiceIcon as icon, Service as component };
+export {
+	id,
+	name,
+	version,
+	stream_key_link,
+	description,
+	image_copyright,
+	author,
+	category,
+	requires,
+	ServiceIcon as icon,
+	Service as component,
+	createOutputs,
+};

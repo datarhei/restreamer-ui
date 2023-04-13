@@ -34,8 +34,12 @@ export function createSourcesFromStreams(streams) {
  * @param {*} outputs service outputs (format options and address)
  * @returns
  */
-export function createInputsOutputs(sources, profiles, outputs) {
-	const [global, inpts, outpts] = M.createInputsOutputs(sources, profiles);
+export function createInputsOutputs(sources, profiles, outputs, requireVideo = true) {
+	const [global, inpts, outpts] = M.createInputsOutputs(sources, profiles, requireVideo);
+
+	if (inpts.length === 0 || outpts.length === 0) {
+		return [global, [], []];
+	}
 
 	const out = [];
 

@@ -170,7 +170,7 @@ export default function Wizard(props) {
 		const profiles = data.profiles;
 		const control = data.control;
 
-		const [global, inputs, outputs] = M.createInputsOutputs(sources, profiles);
+		const [global, inputs, outputs] = M.createInputsOutputs(sources, profiles, true);
 
 		if (inputs.length === 0 || outputs.length === 0) {
 			notify.Dispatch('error', 'save:ingest', i18n._(t`The input profile is not complete. Please define a video and audio source.`));

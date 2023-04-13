@@ -166,7 +166,7 @@ export default function Edit(props) {
 			profiles[0].audio = helper.preselectProfile(profiles[0].audio, 'audio', ingest.streams, serviceSkills.codecs.audio, skills);
 
 			settings.profiles = profiles;
-			settings.streams = M.createOutputStreams(sources, profiles);
+			settings.streams = M.createOutputStreams(sources, profiles, false);
 
 			setSettings(settings);
 
@@ -215,10 +215,19 @@ export default function Edit(props) {
 		profiles[0][type].encoder = encoder;
 		profiles[0][type].decoder = decoder;
 
+		const streams = M.createOutputStreams($sources, profiles, false);
+
+		let outputs = $settings.outputs;
+
+		if ('createOutputs' in $service) {
+			outputs = $service.createOutputs($settings.settings, $serviceSkills, $metadata, streams);
+		}
+
 		setSettings({
 			...$settings,
 			profiles: profiles,
-			streams: M.createOutputStreams($sources, profiles),
+			streams: streams,
+			outputs: outputs,
 		});
 
 		if (!automatic) {
@@ -229,7 +238,12 @@ export default function Edit(props) {
 	const handleServiceDone = async () => {
 		setSaving(true);
 
-		const [global, inputs, outputs] = helper.createInputsOutputs($sources, $settings.profiles, $settings.outputs);
+		const [global, inputs, outputs] = helper.createInputsOutputs($sources, $settings.profiles, $settings.outputs, false);
+		if (inputs.length === 0 || outputs.length === 0) {
+			setSaving(false);
+			notify.Dispatch('error', 'save:egress:' + _service, i18n._(t`The input profile is not complete. Please define a video and audio source.`));
+			return;
+		}
 
 		const [, err] = await props.restreamer.UpdateEgress(_channelid, id, global, inputs, outputs, $settings.control);
 		if (err !== null) {
@@ -410,7 +424,13 @@ export default function Edit(props) {
 									/>
 								</Grid>
 								<Grid item xs={12}>
-									<ServiceControl settings={$settings.settings} skills={$serviceSkills} metadata={$metadata} onChange={handleServiceChange} />
+									<ServiceControl
+										settings={$settings.settings}
+										skills={$serviceSkills}
+										metadata={$metadata}
+										streams={$settings.streams}
+										onChange={handleServiceChange}
+									/>
 								</Grid>
 							</TabContent>
 						</TabPanel>

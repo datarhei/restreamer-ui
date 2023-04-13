@@ -146,7 +146,7 @@ export default function Add(props) {
 				...$settings,
 				name: s.name,
 				profiles: profiles,
-				streams: M.createOutputStreams($sources, profiles),
+				streams: M.createOutputStreams($sources, profiles, false),
 			});
 
 			setTab('general');
@@ -179,17 +179,35 @@ export default function Add(props) {
 		profiles[0][type].encoder = encoder;
 		profiles[0][type].decoder = decoder;
 
+		const streams = M.createOutputStreams($sources, profiles, false);
+
+		let outputs = $settings.outputs;
+
+		service = Services.Get($service);
+		if (service !== null) {
+			if ('createOutputs' in service) {
+				const serviceSkills = helper.conflateServiceSkills(service.requires, $skills);
+				outputs = service.createOutputs($settings.settings, serviceSkills, $metadata, streams);
+			}
+		}
+
 		setSettings({
 			...$settings,
 			profiles: profiles,
-			streams: M.createOutputStreams($sources, profiles),
+			streams: streams,
+			outputs: outputs,
 		});
 	};
 
 	const handleServiceDone = async () => {
 		setSaving(true);
 
-		const [global, inputs, outputs] = helper.createInputsOutputs($sources, $settings.profiles, $settings.outputs);
+		const [global, inputs, outputs] = helper.createInputsOutputs($sources, $settings.profiles, $settings.outputs, false);
+		if (inputs.length === 0 || outputs.length === 0) {
+			setSaving(false);
+			notify.Dispatch('error', 'save:egress:' + $service, i18n._(t`The input profile is not complete. Please define a video and/or audio source.`));
+			return;
+		}
 
 		const [id, err] = await props.restreamer.CreateEgress(_channelid, $service, global, inputs, outputs, $settings.control);
 		if (err !== null) {
