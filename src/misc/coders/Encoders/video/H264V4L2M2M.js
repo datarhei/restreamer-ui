@@ -91,8 +91,6 @@ function createMapping(settings, stream, skills) {
 		`${settings.num_capture_buffers}`,
 		'-num_output_buffers',
 		`${settings.num_output_buffers}`,
-		'-force_key_frames',
-		`${settings.force_key_frames}`,
 		'-b:v',
 		`${settings.bitrate}k`,
 		'-maxrate',
@@ -111,6 +109,10 @@ function createMapping(settings, stream, skills) {
 		'-max_muxing_queue_size',
 		'2048',
 	];
+
+	if (settings.force_key_frames !== '') {
+		local.push('-force_key_frames', `${settings.force_key_frames}`);
+	}
 
 	if (settings.gop !== 'auto') {
 		local.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);

@@ -4,6 +4,8 @@
 
 -   Add Add stream key field and protocol detection to RTMP publication service
 -   Add Chinese (simplified) translation (thanks to Huyg0180110559)
+-   Fix empty force_key_frames value
+-   Fix Fix Icecast publication service
 -   Fix imprint, terms and credit without share ([#525](https://github.com/datarhei/restreamer/issues/529))
 -   Fix proxy error on the playersite ([#525](https://github.com/datarhei/restreamer/issues/525))
 -   Fix saving RTMP advanced options ([#518](https://github.com/datarhei/restreamer/issues/518))
