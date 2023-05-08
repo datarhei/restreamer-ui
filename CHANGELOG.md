@@ -1,6 +1,6 @@
 # Restreamer-UI
 
-## v1.7.0 > v1.x.x
+## v1.7.0 > v1.8.0
 
 -   Add Add stream key field and protocol detection to RTMP publication service
 -   Add Chinese (simplified) translation (thanks to Huyg0180110559)
