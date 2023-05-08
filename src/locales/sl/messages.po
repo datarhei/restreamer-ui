@@ -60,8 +60,8 @@ msgstr "AVFoundation"
 #: src/views/Edit/index.js:604
 #: src/views/Edit/index.js:630
 #: src/views/Edit/index.js:649
-#: src/views/Publication/Add.js:372
-#: src/views/Publication/Edit.js:562
+#: src/views/Publication/Add.js:390
+#: src/views/Publication/Edit.js:582
 #: src/views/Settings.js:2219
 #: src/views/Settings.js:2278
 #: src/views/Settings.js:2300
@@ -77,7 +77,7 @@ msgstr "O"
 msgid "Add"
 msgstr "Dodaj"
 
-#: src/views/Publication/Add.js:331
+#: src/views/Publication/Add.js:349
 msgid "Add Publication"
 msgstr "Dodaj objavo"
 
@@ -89,7 +89,7 @@ msgstr "Dodajanje zunanjih gradnikov in slogov na spletno mesto objave. Nekaj pr
 msgid "Add new channel"
 msgstr "Dodajanje novega kanala"
 
-#: src/views/Publication/Add.js:334
+#: src/views/Publication/Add.js:352
 msgid "Add: {0}"
 msgstr "Dodaj: {0}"
 
@@ -160,7 +160,7 @@ msgstr "AirPlay"
 msgid "Alerting by email"
 msgstr "Opozarjanje po e-pošti"
 
-#: src/views/Publication/Add.js:354
+#: src/views/Publication/Add.js:372
 msgid "All"
 msgstr "Vse"
 
@@ -202,7 +202,7 @@ msgstr "Aplikacija"
 msgid "Are you sure you want to abort the wizard?"
 msgstr "Ali ste prepričani, da želite prekiniti čarovnika?"
 
-#: src/views/Publication/Add.js:474
+#: src/views/Publication/Add.js:492
 msgid "Audio"
 msgstr "Zvok"
 
@@ -222,7 +222,7 @@ msgstr "Zvok iz naprave"
 
 #: src/views/Edit/Profile.js:447
 #: src/views/Edit/ProfileSummary.js:90
-#: src/views/Publication/Edit.js:506
+#: src/views/Publication/Edit.js:526
 msgid "Audio settings"
 msgstr "Nastavitve zvoka"
 
@@ -274,7 +274,7 @@ msgstr "Na voljo"
 #: src/views/Edit/Wizard/Metadata.js:35
 #: src/views/Edit/Wizard/Video.js:66
 #: src/views/Edit/Wizard/VideoProfile.js:67
-#: src/views/Publication/Add.js:498
+#: src/views/Publication/Add.js:516
 msgid "Back"
 msgstr "Nazaj"
 
@@ -366,7 +366,7 @@ msgstr "Čas predpomnilnika (sekunde)"
 msgid "Cache types"
 msgstr "Vrste predpomnilnika"
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:200
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:202
 msgid "Capture buffer"
 msgstr "Buffer za zajemanje"
 
@@ -390,7 +390,7 @@ msgstr "Kanali"
 msgid "Check for updates"
 msgstr "Preveri za posodobitve"
 
-#: src/views/Publication/Add.js:284
+#: src/views/Publication/Add.js:302
 msgid "Check the requirements"
 msgstr "Preveri zahteve"
 
@@ -434,8 +434,8 @@ msgstr "Chunk"
 #: src/misc/Changelog.js:177
 #: src/misc/ModalContent.js:77
 #: src/views/Playersite.js:798
-#: src/views/Publication/Add.js:495
-#: src/views/Publication/Edit.js:526
+#: src/views/Publication/Add.js:513
+#: src/views/Publication/Edit.js:546
 #: src/views/Publication/Player.js:487
 msgid "Close"
 msgstr "Zapri"
@@ -662,12 +662,12 @@ msgstr "Zakasnitev (ms)"
 #: src/views/Edit/index.js:618
 #: src/views/Edit/index.js:654
 #: src/views/Playersite.js:490
-#: src/views/Publication/Edit.js:535
-#: src/views/Publication/Edit.js:567
+#: src/views/Publication/Edit.js:555
+#: src/views/Publication/Edit.js:587
 msgid "Delete"
 msgstr "Odstrani"
 
-#: src/views/Publication/Edit.js:572
+#: src/views/Publication/Edit.js:592
 msgid "Deleting a publication service cannot be reversed. The publication stops immediately."
 msgstr "Brisanja storitve objave ni mogoče preklicati. Objava se takoj ustavi."
 
@@ -730,7 +730,7 @@ msgstr "Ali res želite zdaj znova zagnati aplikacijo?"
 msgid "Do you want to delete \"{0}\"?"
 msgstr "Ali želite izbrisati \"{0}\"?"
 
-#: src/views/Publication/Edit.js:559
+#: src/views/Publication/Edit.js:579
 msgid "Do you want to delete {title}?"
 msgstr "Ali želite izbrisati {title}?"
 
@@ -787,7 +787,7 @@ msgstr "Uredi"
 msgid "Edit the audio and video sources for the live stream. Add a description, and set your desired content license."
 msgstr "Uredite vire zvoka in videa za prenos v živo. Dodajte opis in nastavite želeno licenco za vsebino."
 
-#: src/views/Publication/Edit.js:385
+#: src/views/Publication/Edit.js:399
 msgid "Edit: {title}"
 msgstr "Uredi: {title}"
 
@@ -822,7 +822,7 @@ msgstr "Omogočite strežnik SRT ..."
 msgid "Enable a periodic beep every second with this value times the carrier frequency"
 msgstr "Omogočite periodični zvočni signal vsako sekundo s to vrednostjo, pomnoženo z nosilno frekvenco."
 
-#: src/views/Publication/Services/Dummy.js:278
+#: src/views/Publication/Services/Dummy.js:284
 #: src/views/Publication/Services/Facebook.js:139
 msgid "Enable backup stream"
 msgstr "Omogočite rezervni tok"
@@ -836,7 +836,7 @@ msgstr "Omogočite statistiko nerdov"
 msgid "Enable now"
 msgstr "Omogoči zdaj"
 
-#: src/views/Publication/Services/Dummy.js:277
+#: src/views/Publication/Services/Dummy.js:283
 #: src/views/Publication/Services/Facebook.js:138
 msgid "Enable primary stream"
 msgstr "Omogočite primarni tok"
@@ -858,8 +858,8 @@ msgid "Encoder"
 msgstr "Enkoder"
 
 #: src/views/Edit/Summary.js:95
-#: src/views/Publication/Add.js:449
-#: src/views/Publication/Edit.js:479
+#: src/views/Publication/Add.js:467
+#: src/views/Publication/Edit.js:499
 msgid "Encoding"
 msgstr "Enkodiranje"
 
@@ -946,7 +946,7 @@ msgstr "FFmpeg"
 msgid "FPS"
 msgstr "FPS"
 
-#: src/views/Publication/Add.js:197
+#: src/views/Publication/Add.js:215
 msgid "Failed to create publication service ({0})"
 msgstr "Ni uspelo ustvariti storitve objave ({0})"
 
@@ -975,7 +975,7 @@ msgstr "Ni uspelo zaustaviti procesa"
 msgid "Failed to store player size setting."
 msgstr "Ni uspelo shraniti nastavitve velikosti predvajalnika."
 
-#: src/views/Publication/Edit.js:237
+#: src/views/Publication/Edit.js:251
 msgid "Failed to store publication service ({0})"
 msgstr "Ni uspelo shraniti storitve objave ({0})"
 
@@ -1028,7 +1028,7 @@ msgstr "Za slogovne liste."
 msgid "Force input framerate"
 msgstr "Vsilite vhodno frekvenco sličic"
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:197
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:199
 msgid "Force key frames"
 msgstr "Prisilni okvirji ključev"
 
@@ -1082,8 +1082,8 @@ msgstr "GET"
 #: src/views/Edit/index.js:425
 #: src/views/Playersite.js:350
 #: src/views/Playersite.js:363
-#: src/views/Publication/Add.js:382
-#: src/views/Publication/Edit.js:394
+#: src/views/Publication/Add.js:400
+#: src/views/Publication/Edit.js:408
 #: src/views/Publication/Services/DASH.js:211
 #: src/views/Publication/Services/HLS.js:200
 #: src/views/Publication/Services/Icecast.js:179
@@ -1200,7 +1200,7 @@ msgstr "V pomnilniku"
 msgid "In-memory storage"
 msgstr "Shranjevanje v pomnilniku"
 
-#: src/views/Publication/Add.js:281
+#: src/views/Publication/Add.js:299
 msgid "Incompatible"
 msgstr "Nezdružljivo"
 
@@ -1681,7 +1681,7 @@ msgstr "En referer v vsaki vrstici, npr. http://www.example.com"
 msgid "Open"
 msgstr "Odpri"
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:203
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:205
 msgid "Output buffer"
 msgstr "Izhodni buffer"
 
@@ -1702,7 +1702,7 @@ msgstr "geslo za šifriranje SRT."
 msgid "Passphrase must be between 10 and 79 characters long"
 msgstr "geslo mora biti dolgo od 10 do 79 znakov."
 
-#: src/views/Publication/Edit.js:484
+#: src/views/Publication/Edit.js:504
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "Prepust (kopiranje) lahko onemogočite le, če je to potrebno. Vsako kodiranje zahteva dodatne vire CPU/GPU."
 
@@ -1743,7 +1743,7 @@ msgstr "Format pikslov"
 msgid "Plan: <0>Starter</0>"
 msgstr "Načrt: <0>Začetnik</0>"
 
-#: src/views/Publication/Add.js:357
+#: src/views/Publication/Add.js:375
 msgid "Platforms"
 msgstr "Platforme"
 
@@ -1821,7 +1821,7 @@ msgstr "Stopite v stik z operaterjem storitve in preverite, kaj se bo zgodilo."
 msgid "Please select a file to upload."
 msgstr "Izberite datoteko, ki jo želite naložiti."
 
-#: src/views/Publication/Add.js:454
+#: src/views/Publication/Add.js:472
 msgid "Please use \"Passthrough (copy)\" if possible. Encoding requires additional CPU/GPU resources."
 msgstr "Če je mogoče, uporabite \"Passthrough (kopija)\". Kodiranje zahteva dodatne vire CPU/GPU."
 
@@ -1870,27 +1870,27 @@ msgid "Probe"
 msgstr "Sonda"
 
 #: src/views/Edit/index.js:548
-#: src/views/Publication/Add.js:415
-#: src/views/Publication/Edit.js:421
+#: src/views/Publication/Add.js:433
+#: src/views/Publication/Edit.js:441
 msgid "Process"
 msgstr "Proces"
 
-#: src/views/Publication/Add.js:384
-#: src/views/Publication/Edit.js:396
+#: src/views/Publication/Add.js:402
+#: src/views/Publication/Edit.js:410
 msgid "Process control"
 msgstr "Nadzor procesa"
 
 #: src/views/Main/index.js:448
 #: src/views/Main/index.js:464
-#: src/views/Publication/Edit.js:445
-#: src/views/Publication/Edit.js:544
+#: src/views/Publication/Edit.js:465
+#: src/views/Publication/Edit.js:564
 msgid "Process details"
 msgstr "Podrobnosti o postopku"
 
 #: src/views/Main/index.js:451
 #: src/views/Main/index.js:472
-#: src/views/Publication/Edit.js:448
-#: src/views/Publication/Edit.js:552
+#: src/views/Publication/Edit.js:468
+#: src/views/Publication/Edit.js:572
 msgid "Process report"
 msgstr "Poročilo o postopku"
 
@@ -1934,7 +1934,7 @@ msgstr "Profil"
 msgid "Protocol"
 msgstr "Protokol"
 
-#: src/views/Publication/Add.js:363
+#: src/views/Publication/Add.js:381
 msgid "Protocols"
 msgstr "Protokoli"
 
@@ -2197,8 +2197,8 @@ msgstr "Vzorčenje"
 #: src/views/Edit/Wizard/License.js:43
 #: src/views/Edit/index.js:615
 #: src/views/Playersite.js:804
-#: src/views/Publication/Add.js:504
-#: src/views/Publication/Edit.js:532
+#: src/views/Publication/Add.js:522
+#: src/views/Publication/Edit.js:552
 #: src/views/Publication/Player.js:493
 #: src/views/Settings.js:2224
 msgid "Save"
@@ -2256,8 +2256,8 @@ msgstr "Segment bo po preteku tega časa prekinjen na naslednjem ključnem okvir
 msgid "Segmentation"
 msgstr "Segmentacija"
 
-#: src/views/Publication/Add.js:437
-#: src/views/Publication/Edit.js:471
+#: src/views/Publication/Add.js:455
+#: src/views/Publication/Edit.js:491
 msgid "Select RTMP or SRT (if enabled) for less latency."
 msgstr "Izberite RTMP ali SRT (če je omogočeno) za manjšo zakasnitev."
 
@@ -2341,8 +2341,8 @@ msgstr "URL strežnika"
 msgid "Service"
 msgstr "Storitev"
 
-#: src/views/Publication/Add.js:395
-#: src/views/Publication/Edit.js:407
+#: src/views/Publication/Add.js:413
+#: src/views/Publication/Edit.js:421
 msgid "Service name"
 msgstr "Ime storitve"
 
@@ -2431,22 +2431,22 @@ msgstr "Prijava v družabnem omrežju (OAuth2, 2FA)"
 msgid "Socket timeout (microseconds)"
 msgstr "Časovna omejitev vtičnice (mikrosekunde)"
 
-#: src/views/Publication/Add.js:360
+#: src/views/Publication/Add.js:378
 msgid "Software"
 msgstr "Programska oprema"
 
 #: src/misc/controls/Source.js:74
 #: src/views/Edit/Sources/VirtualAudio.js:88
 #: src/views/Edit/Sources/VirtualVideo.js:112
-#: src/views/Publication/Add.js:432
-#: src/views/Publication/Edit.js:466
+#: src/views/Publication/Add.js:450
+#: src/views/Publication/Edit.js:486
 msgid "Source"
 msgstr "Vir:"
 
-#: src/views/Publication/Add.js:383
-#: src/views/Publication/Add.js:427
-#: src/views/Publication/Edit.js:395
-#: src/views/Publication/Edit.js:461
+#: src/views/Publication/Add.js:401
+#: src/views/Publication/Add.js:445
+#: src/views/Publication/Edit.js:409
+#: src/views/Publication/Edit.js:481
 msgid "Source & Encoding"
 msgstr "Vir in kodiranje"
 
@@ -2491,7 +2491,7 @@ msgstr "URL toka"
 #: src/views/Publication/Services/CDN77.js:113
 #: src/views/Publication/Services/DLive.js:75
 #: src/views/Publication/Services/DaCast.js:153
-#: src/views/Publication/Services/Dummy.js:274
+#: src/views/Publication/Services/Dummy.js:280
 #: src/views/Publication/Services/Instagram.js:96
 #: src/views/Publication/Services/MediaNetwork.js:75
 #: src/views/Publication/Services/Owncast.js:110
@@ -2606,8 +2606,13 @@ msgstr "Izbrisa tega kanala ni mogoče obnoviti. Vse objave tega kanala bodo ods
 
 #: src/views/Edit/Wizard/index.js:176
 #: src/views/Edit/index.js:297
+#: src/views/Publication/Edit.js:244
 msgid "The input profile is not complete. Please define a video and audio source."
 msgstr "Vhodni profil ni popoln. Opredelite vir videa in zvoka."
+
+#: src/views/Publication/Add.js:208
+msgid "The input profile is not complete. Please define a video and/or audio source."
+msgstr ""
 
 #: src/misc/coders/settings/Audio.js:86
 #: src/misc/filters/audio/Resample.js:78
@@ -2630,19 +2635,19 @@ msgstr "Oseba, ki je delo povezala s tem dejanjem, je delo namenila javni domeni
 msgid "The public reachable domain name of the host this Restreamer is running on. Separate multiple domain names by a comma."
 msgstr "Javno dosegljivo ime domene gostitelja, v katerem deluje ta predvajalnik. Več domenskih imen ločite z vejico."
 
-#: src/views/Publication/Edit.js:285
+#: src/views/Publication/Edit.js:299
 msgid "The publication service \"{0}\" could not be deleted"
 msgstr "Storitve objave \"{0}\" ni bilo mogoče izbrisati"
 
-#: src/views/Publication/Add.js:205
+#: src/views/Publication/Add.js:223
 msgid "The publication service \"{0}\" has been created"
 msgstr "Storitev objave \"{0}\" je bila ustvarjena"
 
-#: src/views/Publication/Edit.js:291
+#: src/views/Publication/Edit.js:305
 msgid "The publication service \"{0}\" has been deleted"
 msgstr "Storitev objave \"{0}\" je bila izbrisana"
 
-#: src/views/Publication/Add.js:203
+#: src/views/Publication/Add.js:221
 msgid "The publication service has been created"
 msgstr "Storitev objave je bila ustvarjena"
 
@@ -2663,7 +2668,7 @@ msgstr "Izbrana datoteka je prevelika ({0} bajtov). Dovoljeni so samo {1} bajti.
 msgid "The selected file type ({0}) is not allowed. Allowed file types are {types}"
 msgstr "Izbrana vrsta datoteke ({0}) ni dovoljena. Dovoljene vrste datotek so {types}"
 
-#: src/views/Publication/Edit.js:245
+#: src/views/Publication/Edit.js:259
 msgid "The settings for \"{0}\" have been saved"
 msgstr "Nastavitve za \"{0}\" so bile shranjene"
 
@@ -2789,7 +2794,7 @@ msgstr "Ta različica uporabniškega vmesnika je združljiva."
 msgid "Time until an inactive viewer connection is treated as closed."
 msgstr "Čas, dokler se neaktivna povezava gledalca ne obravnava kot zaprta."
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:188
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:190
 msgid "To stabilize the system, increase the HLS segment length for the keyframe interval by 2-3 * (Processing and Control)."
 msgstr "Za stabilizacijo sistema povečajte dolžino segmenta HLS za interval ključnih slik za 2-3 * (Obdelava in nadzor)."
 
@@ -2994,7 +2999,7 @@ msgstr "Uporabniško ime za avtorizacijo."
 msgid "Username for the device."
 msgstr "Uporabniško ime za napravo."
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:174
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:176
 msgid "V4L2_M2M is experimental."
 msgstr "V4L2_M2M je eksperimentalen."
 
@@ -3010,7 +3015,7 @@ msgstr "Spremenljiva hitrost sličic (VFR)"
 msgid "Vertical Flip"
 msgstr "Navpični flip"
 
-#: src/views/Publication/Add.js:459
+#: src/views/Publication/Add.js:477
 msgid "Video"
 msgstr "Videoposnetek"
 
@@ -3025,7 +3030,7 @@ msgstr "Video naprava"
 
 #: src/views/Edit/Profile.js:333
 #: src/views/Edit/ProfileSummary.js:66
-#: src/views/Publication/Edit.js:491
+#: src/views/Publication/Edit.js:511
 msgid "Video settings"
 msgstr "Nastavitve videoposnetkov"
 
@@ -3055,7 +3060,7 @@ msgstr "Virtualni vir"
 msgid "Volume"
 msgstr "Zvezek"
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:176
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:178
 msgid "We recommend OpenMAX IL for Raspberry PI (3/4) with a 32-bit operating system."
 msgstr "Priporočamo OpenMAX IL za Raspberry PI (3/4) z 32-bitnim operacijskim sistemom."
 
@@ -3100,7 +3105,7 @@ msgstr "Spremenili ste konfiguracijo. Da bi spremembe začele veljati, morate zn
 msgid "You have to reconnect manually"
 msgstr "Ponovno povezavo morate vzpostaviti ročno."
 
-#: src/views/Publication/Edit.js:433
+#: src/views/Publication/Edit.js:453
 msgid "You have unsaved changes. Please save them before you can control the service again."
 msgstr "Spremembe niso shranjene. Pred ponovnim nadzorom storitve jih shranite."
 

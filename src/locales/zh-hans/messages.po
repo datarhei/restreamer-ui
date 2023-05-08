@@ -60,8 +60,8 @@ msgstr "AVFoundation"
 #: src/views/Edit/index.js:604
 #: src/views/Edit/index.js:630
 #: src/views/Edit/index.js:649
-#: src/views/Publication/Add.js:372
-#: src/views/Publication/Edit.js:562
+#: src/views/Publication/Add.js:390
+#: src/views/Publication/Edit.js:582
 #: src/views/Settings.js:2219
 #: src/views/Settings.js:2278
 #: src/views/Settings.js:2300
@@ -77,7 +77,7 @@ msgstr "关于"
 msgid "Add"
 msgstr "添加"
 
-#: src/views/Publication/Add.js:331
+#: src/views/Publication/Add.js:349
 msgid "Add Publication"
 msgstr "添加串流输出"
 
@@ -89,7 +89,7 @@ msgstr "将外部小部件和样式添加到站点。您可以在帮助页面上
 msgid "Add new channel"
 msgstr "添加新频道"
 
-#: src/views/Publication/Add.js:334
+#: src/views/Publication/Add.js:352
 msgid "Add: {0}"
 msgstr "添加：{0}"
 
@@ -160,7 +160,7 @@ msgstr "AirPlay"
 msgid "Alerting by email"
 msgstr "邮件通知"
 
-#: src/views/Publication/Add.js:354
+#: src/views/Publication/Add.js:372
 msgid "All"
 msgstr "全部"
 
@@ -202,7 +202,7 @@ msgstr "Application"
 msgid "Are you sure you want to abort the wizard?"
 msgstr "确定要终止向导吗？"
 
-#: src/views/Publication/Add.js:474
+#: src/views/Publication/Add.js:492
 msgid "Audio"
 msgstr "音频"
 
@@ -222,7 +222,7 @@ msgstr "来自设备的音频"
 
 #: src/views/Edit/Profile.js:447
 #: src/views/Edit/ProfileSummary.js:90
-#: src/views/Publication/Edit.js:506
+#: src/views/Publication/Edit.js:526
 msgid "Audio settings"
 msgstr "音频设置"
 
@@ -274,7 +274,7 @@ msgstr "可用的"
 #: src/views/Edit/Wizard/Metadata.js:35
 #: src/views/Edit/Wizard/Video.js:66
 #: src/views/Edit/Wizard/VideoProfile.js:67
-#: src/views/Publication/Add.js:498
+#: src/views/Publication/Add.js:516
 msgid "Back"
 msgstr "返回"
 
@@ -366,7 +366,7 @@ msgstr "缓存时间（秒）"
 msgid "Cache types"
 msgstr "缓存类型"
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:200
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:202
 msgid "Capture buffer"
 msgstr "捕获缓冲区"
 
@@ -390,7 +390,7 @@ msgstr "频道"
 msgid "Check for updates"
 msgstr "检查更新"
 
-#: src/views/Publication/Add.js:284
+#: src/views/Publication/Add.js:302
 msgid "Check the requirements"
 msgstr "检查"
 
@@ -434,8 +434,8 @@ msgstr "块"
 #: src/misc/Changelog.js:177
 #: src/misc/ModalContent.js:77
 #: src/views/Playersite.js:798
-#: src/views/Publication/Add.js:495
-#: src/views/Publication/Edit.js:526
+#: src/views/Publication/Add.js:513
+#: src/views/Publication/Edit.js:546
 #: src/views/Publication/Player.js:487
 msgid "Close"
 msgstr "关闭"
@@ -662,12 +662,12 @@ msgstr "延迟（ms）"
 #: src/views/Edit/index.js:618
 #: src/views/Edit/index.js:654
 #: src/views/Playersite.js:490
-#: src/views/Publication/Edit.js:535
-#: src/views/Publication/Edit.js:567
+#: src/views/Publication/Edit.js:555
+#: src/views/Publication/Edit.js:587
 msgid "Delete"
 msgstr "删除"
 
-#: src/views/Publication/Edit.js:572
+#: src/views/Publication/Edit.js:592
 msgid "Deleting a publication service cannot be reversed. The publication stops immediately."
 msgstr "删除串流输出服务无法撤消。串流输出立即停止。"
 
@@ -730,7 +730,7 @@ msgstr "确定要立刻重启应用吗？"
 msgid "Do you want to delete \"{0}\"?"
 msgstr "确定要删除 \"{0}\" 吗？"
 
-#: src/views/Publication/Edit.js:559
+#: src/views/Publication/Edit.js:579
 msgid "Do you want to delete {title}?"
 msgstr "确定要删除 {title} 吗？"
 
@@ -787,7 +787,7 @@ msgstr "编辑"
 msgid "Edit the audio and video sources for the live stream. Add a description, and set your desired content license."
 msgstr "编辑直播流的音频和视频源。添加描述，并设置您想要的内容许可。"
 
-#: src/views/Publication/Edit.js:385
+#: src/views/Publication/Edit.js:399
 msgid "Edit: {title}"
 msgstr "编辑：{title}"
 
@@ -822,7 +822,7 @@ msgstr "启用 SRT 服务器 ..."
 msgid "Enable a periodic beep every second with this value times the carrier frequency"
 msgstr "启用以此值乘以载波频率的每秒周期蜂鸣"
 
-#: src/views/Publication/Services/Dummy.js:278
+#: src/views/Publication/Services/Dummy.js:284
 #: src/views/Publication/Services/Facebook.js:139
 msgid "Enable backup stream"
 msgstr "允许备份媒体流"
@@ -836,7 +836,7 @@ msgstr "允许数据统计"
 msgid "Enable now"
 msgstr "现在启用"
 
-#: src/views/Publication/Services/Dummy.js:277
+#: src/views/Publication/Services/Dummy.js:283
 #: src/views/Publication/Services/Facebook.js:138
 msgid "Enable primary stream"
 msgstr "启用主媒体流"
@@ -858,8 +858,8 @@ msgid "Encoder"
 msgstr "编码器"
 
 #: src/views/Edit/Summary.js:95
-#: src/views/Publication/Add.js:449
-#: src/views/Publication/Edit.js:479
+#: src/views/Publication/Add.js:467
+#: src/views/Publication/Edit.js:499
 msgid "Encoding"
 msgstr "编码"
 
@@ -946,7 +946,7 @@ msgstr "FFmpeg"
 msgid "FPS"
 msgstr "帧率"
 
-#: src/views/Publication/Add.js:197
+#: src/views/Publication/Add.js:215
 msgid "Failed to create publication service ({0})"
 msgstr "创建串流输出服务失败（{0}）"
 
@@ -975,7 +975,7 @@ msgstr "终止进程失败"
 msgid "Failed to store player size setting."
 msgstr "保存播放器尺寸设置失败。"
 
-#: src/views/Publication/Edit.js:237
+#: src/views/Publication/Edit.js:251
 msgid "Failed to store publication service ({0})"
 msgstr "保存串流输出服务失败（{0}）"
 
@@ -1028,7 +1028,7 @@ msgstr "For Stylesheets."
 msgid "Force input framerate"
 msgstr "强制输入帧率"
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:197
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:199
 msgid "Force key frames"
 msgstr "强制帧率"
 
@@ -1082,8 +1082,8 @@ msgstr "GET"
 #: src/views/Edit/index.js:425
 #: src/views/Playersite.js:350
 #: src/views/Playersite.js:363
-#: src/views/Publication/Add.js:382
-#: src/views/Publication/Edit.js:394
+#: src/views/Publication/Add.js:400
+#: src/views/Publication/Edit.js:408
 #: src/views/Publication/Services/DASH.js:211
 #: src/views/Publication/Services/HLS.js:200
 #: src/views/Publication/Services/Icecast.js:179
@@ -1200,7 +1200,7 @@ msgstr "In-memory"
 msgid "In-memory storage"
 msgstr "In-memory 存储"
 
-#: src/views/Publication/Add.js:281
+#: src/views/Publication/Add.js:299
 msgid "Incompatible"
 msgstr "不兼容"
 
@@ -1681,7 +1681,7 @@ msgstr "每行一个来源，例如 http://www.example.com"
 msgid "Open"
 msgstr "打开"
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:203
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:205
 msgid "Output buffer"
 msgstr "输出缓冲区"
 
@@ -1702,7 +1702,7 @@ msgstr "SRT 加密的密码。"
 msgid "Passphrase must be between 10 and 79 characters long"
 msgstr "密码长度必须介于 10 和 79 之间"
 
-#: src/views/Publication/Edit.js:484
+#: src/views/Publication/Edit.js:504
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "仅在必要时才应禁用直通（复制）。每种编码都需要额外的 CPU/GPU 资源。"
 
@@ -1743,7 +1743,7 @@ msgstr "像素格式"
 msgid "Plan: <0>Starter</0>"
 msgstr "计划：<0>起步</0>"
 
-#: src/views/Publication/Add.js:357
+#: src/views/Publication/Add.js:375
 msgid "Platforms"
 msgstr "直播平台"
 
@@ -1821,7 +1821,7 @@ msgstr "请与该服务的运营商联系并检查发生了什么。"
 msgid "Please select a file to upload."
 msgstr "请选择要上传的文件。"
 
-#: src/views/Publication/Add.js:454
+#: src/views/Publication/Add.js:472
 msgid "Please use \"Passthrough (copy)\" if possible. Encoding requires additional CPU/GPU resources."
 msgstr "请尽可能使用 \"直通（复制）\"。编码需要额外的 CPU/GPU 资源。"
 
@@ -1870,27 +1870,27 @@ msgid "Probe"
 msgstr "检测媒体流信息"
 
 #: src/views/Edit/index.js:548
-#: src/views/Publication/Add.js:415
-#: src/views/Publication/Edit.js:421
+#: src/views/Publication/Add.js:433
+#: src/views/Publication/Edit.js:441
 msgid "Process"
 msgstr "串流进程"
 
-#: src/views/Publication/Add.js:384
-#: src/views/Publication/Edit.js:396
+#: src/views/Publication/Add.js:402
+#: src/views/Publication/Edit.js:410
 msgid "Process control"
 msgstr "进程控制"
 
 #: src/views/Main/index.js:448
 #: src/views/Main/index.js:464
-#: src/views/Publication/Edit.js:445
-#: src/views/Publication/Edit.js:544
+#: src/views/Publication/Edit.js:465
+#: src/views/Publication/Edit.js:564
 msgid "Process details"
 msgstr "进程详情"
 
 #: src/views/Main/index.js:451
 #: src/views/Main/index.js:472
-#: src/views/Publication/Edit.js:448
-#: src/views/Publication/Edit.js:552
+#: src/views/Publication/Edit.js:468
+#: src/views/Publication/Edit.js:572
 msgid "Process report"
 msgstr "进程报告"
 
@@ -1934,7 +1934,7 @@ msgstr "Profile"
 msgid "Protocol"
 msgstr "协议"
 
-#: src/views/Publication/Add.js:363
+#: src/views/Publication/Add.js:381
 msgid "Protocols"
 msgstr "串流协议"
 
@@ -2197,8 +2197,8 @@ msgstr "采样"
 #: src/views/Edit/Wizard/License.js:43
 #: src/views/Edit/index.js:615
 #: src/views/Playersite.js:804
-#: src/views/Publication/Add.js:504
-#: src/views/Publication/Edit.js:532
+#: src/views/Publication/Add.js:522
+#: src/views/Publication/Edit.js:552
 #: src/views/Publication/Player.js:493
 #: src/views/Settings.js:2224
 msgid "Save"
@@ -2256,8 +2256,8 @@ msgstr "该值所示时间过后，片段将在下一个关键帧被剪切。推
 msgid "Segmentation"
 msgstr "分片"
 
-#: src/views/Publication/Add.js:437
-#: src/views/Publication/Edit.js:471
+#: src/views/Publication/Add.js:455
+#: src/views/Publication/Edit.js:491
 msgid "Select RTMP or SRT (if enabled) for less latency."
 msgstr "选择 RTMP 或 SRT （如果可用）以减少延迟。"
 
@@ -2341,8 +2341,8 @@ msgstr "服务器 URL"
 msgid "Service"
 msgstr "服务"
 
-#: src/views/Publication/Add.js:395
-#: src/views/Publication/Edit.js:407
+#: src/views/Publication/Add.js:413
+#: src/views/Publication/Edit.js:421
 msgid "Service name"
 msgstr "服务名称"
 
@@ -2431,22 +2431,22 @@ msgstr "通过社交媒体登录（OAuth2, 2FA）"
 msgid "Socket timeout (microseconds)"
 msgstr "Socket 超时（毫秒）"
 
-#: src/views/Publication/Add.js:360
+#: src/views/Publication/Add.js:378
 msgid "Software"
 msgstr "软件"
 
 #: src/misc/controls/Source.js:74
 #: src/views/Edit/Sources/VirtualAudio.js:88
 #: src/views/Edit/Sources/VirtualVideo.js:112
-#: src/views/Publication/Add.js:432
-#: src/views/Publication/Edit.js:466
+#: src/views/Publication/Add.js:450
+#: src/views/Publication/Edit.js:486
 msgid "Source"
 msgstr "媒体源"
 
-#: src/views/Publication/Add.js:383
-#: src/views/Publication/Add.js:427
-#: src/views/Publication/Edit.js:395
-#: src/views/Publication/Edit.js:461
+#: src/views/Publication/Add.js:401
+#: src/views/Publication/Add.js:445
+#: src/views/Publication/Edit.js:409
+#: src/views/Publication/Edit.js:481
 msgid "Source & Encoding"
 msgstr "媒体源 & 编码"
 
@@ -2491,7 +2491,7 @@ msgstr "媒体流 URL"
 #: src/views/Publication/Services/CDN77.js:113
 #: src/views/Publication/Services/DLive.js:75
 #: src/views/Publication/Services/DaCast.js:153
-#: src/views/Publication/Services/Dummy.js:274
+#: src/views/Publication/Services/Dummy.js:280
 #: src/views/Publication/Services/Instagram.js:96
 #: src/views/Publication/Services/MediaNetwork.js:75
 #: src/views/Publication/Services/Owncast.js:110
@@ -2606,8 +2606,13 @@ msgstr "此频道删除后无法恢复。该频道的所有串流输出将被删
 
 #: src/views/Edit/Wizard/index.js:176
 #: src/views/Edit/index.js:297
+#: src/views/Publication/Edit.js:244
 msgid "The input profile is not complete. Please define a video and audio source."
 msgstr "输入设置不完整。请设置视频源和音频源。"
+
+#: src/views/Publication/Add.js:208
+msgid "The input profile is not complete. Please define a video and/or audio source."
+msgstr ""
 
 #: src/misc/coders/settings/Audio.js:86
 #: src/misc/filters/audio/Resample.js:78
@@ -2630,19 +2635,19 @@ msgstr "在法律允许的范围内，根据版权法，包括所有相关和邻
 msgid "The public reachable domain name of the host this Restreamer is running on. Separate multiple domain names by a comma."
 msgstr "运行 Restreamer 主机的公网域名。用逗号分隔多个域名。"
 
-#: src/views/Publication/Edit.js:285
+#: src/views/Publication/Edit.js:299
 msgid "The publication service \"{0}\" could not be deleted"
 msgstr "无法删除串流输出服务 \"{0}\""
 
-#: src/views/Publication/Add.js:205
+#: src/views/Publication/Add.js:223
 msgid "The publication service \"{0}\" has been created"
 msgstr "已创建串流输出服务 \"{0}\""
 
-#: src/views/Publication/Edit.js:291
+#: src/views/Publication/Edit.js:305
 msgid "The publication service \"{0}\" has been deleted"
 msgstr "已删除串流输出服务 \"{0}\""
 
-#: src/views/Publication/Add.js:203
+#: src/views/Publication/Add.js:221
 msgid "The publication service has been created"
 msgstr "已创建串流输出服务"
 
@@ -2663,7 +2668,7 @@ msgstr "选择的文件过大（{0} 字节）。只允许 {1} 字节大小。"
 msgid "The selected file type ({0}) is not allowed. Allowed file types are {types}"
 msgstr "不允许选择该类型（{0}）的文件。允许的文件类型为 {types}"
 
-#: src/views/Publication/Edit.js:245
+#: src/views/Publication/Edit.js:259
 msgid "The settings for \"{0}\" have been saved"
 msgstr "已保存 \"{0}\" 的设置"
 
@@ -2789,7 +2794,7 @@ msgstr "该版本的 UI 是兼容的。"
 msgid "Time until an inactive viewer connection is treated as closed."
 msgstr "超出该时间的不活动查看器连接将被视为已关闭。"
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:188
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:190
 msgid "To stabilize the system, increase the HLS segment length for the keyframe interval by 2-3 * (Processing and Control)."
 msgstr "为了稳定系统，将关键帧间隔的 HLS 段长度增加 2-3 *（处理和控制）。"
 
@@ -2994,7 +2999,7 @@ msgstr "用于身份认证的用户名。"
 msgid "Username for the device."
 msgstr "设备用户名。"
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:174
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:176
 msgid "V4L2_M2M is experimental."
 msgstr "V4L2_M2M 是实验性的。"
 
@@ -3010,7 +3015,7 @@ msgstr "可变帧率（VFR）"
 msgid "Vertical Flip"
 msgstr "垂直翻转"
 
-#: src/views/Publication/Add.js:459
+#: src/views/Publication/Add.js:477
 msgid "Video"
 msgstr "视频"
 
@@ -3025,7 +3030,7 @@ msgstr "视频设备"
 
 #: src/views/Edit/Profile.js:333
 #: src/views/Edit/ProfileSummary.js:66
-#: src/views/Publication/Edit.js:491
+#: src/views/Publication/Edit.js:511
 msgid "Video settings"
 msgstr "视频设置"
 
@@ -3055,7 +3060,7 @@ msgstr "虚拟源"
 msgid "Volume"
 msgstr "音量"
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:176
+#: src/misc/coders/Encoders/video/H264V4L2M2M.js:178
 msgid "We recommend OpenMAX IL for Raspberry PI (3/4) with a 32-bit operating system."
 msgstr "对于 Raspberry PI (3/4)，推荐使用 32 位操作系统的 OpenMAX IL。"
 
@@ -3100,7 +3105,7 @@ msgstr "配置已更改。请重启应用以使更改生效。要立刻重启吗
 msgid "You have to reconnect manually"
 msgstr "需要手动重连"
 
-#: src/views/Publication/Edit.js:433
+#: src/views/Publication/Edit.js:453
 msgid "You have unsaved changes. Please save them before you can control the service again."
 msgstr "有未保存的更改。请保存以再次管理服务。"
 
