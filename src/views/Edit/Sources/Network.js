@@ -450,11 +450,11 @@ const getLocalHLS = (config, name) => {
 };
 
 const getLocalRTMP = (config) => {
-	return getRTMPAddress(config.rtmp.local, config.rtmp.app, config.rtmp.name, config.rtmp.token, false);
+	return '{rtmp,name=' + config.rtmp.name + '.stream}';
 };
 
 const getLocalSRT = (config) => {
-	return getSRTAddress(config.srt.local, config.srt.name, config.srt.token, config.srt.passphrase, false);
+	return '{srt,name=' + config.srt.name + '.stream,mode=request}';
 };
 
 const isValidURL = (address) => {
