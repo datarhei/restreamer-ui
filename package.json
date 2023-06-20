@@ -40,7 +40,7 @@
 		"react-markdown": "^8.0.7",
 		"react-router-dom": "^6.11.1",
 		"react-scripts": "5.0.1",
-		"semver": "^7.5.0",
+		"semver": "^7.5.2",
 		"typescript": "^5.0.4",
 		"url-parse": "^1.5.10",
 		"util": "^0.12.5",
