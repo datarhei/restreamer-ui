@@ -6,6 +6,7 @@ import * as Loudnorm from './audio/Loudnorm';
 
 // Video Filter
 import * as Bwdif from './video/Bwdif';
+import * as Framerate from './video/Framerate';
 import * as Scale from './video/Scale';
 import * as Transpose from './video/Transpose';
 import * as HFlip from './video/HFlip';
@@ -54,6 +55,7 @@ audioRegistry.Register(Loudnorm);
 // Video Filters
 const videoRegistry = new Registry('video');
 videoRegistry.Register(Bwdif);
+videoRegistry.Register(Framerate);
 videoRegistry.Register(Scale);
 videoRegistry.Register(Transpose);
 videoRegistry.Register(HFlip);
