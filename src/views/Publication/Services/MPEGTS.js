@@ -66,7 +66,7 @@ function init(settings) {
 	};
 
 	initSettings.options = {
-		service_provider: 'ffmpeg',
+		service_provider: 'FFmpeg',
 		service_name: 'Service01',
 		mpegts_transport_stream_id: '0x0001',
 		mpegts_original_network_id: '0x0001',
@@ -76,7 +76,7 @@ function init(settings) {
 		mpegts_pmt_start_pid: '0x1000',
 		mpegts_start_pid: '0x0100',
 		mpegts_m2ts_mode: false,
-		muxrate: 'VBR',
+		muxrate: '',
 		pes_payload_size: '2930',
 		mpegts_flags: [],
 		mpegts_copyts: false,
@@ -119,18 +119,28 @@ function Service(props) {
 			if (settings.options[key].length === 0) {
 				continue;
 			}
-			if (key === 'mpegts_service_type' && settings.options.mpegts_service_type === 'hex_value') {
+			if (['service_provider', 'service_name'].includes(key)) {
+				options.push('-metadata', key + '="' + String(settings.options[key]) + '"');
+			} else if (key === 'mpegts_service_type' && settings.options.mpegts_service_type === 'hex_value') {
 				if (settings.options.mpegts_service_type_hex_value.length !== 0) {
 					options.push('-mpegts_service_type', String(settings.options.mpegts_service_type_hex_value));
 				}
 			} else if (key === 'mpegts_service_type_hex_value') {
 				continue;
 			} else if (['mpegts_m2ts_mode', 'mpegts_copyts', 'omit_video_pes_length'].includes(key)) {
-				if (key) {
+				if (settings.options[key]) {
 					options.push('-' + key, '1');
 				} else {
 					options.push('-' + key, '-1');
 				}
+			} else if (key === 'mpegts_flags') {
+				let flags = '';
+
+				settings.options[key].forEach((flag) => {
+					flags += '+' + flag;
+				});
+
+				options.push('-mpegts_flags', String(flags));
 			} else {
 				options.push('-' + key, String(settings.options[key]));
 			}
