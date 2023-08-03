@@ -2,8 +2,8 @@
 
 ## v1.8.0 > vx.x.x
 
--   Mod uses placeholders for ingress setups ([#560](https://github.com/datarhei/restreamer-ui/issues/560))
 -   Add frame interpolation (framerate) filter
+-   Mod uses placeholders for ingress setups ([#560](https://github.com/datarhei/restreamer-ui/issues/560))
 
 ## v1.7.0 > v1.8.0
 
