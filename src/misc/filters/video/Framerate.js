@@ -5,7 +5,7 @@ import { Trans, t } from '@lingui/macro';
 import Grid from '@mui/material/Grid';
 
 import Checkbox from '../../Checkbox';
-import SelectCustom from '../../../misc/SelectCustom';
+import SelectCustom from '../../SelectCustom';
 
 // Framerate Filter
 // http://ffmpeg.org/ffmpeg-all.html#framerate
