@@ -3,6 +3,7 @@
 ## v1.8.0 > vx.x.x
 
 -   Add frame interpolation (framerate) filter (thanks to orryverducci)
+-   Add -referer option for pulling HTTP streams ([PR 40](https://github.com/datarhei/restreamer-ui/pull/40), thanks to mdastgheib)
 -   Mod uses placeholders for ingress setups ([#560](https://github.com/datarhei/restreamer-ui/issues/560))
 -   Fix the advanced settings in the MPEG-TS publication service ([#597](https://github.com/datarhei/restreamer/issues/597), thanks to orryverducci)
 
