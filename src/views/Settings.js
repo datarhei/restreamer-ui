@@ -1785,7 +1785,7 @@ export default function Settings(props) {
 										type="number"
 										label={<Trans>Maximum size (Megabytes)</Trans>}
 										value={config.storage.disk.max_size_mbytes}
-										env={env('storage.memory.max_size_mbytes')}
+										env={env('storage.disk.max_size_mbytes')}
 										disabled={env('storage.disk.max_size_mbytes')}
 										onChange={handleChange('storage.disk.max_size_mbytes')}
 									/>
