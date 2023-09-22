@@ -67,6 +67,7 @@ const initSettings = (initialSettings) => {
 		forceFramerate: false,
 		framerate: 25,
 		userAgent: '',
+		referer: '',
 		http_proxy: '',
 		...settings.http,
 	};
@@ -285,6 +286,10 @@ const createInputs = (settings, config, skills) => {
 
 			if (settings.http.userAgent.length !== 0) {
 				input.options.push('-user_agent', settings.http.userAgent);
+			}
+
+			if (settings.http.referer.length !== 0) {
+				input.options.push('-referer', settings.http.referer);
 			}
 
 			if (settings.http.http_proxy.length !== 0) {
@@ -544,6 +549,15 @@ function AdvancedSettings(props) {
 										label="User-Agent"
 										value={settings.http.userAgent}
 										onChange={props.onChange('http', 'userAgent')}
+									/>
+								</Grid>
+								<Grid item xs={12}>
+									<TextField
+										variant="outlined"
+										fullWidth
+										label="Referrer"
+										value={settings.http.referer}
+										onChange={props.onChange('http', 'referer')}
 									/>
 								</Grid>
 								<Grid item xs={12}>

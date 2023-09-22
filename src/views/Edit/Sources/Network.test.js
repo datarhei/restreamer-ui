@@ -84,6 +84,7 @@ const pullmatrix = {
 			forceFramerate: true,
 			framerate: 25,
 			userAgent: 'foobaz/1',
+			referer: 'http://example.com',
 			http_proxy: '',
 		},
 		general: {
@@ -128,7 +129,21 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg4,
 		input: {
 			address: 'http://admin:foobar@127.0.0.1/live/stream.m3u8',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 20000000, '-re', '-r', 25, '-user_agent', 'foobaz/1'],
+			options: [
+				'-fflags',
+				'+genpts',
+				'-thread_queue_size',
+				512,
+				'-analyzeduration',
+				20000000,
+				'-re',
+				'-r',
+				25,
+				'-user_agent',
+				'foobaz/1',
+				'-referer',
+				'http://example.com',
+			],
 		},
 	},
 	{
@@ -164,7 +179,21 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg5,
 		input: {
 			address: 'http://admin:foobar@127.0.0.1/live/stream.m3u8',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 20000000, '-re', '-r', 25, '-user_agent', 'foobaz/1'],
+			options: [
+				'-fflags',
+				'+genpts',
+				'-thread_queue_size',
+				512,
+				'-analyzeduration',
+				20000000,
+				'-re',
+				'-r',
+				25,
+				'-user_agent',
+				'foobaz/1',
+				'-referer',
+				'http://example.com',
+			],
 		},
 	},
 	{
@@ -285,7 +314,7 @@ pushmatrix.tests = [
 		skills: $skills_ffmpeg4,
 		config: $config,
 		input: {
-			address: 'rtmp://localhost/live/external.stream?token=foobar',
+			address: '{rtmp,name=external.stream}',
 			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000],
 		},
 	},
@@ -295,7 +324,7 @@ pushmatrix.tests = [
 		skills: $skills_ffmpeg4,
 		config: $config,
 		input: {
-			address: 'srt://localhost?mode=caller&transtype=live&streamid=external,mode:request,token:foobar&passphrase=bazfoobazfoo',
+			address: '{srt,name=external.stream,mode=request}',
 			options: ['-fflags', '+genpts', '-thread_queue_size', 512],
 		},
 	},
@@ -305,7 +334,7 @@ pushmatrix.tests = [
 		skills: $skills_ffmpeg5,
 		config: $config,
 		input: {
-			address: 'rtmp://localhost/live/external.stream?token=foobar',
+			address: '{rtmp,name=external.stream}',
 			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000],
 		},
 	},
@@ -315,7 +344,7 @@ pushmatrix.tests = [
 		skills: $skills_ffmpeg5,
 		config: $config,
 		input: {
-			address: 'srt://localhost?mode=caller&transtype=live&streamid=external,mode:request,token:foobar&passphrase=bazfoobazfoo',
+			address: '{srt,name=external.stream,mode=request}',
 			options: ['-fflags', '+genpts', '-thread_queue_size', 512],
 		},
 	},
