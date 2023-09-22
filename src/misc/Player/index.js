@@ -45,17 +45,19 @@ export default function Player(props) {
 							overlay = imgTag.outerHTML;
 						}
 
-						player.overlay({
-							align: props.logo.position,
-							overlays: [
-								{
-									showBackground: false,
-									content: overlay,
-									start: 'playing',
-									end: 'pause',
-								},
-							],
-						});
+						if (player.overlay) {
+							player.overlay({
+								align: props.logo.position,
+								overlays: [
+									{
+										showBackground: false,
+										content: overlay,
+										start: 'playing',
+										end: 'pause',
+									},
+								],
+							});
+						}
 					}
 
 					if (props.autoplay === true) {
