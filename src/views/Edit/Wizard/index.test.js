@@ -60,7 +60,7 @@ const restreamer = {
 	Probe: (id, inputs) => {
 		let streams = [];
 
-		if (inputs[0].address === 'rtmp://localhost/live/external.stream?token=foobar') {
+		if (inputs[0].address === '{rtmp,name=external.stream}') {
 			streams.push({
 				url: inputs[0].address,
 				format: 'rtmp',
@@ -99,7 +99,7 @@ const restreamer = {
 				layout: 'stereo',
 				channels: 2,
 			});
-		} else if (inputs[0].address === 'srt://localhost?mode=caller&transtype=live&streamid=external,mode:request,token:foobar&passphrase=bazfoobazfoo') {
+		} else if (inputs[0].address === '{srt,name=external.stream,mode=request}') {
 			streams.push({
 				url: inputs[0].address,
 				format: 'srt',
@@ -334,6 +334,8 @@ test('wizard: rtmp source video h264-aac', async () => {
 	// Choose network source
 	let button = screen.getByRole('button', { name: 'RTMP server' });
 	fireEvent.click(button);
+
+	expect(screen.queryByText(/Send stream to this address:/)).toBeInTheDocument();
 
 	button = screen.getByRole('button', { name: 'Next' });
 	expect(button).toBeEnabled();
