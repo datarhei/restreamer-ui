@@ -555,7 +555,7 @@ function AdvancedSettings(props) {
 									<TextField
 										variant="outlined"
 										fullWidth
-										label="Referer"
+										label="Referrer"
 										value={settings.http.referer}
 										onChange={props.onChange('http', 'referer')}
 									/>
