@@ -70,7 +70,7 @@ export default function Component(props) {
 					{$value.isCustom === true ? (
 						<React.Fragment>
 							<Grid item xs={6}>
-								<FormControl variant={props.variant} fullWidth MenuProps={{ disableScrollLock: true }}>
+								<FormControl variant={props.variant} fullWidth>
 									<InputLabel>{props.label}</InputLabel>
 									<Select
 										value={$value.isCustom === false ? $value.value : props.customKey}
