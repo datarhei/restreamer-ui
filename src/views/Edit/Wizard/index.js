@@ -585,6 +585,7 @@ export default function Wizard(props) {
 
 			const source = $sources.audio;
 			source.settings.address = value;
+			source.settings.device = value.replace(/^hw:/, '');
 
 			setSources({
 				...$sources,
@@ -618,6 +619,7 @@ export default function Wizard(props) {
 				source.type = fullSource.id;
 				source.settings = fullSource.func.initSettings({
 					address: address,
+					device: address.replace(/^hw:/, ''),
 				});
 				source.inputs = fullSource.func.createInputs(source.settings);
 			} else if (value === 'silence') {
@@ -671,8 +673,12 @@ export default function Wizard(props) {
 
 		let deviceList = [];
 
-		if ('alsa' in $skills.sources && $sources.video.type === 'video4linux2') {
+		if ('alsa' in $skills.sources && ['video4linux2', 'raspicam'].includes($sources.video.type)) {
 			for (let device of $skills.sources['alsa']) {
+				if (!source.settings.address) {
+					source.settings.address = device.id;
+				}
+
 				deviceList.push(
 					<MenuItem key={device.id} value={device.id}>
 						{device.name} ({device.id})
