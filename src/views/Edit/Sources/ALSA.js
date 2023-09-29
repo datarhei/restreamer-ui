@@ -47,8 +47,8 @@ const createInputs = (settings) => {
 
 	input.options.push('-f', 'alsa');
 	input.options.push('-thread_queue_size', '512');
-	input.options.push('-ac', '' + settings.channels);
-	input.options.push('-ar', '' + settings.sampling);
+	input.options.push('-channels', '' + settings.channels);
+	input.options.push('-sample_rate', '' + settings.sampling);
 
 	if (settings.delay !== 0) {
 		input.options.push('-itsoffset', settings.delay + 'ms');
