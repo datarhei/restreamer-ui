@@ -6,6 +6,9 @@
 -   Add -referer option for pulling HTTP streams ([PR 40](https://github.com/datarhei/restreamer-ui/pull/40), thanks to mdastgheib)
 -   Mod uses placeholders for ingress setups ([#560](https://github.com/datarhei/restreamer-ui/issues/560))
 -   Fix the advanced settings in the MPEG-TS publication service ([#597](https://github.com/datarhei/restreamer/issues/597), thanks to orryverducci)
+-   Fix ALSA demuxer option names
+-   Fix index out-of-range warning, list ALSA devices for Raspicam video source
+-   Fix MUI warning
 
 ## v1.7.0 > v1.8.0
 
