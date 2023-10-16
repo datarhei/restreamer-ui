@@ -617,7 +617,7 @@ class Restreamer {
 			// Split out a Raspberry Pi camera and create a dedicated source
 			if (device.id === 'video4linux2') {
 				for (let d of device.devices) {
-					if (d.extra.indexOf('bcm2835-v4l2') !== -1) {
+					if (d.extra.match(/bcm2835[-_]v4l2/) !== null) {
 						if (!('raspicam' in skills.sources)) {
 							skills.sources['raspicam'] = [];
 						}
