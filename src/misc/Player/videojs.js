@@ -58,7 +58,7 @@ export default function VideoJS(props) {
 			direction="column"
 			justifyContent="center"
 			alignItems="center"
-			spacing={1}
+			spacing={2}
 			style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0 }}
 		>
 			<div data-vjs-player>

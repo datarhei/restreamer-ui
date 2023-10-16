@@ -95,7 +95,7 @@
 /* volume-panel */
 
 .vjs-public .vjs-volume-panel .vjs-volume-control.vjs-volume-horizontal {
-    padding-top: 1em;
+    padding-top: .9em;
 }
 
 .vjs-public .vjs-control .vjs-volume-panel {
@@ -110,8 +110,8 @@
 
 /* disable caps */
 
-.vjs-internal .vjs-subs-caps-button {
-	display: none;
+.vjs-public .vjs-subs-caps-button {
+	display: none!important;
 }
 
 /* spacer */
@@ -123,29 +123,37 @@
 
 /* overlay */
 
+.vjs-public .vjs-overlay-no-background {
+	max-width: 25%!important;
+}
+
 .vjs-public .vjs-overlay-no-background > img, .vjs-public .vjs-overlay-no-background > a > img {
 	max-width: 100%!important;
-	max-height: calc(18vw);
+    height: auto!important;
 }
 
 .vjs-public .vjs-overlay-top-left {
-	top: 20px!important;
-    left: 30px!important;
+	top: 15px!important;
+    left: 20px!important;
+    text-align: right;
 }
 
 .vjs-public .vjs-overlay-top-right {
-	top: 20px!important;
-    right: 30px!important;
+	top: 15px!important;
+    right: 20px!important;
+    text-align: right;
 }
 
 .vjs-public .vjs-overlay-bottom-left {
-	bottom: 20px!important;
-    left: 30px!important;
+	bottom: 15px!important;
+    left: 20px!important;
+    text-align: left;
 }
 
 .vjs-public .vjs-overlay-bottom-right {
-	bottom: 20px!important;
-    right: 30px!important;
+	bottom: 15px!important;
+    right: 20px!important;
+    text-align: left;
 }
 
 /* context menu */
@@ -162,4 +170,3 @@
 .vjs-public .vjs-lock-open {
     z-index: 1000;
 }
-
