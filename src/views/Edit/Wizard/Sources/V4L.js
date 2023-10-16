@@ -49,7 +49,7 @@ function initSettings(initialSettings, knownDevices) {
 }
 
 function initDevices(initialDevices) {
-	const devices = initialDevices.filter((device) => device.media === 'video' && device.extra.indexOf('bcm2835-v4l2') === -1);
+	const devices = initialDevices.filter((device) => device.media === 'video' && device.extra.match(/bcm2835[-_]v4l2/) === null);
 
 	return devices;
 }

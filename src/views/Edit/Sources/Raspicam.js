@@ -25,7 +25,7 @@ const initSettings = (initialSettings) => {
 
 	const settings = {
 		device: 'none',
-		format: 'h264',
+		format: 'yuv420p',
 		framerate: '25',
 		size: '1920x1080',
 		...initialSettings,
