@@ -22,6 +22,7 @@ import Typography from '@mui/material/Typography';
 import * as helper from './helper';
 import * as M from '../../utils/metadata';
 import EncodingSelect from '../../misc/EncodingSelect';
+import FilterSelect from '../../misc/FilterSelect';
 import H from '../../utils/help';
 import NotifyContext from '../../contexts/Notify';
 import Paper from '../../misc/Paper';
@@ -196,6 +197,17 @@ export default function Add(props) {
 			profiles: profiles,
 			streams: streams,
 			outputs: outputs,
+		});
+	};
+
+	const handleProcessingFilter = (type) => (filter) => {
+		const profiles = $settings.profiles;
+
+		profiles[0][type].filter = filter;
+
+		setSettings({
+			...$settings,
+			profiles: profiles,
 		});
 	};
 
@@ -487,6 +499,16 @@ export default function Add(props) {
 												onChange={handleProcessing('video')}
 											/>
 										</Grid>
+										{$settings.profiles[0].video.encoder.coder !== 'copy' && (
+											<Grid item xs={12}>
+												<FilterSelect
+													type="video"
+													profile={$settings.profiles[0].video}
+													availableFilters={$skills.filter}
+													onChange={handleProcessingFilter('video')}
+												/>
+											</Grid>
+										)}
 										<Grid item xs={12}>
 											<Typography variant="h4">
 												<Trans>Audio</Trans>
@@ -502,6 +524,16 @@ export default function Add(props) {
 												onChange={handleProcessing('audio')}
 											/>
 										</Grid>
+										{$settings.profiles[0].audio.encoder.coder !== 'copy' && (
+											<Grid item xs={12}>
+												<FilterSelect
+													type="audio"
+													profile={$settings.profiles[0].audio}
+													availableFilters={$skills.filter}
+													onChange={handleProcessingFilter('audio')}
+												/>
+											</Grid>
+										)}
 									</TabContent>
 								</TabPanel>
 							</TabsVerticalGrid>

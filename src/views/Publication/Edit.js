@@ -22,6 +22,7 @@ import BoxText from '../../misc/BoxText';
 import DebugModal from '../../misc/modals/Debug';
 import Dialog from '../../misc/modals/Dialog';
 import EncodingSelect from '../../misc/EncodingSelect';
+import FilterSelect from '../../misc/FilterSelect';
 import H from '../../utils/help';
 import NotifyContext from '../../contexts/Notify';
 import Paper from '../../misc/Paper';
@@ -228,6 +229,21 @@ export default function Edit(props) {
 			profiles: profiles,
 			streams: streams,
 			outputs: outputs,
+		});
+
+		if (!automatic) {
+			setUnsavedChanges(true);
+		}
+	};
+
+	const handleFilter = (type) => (filter, automatic) => {
+		const profiles = $settings.profiles;
+
+		profiles[0][type].filter = filter;
+
+		setSettings({
+			...$settings,
+			profiles: profiles,
 		});
 
 		if (!automatic) {
@@ -521,6 +537,16 @@ export default function Edit(props) {
 										onChange={handleEncoding('video')}
 									/>
 								</Grid>
+								{$settings.profiles[0].video.encoder.coder !== 'copy' && (
+									<Grid item xs={12}>
+										<FilterSelect
+											type="video"
+											profile={$settings.profiles[0].video}
+											availableFilters={$skills.filter}
+											onChange={handleFilter('video')}
+										/>
+									</Grid>
+								)}
 								<Grid item xs={12}>
 									<Typography variant="h4">
 										<Trans>Audio settings</Trans>
@@ -536,6 +562,16 @@ export default function Edit(props) {
 										onChange={handleEncoding('audio')}
 									/>
 								</Grid>
+								{$settings.profiles[0].audio.encoder.coder !== 'copy' && (
+									<Grid item xs={12}>
+										<FilterSelect
+											type="audio"
+											profile={$settings.profiles[0].audio}
+											availableFilters={$skills.filter}
+											onChange={handleFilter('audio')}
+										/>
+									</Grid>
+								)}
 							</TabContent>
 						</TabPanel>
 					</TabsVerticalGrid>
