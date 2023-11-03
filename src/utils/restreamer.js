@@ -982,6 +982,20 @@ class Restreamer {
 		return address;
 	}
 
+	PrefixPublicHTTPAddress(path) {
+		const address = this.GetPublicHTTPAddress();
+
+		if (path.match(/^https?:\/\//) !== null) {
+			return path;
+		}
+
+		if (path.match(/^\//) === null) {
+			path = '/' + path;
+		}
+
+		return address + path;
+	}
+
 	// Get all RTMP/SRT/SNAPSHOT+MEMFS/HLS+MEMFS addresses
 	GetPublicAddress(what, channelid) {
 		const config = this.ConfigActive();
@@ -1826,7 +1840,7 @@ class Restreamer {
 				max_files: parseInt(control.hls.listSize) + 6,
 				max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
 				purge_on_delete: true,
-			}
+			},
 		);
 
 		// 4.4 Cleanup hls_master_playlist
@@ -2038,6 +2052,7 @@ class Restreamer {
 			color: {},
 			ga: {},
 			logo: {},
+			poster: '',
 			...initSettings,
 		};
 
@@ -2096,6 +2111,11 @@ class Restreamer {
 			airplay: metadata.player.airplay,
 		};
 
+		if (metadata.player.poster.length !== 0) {
+			templateData.poster = metadata.player.poster.replace(/^\/+/, '');
+			templateData.poster_url = this.PrefixPublicHTTPAddress(metadata.player.poster);
+		}
+
 		// upload player.html
 		let player = await this._getLocalAssetAsString(`/_player/${playerType}/player.html`);
 		player = Handlebars.compile(player)(templateData);
@@ -2140,6 +2160,14 @@ class Restreamer {
 			},
 		};
 
+		if (metadata.player.logo.image.length !== 0) {
+			playerConfig.logo.image = metadata.player.logo.image.replace(/^\/+/, '');
+		}
+
+		if (metadata.player.poster.length !== 0) {
+			playerConfig.poster = metadata.player.poster.replace(/^\/+/, '');
+		}
+
 		await this._uploadAssetData(`/channels/${channelid}/config.js`, 'var playerConfig = ' + JSON.stringify(playerConfig));
 	}
 
@@ -2154,6 +2182,23 @@ class Restreamer {
 		extension = extension.replace(/[^0-9a-z]/gi, '');
 
 		const path = `/channels/${channel.channelid}/logo.${extension}`;
+
+		await this._uploadAssetData(path, data);
+
+		return path;
+	}
+
+	// Upload a poster image for the selfhosted player
+	async UploadPoster(channelid, data, extension) {
+		const channel = this.GetChannel(channelid);
+		if (channel === null) {
+			return;
+		}
+
+		// sanitize extension
+		extension = extension.replace(/[^0-9a-z]/gi, '');
+
+		const path = `/channels/${channel.channelid}/poster.${extension}`;
 
 		await this._uploadAssetData(path, data);
 
@@ -2829,9 +2874,12 @@ class Restreamer {
 			}
 		})();
 
-		this.updates = setTimeout(() => {
-			this._checkForUpdates();
-		}, 1000 * 60 * 60);
+		this.updates = setTimeout(
+			() => {
+				this._checkForUpdates();
+			},
+			1000 * 60 * 60,
+		);
 	}
 
 	// Private system related function

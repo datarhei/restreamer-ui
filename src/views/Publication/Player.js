@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 
 import Checkbox from '../../misc/Checkbox';
 import Dialog from '../../misc/modals/Dialog';
-import FormInlineButton from '../../misc/FormInlineButton';
+import Filesize from '../../misc/Filesize';
 import H from '../../utils/help';
 import NotifyContext from '../../contexts/Notify';
 import Paper from '../../misc/Paper';
@@ -23,6 +23,7 @@ import PaperHeader from '../../misc/PaperHeader';
 import PaperFooter from '../../misc/PaperFooter';
 import Player from '../../misc/Player';
 import Select from '../../misc/Select';
+import UploadButton from '../../misc/UploadButton';
 import TabPanel from '../../misc/TabPanel';
 import TabsHorizontal from '../../misc/TabsHorizontal';
 import TextFieldCopy from '../../misc/TextFieldCopy';
@@ -56,7 +57,11 @@ const logoImageTypes = [
 	{ mimetype: 'image/svg+xml', extension: 'svg', maxSize: 1 * 1024 * 1024 },
 ];
 
-const logoAcceptString = logoImageTypes.map((t) => t.mimetype).join(',');
+const posterImageTypes = [
+	{ mimetype: 'image/gif', extension: 'gif', maxSize: 1 * 1024 * 1024 },
+	{ mimetype: 'image/png', extension: 'png', maxSize: 1 * 1024 * 1024 },
+	{ mimetype: 'image/jpeg', extension: 'jpg', maxSize: 1 * 1024 * 1024 },
+];
 
 export default function Edit(props) {
 	const classes = useStyles();
@@ -151,89 +156,76 @@ export default function Edit(props) {
 			});
 		};
 
-	const handleLogoUpload = (event) => {
-		const handler = (event) => {
-			const files = event.target.files;
+	const handleLogoUpload = async (data, extension) => {
+		const path = await props.restreamer.UploadLogo(_channelid, data, extension);
 
-			setSaving(true);
+		handleChange(
+			'image',
+			'logo',
+		)({
+			target: {
+				value: path,
+			},
+		});
 
-			if (files.length === 0) {
-				// no files selected
-				setSaving(false);
-				showUploadError(<Trans>Please select a file to upload.</Trans>);
-				return;
-			}
-
-			const file = files[0];
-
-			let type = null;
-			for (let t of logoImageTypes) {
-				if (t.mimetype === file.type) {
-					type = t;
-					break;
-				}
-			}
-
-			if (type === null) {
-				// not one of the allowed mimetypes
-				setSaving(false);
-				const types = logoAcceptString;
-				showUploadError(
-					<Trans>
-						The selected file type ({file.type}) is not allowed. Allowed file types are {types}
-					</Trans>
-				);
-				return;
-			}
-
-			if (file.size > type.maxSize) {
-				// the file is too big
-				setSaving(false);
-				showUploadError(
-					<Trans>
-						The selected file is too big ({file.size} bytes). Only {type.maxSize} bytes are allowed.
-					</Trans>
-				);
-				return;
-			}
-
-			let reader = new FileReader();
-			reader.readAsArrayBuffer(file);
-			reader.onloadend = async () => {
-				if (reader.result === null) {
-					// reading the file failed
-					setSaving(false);
-					showUploadError(<Trans>There was an error during upload: {reader.error.message}</Trans>);
-					return;
-				}
-
-				const path = await props.restreamer.UploadLogo(_channelid, reader.result, type.extension);
-
-				handleChange(
-					'image',
-					'logo'
-				)({
-					target: {
-						value: address + path,
-					},
-				});
-
-				setSaving(false);
-			};
-		};
-
-		handler(event);
-
-		// reset the value such that the onChange event will be triggered again
-		// if the same file gets selected again
-		event.target.value = null;
+		setSaving(false);
 	};
 
-	const showUploadError = (message) => {
+	const handlePosterUpload = async (data, extension) => {
+		const path = await props.restreamer.UploadPoster(_channelid, data, extension);
+
+		handleChange('poster')({
+			target: {
+				value: path,
+			},
+		});
+
+		setSaving(false);
+	};
+
+	const handleUploadStart = () => {
+		setSaving(true);
+	};
+
+	const handleUploadError = (title) => (err) => {
+		let message = null;
+
+		switch (err.type) {
+			case 'nofiles':
+				message = <Trans>Please select a file to upload.</Trans>;
+				break;
+			case 'mimetype':
+				message = (
+					<Trans>
+						The selected file type ({err.actual}) is not allowed. Allowed file types are {err.allowed}
+					</Trans>
+				);
+				break;
+			case 'size':
+				message = (
+					<Trans>
+						The selected file is too big (<Filesize bytes={err.actual} />
+						). Only <Filesize bytes={err.allowed} /> are allowed.
+					</Trans>
+				);
+				break;
+			case 'read':
+				message = <Trans>There was an error during upload: {err.message}</Trans>;
+				break;
+			default:
+				message = <Trans>Unknown upload error</Trans>;
+		}
+
+		setSaving(false);
+
+		showUploadError(title, message);
+	};
+
+	const showUploadError = (title, message) => {
 		setError({
 			...$error,
 			open: true,
-			title: <Trans>Uploading the logo failed</Trans>,
+			title: title,
 			message: message,
 		});
 	};
@@ -253,7 +245,7 @@ export default function Edit(props) {
 
 		handleChange(
 			'image',
-			'logo'
+			'logo',
 		)({
 			target: {
 				value: '',
@@ -262,7 +254,7 @@ export default function Edit(props) {
 
 		handleChange(
 			'position',
-			'logo'
+			'logo',
 		)({
 			target: {
 				value: 'top-left',
@@ -271,14 +263,25 @@ export default function Edit(props) {
 
 		handleChange(
 			'link',
-			'logo'
+			'logo',
 		)({
 			target: {
 				value: '',
 			},
 		});
+	};
 
-		setSaving(false);
+	const handlePosterReset = (event) => {
+		// For the cleanup of the core, we need to check the following:
+		// 1. is the image on the core or external?
+		// 2. is the image used somewhere else?
+		// 3. OK via dialog
+
+		handleChange('poster')({
+			target: {
+				value: '',
+			},
+		});
 	};
 
 	const handleDone = async () => {
@@ -309,15 +312,34 @@ export default function Edit(props) {
 		H('player-' + $tab);
 	};
 
+	const prepareUrl = (url) => {
+		if (url.length === 0) {
+			return '';
+		}
+
+		if (url.match(/^https?:\/\//) === null) {
+			url = address + url;
+		}
+
+		try {
+			let u = new URL(url);
+			u.searchParams.set('_rscache', Math.random());
+			return u.href;
+		} catch (e) {
+			return url + '?' + Math.random();
+		}
+	};
+
 	if ($ready === false) {
 		return null;
 	}
 
 	const storage = $metadata.control.hls.storage;
 	const manifest = props.restreamer.GetChannelAddress('hls+' + storage, _channelid);
-	const poster = props.restreamer.GetChannelAddress('snapshot+' + storage, _channelid);
+	const poster = $settings.poster ? prepareUrl($settings.poster) : props.restreamer.GetChannelAddress('snapshot+' + storage, _channelid);
 	const playerAddress = props.restreamer.GetPublicAddress('player', _channelid);
 	const iframeCode = props.restreamer.GetPublicIframeCode(_channelid);
+	const logo = { ...$settings.logo, image: prepareUrl($settings.logo.image) };
 
 	return (
 		<React.Fragment>
@@ -343,7 +365,7 @@ export default function Edit(props) {
 										autoplay={$settings.autoplay}
 										mute={$settings.mute}
 										poster={poster}
-										logo={$settings.logo}
+										logo={logo}
 										colors={$settings.color}
 										statistics={$settings.statistics}
 										controls
@@ -358,6 +380,7 @@ export default function Edit(props) {
 						<TabsHorizontal value={$tab} onChange={handleChangeTab}>
 							<Tab className="tab" label={<Trans>Embed</Trans>} value="embed" />
 							<Tab className="tab" label={<Trans>Logo</Trans>} value="logo" />
+							<Tab className="tab" label={<Trans>Poster</Trans>} value="poster" />
 							<Tab className="tab" label={<Trans>Playback</Trans>} value="playback" />
 						</TabsHorizontal>
 						<TabPanel value={$tab} index="embed">
@@ -400,17 +423,20 @@ export default function Edit(props) {
 									<TextField
 										variant="outlined"
 										fullWidth
-										id="image-url"
+										id="logo-url"
 										label={<Trans>Image URL</Trans>}
 										value={$settings.logo.image}
 										onChange={handleChange('image', 'logo')}
 									/>
 								</Grid>
 								<Grid item xs={12} md={3}>
-									<FormInlineButton component="label">
-										<Trans>Upload</Trans>
-										<input accept={logoAcceptString} type="file" hidden onChange={handleLogoUpload} />
-									</FormInlineButton>
+									<UploadButton
+										label={<Trans>Upload</Trans>}
+										acceptTypes={logoImageTypes}
+										onStart={handleUploadStart}
+										onError={handleUploadError(<Trans>Uploading the logo failed</Trans>)}
+										onUpload={handleLogoUpload}
+									/>
 								</Grid>
 								<Grid item xs={12} md={4}>
 									<Select
@@ -430,10 +456,33 @@ export default function Edit(props) {
 									<TextField
 										variant="outlined"
 										fullWidth
-										id="image-link"
+										id="logo-link"
 										label={<Trans>Link</Trans>}
 										value={$settings.logo.link}
 										onChange={handleChange('link', 'logo')}
+									/>
+								</Grid>
+							</Grid>
+						</TabPanel>
+						<TabPanel value={$tab} index="poster">
+							<Grid container spacing={2}>
+								<Grid item xs={12} md={9}>
+									<TextField
+										variant="outlined"
+										fullWidth
+										id="poster-url"
+										label={<Trans>Poster image URL</Trans>}
+										value={$settings.poster}
+										onChange={handleChange('poster')}
+									/>
+								</Grid>
+								<Grid item xs={12} md={3}>
+									<UploadButton
+										label={<Trans>Upload</Trans>}
+										acceptTypes={posterImageTypes}
+										onStart={handleUploadStart}
+										onError={handleUploadError(<Trans>Uploading the poster failed</Trans>)}
+										onUpload={handlePosterUpload}
 									/>
 								</Grid>
 							</Grid>
@@ -495,6 +544,11 @@ export default function Edit(props) {
 							{$settings.logo.image && $tab === 'logo' && (
 								<Button variant="outlined" color="secondary" onClick={handleLogoReset}>
 									<Trans>Reset logo</Trans>
+								</Button>
+							)}
+							{$settings.poster && $tab === 'poster' && (
+								<Button variant="outlined" color="secondary" onClick={handlePosterReset}>
+									<Trans>Reset poster</Trans>
 								</Button>
 							)}
 						</React.Fragment>
