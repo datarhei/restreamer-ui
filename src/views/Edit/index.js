@@ -209,6 +209,10 @@ export default function Edit(props) {
 		setSkills(skills);
 	};
 
+	const handleSourceStore = async (name, data) => {
+		return await props.restreamer.UploadData('', name, data);
+	};
+
 	const handleSourceProbe = async (inputs) => {
 		let [res, err] = await props.restreamer.Probe(_channelid, inputs);
 		if (err !== null) {
@@ -466,6 +470,7 @@ export default function Edit(props) {
 									onRefresh={handleSkillsRefresh}
 									onDone={handleSourceDone}
 									onAbort={handleSourceAbort}
+									onStore={handleSourceStore}
 								/>
 							)}
 						</TabPanel>

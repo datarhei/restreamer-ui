@@ -68,6 +68,10 @@ export default function SourceSelect(props) {
 		await props.onRefresh();
 	};
 
+	const handleStore = async (name, data) => {
+		return await props.onStore(name, data);
+	};
+
 	const handleProbe = async (settings, inputs) => {
 		await props.onProbe(props.type, $source, settings, inputs);
 	};
@@ -97,6 +101,7 @@ export default function SourceSelect(props) {
 					onChange={handleChange($source)}
 					onProbe={handleProbe}
 					onRefresh={handleRefresh}
+					onStore={handleStore}
 				/>
 			);
 		}
@@ -129,6 +134,7 @@ SourceSelect.defaultProps = {
 	onSelect: function (type, device) {},
 	onChange: function (type, device, settings) {},
 	onRefresh: function () {},
+	onStore: function (name, data) {},
 };
 
 function Select(props) {
@@ -162,7 +168,7 @@ function Select(props) {
 						<Typography>{s.name}</Typography>
 					</div>
 				</Button>
-			</Grid>
+			</Grid>,
 		);
 	}
 

@@ -507,6 +507,7 @@ class Restreamer {
 				network: [],
 				virtualaudio: [],
 				virtualvideo: [],
+				videoloop: [],
 			},
 			sinks: {},
 		};
@@ -2171,38 +2172,35 @@ class Restreamer {
 		await this._uploadAssetData(`/channels/${channelid}/config.js`, 'var playerConfig = ' + JSON.stringify(playerConfig));
 	}
 
-	// Upload a logo for the selfhosted player
-	async UploadLogo(channelid, data, extension) {
-		const channel = this.GetChannel(channelid);
-		if (channel === null) {
-			return;
+	// Upload channel specific channel data
+	async UploadData(channelid, name, data) {
+		if (channelid.length === 0) {
+			channelid = this.GetCurrentChannelID();
 		}
 
-		// sanitize extension
-		extension = extension.replace(/[^0-9a-z]/gi, '');
+		const channel = this.GetChannel(channelid);
+		if (channel === null) {
+			return '';
+		}
 
-		const path = `/channels/${channel.channelid}/logo.${extension}`;
+		// sanitize name
+		name = name.replace(/[^0-9a-z.]/gi, '');
+
+		const path = `/channels/${channel.channelid}/${name}`;
 
 		await this._uploadAssetData(path, data);
 
 		return path;
 	}
 
+	// Upload a logo for the selfhosted player
+	async UploadLogo(channelid, data, extension) {
+		return this.UploadData(channelid, 'logo.' + extension, data);
+	}
+
 	// Upload a poster image for the selfhosted player
 	async UploadPoster(channelid, data, extension) {
-		const channel = this.GetChannel(channelid);
-		if (channel === null) {
-			return;
-		}
-
-		// sanitize extension
-		extension = extension.replace(/[^0-9a-z]/gi, '');
-
-		const path = `/channels/${channel.channelid}/poster.${extension}`;
-
-		await this._uploadAssetData(path, data);
-
-		return path;
+		return this.UploadData(channelid, 'poster.' + extension, data);
 	}
 
 	// Playersite

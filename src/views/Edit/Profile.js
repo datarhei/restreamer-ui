@@ -20,7 +20,7 @@ import StreamSelect from './StreamSelect';
 
 import FilterSelect from '../../misc/FilterSelect';
 
-export default function Source(props) {
+export default function Profile(props) {
 	const [$sources, setSources] = React.useState({
 		video: M.initSource('video', props.sources[0]),
 		audio: M.initSource('audio', props.sources[1]),
@@ -202,6 +202,10 @@ export default function Source(props) {
 		setSkillsRefresh(false);
 	};
 
+	const handleStore = async (name, data) => {
+		return await props.onStore(name, data);
+	};
+
 	const handleEncoding = (type) => (encoder, decoder) => {
 		const profile = $profile[type];
 
@@ -342,6 +346,7 @@ export default function Source(props) {
 								onProbe={handleProbe}
 								onChange={handleSourceSettingsChange}
 								onRefresh={handleRefresh}
+								onStore={handleStore}
 							/>
 						</Grid>
 						{$videoProbe.status !== 'none' && (
@@ -457,6 +462,7 @@ export default function Source(props) {
 								onSelect={handleSourceChange}
 								onChange={handleSourceSettingsChange}
 								onRefresh={handleRefresh}
+								onStore={handleStore}
 							/>
 						</Grid>
 						{$profile.custom.selected === false && $profile.custom.stream >= 0 && (
@@ -603,7 +609,7 @@ export default function Source(props) {
 	);
 }
 
-Source.defaultProps = {
+Profile.defaultProps = {
 	skills: {},
 	sources: [],
 	profile: {},
@@ -618,4 +624,7 @@ Source.defaultProps = {
 		};
 	},
 	onRefresh: function () {},
+	onStore: function (name, data) {
+		return '';
+	},
 };
