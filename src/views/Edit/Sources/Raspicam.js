@@ -5,7 +5,9 @@ import { useLingui } from '@lingui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Trans, t } from '@lingui/macro';
 import makeStyles from '@mui/styles/makeStyles';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import Typography from '@mui/material/Typography';
 
 import FormInlineButton from '../../../misc/FormInlineButton';
@@ -70,6 +72,10 @@ function Source(props) {
 		});
 	};
 
+	const handleRefresh = () => {
+		props.onRefresh();
+	};
+
 	const handleProbe = () => {
 		props.onProbe(settings, createInputs(settings));
 	};
@@ -101,6 +107,9 @@ function Source(props) {
 			</Grid>
 			<Grid item xs={12}>
 				{videoDevices}
+				<Button size="small" startIcon={<RefreshIcon />} onClick={handleRefresh} sx={{ float: 'right' }}>
+					<Trans>Refresh</Trans>
+				</Button>
 			</Grid>
 			<Grid item xs={12}>
 				<Video.Format value={settings.format} onChange={handleChange('format')} allowCustom />
