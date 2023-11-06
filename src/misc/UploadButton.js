@@ -3,6 +3,8 @@ import React from 'react';
 import FormInlineButton from './FormInlineButton';
 
 export default function UploadButton(props) {
+	const { acceptType, label, onError, onStart, onUpload, ...other } = props;
+
 	const acceptString = props.acceptTypes.map((t) => t.mimetype).join(',');
 
 	const handleUpload = (event) => {
@@ -73,7 +75,7 @@ export default function UploadButton(props) {
 	};
 
 	return (
-		<FormInlineButton component="label">
+		<FormInlineButton component="label" {...other}>
 			{props.label}
 			<input accept={acceptString} type="file" hidden onChange={handleUpload} />
 		</FormInlineButton>

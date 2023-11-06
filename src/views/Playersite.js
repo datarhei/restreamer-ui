@@ -20,6 +20,7 @@ import playerSiteThumb from '../assets/images/playersite.png';
 import Checkbox from '../misc/Checkbox';
 import ColorPicker from '../misc/ColorPicker';
 import Dialog from '../misc/modals/Dialog';
+import Filesize from '../misc/Filesize';
 import FormInlineButton from '../misc/FormInlineButton';
 import H from '../utils/help';
 import NotifyContext from '../contexts/Notify';
@@ -30,6 +31,7 @@ import PaperThumb from '../misc/PaperThumb';
 import Select from '../misc/Select';
 import TabPanel from '../misc/TabPanel';
 import TabsVerticalGrid from '../misc/TabsVerticalGrid';
+import UploadButton from '../misc/UploadButton';
 
 const useStyles = makeStyles((theme) => ({
 	buttonOpen: {
@@ -45,11 +47,7 @@ const imageTypes = [
 	{ mimetype: 'image/svg+xml', extension: 'svg', maxSize: 1 * 1024 * 1024 },
 ];
 
-const imageAcceptString = imageTypes.map((t) => t.mimetype).join(',');
-
 const templateTypes = [{ mimetype: 'text/html', extension: 'html', maxSize: 500 * 1024 }];
-
-const templateAcceptString = templateTypes.map((t) => t.mimetype).join(',');
 
 export default function Playersite(props) {
 	const classes = useStyles();
@@ -110,155 +108,29 @@ export default function Playersite(props) {
 		});
 	};
 
-	const handleBackgroundImageUpload = (event) => {
-		const handler = (event) => {
-			const files = event.target.files;
+	const handleBackgroundImageUpload = async (data, extension) => {
+		const path = await props.restreamer.UploadPlayersiteBackgroundImage(data, extension);
 
-			setSaving(true);
+		handleChange('bgimage_url')({
+			target: {
+				value: path,
+			},
+		});
 
-			if (files.length === 0) {
-				// no files selected
-				setSaving(false);
-				showUploadError(<Trans>Please select a file to upload.</Trans>);
-				return;
-			}
-
-			const file = files[0];
-
-			let type = null;
-			for (let t of imageTypes) {
-				if (t.mimetype === file.type) {
-					type = t;
-					break;
-				}
-			}
-
-			if (type === null) {
-				// not one of the allowed mimetypes
-				setSaving(false);
-				const types = imageAcceptString;
-				showUploadError(
-					<Trans>
-						The selected file type ({file.type}) is not allowed. Allowed file types are {types}
-					</Trans>
-				);
-				return;
-			}
-
-			if (file.size > type.maxSize) {
-				// the file is too big
-				setSaving(false);
-				showUploadError(
-					<Trans>
-						The selected file is too big ({file.size} bytes). Only {type.maxSize} bytes are allowed.
-					</Trans>
-				);
-				return;
-			}
-
-			let reader = new FileReader();
-			reader.readAsArrayBuffer(file);
-			reader.onloadend = async () => {
-				if (reader.result === null) {
-					// reading the file failed
-					setSaving(false);
-					showUploadError(<Trans>There was an error during upload: {reader.error.message}</Trans>);
-					return;
-				}
-
-				const path = await props.restreamer.UploadPlayersiteBackgroundImage(reader.result, type.extension);
-
-				handleChange('bgimage_url')({
-					target: {
-						value: path,
-					},
-				});
-
-				setSaving(false);
-			};
-		};
-
-		handler(event);
-
-		// reset the value such that the onChange event will be triggered again
-		// if the same file gets selected again
-		event.target.value = null;
+		setSaving(false);
 	};
 
-	const handleTemplateUpload = (event) => {
-		const handler = (event) => {
-			const files = event.target.files;
+	const handleTemplateUpload = async (data, extension) => {
+		const name = await props.restreamer.UploadPlayersiteTemplate(data, $settings.templatename);
 
-			setSaving(true);
+		setTemplates(await props.restreamer.ListPlayersiteTemplates());
+		setSettings({
+			...$settings,
+			template: name,
+			templatename: '',
+		});
 
-			if (files.length === 0) {
-				// no files selected
-				setSaving(false);
-				showUploadError(<Trans>Please select a file to upload.</Trans>);
-				return;
-			}
-
-			const file = files[0];
-
-			let type = null;
-			for (let t of templateTypes) {
-				if (t.mimetype === file.type) {
-					type = t;
-					break;
-				}
-			}
-
-			if (type === null) {
-				// not one of the allowed mimetypes
-				setSaving(false);
-				const types = templateAcceptString;
-				showUploadError(
-					<Trans>
-						The selected file type ({file.type}) is not allowed. Allowed file types are {types}
-					</Trans>
-				);
-				return;
-			}
-
-			if (file.size > type.maxSize) {
-				// the file is too big
-				setSaving(false);
-				showUploadError(
-					<Trans>
-						The selected file is too big ({file.size} bytes). Only {type.maxSize} bytes are allowed.
-					</Trans>
-				);
-				return;
-			}
-
-			let reader = new FileReader();
-			reader.readAsArrayBuffer(file);
-			reader.onloadend = async () => {
-				if (reader.result === null) {
-					// reading the file failed
-					setSaving(false);
-					showUploadError(<Trans>There was an error during upload: {reader.error.message}</Trans>);
-					return;
-				}
-
-				const name = await props.restreamer.UploadPlayersiteTemplate(reader.result, $settings.templatename);
-
-				setTemplates(await props.restreamer.ListPlayersiteTemplates());
-				setSettings({
-					...$settings,
-					template: name,
-					templatename: '',
-				});
-
-				setSaving(false);
-			};
-		};
-
-		handler(event);
-
-		// reset the value such that the onChange event will be triggered again
-		// if the same file gets selected again
-		event.target.value = null;
+		setSaving(false);
 	};
 
 	const handleTemplateDelete = async () => {
@@ -274,11 +146,49 @@ export default function Playersite(props) {
 		setSaving(false);
 	};
 
-	const showUploadError = (message) => {
+	const handleUploadStart = () => {
+		setSaving(true);
+	};
+
+	const handleUploadError = (title) => (err) => {
+		let message = null;
+
+		switch (err.type) {
+			case 'nofiles':
+				message = <Trans>Please select a file to upload.</Trans>;
+				break;
+			case 'mimetype':
+				message = (
+					<Trans>
+						The selected file type ({err.actual}) is not allowed. Allowed file types are {err.allowed}
+					</Trans>
+				);
+				break;
+			case 'size':
+				message = (
+					<Trans>
+						The selected file is too big (<Filesize bytes={err.actual} />
+						). Only <Filesize bytes={err.allowed} /> are allowed.
+					</Trans>
+				);
+				break;
+			case 'read':
+				message = <Trans>There was an error during upload: {err.message}</Trans>;
+				break;
+			default:
+				message = <Trans>Unknown upload error</Trans>;
+		}
+
+		setSaving(false);
+
+		showUploadError(title, message);
+	};
+
+	const showUploadError = (title, message) => {
 		setError({
 			...$error,
 			open: true,
-			title: <Trans>Uploading the file failed</Trans>,
+			title: title,
 			message: message,
 		});
 	};
@@ -511,10 +421,16 @@ export default function Playersite(props) {
 									</Typography>
 								</Grid>
 								<Grid item xs={12} md={3}>
-									<FormInlineButton variant="outlined" color="primary" component="label" disabled={$settings.templatename.length === 0}>
-										<Trans>Upload</Trans>
-										<input accept={templateAcceptString} type="file" hidden onChange={handleTemplateUpload} />
-									</FormInlineButton>
+									<UploadButton
+										variant="outlined"
+										color="primary"
+										disabled={$settings.templatename.length === 0}
+										label={<Trans>Upload</Trans>}
+										acceptTypes={templateTypes}
+										onStart={handleUploadStart}
+										onError={handleUploadError(<Trans>Uploading the file failed</Trans>)}
+										onUpload={handleTemplateUpload}
+									/>
 								</Grid>
 							</Grid>
 						</TabPanel>
@@ -646,10 +562,13 @@ export default function Playersite(props) {
 									</Typography>
 								</Grid>
 								<Grid item xs={12} md={4}>
-									<FormInlineButton component="label">
-										<Trans>Upload</Trans>
-										<input accept={imageAcceptString} type="file" hidden onChange={handleBackgroundImageUpload} />
-									</FormInlineButton>
+									<UploadButton
+										label={<Trans>Upload</Trans>}
+										acceptTypes={imageTypes}
+										onStart={handleUploadStart}
+										onError={handleUploadError(<Trans>Uploading the file failed</Trans>)}
+										onUpload={handleBackgroundImageUpload}
+									/>
 								</Grid>
 							</Grid>
 						</TabPanel>
