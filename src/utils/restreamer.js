@@ -1571,7 +1571,7 @@ class Restreamer {
 		return await this._deleteProcess(channel.id + '_snapshot');
 	}
 
-	// Upsert the ingest process
+	// Update/Insert the ingest process
 	async UpsertIngest(channelid, global, inputs, outputs, control) {
 		const channel = this.GetChannel(channelid);
 		if (!channel) {
@@ -1589,6 +1589,11 @@ class Restreamer {
 			reconnect: control.process.reconnect,
 			reconnect_delay_seconds: parseInt(control.process.delay),
 			stale_timeout_seconds: parseInt(control.process.staleTimeout),
+			limits: {
+				cpu_usage: parseInt(control.limits.cpu_usage),
+				memory_mbytes: parseInt(control.limits.memory_mbytes),
+				waitfor_seconds: parseInt(control.limits.waitfor_seconds),
+			},
 		};
 
 		for (let i in inputs) {
@@ -2618,6 +2623,11 @@ class Restreamer {
 			reconnect: control.process.reconnect,
 			reconnect_delay_seconds: parseInt(control.process.delay),
 			stale_timeout_seconds: parseInt(control.process.staleTimeout),
+			limits: {
+				cpu_usage: parseInt(control.limits.cpu_usage),
+				memory_mbytes: parseInt(control.limits.memory_mbytes),
+				waitfor_seconds: parseInt(control.limits.waitfor_seconds),
+			},
 		};
 
 		for (let i in outputs) {

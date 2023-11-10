@@ -22,6 +22,7 @@ import Dialog from '../../misc/modals/Dialog';
 import H from '../../utils/help';
 import HLSControl from '../../misc/controls/HLS';
 import LicenseControl from '../../misc/controls/License';
+import LimitsControl from '../../misc/controls/Limits';
 import MetadataControl from '../../misc/controls/Metadata';
 import NotifyContext from '../../contexts/Notify';
 import Paper from '../../misc/Paper';
@@ -555,6 +556,17 @@ export default function Edit(props) {
 								</Grid>
 								<Grid item xs={12}>
 									<ProcessControl settings={$data.control.process} onChange={handleControlChange('process')} />
+								</Grid>
+								<Grid item xs={12}>
+									<Divider />
+								</Grid>
+								<Grid item xs={12}>
+									<Typography variant="h3">
+										<Trans>Limits</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<LimitsControl settings={$data.control.limits} onChange={handleControlChange('limits')} />
 								</Grid>
 							</Grid>
 						</TabPanel>

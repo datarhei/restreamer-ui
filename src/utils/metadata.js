@@ -285,6 +285,11 @@ const defaultIngestMetadata = {
 			enable: true,
 			interval: 60,
 		},
+		limits: {
+			cpu_usage: 0,
+			memory_mbytes: 0,
+			waitfor_seconds: 5,
+		},
 	},
 	player: {},
 	meta: {
@@ -310,6 +315,11 @@ const defaultEgressMetadata = {
 		},
 		source: {
 			source: 'hls+memfs',
+		},
+		limits: {
+			cpu_usage: 0,
+			memory_mbytes: 0,
+			waitfor_seconds: 5,
 		},
 	},
 	outputs: [],

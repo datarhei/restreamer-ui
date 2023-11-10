@@ -8,6 +8,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import Backdrop from '@mui/material/Backdrop';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
+import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Tab from '@mui/material/Tab';
@@ -24,6 +25,7 @@ import Dialog from '../../misc/modals/Dialog';
 import EncodingSelect from '../../misc/EncodingSelect';
 import FilterSelect from '../../misc/FilterSelect';
 import H from '../../utils/help';
+import LimitsControl from '../../misc/controls/Limits';
 import NotifyContext from '../../contexts/Notify';
 import Paper from '../../misc/Paper';
 import PaperHeader from '../../misc/PaperHeader';
@@ -459,6 +461,17 @@ export default function Edit(props) {
 								</Grid>
 								<Grid item xs={12}>
 									<ProcessControl settings={$settings.control.process} onChange={handleControlChange('process')} />
+								</Grid>
+								<Grid item xs={12}>
+									<Divider />
+								</Grid>
+								<Grid item xs={12}>
+									<Typography variant="h2">
+										<Trans>Limits</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<LimitsControl settings={$settings.control.limits} onChange={handleControlChange('limits')} />
 								</Grid>
 								<Grid item xs={12}>
 									<Grid container spacing={1} className={classes.gridContainer}>
