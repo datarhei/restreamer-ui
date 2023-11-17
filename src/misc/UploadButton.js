@@ -3,9 +3,9 @@ import React from 'react';
 import FormInlineButton from './FormInlineButton';
 
 export default function UploadButton(props) {
-	const { acceptType, label, onError, onStart, onUpload, ...other } = props;
+	const { acceptTypes, label, onError, onStart, onUpload, ...other } = props;
 
-	const acceptString = props.acceptTypes.map((t) => t.mimetype).join(',');
+	const accept = props.acceptTypes.map((t) => t.mimetype);
 
 	const handleUpload = (event) => {
 		const handler = (event) => {
@@ -23,7 +23,14 @@ export default function UploadButton(props) {
 
 			let type = null;
 			for (let t of props.acceptTypes) {
-				if (t.mimetype === file.type) {
+				const accept = t.mimetype.split('/');
+				const actual = file.type.split('/');
+
+				if (accept[0] !== actual[0]) {
+					continue;
+				}
+
+				if (accept[1] === '*' || accept[1] === actual[1]) {
 					type = t;
 					break;
 				}
@@ -34,7 +41,7 @@ export default function UploadButton(props) {
 				props.onError({
 					type: 'mimetype',
 					actual: file.type,
-					allowed: acceptString,
+					allowed: accept.slice(),
 				});
 				return;
 			}
@@ -61,7 +68,7 @@ export default function UploadButton(props) {
 					return;
 				}
 
-				props.onUpload(reader.result, type.extension);
+				props.onUpload(reader.result, type.extension, type.mimetype);
 			};
 		};
 
@@ -77,7 +84,7 @@ export default function UploadButton(props) {
 	return (
 		<FormInlineButton component="label" {...other}>
 			{props.label}
-			<input accept={acceptString} type="file" hidden onChange={handleUpload} />
+			<input accept={accept.join(',')} type="file" hidden onChange={handleUpload} />
 		</FormInlineButton>
 	);
 }

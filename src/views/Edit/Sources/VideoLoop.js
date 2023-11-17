@@ -16,8 +16,8 @@ import FormInlineButton from '../../../misc/FormInlineButton';
 import UploadButton from '../../../misc/UploadButton';
 
 const imageTypes = [
-	{ mimetype: 'image/png', extension: 'png', maxSize: 2 * 1024 * 1024 },
-	{ mimetype: 'image/jpeg', extension: 'jpg', maxSize: 2 * 1024 * 1024 },
+	{ mimetype: 'image/*', extension: 'image', maxSize: 2 * 1024 * 1024 },
+	{ mimetype: 'video/*', extension: 'video', maxSize: 25 * 1024 * 1024 },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -33,6 +33,7 @@ const initSettings = (initialSettings) => {
 
 	const settings = {
 		address: '',
+		mimetype: '',
 		...initialSettings,
 	};
 
@@ -46,8 +47,12 @@ const createInputs = (settings) => {
 		options: [],
 	};
 
-	input.options.push('-loop', '1');
-	input.options.push('-framerate', '1');
+	if (settings.mimetype.startsWith('image/')) {
+		input.options.push('-framerate', '1');
+		input.options.push('-loop', '1');
+	} else {
+		input.options.push('-stream_loop', '-1');
+	}
 	input.options.push('-re');
 
 	return [input];
@@ -63,24 +68,13 @@ function Source(props) {
 		message: '',
 	});
 
-	const handleChange = (what) => (event) => {
-		let data = {};
-
-		data[what] = event.target.value;
+	const handleFileUpload = async (data, extension, mimetype) => {
+		const path = await props.onStore('loop.source', data);
 
 		props.onChange({
 			...settings,
-			...data,
-		});
-	};
-
-	const handleImageUpload = async (data, extension) => {
-		const path = await props.onStore('input.' + extension, data);
-
-		handleChange('address')({
-			target: {
-				value: path,
-			},
+			address: path,
+			mimetype: mimetype,
 		});
 
 		setSaving(false);
@@ -100,7 +94,7 @@ function Source(props) {
 			case 'mimetype':
 				message = (
 					<Trans>
-						The selected file type ({err.actual}) is not allowed. Allowed file types are {err.allowed}
+						The selected file type ({err.actual}) is not allowed. Allowed file types are {err.allowed.join(', ')}
 					</Trans>
 				);
 				break;
@@ -147,23 +141,21 @@ function Source(props) {
 	return (
 		<React.Fragment>
 			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
+				<Grid item xs={12}>
+					<Typography variant="caption">
+						<Trans>Upload an image or video file ({imageTypes.map((t) => t.mimetype).join(', ')}) in order to loop it.</Trans>
+					</Typography>
+				</Grid>
 				<Grid item xs={12} md={9}>
-					<TextField
-						variant="outlined"
-						fullWidth
-						id="logo-url"
-						label={<Trans>Image path</Trans>}
-						value={settings.address}
-						onChange={handleChange('address')}
-					/>
+					<TextField variant="outlined" fullWidth label={<Trans>File path</Trans>} value={settings.address} readOnly />
 				</Grid>
 				<Grid item xs={12} md={3}>
 					<UploadButton
 						label={<Trans>Upload</Trans>}
 						acceptTypes={imageTypes}
 						onStart={handleUploadStart}
-						onError={handleUploadError(<Trans>Uploading the image failed</Trans>)}
-						onUpload={handleImageUpload}
+						onError={handleUploadError(<Trans>Uploading the file failed</Trans>)}
+						onUpload={handleFileUpload}
 					/>
 				</Grid>
 				<Grid item xs={12}>

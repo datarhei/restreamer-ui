@@ -160,7 +160,7 @@ export default function Playersite(props) {
 			case 'mimetype':
 				message = (
 					<Trans>
-						The selected file type ({err.actual}) is not allowed. Allowed file types are {err.allowed}
+						The selected file type ({err.actual}) is not allowed. Allowed file types are {err.allowed.join(', ')}
 					</Trans>
 				);
 				break;
