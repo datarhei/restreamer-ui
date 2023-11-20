@@ -8,6 +8,7 @@
 -   Add a/v filter to the publication components ([#593](https://github.com/datarhei/restreamer-ui/issues/593))
 -   Mod uses placeholders for ingress setups ([#560](https://github.com/datarhei/restreamer-ui/issues/560))
 -   Mod updates npm
+-   Fix Restream grid
 -   Fix the advanced settings in the MPEG-TS publication service ([#597](https://github.com/datarhei/restreamer/issues/597), thanks to orryverducci)
 -   Fix ALSA demuxer option names
 -   Fix index out-of-range warning, list ALSA devices for Raspicam video source
