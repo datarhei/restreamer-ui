@@ -42,7 +42,7 @@ const requires = {
 };
 
 function ServiceIcon(props) {
-	return <img src={Logo} alt="Telegram Logo" {...props} />;
+	return <img src={Logo} alt="Owncast Logo" {...props} />;
 }
 
 function init(settings) {
