@@ -2,6 +2,7 @@
 
 ## v1.8.0 > vx.x.x
 
+-   Add enlarged channel overview
 -   Add new publication services: Rumble, PicartoTV, NimoTV, Livepush
 -   Add frame interpolation (framerate) filter (thanks to orryverducci)
 -   Add -referer option for pulling HTTP streams ([PR 40](https://github.com/datarhei/restreamer-ui/pull/40), thanks to mdastgheib)
@@ -18,7 +19,7 @@
 
 ## v1.7.0 > v1.8.0
 
--   Add Add stream key field and protocol detection to RTMP publication service
+-   Add stream key field and protocol detection to RTMP publication service
 -   Add Chinese (simplified) translation (thanks to Huyg0180110559)
 -   Add Ukrainian translation (thanks to Yurii Denys)
 -   Fix empty force_key_frames value

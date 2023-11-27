@@ -10,6 +10,8 @@ import Button from '@mui/material/Button';
 import ButtonBase from '@mui/material/ButtonBase';
 import CloseIcon from '@mui/icons-material/Close';
 import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import LensIcon from '@mui/icons-material/Lens';
@@ -119,7 +121,7 @@ const ImageBackdrop = styled('span')(({ theme }) => ({
 	border: `2px solid ${theme.palette.primary.dark}`,
 }));
 
-function ChannelButton(props) {
+function ChannelButton(props, largeChannelList) {
 	const classes = useStyles();
 	const theme = useTheme();
 
@@ -154,7 +156,7 @@ function ChannelButton(props) {
 	}
 
 	return (
-		<Grid item xs={12} sm={6} md={4} lg={3}>
+		<Grid item xs={12} sm={6} md={4} lg={3} style={{ paddingBottom: largeChannelList ? '10px' : 'auto' }}>
 			<ImageButton focusRipple disabled={props.disabled} onClick={props.onClick} style={{ width: props.width }}>
 				<Stack direction="column" spacing={0.5}>
 					<Image
@@ -192,6 +194,21 @@ ChannelButton.defaultProps = {
 	onClick: () => {},
 };
 
+const calculateColumnsPerRow = (breakpointSmall, breakpointMedium, breakpointLarge) => {
+	if (breakpointLarge) {
+		return 4;
+	} else if (breakpointMedium) {
+		return 3;
+	} else if (breakpointSmall) {
+		return 2;
+	}
+	return 1;
+};
+
+const calculateRowsToFit = (windowHeight, thumbnailHeight, otherUIHeight) => {
+	return Math.floor((windowHeight - otherUIHeight) / thumbnailHeight);
+};
+
 export default function ChannelList(props) {
 	const classes = useStyles();
 	const theme = useTheme();
@@ -205,8 +222,12 @@ export default function ChannelList(props) {
 		open: false,
 		name: '',
 	});
+	const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+	const [windowHeight, setWindowHeight] = React.useState(window.innerHeight);
 
-	const { channels: allChannels, channelid, onClick, onState } = props;
+	const { channels: allChannels, channelid, onClick, onClose, onState } = props;
+
+	const [$largeChannelList, setLargeChannelList] = React.useState(false);
 
 	React.useEffect(() => {
 		(async () => {
@@ -246,18 +267,39 @@ export default function ChannelList(props) {
 						disabled={channelid === channel.channelid}
 						onClick={() => {
 							onClick(channel.channelid);
+							if ($largeChannelList) {
+								onClose();
+							}
 						}}
+						largeChannelList={$largeChannelList}
 					/>
 				);
 			});
 
 			setChannels(channels);
 		})();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [$pos, allChannels, $nChannels, channelid, onClick, onState]);
 
 	const onMount = async () => {
 		setPos(0);
 	};
+
+	React.useEffect(() => {
+		const handleResize = () => {
+			setWindowWidth(window.innerWidth);
+			setWindowHeight(window.innerHeight);
+		};
+
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
+
+	React.useEffect(() => {
+		const columns = calculateColumnsPerRow(breakpointSmall, breakpointMedium, breakpointLarge);
+		const rows = $largeChannelList ? calculateRowsToFit(windowHeight, 200, 60) : 1;
+		setNChannels(rows * columns);
+	}, [breakpointSmall, breakpointMedium, breakpointLarge, windowHeight, windowWidth, $largeChannelList]);
 
 	const handleAddChannelDialog = () => {
 		setAddChannel({
@@ -282,6 +324,11 @@ export default function ChannelList(props) {
 		return null;
 	}
 
+	const handleLargeChannelList = () => {
+		setLargeChannelList(!$largeChannelList);
+		setPos(0);
+	};
+
 	return (
 		<React.Fragment>
 			<SwipeableDrawer
@@ -289,7 +336,13 @@ export default function ChannelList(props) {
 				open={props.open}
 				onOpen={() => {}}
 				onClose={props.onClose}
-				sx={{ marginButtom: 60 }}
+				sx={{
+					marginButtom: 60,
+					'& .MuiDrawer-paper': {
+						top: $largeChannelList ? '0px!important' : 'auto!important',
+						height: $largeChannelList ? '100vh' : 'auto',
+					},
+				}}
 				BackdropProps={{ invisible: true }}
 				classes={{
 					paper: classes.drawerPaper,
@@ -306,6 +359,9 @@ export default function ChannelList(props) {
 								<Stack direction="row" spacing={1} justifyContent="flex-end" className={classes.drawerButtons}>
 									<IconButton color="inherit" size="large" onClick={handleAddChannelDialog}>
 										<AddIcon />
+									</IconButton>
+									<IconButton color="inherit" size="large" onClick={handleLargeChannelList}>
+										{$largeChannelList ? <FullscreenExitIcon /> : <FullscreenIcon />}
 									</IconButton>
 									<IconButton color="inherit" size="large" onClick={props.onClose}>
 										<CloseIcon />
@@ -327,7 +383,7 @@ export default function ChannelList(props) {
 									</IconButton>
 								</Stack>
 								<Stack direction="row" spacing={0} className={classes.channelItems}>
-									<Grid container spacing={0} justifyContent="center">
+									<Grid container spacing={0} justifyContent={$largeChannelList ? 'flex-start' : 'center'}>
 										{$channels}
 									</Grid>
 								</Stack>
