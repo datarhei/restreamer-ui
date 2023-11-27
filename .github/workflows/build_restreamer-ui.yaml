@@ -1,10 +1,10 @@
 name: 'Build restreamer-ui'
 
 on:
-  workflow_dispatch:
-  push:
-    branches-ignore:
-      - '**'
+  #workflow_dispatch:
+  #push:
+  #  branches-ignore:
+  #    - '**'
 
 jobs:
   docker:

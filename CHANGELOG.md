@@ -2,11 +2,13 @@
 
 ## v1.8.0 > vx.x.x
 
+-   Add kick.com publication service
 -   Add enlarged channel overview
 -   Add new publication services: Rumble, PicartoTV, NimoTV, Livepush
 -   Add frame interpolation (framerate) filter (thanks to orryverducci)
 -   Add -referer option for pulling HTTP streams ([PR 40](https://github.com/datarhei/restreamer-ui/pull/40), thanks to mdastgheib)
 -   Add a/v filter to the publication components ([#593](https://github.com/datarhei/restreamer-ui/issues/593))
+-   Mod extends twitch's server list
 -   Mod uses placeholders for ingress setups ([#560](https://github.com/datarhei/restreamer-ui/issues/560))
 -   Mod updates npm
 -   Fix Owncast typo

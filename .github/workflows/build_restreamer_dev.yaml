@@ -1,11 +1,11 @@
 name: 'Build datarhei/restreamer-ui:dev'
 
 on:
-  workflow_dispatch:
-  workflow_call:
-  push:
-    branches:
-      - dev
+  #workflow_dispatch:
+  #workflow_call:
+  #push:
+  #  branches:
+  #    - dev
 
 jobs:
   docker:

@@ -12,6 +12,7 @@ import * as HLS from './HLS';
 import * as Icecast from './Icecast';
 import * as Image2 from './Image2';
 import * as Instagram from './Instagram';
+import * as Kick from './Kick';
 import * as Linkedin from './Linkedin';
 import * as Livepush from './Livepush';
 import * as Livespotting from './Livespotting';
@@ -76,6 +77,7 @@ registry.Register(Facebook);
 registry.Register(Youtube);
 registry.Register(Twitter);
 registry.Register(Twitch);
+registry.Register(Kick);
 registry.Register(Instagram);
 registry.Register(Vimeo);
 registry.Register(Restream);
@@ -109,6 +111,5 @@ registry.Register(SRT);
 registry.Register(UDP);
 registry.Register(MPEGTS);
 registry.Register(Framebuffer);
-
 
 export default registry;
