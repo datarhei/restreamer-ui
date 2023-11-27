@@ -50,7 +50,7 @@ function ServiceIcon(props) {
 
 function init(settings) {
 	const initSettings = {
-		lines: "1",
+		lines: '1',
 		stream_key: '',
 		...settings,
 	};
