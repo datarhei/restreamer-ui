@@ -1,7 +1,7 @@
 import { i18n } from '@lingui/core';
 import { t } from '@lingui/macro';
 import { v4 as uuidv4 } from 'uuid';
-import jwt_decode from 'jwt-decode';
+import * as jwt_decode from 'jwt-decode';
 import Handlebars from 'handlebars/dist/cjs/handlebars';
 import SemverSatisfies from 'semver/functions/satisfies';
 import SemverGt from 'semver/functions/gt';

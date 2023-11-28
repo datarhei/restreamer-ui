@@ -1,6 +1,6 @@
 # Restreamer-UI
 
-## v1.8.0 > vx.x.x
+## v1.8.0 > v1.9.0
 
 -   Add kick.com publication service
 -   Add enlarged channel overview
