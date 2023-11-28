@@ -1,7 +1,7 @@
 import { i18n } from '@lingui/core';
 import { t } from '@lingui/macro';
 import { v4 as uuidv4 } from 'uuid';
-import * as jwt_decode from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 import Handlebars from 'handlebars/dist/cjs/handlebars';
 import SemverSatisfies from 'semver/functions/satisfies';
 import SemverGt from 'semver/functions/gt';
@@ -403,7 +403,7 @@ class Restreamer {
 		} else {
 			let claims = null;
 			try {
-				claims = jwt_decode(token);
+				claims = jwtDecode(token);
 				this._setTokenRefresh(claims.exi);
 				this.api.SetToken(token);
 			} catch (e) {
