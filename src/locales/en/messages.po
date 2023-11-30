@@ -516,10 +516,6 @@ msgstr "Content URL"
 msgid "copyts"
 msgstr "copyts"
 
-#: src/views/Edit/Sources/Network.js:725
-#~ msgid "Core plugins"
-#~ msgstr "Core plugins"
-
 #: src/Footer.js:193
 msgid "Cores"
 msgstr "Cores"
@@ -1372,14 +1368,6 @@ msgstr "List of IP ranges in CIDR notation, e.g., 127.0.0.1/32, that the statist
 msgid "List size (segments)"
 msgstr "List size (segments)"
 
-#: src/views/Edit/Sources/Network.js:731
-#~ msgid "Live stabilization"
-#~ msgstr "Live stabilization"
-
-#: src/views/Edit/Sources/Network.js:737
-#~ msgid "Live stabilization repeats the last seen key frame of the incoming stream as soon as it aborts and tries to reconnect to the stream."
-#~ msgstr "Live stabilization repeats the last seen key frame of the incoming stream as soon as it aborts and tries to reconnect to the stream."
-
 #: src/views/Publication/Services/DLive.js:15
 msgid "Live-Streaming to dlive Live RTMP Service."
 msgstr "Live-Streaming to dlive Live RTMP Service."
@@ -1904,6 +1892,7 @@ msgstr "Please contact the operator of the service and check what happens."
 msgid "Please enter your email address to signify agreement with the Let's Encrypt CA's terms of service and to be notified in case of issues."
 msgstr "Please enter your email address to signify agreement with the Let's Encrypt CA's terms of service and to be notified in case of issues."
 
+#: src/views/Publication/Services/Dailymotion.js:23
 #: src/views/Publication/Services/Kick.js:24
 #: src/views/Publication/Services/Owncast.js:23
 #: src/views/Publication/Services/Rumble.js:24
@@ -2012,18 +2001,6 @@ msgstr "Processing & Control"
 #: src/views/Edit/Wizard/VideoProfile.js:27
 msgid "Profile"
 msgstr "Profile"
-
-#: src/views/Edit/Sources/Network.js:732
-#~ msgid "Protect: None"
-#~ msgstr "Protect: None"
-
-#: src/views/Edit/Sources/Network.js:734
-#~ msgid "Protect: Video and audio channel"
-#~ msgstr "Protect: Video and audio channel"
-
-#: src/views/Edit/Sources/Network.js:733
-#~ msgid "Protect: Video channel"
-#~ msgstr "Protect: Video channel"
 
 #: src/views/Edit/Sources/Network.js:821
 #: src/views/Publication/Services/Akamai.js:144
@@ -2611,6 +2588,7 @@ msgstr "Stream"
 
 #: src/views/Publication/Services/CDN77.js:113
 #: src/views/Publication/Services/DaCast.js:153
+#: src/views/Publication/Services/Dailymotion.js:98
 #: src/views/Publication/Services/DLive.js:75
 #: src/views/Publication/Services/Dummy.js:280
 #: src/views/Publication/Services/Instagram.js:96
@@ -2652,6 +2630,7 @@ msgstr "Stream source for publication service (experimental)."
 
 #: src/views/Publication/Services/Akamai.js:156
 #: src/views/Publication/Services/CDN77.js:102
+#: src/views/Publication/Services/Dailymotion.js:86
 msgid "Stream URL"
 msgstr "Stream URL"
 
@@ -2787,12 +2766,6 @@ msgstr "The RTMP output requires the RTMP Server."
 msgid "The sample rate of the audio stream."
 msgstr "The sample rate of the audio stream."
 
-#: src/views/Playersite.js:152
-#: src/views/Playersite.js:227
-#: src/views/Publication/Player.js:193
-#~ msgid "The selected file is too big ({0} bytes). Only {1} bytes are allowed."
-#~ msgstr "The selected file is too big ({0} bytes). Only {1} bytes are allowed."
-
 #: src/views/Edit/Sources/VideoLoop.js:103
 #: src/views/Playersite.js:169
 #: src/views/Publication/Player.js:206
@@ -2804,12 +2777,6 @@ msgstr "The selected file is too big (<0/>). Only <1/> are allowed."
 #: src/views/Publication/Player.js:199
 msgid "The selected file type ({0}) is not allowed. Allowed file types are {1}"
 msgstr "The selected file type ({0}) is not allowed. Allowed file types are {1}"
-
-#: src/views/Playersite.js:141
-#: src/views/Playersite.js:216
-#: src/views/Publication/Player.js:182
-#~ msgid "The selected file type ({0}) is not allowed. Allowed file types are {types}"
-#~ msgstr "The selected file type ({0}) is not allowed. Allowed file types are {types}"
 
 #: src/views/Publication/Edit.js:277
 msgid "The settings for \"{0}\" have been saved"
@@ -3054,6 +3021,10 @@ msgstr "Transmit to a Azure Media Services. More details can be found <0>here</0
 #: src/views/Publication/Services/Linkedin.js:16
 msgid "Transmit to LinkedIn. More details can be found <0>here</0>."
 msgstr "Transmit to LinkedIn. More details can be found <0>here</0>."
+
+#: src/views/Publication/Services/Dailymotion.js:15
+msgid "Transmit your Livestream to an Dailymotion RTMP service. <0>Here </0>you can find more details about the settings."
+msgstr "Transmit your Livestream to an Dailymotion RTMP service. <0>Here </0>you can find more details about the settings."
 
 #: src/views/Publication/Services/Kick.js:16
 msgid "Transmit your Livestream to an Kick.com RTMP service. <0>Here </0>you can find more details about the settings."

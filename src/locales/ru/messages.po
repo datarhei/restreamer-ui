@@ -516,10 +516,6 @@ msgstr "URL содержимого"
 msgid "copyts"
 msgstr "copyts"
 
-#: src/views/Edit/Sources/Network.js:725
-#~ msgid "Core plugins"
-#~ msgstr ""
-
 #: src/Footer.js:193
 msgid "Cores"
 msgstr "Ядра"
@@ -1372,14 +1368,6 @@ msgstr "Список диапазонов IP адресов в нотации CI
 msgid "List size (segments)"
 msgstr "Размер списка (сегменты)"
 
-#: src/views/Edit/Sources/Network.js:731
-#~ msgid "Live stabilization"
-#~ msgstr ""
-
-#: src/views/Edit/Sources/Network.js:737
-#~ msgid "Live stabilization repeats the last seen key frame of the incoming stream as soon as it aborts and tries to reconnect to the stream."
-#~ msgstr ""
-
 #: src/views/Publication/Services/DLive.js:15
 msgid "Live-Streaming to dlive Live RTMP Service."
 msgstr "Прямая трансляция на RTMP-сервис dlive Live."
@@ -1904,6 +1892,7 @@ msgstr "Пожалуйста, свяжитесь с оператором сер�
 msgid "Please enter your email address to signify agreement with the Let's Encrypt CA's terms of service and to be notified in case of issues."
 msgstr "Пожалуйста, введите свой адрес электронной почты, чтобы подтвердить согласие с условиями обслуживания Let's Encrypt CA и получить уведомление в случае возникновения проблем."
 
+#: src/views/Publication/Services/Dailymotion.js:23
 #: src/views/Publication/Services/Kick.js:24
 #: src/views/Publication/Services/Owncast.js:23
 #: src/views/Publication/Services/Rumble.js:24
@@ -2012,18 +2001,6 @@ msgstr "Обработка и контроль"
 #: src/views/Edit/Wizard/VideoProfile.js:27
 msgid "Profile"
 msgstr "Профиль"
-
-#: src/views/Edit/Sources/Network.js:732
-#~ msgid "Protect: None"
-#~ msgstr ""
-
-#: src/views/Edit/Sources/Network.js:734
-#~ msgid "Protect: Video and audio channel"
-#~ msgstr ""
-
-#: src/views/Edit/Sources/Network.js:733
-#~ msgid "Protect: Video channel"
-#~ msgstr ""
 
 #: src/views/Edit/Sources/Network.js:821
 #: src/views/Publication/Services/Akamai.js:144
@@ -2611,6 +2588,7 @@ msgstr "Поток"
 
 #: src/views/Publication/Services/CDN77.js:113
 #: src/views/Publication/Services/DaCast.js:153
+#: src/views/Publication/Services/Dailymotion.js:98
 #: src/views/Publication/Services/DLive.js:75
 #: src/views/Publication/Services/Dummy.js:280
 #: src/views/Publication/Services/Instagram.js:96
@@ -2652,6 +2630,7 @@ msgstr "Источник потока для службы публикации (
 
 #: src/views/Publication/Services/Akamai.js:156
 #: src/views/Publication/Services/CDN77.js:102
+#: src/views/Publication/Services/Dailymotion.js:86
 msgid "Stream URL"
 msgstr "URL-адрес потока"
 
@@ -2787,12 +2766,6 @@ msgstr "Для вывода RTMP требуется сервер RTMP."
 msgid "The sample rate of the audio stream."
 msgstr "Частота дискретизации аудиопотока."
 
-#: src/views/Playersite.js:152
-#: src/views/Playersite.js:227
-#: src/views/Publication/Player.js:193
-#~ msgid "The selected file is too big ({0} bytes). Only {1} bytes are allowed."
-#~ msgstr "Выбранный файл слишком велик ({0} байт). Допускается только {1} байт."
-
 #: src/views/Edit/Sources/VideoLoop.js:103
 #: src/views/Playersite.js:169
 #: src/views/Publication/Player.js:206
@@ -2804,12 +2777,6 @@ msgstr ""
 #: src/views/Publication/Player.js:199
 msgid "The selected file type ({0}) is not allowed. Allowed file types are {1}"
 msgstr ""
-
-#: src/views/Playersite.js:141
-#: src/views/Playersite.js:216
-#: src/views/Publication/Player.js:182
-#~ msgid "The selected file type ({0}) is not allowed. Allowed file types are {types}"
-#~ msgstr "Выбранный тип файла ({0}) не разрешен. Разрешенными типами файлов являются {types}"
 
 #: src/views/Publication/Edit.js:277
 msgid "The settings for \"{0}\" have been saved"
@@ -3054,6 +3021,10 @@ msgstr "Передача на Azure Media Services. Более подробну�
 #: src/views/Publication/Services/Linkedin.js:16
 msgid "Transmit to LinkedIn. More details can be found <0>here</0>."
 msgstr "Передайте в LinkedIn. Более подробную информацию можно найти <0>здесь</0>."
+
+#: src/views/Publication/Services/Dailymotion.js:15
+msgid "Transmit your Livestream to an Dailymotion RTMP service. <0>Here </0>you can find more details about the settings."
+msgstr ""
 
 #: src/views/Publication/Services/Kick.js:16
 msgid "Transmit your Livestream to an Kick.com RTMP service. <0>Here </0>you can find more details about the settings."
