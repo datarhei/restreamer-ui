@@ -11031,7 +11031,7 @@ vfile@^6.0.0:
     unist-util-stringify-position "^4.0.0"
     vfile-message "^4.0.0"
 
-"video.js@^6 || ^7 || ^8", "video.js@^7 || ^8", video.js@^8.5.3:
+video.js@8.6.1, "video.js@^6 || ^7 || ^8", "video.js@^7 || ^8":
   version "8.6.1"
   resolved "https://registry.yarnpkg.com/video.js/-/video.js-8.6.1.tgz#d25f59fbf30fb21c0bcf04a1de6a98dfd137997c"
   integrity sha512-CNYVJ5WWIZ7bOhbkkfcKqLGoc6WsE3Ft2RfS1lXdQTWk8UiSsPW2Ssk2JzPCA8qnIlUG9os/faCFsYWjyu4JcA==
