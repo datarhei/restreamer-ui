@@ -7,6 +7,9 @@
 -   Add frame interpolation (framerate) filter (thanks to orryverducci)
 -   Add -referer option for pulling HTTP streams ([PR 40](https://github.com/datarhei/restreamer-ui/pull/40), thanks to mdastgheib)
 -   Add a/v filter to the publication components ([#593](https://github.com/datarhei/restreamer-ui/issues/593))
+-   Add video or image loop as input ([#528](https://github.com/datarhei/restreamer/discussions/528))
+-   Add option for custom poster image in player ([#632](https://github.com/datarhei/restreamer/issues/632))
+-   Add option to allow to set limits for ingest and egress processes ([#636](https://github.com/datarhei/restreamer/issues/636))
 -   Mod extends twitch's server list
 -   Mod uses placeholders for ingress setups ([#560](https://github.com/datarhei/restreamer-ui/issues/560))
 -   Mod updates npm
