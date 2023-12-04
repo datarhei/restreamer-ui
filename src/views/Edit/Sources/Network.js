@@ -419,7 +419,7 @@ const getSRTAddress = (host, name, token, passphrase, publish) => {
 		host +
 		'?mode=caller&transtype=live&streamid=' +
 		name +
-		',mode:' +
+		'.stream,mode:' +
 		(publish ? 'publish' : 'request') +
 		(token.length !== 0 ? ',token:' + encodeURIComponent(token) : '');
 
@@ -654,7 +654,7 @@ function AdvancedSettings(props) {
 										? 'analyzeduration_http'
 										: protocolClass === 'rtmp'
 										? 'analyzeduration_rtmp'
-										: 'analyzeduration'
+										: 'analyzeduration',
 								)}
 							/>
 							<Typography variant="caption">
