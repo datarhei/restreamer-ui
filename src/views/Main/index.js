@@ -206,6 +206,7 @@ export default function Main(props) {
 
 		const open = !$processDetails.open;
 		let logdata = {
+			command: [],
 			prelude: [],
 			log: [],
 		};
