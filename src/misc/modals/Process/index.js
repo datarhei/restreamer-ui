@@ -35,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
 	logging: {
 		marginTop: '.15em',
 	},
+	panel: {
+		marginTop: '.5em',
+		width: '100%!important',
+	},
 }));
 
 const initLogdata = (logdata) => {
@@ -89,36 +93,34 @@ const Component = function (props) {
 							<Tab className="tab" label={<Trans>Vitals</Trans>} value="vitals" />
 							<Tab className="tab" label={<Trans>Log</Trans>} value="log" />
 						</Tabs>
-						<TabPanel value={$tab} index="vitals" className="panel">
+						<TabPanel value={$tab} index="vitals" className={classes.title}>
 							<Grid container spacing={3}>
 								<Grid item xs={12}>
 									{props.progress !== null && <Progress {...props.progress} />}
 								</Grid>
 							</Grid>
 						</TabPanel>
-						<TabPanel value={$tab} index="log" className="panel">
-							<Grid container spacing={3}>
+						<TabPanel value={$tab} index="log" className={classes.panel}>
+							<Grid container spacing={3} direction="column" alignItems="stretch">
 								<Grid item xs={12}>
 									<div className={classes.box}>
+										<Grid container spacing={1} style={{paddingBottom: 20}}>
+											<Grid item xs={12} className={classes.banner}>
+												<Typography variant="body1" className={classes.title}>
+													<Trans>Logging</Trans>
+												</Typography>
+												<Textarea rows={9} value={logdata.prelude.join('\n')} scrollTo="bottom" readOnly allowCopy />
+												<Textarea rows={16} value={logdata.log.map(formatLogline).join('\n')} scrollTo="bottom" readOnly allowCopy />
+											</Grid>
+										</Grid>
+									</div>
+									<div className={classes.box} style={{marginTop: 10}}>
 										<Grid container spacing={1}>
 											<Grid item xs={12} className={classes.banner}>
 												<Typography variant="body1" className={classes.title}>
 													<Trans>Command</Trans>
 												</Typography>
 												<Textarea rows={1} value={'ffmpeg ' + logdata.command.join(' ')} scrollTo="bottom" readOnly allowCopy />
-											</Grid>
-											<Grid item xs={12} className={classes.banner}>
-												<Typography variant="body1" className={classes.title}>
-													<Trans>Banner</Trans>
-												</Typography>
-												<Textarea rows={9} value={logdata.prelude.join('\n')} scrollTo="bottom" readOnly allowCopy />
-											</Grid>
-
-											<Grid item xs={12} className={classes.logging}>
-												<Typography variant="body1" className={classes.title}>
-													<Trans>Logging</Trans>
-												</Typography>
-												<Textarea rows={16} value={logdata.log.map(formatLogline).join('\n')} scrollTo="bottom" readOnly allowCopy />
 											</Grid>
 										</Grid>
 									</div>
