@@ -858,7 +858,7 @@ class Restreamer {
 		if (config.source.network.rtmp.secure === true) {
 			const [, rtmp_port] = splitHostPort(val.config.rtmp.address_tls);
 			if (rtmp_port !== '1935') {
-				config.source.network.rtmp.host += ':' + rtmp_port;
+				config.source.network.rtmp.host = config.hostname + ':' + rtmp_port;
 			}
 		}
 

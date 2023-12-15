@@ -634,13 +634,13 @@ function AdvancedSettings(props) {
 										? settings.push.type === 'hls'
 											? settings.general.analyzeduration_http
 											: settings.push.type === 'rtmp'
-											? settings.general.analyzeduration_rtmp
-											: settings.general.analyzeduration
+											  ? settings.general.analyzeduration_rtmp
+											  : settings.general.analyzeduration
 										: protocolClass === 'http'
-										? settings.general.analyzeduration_http
-										: protocolClass === 'rtmp'
-										? settings.general.analyzeduration_rtmp
-										: settings.general.analyzeduration
+										  ? settings.general.analyzeduration_http
+										  : protocolClass === 'rtmp'
+										    ? settings.general.analyzeduration_rtmp
+										    : settings.general.analyzeduration
 								}
 								onChange={props.onChange(
 									'general',
@@ -648,13 +648,13 @@ function AdvancedSettings(props) {
 										? settings.push.type === 'hls'
 											? 'analyzeduration_http'
 											: settings.push.type === 'rtmp'
-											? 'analyzeduration_rtmp'
-											: 'analyzeduration'
+											  ? 'analyzeduration_rtmp'
+											  : 'analyzeduration'
 										: protocolClass === 'http'
-										? 'analyzeduration_http'
-										: protocolClass === 'rtmp'
-										? 'analyzeduration_rtmp'
-										: 'analyzeduration',
+										  ? 'analyzeduration_http'
+										  : protocolClass === 'rtmp'
+										    ? 'analyzeduration_rtmp'
+										    : 'analyzeduration',
 								)}
 							/>
 							<Typography variant="caption">
