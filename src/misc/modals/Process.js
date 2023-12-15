@@ -38,11 +38,26 @@ const initLogdata = (logdata) => {
 		logdata = {};
 	}
 
-	return {
+	const data = {
+		command: [],
 		prelude: [],
 		log: [],
 		...logdata,
 	};
+
+	if (!Array.isArray(data.command)) {
+		data.command = [];
+	}
+
+	if (!Array.isArray(data.prelude)) {
+		data.prelude = [];
+	}
+
+	if (!Array.isArray(data.prelude)) {
+		data.prelude = [];
+	}
+
+	return data;
 };
 
 const formatLogline = (entry) => {
@@ -65,7 +80,10 @@ const formatLogline = (entry) => {
 
 const Component = function (props) {
 	const classes = useStyles();
-	const logdata = initLogdata(props.logdata);
+	const logdata = initLogdata({
+		...props.logdata,
+		command: props.progress?.command,
+	});
 
 	return (
 		<Modal open={props.open} onClose={props.onClose} className="modal">
@@ -77,6 +95,15 @@ const Component = function (props) {
 								<div className={classes.box}>
 									<Grid container spacing={1}>
 										<Grid item xs={12} className={classes.banner}>
+											<Typography variant="body1" className={classes.title}>
+												<Trans>Command</Trans>
+											</Typography>
+											<Textarea rows={1} value={'ffmpeg ' + logdata.command.join(' ')} readOnly allowCopy />
+										</Grid>
+										<Grid item xs={12} marginTop={2}>
+											<Divider />
+										</Grid>
+										<Grid item xs={12} className={classes.logging}>
 											<Typography variant="body1" className={classes.title}>
 												<Trans>Banner</Trans>
 											</Typography>

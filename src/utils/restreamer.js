@@ -1,7 +1,7 @@
 import { i18n } from '@lingui/core';
 import { t } from '@lingui/macro';
 import { v4 as uuidv4 } from 'uuid';
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
 import Handlebars from 'handlebars/dist/cjs/handlebars';
 import SemverSatisfies from 'semver/functions/satisfies';
 import SemverGt from 'semver/functions/gt';
@@ -3328,6 +3328,9 @@ class Restreamer {
 			frames: 0,
 			drop: 0,
 			dup: 0,
+			command: [],
+			cpu: 0,
+			memory: 0,
 		};
 
 		if (state === null) {
@@ -3336,6 +3339,7 @@ class Restreamer {
 
 		progress.valid = true;
 		progress.order = state.order;
+		progress.command = state.command.slice();
 
 		const fps = state.progress.fps || 0;
 
@@ -3367,6 +3371,8 @@ class Restreamer {
 			progress.frames = state.progress.frames || 0;
 			progress.drop = state.progress.drop || 0;
 			progress.dup = state.progress.dup || 0;
+			progress.cpu = state.cpu_usage || 0;
+			progress.memory = state.memory_bytes || 0;
 		}
 
 		return progress;

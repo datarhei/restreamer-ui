@@ -28,6 +28,8 @@ function init(props) {
 		drop: 0,
 		dup: 0,
 		frames: 0,
+		cpu: 0,
+		memory: 0,
 		...props,
 	};
 
@@ -49,6 +51,32 @@ export default function Progress(props) {
 				</Typography>
 				<Typography variant="body2" gutterBottom>
 					<Trans>Uptime</Trans>
+				</Typography>
+			</Grid>
+			<Grid item xs={12}>
+				<Divider />
+			</Grid>
+			<Grid item xs={12}>
+				<Typography variant="h4">
+					<strong>
+						<Number value={progress.cpu} digits={2} minDigits={2} />%
+					</strong>
+				</Typography>
+				<Typography variant="body2" gutterBottom>
+					<Trans>CPU</Trans>
+				</Typography>
+			</Grid>
+			<Grid item xs={12}>
+				<Divider />
+			</Grid>
+			<Grid item xs={12}>
+				<Typography variant="h4">
+					<strong>
+						<Number value={progress.memory / 1024 / 1024} digits={0} minDigits={0} /> MB
+					</strong>
+				</Typography>
+				<Typography variant="body2" gutterBottom>
+					<Trans>Memory</Trans>
 				</Typography>
 			</Grid>
 			<Grid item xs={12}>
