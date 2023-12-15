@@ -6,6 +6,7 @@ import * as Raspicam from './Raspicam';
 import * as Video4Linux from './V4L';
 import * as VideoAudio from './VideoAudio';
 import * as VideoLoop from './VideoLoop';
+import * as AudioLoop from './AudioLoop';
 import * as VirtualAudio from './VirtualAudio';
 import * as VirtualVideo from './VirtualVideo';
 
@@ -48,5 +49,6 @@ registry.Register(VirtualVideo);
 registry.Register(NoAudio);
 registry.Register(VideoAudio);
 registry.Register(VideoLoop);
+registry.Register(AudioLoop);
 
 export default registry;

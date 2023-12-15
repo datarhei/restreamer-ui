@@ -508,6 +508,7 @@ class Restreamer {
 				virtualaudio: [],
 				virtualvideo: [],
 				videoloop: [],
+				audioloop: [],
 			},
 			sinks: {},
 		};

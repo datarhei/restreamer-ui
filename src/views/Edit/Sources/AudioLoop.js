@@ -15,10 +15,7 @@ import Filesize from '../../../misc/Filesize';
 import FormInlineButton from '../../../misc/FormInlineButton';
 import UploadButton from '../../../misc/UploadButton';
 
-const imageTypes = [
-	{ mimetype: 'image/*', extension: 'image', maxSize: 2 * 1024 * 1024 },
-	{ mimetype: 'video/*', extension: 'video', maxSize: 25 * 1024 * 1024 },
-];
+const imageTypes = [{ mimetype: 'audio/*', extension: 'audio', maxSize: 25 * 1024 * 1024 }];
 
 const useStyles = makeStyles((theme) => ({
 	gridContainer: {
@@ -47,12 +44,7 @@ const createInputs = (settings) => {
 		options: [],
 	};
 
-	if (settings.mimetype.startsWith('image/')) {
-		input.options.push('-framerate', '1');
-		input.options.push('-loop', '1');
-	} else {
-		input.options.push('-stream_loop', '-1');
-	}
+	input.options.push('-stream_loop', '-1');
 	input.options.push('-re');
 
 	return [input];
@@ -69,7 +61,7 @@ function Source(props) {
 	});
 
 	const handleFileUpload = async (data, extension, mimetype) => {
-		const path = await props.onStore('videoloop.source', data);
+		const path = await props.onStore('audioloop.source', data);
 
 		props.onChange({
 			...settings,
@@ -143,7 +135,7 @@ function Source(props) {
 			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
 				<Grid item xs={12}>
 					<Typography variant="caption">
-						<Trans>Upload an image or video file ({imageTypes.map((t) => t.mimetype).join(', ')}) in order to loop it.</Trans>
+						<Trans>Upload an audio file ({imageTypes.map((t) => t.mimetype).join(', ')}) in order to loop it.</Trans>
 					</Typography>
 				</Grid>
 				<Grid item xs={12} md={9}>
@@ -198,9 +190,9 @@ function SourceIcon(props) {
 	return <Icon style={{ color: '#FFF' }} {...props} />;
 }
 
-const id = 'videoloop';
+const id = 'audioloop';
 const name = <Trans>Loop</Trans>;
-const capabilities = ['video'];
+const capabilities = ['audio'];
 const ffversion = '^4.1.0 || ^5.0.0';
 
 const func = {
