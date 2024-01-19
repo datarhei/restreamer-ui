@@ -443,6 +443,39 @@ class API {
 			expect: 'json',
 		});
 	}
+
+	async RTMPChannels() {
+		const res = await this._GET('/v3/rtmp', {
+			expect: 'json',
+		});
+
+		if (res.err !== null) {
+			return res;
+		}
+
+		res.val = res.val.map((f) => f.name);
+
+		return res;
+	}
+
+	async SRTChannels() {
+		const res = await this._GET('/v3/srt', {
+			expect: 'json',
+		});
+
+		if (res.err !== null) {
+			return res;
+		}
+
+		const val = res.val;
+		res.val = [];
+
+		for (let path in val.publisher) {
+			res.val.push(path);
+		}
+
+		return res;
+	}
 }
 
 export default API;

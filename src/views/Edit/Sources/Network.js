@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Icon from '@mui/icons-material/AccountTree';
 import MenuItem from '@mui/material/MenuItem';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import WarningIcon from '@mui/icons-material/Warning';
@@ -53,6 +54,7 @@ const initSettings = (initialSettings) => {
 
 	settings.push = {
 		type: 'rtmp',
+		name: 'none',
 		...settings.push,
 	};
 
@@ -178,6 +180,7 @@ const initSkills = (initialSkills) => {
 };
 
 const createInputs = (settings, config, skills) => {
+	settings = initSettings(settings);
 	config = initConfig(config);
 	skills = initSkills(skills);
 
@@ -192,12 +195,22 @@ const createInputs = (settings, config, skills) => {
 	};
 
 	if (settings.mode === 'push') {
+		let name = settings.push.name;
 		if (settings.push.type === 'hls') {
-			input.address = getLocalHLS(config);
+			if (name === 'none') {
+				name = config.hls.name;
+			}
+			input.address = getLocalHLS(name);
 		} else if (settings.push.type === 'rtmp') {
-			input.address = getLocalRTMP(config);
+			if (name === config.rtmp.name) {
+				name += '.stream';
+			}
+			input.address = getLocalRTMP(name);
 		} else if (settings.push.type === 'srt') {
-			input.address = getLocalSRT(config);
+			if (name === config.srt.name) {
+				name += '.stream';
+			}
+			input.address = getLocalSRT(name);
 		} else {
 			input.address = '';
 		}
@@ -462,12 +475,12 @@ const getLocalHLS = (config, name) => {
 	return url;
 };
 
-const getLocalRTMP = (config) => {
-	return '{rtmp,name=' + config.rtmp.name + '.stream}';
+const getLocalRTMP = (name) => {
+	return '{rtmp,name=' + name + '}';
 };
 
-const getLocalSRT = (config) => {
-	return '{srt,name=' + config.srt.name + '.stream,mode=request}';
+const getLocalSRT = (name) => {
+	return '{srt,name=' + name + ',mode=request}';
 };
 
 const isValidURL = (address) => {
@@ -843,6 +856,16 @@ function Push(props) {
 	);
 }
 
+Push.defaultProps = {
+	knownDevices: [],
+	settings: {},
+	config: {},
+	skills: null,
+	onChange: function (settings) {},
+	onProbe: function (settings, inputs) {},
+	onRefresh: function () {},
+};
+
 function PushHLS(props) {
 	const classes = useStyles();
 	const config = props.config;
@@ -872,6 +895,7 @@ function PushHLS(props) {
 }
 
 function PushRTMP(props) {
+	const { i18n } = useLingui();
 	const classes = useStyles();
 	const navigate = useNavigate();
 	const config = props.config;
@@ -896,21 +920,54 @@ function PushRTMP(props) {
 	} else {
 		const RTMP = getRTMP(config);
 
+		const filteredDevices = props.knownDevices.filter((device) => device.media === 'rtmp');
+		const options = filteredDevices.map((device) => {
+			return (
+				<MenuItem key={device.id} value={device.id}>
+					{device.name}
+				</MenuItem>
+			);
+		});
+
+		options.unshift(
+			<MenuItem key="none" value="none" disabled>
+				{i18n._(t`Choose an input stream ...`)}
+			</MenuItem>,
+		);
+
+		options.push(
+			<MenuItem key={config.rtmp.name} value={config.rtmp.name}>
+				{i18n._(t`Send stream to address ...`)}
+			</MenuItem>,
+		);
+
 		form = (
 			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
 				<Grid item xs={12}>
-					<Typography>
-						<Trans>Send stream to this address:</Trans>
-					</Typography>
+					<Select type="select" label={<Trans>Input stream</Trans>} value={props.settings.push.name} onChange={props.onChange('push', 'name')}>
+						{options}
+					</Select>
+					<Button size="small" startIcon={<RefreshIcon />} onClick={props.onRefresh} sx={{ float: 'right' }}>
+						<Trans>Refresh</Trans>
+					</Button>
 				</Grid>
-				<Grid item xs={12}>
-					<BoxTextarea>
-						<Textarea rows={1} value={RTMP} readOnly allowCopy />
-					</BoxTextarea>
-				</Grid>
+				{props.settings.push.name === config.rtmp.name && (
+					<React.Fragment>
+						<Grid item xs={12}>
+							<Typography>
+								<Trans>Address:</Trans>
+							</Typography>
+						</Grid>
+						<Grid item xs={12}>
+							<BoxTextarea>
+								<Textarea rows={1} value={RTMP} readOnly allowCopy />
+							</BoxTextarea>
+						</Grid>
+					</React.Fragment>
+				)}
 				<AdvancedSettings {...props} />
 				<Grid item xs={12}>
-					<FormInlineButton onClick={props.onProbe}>
+					<FormInlineButton onClick={props.onProbe} disabled={props.settings.push.name === 'none'}>
 						<Trans>Probe</Trans>
 					</FormInlineButton>
 				</Grid>
@@ -921,7 +978,18 @@ function PushRTMP(props) {
 	return form;
 }
 
+PushRTMP.defaultProps = {
+	knownDevices: [],
+	settings: {},
+	config: {},
+	skills: null,
+	onChange: function (settings) {},
+	onProbe: function (settings, inputs) {},
+	onRefresh: function () {},
+};
+
 function PushSRT(props) {
+	const { i18n } = useLingui();
 	const classes = useStyles();
 	const navigate = useNavigate();
 	const config = props.config;
@@ -946,21 +1014,54 @@ function PushSRT(props) {
 	} else {
 		const SRT = getSRT(config);
 
+		const filteredDevices = props.knownDevices.filter((device) => device.media === 'srt');
+		const options = filteredDevices.map((device) => {
+			return (
+				<MenuItem key={device.id} value={device.id}>
+					{device.name}
+				</MenuItem>
+			);
+		});
+
+		options.unshift(
+			<MenuItem key="none" value="none" disabled>
+				{i18n._(t`Choose an input stream ...`)}
+			</MenuItem>,
+		);
+
+		options.push(
+			<MenuItem key={config.srt.name} value={config.srt.name}>
+				{i18n._(t`Send stream to address ...`)}
+			</MenuItem>,
+		);
+
 		form = (
 			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
 				<Grid item xs={12}>
-					<Typography>
-						<Trans>Send stream to this address:</Trans>
-					</Typography>
+					<Select type="select" label={<Trans>Input stream</Trans>} value={props.settings.push.name} onChange={props.onChange('push', 'name')}>
+						{options}
+					</Select>
+					<Button size="small" startIcon={<RefreshIcon />} onClick={props.onRefresh} sx={{ float: 'right' }}>
+						<Trans>Refresh</Trans>
+					</Button>
 				</Grid>
-				<Grid item xs={12}>
-					<BoxTextarea>
-						<Textarea rows={1} value={SRT} readOnly allowCopy />
-					</BoxTextarea>
-				</Grid>
+				{props.settings.push.name === config.srt.name && (
+					<React.Fragment>
+						<Grid item xs={12}>
+							<Typography>
+								<Trans>Address:</Trans>
+							</Typography>
+						</Grid>
+						<Grid item xs={12}>
+							<BoxTextarea>
+								<Textarea rows={1} value={SRT} readOnly allowCopy />
+							</BoxTextarea>
+						</Grid>
+					</React.Fragment>
+				)}
 				<AdvancedSettings {...props} />
 				<Grid item xs={12}>
-					<FormInlineButton onClick={props.onProbe}>
+					<FormInlineButton onClick={props.onProbe} disabled={props.settings.push.name === 'none'}>
 						<Trans>Probe</Trans>
 					</FormInlineButton>
 				</Grid>
@@ -971,11 +1072,21 @@ function PushSRT(props) {
 	return form;
 }
 
+PushSRT.defaultProps = {
+	knownDevices: [],
+	settings: {},
+	config: {},
+	skills: null,
+	onChange: function (settings) {},
+	onProbe: function (settings, inputs) {},
+	onRefresh: function () {},
+};
+
 function Source(props) {
 	const classes = useStyles();
 	const { i18n } = useLingui();
-	const settings = initSettings(props.settings);
 	const config = initConfig(props.config);
+	const settings = initSettings(props.settings);
 	const skills = initSkills(props.skills);
 
 	const handleChange = (section, what) => (event) => {
@@ -1001,6 +1112,9 @@ function Source(props) {
 			}
 		} else if (section === 'push') {
 			settings.push[what] = value;
+			if (what === 'type') {
+				settings.push.name = 'none';
+			}
 		} else {
 			settings[what] = value;
 		}
@@ -1012,6 +1126,10 @@ function Source(props) {
 
 	const handleProbe = () => {
 		props.onProbe(settings, createInputs(settings, config, skills));
+	};
+
+	const handleRefresh = () => {
+		props.onRefresh();
 	};
 
 	return (
@@ -1027,13 +1145,22 @@ function Source(props) {
 			{settings.mode === 'pull' ? (
 				<Pull settings={settings} config={config} skills={skills} onChange={handleChange} onProbe={handleProbe} />
 			) : (
-				<Push settings={settings} config={config} skills={skills} onChange={handleChange} onProbe={handleProbe} />
+				<Push
+					settings={settings}
+					config={config}
+					skills={skills}
+					knownDevices={props.knownDevices}
+					onChange={handleChange}
+					onProbe={handleProbe}
+					onRefresh={handleRefresh}
+				/>
 			)}
 		</React.Fragment>
 	);
 }
 
 Source.defaultProps = {
+	knownDevices: [],
 	settings: {},
 	config: {},
 	skills: null,

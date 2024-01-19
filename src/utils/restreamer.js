@@ -649,6 +649,26 @@ class Restreamer {
 			}
 		}
 
+		let channels = (await this.ListRTMPChannels()).map((name) => {
+			return {
+				media: 'rtmp',
+				id: name,
+				name: name,
+			};
+		});
+
+		skills.sources['network'].push(...channels);
+
+		channels = (await this.ListSRTChannels()).map((name) => {
+			return {
+				media: 'srt',
+				id: name,
+				name: name,
+			};
+		});
+
+		skills.sources['network'].push(...channels);
+
 		this.skills = skills;
 	}
 
@@ -2773,6 +2793,18 @@ class Restreamer {
 		return data;
 	}
 
+	// RTMP
+
+	async ListRTMPChannels() {
+		return await this._listRTMPChannels();
+	}
+
+	// SRT
+
+	async ListSRTChannels() {
+		return await this._listSRTChannels();
+	}
+
 	// Expert Mode
 
 	IsExpert() {
@@ -3266,6 +3298,24 @@ class Restreamer {
 		}
 
 		return val.map((f) => f.name);
+	}
+
+	async _listRTMPChannels() {
+		const [val, err] = await this._call(this.api.RTMPChannels);
+		if (err !== null) {
+			return [];
+		}
+
+		return val;
+	}
+
+	async _listSRTChannels() {
+		const [val, err] = await this._call(this.api.SRTChannels);
+		if (err !== null) {
+			return [];
+		}
+
+		return val;
 	}
 
 	async _getAboutDebug() {
