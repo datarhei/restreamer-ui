@@ -166,6 +166,12 @@ const initSkills = (initialSkills) => {
 		if (!skills.protocols.input.includes('rtsp')) {
 			skills.protocols.input.push('rtsp');
 		}
+
+		if (skills.protocols.input.includes('tls')) {
+			if (!skills.protocols.input.includes('rtsps')) {
+				skills.protocols.input.push('rtsps');
+			}
+		}
 	}
 
 	return skills;
@@ -358,6 +364,8 @@ const getProtocolClass = (url) => {
 		return 'http';
 	} else if (/mms(t|h)/.test(protocol) === true) {
 		return 'mms';
+	} else if (/rtsps?/.test(protocol) === true) {
+		return 'rtsp';
 	}
 
 	return protocol;
