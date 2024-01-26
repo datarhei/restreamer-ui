@@ -1,25 +1,64 @@
 name: 'Build restreamer-ui'
 
 on:
-  #workflow_dispatch:
-  #push:
-  #  branches-ignore:
-  #    - '**'
+  workflow_dispatch:
 
 jobs:
-  docker:
-    runs-on: [self-hosted]
+  build-frontend:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - uses: cardinalby/export-env-action@v1
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
+          node-version: '21'
+
+      - name: Build React App
+        run: |
+          yarn install
+          yarn build
+
+      - name: Upload React build as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: react-build
+          path: build/
+
+  build-docker:
+    needs: build-frontend
+    runs-on: [self-hosted]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Download React build artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: react-build
+          path: build
+
+      - uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get-latest-tag
+        with:
+          semver_only: true
           envFile: '.github_build/Build.restreamer-ui.env'
           export: 'true'
           expandWithJobEnv: 'true'
           expand: 'true'
 
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            datarhei/restreamer-ui
+          tags: |
+            type=raw,value=latest
+            type=raw,value=${{ env.RELEASE }}
+      
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
         with:
@@ -44,20 +83,18 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build Multi-Arch
+      - name: Build and Push Docker Image
         uses: docker/build-push-action@v2
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
-          file: ./Dockerfile
+          file: ./Dockerfile.workflow
           build-args: |
-            PUBLIC_URL=./
-            NODE_IMAGE=${{ env.NODE_IMAGE }}
+            PUBLIC_URL=/ui
             CADDY_IMAGE=${{ env.CADDY_IMAGE }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
-          tags: |
-            datarhei/restreamer-ui:${{ env.RELEASE }}
-            datarhei/restreamer-ui:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
