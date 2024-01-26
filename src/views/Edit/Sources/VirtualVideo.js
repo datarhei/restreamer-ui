@@ -205,7 +205,7 @@ function SourceIcon(props) {
 const id = 'virtualvideo';
 const name = <Trans>Virtual source</Trans>;
 const capabilities = ['video'];
-const ffversion = '^4.1.0 || ^5.0.0';
+const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0';
 
 const func = {
 	initSettings,
