@@ -1,4 +1,4 @@
-name: 'Build datarhei/restreamer-ui:dev-dev'
+name: 'Build datarhei/restreamer-ui:dev'
 
 on:
   push:
@@ -54,7 +54,7 @@ jobs:
           images: |
             datarhei/restreamer-ui
           tags: |
-            type=raw,value=dev-dev
+            type=raw,value=dev
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
