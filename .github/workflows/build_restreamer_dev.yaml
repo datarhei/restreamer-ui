@@ -1,25 +1,49 @@
-name: 'Build datarhei/restreamer-ui:dev'
+name: 'Build datarhei/restreamer-ui:dev-dev'
 
 on:
-  #workflow_dispatch:
-  #workflow_call:
-  #push:
-  #  branches:
-  #    - dev
+  push:
+    branches:
+      - dev
 
 jobs:
-  docker:
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '21'
+
+      - name: Build React App
+        run: |
+          yarn install
+          yarn build
+
+      - name: Upload React build as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: react-build
+          path: build/
+
+  build-docker:
+    needs: build-frontend
     runs-on: [self-hosted]
     strategy:
       matrix:
-        branch:
-          - dev
+        platform: [linux/amd64, linux/arm64, linux/arm/v7]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Download React build artifact
+        uses: actions/download-artifact@v2
         with:
-          ref: ${{ matrix.branch }}
+          name: react-build
+          path: build
 
       - uses: actions-ecosystem/action-get-latest-tag@v1
         id: get-latest-tag
@@ -33,7 +57,8 @@ jobs:
           images: |
             datarhei/restreamer-ui
           tags: |
-            type=raw,value=dev,enable=${{ matrix.branch == 'dev' }}
+            type=raw,value=dev-dev,enable=${{ matrix.platform == 'linux/amd64' }}
+      
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
         with:
@@ -50,6 +75,7 @@ jobs:
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
+
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v1
@@ -57,15 +83,15 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build Multi-Arch
+      - name: Build and Push Docker Image
         uses: docker/build-push-action@v2
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
-          file: ./Dockerfile
+          file: ./Dockerfile.workflow
           build-args: |
             PUBLIC_URL=/ui
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: ${{ matrix.platform }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
