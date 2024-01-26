@@ -57,7 +57,7 @@ jobs:
           images: |
             datarhei/restreamer-ui
           tags: |
-            type=raw,value=dev-dev,enable=${{ matrix.platform == 'linux/amd64' }}
+            type=raw,value=dev-dev
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
