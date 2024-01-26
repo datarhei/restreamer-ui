@@ -29,10 +29,13 @@ jobs:
   build-docker:
     needs: build-frontend
     runs-on: [self-hosted]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      
+      - name: Load ENV from file
+        run: |
+          cat .github_build/Build.restreamer-ui.env >> $GITHUB_ENV
 
       - name: Download React build artifact
         uses: actions/download-artifact@v2
@@ -44,14 +47,13 @@ jobs:
         id: get-latest-tag
         with:
           semver_only: true
-          envFile: '.github_build/Build.restreamer-ui.env'
-          export: 'true'
-          expandWithJobEnv: 'true'
-          expand: 'true'
 
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
+        env:
+          RELEASE: ${{ env.RELEASE }}
+          CADDY_IMAGE: ${{ env.CADDY_IMAGE }}
         with:
           images: |
             datarhei/restreamer-ui
