@@ -46,6 +46,10 @@ jobs:
         id: get-latest-tag
         with:
           semver_only: true
+          envFile: '.github_build/Build.restreamer-ui.env'
+          export: 'true'
+          expandWithJobEnv: 'true'
+          expand: 'true'
 
       - name: Docker meta
         id: meta
