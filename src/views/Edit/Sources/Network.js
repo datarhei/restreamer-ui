@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const initSettings = (initialSettings) => {
+const initSettings = (initialSettings, config) => {
 	if (!initialSettings) {
 		initialSettings = {};
 	}
@@ -54,7 +54,7 @@ const initSettings = (initialSettings) => {
 
 	settings.push = {
 		type: 'rtmp',
-		name: 'none',
+		name: config.channelid,
 		...settings.push,
 	};
 
@@ -101,6 +101,7 @@ const initConfig = (initialConfig) => {
 		rtmp: {},
 		srt: {},
 		hls: {},
+		channelid: 'external',
 		...initialConfig,
 	};
 
@@ -111,7 +112,6 @@ const initConfig = (initialConfig) => {
 		local: 'localhost',
 		app: '',
 		token: '',
-		name: 'external',
 		...config.rtmp,
 	};
 
@@ -121,7 +121,6 @@ const initConfig = (initialConfig) => {
 		local: 'localhost',
 		token: '',
 		passphrase: '',
-		name: 'external',
 		...config.srt,
 	};
 
@@ -130,7 +129,6 @@ const initConfig = (initialConfig) => {
 		host: 'localhost',
 		local: 'localhost',
 		credentials: '',
-		name: 'external',
 		...config.hls,
 	};
 
@@ -198,16 +196,16 @@ const createInputs = (settings, config, skills) => {
 		let name = settings.push.name;
 		if (settings.push.type === 'hls') {
 			if (name === 'none') {
-				name = config.hls.name;
+				name = config.channelid;
 			}
 			input.address = getLocalHLS(name);
 		} else if (settings.push.type === 'rtmp') {
-			if (name === config.rtmp.name) {
+			if (name === config.channelid) {
 				name += '.stream';
 			}
 			input.address = getLocalRTMP(name);
 		} else if (settings.push.type === 'srt') {
-			if (name === config.srt.name) {
+			if (name === config.channelid) {
 				name += '.stream';
 			}
 			input.address = getLocalSRT(name);
@@ -452,25 +450,25 @@ const getSRTAddress = (host, name, token, passphrase, publish) => {
 };
 
 const getHLS = (config, name) => {
-	const url = getHLSAddress(config.hls.host, config.hls.credentials, config.hls.name, config.hls.secure);
+	const url = getHLSAddress(config.hls.host, config.hls.credentials, config.channelid, config.hls.secure);
 
 	return url;
 };
 
 const getRTMP = (config) => {
-	const url = getRTMPAddress(config.rtmp.host, config.rtmp.app, config.rtmp.name, config.rtmp.token, config.rtmp.secure);
+	const url = getRTMPAddress(config.rtmp.host, config.rtmp.app, config.channelid, config.rtmp.token, config.rtmp.secure);
 
 	return url;
 };
 
 const getSRT = (config) => {
-	const url = getSRTAddress(config.srt.host, config.srt.name, config.srt.token, config.srt.passphrase, true);
+	const url = getSRTAddress(config.srt.host, config.channelid, config.srt.token, config.srt.passphrase, true);
 
 	return url;
 };
 
 const getLocalHLS = (config, name) => {
-	let url = getHLSAddress(config.hls.local, '', config.hls.name, false);
+	let url = getHLSAddress(config.hls.local, '', config.channelid, false);
 
 	return url;
 };
@@ -936,7 +934,7 @@ function PushRTMP(props) {
 		);
 
 		options.push(
-			<MenuItem key={config.rtmp.name} value={config.rtmp.name}>
+			<MenuItem key={config.channelid} value={config.channelid}>
 				{i18n._(t`Send stream to address ...`)}
 			</MenuItem>,
 		);
@@ -951,7 +949,7 @@ function PushRTMP(props) {
 						<Trans>Refresh</Trans>
 					</Button>
 				</Grid>
-				{props.settings.push.name === config.rtmp.name && (
+				{props.settings.push.name === config.channelid && (
 					<React.Fragment>
 						<Grid item xs={12}>
 							<Typography>
@@ -1030,7 +1028,7 @@ function PushSRT(props) {
 		);
 
 		options.push(
-			<MenuItem key={config.srt.name} value={config.srt.name}>
+			<MenuItem key={config.channelid} value={config.channelid}>
 				{i18n._(t`Send stream to address ...`)}
 			</MenuItem>,
 		);
@@ -1045,7 +1043,7 @@ function PushSRT(props) {
 						<Trans>Refresh</Trans>
 					</Button>
 				</Grid>
-				{props.settings.push.name === config.srt.name && (
+				{props.settings.push.name === config.channelid && (
 					<React.Fragment>
 						<Grid item xs={12}>
 							<Typography>
@@ -1086,7 +1084,7 @@ function Source(props) {
 	const classes = useStyles();
 	const { i18n } = useLingui();
 	const config = initConfig(props.config);
-	const settings = initSettings(props.settings);
+	const settings = initSettings(props.settings, config);
 	const skills = initSkills(props.skills);
 
 	const handleChange = (section, what) => (event) => {
@@ -1113,7 +1111,7 @@ function Source(props) {
 		} else if (section === 'push') {
 			settings.push[what] = value;
 			if (what === 'type') {
-				settings.push.name = 'none';
+				settings.push.name = config.channelid;
 			}
 		} else {
 			settings[what] = value;
