@@ -46,8 +46,8 @@ const topics = {
 		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/videoplayer-einstellungen',
 	},
 	'player-poster': {
-		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/video-player-poster',
-		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/videoplayer-poster',
+		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/video-player-settings',
+		de: 'https://docs.datarhei.com/restreamer/v/de/wissensdatenbank/user-guides/videoplayer-einstellungen',
 	},
 	'playersite-general': {
 		en: 'https://docs.datarhei.com/restreamer/knowledge-base/manual/publication-website/general-settings',
