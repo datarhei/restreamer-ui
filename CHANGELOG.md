@@ -1,5 +1,14 @@
 # Restreamer-UI
 
+## v1.9.0 > v1.10.0
+
+-   Add resource usage and ffmpeg command to process details
+-   Add audio loop source
+-   Add to allow to select from already publishing RTMP and SRT streams
+-   Fix wrongly displayed SRT URL ([#635](https://github.com/datarhei/restreamer/issues/635))
+-   Fix RTMPS address with custom ports ([#658](https://github.com/datarhei/restreamer/issues/658))
+-   Fix allow RTSPS protocol ([#677](https://github.com/datarhei/restreamer/issues/677))
+
 ## v1.8.0 > v1.9.0
 
 -   Add enlarged channel overview
