@@ -922,9 +922,7 @@ class Restreamer {
 	ConfigActive() {
 		const config = JSON.parse(JSON.stringify(this.config));
 
-		config.source.network.rtmp.name = this.channel.channelid;
-		config.source.network.hls.name = this.channel.channelid;
-		config.source.network.srt.name = this.channel.channelid;
+		config.source.network.channelid = this.channel.channelid;
 
 		return config;
 	}
