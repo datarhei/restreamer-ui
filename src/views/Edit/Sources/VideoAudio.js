@@ -44,7 +44,7 @@ function SourceIcon(props) {
 const id = 'videoaudio';
 const name = <Trans>Video source</Trans>;
 const capabilities = ['audio'];
-const ffversion = '^4.1.0 || ^5.0.0';
+const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0';
 
 const func = {
 	initSettings,

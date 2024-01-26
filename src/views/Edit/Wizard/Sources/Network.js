@@ -10,9 +10,9 @@ import * as S from '../../Sources/Network';
 import Checkbox from '../../../../misc/Checkbox';
 import Password from '../../../../misc/Password';
 
-const initSettings = (initialSettings) => {
+const initSettings = (initialSettings, config) => {
 	const settings = {
-		...S.func.initSettings(initialSettings),
+		...S.func.initSettings(initialSettings, config),
 		mode: 'pull',
 	};
 
@@ -20,8 +20,8 @@ const initSettings = (initialSettings) => {
 };
 
 function Source(props) {
-	const settings = initSettings(props.settings);
 	const config = S.func.initConfig(props.config);
+	const settings = initSettings(props.settings, config);
 	const skills = S.func.initSkills(props.skills);
 
 	const handleChange = (newSettings) => {

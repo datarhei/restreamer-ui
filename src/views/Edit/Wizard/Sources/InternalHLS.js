@@ -9,9 +9,9 @@ import * as S from '../../Sources/Network';
 import BoxTextarea from '../../../../misc/BoxTextarea';
 import Textarea from '../../../../misc/Textarea';
 
-const initSettings = (initialSettings) => {
+const initSettings = (initialSettings, config) => {
 	const settings = {
-		...S.func.initSettings(initialSettings),
+		...S.func.initSettings(initialSettings, config),
 		mode: 'push',
 	};
 
@@ -21,8 +21,8 @@ const initSettings = (initialSettings) => {
 };
 
 function Source(props) {
-	const settings = initSettings(props.settings);
 	const config = S.func.initConfig(props.config);
+	const settings = initSettings(props.settings, config);
 	const skills = S.func.initSkills(props.skills);
 
 	const handleChange = (newSettings) => {

@@ -220,7 +220,7 @@ function SourceIcon(props) {
 const id = 'avfoundation';
 const name = <Trans>AVFoundation</Trans>;
 const capabilities = ['audio', 'video'];
-const ffversion = '^4.1.0 || ^5.0.0';
+const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0';
 
 const func = {
 	initSettings,

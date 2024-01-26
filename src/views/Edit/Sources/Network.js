@@ -178,13 +178,15 @@ const initSkills = (initialSkills) => {
 };
 
 const createInputs = (settings, config, skills) => {
-	settings = initSettings(settings);
 	config = initConfig(config);
+	settings = initSettings(settings, config);
 	skills = initSkills(skills);
 
-	let ffmpeg_version = 4;
+	let ffmpeg_version = 6;
 	if (SemverSatisfies(skills.ffmpeg.version, '^5.0.0')) {
 		ffmpeg_version = 5;
+	} else if (SemverSatisfies(skills.ffmpeg.version, '^4.1.0')) {
+		ffmpeg_version = 4;
 	}
 
 	const input = {
@@ -1173,7 +1175,7 @@ function SourceIcon(props) {
 const id = 'network';
 const name = <Trans>Network source</Trans>;
 const capabilities = ['audio', 'video'];
-const ffversion = '^4.1.0 || ^5.0.0';
+const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0';
 
 const func = {
 	initSettings,

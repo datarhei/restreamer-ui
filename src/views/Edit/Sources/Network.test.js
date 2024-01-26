@@ -4,6 +4,18 @@ import '@testing-library/jest-dom';
 
 import * as Network from './Network';
 
+const $skills_ffmpeg6 = {
+	ffmpeg: {
+		version: '6.1.1',
+	},
+	formats: {
+		demuxers: ['rtsp'],
+	},
+	protocols: {
+		input: ['http', 'https', 'rtmp', 'rtmps', 'srt'],
+	},
+};
+
 const $skills_ffmpeg5 = {
 	ffmpeg: {
 		version: '5.1.2',
@@ -29,6 +41,7 @@ const $skills_ffmpeg4 = {
 };
 
 const $config = {
+	channelid: 'external',
 	rtmp: {
 		enabled: true,
 		app: '/live',
@@ -64,7 +77,15 @@ test('source:network pull', async () => {
 
 	expect(queryByText(`This protocol is unknown or not supported by the available FFmpeg binary.`)).toBeInTheDocument();
 
+	rerender(<Source settings={$settings} skills={$skills_ffmpeg4} onChange={handleChange} />);
+
+	expect(queryByText(`This protocol is unknown or not supported by the available FFmpeg binary.`)).toBe(null);
+
 	rerender(<Source settings={$settings} skills={$skills_ffmpeg5} onChange={handleChange} />);
+
+	expect(queryByText(`This protocol is unknown or not supported by the available FFmpeg binary.`)).toBe(null);
+
+	rerender(<Source settings={$settings} skills={$skills_ffmpeg6} onChange={handleChange} />);
 
 	expect(queryByText(`This protocol is unknown or not supported by the available FFmpeg binary.`)).toBe(null);
 });
@@ -205,6 +226,56 @@ pullmatrix.tests = [
 			options: ['-fflags', '+genpts', '-thread_queue_size', 512],
 		},
 	},
+	{
+		name: 'RTSP',
+		settings: { ...pullmatrix.settings, address: 'rtsp://127.0.0.1/live/stream' },
+		skills: $skills_ffmpeg6,
+		input: {
+			address: 'rtsp://admin:foobar@127.0.0.1/live/stream',
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-timeout', 5000000, '-rtsp_transport', 'tcp'],
+		},
+	},
+	{
+		name: 'RTMP',
+		settings: { ...pullmatrix.settings, address: 'rtmp://127.0.0.1/live/stream' },
+		skills: $skills_ffmpeg6,
+		input: {
+			address: 'rtmp://admin:foobar@127.0.0.1/live/stream',
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000],
+		},
+	},
+	{
+		name: 'HTTP',
+		settings: { ...pullmatrix.settings, address: 'http://127.0.0.1/live/stream.m3u8' },
+		skills: $skills_ffmpeg6,
+		input: {
+			address: 'http://admin:foobar@127.0.0.1/live/stream.m3u8',
+			options: [
+				'-fflags',
+				'+genpts',
+				'-thread_queue_size',
+				512,
+				'-analyzeduration',
+				20000000,
+				'-re',
+				'-r',
+				25,
+				'-user_agent',
+				'foobaz/1',
+				'-referer',
+				'http://example.com',
+			],
+		},
+	},
+	{
+		name: 'SRT',
+		settings: { ...pullmatrix.settings, address: 'srt://127.0.0.1?mode=caller&streamid=foobar' },
+		skills: $skills_ffmpeg6,
+		input: {
+			address: 'srt://127.0.0.1?mode=caller&streamid=foobar',
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512],
+		},
+	},
 ];
 
 test.each(pullmatrix.tests)('source:network pull $name input with ffmpeg $skills.ffmpeg.version', async (data) => {
@@ -231,6 +302,7 @@ test('source:network push', async () => {
 		mode: 'push',
 		push: {
 			type: 'rtmp',
+			name: 'external',
 		},
 	};
 	const handleChange = (settings) => {
@@ -244,7 +316,15 @@ test('source:network push', async () => {
 
 	expect(queryByText(`The available FFmpeg binary doesn't support any of the required protocols.`)).toBeInTheDocument();
 
+	rerender(<Source settings={$settings} skills={$skills_ffmpeg4} onChange={handleChange} />);
+
+	expect(queryByText(`The available FFmpeg binary doesn't support any of the required protocols.`)).toBe(null);
+
 	rerender(<Source settings={$settings} skills={$skills_ffmpeg5} onChange={handleChange} />);
+
+	expect(queryByText(`The available FFmpeg binary doesn't support any of the required protocols.`)).toBe(null);
+
+	rerender(<Source settings={$settings} skills={$skills_ffmpeg6} onChange={handleChange} />);
 
 	expect(queryByText(`The available FFmpeg binary doesn't support any of the required protocols.`)).toBe(null);
 });
@@ -254,6 +334,7 @@ test('source:network push RTMP', async () => {
 		mode: 'push',
 		push: {
 			type: 'rtmp',
+			name: 'external',
 		},
 	};
 	const handleChange = (settings) => {
@@ -278,6 +359,7 @@ test('source:network push SRT', async () => {
 		mode: 'push',
 		push: {
 			type: 'srt',
+			name: 'external',
 		},
 	};
 	const handleChange = (settings) => {
@@ -302,6 +384,7 @@ const pushmatrix = {
 		mode: 'push',
 		push: {
 			type: '',
+			name: 'external',
 		},
 	},
 	tests: [],
@@ -342,6 +425,26 @@ pushmatrix.tests = [
 		name: 'SRT',
 		settings: { ...pushmatrix.settings, push: { ...pushmatrix.push, type: 'srt' } },
 		skills: $skills_ffmpeg5,
+		config: $config,
+		input: {
+			address: '{srt,name=external.stream,mode=request}',
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512],
+		},
+	},
+	{
+		name: 'RTMP',
+		settings: { ...pushmatrix.settings, push: { ...pushmatrix.push, type: 'rtmp' } },
+		skills: $skills_ffmpeg6,
+		config: $config,
+		input: {
+			address: '{rtmp,name=external.stream}',
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000],
+		},
+	},
+	{
+		name: 'SRT',
+		settings: { ...pushmatrix.settings, push: { ...pushmatrix.push, type: 'srt' } },
+		skills: $skills_ffmpeg6,
 		config: $config,
 		input: {
 			address: '{srt,name=external.stream,mode=request}',

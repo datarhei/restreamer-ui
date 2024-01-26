@@ -97,7 +97,7 @@ function Source(props) {
 		options.push(
 			<MenuItem key="none" value="none" disabled={true}>
 				{i18n._(t`No input device available`)}
-			</MenuItem>
+			</MenuItem>,
 		);
 	}
 
