@@ -19,6 +19,8 @@ jobs:
         run: |
           yarn install
           yarn build
+        env:
+          PUBLIC_URL: './'
 
       - name: Upload React build as artifact
         uses: actions/upload-artifact@v2
@@ -92,7 +94,7 @@ jobs:
           context: .
           file: ./Dockerfile.workflow
           build-args: |
-            PUBLIC_URL=/ui
+            PUBLIC_URL=${{ env.PUBLIC_URL }}
             CADDY_IMAGE=${{ env.CADDY_IMAGE }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
