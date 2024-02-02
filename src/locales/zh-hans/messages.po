@@ -81,7 +81,7 @@ msgstr "添加串流输出"
 msgid "Add: {0}"
 msgstr "添加：{0}"
 
-#: src/views/Edit/Sources/Network.js:730
+#: src/views/Edit/Sources/Network.js:751
 #: src/views/Edit/Wizard/Sources/Network.js:66
 #: src/views/Publication/Services/Azure.js:98
 #: src/views/Publication/Services/Brightcove.js:95
@@ -114,6 +114,11 @@ msgstr "HTTP请求监听的地址。"
 msgid "Address to listen on for HTTPS requests."
 msgstr "HTTPS请求监听地址。"
 
+#: src/views/Edit/Sources/Network.js:958
+#: src/views/Edit/Sources/Network.js:1052
+msgid "Address:"
+msgstr ""
+
 #: src/views/Playersite.js:446
 msgid "Adjust publication site colors and background as you like."
 msgstr "根据喜好调整发布站点的颜色和背景。"
@@ -122,7 +127,7 @@ msgstr "根据喜好调整发布站点的颜色和背景。"
 msgid "Advanced monitoring"
 msgstr "高级监控"
 
-#: src/views/Edit/Sources/Network.js:483
+#: src/views/Edit/Sources/Network.js:504
 #: src/views/Publication/Services/DASH.js:204
 #: src/views/Publication/Services/HLS.js:193
 #: src/views/Publication/Services/Icecast.js:172
@@ -267,7 +272,7 @@ msgstr "可用的"
 msgid "AVFoundation"
 msgstr "AVFoundation"
 
-#: src/views/Edit/Sources/Network.js:695
+#: src/views/Edit/Sources/Network.js:716
 msgid "avoid_negative_ts"
 msgstr "avoid_negative_ts"
 
@@ -315,7 +320,7 @@ msgstr "带宽"
 msgid "Bandwidth control"
 msgstr "带宽限制"
 
-#: src/misc/modals/Process.js:81
+#: src/misc/modals/Process.js:108
 msgid "Banner"
 msgstr "横幅"
 
@@ -421,6 +426,11 @@ msgstr "选择一个音频流"
 msgid "Choose an input device ..."
 msgstr "选择一个输入设备 ..."
 
+#: src/views/Edit/Sources/Network.js:934
+#: src/views/Edit/Sources/Network.js:1028
+msgid "Choose an input stream ..."
+msgstr ""
+
 #: src/misc/coders/settings/Video.js:343
 msgid "Choose between CFR and VFR (Auto)"
 msgstr "在 CFR 和 VFR 中选择（自动）"
@@ -463,6 +473,10 @@ msgstr "编码器"
 #: src/views/Edit/Sources/VirtualAudio.js:110
 msgid "Color"
 msgstr "颜色"
+
+#: src/misc/modals/Process.js:99
+msgid "Command"
+msgstr ""
 
 #: src/views/Settings.js:1376
 msgid "Config"
@@ -512,13 +526,17 @@ msgstr "内容"
 msgid "Content URL"
 msgstr "内容 URL"
 
-#: src/views/Edit/Sources/Network.js:680
+#: src/views/Edit/Sources/Network.js:701
 msgid "copyts"
 msgstr "copyts"
 
 #: src/Footer.js:193
 msgid "Cores"
 msgstr "Cores"
+
+#: src/misc/Progress.js:66
+msgid "CPU"
+msgstr ""
 
 #: src/misc/controls/Limits.js:44
 msgid "CPU Limit (percent)"
@@ -653,11 +671,11 @@ msgstr "解码器"
 msgid "Default"
 msgstr "默认"
 
-#: src/views/Edit/Sources/Network.js:621
+#: src/views/Edit/Sources/Network.js:642
 msgid "Default {0}"
 msgstr "默认 {0}"
 
-#: src/views/Edit/Sources/Network.js:661
+#: src/views/Edit/Sources/Network.js:682
 msgid "Default {0} ({1} seconds)"
 msgstr "默认 {0} （{1} 秒）"
 
@@ -781,7 +799,7 @@ msgstr "文档"
 msgid "Documentation"
 msgstr "文档"
 
-#: src/misc/Progress.js:129
+#: src/misc/Progress.js:157
 msgid "Dup. frames"
 msgstr "重复帧"
 
@@ -849,7 +867,7 @@ msgstr "现在启用"
 msgid "Enable primary stream"
 msgstr "启用主媒体流"
 
-#: src/views/Edit/Sources/Network.js:883
+#: src/views/Edit/Sources/Network.js:915
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:55
 msgid "Enable RTMP server ..."
 msgstr "启用 RTMP 服务 ..."
@@ -862,7 +880,7 @@ msgstr "启用 RTMPS 传输"
 msgid "Enable snapshots"
 msgstr "允许快照"
 
-#: src/views/Edit/Sources/Network.js:933
+#: src/views/Edit/Sources/Network.js:1009
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:55
 msgid "Enable SRT server ..."
 msgstr "启用 SRT 服务器 ..."
@@ -899,7 +917,7 @@ msgstr "输入新频道的名字。"
 msgid "Enter password"
 msgstr "输入密码"
 
-#: src/views/Edit/Sources/Network.js:723
+#: src/views/Edit/Sources/Network.js:744
 #: src/views/Edit/Wizard/Sources/Network.js:59
 msgid "Enter the address of your network source:"
 msgstr "输入网络源地址："
@@ -1021,6 +1039,7 @@ msgstr "验证媒体源失败。请检查地址。"
 msgid "FFmpeg"
 msgstr "FFmpeg"
 
+#: src/views/Edit/Sources/AudioLoop.js:142
 #: src/views/Edit/Sources/VideoLoop.js:150
 msgid "File path"
 msgstr ""
@@ -1049,7 +1068,7 @@ msgstr "For Javascripts."
 msgid "For Stylesheets."
 msgstr "For Stylesheets."
 
-#: src/views/Edit/Sources/Network.js:526
+#: src/views/Edit/Sources/Network.js:547
 msgid "Force input framerate"
 msgstr "强制输入帧率"
 
@@ -1061,12 +1080,12 @@ msgstr "强制帧率"
 msgid "Format"
 msgstr "格式"
 
-#: src/misc/Progress.js:64
+#: src/misc/Progress.js:92
 #: src/views/Main/Progress.js:77
 msgid "FPS"
 msgstr "帧率"
 
-#: src/misc/Progress.js:116
+#: src/misc/Progress.js:144
 msgid "Frame drops"
 msgstr "丢弃帧"
 
@@ -1080,7 +1099,7 @@ msgstr "帧缓冲"
 
 #: src/misc/coders/settings/Video.js:135
 #: src/misc/filters/video/Framerate.js:65
-#: src/views/Edit/Sources/Network.js:539
+#: src/views/Edit/Sources/Network.js:560
 msgid "Framerate"
 msgstr "帧率"
 
@@ -1098,7 +1117,7 @@ msgstr "频率（Hz）"
 
 #: src/views/Edit/index.js:418
 #: src/views/Edit/index.js:430
-#: src/views/Edit/Sources/Network.js:577
+#: src/views/Edit/Sources/Network.js:598
 #: src/views/Playersite.js:260
 #: src/views/Playersite.js:273
 #: src/views/Publication/Add.js:414
@@ -1183,7 +1202,7 @@ msgstr "水平翻转"
 msgid "Hosted Restreamer interface"
 msgstr "托管的 Restreamer 接口"
 
-#: src/views/Edit/Sources/Network.js:516
+#: src/views/Edit/Sources/Network.js:537
 msgid "HTTP and HTTPS"
 msgstr "HTTP 和 HTTPS"
 
@@ -1271,6 +1290,11 @@ msgstr "注入 3"
 msgid "Inject 4"
 msgstr "注入 4"
 
+#: src/views/Edit/Sources/Network.js:947
+#: src/views/Edit/Sources/Network.js:1041
+msgid "Input stream"
+msgstr ""
+
 #: src/views/Publication/Services/Instagram.js:121
 msgid "Instafeed.me"
 msgstr "instafeed.me"
@@ -1288,7 +1312,7 @@ msgstr "间隔（秒）"
 msgid "Issue alert"
 msgstr "问题警告"
 
-#: src/misc/Progress.js:77
+#: src/misc/Progress.js:105
 #: src/views/Main/Progress.js:67
 #: src/views/Main/Publication.js:184
 msgid "kbit/s"
@@ -1408,7 +1432,7 @@ msgstr "Livesource ID"
 msgid "Log level"
 msgstr "日志等级"
 
-#: src/misc/modals/Process.js:90
+#: src/misc/modals/Process.js:117
 #: src/views/Settings.js:1241
 #: src/views/Settings.js:2090
 msgid "Logging"
@@ -1445,6 +1469,7 @@ msgstr "图标"
 msgid "Logout"
 msgstr "退出登录"
 
+#: src/views/Edit/Sources/AudioLoop.js:194
 #: src/views/Edit/Sources/VideoLoop.js:202
 msgid "Loop"
 msgstr ""
@@ -1554,6 +1579,7 @@ msgid "MB"
 msgstr "MB"
 
 #: src/Footer.js:202
+#: src/misc/Progress.js:79
 msgid "Memory"
 msgstr "内存"
 
@@ -1574,7 +1600,7 @@ msgstr "元数据"
 msgid "Metadata"
 msgstr "元数据"
 
-#: src/views/Edit/Sources/Network.js:604
+#: src/views/Edit/Sources/Network.js:625
 msgid "Mininum {0}, default {1}"
 msgstr "最小 {0}，默认 {1}"
 
@@ -1641,7 +1667,7 @@ msgstr "模板名称。如果名称已存在，则覆盖已有模板。"
 msgid "Network"
 msgstr "网络"
 
-#: src/views/Edit/Sources/Network.js:1041
+#: src/views/Edit/Sources/Network.js:1176
 #: src/views/Edit/Wizard/Sources/Network.js:123
 msgid "Network source"
 msgstr "网络源"
@@ -1742,6 +1768,7 @@ msgstr "每个进程保存日志的行数。"
 msgid "Number of seconds the limits are allowed to be exceeded."
 msgstr ""
 
+#: src/views/Edit/Sources/AudioLoop.js:168
 #: src/views/Edit/Sources/VideoLoop.js:176
 #: src/views/Playersite.js:748
 #: src/views/Publication/Player.js:567
@@ -1781,7 +1808,7 @@ msgstr "密码长度必须介于 10 和 79 之间"
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "仅在必要时才应禁用直通（复制）。每种编码都需要额外的 CPU/GPU 资源。"
 
-#: src/views/Edit/Sources/Network.js:770
+#: src/views/Edit/Sources/Network.js:791
 #: src/views/Edit/Wizard/Sources/Network.js:97
 #: src/views/Login.js:282
 #: src/views/Publication/Services/Akamai.js:134
@@ -1801,7 +1828,7 @@ msgstr "密码"
 msgid "Password for authorization."
 msgstr "用于身份验证密码。"
 
-#: src/views/Edit/Sources/Network.js:775
+#: src/views/Edit/Sources/Network.js:796
 #: src/views/Edit/Wizard/Sources/Network.js:103
 msgid "Password for the device."
 msgstr "设备密码。"
@@ -1900,6 +1927,7 @@ msgstr "请输入您的电子邮件地址以表示同意 Let's Encrypt CA 的服
 msgid "Please get in touch with the operator of the service and check what happens."
 msgstr "请与该服务的运营商联系并检查发生了什么。"
 
+#: src/views/Edit/Sources/AudioLoop.js:84
 #: src/views/Edit/Sources/VideoLoop.js:92
 #: src/views/Playersite.js:158
 #: src/views/Publication/Player.js:195
@@ -1949,12 +1977,13 @@ msgid "Primary stream key"
 msgstr "主线路 key"
 
 #: src/views/Edit/Sources/ALSA.js:136
+#: src/views/Edit/Sources/AudioLoop.js:155
 #: src/views/Edit/Sources/AVFoundation.js:201
 #: src/views/Edit/Sources/Framebuffer.js:110
-#: src/views/Edit/Sources/Network.js:787
-#: src/views/Edit/Sources/Network.js:859
-#: src/views/Edit/Sources/Network.js:906
-#: src/views/Edit/Sources/Network.js:956
+#: src/views/Edit/Sources/Network.js:808
+#: src/views/Edit/Sources/Network.js:890
+#: src/views/Edit/Sources/Network.js:971
+#: src/views/Edit/Sources/Network.js:1065
 #: src/views/Edit/Sources/Raspicam.js:125
 #: src/views/Edit/Sources/V4L.js:134
 #: src/views/Edit/Sources/VideoLoop.js:163
@@ -2002,7 +2031,7 @@ msgstr "串流进程和控制"
 msgid "Profile"
 msgstr "Profile"
 
-#: src/views/Edit/Sources/Network.js:821
+#: src/views/Edit/Sources/Network.js:842
 #: src/views/Publication/Services/Akamai.js:144
 #: src/views/Publication/Services/Akamai.js:182
 #: src/views/Publication/Services/Azure.js:89
@@ -2049,18 +2078,18 @@ msgstr "已保存发布页设置"
 msgid "Publications"
 msgstr "串流输出"
 
-#: src/views/Edit/Sources/Network.js:1014
+#: src/views/Edit/Sources/Network.js:1140
 msgid "Pull Mode"
 msgstr "拉取模式"
 
-#: src/views/Edit/Sources/Network.js:1013
+#: src/views/Edit/Sources/Network.js:1139
 msgid "Pull or recieve the data:"
 msgstr "拉取或接收数据："
 
 #: src/misc/coders/Encoders/video/H264VAAPI.js:146
 #: src/misc/coders/Encoders/video/HEVCVAAPI.js:146
 #: src/misc/coders/Encoders/video/VP9VAAPI.js:146
-#: src/misc/Progress.js:90
+#: src/misc/Progress.js:118
 msgid "Quality"
 msgstr "质量"
 
@@ -2080,11 +2109,11 @@ msgstr "帧率控制"
 msgid "Ratio"
 msgstr "比率"
 
-#: src/views/Edit/Sources/Network.js:521
+#: src/views/Edit/Sources/Network.js:542
 msgid "Read input at native speed"
 msgstr "以原始速率读取输入"
 
-#: src/views/Edit/Sources/Network.js:1015
+#: src/views/Edit/Sources/Network.js:1141
 msgid "Receive Mode"
 msgstr "接收模式"
 
@@ -2114,6 +2143,8 @@ msgstr "重连 Restreamer Core 失败。"
 
 #: src/views/Edit/Sources/ALSA.js:122
 #: src/views/Edit/Sources/AVFoundation.js:181
+#: src/views/Edit/Sources/Network.js:951
+#: src/views/Edit/Sources/Network.js:1045
 #: src/views/Edit/Sources/Raspicam.js:111
 #: src/views/Edit/Sources/V4L.js:120
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:135
@@ -2229,7 +2260,7 @@ msgstr "RTMP 端口"
 msgid "RTMP server"
 msgstr "RTMP 服务器"
 
-#: src/views/Edit/Sources/Network.js:878
+#: src/views/Edit/Sources/Network.js:910
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:50
 msgid "RTMP server is not enabled"
 msgstr "未启用 RTMP 服务器"
@@ -2254,7 +2285,7 @@ msgstr "RTMPS 服务器"
 msgid "RTMPS server listen address."
 msgstr "RTMP 服务器监听地址。"
 
-#: src/views/Edit/Sources/Network.js:492
+#: src/views/Edit/Sources/Network.js:513
 msgid "RTSP"
 msgstr "RTSP"
 
@@ -2385,9 +2416,12 @@ msgstr "选项"
 msgid "Send anonymous metrics (helps us for future development)"
 msgstr "发送匿名数据（用于未来的开发）"
 
-#: src/views/Edit/Sources/Network.js:848
-#: src/views/Edit/Sources/Network.js:895
-#: src/views/Edit/Sources/Network.js:945
+#: src/views/Edit/Sources/Network.js:940
+#: src/views/Edit/Sources/Network.js:1034
+msgid "Send stream to address ..."
+msgstr ""
+
+#: src/views/Edit/Sources/Network.js:879
 #: src/views/Edit/Wizard/Sources/InternalHLS.js:48
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:68
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:68
@@ -2502,7 +2536,7 @@ msgstr "截图"
 msgid "Social-login (OAuth2, 2FA)"
 msgstr "通过社交媒体登录（OAuth2, 2FA）"
 
-#: src/views/Edit/Sources/Network.js:505
+#: src/views/Edit/Sources/Network.js:526
 msgid "Socket timeout (microseconds)"
 msgstr "Socket 超时（毫秒）"
 
@@ -2525,7 +2559,7 @@ msgstr "媒体源"
 msgid "Source & Encoding"
 msgstr "媒体源 & 编码"
 
-#: src/misc/Progress.js:103
+#: src/misc/Progress.js:131
 msgid "Speed"
 msgstr "速度"
 
@@ -2544,7 +2578,7 @@ msgstr "SRT 输出"
 msgid "SRT server"
 msgstr "SRT 服务器"
 
-#: src/views/Edit/Sources/Network.js:928
+#: src/views/Edit/Sources/Network.js:1004
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:50
 msgid "SRT server is not enabled"
 msgstr "SRT 服务器不可用"
@@ -2561,7 +2595,7 @@ msgstr "SRT 用于发布和播放的 token。该 token 是 streamed 参数 'toke
 msgid "Stale timeout (seconds)"
 msgstr "Stale 超时（秒）"
 
-#: src/views/Edit/Sources/Network.js:682
+#: src/views/Edit/Sources/Network.js:703
 msgid "start_at_zero"
 msgstr "start_at_zero"
 
@@ -2638,7 +2672,7 @@ msgstr "媒体流 URL"
 msgid "Support datarhei Restreamer"
 msgstr "赞助 datarhei Restreamer"
 
-#: src/views/Edit/Sources/Network.js:736
+#: src/views/Edit/Sources/Network.js:757
 #: src/views/Edit/Wizard/Sources/Network.js:72
 msgid "Supports HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT and more."
 msgstr "支持 HTTP (HLS, DASH), RT, RTSP, RTMP, SRT 以及其他。"
@@ -2686,7 +2720,7 @@ msgstr "生成音频流的幅度（0.0 - 1.0）"
 msgid "The application is using an older version of the settings."
 msgstr "该应用使用旧版本的设置。"
 
-#: src/views/Edit/Sources/Network.js:809
+#: src/views/Edit/Sources/Network.js:830
 msgid "The available FFmpeg binary doesn't support any of the required protocols."
 msgstr "可用的 FFmpeg 不支持任何一种要求的协议。"
 
@@ -2766,12 +2800,14 @@ msgstr "RTMP 输出需要 RTMP 服务器。"
 msgid "The sample rate of the audio stream."
 msgstr "音频流采样率。"
 
+#: src/views/Edit/Sources/AudioLoop.js:95
 #: src/views/Edit/Sources/VideoLoop.js:103
 #: src/views/Playersite.js:169
 #: src/views/Publication/Player.js:206
 msgid "The selected file is too big (<0/>). Only <1/> are allowed."
 msgstr ""
 
+#: src/views/Edit/Sources/AudioLoop.js:88
 #: src/views/Edit/Sources/VideoLoop.js:96
 #: src/views/Playersite.js:162
 #: src/views/Publication/Player.js:199
@@ -2830,6 +2866,7 @@ msgstr "保存设置时出现错误。设置未保存。"
 msgid "There was an error connecting to Restreamer Core at {0}."
 msgstr "在 {0} 连接到 Restreamer Core 时出现错误。"
 
+#: src/views/Edit/Sources/AudioLoop.js:102
 #: src/views/Edit/Sources/VideoLoop.js:110
 #: src/views/Playersite.js:176
 #: src/views/Publication/Player.js:213
@@ -2884,7 +2921,7 @@ msgstr "该许可证允许再利用者以任何媒体或格式分发、重新混
 msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms."
 msgstr "该许可证允许再利用者以任何媒体或格式分发、重新混合、改编和构建材料，只要注明创作者的署名即可。该许可证允许用于商业用途。如果您重新混合、改编或构建这些材料，您必须根据相同的条款许可修改后的材料。"
 
-#: src/views/Edit/Sources/Network.js:746
+#: src/views/Edit/Sources/Network.js:767
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
 msgstr "该协议未知或不被当前可用的 FFmpeg 支持。"
 
@@ -3051,7 +3088,7 @@ msgstr "将媒体流与在 Twitter Producer 中生成的秘钥传输。有关在
 msgid "Tune"
 msgstr "Tune"
 
-#: src/views/Edit/Sources/Network.js:496
+#: src/views/Edit/Sources/Network.js:517
 #: src/views/Edit/Wizard/Sources/Network.js:77
 msgid "UDP transport"
 msgstr "UDP 传输"
@@ -3068,6 +3105,7 @@ msgstr "服务的唯一标识。"
 msgid "Unknown"
 msgstr "未知的"
 
+#: src/views/Edit/Sources/AudioLoop.js:105
 #: src/views/Edit/Sources/VideoLoop.js:113
 #: src/views/Playersite.js:179
 #: src/views/Publication/Player.js:216
@@ -3082,6 +3120,7 @@ msgstr "未选中"
 msgid "Update details (Changelog)"
 msgstr "更新详情（Changelog）"
 
+#: src/views/Edit/Sources/AudioLoop.js:146
 #: src/views/Edit/Sources/VideoLoop.js:154
 #: src/views/Playersite.js:408
 #: src/views/Playersite.js:428
@@ -3091,10 +3130,15 @@ msgstr "更新详情（Changelog）"
 msgid "Upload"
 msgstr "上传"
 
+#: src/views/Edit/Sources/AudioLoop.js:138
+msgid "Upload an audio file ({0}) in order to loop it."
+msgstr ""
+
 #: src/views/Edit/Sources/VideoLoop.js:146
 msgid "Upload an image or video file ({0}) in order to loop it."
 msgstr ""
 
+#: src/views/Edit/Sources/AudioLoop.js:149
 #: src/views/Edit/Sources/VideoLoop.js:157
 #: src/views/Playersite.js:431
 #: src/views/Playersite.js:569
@@ -3110,7 +3154,7 @@ msgid "Uploading the poster failed"
 msgstr ""
 
 #: src/Footer.js:165
-#: src/misc/Progress.js:51
+#: src/misc/Progress.js:53
 #: src/views/Main/Progress.js:57
 msgid "Uptime"
 msgstr "在线时长"
@@ -3131,7 +3175,7 @@ msgstr "使用您的版权并选择正确的图像许可。无论是对所有人
 msgid "Use your copyright and choose the right image licence. Whether free for all or highly restricted. Briefly discuss what others are allowed to do with your image."
 msgstr "使用您的版权并选择正确的图像许可。无论是对所有人免费还是受到高度限制。简要讨论其他人可以用您的形象做什么。"
 
-#: src/views/Edit/Sources/Network.js:687
+#: src/views/Edit/Sources/Network.js:708
 msgid "use_wallclock_as_timestamps"
 msgstr "use_wallclock_as_timestamps"
 
@@ -3139,7 +3183,7 @@ msgstr "use_wallclock_as_timestamps"
 msgid "User registration"
 msgstr "用户注册"
 
-#: src/views/Edit/Sources/Network.js:758
+#: src/views/Edit/Sources/Network.js:779
 #: src/views/Edit/Wizard/Sources/Network.js:84
 #: src/views/Login.js:272
 #: src/views/Publication/Services/DaCast.js:131
@@ -3158,7 +3202,7 @@ msgstr "用户名"
 msgid "Username for authorization."
 msgstr "用于身份认证的用户名。"
 
-#: src/views/Edit/Sources/Network.js:763
+#: src/views/Edit/Sources/Network.js:784
 #: src/views/Edit/Wizard/Sources/Network.js:90
 msgid "Username for the device."
 msgstr "设备用户名。"

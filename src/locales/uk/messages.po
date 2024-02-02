@@ -81,7 +81,7 @@ msgstr "Додати публікацію"
 msgid "Add: {0}"
 msgstr "Додати: {0}"
 
-#: src/views/Edit/Sources/Network.js:730
+#: src/views/Edit/Sources/Network.js:751
 #: src/views/Edit/Wizard/Sources/Network.js:66
 #: src/views/Publication/Services/Azure.js:98
 #: src/views/Publication/Services/Brightcove.js:95
@@ -114,6 +114,11 @@ msgstr "Порт для HTTP запитів."
 msgid "Address to listen on for HTTPS requests."
 msgstr "Порт для HTTPS запитів."
 
+#: src/views/Edit/Sources/Network.js:958
+#: src/views/Edit/Sources/Network.js:1052
+msgid "Address:"
+msgstr ""
+
 #: src/views/Playersite.js:446
 msgid "Adjust publication site colors and background as you like."
 msgstr "Налаштуйте кольори та фон сайту публікації за власним бажанням."
@@ -122,7 +127,7 @@ msgstr "Налаштуйте кольори та фон сайту публік�
 msgid "Advanced monitoring"
 msgstr "Розширений моніторинг"
 
-#: src/views/Edit/Sources/Network.js:483
+#: src/views/Edit/Sources/Network.js:504
 #: src/views/Publication/Services/DASH.js:204
 #: src/views/Publication/Services/HLS.js:193
 #: src/views/Publication/Services/Icecast.js:172
@@ -267,7 +272,7 @@ msgstr "Доступно"
 msgid "AVFoundation"
 msgstr "AVFoundation"
 
-#: src/views/Edit/Sources/Network.js:695
+#: src/views/Edit/Sources/Network.js:716
 msgid "avoid_negative_ts"
 msgstr "avoid_negative_ts"
 
@@ -315,7 +320,7 @@ msgstr "Пропускна здатність"
 msgid "Bandwidth control"
 msgstr "Контроль трафіку"
 
-#: src/misc/modals/Process.js:81
+#: src/misc/modals/Process.js:108
 msgid "Banner"
 msgstr "Банер"
 
@@ -421,6 +426,11 @@ msgstr "Виберіть аудіо потік"
 msgid "Choose an input device ..."
 msgstr "Виберіть пристрій введення ..."
 
+#: src/views/Edit/Sources/Network.js:934
+#: src/views/Edit/Sources/Network.js:1028
+msgid "Choose an input stream ..."
+msgstr ""
+
 #: src/misc/coders/settings/Video.js:343
 msgid "Choose between CFR and VFR (Auto)"
 msgstr "Виберіть між CFR та VFR (Авто)"
@@ -463,6 +473,10 @@ msgstr "Кодек"
 #: src/views/Edit/Sources/VirtualAudio.js:110
 msgid "Color"
 msgstr "Колір"
+
+#: src/misc/modals/Process.js:99
+msgid "Command"
+msgstr ""
 
 #: src/views/Settings.js:1376
 msgid "Config"
@@ -512,13 +526,17 @@ msgstr "Вміст"
 msgid "Content URL"
 msgstr "URL-адреса вмісту"
 
-#: src/views/Edit/Sources/Network.js:680
+#: src/views/Edit/Sources/Network.js:701
 msgid "copyts"
 msgstr "копірки"
 
 #: src/Footer.js:193
 msgid "Cores"
 msgstr "Ядра"
+
+#: src/misc/Progress.js:66
+msgid "CPU"
+msgstr ""
 
 #: src/misc/controls/Limits.js:44
 msgid "CPU Limit (percent)"
@@ -653,11 +671,11 @@ msgstr "Декодер"
 msgid "Default"
 msgstr "За замов."
 
-#: src/views/Edit/Sources/Network.js:621
+#: src/views/Edit/Sources/Network.js:642
 msgid "Default {0}"
 msgstr "За замовчуванням {0}"
 
-#: src/views/Edit/Sources/Network.js:661
+#: src/views/Edit/Sources/Network.js:682
 msgid "Default {0} ({1} seconds)"
 msgstr "За замовчуванням {0} ({1} секунд)"
 
@@ -781,7 +799,7 @@ msgstr "Документи"
 msgid "Documentation"
 msgstr "Документація"
 
-#: src/misc/Progress.js:129
+#: src/misc/Progress.js:157
 msgid "Dup. frames"
 msgstr "Дуб. кадри"
 
@@ -849,7 +867,7 @@ msgstr "Увімкнути зараз"
 msgid "Enable primary stream"
 msgstr "Увімкнути основний потік"
 
-#: src/views/Edit/Sources/Network.js:883
+#: src/views/Edit/Sources/Network.js:915
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:55
 msgid "Enable RTMP server ..."
 msgstr "Увімкнути RTMP сервер ..."
@@ -862,7 +880,7 @@ msgstr "Увімкнути передачу RTMPS"
 msgid "Enable snapshots"
 msgstr "Увімкнути знімки"
 
-#: src/views/Edit/Sources/Network.js:933
+#: src/views/Edit/Sources/Network.js:1009
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:55
 msgid "Enable SRT server ..."
 msgstr "Увімкнути сервер SRT ..."
@@ -899,7 +917,7 @@ msgstr "Введіть назву нового каналу."
 msgid "Enter password"
 msgstr "Введіть пароль"
 
-#: src/views/Edit/Sources/Network.js:723
+#: src/views/Edit/Sources/Network.js:744
 #: src/views/Edit/Wizard/Sources/Network.js:59
 msgid "Enter the address of your network source:"
 msgstr "Введіть мережеву адресу джерела:"
@@ -1021,6 +1039,7 @@ msgstr "Не вдалось перевірити джерело. Перевір�
 msgid "FFmpeg"
 msgstr "FFmpeg"
 
+#: src/views/Edit/Sources/AudioLoop.js:142
 #: src/views/Edit/Sources/VideoLoop.js:150
 msgid "File path"
 msgstr ""
@@ -1049,7 +1068,7 @@ msgstr "Для Javascript."
 msgid "For Stylesheets."
 msgstr "Для таблиць стилів."
 
-#: src/views/Edit/Sources/Network.js:526
+#: src/views/Edit/Sources/Network.js:547
 msgid "Force input framerate"
 msgstr "Форс. вх. частотикадрів"
 
@@ -1061,12 +1080,12 @@ msgstr "Примусові ключові кадри"
 msgid "Format"
 msgstr "Формат"
 
-#: src/misc/Progress.js:64
+#: src/misc/Progress.js:92
 #: src/views/Main/Progress.js:77
 msgid "FPS"
 msgstr "FPS"
 
-#: src/misc/Progress.js:116
+#: src/misc/Progress.js:144
 msgid "Frame drops"
 msgstr "Втрата кадрів"
 
@@ -1080,7 +1099,7 @@ msgstr "Фреймбуфер"
 
 #: src/misc/coders/settings/Video.js:135
 #: src/misc/filters/video/Framerate.js:65
-#: src/views/Edit/Sources/Network.js:539
+#: src/views/Edit/Sources/Network.js:560
 msgid "Framerate"
 msgstr "Частота кадрів"
 
@@ -1098,7 +1117,7 @@ msgstr "Частота (Hz)"
 
 #: src/views/Edit/index.js:418
 #: src/views/Edit/index.js:430
-#: src/views/Edit/Sources/Network.js:577
+#: src/views/Edit/Sources/Network.js:598
 #: src/views/Playersite.js:260
 #: src/views/Playersite.js:273
 #: src/views/Publication/Add.js:414
@@ -1183,7 +1202,7 @@ msgstr "Горизонтальний фліп"
 msgid "Hosted Restreamer interface"
 msgstr "Інтерфейс хостингового рестрімера"
 
-#: src/views/Edit/Sources/Network.js:516
+#: src/views/Edit/Sources/Network.js:537
 msgid "HTTP and HTTPS"
 msgstr "HTTP та HTTPS"
 
@@ -1271,6 +1290,11 @@ msgstr "Ввести 3"
 msgid "Inject 4"
 msgstr "Ввести 4"
 
+#: src/views/Edit/Sources/Network.js:947
+#: src/views/Edit/Sources/Network.js:1041
+msgid "Input stream"
+msgstr ""
+
 #: src/views/Publication/Services/Instagram.js:121
 msgid "Instafeed.me"
 msgstr "Instafeed.me"
@@ -1288,7 +1312,7 @@ msgstr "Інтервал (секунди)"
 msgid "Issue alert"
 msgstr "Сповіщення про проблему"
 
-#: src/misc/Progress.js:77
+#: src/misc/Progress.js:105
 #: src/views/Main/Progress.js:67
 #: src/views/Main/Publication.js:184
 msgid "kbit/s"
@@ -1408,7 +1432,7 @@ msgstr "Livesource ID"
 msgid "Log level"
 msgstr "Рівень журналу"
 
-#: src/misc/modals/Process.js:90
+#: src/misc/modals/Process.js:117
 #: src/views/Settings.js:1241
 #: src/views/Settings.js:2090
 msgid "Logging"
@@ -1445,6 +1469,7 @@ msgstr "Лого"
 msgid "Logout"
 msgstr "Вихід з системи"
 
+#: src/views/Edit/Sources/AudioLoop.js:194
 #: src/views/Edit/Sources/VideoLoop.js:202
 msgid "Loop"
 msgstr ""
@@ -1554,6 +1579,7 @@ msgid "MB"
 msgstr "МБ"
 
 #: src/Footer.js:202
+#: src/misc/Progress.js:79
 msgid "Memory"
 msgstr "Пам'ять"
 
@@ -1574,7 +1600,7 @@ msgstr "Мета інформація"
 msgid "Metadata"
 msgstr "Метадані"
 
-#: src/views/Edit/Sources/Network.js:604
+#: src/views/Edit/Sources/Network.js:625
 msgid "Mininum {0}, default {1}"
 msgstr "Мінімум {0}, за замовчуванням {1}"
 
@@ -1641,7 +1667,7 @@ msgstr "Ім'я для шаблону. Якщо ім'я вже існує, во�
 msgid "Network"
 msgstr "Мережа"
 
-#: src/views/Edit/Sources/Network.js:1041
+#: src/views/Edit/Sources/Network.js:1176
 #: src/views/Edit/Wizard/Sources/Network.js:123
 msgid "Network source"
 msgstr "Мережеве джерело"
@@ -1742,6 +1768,7 @@ msgstr "Кількість логів для кожного процесу."
 msgid "Number of seconds the limits are allowed to be exceeded."
 msgstr ""
 
+#: src/views/Edit/Sources/AudioLoop.js:168
 #: src/views/Edit/Sources/VideoLoop.js:176
 #: src/views/Playersite.js:748
 #: src/views/Publication/Player.js:567
@@ -1781,7 +1808,7 @@ msgstr "Пароль повинен мати довжину від 10 до 79 с
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "Наскрізний доступ (копіювання) слід вимикати лише за необхідності. Кожне кодування вимагає додаткових ресурсів CPU/GPU."
 
-#: src/views/Edit/Sources/Network.js:770
+#: src/views/Edit/Sources/Network.js:791
 #: src/views/Edit/Wizard/Sources/Network.js:97
 #: src/views/Login.js:282
 #: src/views/Publication/Services/Akamai.js:134
@@ -1801,7 +1828,7 @@ msgstr "Пароль"
 msgid "Password for authorization."
 msgstr "Пароль для авторизації."
 
-#: src/views/Edit/Sources/Network.js:775
+#: src/views/Edit/Sources/Network.js:796
 #: src/views/Edit/Wizard/Sources/Network.js:103
 msgid "Password for the device."
 msgstr "Пароль для пристрою."
@@ -1900,6 +1927,7 @@ msgstr "Будь ласка, введіть свою електронну адр
 msgid "Please get in touch with the operator of the service and check what happens."
 msgstr "Будь ласка, зв'яжіться з оператором сервісу і перевірте, що відбувається."
 
+#: src/views/Edit/Sources/AudioLoop.js:84
 #: src/views/Edit/Sources/VideoLoop.js:92
 #: src/views/Playersite.js:158
 #: src/views/Publication/Player.js:195
@@ -1949,12 +1977,13 @@ msgid "Primary stream key"
 msgstr "Ключ первинного потоку"
 
 #: src/views/Edit/Sources/ALSA.js:136
+#: src/views/Edit/Sources/AudioLoop.js:155
 #: src/views/Edit/Sources/AVFoundation.js:201
 #: src/views/Edit/Sources/Framebuffer.js:110
-#: src/views/Edit/Sources/Network.js:787
-#: src/views/Edit/Sources/Network.js:859
-#: src/views/Edit/Sources/Network.js:906
-#: src/views/Edit/Sources/Network.js:956
+#: src/views/Edit/Sources/Network.js:808
+#: src/views/Edit/Sources/Network.js:890
+#: src/views/Edit/Sources/Network.js:971
+#: src/views/Edit/Sources/Network.js:1065
 #: src/views/Edit/Sources/Raspicam.js:125
 #: src/views/Edit/Sources/V4L.js:134
 #: src/views/Edit/Sources/VideoLoop.js:163
@@ -2002,7 +2031,7 @@ msgstr "Обробка та контроль"
 msgid "Profile"
 msgstr "Профіль"
 
-#: src/views/Edit/Sources/Network.js:821
+#: src/views/Edit/Sources/Network.js:842
 #: src/views/Publication/Services/Akamai.js:144
 #: src/views/Publication/Services/Akamai.js:182
 #: src/views/Publication/Services/Azure.js:89
@@ -2049,18 +2078,18 @@ msgstr "Збережено налаштування веб-сайту публі
 msgid "Publications"
 msgstr "Публікації"
 
-#: src/views/Edit/Sources/Network.js:1014
+#: src/views/Edit/Sources/Network.js:1140
 msgid "Pull Mode"
 msgstr "Режим витягування"
 
-#: src/views/Edit/Sources/Network.js:1013
+#: src/views/Edit/Sources/Network.js:1139
 msgid "Pull or recieve the data:"
 msgstr "Витягнути або отримати дані:"
 
 #: src/misc/coders/Encoders/video/H264VAAPI.js:146
 #: src/misc/coders/Encoders/video/HEVCVAAPI.js:146
 #: src/misc/coders/Encoders/video/VP9VAAPI.js:146
-#: src/misc/Progress.js:90
+#: src/misc/Progress.js:118
 msgid "Quality"
 msgstr "Якість"
 
@@ -2080,11 +2109,11 @@ msgstr "Контроль швидкості"
 msgid "Ratio"
 msgstr "Співвідношення"
 
-#: src/views/Edit/Sources/Network.js:521
+#: src/views/Edit/Sources/Network.js:542
 msgid "Read input at native speed"
 msgstr "Читання введених даних із рідною швидкістю"
 
-#: src/views/Edit/Sources/Network.js:1015
+#: src/views/Edit/Sources/Network.js:1141
 msgid "Receive Mode"
 msgstr "Режим отримання"
 
@@ -2114,6 +2143,8 @@ msgstr "Не вдалося перепідключитися до ядра ре�
 
 #: src/views/Edit/Sources/ALSA.js:122
 #: src/views/Edit/Sources/AVFoundation.js:181
+#: src/views/Edit/Sources/Network.js:951
+#: src/views/Edit/Sources/Network.js:1045
 #: src/views/Edit/Sources/Raspicam.js:111
 #: src/views/Edit/Sources/V4L.js:120
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:135
@@ -2229,7 +2260,7 @@ msgstr "Порт RTMP"
 msgid "RTMP server"
 msgstr "RTMP-сервер"
 
-#: src/views/Edit/Sources/Network.js:878
+#: src/views/Edit/Sources/Network.js:910
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:50
 msgid "RTMP server is not enabled"
 msgstr "Сервер RTMP не ввімкнено"
@@ -2254,7 +2285,7 @@ msgstr "Сервер RTMPS"
 msgid "RTMPS server listen address."
 msgstr "Адреса прослуховування сервера RTMPS."
 
-#: src/views/Edit/Sources/Network.js:492
+#: src/views/Edit/Sources/Network.js:513
 msgid "RTSP"
 msgstr "RTSP"
 
@@ -2385,9 +2416,12 @@ msgstr "Вибрано"
 msgid "Send anonymous metrics (helps us for future development)"
 msgstr "Надіслати анонімні метрики (допомагає нам для подальшого розвитку)"
 
-#: src/views/Edit/Sources/Network.js:848
-#: src/views/Edit/Sources/Network.js:895
-#: src/views/Edit/Sources/Network.js:945
+#: src/views/Edit/Sources/Network.js:940
+#: src/views/Edit/Sources/Network.js:1034
+msgid "Send stream to address ..."
+msgstr ""
+
+#: src/views/Edit/Sources/Network.js:879
 #: src/views/Edit/Wizard/Sources/InternalHLS.js:48
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:68
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:68
@@ -2502,7 +2536,7 @@ msgstr "Знімок"
 msgid "Social-login (OAuth2, 2FA)"
 msgstr "Соціальний логін (OAuth2, 2FA)"
 
-#: src/views/Edit/Sources/Network.js:505
+#: src/views/Edit/Sources/Network.js:526
 msgid "Socket timeout (microseconds)"
 msgstr "Час очікування сокета (мікросекунд)"
 
@@ -2525,7 +2559,7 @@ msgstr "Джерело"
 msgid "Source & Encoding"
 msgstr "Джерело та кодування"
 
-#: src/misc/Progress.js:103
+#: src/misc/Progress.js:131
 msgid "Speed"
 msgstr "Швидкість"
 
@@ -2544,7 +2578,7 @@ msgstr "Вихід SRT"
 msgid "SRT server"
 msgstr "Сервер SRT"
 
-#: src/views/Edit/Sources/Network.js:928
+#: src/views/Edit/Sources/Network.js:1004
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:50
 msgid "SRT server is not enabled"
 msgstr "Сервер SRT не увімкнено"
@@ -2561,7 +2595,7 @@ msgstr "Токен SRT для публікації та відтворення. 
 msgid "Stale timeout (seconds)"
 msgstr "Застарілий таймаут (секунди)"
 
-#: src/views/Edit/Sources/Network.js:682
+#: src/views/Edit/Sources/Network.js:703
 msgid "start_at_zero"
 msgstr "start_at_zero"
 
@@ -2638,7 +2672,7 @@ msgstr "URL потоку"
 msgid "Support datarhei Restreamer"
 msgstr "Підтримка даташей Restreamer"
 
-#: src/views/Edit/Sources/Network.js:736
+#: src/views/Edit/Sources/Network.js:757
 #: src/views/Edit/Wizard/Sources/Network.js:72
 msgid "Supports HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT and more."
 msgstr "Підтримує HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT та інші."
@@ -2686,7 +2720,7 @@ msgstr "Амплітуда (0.0 - 1.0) генерованого аудіопот
 msgid "The application is using an older version of the settings."
 msgstr "Програма використовує стару версію налаштувань."
 
-#: src/views/Edit/Sources/Network.js:809
+#: src/views/Edit/Sources/Network.js:830
 msgid "The available FFmpeg binary doesn't support any of the required protocols."
 msgstr "Доступний двійковий файл FFmpeg не підтримує жодного з необхідних протоколів."
 
@@ -2766,12 +2800,14 @@ msgstr "Для виводу RTMP потрібен сервер RTMP."
 msgid "The sample rate of the audio stream."
 msgstr "Частота дискретизації аудіопотоку."
 
+#: src/views/Edit/Sources/AudioLoop.js:95
 #: src/views/Edit/Sources/VideoLoop.js:103
 #: src/views/Playersite.js:169
 #: src/views/Publication/Player.js:206
 msgid "The selected file is too big (<0/>). Only <1/> are allowed."
 msgstr ""
 
+#: src/views/Edit/Sources/AudioLoop.js:88
 #: src/views/Edit/Sources/VideoLoop.js:96
 #: src/views/Playersite.js:162
 #: src/views/Publication/Player.js:199
@@ -2830,6 +2866,7 @@ msgstr "Виникла проблема зі збереженням налашт
 msgid "There was an error connecting to Restreamer Core at {0}."
 msgstr "Виникла помилка під час підключення до Restreamer Core за адресою {0}."
 
+#: src/views/Edit/Sources/AudioLoop.js:102
 #: src/views/Edit/Sources/VideoLoop.js:110
 #: src/views/Playersite.js:176
 #: src/views/Publication/Player.js:213
@@ -2884,7 +2921,7 @@ msgstr "Ця ліцензія дозволяє повторним користу
 msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms."
 msgstr "Ця ліцензія дозволяє повторним користувачам поширювати, реміксувати, адаптувати та створювати матеріал на будь-якому носії чи у будь-якому форматі, за умови, що автор вказує автора. Ліцензія дозволяє комерційне використання. Якщо ви реміксуєте, адаптуєте або використовуєте матеріал, ви повинні ліцензувати модифікований матеріал на ідентичних умовах."
 
-#: src/views/Edit/Sources/Network.js:746
+#: src/views/Edit/Sources/Network.js:767
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
 msgstr "Цей протокол невідомий або не підтримується наявним бінарним файлом FFmpeg."
 
@@ -3051,7 +3088,7 @@ msgstr "Передає ваш відеопотік з необхідним кл�
 msgid "Tune"
 msgstr "Налаштувати"
 
-#: src/views/Edit/Sources/Network.js:496
+#: src/views/Edit/Sources/Network.js:517
 #: src/views/Edit/Wizard/Sources/Network.js:77
 msgid "UDP transport"
 msgstr "Транспорт UDP"
@@ -3068,6 +3105,7 @@ msgstr "Унікальний ідентифікатор на сервісі."
 msgid "Unknown"
 msgstr "Невідомий"
 
+#: src/views/Edit/Sources/AudioLoop.js:105
 #: src/views/Edit/Sources/VideoLoop.js:113
 #: src/views/Playersite.js:179
 #: src/views/Publication/Player.js:216
@@ -3082,6 +3120,7 @@ msgstr "Невибране"
 msgid "Update details (Changelog)"
 msgstr "Відомості про оновлення (Changelog)"
 
+#: src/views/Edit/Sources/AudioLoop.js:146
 #: src/views/Edit/Sources/VideoLoop.js:154
 #: src/views/Playersite.js:408
 #: src/views/Playersite.js:428
@@ -3091,10 +3130,15 @@ msgstr "Відомості про оновлення (Changelog)"
 msgid "Upload"
 msgstr "Завантаження"
 
+#: src/views/Edit/Sources/AudioLoop.js:138
+msgid "Upload an audio file ({0}) in order to loop it."
+msgstr ""
+
 #: src/views/Edit/Sources/VideoLoop.js:146
 msgid "Upload an image or video file ({0}) in order to loop it."
 msgstr ""
 
+#: src/views/Edit/Sources/AudioLoop.js:149
 #: src/views/Edit/Sources/VideoLoop.js:157
 #: src/views/Playersite.js:431
 #: src/views/Playersite.js:569
@@ -3110,7 +3154,7 @@ msgid "Uploading the poster failed"
 msgstr ""
 
 #: src/Footer.js:165
-#: src/misc/Progress.js:51
+#: src/misc/Progress.js:53
 #: src/views/Main/Progress.js:57
 msgid "Uptime"
 msgstr "Час роботи"
@@ -3131,7 +3175,7 @@ msgstr "Використовуйте свої авторські права і �
 msgid "Use your copyright and choose the right image licence. Whether free for all or highly restricted. Briefly discuss what others are allowed to do with your image."
 msgstr "Вкажіть свої авторські права та виберіть правильну ліцензію на зображення. Незалежно від того, безкоштовний для всіх чи з суворими обмеженнями. Коротко обговоріть, що іншим дозволено робити з вашим зображенням."
 
-#: src/views/Edit/Sources/Network.js:687
+#: src/views/Edit/Sources/Network.js:708
 msgid "use_wallclock_as_timestamps"
 msgstr "використовувати_настінний_годинник_як_мітки_часу"
 
@@ -3139,7 +3183,7 @@ msgstr "використовувати_настінний_годинник_як_
 msgid "User registration"
 msgstr "Реєстрація користувача"
 
-#: src/views/Edit/Sources/Network.js:758
+#: src/views/Edit/Sources/Network.js:779
 #: src/views/Edit/Wizard/Sources/Network.js:84
 #: src/views/Login.js:272
 #: src/views/Publication/Services/DaCast.js:131
@@ -3158,7 +3202,7 @@ msgstr "Ім'я користувача"
 msgid "Username for authorization."
 msgstr "Ім'я користувача для авторизації."
 
-#: src/views/Edit/Sources/Network.js:763
+#: src/views/Edit/Sources/Network.js:784
 #: src/views/Edit/Wizard/Sources/Network.js:90
 msgid "Username for the device."
 msgstr "Ім'я користувача для пристрою."
