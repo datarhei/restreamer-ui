@@ -258,6 +258,23 @@ const createInputs = (settings, config, skills) => {
 			if (settings.general.analyzeduration_rtmp !== 5000000) {
 				input.options.push('-analyzeduration', settings.general.analyzeduration_rtmp);
 			}
+
+			if (ffmpeg_version === 6) {
+				const codecs = [];
+				if (skills.codecs.video.hevc?.length > 0) {
+					codecs.push('hvc1');
+				}
+				if (skills.codecs.video.av1?.length > 0) {
+					codecs.push('av01');
+				}
+				if (skills.codecs.video.vp9?.length > 0) {
+					codecs.push('vp09');
+				}
+
+				if (codecs.length !== 0) {
+					input.options.push('-rtmp_enhanced_codecs', codecs.join(','));
+				}
+			}
 		} else if (settings.push.type === 'srt') {
 			if (settings.general.analyzeduration !== 5000000) {
 				input.options.push('-analyzeduration', settings.general.analyzeduration);
@@ -271,6 +288,23 @@ const createInputs = (settings, config, skills) => {
 		} else if (protocol === 'rtmp') {
 			if (settings.general.analyzeduration_rtmp !== 5000000) {
 				input.options.push('-analyzeduration', settings.general.analyzeduration_rtmp);
+			}
+
+			if (ffmpeg_version === 6) {
+				const codecs = [];
+				if (skills.codecs.video.hevc?.length > 0) {
+					codecs.push('hvc1');
+				}
+				if (skills.codecs.video.av1?.length > 0) {
+					codecs.push('av01');
+				}
+				if (skills.codecs.video.vp9?.length > 0) {
+					codecs.push('vp09');
+				}
+
+				if (codecs.length !== 0) {
+					input.options.push('-rtmp_enhanced_codecs', codecs.join(','));
+				}
 			}
 		} else {
 			if (settings.general.analyzeduration !== 5000000) {

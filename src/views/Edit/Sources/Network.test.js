@@ -14,6 +14,14 @@ const $skills_ffmpeg6 = {
 	protocols: {
 		input: ['http', 'https', 'rtmp', 'rtmps', 'srt'],
 	},
+	codecs: {
+		audio: {},
+		video: {
+			av1: ['librav1e'],
+			hevc: ['hevc'],
+			vp9: ['libvpx-vp9'],
+		},
+	},
 };
 
 const $skills_ffmpeg5 = {
@@ -241,7 +249,7 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg6,
 		input: {
 			address: 'rtmp://admin:foobar@127.0.0.1/live/stream',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000, '-rtmp_enhanced_codecs', 'hvc1,av01,vp09'],
 		},
 	},
 	{
@@ -438,7 +446,7 @@ pushmatrix.tests = [
 		config: $config,
 		input: {
 			address: '{rtmp,name=external.stream}',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000, '-rtmp_enhanced_codecs', 'hvc1,av01,vp09'],
 		},
 	},
 	{
