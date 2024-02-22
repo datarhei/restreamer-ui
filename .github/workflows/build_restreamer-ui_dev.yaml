@@ -1,6 +1,8 @@
 name: 'Build dev restreamer-ui'
 
 on:
+    workflow_dispatch:
+    workflow_call:
     push:
         branches:
             - dev
