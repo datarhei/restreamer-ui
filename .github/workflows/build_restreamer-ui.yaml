@@ -6,9 +6,16 @@ on:
 jobs:
     build-frontend:
         runs-on: ubuntu-latest
+        outputs:
+            version: ${{ steps.latestversion.outputs.version }}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+
+            - name: Get latest version from package.json
+              id: latestversion
+              run: |
+                  echo "version=$(cat ./package.json | jq '.version' | sed 's/\"//g')" >> "$GITHUB_OUTPUT"
 
             - name: Set up Node.js
               uses: actions/setup-node@v4
@@ -41,11 +48,6 @@ jobs:
                   name: restreamerui-main-build
                   path: build
 
-            - name: Get latest version from package.json
-              id: latestversion
-              run: |
-                  echo "version=$(cat ./package.json | jq '.version' | sed 's/\"//g')" >> "$GITHUB_OUTPUT"
-
             - name: Docker meta
               id: meta
               uses: docker/metadata-action@v5
@@ -54,7 +56,7 @@ jobs:
                       datarhei/restreamer-ui
                   tags: |
                       type=raw,value=latest
-                      type=raw,value=${{ steps.latestversion.outputs.version }}
+                      type=raw,value=${{ needs.build-frontend.outputs.version }}
 
             - name: Set up QEMU
               uses: docker/setup-qemu-action@master
