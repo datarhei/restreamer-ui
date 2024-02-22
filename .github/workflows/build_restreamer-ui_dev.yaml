@@ -29,7 +29,7 @@ jobs:
             - name: Upload React build as artifact
               uses: actions/upload-artifact@v4
               with:
-                  name: react-build
+                  name: restreamerui-dev-build
                   path: build/
 
     build-docker:
@@ -42,7 +42,7 @@ jobs:
             - name: Download React build artifact
               uses: actions/download-artifact@v4
               with:
-                  name: react-build
+                  name: restreamerui-dev-build
                   path: build
 
             - name: Docker meta
