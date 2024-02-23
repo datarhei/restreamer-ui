@@ -81,7 +81,7 @@ msgstr "송출 대상 추가하기"
 msgid "Add: {0}"
 msgstr "추가: {0}"
 
-#: src/views/Edit/Sources/Network.js:730
+#: src/views/Edit/Sources/Network.js:751
 #: src/views/Edit/Wizard/Sources/Network.js:66
 #: src/views/Publication/Services/Azure.js:98
 #: src/views/Publication/Services/Brightcove.js:95
@@ -114,6 +114,11 @@ msgstr "HTTP 요청을 수신할 주소입니다."
 msgid "Address to listen on for HTTPS requests."
 msgstr "HTTPS 요청을 수신할 주소입니다."
 
+#: src/views/Edit/Sources/Network.js:958
+#: src/views/Edit/Sources/Network.js:1052
+msgid "Address:"
+msgstr ""
+
 #: src/views/Playersite.js:446
 msgid "Adjust publication site colors and background as you like."
 msgstr "송출 사이트의 색상과 배경을 원하는대로 설정합니다."
@@ -122,7 +127,7 @@ msgstr "송출 사이트의 색상과 배경을 원하는대로 설정합니다.
 msgid "Advanced monitoring"
 msgstr "심화 모니터링"
 
-#: src/views/Edit/Sources/Network.js:483
+#: src/views/Edit/Sources/Network.js:504
 #: src/views/Publication/Services/DASH.js:204
 #: src/views/Publication/Services/HLS.js:193
 #: src/views/Publication/Services/Icecast.js:172
@@ -267,7 +272,7 @@ msgstr "가능"
 msgid "AVFoundation"
 msgstr "AVFoundation"
 
-#: src/views/Edit/Sources/Network.js:695
+#: src/views/Edit/Sources/Network.js:716
 msgid "avoid_negative_ts"
 msgstr "avoid_negative_ts"
 
@@ -315,7 +320,7 @@ msgstr "대역폭"
 msgid "Bandwidth control"
 msgstr "대역폭 설정"
 
-#: src/misc/modals/Process.js:81
+#: src/misc/modals/Process.js:108
 msgid "Banner"
 msgstr "요약 보고"
 
@@ -421,6 +426,11 @@ msgstr "소리 스트림 선택"
 msgid "Choose an input device ..."
 msgstr "입력 장치 선택..."
 
+#: src/views/Edit/Sources/Network.js:934
+#: src/views/Edit/Sources/Network.js:1028
+msgid "Choose an input stream ..."
+msgstr ""
+
 #: src/misc/coders/settings/Video.js:343
 msgid "Choose between CFR and VFR (Auto)"
 msgstr "CFR과 VFR(자동) 중 선택"
@@ -463,6 +473,10 @@ msgstr "코덱"
 #: src/views/Edit/Sources/VirtualAudio.js:110
 msgid "Color"
 msgstr "색상"
+
+#: src/misc/modals/Process.js:99
+msgid "Command"
+msgstr ""
 
 #: src/views/Settings.js:1376
 msgid "Config"
@@ -512,13 +526,17 @@ msgstr "내용"
 msgid "Content URL"
 msgstr "내용 URL"
 
-#: src/views/Edit/Sources/Network.js:680
+#: src/views/Edit/Sources/Network.js:701
 msgid "copyts"
 msgstr "copyts"
 
 #: src/Footer.js:193
 msgid "Cores"
 msgstr "코어"
+
+#: src/misc/Progress.js:66
+msgid "CPU"
+msgstr ""
 
 #: src/misc/controls/Limits.js:44
 msgid "CPU Limit (percent)"
@@ -653,11 +671,11 @@ msgstr "디코더"
 msgid "Default"
 msgstr "기본"
 
-#: src/views/Edit/Sources/Network.js:621
+#: src/views/Edit/Sources/Network.js:642
 msgid "Default {0}"
 msgstr "기본 {0}"
 
-#: src/views/Edit/Sources/Network.js:661
+#: src/views/Edit/Sources/Network.js:682
 msgid "Default {0} ({1} seconds)"
 msgstr "기본 {0}({1}초)"
 
@@ -781,7 +799,7 @@ msgstr "문서"
 msgid "Documentation"
 msgstr "문서"
 
-#: src/misc/Progress.js:129
+#: src/misc/Progress.js:157
 msgid "Dup. frames"
 msgstr "복제된 프레임"
 
@@ -849,7 +867,7 @@ msgstr "바로 활성화"
 msgid "Enable primary stream"
 msgstr "기본 스트림 활성화"
 
-#: src/views/Edit/Sources/Network.js:883
+#: src/views/Edit/Sources/Network.js:915
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:55
 msgid "Enable RTMP server ..."
 msgstr "RTMP 서버 활성화..."
@@ -862,7 +880,7 @@ msgstr "RTMPS 전송 활성화"
 msgid "Enable snapshots"
 msgstr "스냅샷 활성화"
 
-#: src/views/Edit/Sources/Network.js:933
+#: src/views/Edit/Sources/Network.js:1009
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:55
 msgid "Enable SRT server ..."
 msgstr "SRT 서버 활성화..."
@@ -899,7 +917,7 @@ msgstr "새로운 채널의 이름을 입력하세요."
 msgid "Enter password"
 msgstr "비밀번호 입력"
 
-#: src/views/Edit/Sources/Network.js:723
+#: src/views/Edit/Sources/Network.js:744
 #: src/views/Edit/Wizard/Sources/Network.js:59
 msgid "Enter the address of your network source:"
 msgstr "네트워크상에 있는 원본의 주소를 입력하세요:"
@@ -1021,6 +1039,7 @@ msgstr "원본 검증에 실패했습니다. 주소를 확인해주세요."
 msgid "FFmpeg"
 msgstr "FFmpeg"
 
+#: src/views/Edit/Sources/AudioLoop.js:142
 #: src/views/Edit/Sources/VideoLoop.js:150
 msgid "File path"
 msgstr ""
@@ -1049,7 +1068,7 @@ msgstr "자바스크립트를 입력합니다."
 msgid "For Stylesheets."
 msgstr "스타일시트를 입력합니다."
 
-#: src/views/Edit/Sources/Network.js:526
+#: src/views/Edit/Sources/Network.js:547
 msgid "Force input framerate"
 msgstr "입력 프레임률 고정"
 
@@ -1061,12 +1080,12 @@ msgstr "키 프레임 강제"
 msgid "Format"
 msgstr "형식"
 
-#: src/misc/Progress.js:64
+#: src/misc/Progress.js:92
 #: src/views/Main/Progress.js:77
 msgid "FPS"
 msgstr "FPS"
 
-#: src/misc/Progress.js:116
+#: src/misc/Progress.js:144
 msgid "Frame drops"
 msgstr "프레임 드롭"
 
@@ -1080,7 +1099,7 @@ msgstr "프레임버퍼"
 
 #: src/misc/coders/settings/Video.js:135
 #: src/misc/filters/video/Framerate.js:65
-#: src/views/Edit/Sources/Network.js:539
+#: src/views/Edit/Sources/Network.js:560
 msgid "Framerate"
 msgstr "프레임률"
 
@@ -1098,7 +1117,7 @@ msgstr "주파수 (Hz)"
 
 #: src/views/Edit/index.js:418
 #: src/views/Edit/index.js:430
-#: src/views/Edit/Sources/Network.js:577
+#: src/views/Edit/Sources/Network.js:598
 #: src/views/Playersite.js:260
 #: src/views/Playersite.js:273
 #: src/views/Publication/Add.js:414
@@ -1183,7 +1202,7 @@ msgstr "좌/우 뒤집기"
 msgid "Hosted Restreamer interface"
 msgstr "Restreamer 인터페이스 제공"
 
-#: src/views/Edit/Sources/Network.js:516
+#: src/views/Edit/Sources/Network.js:537
 msgid "HTTP and HTTPS"
 msgstr "HTTP와 HTTPS"
 
@@ -1271,6 +1290,11 @@ msgstr "삽입 3"
 msgid "Inject 4"
 msgstr "삽입 4"
 
+#: src/views/Edit/Sources/Network.js:947
+#: src/views/Edit/Sources/Network.js:1041
+msgid "Input stream"
+msgstr ""
+
 #: src/views/Publication/Services/Instagram.js:121
 msgid "Instafeed.me"
 msgstr "Instafeed.me"
@@ -1288,7 +1312,7 @@ msgstr "간격 (초)"
 msgid "Issue alert"
 msgstr "문제 알리기"
 
-#: src/misc/Progress.js:77
+#: src/misc/Progress.js:105
 #: src/views/Main/Progress.js:67
 #: src/views/Main/Publication.js:184
 msgid "kbit/s"
@@ -1408,7 +1432,7 @@ msgstr "Livesource ID"
 msgid "Log level"
 msgstr "기록 단계"
 
-#: src/misc/modals/Process.js:90
+#: src/misc/modals/Process.js:117
 #: src/views/Settings.js:1241
 #: src/views/Settings.js:2090
 msgid "Logging"
@@ -1445,6 +1469,7 @@ msgstr "로고"
 msgid "Logout"
 msgstr "로그아웃"
 
+#: src/views/Edit/Sources/AudioLoop.js:194
 #: src/views/Edit/Sources/VideoLoop.js:202
 msgid "Loop"
 msgstr ""
@@ -1554,6 +1579,7 @@ msgid "MB"
 msgstr "MB"
 
 #: src/Footer.js:202
+#: src/misc/Progress.js:79
 msgid "Memory"
 msgstr "메모리"
 
@@ -1574,7 +1600,7 @@ msgstr "메타 정보"
 msgid "Metadata"
 msgstr "메타데이터"
 
-#: src/views/Edit/Sources/Network.js:604
+#: src/views/Edit/Sources/Network.js:625
 msgid "Mininum {0}, default {1}"
 msgstr "최소 {0}, 기본 {1}"
 
@@ -1641,7 +1667,7 @@ msgstr "템플릿의 이름입니다. 이미 존재할 경우 덮어씁니다."
 msgid "Network"
 msgstr "네트워크"
 
-#: src/views/Edit/Sources/Network.js:1041
+#: src/views/Edit/Sources/Network.js:1176
 #: src/views/Edit/Wizard/Sources/Network.js:123
 msgid "Network source"
 msgstr "네트워크 원본"
@@ -1742,6 +1768,7 @@ msgstr "프로세스 당 유지할 기록의 개수입니다."
 msgid "Number of seconds the limits are allowed to be exceeded."
 msgstr ""
 
+#: src/views/Edit/Sources/AudioLoop.js:168
 #: src/views/Edit/Sources/VideoLoop.js:176
 #: src/views/Playersite.js:748
 #: src/views/Publication/Player.js:567
@@ -1781,7 +1808,7 @@ msgstr "암호문은 10에서 79자 사이여야 합니다."
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "필요할때만 \"그대로 전달(복사)\" 옵션을 해제하세요. 인코딩을 하려면 더 많은 CPU/GPU 자원이 필요합니다."
 
-#: src/views/Edit/Sources/Network.js:770
+#: src/views/Edit/Sources/Network.js:791
 #: src/views/Edit/Wizard/Sources/Network.js:97
 #: src/views/Login.js:282
 #: src/views/Publication/Services/Akamai.js:134
@@ -1801,7 +1828,7 @@ msgstr "비밀번호"
 msgid "Password for authorization."
 msgstr "사용자 인증을 위한 비밀번호입니다."
 
-#: src/views/Edit/Sources/Network.js:775
+#: src/views/Edit/Sources/Network.js:796
 #: src/views/Edit/Wizard/Sources/Network.js:103
 msgid "Password for the device."
 msgstr "장치의 비밀번호입니다."
@@ -1900,6 +1927,7 @@ msgstr "Let's Encrypt CA의 이용약관에 동의하고 문제 발생시 알림
 msgid "Please get in touch with the operator of the service and check what happens."
 msgstr "운영자에게 무슨 일이 일어났는지 문의하세요."
 
+#: src/views/Edit/Sources/AudioLoop.js:84
 #: src/views/Edit/Sources/VideoLoop.js:92
 #: src/views/Playersite.js:158
 #: src/views/Publication/Player.js:195
@@ -1949,12 +1977,13 @@ msgid "Primary stream key"
 msgstr "프라이머리 스트림 키"
 
 #: src/views/Edit/Sources/ALSA.js:136
+#: src/views/Edit/Sources/AudioLoop.js:155
 #: src/views/Edit/Sources/AVFoundation.js:201
 #: src/views/Edit/Sources/Framebuffer.js:110
-#: src/views/Edit/Sources/Network.js:787
-#: src/views/Edit/Sources/Network.js:859
-#: src/views/Edit/Sources/Network.js:906
-#: src/views/Edit/Sources/Network.js:956
+#: src/views/Edit/Sources/Network.js:808
+#: src/views/Edit/Sources/Network.js:890
+#: src/views/Edit/Sources/Network.js:971
+#: src/views/Edit/Sources/Network.js:1065
 #: src/views/Edit/Sources/Raspicam.js:125
 #: src/views/Edit/Sources/V4L.js:134
 #: src/views/Edit/Sources/VideoLoop.js:163
@@ -2002,7 +2031,7 @@ msgstr "프로세싱과 조절"
 msgid "Profile"
 msgstr "프로파일"
 
-#: src/views/Edit/Sources/Network.js:821
+#: src/views/Edit/Sources/Network.js:842
 #: src/views/Publication/Services/Akamai.js:144
 #: src/views/Publication/Services/Akamai.js:182
 #: src/views/Publication/Services/Azure.js:89
@@ -2049,18 +2078,18 @@ msgstr "송출 웹사이트 설정 저장"
 msgid "Publications"
 msgstr "공개"
 
-#: src/views/Edit/Sources/Network.js:1014
+#: src/views/Edit/Sources/Network.js:1140
 msgid "Pull Mode"
 msgstr "Pull 모드"
 
-#: src/views/Edit/Sources/Network.js:1013
+#: src/views/Edit/Sources/Network.js:1139
 msgid "Pull or recieve the data:"
 msgstr "데이터 수신:"
 
 #: src/misc/coders/Encoders/video/H264VAAPI.js:146
 #: src/misc/coders/Encoders/video/HEVCVAAPI.js:146
 #: src/misc/coders/Encoders/video/VP9VAAPI.js:146
-#: src/misc/Progress.js:90
+#: src/misc/Progress.js:118
 msgid "Quality"
 msgstr "품질"
 
@@ -2080,11 +2109,11 @@ msgstr "비율 조정"
 msgid "Ratio"
 msgstr "비율"
 
-#: src/views/Edit/Sources/Network.js:521
+#: src/views/Edit/Sources/Network.js:542
 msgid "Read input at native speed"
 msgstr "원본 속도로 입력 읽어들이기"
 
-#: src/views/Edit/Sources/Network.js:1015
+#: src/views/Edit/Sources/Network.js:1141
 msgid "Receive Mode"
 msgstr "수신 모드"
 
@@ -2114,6 +2143,8 @@ msgstr "Restreamer Core 접속에 실패했습니다."
 
 #: src/views/Edit/Sources/ALSA.js:122
 #: src/views/Edit/Sources/AVFoundation.js:181
+#: src/views/Edit/Sources/Network.js:951
+#: src/views/Edit/Sources/Network.js:1045
 #: src/views/Edit/Sources/Raspicam.js:111
 #: src/views/Edit/Sources/V4L.js:120
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:135
@@ -2229,7 +2260,7 @@ msgstr "RTMP 포트"
 msgid "RTMP server"
 msgstr "RTMP 서버"
 
-#: src/views/Edit/Sources/Network.js:878
+#: src/views/Edit/Sources/Network.js:910
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:50
 msgid "RTMP server is not enabled"
 msgstr "RTMP서버가 활성화되지 않음"
@@ -2254,7 +2285,7 @@ msgstr "RTMPS 서버"
 msgid "RTMPS server listen address."
 msgstr "RTMPS 수신을 위한 서버 주소"
 
-#: src/views/Edit/Sources/Network.js:492
+#: src/views/Edit/Sources/Network.js:513
 msgid "RTSP"
 msgstr "RTSP"
 
@@ -2385,9 +2416,12 @@ msgstr "선택"
 msgid "Send anonymous metrics (helps us for future development)"
 msgstr "익명으로 통계 전송 (개발에 도움이 됩니다)"
 
-#: src/views/Edit/Sources/Network.js:848
-#: src/views/Edit/Sources/Network.js:895
-#: src/views/Edit/Sources/Network.js:945
+#: src/views/Edit/Sources/Network.js:940
+#: src/views/Edit/Sources/Network.js:1034
+msgid "Send stream to address ..."
+msgstr ""
+
+#: src/views/Edit/Sources/Network.js:879
 #: src/views/Edit/Wizard/Sources/InternalHLS.js:48
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:68
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:68
@@ -2502,7 +2536,7 @@ msgstr "스냅샷"
 msgid "Social-login (OAuth2, 2FA)"
 msgstr "소셜 로그인 (OAuth2, 2FA)"
 
-#: src/views/Edit/Sources/Network.js:505
+#: src/views/Edit/Sources/Network.js:526
 msgid "Socket timeout (microseconds)"
 msgstr "소켓 타임아웃 (마이크로초)"
 
@@ -2525,7 +2559,7 @@ msgstr "원본"
 msgid "Source & Encoding"
 msgstr "원본과 인코딩"
 
-#: src/misc/Progress.js:103
+#: src/misc/Progress.js:131
 msgid "Speed"
 msgstr "속도"
 
@@ -2544,7 +2578,7 @@ msgstr "SRT 출력"
 msgid "SRT server"
 msgstr "SRT 서버"
 
-#: src/views/Edit/Sources/Network.js:928
+#: src/views/Edit/Sources/Network.js:1004
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:50
 msgid "SRT server is not enabled"
 msgstr "SRT 서버가 활성화되지 않았습니다."
@@ -2561,7 +2595,7 @@ msgstr "SRT 송출과 재생을 위한 토큰입니다. streamid 파라메터의
 msgid "Stale timeout (seconds)"
 msgstr "시간 경과 (초)"
 
-#: src/views/Edit/Sources/Network.js:682
+#: src/views/Edit/Sources/Network.js:703
 msgid "start_at_zero"
 msgstr "start_at_zero"
 
@@ -2638,7 +2672,7 @@ msgstr "스트림 URL"
 msgid "Support datarhei Restreamer"
 msgstr "datarhei Restreamer 지지"
 
-#: src/views/Edit/Sources/Network.js:736
+#: src/views/Edit/Sources/Network.js:757
 #: src/views/Edit/Wizard/Sources/Network.js:72
 msgid "Supports HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT and more."
 msgstr "HTTP(HPS, DASH), RTP, RTSP, RTMP, SRT 등을 지원합니다."
@@ -2686,7 +2720,7 @@ msgstr "생성된 소리 스트림의 음량(0.0 - 1.0)"
 msgid "The application is using an older version of the settings."
 msgstr "애플리케이션이 구버전의 설정을 사용중입니다."
 
-#: src/views/Edit/Sources/Network.js:809
+#: src/views/Edit/Sources/Network.js:830
 msgid "The available FFmpeg binary doesn't support any of the required protocols."
 msgstr "현재 FFmpeg 바이너리는 필요한 프로토콜을 지원하지 않습니다."
 
@@ -2766,12 +2800,14 @@ msgstr "RTMP 송출을 위해 RTMP 서버가 필요합니다."
 msgid "The sample rate of the audio stream."
 msgstr "소리 스트림의 샘플률입니다."
 
+#: src/views/Edit/Sources/AudioLoop.js:95
 #: src/views/Edit/Sources/VideoLoop.js:103
 #: src/views/Playersite.js:169
 #: src/views/Publication/Player.js:206
 msgid "The selected file is too big (<0/>). Only <1/> are allowed."
 msgstr ""
 
+#: src/views/Edit/Sources/AudioLoop.js:88
 #: src/views/Edit/Sources/VideoLoop.js:96
 #: src/views/Playersite.js:162
 #: src/views/Publication/Player.js:199
@@ -2830,6 +2866,7 @@ msgstr "설정을 저장하는데 문제가 발생했습니다. 설정을 저장
 msgid "There was an error connecting to Restreamer Core at {0}."
 msgstr "Restreamer Core에 접속하는데 오류가 발생했습니다. ({0})"
 
+#: src/views/Edit/Sources/AudioLoop.js:102
 #: src/views/Edit/Sources/VideoLoop.js:110
 #: src/views/Playersite.js:176
 #: src/views/Publication/Player.js:213
@@ -2884,7 +2921,7 @@ msgstr "이 라이선스는 이용자가 저작자 및 출처만 표시한다면
 msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms."
 msgstr "이 라이선스는 이용자가 저작자 및 출처만 표시한다면 복제, 배포, 전시, 공연 및 공중송신(포맷 변경도 포함), 리믹스, 변형, 2차적 저작물의 작성이 가능합니다. 영리목적으로도 이용이 가능합니다. 생성된 리믹스, 변형, 2차적 저작물에는 원저작물과 동일한 라이선스를 적용해야 합니다."
 
-#: src/views/Edit/Sources/Network.js:746
+#: src/views/Edit/Sources/Network.js:767
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
 msgstr "이 프로토콜은 확인할 수 없거나 현재 FFmpeg 바이너리에서 지원하지 않습니다."
 
@@ -3051,7 +3088,7 @@ msgstr "영상을 Twitter Producer에서 생성한 키로 송출합니다. 자�
 msgid "Tune"
 msgstr "튠"
 
-#: src/views/Edit/Sources/Network.js:496
+#: src/views/Edit/Sources/Network.js:517
 #: src/views/Edit/Wizard/Sources/Network.js:77
 msgid "UDP transport"
 msgstr "UDP 전송"
@@ -3068,6 +3105,7 @@ msgstr "서비스의 고유 ID입니다."
 msgid "Unknown"
 msgstr "알 수 없음"
 
+#: src/views/Edit/Sources/AudioLoop.js:105
 #: src/views/Edit/Sources/VideoLoop.js:113
 #: src/views/Playersite.js:179
 #: src/views/Publication/Player.js:216
@@ -3082,6 +3120,7 @@ msgstr "미선택"
 msgid "Update details (Changelog)"
 msgstr "업데이트 내역 (변경점)"
 
+#: src/views/Edit/Sources/AudioLoop.js:146
 #: src/views/Edit/Sources/VideoLoop.js:154
 #: src/views/Playersite.js:408
 #: src/views/Playersite.js:428
@@ -3091,10 +3130,15 @@ msgstr "업데이트 내역 (변경점)"
 msgid "Upload"
 msgstr "업로드"
 
+#: src/views/Edit/Sources/AudioLoop.js:138
+msgid "Upload an audio file ({0}) in order to loop it."
+msgstr ""
+
 #: src/views/Edit/Sources/VideoLoop.js:146
 msgid "Upload an image or video file ({0}) in order to loop it."
 msgstr ""
 
+#: src/views/Edit/Sources/AudioLoop.js:149
 #: src/views/Edit/Sources/VideoLoop.js:157
 #: src/views/Playersite.js:431
 #: src/views/Playersite.js:569
@@ -3110,7 +3154,7 @@ msgid "Uploading the poster failed"
 msgstr ""
 
 #: src/Footer.js:165
-#: src/misc/Progress.js:51
+#: src/misc/Progress.js:53
 #: src/views/Main/Progress.js:57
 msgid "Uptime"
 msgstr "가동시간"
@@ -3131,7 +3175,7 @@ msgstr "저작권을 명기해 올바른 이미지 라이선스를 선택하세�
 msgid "Use your copyright and choose the right image licence. Whether free for all or highly restricted. Briefly discuss what others are allowed to do with your image."
 msgstr "저작권을 명기해 올바른 이미지 라이선스를 선택하세요. 자유롭게 제공하거나 철저히 제한할 수 있습니다. 다른 사람이 당신의 이미지로 무엇을 할 수 있는지 간략히 설명하세요."
 
-#: src/views/Edit/Sources/Network.js:687
+#: src/views/Edit/Sources/Network.js:708
 msgid "use_wallclock_as_timestamps"
 msgstr "use_wallclock_as_timestamps"
 
@@ -3139,7 +3183,7 @@ msgstr "use_wallclock_as_timestamps"
 msgid "User registration"
 msgstr "사용자 등록"
 
-#: src/views/Edit/Sources/Network.js:758
+#: src/views/Edit/Sources/Network.js:779
 #: src/views/Edit/Wizard/Sources/Network.js:84
 #: src/views/Login.js:272
 #: src/views/Publication/Services/DaCast.js:131
@@ -3158,7 +3202,7 @@ msgstr "사용자 이름"
 msgid "Username for authorization."
 msgstr "사용자 인증을 위한 이름입니다."
 
-#: src/views/Edit/Sources/Network.js:763
+#: src/views/Edit/Sources/Network.js:784
 #: src/views/Edit/Wizard/Sources/Network.js:90
 msgid "Username for the device."
 msgstr "장치의 사용자 이름입니다."

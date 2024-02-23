@@ -1,21 +1,18 @@
-name: 'Build main restreamer-ui'
+name: 'Build dev restreamer-ui'
 
 on:
     workflow_dispatch:
+    workflow_call:
+    push:
+        branches:
+            - dev
 
 jobs:
     build-frontend:
         runs-on: ubuntu-latest
-        outputs:
-            version: ${{ steps.latestversion.outputs.version }}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
-
-            - name: Get latest version from package.json
-              id: latestversion
-              run: |
-                  echo "version=$(cat ./package.json | jq '.version' | sed 's/\"//g')" >> "$GITHUB_OUTPUT"
 
             - name: Set up Node.js
               uses: actions/setup-node@v4
@@ -32,7 +29,7 @@ jobs:
             - name: Upload React build as artifact
               uses: actions/upload-artifact@v4
               with:
-                  name: restreamerui-main-build
+                  name: restreamerui-dev-build
                   path: build/
 
     build-docker:
@@ -45,7 +42,7 @@ jobs:
             - name: Download React build artifact
               uses: actions/download-artifact@v4
               with:
-                  name: restreamerui-main-build
+                  name: restreamerui-dev-build
                   path: build
 
             - name: Docker meta
@@ -55,8 +52,7 @@ jobs:
                   images: |
                       datarhei/restreamer-ui
                   tags: |
-                      type=raw,value=latest
-                      type=raw,value=${{ needs.build-frontend.outputs.version }}
+                      type=raw,value=dev
 
             - name: Set up QEMU
               uses: docker/setup-qemu-action@master
