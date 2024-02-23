@@ -82,7 +82,7 @@
 		liveui: true,
 		responsive: true,
 		fluid: true,
-		sources: [{ src: playerConfig.source, type: 'application/x-mpegURL' }],
+		sources: [{ src: window.location.origin + '/' + playerConfig.source, type: 'application/x-mpegURL' }],
 		plugins: {
 			license: playerConfig.license
 		}
@@ -90,7 +90,9 @@
 
 	if (playerConfig.chromecast) {
 		config.techOrder = ["chromecast", "html5"];
-		config.plugins.chromecast = {};
+		config.plugins.chromecast = {
+			receiverApplicationId: 'CC1AD845'
+		};
 	}
 
 	if (playerConfig.airplay) {
