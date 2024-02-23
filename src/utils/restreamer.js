@@ -11,6 +11,7 @@ import * as M from './metadata';
 import * as Storage from './storage';
 import * as Version from '../version';
 import API from './api';
+import { anonymize } from './anonymizer';
 
 class Restreamer {
 	constructor(address) {
@@ -3030,51 +3031,35 @@ class Restreamer {
 			return null;
 		}
 
-		const regex = /(?:([a-z]+):)?\/[^\s]*/gm;
-		const replace = (s) => {
-			return s.replaceAll(regex, (match, scheme) => {
-				if (scheme) {
-					return `${scheme}://[anonymized]`;
-				}
-
-				const pathElm = match.split('/').filter((p) => p.length !== 0);
-				if (pathElm.length < 2) {
-					return match;
-				}
-
-				return `/[anonymized]/${pathElm.pop()}`;
-			});
-		};
-
 		if (p.config) {
-			p.config.options = p.config.options.map(replace);
+			p.config.options = p.config.options.map(anonymize);
 
 			for (let i in p.config.input) {
-				p.config.input[i].address = replace(p.config.input[i].address);
-				p.config.input[i].options = p.config.input[i].options.map(replace);
+				p.config.input[i].address = anonymize(p.config.input[i].address);
+				p.config.input[i].options = p.config.input[i].options.map(anonymize);
 			}
 
 			for (let i in p.config.output) {
-				p.config.output[i].address = replace(p.config.output[i].address);
-				p.config.output[i].options = p.config.output[i].options.map(replace);
+				p.config.output[i].address = anonymize(p.config.output[i].address);
+				p.config.output[i].options = p.config.output[i].options.map(anonymize);
 			}
 		}
 
 		if (p.state) {
 			for (let i in p.state.progress.inputs) {
-				p.state.progress.inputs[i].address = replace(p.state.progress.inputs[i].address);
+				p.state.progress.inputs[i].address = anonymize(p.state.progress.inputs[i].address);
 			}
 
 			for (let i in p.state.progress.outputs) {
-				p.state.progress.outputs[i].address = replace(p.state.progress.outputs[i].address);
+				p.state.progress.outputs[i].address = anonymize(p.state.progress.outputs[i].address);
 			}
 
 			if (!p.state.command) {
 				p.state.command = [];
 			}
 
-			p.state.command = p.state.command.map(replace);
-			p.state.last_logline = replace(p.state.last_logline);
+			p.state.command = p.state.command.map(anonymize);
+			p.state.last_logline = anonymize(p.state.last_logline);
 		}
 
 		if (p.report) {
@@ -3082,12 +3067,12 @@ class Restreamer {
 				p.report.prelude = [];
 			}
 
-			p.report.prelude = p.report.prelude.map(replace);
-			p.report.log = p.report.log.map((l) => [l[0], replace(l[1])]);
+			p.report.prelude = p.report.prelude.map(anonymize);
+			p.report.log = p.report.log.map((l) => [l[0], anonymize(l[1])]);
 
 			for (let i in p.report.history) {
-				p.report.history[i].prelude = p.report.history[i].prelude.map(replace);
-				p.report.history[i].log = p.report.history[i].log.map((l) => [l[0], replace(l[1])]);
+				p.report.history[i].prelude = p.report.history[i].prelude.map(anonymize);
+				p.report.history[i].log = p.report.history[i].log.map((l) => [l[0], anonymize(l[1])]);
 			}
 		}
 
@@ -3348,12 +3333,28 @@ class Restreamer {
 		config.storage.memory.auth.username = '[anonymized]';
 		config.storage.memory.auth.password = '[anonymized]';
 
+		config.storage.s3 = config.storage.s3.map((e) => {
+			return {
+				...e,
+				auth: {
+					...e.auth,
+					username: '[anonymized]',
+					password: '[anonymized]',
+				},
+				endpoint: '[anonymized]',
+				access_key_id: '[anonymized]',
+				secret_access_key: '[anonymized]',
+			};
+		});
+
 		if (config.storage.cors.origins.length !== 1 || config.storage.cors.origins[0] !== '*') {
 			config.storage.cors.origins = config.storage.cors.origins.map((e) => '[anonymized]');
 		}
 
 		config.rtmp.app = '[anonymized]';
 		config.rtmp.token = '[anonymized]';
+
+		config.ffmpeg.binary = anonymize(config.ffmpeg.binary);
 
 		config.service.token = '[anonymized]';
 

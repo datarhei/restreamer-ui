@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import WarningIcon from '@mui/icons-material/Warning';
 
 import * as M from '../../utils/metadata';
+import { anonymize } from '../../utils/anonymizer';
 import useInterval from '../../hooks/useInterval';
 import ActionButton from '../../misc/ActionButton';
 import CopyButton from '../../misc/CopyButton';
@@ -350,7 +351,7 @@ export default function Main(props) {
 												</Grid>
 												<Grid item>
 													<Typography>
-														<Trans>Error: {$state.progress.error || 'unknown'}</Trans>
+														<Trans>Error: {anonymize($state.progress.error) || 'unknown'}</Trans>
 													</Typography>
 												</Grid>
 												<Grid item>
