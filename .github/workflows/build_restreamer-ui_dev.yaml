@@ -3,6 +3,8 @@ name: 'Build dev restreamer-ui'
 on:
     workflow_dispatch:
     workflow_call:
+    schedule:
+        - cron: '37 4 * * *'
     push:
         branches:
             - dev
