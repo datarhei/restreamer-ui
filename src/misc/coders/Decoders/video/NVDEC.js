@@ -16,7 +16,7 @@ function createMapping(settings, stream, skills) {
 
 	const mapping = {
 		global: [],
-		local: ['-hwaccel', 'cuda', '-hwaccel_output_format', 'cuda'],
+		local: ['-hwaccel', 'cuda', '-hwaccel_output_format', 'cuda', '-noautoscale'],
 	};
 
 	return mapping;
