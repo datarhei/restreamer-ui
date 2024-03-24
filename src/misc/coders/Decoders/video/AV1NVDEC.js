@@ -16,7 +16,8 @@ function createMapping(settings, stream, skills) {
 
 	const mapping = {
 		global: [],
-		local: ['-hwaccel', 'nvdec', '-c:v', 'av1_cuvid'],
+		local: ['-hwaccel', 'cuda', '-c:v', 'av1_cuvid'],
+		// local: ['-hwaccel', 'cuda', '-hwaccel_output_format', 'cuda', '-c:v', 'av1_cuvid'],
 	};
 
 	return mapping;
@@ -54,7 +55,7 @@ Coder.defaultProps = {
 
 // -hwaccel nvdec
 
-const coder = 'cuda';
+const coder = 'av1';
 const name = 'AV1 NVDEC (CUDA)';
 const codecs = ['av1'];
 const type = 'video';

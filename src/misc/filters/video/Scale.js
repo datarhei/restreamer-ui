@@ -32,6 +32,7 @@ function createGraph(settings) {
 	} else if (settings.mode === 'width') {
 		mapping.push(`scale=${settings.width}:-1`);
 	} else if (settings.mode === 'fix') {
+		// mapping.push(`scale_cuda=${settings.fix.split('x').join(':')}:format=yuv420p`);
 		mapping.push(`scale=${settings.fix}`);
 	}
 
