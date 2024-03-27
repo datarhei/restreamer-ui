@@ -22,6 +22,7 @@ import * as VideoCopy from './video/Copy';
 import * as VideoNone from './video/None';
 import * as VideoRaw from './video/Raw';
 import * as VP9 from './video/VP9';
+import * as AV1Rav1e from './video/AV1Rav1e';
 
 class Registry {
 	constructor(type) {
@@ -135,5 +136,6 @@ videoRegistry.Register(HEVCVideoToolbox);
 videoRegistry.Register(VP9VAAPI);
 videoRegistry.Register(VP9);
 videoRegistry.Register(VideoRaw);
+videoRegistry.Register(AV1Rav1e);
 
 export { audioRegistry as Audio, videoRegistry as Video };

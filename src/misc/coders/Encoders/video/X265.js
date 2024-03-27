@@ -1,5 +1,4 @@
 import React from 'react';
-import SemverSatisfies from 'semver/functions/satisfies';
 
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
@@ -29,11 +28,6 @@ function createMapping(settings, stream, skills) {
 	stream = Helper.InitStream(stream);
 	skills = Helper.InitSkills(skills);
 
-	let ffversion = 4;
-	if (SemverSatisfies(skills.ffmpeg.version, '^5.0.0')) {
-		ffversion = 5;
-	}
-
 	const local = [
 		'-codec:v',
 		'libx265',
@@ -62,7 +56,7 @@ function createMapping(settings, stream, skills) {
 		);
 	}
 
-	if (ffversion === 5) {
+	if (skills.ffmpeg.version_major >= 5) {
 		local.push('-fps_mode', `${settings.fps_mode}`);
 	}
 
@@ -127,11 +121,6 @@ function Coder(props) {
 	const stream = Helper.InitStream(props.stream);
 	const skills = Helper.InitSkills(props.skills);
 
-	let ffversion = 4;
-	if (SemverSatisfies(skills.ffmpeg.version, '^5.0.0')) {
-		ffversion = 5;
-	}
-
 	const handleChange = (newSettings) => {
 		let automatic = false;
 		if (!newSettings) {
@@ -167,7 +156,7 @@ function Coder(props) {
 			<Grid item xs={12} md={6}>
 				<Video.GOP value={settings.gop} onChange={update('gop')} allowAuto allowCustom />
 			</Grid>
-			{ffversion === 5 && (
+			{skills.ffmpeg.version_major >= 5 && (
 				<Grid item xs={12}>
 					<Video.FpsMode value={settings.fps_mode} onChange={update('fps_mode')} />
 				</Grid>
@@ -193,7 +182,7 @@ Coder.defaultProps = {
 };
 
 const coder = 'libx265';
-const name = 'H.265 (libx265)';
+const name = 'HEVC (libx265)';
 const codec = 'hevc';
 const type = 'video';
 const hwaccel = false;
