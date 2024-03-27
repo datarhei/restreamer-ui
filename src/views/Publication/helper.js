@@ -193,6 +193,9 @@ export function conflateServiceSkills(requires, skills) {
 	requires = validateRequirements(requires);
 
 	const serviceSkills = {
+		ffmpeg: {
+			...skills.ffmpeg,
+		},
 		protocols: [],
 		formats: [],
 		devices: {},

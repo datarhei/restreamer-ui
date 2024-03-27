@@ -23,6 +23,8 @@ function InitSkills(initialSkills) {
 
 	skills.ffmpeg = {
 		version: '5.0.0',
+		version_major: 5,
+		version_minor: 0,
 		...skills.ffmpeg,
 	};
 

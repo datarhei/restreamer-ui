@@ -6,6 +6,8 @@ import Handlebars from 'handlebars/dist/cjs/handlebars';
 import SemverSatisfies from 'semver/functions/satisfies';
 import SemverGt from 'semver/functions/gt';
 import SemverGte from 'semver/functions/gte';
+import SemverMajor from 'semver/functions/major';
+import SemverMinor from 'semver/functions/minor';
 
 import * as M from './metadata';
 import * as Storage from './storage';
@@ -478,6 +480,8 @@ class Restreamer {
 		const skills = {
 			ffmpeg: {
 				version: '',
+				version_major: 0,
+				version_minor: 0,
 			},
 			codecs: {
 				audio: {
@@ -535,6 +539,9 @@ class Restreamer {
 			version: '0.0.0',
 			...val.ffmpeg,
 		};
+
+		skills.ffmpeg.version_major = SemverMajor(skills.ffmpeg.version);
+		skills.ffmpeg.version_minor = SemverMinor(skills.ffmpeg.version);
 
 		val.codecs = {
 			audio: {},
@@ -2616,12 +2623,32 @@ class Restreamer {
 		// from the inputs only the first is used and only its options are considered.
 
 		let address = '';
+		let options = [];
 		if (control.source.source === 'hls+memfs') {
 			address = `{memfs}/${channel.channelid}.m3u8`;
+			options.push('-re');
 		} else if (control.source.source === 'hls+diskfs') {
 			address = `{diskfs}/${channel.channelid}.m3u8`;
+			options.push('-re');
 		} else if (control.source.source === 'rtmp') {
 			address = `{rtmp,name=${channel.channelid}.stream}`;
+			const skills = this.Skills();
+			if (skills.ffmpeg.version_major >= 6) {
+				const codecs = [];
+				if (skills.codecs.video.hevc?.length > 0) {
+					codecs.push('hvc1');
+				}
+				if (skills.codecs.video.av1?.length > 0) {
+					codecs.push('av01');
+				}
+				if (skills.codecs.video.vp9?.length > 0) {
+					codecs.push('vp09');
+				}
+
+				if (codecs.length !== 0) {
+					options.push('-rtmp_enhanced_codecs', codecs.join(','));
+				}
+			}
 		} else if (control.source.source === 'srt') {
 			address = `{srt,name=${channel.channelid},mode=request}`;
 		}
@@ -2634,7 +2661,7 @@ class Restreamer {
 				{
 					id: 'input_0',
 					address: address,
-					options: ['-re', ...inputs[0].options],
+					options: [...options, ...inputs[0].options],
 				},
 			],
 			output: [],
