@@ -81,7 +81,7 @@ msgstr "Añadir publicación"
 msgid "Add: {0}"
 msgstr "Añadir: {0}"
 
-#: src/views/Edit/Sources/Network.js:751
+#: src/views/Edit/Sources/Network.js:785
 #: src/views/Edit/Wizard/Sources/Network.js:66
 #: src/views/Publication/Services/Azure.js:98
 #: src/views/Publication/Services/Brightcove.js:95
@@ -114,8 +114,8 @@ msgstr "Dirección de escucha para las peticiones HTTP."
 msgid "Address to listen on for HTTPS requests."
 msgstr "Dirección de escucha para las solicitudes HTTPS."
 
-#: src/views/Edit/Sources/Network.js:958
-#: src/views/Edit/Sources/Network.js:1052
+#: src/views/Edit/Sources/Network.js:992
+#: src/views/Edit/Sources/Network.js:1086
 msgid "Address:"
 msgstr ""
 
@@ -127,7 +127,7 @@ msgstr "Ajuste los colores del sitio de publicación y el fondo a su gusto."
 msgid "Advanced monitoring"
 msgstr "Vigilancia avanzada"
 
-#: src/views/Edit/Sources/Network.js:504
+#: src/views/Edit/Sources/Network.js:538
 #: src/views/Publication/Services/DASH.js:204
 #: src/views/Publication/Services/HLS.js:193
 #: src/views/Publication/Services/Icecast.js:172
@@ -272,7 +272,7 @@ msgstr "Disponible"
 msgid "AVFoundation"
 msgstr "AVFoundation"
 
-#: src/views/Edit/Sources/Network.js:716
+#: src/views/Edit/Sources/Network.js:750
 msgid "avoid_negative_ts"
 msgstr "avoid_negative_ts"
 
@@ -426,8 +426,8 @@ msgstr "Elija un flujo de audio"
 msgid "Choose an input device ..."
 msgstr "Elija un dispositivo de entrada ..."
 
-#: src/views/Edit/Sources/Network.js:934
-#: src/views/Edit/Sources/Network.js:1028
+#: src/views/Edit/Sources/Network.js:968
+#: src/views/Edit/Sources/Network.js:1062
 msgid "Choose an input stream ..."
 msgstr ""
 
@@ -499,7 +499,7 @@ msgid "Connected since <0/>"
 msgstr "Conectado desde <0/>"
 
 #: src/misc/ActionButton.js:12
-#: src/views/Main/index.js:334
+#: src/views/Main/index.js:335
 #: src/views/Publication/Process.js:40
 msgid "Connecting ..."
 msgstr "Conectando ..."
@@ -522,11 +522,11 @@ msgstr "Velocidad de fotogramas constante (CFR)"
 msgid "Content"
 msgstr "Contenido"
 
-#: src/views/Main/index.js:394
+#: src/views/Main/index.js:395
 msgid "Content URL"
 msgstr "Contenido URL"
 
-#: src/views/Edit/Sources/Network.js:701
+#: src/views/Edit/Sources/Network.js:735
 msgid "copyts"
 msgstr "copyts"
 
@@ -671,11 +671,11 @@ msgstr "Decodificador"
 msgid "Default"
 msgstr "Por defecto"
 
-#: src/views/Edit/Sources/Network.js:642
+#: src/views/Edit/Sources/Network.js:676
 msgid "Default {0}"
 msgstr "Por defecto {0}"
 
-#: src/views/Edit/Sources/Network.js:682
+#: src/views/Edit/Sources/Network.js:716
 msgid "Default {0} ({1} seconds)"
 msgstr "Por defecto {0} ({1} segundos)"
 
@@ -867,7 +867,7 @@ msgstr "Habilitar ahora"
 msgid "Enable primary stream"
 msgstr "Habilitar el flujo primario"
 
-#: src/views/Edit/Sources/Network.js:915
+#: src/views/Edit/Sources/Network.js:949
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:55
 msgid "Enable RTMP server ..."
 msgstr "Habilitar el servidor RTMP ..."
@@ -880,7 +880,7 @@ msgstr "Activar la transferencia de RTMPS"
 msgid "Enable snapshots"
 msgstr "Habilitar las instantáneas"
 
-#: src/views/Edit/Sources/Network.js:1009
+#: src/views/Edit/Sources/Network.js:1043
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:55
 msgid "Enable SRT server ..."
 msgstr "Habilitar el servidor SRT ..."
@@ -917,7 +917,7 @@ msgstr "Introduzca un nombre para el nuevo canal."
 msgid "Enter password"
 msgstr "Introduzca la contraseña"
 
-#: src/views/Edit/Sources/Network.js:744
+#: src/views/Edit/Sources/Network.js:778
 #: src/views/Edit/Wizard/Sources/Network.js:59
 msgid "Enter the address of your network source:"
 msgstr "Introduzca la dirección de su fuente de red:"
@@ -944,7 +944,7 @@ msgstr "Error"
 msgid "Error while copying data to clipboard"
 msgstr "Error al copiar datos en el portapapeles"
 
-#: src/views/Main/index.js:353
+#: src/views/Main/index.js:354
 #: src/views/Publication/Process.js:64
 msgid "Error: {0}"
 msgstr "Error: {0}"
@@ -994,7 +994,7 @@ msgstr "Fallo en la creación de los archivos del sitio web de la publicación."
 msgid "Failed to probe the source. Please check the <0>probe details</0>."
 msgstr "No se ha podido sondear la fuente. Por favor, compruebe los <0>detalles de la sonda</0>."
 
-#: src/utils/restreamer.js:446
+#: src/utils/restreamer.js:447
 msgid "Failed to refresh token: {0}"
 msgstr "Fallo en la actualización de la ficha: {0}"
 
@@ -1068,7 +1068,7 @@ msgstr "Para Javascripts."
 msgid "For Stylesheets."
 msgstr "Para las hojas de estilo."
 
-#: src/views/Edit/Sources/Network.js:547
+#: src/views/Edit/Sources/Network.js:581
 msgid "Force input framerate"
 msgstr "Forzar la velocidad de entrada de fotogramas"
 
@@ -1099,7 +1099,7 @@ msgstr "Buffer de imágenes"
 
 #: src/misc/coders/settings/Video.js:135
 #: src/misc/filters/video/Framerate.js:65
-#: src/views/Edit/Sources/Network.js:560
+#: src/views/Edit/Sources/Network.js:594
 msgid "Framerate"
 msgstr "Framerate"
 
@@ -1117,7 +1117,7 @@ msgstr "Frecuencia (Hz)"
 
 #: src/views/Edit/index.js:418
 #: src/views/Edit/index.js:430
-#: src/views/Edit/Sources/Network.js:598
+#: src/views/Edit/Sources/Network.js:632
 #: src/views/Playersite.js:260
 #: src/views/Playersite.js:273
 #: src/views/Publication/Add.js:414
@@ -1178,7 +1178,7 @@ msgstr "Titular"
 msgid "Height"
 msgstr "Altura"
 
-#: src/views/Main/index.js:403
+#: src/views/Main/index.js:404
 msgid "HLS"
 msgstr "HLS"
 
@@ -1202,7 +1202,7 @@ msgstr "Volteo horizontal"
 msgid "Hosted Restreamer interface"
 msgstr "Interfaz de Restreamer alojado"
 
-#: src/views/Edit/Sources/Network.js:537
+#: src/views/Edit/Sources/Network.js:571
 msgid "HTTP and HTTPS"
 msgstr "HTTP y HTTPS"
 
@@ -1290,8 +1290,8 @@ msgstr "Inyectar 3"
 msgid "Inject 4"
 msgstr "Inyectar 4"
 
-#: src/views/Edit/Sources/Network.js:947
-#: src/views/Edit/Sources/Network.js:1041
+#: src/views/Edit/Sources/Network.js:981
+#: src/views/Edit/Sources/Network.js:1075
 msgid "Input stream"
 msgstr ""
 
@@ -1445,15 +1445,15 @@ msgstr "Registro"
 msgid "Login"
 msgstr "Acceda a"
 
-#: src/utils/restreamer.js:259
-#: src/utils/restreamer.js:293
+#: src/utils/restreamer.js:260
+#: src/utils/restreamer.js:294
 msgid "Login failed: {0}"
 msgstr "El inicio de sesión ha fallado: {0}"
 
-#: src/utils/restreamer.js:268
-#: src/utils/restreamer.js:273
-#: src/utils/restreamer.js:302
-#: src/utils/restreamer.js:307
+#: src/utils/restreamer.js:269
+#: src/utils/restreamer.js:274
+#: src/utils/restreamer.js:303
+#: src/utils/restreamer.js:308
 msgid "Login failed: Couldn't load API details"
 msgstr "El inicio de sesión ha fallado: No se han podido cargar los detalles de la API"
 
@@ -1482,7 +1482,7 @@ msgstr "Normalización de la sonoridad"
 msgid "Low latency (Buffer)"
 msgstr "Baja latencia (Buffer)"
 
-#: src/views/Main/index.js:289
+#: src/views/Main/index.js:290
 #: src/views/Playersite.js:299
 msgid "Main channel"
 msgstr "Canal principal"
@@ -1600,7 +1600,7 @@ msgstr "Meta información"
 msgid "Metadata"
 msgstr "Metadatos"
 
-#: src/views/Edit/Sources/Network.js:625
+#: src/views/Edit/Sources/Network.js:659
 msgid "Mininum {0}, default {1}"
 msgstr "Mínimo {0}, por defecto {1}"
 
@@ -1667,7 +1667,7 @@ msgstr "Nombre para la plantilla. Si el nombre ya existe, se sobrescribirá."
 msgid "Network"
 msgstr "Red"
 
-#: src/views/Edit/Sources/Network.js:1176
+#: src/views/Edit/Sources/Network.js:1210
 #: src/views/Edit/Wizard/Sources/Network.js:123
 msgid "Network source"
 msgstr "Fuente de la red"
@@ -1725,7 +1725,7 @@ msgstr "No se ha encontrado un codificador adecuado."
 msgid "No suitable filter found."
 msgstr "No se ha encontrado ningún filtro adecuado."
 
-#: src/views/Main/index.js:315
+#: src/views/Main/index.js:316
 #: src/views/Publication/Player.js:356
 msgid "No video"
 msgstr "No hay vídeo"
@@ -1808,7 +1808,7 @@ msgstr "La frase de acceso debe tener entre 10 y 79 caracteres"
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "El passthrough (copia) sólo debe desactivarse si es necesario. Cada codificación requiere recursos adicionales de la CPU/GPU."
 
-#: src/views/Edit/Sources/Network.js:791
+#: src/views/Edit/Sources/Network.js:825
 #: src/views/Edit/Wizard/Sources/Network.js:97
 #: src/views/Login.js:282
 #: src/views/Publication/Services/Akamai.js:134
@@ -1828,7 +1828,7 @@ msgstr "Contraseña"
 msgid "Password for authorization."
 msgstr "Contraseña para la autorización."
 
-#: src/views/Edit/Sources/Network.js:796
+#: src/views/Edit/Sources/Network.js:830
 #: src/views/Edit/Wizard/Sources/Network.js:103
 msgid "Password for the device."
 msgstr "Contraseña para el dispositivo."
@@ -1885,7 +1885,7 @@ msgstr "Lista de reproducción"
 msgid "Playlist version (M3U8). Version 3 has the best browser/client compatibility."
 msgstr "Versión de la lista de reproducción (M3U8). La versión 3 tiene la mejor compatibilidad con el navegador/cliente."
 
-#: src/views/Main/index.js:358
+#: src/views/Main/index.js:359
 msgid "Please check the <0>process log</0>"
 msgstr "Por favor, compruebe el <0>registro del proceso</0>"
 
@@ -1980,10 +1980,10 @@ msgstr "Clave de flujo primaria"
 #: src/views/Edit/Sources/AudioLoop.js:155
 #: src/views/Edit/Sources/AVFoundation.js:201
 #: src/views/Edit/Sources/Framebuffer.js:110
-#: src/views/Edit/Sources/Network.js:808
-#: src/views/Edit/Sources/Network.js:890
-#: src/views/Edit/Sources/Network.js:971
-#: src/views/Edit/Sources/Network.js:1065
+#: src/views/Edit/Sources/Network.js:842
+#: src/views/Edit/Sources/Network.js:924
+#: src/views/Edit/Sources/Network.js:1005
+#: src/views/Edit/Sources/Network.js:1099
 #: src/views/Edit/Sources/Raspicam.js:125
 #: src/views/Edit/Sources/V4L.js:134
 #: src/views/Edit/Sources/VideoLoop.js:163
@@ -2003,15 +2003,15 @@ msgstr "Proceso"
 msgid "Process control"
 msgstr "Control de procesos"
 
-#: src/views/Main/index.js:448
-#: src/views/Main/index.js:464
+#: src/views/Main/index.js:449
+#: src/views/Main/index.js:465
 #: src/views/Publication/Edit.js:494
 #: src/views/Publication/Edit.js:613
 msgid "Process details"
 msgstr "Detalles del proceso"
 
-#: src/views/Main/index.js:451
-#: src/views/Main/index.js:472
+#: src/views/Main/index.js:452
+#: src/views/Main/index.js:473
 #: src/views/Publication/Edit.js:497
 #: src/views/Publication/Edit.js:621
 msgid "Process report"
@@ -2031,7 +2031,7 @@ msgstr "Procesamiento y control"
 msgid "Profile"
 msgstr "Perfil"
 
-#: src/views/Edit/Sources/Network.js:842
+#: src/views/Edit/Sources/Network.js:876
 #: src/views/Publication/Services/Akamai.js:144
 #: src/views/Publication/Services/Akamai.js:182
 #: src/views/Publication/Services/Azure.js:89
@@ -2078,11 +2078,11 @@ msgstr "Se guarda la configuración del sitio web de la publicación"
 msgid "Publications"
 msgstr "Publicaciones"
 
-#: src/views/Edit/Sources/Network.js:1140
+#: src/views/Edit/Sources/Network.js:1174
 msgid "Pull Mode"
 msgstr "Modo de tirar"
 
-#: src/views/Edit/Sources/Network.js:1139
+#: src/views/Edit/Sources/Network.js:1173
 msgid "Pull or recieve the data:"
 msgstr "Tire o reciba los datos:"
 
@@ -2109,11 +2109,11 @@ msgstr "Control de la tasa"
 msgid "Ratio"
 msgstr "Ratio"
 
-#: src/views/Edit/Sources/Network.js:542
+#: src/views/Edit/Sources/Network.js:576
 msgid "Read input at native speed"
 msgstr "Leer la entrada a velocidad nativa"
 
-#: src/views/Edit/Sources/Network.js:1141
+#: src/views/Edit/Sources/Network.js:1175
 msgid "Receive Mode"
 msgstr "Modo de recepción"
 
@@ -2127,7 +2127,7 @@ msgstr "Conecte de nuevo"
 msgid "Reconnect delay (seconds)"
 msgstr "Retraso de reconexión (segundos)"
 
-#: src/views/Main/index.js:369
+#: src/views/Main/index.js:370
 #: src/views/Publication/Process.js:68
 #: src/views/Publication/Process.js:81
 msgid "Reconnecting in {0}s"
@@ -2143,8 +2143,8 @@ msgstr "Ha fallado la reconexión con Restreamer Core."
 
 #: src/views/Edit/Sources/ALSA.js:122
 #: src/views/Edit/Sources/AVFoundation.js:181
-#: src/views/Edit/Sources/Network.js:951
-#: src/views/Edit/Sources/Network.js:1045
+#: src/views/Edit/Sources/Network.js:985
+#: src/views/Edit/Sources/Network.js:1079
 #: src/views/Edit/Sources/Raspicam.js:111
 #: src/views/Edit/Sources/V4L.js:120
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:135
@@ -2219,7 +2219,7 @@ msgstr "Instrucciones del Restreamer"
 msgid "Restreamer Service"
 msgstr "Servicio de resemantización"
 
-#: src/views/Main/index.js:273
+#: src/views/Main/index.js:274
 msgid "Retrieving stream data ..."
 msgstr "Recuperación de los datos del flujo ..."
 
@@ -2237,7 +2237,7 @@ msgstr "Patrón de prueba RGB"
 msgid "Rotate"
 msgstr "Girar"
 
-#: src/views/Main/index.js:412
+#: src/views/Main/index.js:413
 #: src/views/Settings.js:1239
 #: src/views/Settings.js:1920
 msgid "RTMP"
@@ -2260,7 +2260,7 @@ msgstr "Puerto RTMP"
 msgid "RTMP server"
 msgstr "Servidor RTMP"
 
-#: src/views/Edit/Sources/Network.js:910
+#: src/views/Edit/Sources/Network.js:944
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:50
 msgid "RTMP server is not enabled"
 msgstr "El servidor RTMP no está habilitado"
@@ -2285,7 +2285,7 @@ msgstr "Servidor RTMPS"
 msgid "RTMPS server listen address."
 msgstr "Dirección de escucha del servidor RTMPS."
 
-#: src/views/Edit/Sources/Network.js:513
+#: src/views/Edit/Sources/Network.js:547
 msgid "RTSP"
 msgstr "RTSP"
 
@@ -2416,12 +2416,12 @@ msgstr "Selección"
 msgid "Send anonymous metrics (helps us for future development)"
 msgstr "Enviar métricas anónimas (nos ayuda para el desarrollo futuro)"
 
-#: src/views/Edit/Sources/Network.js:940
-#: src/views/Edit/Sources/Network.js:1034
+#: src/views/Edit/Sources/Network.js:974
+#: src/views/Edit/Sources/Network.js:1068
 msgid "Send stream to address ..."
 msgstr ""
 
-#: src/views/Edit/Sources/Network.js:879
+#: src/views/Edit/Sources/Network.js:913
 #: src/views/Edit/Wizard/Sources/InternalHLS.js:48
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:68
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:68
@@ -2528,7 +2528,7 @@ msgid "Size"
 msgstr "Tamaño"
 
 #: src/views/Edit/index.js:543
-#: src/views/Main/index.js:431
+#: src/views/Main/index.js:432
 msgid "Snapshot"
 msgstr "Instantánea"
 
@@ -2536,7 +2536,7 @@ msgstr "Instantánea"
 msgid "Social-login (OAuth2, 2FA)"
 msgstr "Social-login (OAuth2, 2FA)"
 
-#: src/views/Edit/Sources/Network.js:526
+#: src/views/Edit/Sources/Network.js:560
 msgid "Socket timeout (microseconds)"
 msgstr "Tiempo de espera del zócalo (microsegundos)"
 
@@ -2563,7 +2563,7 @@ msgstr "Fuente y codificación"
 msgid "Speed"
 msgstr "Velocidad"
 
-#: src/views/Main/index.js:422
+#: src/views/Main/index.js:423
 #: src/views/Settings.js:1240
 #: src/views/Settings.js:2019
 msgid "SRT"
@@ -2578,7 +2578,7 @@ msgstr "Salida de SRT"
 msgid "SRT server"
 msgstr "Servidor SRT"
 
-#: src/views/Edit/Sources/Network.js:1004
+#: src/views/Edit/Sources/Network.js:1038
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:50
 msgid "SRT server is not enabled"
 msgstr "El servidor SRT no está habilitado"
@@ -2595,7 +2595,7 @@ msgstr "Token SRT para publicar y reproducir. El token es el valor del parámetr
 msgid "Stale timeout (seconds)"
 msgstr "Tiempo de espera (segundos)"
 
-#: src/views/Edit/Sources/Network.js:703
+#: src/views/Edit/Sources/Network.js:737
 msgid "start_at_zero"
 msgstr "start_at_zero"
 
@@ -2672,7 +2672,7 @@ msgstr "URL de la corriente"
 msgid "Support datarhei Restreamer"
 msgstr "Apoyo a datarhei Restreamer"
 
-#: src/views/Edit/Sources/Network.js:757
+#: src/views/Edit/Sources/Network.js:791
 #: src/views/Edit/Wizard/Sources/Network.js:72
 msgid "Supports HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT and more."
 msgstr "Soporta HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT y más."
@@ -2720,7 +2720,7 @@ msgstr "La amplitud (0,0 - 1,0) del flujo de audio generado"
 msgid "The application is using an older version of the settings."
 msgstr "La aplicación está utilizando una versión antigua de la configuración."
 
-#: src/views/Edit/Sources/Network.js:830
+#: src/views/Edit/Sources/Network.js:864
 msgid "The available FFmpeg binary doesn't support any of the required protocols."
 msgstr "El binario disponible de FFmpeg no soporta ninguno de los protocolos requeridos."
 
@@ -2921,7 +2921,7 @@ msgstr "Esta licencia permite a los reutilizadores distribuir, remezclar, adapta
 msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms."
 msgstr "Esta licencia permite a los reutilizadores distribuir, remezclar, adaptar y construir sobre el material en cualquier medio o formato, siempre y cuando se dé la atribución al creador. La licencia permite el uso comercial. Si usted remezcla, adapta o construye sobre el material, debe licenciar el material modificado bajo idénticos términos."
 
-#: src/views/Edit/Sources/Network.js:767
+#: src/views/Edit/Sources/Network.js:801
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
 msgstr "Este protocolo es desconocido o no está soportado por el binario disponible de FFmpeg."
 
@@ -3088,7 +3088,7 @@ msgstr "Transmite su flujo de vídeo con la clave requerida, generada en Twitter
 msgid "Tune"
 msgstr "Sintonice"
 
-#: src/views/Edit/Sources/Network.js:517
+#: src/views/Edit/Sources/Network.js:551
 #: src/views/Edit/Wizard/Sources/Network.js:77
 msgid "UDP transport"
 msgstr "Transporte UDP"
@@ -3175,7 +3175,7 @@ msgstr "Utilice los derechos de autor y elija la licencia de imagen correcta. Ya
 msgid "Use your copyright and choose the right image licence. Whether free for all or highly restricted. Briefly discuss what others are allowed to do with your image."
 msgstr "Utilice sus derechos de autor y elija la licencia de imagen adecuada. Ya sea libre para todos o muy restringida. Comente brevemente lo que otros pueden hacer con su imagen."
 
-#: src/views/Edit/Sources/Network.js:708
+#: src/views/Edit/Sources/Network.js:742
 msgid "use_wallclock_as_timestamps"
 msgstr "use_wallclock_as_timestamps"
 
@@ -3183,7 +3183,7 @@ msgstr "use_wallclock_as_timestamps"
 msgid "User registration"
 msgstr "Registro de usuarios"
 
-#: src/views/Edit/Sources/Network.js:779
+#: src/views/Edit/Sources/Network.js:813
 #: src/views/Edit/Wizard/Sources/Network.js:84
 #: src/views/Login.js:272
 #: src/views/Publication/Services/DaCast.js:131
@@ -3202,7 +3202,7 @@ msgstr "Nombre de usuario"
 msgid "Username for authorization."
 msgstr "Nombre de usuario para la autorización."
 
-#: src/views/Edit/Sources/Network.js:784
+#: src/views/Edit/Sources/Network.js:818
 #: src/views/Edit/Wizard/Sources/Network.js:90
 msgid "Username for the device."
 msgstr "Nombre de usuario del dispositivo."
@@ -3316,7 +3316,7 @@ msgstr "No puede abortar el asistente porque al menos una entrada debe estar def
 msgid "You have changed the configuration. In order for the changes to take effect, you have to restart the application. Do you want to restart now?"
 msgstr "Ha cambiado la configuración. Para que los cambios surtan efecto, tiene que reiniciar la aplicación. ¿Quiere reiniciar ahora?"
 
-#: src/views/Main/index.js:376
+#: src/views/Main/index.js:377
 #: src/views/Publication/Process.js:73
 msgid "You have to reconnect manually"
 msgstr "Tiene que volver a conectarse manualmente"

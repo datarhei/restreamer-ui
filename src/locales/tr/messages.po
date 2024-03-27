@@ -81,7 +81,7 @@ msgstr "Yayın Ekle"
 msgid "Add: {0}"
 msgstr "Ekle: {0}"
 
-#: src/views/Edit/Sources/Network.js:751
+#: src/views/Edit/Sources/Network.js:785
 #: src/views/Edit/Wizard/Sources/Network.js:66
 #: src/views/Publication/Services/Azure.js:98
 #: src/views/Publication/Services/Brightcove.js:95
@@ -114,8 +114,8 @@ msgstr "HTTP istekleri için dinlenecek adres."
 msgid "Address to listen on for HTTPS requests."
 msgstr "HTTPS istekleri için dinlenecek adres."
 
-#: src/views/Edit/Sources/Network.js:958
-#: src/views/Edit/Sources/Network.js:1052
+#: src/views/Edit/Sources/Network.js:992
+#: src/views/Edit/Sources/Network.js:1086
 msgid "Address:"
 msgstr ""
 
@@ -127,7 +127,7 @@ msgstr "Yayın sitesi renklerini ve arka planını istediğiniz gibi ayarlayın.
 msgid "Advanced monitoring"
 msgstr "Gelişmiş izleme"
 
-#: src/views/Edit/Sources/Network.js:504
+#: src/views/Edit/Sources/Network.js:538
 #: src/views/Publication/Services/DASH.js:204
 #: src/views/Publication/Services/HLS.js:193
 #: src/views/Publication/Services/Icecast.js:172
@@ -272,7 +272,7 @@ msgstr "Mevcut"
 msgid "AVFoundation"
 msgstr "AVFoundation"
 
-#: src/views/Edit/Sources/Network.js:716
+#: src/views/Edit/Sources/Network.js:750
 msgid "avoid_negative_ts"
 msgstr "avoid_negative_ts"
 
@@ -426,8 +426,8 @@ msgstr "Bir ses akışı seçin"
 msgid "Choose an input device ..."
 msgstr "Bir giriş cihazı seçin ..."
 
-#: src/views/Edit/Sources/Network.js:934
-#: src/views/Edit/Sources/Network.js:1028
+#: src/views/Edit/Sources/Network.js:968
+#: src/views/Edit/Sources/Network.js:1062
 msgid "Choose an input stream ..."
 msgstr ""
 
@@ -499,7 +499,7 @@ msgid "Connected since <0/>"
 msgstr "<0/>'dan beri bağlı"
 
 #: src/misc/ActionButton.js:12
-#: src/views/Main/index.js:334
+#: src/views/Main/index.js:335
 #: src/views/Publication/Process.js:40
 msgid "Connecting ..."
 msgstr "Bağlanıyor ..."
@@ -522,11 +522,11 @@ msgstr "Sabit kare hızı (CFR)"
 msgid "Content"
 msgstr "İçerik"
 
-#: src/views/Main/index.js:394
+#: src/views/Main/index.js:395
 msgid "Content URL"
 msgstr "İçerik URL'si"
 
-#: src/views/Edit/Sources/Network.js:701
+#: src/views/Edit/Sources/Network.js:735
 msgid "copyts"
 msgstr "copyts"
 
@@ -671,11 +671,11 @@ msgstr "Kod Çözücü"
 msgid "Default"
 msgstr "Varsayılan"
 
-#: src/views/Edit/Sources/Network.js:642
+#: src/views/Edit/Sources/Network.js:676
 msgid "Default {0}"
 msgstr "Varsayılan {0}"
 
-#: src/views/Edit/Sources/Network.js:682
+#: src/views/Edit/Sources/Network.js:716
 msgid "Default {0} ({1} seconds)"
 msgstr "Varsayılan {0} ({1} saniye)"
 
@@ -867,7 +867,7 @@ msgstr "Şuan etkin"
 msgid "Enable primary stream"
 msgstr "Birincil akışı etkinleştirin"
 
-#: src/views/Edit/Sources/Network.js:915
+#: src/views/Edit/Sources/Network.js:949
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:55
 msgid "Enable RTMP server ..."
 msgstr "RTMP sunucusunu etkinleştir ..."
@@ -880,7 +880,7 @@ msgstr "RTMPS aktarımını etkinleştir"
 msgid "Enable snapshots"
 msgstr "Anlık görüntüleri etkinleştirin"
 
-#: src/views/Edit/Sources/Network.js:1009
+#: src/views/Edit/Sources/Network.js:1043
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:55
 msgid "Enable SRT server ..."
 msgstr "SRT sunucusunu etkinleştir ..."
@@ -917,7 +917,7 @@ msgstr "Yeni kanal için bir ad girin."
 msgid "Enter password"
 msgstr "Şifre girin"
 
-#: src/views/Edit/Sources/Network.js:744
+#: src/views/Edit/Sources/Network.js:778
 #: src/views/Edit/Wizard/Sources/Network.js:59
 msgid "Enter the address of your network source:"
 msgstr "Ağ kaynağınızın adresini girin:"
@@ -944,7 +944,7 @@ msgstr "Hata"
 msgid "Error while copying data to clipboard"
 msgstr "Veriler panoya kopyalanırken hata oluştu"
 
-#: src/views/Main/index.js:353
+#: src/views/Main/index.js:354
 #: src/views/Publication/Process.js:64
 msgid "Error: {0}"
 msgstr "Hata: {0}"
@@ -994,7 +994,7 @@ msgstr "Yayın web sitesi dosyaları oluşturulamadı."
 msgid "Failed to probe the source. Please check the <0>probe details</0>."
 msgstr "Kaynak araştırması başarısız oldu. Lütfen <0>inceleme detaylarını</0> kontrol edin."
 
-#: src/utils/restreamer.js:446
+#: src/utils/restreamer.js:447
 msgid "Failed to refresh token: {0}"
 msgstr "Yenileme tokeni hatalı: {0}"
 
@@ -1068,7 +1068,7 @@ msgstr "Javascripts için."
 msgid "For Stylesheets."
 msgstr "Stil Sayfaları için."
 
-#: src/views/Edit/Sources/Network.js:547
+#: src/views/Edit/Sources/Network.js:581
 msgid "Force input framerate"
 msgstr "Giriş kare hızını zorla"
 
@@ -1099,7 +1099,7 @@ msgstr "Framebuffer"
 
 #: src/misc/coders/settings/Video.js:135
 #: src/misc/filters/video/Framerate.js:65
-#: src/views/Edit/Sources/Network.js:560
+#: src/views/Edit/Sources/Network.js:594
 msgid "Framerate"
 msgstr "Çerçeve hızı"
 
@@ -1117,7 +1117,7 @@ msgstr "Frekans (Hz)"
 
 #: src/views/Edit/index.js:418
 #: src/views/Edit/index.js:430
-#: src/views/Edit/Sources/Network.js:598
+#: src/views/Edit/Sources/Network.js:632
 #: src/views/Playersite.js:260
 #: src/views/Playersite.js:273
 #: src/views/Publication/Add.js:414
@@ -1178,7 +1178,7 @@ msgstr "Manşet"
 msgid "Height"
 msgstr "Yükseklik"
 
-#: src/views/Main/index.js:403
+#: src/views/Main/index.js:404
 msgid "HLS"
 msgstr "HLS"
 
@@ -1202,7 +1202,7 @@ msgstr "Yan çevir"
 msgid "Hosted Restreamer interface"
 msgstr "Barındırılan Restreamer arayüzü"
 
-#: src/views/Edit/Sources/Network.js:537
+#: src/views/Edit/Sources/Network.js:571
 msgid "HTTP and HTTPS"
 msgstr "HTTP ve HTTPS"
 
@@ -1290,8 +1290,8 @@ msgstr "Enjekte 3"
 msgid "Inject 4"
 msgstr "Enjekte 4"
 
-#: src/views/Edit/Sources/Network.js:947
-#: src/views/Edit/Sources/Network.js:1041
+#: src/views/Edit/Sources/Network.js:981
+#: src/views/Edit/Sources/Network.js:1075
 msgid "Input stream"
 msgstr ""
 
@@ -1445,15 +1445,15 @@ msgstr "Günlük kaydı"
 msgid "Login"
 msgstr "Giriş yap"
 
-#: src/utils/restreamer.js:259
-#: src/utils/restreamer.js:293
+#: src/utils/restreamer.js:260
+#: src/utils/restreamer.js:294
 msgid "Login failed: {0}"
 msgstr "Giriş başarısız oldu: {0}"
 
-#: src/utils/restreamer.js:268
-#: src/utils/restreamer.js:273
-#: src/utils/restreamer.js:302
-#: src/utils/restreamer.js:307
+#: src/utils/restreamer.js:269
+#: src/utils/restreamer.js:274
+#: src/utils/restreamer.js:303
+#: src/utils/restreamer.js:308
 msgid "Login failed: Couldn't load API details"
 msgstr "Giriş başarısız oldu: API ayrıntıları yüklenemedi"
 
@@ -1482,7 +1482,7 @@ msgstr "Ses Yüksekliği Normalizasyonu"
 msgid "Low latency (Buffer)"
 msgstr "Düşük gecikme süresi (Tampon)"
 
-#: src/views/Main/index.js:289
+#: src/views/Main/index.js:290
 #: src/views/Playersite.js:299
 msgid "Main channel"
 msgstr "Ana kanal"
@@ -1600,7 +1600,7 @@ msgstr "Meta bilgisi"
 msgid "Metadata"
 msgstr "Metadata"
 
-#: src/views/Edit/Sources/Network.js:625
+#: src/views/Edit/Sources/Network.js:659
 msgid "Mininum {0}, default {1}"
 msgstr "Mininum {0}, varsayılan {1}"
 
@@ -1667,7 +1667,7 @@ msgstr "Şablon için ad. İsim zaten mevcutsa, üzerine yazılacaktır."
 msgid "Network"
 msgstr "Ağ"
 
-#: src/views/Edit/Sources/Network.js:1176
+#: src/views/Edit/Sources/Network.js:1210
 #: src/views/Edit/Wizard/Sources/Network.js:123
 msgid "Network source"
 msgstr "Ağ kaynağı"
@@ -1725,7 +1725,7 @@ msgstr "Uygun kodlayıcı bulunamadı."
 msgid "No suitable filter found."
 msgstr "Uygun filtre bulunamadı."
 
-#: src/views/Main/index.js:315
+#: src/views/Main/index.js:316
 #: src/views/Publication/Player.js:356
 msgid "No video"
 msgstr "Video yok"
@@ -1808,7 +1808,7 @@ msgstr "Parola 10 ila 79 karakter uzunluğunda olmalıdır"
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "Passthrough (kopyalama) yalnızca gerekli olduğunda devre dışı bırakılmalıdır. Her kodlama ek CPU/GPU kaynakları gerektirir."
 
-#: src/views/Edit/Sources/Network.js:791
+#: src/views/Edit/Sources/Network.js:825
 #: src/views/Edit/Wizard/Sources/Network.js:97
 #: src/views/Login.js:282
 #: src/views/Publication/Services/Akamai.js:134
@@ -1828,7 +1828,7 @@ msgstr "Şifre"
 msgid "Password for authorization."
 msgstr "Yetkilendirme için şifre."
 
-#: src/views/Edit/Sources/Network.js:796
+#: src/views/Edit/Sources/Network.js:830
 #: src/views/Edit/Wizard/Sources/Network.js:103
 msgid "Password for the device."
 msgstr "Cihaz için şifre."
@@ -1885,7 +1885,7 @@ msgstr "Çalma Listesi"
 msgid "Playlist version (M3U8). Version 3 has the best browser/client compatibility."
 msgstr "Oynatma listesi sürümü (M3U8). Sürüm 3 en iyi tarayıcı/istemci uyumluluğuna sahiptir."
 
-#: src/views/Main/index.js:358
+#: src/views/Main/index.js:359
 msgid "Please check the <0>process log</0>"
 msgstr "Lütfen <0>process log</0> kontrol edin"
 
@@ -1980,10 +1980,10 @@ msgstr "Birincil akış anahtarı"
 #: src/views/Edit/Sources/AudioLoop.js:155
 #: src/views/Edit/Sources/AVFoundation.js:201
 #: src/views/Edit/Sources/Framebuffer.js:110
-#: src/views/Edit/Sources/Network.js:808
-#: src/views/Edit/Sources/Network.js:890
-#: src/views/Edit/Sources/Network.js:971
-#: src/views/Edit/Sources/Network.js:1065
+#: src/views/Edit/Sources/Network.js:842
+#: src/views/Edit/Sources/Network.js:924
+#: src/views/Edit/Sources/Network.js:1005
+#: src/views/Edit/Sources/Network.js:1099
 #: src/views/Edit/Sources/Raspicam.js:125
 #: src/views/Edit/Sources/V4L.js:134
 #: src/views/Edit/Sources/VideoLoop.js:163
@@ -2003,15 +2003,15 @@ msgstr "İşlem"
 msgid "Process control"
 msgstr "Süreç kontrolü"
 
-#: src/views/Main/index.js:448
-#: src/views/Main/index.js:464
+#: src/views/Main/index.js:449
+#: src/views/Main/index.js:465
 #: src/views/Publication/Edit.js:494
 #: src/views/Publication/Edit.js:613
 msgid "Process details"
 msgstr "Süreç ayrıntıları"
 
-#: src/views/Main/index.js:451
-#: src/views/Main/index.js:472
+#: src/views/Main/index.js:452
+#: src/views/Main/index.js:473
 #: src/views/Publication/Edit.js:497
 #: src/views/Publication/Edit.js:621
 msgid "Process report"
@@ -2031,7 +2031,7 @@ msgstr "İşleme ve Kontrol"
 msgid "Profile"
 msgstr "Profil"
 
-#: src/views/Edit/Sources/Network.js:842
+#: src/views/Edit/Sources/Network.js:876
 #: src/views/Publication/Services/Akamai.js:144
 #: src/views/Publication/Services/Akamai.js:182
 #: src/views/Publication/Services/Azure.js:89
@@ -2078,11 +2078,11 @@ msgstr "Yayın web sitesi ayarları kaydedildi"
 msgid "Publications"
 msgstr "Yayınlar"
 
-#: src/views/Edit/Sources/Network.js:1140
+#: src/views/Edit/Sources/Network.js:1174
 msgid "Pull Mode"
 msgstr "Çekme Modu"
 
-#: src/views/Edit/Sources/Network.js:1139
+#: src/views/Edit/Sources/Network.js:1173
 msgid "Pull or recieve the data:"
 msgstr "Verileri çekin veya alın:"
 
@@ -2109,11 +2109,11 @@ msgstr "Oran kontrolü"
 msgid "Ratio"
 msgstr "Oran"
 
-#: src/views/Edit/Sources/Network.js:542
+#: src/views/Edit/Sources/Network.js:576
 msgid "Read input at native speed"
 msgstr "Girdiyi yerel hızda okuyun"
 
-#: src/views/Edit/Sources/Network.js:1141
+#: src/views/Edit/Sources/Network.js:1175
 msgid "Receive Mode"
 msgstr "Alma Modu"
 
@@ -2127,7 +2127,7 @@ msgstr "Yeniden Bağlan"
 msgid "Reconnect delay (seconds)"
 msgstr "Yeniden bağlanma gecikmesi (saniye)"
 
-#: src/views/Main/index.js:369
+#: src/views/Main/index.js:370
 #: src/views/Publication/Process.js:68
 #: src/views/Publication/Process.js:81
 msgid "Reconnecting in {0}s"
@@ -2143,8 +2143,8 @@ msgstr "Restreamer Core'a yeniden bağlanma başarısız oldu."
 
 #: src/views/Edit/Sources/ALSA.js:122
 #: src/views/Edit/Sources/AVFoundation.js:181
-#: src/views/Edit/Sources/Network.js:951
-#: src/views/Edit/Sources/Network.js:1045
+#: src/views/Edit/Sources/Network.js:985
+#: src/views/Edit/Sources/Network.js:1079
 #: src/views/Edit/Sources/Raspicam.js:111
 #: src/views/Edit/Sources/V4L.js:120
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:135
@@ -2219,7 +2219,7 @@ msgstr "Restreamer talimatları"
 msgid "Restreamer Service"
 msgstr "Restreamer Hizmeti"
 
-#: src/views/Main/index.js:273
+#: src/views/Main/index.js:274
 msgid "Retrieving stream data ..."
 msgstr "Akış verileri alınıyor..."
 
@@ -2237,7 +2237,7 @@ msgstr "RGB test deseni"
 msgid "Rotate"
 msgstr "Döndür"
 
-#: src/views/Main/index.js:412
+#: src/views/Main/index.js:413
 #: src/views/Settings.js:1239
 #: src/views/Settings.js:1920
 msgid "RTMP"
@@ -2260,7 +2260,7 @@ msgstr "RTMP Bağlantı Noktası"
 msgid "RTMP server"
 msgstr "RTMP sunucusu"
 
-#: src/views/Edit/Sources/Network.js:910
+#: src/views/Edit/Sources/Network.js:944
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:50
 msgid "RTMP server is not enabled"
 msgstr "RTMP sunucusu etkin değil"
@@ -2285,7 +2285,7 @@ msgstr "RTMPS sunucusu"
 msgid "RTMPS server listen address."
 msgstr "RTMPS sunucusu dinleme adresi."
 
-#: src/views/Edit/Sources/Network.js:513
+#: src/views/Edit/Sources/Network.js:547
 msgid "RTSP"
 msgstr "RTSP"
 
@@ -2416,12 +2416,12 @@ msgstr "Seçim"
 msgid "Send anonymous metrics (helps us for future development)"
 msgstr "Anonim ölçümler gönderin (gelecekteki gelişim için bize yardımcı olur)"
 
-#: src/views/Edit/Sources/Network.js:940
-#: src/views/Edit/Sources/Network.js:1034
+#: src/views/Edit/Sources/Network.js:974
+#: src/views/Edit/Sources/Network.js:1068
 msgid "Send stream to address ..."
 msgstr ""
 
-#: src/views/Edit/Sources/Network.js:879
+#: src/views/Edit/Sources/Network.js:913
 #: src/views/Edit/Wizard/Sources/InternalHLS.js:48
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:68
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:68
@@ -2528,7 +2528,7 @@ msgid "Size"
 msgstr "Boyut"
 
 #: src/views/Edit/index.js:543
-#: src/views/Main/index.js:431
+#: src/views/Main/index.js:432
 msgid "Snapshot"
 msgstr "Anlık görüntü"
 
@@ -2536,7 +2536,7 @@ msgstr "Anlık görüntü"
 msgid "Social-login (OAuth2, 2FA)"
 msgstr "Sosyal giriş (OAuth2, 2FA)"
 
-#: src/views/Edit/Sources/Network.js:526
+#: src/views/Edit/Sources/Network.js:560
 msgid "Socket timeout (microseconds)"
 msgstr "Soket zaman aşımı (mikrosaniye)"
 
@@ -2563,7 +2563,7 @@ msgstr "Kaynak ve Kodlama"
 msgid "Speed"
 msgstr "Hız"
 
-#: src/views/Main/index.js:422
+#: src/views/Main/index.js:423
 #: src/views/Settings.js:1240
 #: src/views/Settings.js:2019
 msgid "SRT"
@@ -2578,7 +2578,7 @@ msgstr "SRT çıkışı"
 msgid "SRT server"
 msgstr "SRT sunucusu"
 
-#: src/views/Edit/Sources/Network.js:1004
+#: src/views/Edit/Sources/Network.js:1038
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:50
 msgid "SRT server is not enabled"
 msgstr "SRT sunucu etkin değil"
@@ -2595,7 +2595,7 @@ msgstr "Yayınlama ve oynatma için SRT belirteci. Belirteç, streamid parametre
 msgid "Stale timeout (seconds)"
 msgstr "Eski zaman aşımı (saniye)"
 
-#: src/views/Edit/Sources/Network.js:703
+#: src/views/Edit/Sources/Network.js:737
 msgid "start_at_zero"
 msgstr "start_at_zero"
 
@@ -2672,7 +2672,7 @@ msgstr "Akış URL'si"
 msgid "Support datarhei Restreamer"
 msgstr "Destek datarhei Restreamer"
 
-#: src/views/Edit/Sources/Network.js:757
+#: src/views/Edit/Sources/Network.js:791
 #: src/views/Edit/Wizard/Sources/Network.js:72
 msgid "Supports HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT and more."
 msgstr "HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT ve daha fazlasını destekler."
@@ -2720,7 +2720,7 @@ msgstr "Oluşturulan ses akışının genliği (0.0 - 1.0)"
 msgid "The application is using an older version of the settings."
 msgstr "Uygulama, ayarların eski bir sürümünü kullanıyor."
 
-#: src/views/Edit/Sources/Network.js:830
+#: src/views/Edit/Sources/Network.js:864
 msgid "The available FFmpeg binary doesn't support any of the required protocols."
 msgstr "Mevcut FFmpeg ikili dosyası gerekli protokollerin hiçbirini desteklemiyor."
 
@@ -2921,7 +2921,7 @@ msgstr "Bu lisans, yaratıcıya atıfta bulunulduğu sürece, yeniden kullanıc�
 msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms."
 msgstr "Bu lisans, yaratıcıya atıfta bulunulduğu sürece, yeniden kullanıcıların materyali herhangi bir ortam veya formatta dağıtmasına, remikslemesine, uyarlamasına ve üzerine inşa etmesine izin verir. Lisans ticari kullanıma izin verir. Materyali yeniden karıştırır, uyarlar veya üzerine inşa ederseniz, değiştirilmiş materyali aynı koşullar altında lisanslamanız gerekir."
 
-#: src/views/Edit/Sources/Network.js:767
+#: src/views/Edit/Sources/Network.js:801
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
 msgstr "Bu profil bilinmiyor ya da FFmpeg tarafından desteklenmiyor."
 
@@ -3088,7 +3088,7 @@ msgstr "Video akışınızı, Twitter Producer'da oluşturulan gerekli anahtarla
 msgid "Tune"
 msgstr "Tune"
 
-#: src/views/Edit/Sources/Network.js:517
+#: src/views/Edit/Sources/Network.js:551
 #: src/views/Edit/Wizard/Sources/Network.js:77
 msgid "UDP transport"
 msgstr "UDP aktarımı"
@@ -3175,7 +3175,7 @@ msgstr "Telif hakkınızı kullanın ve doğru görsel lisansını seçin. Herke
 msgid "Use your copyright and choose the right image licence. Whether free for all or highly restricted. Briefly discuss what others are allowed to do with your image."
 msgstr "Telif hakkınızı kullanın ve doğru görsel lisansını seçin. İster herkes için ücretsiz ister oldukça kısıtlı olsun. Başkalarının görselinizle ne yapmasına izin verildiğini kısaca tartışın."
 
-#: src/views/Edit/Sources/Network.js:708
+#: src/views/Edit/Sources/Network.js:742
 msgid "use_wallclock_as_timestamps"
 msgstr "use_wallclock_as_timestamps"
 
@@ -3183,7 +3183,7 @@ msgstr "use_wallclock_as_timestamps"
 msgid "User registration"
 msgstr "Kullanıcı kaydı"
 
-#: src/views/Edit/Sources/Network.js:779
+#: src/views/Edit/Sources/Network.js:813
 #: src/views/Edit/Wizard/Sources/Network.js:84
 #: src/views/Login.js:272
 #: src/views/Publication/Services/DaCast.js:131
@@ -3202,7 +3202,7 @@ msgstr "Kullanıcı Adı"
 msgid "Username for authorization."
 msgstr "Yetkilendirme için kullanıcı adı."
 
-#: src/views/Edit/Sources/Network.js:784
+#: src/views/Edit/Sources/Network.js:818
 #: src/views/Edit/Wizard/Sources/Network.js:90
 msgid "Username for the device."
 msgstr "Cihaz için kullanıcı adı."
@@ -3316,7 +3316,7 @@ msgstr "Sihirbazı iptal edemezsiniz çünkü en az bir girdi tanımlanmış olm
 msgid "You have changed the configuration. In order for the changes to take effect, you have to restart the application. Do you want to restart now?"
 msgstr "Yapılandırmayı değiştirdiniz. Değişikliklerin etkili olması için uygulamayı yeniden başlatmanız gerekir. Şimdi yeniden başlatmak istiyor musunuz?"
 
-#: src/views/Main/index.js:376
+#: src/views/Main/index.js:377
 #: src/views/Publication/Process.js:73
 msgid "You have to reconnect manually"
 msgstr "Manuel olarak yeniden bağlanmanız gerekir"
