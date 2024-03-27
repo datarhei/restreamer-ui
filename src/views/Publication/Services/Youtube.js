@@ -55,6 +55,7 @@ const requires = {
 	codecs: {
 		audio: ['aac', 'mp3'],
 		video: ['h264'],
+		// video: ['h264', 'h265', 'vp9' , 'av1'],
 	},
 };
 

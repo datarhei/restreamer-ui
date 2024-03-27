@@ -16,6 +16,7 @@ import * as VideoDefault from './video/Default';
 import * as VideoToolbox from './video/VideoToolbox';
 import * as VP8CUVID from './video/VP8CUVID';
 import * as VP9CUVID from './video/VP9CUVID';
+import * as AV1NVDEC from './video/AV1NVDEC';
 
 class Registry {
 	constructor(type) {
@@ -112,6 +113,7 @@ const videoRegistry = new Registry('video');
 
 videoRegistry.Register(VideoDefault);
 videoRegistry.Register(VideoToolbox);
+videoRegistry.Register(AV1NVDEC);
 videoRegistry.Register(NVDEC);
 videoRegistry.Register(H264MMAL);
 videoRegistry.Register(H264CUVID);

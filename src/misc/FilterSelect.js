@@ -46,7 +46,10 @@ export default function FilterSelect(props) {
 			}
 		}
 
-		filter.graph = graphs.join(',');
+		
+		// graphs.push('hwdownload')
+
+		filter.graph = `${graphs.join(',')}`;
 
 		props.onChange(filter, automatic);
 	};
