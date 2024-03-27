@@ -58,7 +58,7 @@ function createMapping(settings, stream, skills) {
 			'-g',
 			`${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`,
 			'-keyint_min',
-			`${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`
+			`${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`,
 		);
 	}
 
@@ -194,7 +194,7 @@ Coder.defaultProps = {
 
 const coder = 'libx265';
 const name = 'H.265 (libx265)';
-const codec = 'h265';
+const codec = 'hevc';
 const type = 'video';
 const hwaccel = false;
 

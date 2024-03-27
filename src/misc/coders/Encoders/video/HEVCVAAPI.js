@@ -52,7 +52,7 @@ function createMapping(settings, stream, skills) {
 		'-r',
 		`${settings.fps}`,
 		'-g',
-		`${settings.gop}`
+		`${settings.gop}`,
 	);
 
 	if (settings.gop !== 'auto') {
