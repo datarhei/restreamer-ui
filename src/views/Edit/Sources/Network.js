@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import SemverSatisfies from 'semver/functions/satisfies';
 
 import { useLingui } from '@lingui/react';
 import { Trans, t } from '@lingui/macro';
@@ -149,6 +148,8 @@ const initSkills = (initialSkills) => {
 
 	skills.ffmpeg = {
 		version: '0.0.0',
+		version_major: 0,
+		version_minor: 0,
 		...skills.ffmpeg,
 	};
 
@@ -181,13 +182,6 @@ const createInputs = (settings, config, skills) => {
 	config = initConfig(config);
 	settings = initSettings(settings, config);
 	skills = initSkills(skills);
-
-	let ffmpeg_version = 6;
-	if (SemverSatisfies(skills.ffmpeg.version, '^5.0.0')) {
-		ffmpeg_version = 5;
-	} else if (SemverSatisfies(skills.ffmpeg.version, '^4.1.0')) {
-		ffmpeg_version = 4;
-	}
 
 	const input = {
 		address: '',
@@ -241,7 +235,7 @@ const createInputs = (settings, config, skills) => {
 	if (settings.general.use_wallclock_as_timestamps) {
 		input.options.push('-use_wallclock_as_timestamps', '1');
 	}
-	if (ffmpeg_version === 5 && settings.general.avoid_negative_ts !== 'auto') {
+	if (skills.ffmpeg.version_major >= 5 && settings.general.avoid_negative_ts !== 'auto') {
 		input.options.push('-avoid_negative_ts', settings.general.avoid_negative_ts);
 	}
 
@@ -259,7 +253,7 @@ const createInputs = (settings, config, skills) => {
 				input.options.push('-analyzeduration', settings.general.analyzeduration_rtmp);
 			}
 
-			if (ffmpeg_version === 6) {
+			if (skills.ffmpeg.version_major >= 6) {
 				const codecs = [];
 				if (skills.codecs.video.hevc?.length > 0) {
 					codecs.push('hvc1');
@@ -290,7 +284,7 @@ const createInputs = (settings, config, skills) => {
 				input.options.push('-analyzeduration', settings.general.analyzeduration_rtmp);
 			}
 
-			if (ffmpeg_version === 6) {
+			if (skills.ffmpeg.version_major >= 6) {
 				const codecs = [];
 				if (skills.codecs.video.hevc?.length > 0) {
 					codecs.push('hvc1');
@@ -317,7 +311,7 @@ const createInputs = (settings, config, skills) => {
 		input.address = addUsernamePassword(input.address, settings.username, settings.password);
 
 		if (protocol === 'rtsp') {
-			if (ffmpeg_version === 4) {
+			if (skills.ffmpeg.version_major === 4) {
 				input.options.push('-stimeout', settings.rtsp.stimeout);
 			} else {
 				input.options.push('-timeout', settings.rtsp.stimeout);
@@ -461,7 +455,7 @@ const getRTMPAddress = (host, app, name, token, secure) => {
 	let url = 'rtmp' + (secure ? 's' : '') + '://' + host + app + '/' + name + '.stream';
 
 	if (token.length !== 0) {
-		url += '?token=' + encodeURIComponent(token);
+		url += '/token=' + encodeURIComponent(token);
 	}
 
 	return url;
@@ -689,13 +683,13 @@ function AdvancedSettings(props) {
 										? settings.push.type === 'hls'
 											? settings.general.analyzeduration_http
 											: settings.push.type === 'rtmp'
-											  ? settings.general.analyzeduration_rtmp
-											  : settings.general.analyzeduration
+												? settings.general.analyzeduration_rtmp
+												: settings.general.analyzeduration
 										: protocolClass === 'http'
-										  ? settings.general.analyzeduration_http
-										  : protocolClass === 'rtmp'
-										    ? settings.general.analyzeduration_rtmp
-										    : settings.general.analyzeduration
+											? settings.general.analyzeduration_http
+											: protocolClass === 'rtmp'
+												? settings.general.analyzeduration_rtmp
+												: settings.general.analyzeduration
 								}
 								onChange={props.onChange(
 									'general',
@@ -703,13 +697,13 @@ function AdvancedSettings(props) {
 										? settings.push.type === 'hls'
 											? 'analyzeduration_http'
 											: settings.push.type === 'rtmp'
-											  ? 'analyzeduration_rtmp'
-											  : 'analyzeduration'
+												? 'analyzeduration_rtmp'
+												: 'analyzeduration'
 										: protocolClass === 'http'
-										  ? 'analyzeduration_http'
-										  : protocolClass === 'rtmp'
-										    ? 'analyzeduration_rtmp'
-										    : 'analyzeduration',
+											? 'analyzeduration_http'
+											: protocolClass === 'rtmp'
+												? 'analyzeduration_rtmp'
+												: 'analyzeduration',
 								)}
 							/>
 							<Typography variant="caption">

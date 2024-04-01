@@ -1,7 +1,11 @@
 import React from 'react';
 
 import Grid from '@mui/material/Grid';
+import MenuItem from '@mui/material/MenuItem';
 
+import { Trans } from '@lingui/macro';
+
+import Select from '../../../Select';
 import Video from '../../settings/Video';
 import Helper from '../../helper';
 
@@ -10,7 +14,7 @@ function init(initialState) {
 		bitrate: '4096',
 		fps: '25',
 		gop: '2',
-		fps_mode: 'auto',
+		profile: 'auto',
 		...initialState,
 	};
 
@@ -23,7 +27,7 @@ function createMapping(settings, stream, skills) {
 
 	const local = [
 		'-codec:v',
-		'libvpx-vp9',
+		'hevc_videotoolbox',
 		'-b:v',
 		`${settings.bitrate}k`,
 		'-maxrate:v',
@@ -32,23 +36,18 @@ function createMapping(settings, stream, skills) {
 		`${settings.bitrate}k`,
 		'-r',
 		`${settings.fps}`,
-		'-sc_threshold',
-		'0',
 		'-pix_fmt',
 		'yuv420p',
+		'-realtime',
+		'true',
 	];
 
 	if (settings.gop !== 'auto') {
-		local.push(
-			'-g',
-			`${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`,
-			'-keyint_min',
-			`${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`,
-		);
+		local.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);
 	}
 
-	if (skills.ffmpeg.version_major >= 5) {
-		local.push('-fps_mode', `${settings.fps_mode}`);
+	if (settings.profile !== 'auto') {
+		local.push('-profile:v', `${settings.profile}`);
 	}
 
 	const mapping = {
@@ -58,6 +57,21 @@ function createMapping(settings, stream, skills) {
 
 	return mapping;
 }
+
+function Profile(props) {
+	return (
+		<Select label={<Trans>Profile</Trans>} value={props.value} onChange={props.onChange}>
+			<MenuItem value="auto">auto</MenuItem>
+			<MenuItem value="main">main</MenuItem>
+			<MenuItem value="main10">main10</MenuItem>
+		</Select>
+	);
+}
+
+Profile.defaultProps = {
+	value: '',
+	onChange: function (event) {},
+};
 
 function Coder(props) {
 	const settings = init(props.settings);
@@ -93,17 +107,15 @@ function Coder(props) {
 			<Grid item xs={12}>
 				<Video.Bitrate value={settings.bitrate} onChange={update('bitrate')} allowCustom />
 			</Grid>
-			<Grid item xs={12} md={6}>
+			<Grid item xs={12}>
 				<Video.Framerate value={settings.fps} onChange={update('fps')} allowCustom />
 			</Grid>
-			<Grid item xs={12} md={6}>
+			<Grid item xs={12}>
 				<Video.GOP value={settings.gop} onChange={update('gop')} allowAuto allowCustom />
 			</Grid>
-			{skills.ffmpeg.version_major >= 5 && (
-				<Grid item xs={12}>
-					<Video.FpsMode value={settings.fps_mode} onChange={update('fps_mode')} />
-				</Grid>
-			)}
+			<Grid item xs={12}>
+				<Profile value={settings.profile} onChange={update('profile')} />
+			</Grid>
 		</Grid>
 	);
 }
@@ -115,14 +127,14 @@ Coder.defaultProps = {
 	onChange: function (settings, mapping) {},
 };
 
-const coder = 'libvpx-vp9';
-const name = 'VP9 (libvpx-vp9)';
-const codec = 'vp9';
+const coder = 'hevc_videotoolbox';
+const name = 'HEVC (VideoToolbox)';
+const codec = 'hevc';
 const type = 'video';
-const hwaccel = false;
+const hwaccel = true;
 
 function summarize(settings) {
-	return `${name}, ${settings.bitrate} kbit/s, ${settings.fps} FPS, Preset: ${settings.preset}, Profile: ${settings.profile}`;
+	return `${name}, ${settings.bitrate} kbit/s, ${settings.fps} FPS, Profile: ${settings.profile}`;
 }
 
 function defaults(stream, skills) {

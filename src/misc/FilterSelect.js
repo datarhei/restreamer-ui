@@ -46,10 +46,7 @@ export default function FilterSelect(props) {
 			}
 		}
 
-		
-		// graphs.push('hwdownload')
-
-		filter.graph = `${graphs.join(',')}`;
+		filter.graph = graphs.join(',');
 
 		props.onChange(filter, automatic);
 	};
@@ -94,7 +91,7 @@ export default function FilterSelect(props) {
 				}
 
 				filterSettings.push(
-					<Settings key={c.filter} settings={profile.filter.settings[c.filter].settings} onChange={handleFilterSettingsChange(c.filter)} />
+					<Settings key={c.filter} settings={profile.filter.settings[c.filter].settings} onChange={handleFilterSettingsChange(c.filter)} />,
 				);
 			}
 		}

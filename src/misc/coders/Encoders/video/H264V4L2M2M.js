@@ -1,5 +1,4 @@
 import React from 'react';
-import SemverSatisfies from 'semver/functions/satisfies';
 
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -80,10 +79,6 @@ function createMapping(settings, stream, skills) {
 	stream = Helper.InitStream(stream);
 	skills = Helper.InitSkills(skills);
 
-	let ffversion = 4;
-	if (SemverSatisfies(skills.ffmpeg.version, '^5.0.0')) {
-		ffversion = 5;
-	}
 	const local = [
 		'-codec:v',
 		'h264_v4l2m2m',
@@ -119,7 +114,7 @@ function createMapping(settings, stream, skills) {
 		local.push('-keyint_min', `${parseInt(settings.fps)}`);
 	}
 
-	if (ffversion === 5) {
+	if (skills.ffmpeg.version_major >= 5) {
 		local.push('-fps_mode', `${settings.fps_mode}`);
 	}
 
@@ -139,11 +134,6 @@ function Coder(props) {
 	const settings = init(props.settings);
 	const stream = Helper.InitStream(props.stream);
 	const skills = Helper.InitSkills(props.skills);
-
-	let ffversion = 4;
-	if (SemverSatisfies(skills.ffmpeg.version, '^5.0.0')) {
-		ffversion = 5;
-	}
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -190,7 +180,7 @@ function Coder(props) {
 					<Trans>To stabilize the system, increase the HLS segment length for the keyframe interval by 2-3 * (Processing and Control).</Trans>
 				</Typography>
 			</Grid>
-			{ffversion === 5 && (
+			{skills.ffmpeg.version_major >= 5 && (
 				<Grid item xs={12}>
 					<Video.FpsMode value={settings.fps_mode} onChange={update('fps_mode')} />
 				</Grid>

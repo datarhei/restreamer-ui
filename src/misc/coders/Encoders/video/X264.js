@@ -1,5 +1,4 @@
 import React from 'react';
-import SemverSatisfies from 'semver/functions/satisfies';
 
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
@@ -29,11 +28,6 @@ function createMapping(settings, stream, skills) {
 	stream = Helper.InitStream(stream);
 	skills = Helper.InitSkills(skills);
 
-	let ffversion = 4;
-	if (SemverSatisfies(skills.ffmpeg.version, '^5.0.0')) {
-		ffversion = 5;
-	}
-
 	const local = [
 		'-codec:v',
 		'libx264',
@@ -58,11 +52,11 @@ function createMapping(settings, stream, skills) {
 			'-g',
 			`${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`,
 			'-keyint_min',
-			`${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`
+			`${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`,
 		);
 	}
 
-	if (ffversion === 5) {
+	if (skills.ffmpeg.version_major >= 5) {
 		local.push('-fps_mode', `${settings.fps_mode}`);
 	}
 
@@ -127,11 +121,6 @@ function Coder(props) {
 	const stream = Helper.InitStream(props.stream);
 	const skills = Helper.InitSkills(props.skills);
 
-	let ffversion = 4;
-	if (SemverSatisfies(skills.ffmpeg.version, '^5.0.0')) {
-		ffversion = 5;
-	}
-
 	const handleChange = (newSettings) => {
 		let automatic = false;
 		if (!newSettings) {
@@ -167,7 +156,7 @@ function Coder(props) {
 			<Grid item xs={12} md={6}>
 				<Video.GOP value={settings.gop} onChange={update('gop')} allowAuto allowCustom />
 			</Grid>
-			{ffversion === 5 && (
+			{skills.ffmpeg.version_major >= 5 && (
 				<Grid item xs={12}>
 					<Video.FpsMode value={settings.fps_mode} onChange={update('fps_mode')} />
 				</Grid>

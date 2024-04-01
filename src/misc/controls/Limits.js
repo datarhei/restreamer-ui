@@ -46,7 +46,7 @@ export default function Control(props) {
 					onChange={handleChange('cpu_usage')}
 				/>
 				<Typography variant="caption">
-					<Trans>CPU usage limit in percent (0-100%), 0 for unlimited</Trans>
+					<Trans>CPU usage limit in percent (0-100%), 0 for unlimited.</Trans>
 				</Typography>
 			</Grid>
 			<Grid item xs={12} md={4}>

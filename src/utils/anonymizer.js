@@ -33,7 +33,6 @@ const anonymize = (text) => {
 	const regex = /(?:([a-z0-9\\]+):)?\/[A-Za-z0-9-._~!$&'()*+,;=:@?/{}%\\]*/gm;
 
 	return text.replaceAll(regex, (match, scheme) => {
-		console.log('text', text, 'match', match, 'scheme', scheme);
 		if (scheme) {
 			match = match.replace(scheme, scheme.replaceAll('\\', ''));
 			return anonymize_url(match);
