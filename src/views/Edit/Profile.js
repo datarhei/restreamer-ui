@@ -56,6 +56,7 @@ export default function Profile(props) {
 	const load = async () => {
 		// Add pseudo sources
 		props.skills.sources.noaudio = [];
+		props.skills.sources.sdp = [];
 
 		let audio = $sources.audio;
 
@@ -121,6 +122,7 @@ export default function Profile(props) {
 
 			// Add pseudo sources
 			props.skills.sources.noaudio = [];
+			props.skills.sources.sdp = [];
 
 			let hasAudio = false;
 			for (let i = 0; i < res.streams.length; i++) {
