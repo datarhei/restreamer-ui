@@ -47,7 +47,10 @@ const createInputs = (settings) => {
 		options: [],
 	};
 
+	
 	input.options.push('-protocol_whitelist', 'file,udp,rtp');
+	input.options.push('-buffer_size', '671088640');
+	input.options.push('-thread_queue_size', '4096');
 
 	return [input];
 };
