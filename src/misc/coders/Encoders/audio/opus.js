@@ -7,7 +7,7 @@ import { useLingui } from '@lingui/react';
 import { Trans, t } from '@lingui/macro';
 
 import Audio from '../../settings/Audio';
-import SelectCustom from '../../../../misc/SelectCustom';
+import SelectCustom from '../../../SelectCustom';
 import Helper from '../../helper';
 
 function init(initialState) {

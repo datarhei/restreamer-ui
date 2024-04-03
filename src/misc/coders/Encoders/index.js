@@ -1,28 +1,28 @@
-import * as AudioCopy from './audio/Copy';
-import * as AudioNone from './audio/None';
-import * as AAC from './audio/AAC';
-import * as AACAudioToolbox from './audio/AACAudioToolbox';
-import * as Libopus from './audio/Libopus';
-import * as Libvorbis from './audio/Libvorbis';
-import * as MP3 from './audio/MP3';
-import * as Opus from './audio/Opus';
+import * as AudioCopy from './audio/copy';
+import * as AudioNone from './audio/none';
+import * as AAC from './audio/aac';
+import * as AACAudioToolbox from './audio/aac_audiotoolbox';
+import * as Libopus from './audio/opus_libopus';
+import * as Libvorbis from './audio/vorbis_libvorbis';
+import * as MP3 from './audio/mp3_libmp3lame';
+import * as Opus from './audio/opus';
 import * as Vorbis from './audio/Vorbis';
 
-import * as X264 from './video/X264';
-import * as X265 from './video/X265';
-import * as H264VideoToolbox from './video/H264VideoToolbox';
-import * as H264NVENC from './video/H264NVENC';
-import * as H264OMX from './video/H264OMX';
-import * as H264V4L2M2M from './video/H264V4L2M2M';
-import * as H264VAAPI from './video/H264VAAPI';
-import * as HEVCVAAPI from './video/HEVCVAAPI';
-import * as HEVCVideoToolbox from './video/HEVCVideoToolbox';
-import * as VP9VAAPI from './video/VP9VAAPI';
-import * as VideoCopy from './video/Copy';
-import * as VideoNone from './video/None';
-import * as VideoRaw from './video/Raw';
-import * as VP9 from './video/VP9';
-import * as AV1Rav1e from './video/AV1Rav1e';
+import * as X264 from './video/h264_libx264';
+import * as X265 from './video/hevc_libx265';
+import * as H264VideoToolbox from './video/h264_videotoolbox';
+import * as H264NVENC from './video/h264_nvenc';
+import * as H264OMX from './video/h264_omx';
+import * as H264V4L2M2M from './video/h264_v4l2m2m';
+import * as H264VAAPI from './video/h264_vaapi';
+import * as HEVCVAAPI from './video/hevc_vaapi';
+import * as HEVCVideoToolbox from './video/hevc_videotoolbox';
+import * as VP9VAAPI from './video/vp9_vaapi';
+import * as VideoCopy from './video/copy';
+import * as VideoNone from './video/none';
+import * as VideoRaw from './video/rawvideo';
+import * as VP9 from './video/vp9_libvpx';
+import * as AV1Rav1e from './video/av1_librav1e';
 
 class Registry {
 	constructor(type) {
