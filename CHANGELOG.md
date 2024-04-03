@@ -1,5 +1,15 @@
 # Restreamer-UI
 
+## v1.10.0 > v1.11.0
+
+-   Add allow to stream HEVC and AV1 to Youtube via RTMP
+-   Add librav1e AV1 encoder
+-   Add support for AV1 CUDA decoding ([PR 46](https://github.com/datarhei/restreamer-ui/pull/46))
+-   Add FFmpeg 6 support
+-   Add HEVC VideoToolbox encoder
+-   Fix anonymize error message ([#688](https://github.com/datarhei/restreamer/issues/688))
+-   Fix chromecast config ([#37](https://github.com/datarhei/restreamer-ui/issues/37))
+
 ## v1.9.0 > v1.10.0
 
 -   Add resource usage and ffmpeg command to process details
