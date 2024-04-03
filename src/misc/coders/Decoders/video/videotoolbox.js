@@ -53,8 +53,8 @@ Coder.defaultProps = {
 };
 
 const coder = 'videotoolbox';
-const name = 'H.264 (VideoToolbox)';
-const codecs = ['h264'];
+const name = 'VideoToolbox';
+const codecs = ['h264', 'hevc', 'vp9', 'mpeg1', 'mpeg2', 'mpeg4'];
 const type = 'video';
 const hwaccel = true;
 

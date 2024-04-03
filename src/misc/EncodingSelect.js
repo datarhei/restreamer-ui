@@ -155,14 +155,14 @@ export default function EncodingSelect(props) {
 				encoderList.push(
 					<MenuItem value={c.coder} key={c.coder}>
 						{c.name}
-					</MenuItem>
+					</MenuItem>,
 				);
 			}
 		} else {
 			encoderList.push(
 				<MenuItem value={c.coder} key={c.coder}>
 					{c.name}
-				</MenuItem>
+				</MenuItem>,
 			);
 		}
 	}
@@ -195,7 +195,7 @@ export default function EncodingSelect(props) {
 			decoderList.push(
 				<MenuItem value={c.coder} key={c.coder}>
 					{c.name}
-				</MenuItem>
+				</MenuItem>,
 			);
 		}
 	}

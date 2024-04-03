@@ -1,22 +1,22 @@
-import * as AudioDefault from './audio/Default';
+import * as AudioDefault from './audio/default';
 
-import * as NVDEC from './video/NVDEC';
-import * as H264MMAL from './video/H264MMAL';
-import * as H264CUVID from './video/H264CUVID';
-import * as HEVCCUVID from './video/HEVCCUVID';
-import * as MJPEGCUVID from './video/MJPEGCUVID';
-import * as MPEG1CUVID from './video/MPEG1CUVID';
-import * as MPEG2CUVID from './video/MPEG2CUVID';
-import * as MPEG2MMAL from './video/MPEG2MMAL';
-import * as MPEG4CUVID from './video/MPEG4CUVID';
-import * as MPEG4MMAL from './video/MPEG4MMAL';
-import * as VC1CUVID from './video/VC1CUVID';
-import * as VC1MMAL from './video/VC1MMAL';
-import * as VideoDefault from './video/Default';
-import * as VideoToolbox from './video/VideoToolbox';
-import * as VP8CUVID from './video/VP8CUVID';
-import * as VP9CUVID from './video/VP9CUVID';
-import * as AV1CUVID from './video/AV1CUVID';
+import * as NVDEC from './video/nvdec';
+import * as H264MMAL from './video/h264_mmal';
+import * as H264CUVID from './video/h264_cuvid';
+import * as HEVCCUVID from './video/hevc_cuvid';
+import * as MJPEGCUVID from './video/mjpeg_cuvid';
+import * as MPEG1CUVID from './video/mpeg1_cuvid';
+import * as MPEG2CUVID from './video/mpeg2_cuvid';
+import * as MPEG2MMAL from './video/mpeg2_mmal';
+import * as MPEG4CUVID from './video/mpeg4_cuvid';
+import * as MPEG4MMAL from './video/mpeg4_mmal';
+import * as VC1CUVID from './video/vc1_cuvid';
+import * as VC1MMAL from './video/vc1_mmal';
+import * as VideoDefault from './video/default';
+import * as VideoToolbox from './video/videotoolbox';
+import * as VP8CUVID from './video/vp8_cuvid';
+import * as VP9CUVID from './video/vp9_cuvid';
+import * as AV1CUVID from './video/av1_cuvid';
 
 class Registry {
 	constructor(type) {

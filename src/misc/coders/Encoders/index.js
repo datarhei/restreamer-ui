@@ -6,7 +6,7 @@ import * as Libopus from './audio/opus_libopus';
 import * as Libvorbis from './audio/vorbis_libvorbis';
 import * as MP3 from './audio/mp3_libmp3lame';
 import * as Opus from './audio/opus';
-import * as Vorbis from './audio/Vorbis';
+import * as Vorbis from './audio/vorbis';
 
 import * as X264 from './video/h264_libx264';
 import * as X265 from './video/hevc_libx265';
