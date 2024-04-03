@@ -101,8 +101,6 @@ function Service(props) {
 		if (settings.mode === 'rtmps') {
 			let options = ['-f', 'flv'];
 
-			console.log('codecs', props.skills.codecs);
-
 			if (props.skills.ffmpeg.version_major >= 6) {
 				const codecs = [];
 				if (props.skills.codecs.video.includes('hevc')) {

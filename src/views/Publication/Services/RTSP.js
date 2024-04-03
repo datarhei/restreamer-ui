@@ -50,7 +50,7 @@ const requires = {
 	formats: ['rtsp'],
 	codecs: {
 		audio: ['aac', 'mp3'],
-		video: ['h264'],
+		video: ['h264', 'hevc', 'vp9'],
 	},
 };
 

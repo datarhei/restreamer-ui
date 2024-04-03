@@ -45,7 +45,7 @@ const requires = {
 	formats: ['mpegts'],
 	codecs: {
 		audio: ['aac', 'mp3'],
-		video: ['h264'],
+		video: ['h264', 'hevc', 'vp9', 'av1'],
 	},
 };
 

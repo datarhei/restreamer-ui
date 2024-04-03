@@ -46,7 +46,7 @@ const requires = {
 	formats: ['flv'],
 	codecs: {
 		audio: ['aac', 'mp3'],
-		video: ['h264'],
+		video: ['h264', 'hevc', 'vp9', 'av1'],
 	},
 };
 
@@ -107,6 +107,23 @@ function Service(props) {
 
 	const createOutput = (settings) => {
 		const options = ['-f', 'flv'];
+
+		if (props.skills.ffmpeg.version_major >= 6) {
+			const codecs = [];
+			if (props.skills.codecs.video.includes('hevc')) {
+				codecs.push('hvc1');
+			}
+			if (props.skills.codecs.video.includes('av1')) {
+				codecs.push('av01');
+			}
+			if (props.skills.codecs.video.includes('vp9')) {
+				codecs.push('vp09');
+			}
+
+			if (codecs.length !== 0) {
+				options.push('-rtmp_enhanced_codecs', codecs.join(','));
+			}
+		}
 
 		for (let key in settings.options) {
 			if (settings.options[key].length !== 0) {
