@@ -401,7 +401,7 @@ export default function Add(props) {
 							{serviceList}
 							<Grid item xs={12} className={classes.buttonAbort}>
 								<Button variant="outlined" color="default" onClick={handleAbort}>
-									<Trans>Abort</Trans>
+									<Trans>Close</Trans>
 								</Button>
 							</Grid>
 						</Grid>

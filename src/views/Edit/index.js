@@ -618,7 +618,7 @@ export default function Edit(props) {
 				<PaperFooter
 					buttonsLeft={
 						<Button variant="outlined" color="default" onClick={handleAbort}>
-							<Trans>Abort</Trans>
+							<Trans>Close</Trans>
 						</Button>
 					}
 					buttonsRight={
