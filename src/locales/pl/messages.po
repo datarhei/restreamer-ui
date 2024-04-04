@@ -22,15 +22,15 @@ msgstr "<0>Lista kompatybilności</0>"
 msgid "<0>Show probe details</0>"
 msgstr "<0>Pokaż szczegóły sondy</0>"
 
-#: src/views/Publication/Services/Core.js:192
+#: src/views/Publication/Services/Core.js:209
 msgid "1. Switch to the interface of the target Restreamer."
 msgstr "1. Przejdź do interfejsu docelowego Restreamera."
 
-#: src/views/Publication/Services/Core.js:194
+#: src/views/Publication/Services/Core.js:211
 msgid "2. Create a new channel and select RTMP or SRT server."
 msgstr "2. Utwórz nowy kanał i wybierz serwer RTMP lub SRT."
 
-#: src/views/Publication/Services/Core.js:196
+#: src/views/Publication/Services/Core.js:213
 msgid "3. Copy the URL and paste it in the \"Target address\" field."
 msgstr "3. Skopiuj adres URL i wklej go w polu \"Adres docelowy\"."
 
@@ -43,14 +43,11 @@ msgid "7 (+ fragmented MP4 format)"
 msgstr "7 (+ fragmentaryczny format MP4)"
 
 #: src/misc/ChannelList.js:412
-#: src/views/Edit/index.js:621
 #: src/views/Edit/index.js:647
 #: src/views/Edit/index.js:666
 #: src/views/Edit/Profile.js:437
 #: src/views/Edit/Wizard/Abort.js:14
-#: src/views/Publication/Add.js:404
 #: src/views/Publication/Edit.js:631
-#: src/views/Settings.js:2219
 #: src/views/Settings.js:2278
 #: src/views/Settings.js:2300
 msgid "Abort"
@@ -81,11 +78,11 @@ msgstr "Dodaj Publikację"
 msgid "Add: {0}"
 msgstr "Dodaj : {0}"
 
-#: src/views/Edit/Sources/Network.js:785
+#: src/views/Edit/Sources/Network.js:779
 #: src/views/Edit/Wizard/Sources/Network.js:66
 #: src/views/Publication/Services/Azure.js:98
 #: src/views/Publication/Services/Brightcove.js:95
-#: src/views/Publication/Services/Core.js:207
+#: src/views/Publication/Services/Core.js:224
 #: src/views/Publication/Services/DASH.js:192
 #: src/views/Publication/Services/HLS.js:181
 #: src/views/Publication/Services/Icecast.js:162
@@ -93,7 +90,7 @@ msgstr "Dodaj : {0}"
 #: src/views/Publication/Services/Linkedin.js:93
 #: src/views/Publication/Services/MPEGTS.js:170
 #: src/views/Publication/Services/Red5.js:115
-#: src/views/Publication/Services/RTMP.js:142
+#: src/views/Publication/Services/RTMP.js:159
 #: src/views/Publication/Services/RTSP.js:150
 #: src/views/Publication/Services/SRT.js:161
 #: src/views/Publication/Services/UDP.js:127
@@ -114,10 +111,10 @@ msgstr "Adres do nasłuchiwania żądań HTTP."
 msgid "Address to listen on for HTTPS requests."
 msgstr "Adres do nasłuchiwania żądań HTTPS."
 
-#: src/views/Edit/Sources/Network.js:992
-#: src/views/Edit/Sources/Network.js:1086
+#: src/views/Edit/Sources/Network.js:986
+#: src/views/Edit/Sources/Network.js:1080
 msgid "Address:"
-msgstr ""
+msgstr "Adres:"
 
 #: src/views/Playersite.js:446
 msgid "Adjust publication site colors and background as you like."
@@ -127,13 +124,13 @@ msgstr "Dostosuj kolory i tło witryny publikowania zgodnie z potrzebami."
 msgid "Advanced monitoring"
 msgstr "Zaawansowane monitorowanie"
 
-#: src/views/Edit/Sources/Network.js:538
+#: src/views/Edit/Sources/Network.js:532
 #: src/views/Publication/Services/DASH.js:204
 #: src/views/Publication/Services/HLS.js:193
 #: src/views/Publication/Services/Icecast.js:172
 #: src/views/Publication/Services/Image2.js:132
 #: src/views/Publication/Services/MPEGTS.js:176
-#: src/views/Publication/Services/RTMP.js:157
+#: src/views/Publication/Services/RTMP.js:174
 #: src/views/Publication/Services/RTSP.js:162
 #: src/views/Publication/Services/SRT.js:170
 #: src/views/Publication/Services/UDP.js:133
@@ -272,7 +269,7 @@ msgstr "Dostępne na"
 msgid "AVFoundation"
 msgstr "AVFoundation"
 
-#: src/views/Edit/Sources/Network.js:750
+#: src/views/Edit/Sources/Network.js:744
 msgid "avoid_negative_ts"
 msgstr "avoid_negative_ts"
 
@@ -299,7 +296,7 @@ msgstr "Obraz tła"
 msgid "Backup server"
 msgstr "Serwer kopii zapasowej"
 
-#: src/views/Publication/Services/Youtube.js:182
+#: src/views/Publication/Services/Youtube.js:198
 msgid "Backup stream"
 msgstr "Zapasowy stream"
 
@@ -383,7 +380,7 @@ msgstr "Czas buforowania (w sekundach)"
 msgid "Cache types"
 msgstr "Rodzaje buforu"
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:202
+#: src/misc/coders/Encoders/video/h264_v4l2m2m.js:192
 msgid "Capture buffer"
 msgstr "Bufor przechwytujący"
 
@@ -426,10 +423,10 @@ msgstr "Wybierz strumień dźwiękowy"
 msgid "Choose an input device ..."
 msgstr "Wybierz urządzenie wejściowe ..."
 
-#: src/views/Edit/Sources/Network.js:968
-#: src/views/Edit/Sources/Network.js:1062
+#: src/views/Edit/Sources/Network.js:962
+#: src/views/Edit/Sources/Network.js:1056
 msgid "Choose an input stream ..."
-msgstr ""
+msgstr "Wybierz strumień wejściowy ..."
 
 #: src/misc/coders/settings/Video.js:343
 msgid "Choose between CFR and VFR (Auto)"
@@ -455,10 +452,13 @@ msgstr "Kawałek"
 
 #: src/misc/Changelog.js:177
 #: src/misc/ModalContent.js:77
+#: src/views/Edit/index.js:621
 #: src/views/Playersite.js:717
+#: src/views/Publication/Add.js:404
 #: src/views/Publication/Add.js:558
 #: src/views/Publication/Edit.js:595
 #: src/views/Publication/Player.js:536
+#: src/views/Settings.js:2219
 msgid "Close"
 msgstr "Zamknij"
 
@@ -476,7 +476,7 @@ msgstr "Kolor"
 
 #: src/misc/modals/Process.js:99
 msgid "Command"
-msgstr ""
+msgstr "Polecenie"
 
 #: src/views/Settings.js:1376
 msgid "Config"
@@ -516,6 +516,10 @@ msgstr "Połączenie z Restreamer Core nie powiodło się, prawdopodobnie z powo
 msgid "Constant frame rate (CFR)"
 msgstr "Stała częstotliwość odświeżania (CFR)"
 
+#: src/misc/coders/Encoders/video/av1_librav1e.js:174
+msgid "Constant Quantizer Mode (-1 to 255)."
+msgstr "Tryb stałego kwantyzatora (od -1 do 255)."
+
 #: src/misc/controls/Metadata.js:70
 #: src/views/Playersite.js:594
 #: src/views/Playersite.js:611
@@ -526,7 +530,7 @@ msgstr "Zawartość"
 msgid "Content URL"
 msgstr "URL treści"
 
-#: src/views/Edit/Sources/Network.js:735
+#: src/views/Edit/Sources/Network.js:729
 msgid "copyts"
 msgstr "copyts"
 
@@ -536,21 +540,21 @@ msgstr "Rdzenie"
 
 #: src/misc/Progress.js:66
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 #: src/misc/controls/Limits.js:44
 msgid "CPU Limit (percent)"
-msgstr ""
+msgstr "Limit CPU (w procentach)"
 
 #: src/misc/controls/Limits.js:49
-msgid "CPU usage limit in percent (0-100%), 0 for unlimited"
-msgstr ""
+msgid "CPU usage limit in percent (0-100%), 0 for unlimited."
+msgstr "Limit użycia procesora w procentach (0-100%), 0 dla nieograniczonego."
 
 #: src/misc/controls/License/index.js:112
 msgid "Creative Commons"
 msgstr "Creative Commons"
 
-#: src/misc/coders/Encoders/audio/Opus.js:65
+#: src/misc/coders/Encoders/audio/opus.js:65
 #: src/misc/coders/settings/Audio.js:25
 #: src/misc/coders/settings/Audio.js:71
 #: src/misc/coders/settings/Audio.js:122
@@ -589,7 +593,7 @@ msgstr "Własna szybkość transmisji (kb/s)"
 msgid "Custom code injection"
 msgstr "Wstrzyknięcie własnego kodu"
 
-#: src/misc/coders/Encoders/audio/Opus.js:91
+#: src/misc/coders/Encoders/audio/opus.js:91
 msgid "Custom delay"
 msgstr "Własny limit czasu"
 
@@ -671,11 +675,11 @@ msgstr "Dekoder"
 msgid "Default"
 msgstr "Domyślny"
 
-#: src/views/Edit/Sources/Network.js:676
+#: src/views/Edit/Sources/Network.js:670
 msgid "Default {0}"
 msgstr "Domyślnie {0}"
 
-#: src/views/Edit/Sources/Network.js:716
+#: src/views/Edit/Sources/Network.js:710
 msgid "Default {0} ({1} seconds)"
 msgstr "Domyślnie {0} ({1} sekund)"
 
@@ -695,7 +699,7 @@ msgstr "Tryb Deinterlace"
 msgid "Deinterlace parity"
 msgstr "Deinterlace parity"
 
-#: src/misc/coders/Encoders/audio/Opus.js:90
+#: src/misc/coders/Encoders/audio/opus.js:90
 msgid "Delay"
 msgstr "Limit czasu"
 
@@ -716,7 +720,7 @@ msgid "Deleting a publication service cannot be reversed. The publication stops 
 msgstr "Usunięcia usługi publikowania nie można cofnąć. Publikowanie zatrzymuje się natychmiast."
 
 #: src/views/Publication/Services/Twitter.js:141
-#: src/views/Publication/Services/Youtube.js:167
+#: src/views/Publication/Services/Youtube.js:183
 msgid "Delivering mode"
 msgstr "Sposób dostawy"
 
@@ -792,7 +796,7 @@ msgstr "Dokumentacja"
 #: src/views/Publication/Services/Icecast.js:240
 #: src/views/Publication/Services/Image2.js:171
 #: src/views/Publication/Services/MPEGTS.js:365
-#: src/views/Publication/Services/RTMP.js:269
+#: src/views/Publication/Services/RTMP.js:286
 #: src/views/Publication/Services/RTSP.js:235
 #: src/views/Publication/Services/SRT.js:428
 #: src/views/Publication/Services/UDP.js:241
@@ -867,7 +871,7 @@ msgstr "Włącz teraz"
 msgid "Enable primary stream"
 msgstr "Aktywuj podstawowy stream"
 
-#: src/views/Edit/Sources/Network.js:949
+#: src/views/Edit/Sources/Network.js:943
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:55
 msgid "Enable RTMP server ..."
 msgstr "Aktywuj serwer RTMP ..."
@@ -880,7 +884,7 @@ msgstr "Włącz transfer RTMPS"
 msgid "Enable snapshots"
 msgstr "Włącz migawki"
 
-#: src/views/Edit/Sources/Network.js:1043
+#: src/views/Edit/Sources/Network.js:1037
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:55
 msgid "Enable SRT server ..."
 msgstr "Włączenie serwera SRT ..."
@@ -904,7 +908,7 @@ msgid "Encoding"
 msgstr "Kodowanie"
 
 #: src/views/Publication/Services/HLS.js:445
-#: src/views/Publication/Services/RTMP.js:241
+#: src/views/Publication/Services/RTMP.js:258
 #: src/views/Publication/Services/SRT.js:372
 msgid "Encryption"
 msgstr "Szyfrowanie"
@@ -917,7 +921,7 @@ msgstr "Wpisz nazwę nowego kanału."
 msgid "Enter password"
 msgstr "Wpisz hasło"
 
-#: src/views/Edit/Sources/Network.js:778
+#: src/views/Edit/Sources/Network.js:772
 #: src/views/Edit/Wizard/Sources/Network.js:59
 msgid "Enter the address of your network source:"
 msgstr "Wprowadź adres źródła sieci:"
@@ -926,7 +930,7 @@ msgstr "Wprowadź adres źródła sieci:"
 msgid "Enter username"
 msgstr "Wpisz login"
 
-#: src/misc/coders/Encoders/video/H264VideoToolbox.js:68
+#: src/misc/coders/Encoders/video/h264_videotoolbox.js:68
 msgid "Entropy coder"
 msgstr "Koder entropii"
 
@@ -994,7 +998,7 @@ msgstr "Nie udało się utworzyć publikowanych plików witryny."
 msgid "Failed to probe the source. Please check the <0>probe details</0>."
 msgstr "Nie można zbadać źródła. Sprawdź <0>szczegóły sondy</0>."
 
-#: src/utils/restreamer.js:447
+#: src/utils/restreamer.js:449
 msgid "Failed to refresh token: {0}"
 msgstr "Nie udało się odświeżyć tokena: {0}"
 
@@ -1042,7 +1046,7 @@ msgstr "FFmpeg"
 #: src/views/Edit/Sources/AudioLoop.js:142
 #: src/views/Edit/Sources/VideoLoop.js:150
 msgid "File path"
-msgstr ""
+msgstr "Ścieżka pliku"
 
 #: src/views/Edit/Summary.js:101
 msgid "Filter"
@@ -1068,11 +1072,11 @@ msgstr "Dla JavaScriptów."
 msgid "For Stylesheets."
 msgstr "Do arkuszy stylów."
 
-#: src/views/Edit/Sources/Network.js:581
+#: src/views/Edit/Sources/Network.js:575
 msgid "Force input framerate"
 msgstr "Wymuś częstotliwość odświeżania wejściowego"
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:199
+#: src/misc/coders/Encoders/video/h264_v4l2m2m.js:189
 msgid "Force key frames"
 msgstr "Wymuś ramki kluczowe"
 
@@ -1099,13 +1103,13 @@ msgstr "Framebuffer"
 
 #: src/misc/coders/settings/Video.js:135
 #: src/misc/filters/video/Framerate.js:65
-#: src/views/Edit/Sources/Network.js:594
+#: src/views/Edit/Sources/Network.js:588
 msgid "Framerate"
 msgstr "Częstotliwość wyświetlania klatek"
 
 #: src/misc/filters/video/Framerate.js:107
 msgid "Framerate conversion (frame interpolation)"
-msgstr ""
+msgstr "Konwersja liczby klatek na sekundę (interpolacja klatek)"
 
 #: src/misc/coders/settings/Video.js:332
 msgid "Framerate mode"
@@ -1117,7 +1121,7 @@ msgstr "Częstotliwość (Hz)"
 
 #: src/views/Edit/index.js:418
 #: src/views/Edit/index.js:430
-#: src/views/Edit/Sources/Network.js:632
+#: src/views/Edit/Sources/Network.js:626
 #: src/views/Playersite.js:260
 #: src/views/Playersite.js:273
 #: src/views/Publication/Add.js:414
@@ -1126,7 +1130,7 @@ msgstr "Częstotliwość (Hz)"
 #: src/views/Publication/Services/HLS.js:200
 #: src/views/Publication/Services/Icecast.js:179
 #: src/views/Publication/Services/Image2.js:139
-#: src/views/Publication/Services/RTMP.js:164
+#: src/views/Publication/Services/RTMP.js:181
 #: src/views/Publication/Services/RTSP.js:169
 #: src/views/Publication/Services/SRT.js:177
 #: src/views/Settings.js:1231
@@ -1149,7 +1153,7 @@ msgstr "Główny"
 #: src/views/Publication/Services/Trovo.js:79
 #: src/views/Publication/Services/Twitch.js:155
 #: src/views/Publication/Services/Twitter.js:179
-#: src/views/Publication/Services/Youtube.js:177
+#: src/views/Publication/Services/Youtube.js:193
 msgid "GET"
 msgstr "GET"
 
@@ -1202,7 +1206,7 @@ msgstr "Przerzucanie poziome"
 msgid "Hosted Restreamer interface"
 msgstr "Interfejs hostowany przez Restreamer"
 
-#: src/views/Edit/Sources/Network.js:571
+#: src/views/Edit/Sources/Network.js:565
 msgid "HTTP and HTTPS"
 msgstr "HTTP i HTTPS"
 
@@ -1290,10 +1294,10 @@ msgstr "Wstrzyknij 3"
 msgid "Inject 4"
 msgstr "Wstrzyknij 4"
 
-#: src/views/Edit/Sources/Network.js:981
-#: src/views/Edit/Sources/Network.js:1075
+#: src/views/Edit/Sources/Network.js:975
+#: src/views/Edit/Sources/Network.js:1069
 msgid "Input stream"
-msgstr ""
+msgstr "Strumień wejściowy"
 
 #: src/views/Publication/Services/Instagram.js:121
 msgid "Instafeed.me"
@@ -1335,7 +1339,7 @@ msgstr "Certyfikat Let's Encrypt"
 msgid "Let's Encrypt requires one or more public domain names and an accessible port 80/TCP."
 msgstr "Let's Encrypt wymaga co najmniej jednej nazwy domeny publicznej i dostępnego portu 80/TCP."
 
-#: src/misc/coders/Encoders/video/H264NVENC.js:116
+#: src/misc/coders/Encoders/video/h264_nvenc.js:116
 msgid "Level"
 msgstr "Poziom"
 
@@ -1357,7 +1361,7 @@ msgstr "Kolor życia"
 #: src/views/Publication/Add.js:458
 #: src/views/Publication/Edit.js:470
 msgid "Limits"
-msgstr ""
+msgstr "Ograniczenia"
 
 #: src/views/Playersite.js:538
 msgid "Linecolor"
@@ -1365,7 +1369,7 @@ msgstr "Kolor linii"
 
 #: src/views/Publication/Services/NimoTv.js:93
 msgid "Lines"
-msgstr ""
+msgstr "Linie"
 
 #: src/views/Playersite.js:476
 #: src/views/Publication/Player.js:460
@@ -1445,15 +1449,15 @@ msgstr "Zapis"
 msgid "Login"
 msgstr "Zaloguj"
 
-#: src/utils/restreamer.js:260
-#: src/utils/restreamer.js:294
+#: src/utils/restreamer.js:262
+#: src/utils/restreamer.js:296
 msgid "Login failed: {0}"
 msgstr "Połączenie nie powiodło się: {0}"
 
-#: src/utils/restreamer.js:269
-#: src/utils/restreamer.js:274
-#: src/utils/restreamer.js:303
-#: src/utils/restreamer.js:308
+#: src/utils/restreamer.js:271
+#: src/utils/restreamer.js:276
+#: src/utils/restreamer.js:305
+#: src/utils/restreamer.js:310
 msgid "Login failed: Couldn't load API details"
 msgstr "Połączenie nie powiodło się: nie udało się wczytać szczegółów interfejsu API"
 
@@ -1472,7 +1476,7 @@ msgstr "Wyloguj"
 #: src/views/Edit/Sources/AudioLoop.js:194
 #: src/views/Edit/Sources/VideoLoop.js:202
 msgid "Loop"
-msgstr ""
+msgstr "Pętla"
 
 #: src/misc/filters/audio/Loudnorm.js:66
 msgid "Loudness Normalization"
@@ -1539,7 +1543,7 @@ msgstr "Maksymalna dopuszczalna liczba megabajtów na dysku twardym. 0 dla nieog
 msgid "Maximum bandwidth Mbit/s"
 msgstr "Maksymalna przepustowość Mbit/s"
 
-#: src/misc/coders/Encoders/audio/Opus.js:80
+#: src/misc/coders/Encoders/audio/opus.js:80
 msgid "Maximum delay in milliseconds."
 msgstr "Maksymalne opóźnienie w milisekundach."
 
@@ -1585,11 +1589,11 @@ msgstr "Pamięć"
 
 #: src/misc/controls/Limits.js:58
 msgid "Memory Limit (megabytes)"
-msgstr ""
+msgstr "Limit pamięci (megabajty)"
 
 #: src/misc/controls/Limits.js:63
 msgid "Memory usage limit in megabytes, 0 for unlimited."
-msgstr ""
+msgstr "Limit użycia pamięci w megabajtach, 0 dla nieograniczonego."
 
 #: src/views/Edit/index.js:420
 msgid "Meta information"
@@ -1600,7 +1604,7 @@ msgstr "Informacje Meta"
 msgid "Metadata"
 msgstr "Metadane"
 
-#: src/views/Edit/Sources/Network.js:659
+#: src/views/Edit/Sources/Network.js:653
 msgid "Mininum {0}, default {1}"
 msgstr "Mininum {0}, domyślnie {1}"
 
@@ -1667,7 +1671,7 @@ msgstr "Nazwa modelu. Jeśli nazwa już istnieje, zostanie nadpisana."
 msgid "Network"
 msgstr "Sieć"
 
-#: src/views/Edit/Sources/Network.js:1210
+#: src/views/Edit/Sources/Network.js:1204
 #: src/views/Edit/Wizard/Sources/Network.js:123
 msgid "Network source"
 msgstr "Źródło sieciowe"
@@ -1766,7 +1770,19 @@ msgstr "Liczba dzienników do przechowywania dla każdego procesu."
 
 #: src/misc/controls/Limits.js:77
 msgid "Number of seconds the limits are allowed to be exceeded."
-msgstr ""
+msgstr "Liczba sekund, przez które limity mogą zostać przekroczone."
+
+#: src/misc/coders/Encoders/video/av1_librav1e.js:216
+msgid "Number of tiles columns to encode with."
+msgstr "Liczba kolumn kafelków do zakodowania."
+
+#: src/misc/coders/Encoders/video/av1_librav1e.js:188
+msgid "Number of tiles encode with."
+msgstr "Liczba kafelków kodowanych za pomocą."
+
+#: src/misc/coders/Encoders/video/av1_librav1e.js:202
+msgid "Number of tiles rows to encode with."
+msgstr "Liczba wierszy kafelków do zakodowania."
 
 #: src/views/Edit/Sources/AudioLoop.js:168
 #: src/views/Edit/Sources/VideoLoop.js:176
@@ -1783,7 +1799,7 @@ msgstr "Jedna strona odsyłająca w wierszu, na przykład http://www.domena.com.
 msgid "Open"
 msgstr "Otwórz"
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:205
+#: src/misc/coders/Encoders/video/h264_v4l2m2m.js:195
 msgid "Output buffer"
 msgstr "Bufor wyjściowy"
 
@@ -1791,7 +1807,7 @@ msgstr "Bufor wyjściowy"
 msgid "Pan"
 msgstr "Pan"
 
-#: src/views/Publication/Services/Core.js:221
+#: src/views/Publication/Services/Core.js:238
 #: src/views/Settings.js:2064
 msgid "Passphrase"
 msgstr "Passphrase"
@@ -1808,7 +1824,7 @@ msgstr "Passphrase musi mieć długość od 10 do 79 znaków"
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "Przekazywanie (kopiowanie) powinno być wyłączone tylko w razie potrzeby. Każde kodowanie wymaga dodatkowych zasobów procesora/GPU."
 
-#: src/views/Edit/Sources/Network.js:825
+#: src/views/Edit/Sources/Network.js:819
 #: src/views/Edit/Wizard/Sources/Network.js:97
 #: src/views/Login.js:282
 #: src/views/Publication/Services/Akamai.js:134
@@ -1828,7 +1844,7 @@ msgstr "Hasło"
 msgid "Password for authorization."
 msgstr "Hasło do autoryzacji."
 
-#: src/views/Edit/Sources/Network.js:830
+#: src/views/Edit/Sources/Network.js:824
 #: src/views/Edit/Wizard/Sources/Network.js:103
 msgid "Password for the device."
 msgstr "Hasło do urządzenia."
@@ -1956,19 +1972,19 @@ msgstr "Pozycja"
 
 #: src/views/Publication/Player.js:383
 msgid "Poster"
-msgstr ""
+msgstr "Plakat"
 
 #: src/views/Publication/Player.js:474
 msgid "Poster image URL"
-msgstr ""
+msgstr "Adres URL obrazu plakatu"
 
-#: src/misc/coders/Encoders/video/H264NVENC.js:74
-#: src/misc/coders/Encoders/video/X264.js:87
-#: src/misc/coders/Encoders/video/X265.js:87
+#: src/misc/coders/Encoders/video/h264_libx264.js:81
+#: src/misc/coders/Encoders/video/h264_nvenc.js:74
+#: src/misc/coders/Encoders/video/hevc_libx265.js:81
 msgid "Preset"
 msgstr "Zaprogramowane"
 
-#: src/views/Publication/Services/Youtube.js:181
+#: src/views/Publication/Services/Youtube.js:197
 msgid "Primary stream"
 msgstr "Główny stream"
 
@@ -1980,10 +1996,10 @@ msgstr "Klucz strumienia podstawowego"
 #: src/views/Edit/Sources/AudioLoop.js:155
 #: src/views/Edit/Sources/AVFoundation.js:201
 #: src/views/Edit/Sources/Framebuffer.js:110
-#: src/views/Edit/Sources/Network.js:842
-#: src/views/Edit/Sources/Network.js:924
-#: src/views/Edit/Sources/Network.js:1005
-#: src/views/Edit/Sources/Network.js:1099
+#: src/views/Edit/Sources/Network.js:836
+#: src/views/Edit/Sources/Network.js:918
+#: src/views/Edit/Sources/Network.js:999
+#: src/views/Edit/Sources/Network.js:1093
 #: src/views/Edit/Sources/Raspicam.js:125
 #: src/views/Edit/Sources/V4L.js:134
 #: src/views/Edit/Sources/VideoLoop.js:163
@@ -2022,22 +2038,23 @@ msgstr "Raport z procesu"
 msgid "Processing & Control"
 msgstr "Przetwarzanie i kontrola"
 
-#: src/misc/coders/Encoders/video/H264NVENC.js:99
-#: src/misc/coders/Encoders/video/H264VAAPI.js:89
-#: src/misc/coders/Encoders/video/HEVCVAAPI.js:89
-#: src/misc/coders/Encoders/video/VP9VAAPI.js:89
+#: src/misc/coders/Encoders/video/h264_nvenc.js:99
+#: src/misc/coders/Encoders/video/h264_vaapi.js:89
+#: src/misc/coders/Encoders/video/hevc_vaapi.js:89
+#: src/misc/coders/Encoders/video/hevc_videotoolbox.js:63
+#: src/misc/coders/Encoders/video/vp9_vaapi.js:89
 #: src/misc/coders/settings/Video.js:142
 #: src/views/Edit/Wizard/VideoProfile.js:27
 msgid "Profile"
 msgstr "Profil"
 
-#: src/views/Edit/Sources/Network.js:876
+#: src/views/Edit/Sources/Network.js:870
 #: src/views/Publication/Services/Akamai.js:144
 #: src/views/Publication/Services/Akamai.js:182
 #: src/views/Publication/Services/Azure.js:89
 #: src/views/Publication/Services/Brightcove.js:87
 #: src/views/Publication/Services/CDN77.js:90
-#: src/views/Publication/Services/Core.js:202
+#: src/views/Publication/Services/Core.js:219
 #: src/views/Publication/Services/DaCast.js:110
 #: src/views/Publication/Services/DaCast.js:168
 #: src/views/Publication/Services/DASH.js:186
@@ -2048,7 +2065,7 @@ msgstr "Profil"
 #: src/views/Publication/Services/MPEGTS.js:164
 #: src/views/Publication/Services/Owncast.js:88
 #: src/views/Publication/Services/Red5.js:105
-#: src/views/Publication/Services/RTMP.js:132
+#: src/views/Publication/Services/RTMP.js:149
 #: src/views/Publication/Services/RTSP.js:144
 #: src/views/Publication/Services/SRT.js:158
 #: src/views/Publication/Services/Telegram.js:79
@@ -2078,17 +2095,21 @@ msgstr "Tworzenie kopii zapasowej ustawień witryny publikacji"
 msgid "Publications"
 msgstr "Publikacje"
 
-#: src/views/Edit/Sources/Network.js:1174
+#: src/views/Edit/Sources/Network.js:1168
 msgid "Pull Mode"
 msgstr "Tryb ciągnięcia"
 
-#: src/views/Edit/Sources/Network.js:1173
+#: src/views/Edit/Sources/Network.js:1167
 msgid "Pull or recieve the data:"
 msgstr "Pobierz lub odbierz dane:"
 
-#: src/misc/coders/Encoders/video/H264VAAPI.js:146
-#: src/misc/coders/Encoders/video/HEVCVAAPI.js:146
-#: src/misc/coders/Encoders/video/VP9VAAPI.js:146
+#: src/misc/coders/Encoders/video/av1_librav1e.js:169
+msgid "QP"
+msgstr "QP"
+
+#: src/misc/coders/Encoders/video/h264_vaapi.js:146
+#: src/misc/coders/Encoders/video/hevc_vaapi.js:146
+#: src/misc/coders/Encoders/video/vp9_vaapi.js:146
 #: src/misc/Progress.js:118
 msgid "Quality"
 msgstr "Jakość"
@@ -2098,10 +2119,10 @@ msgstr "Jakość"
 msgid "Raspberry Pi camera"
 msgstr "Kamera Raspberry Pi"
 
-#: src/misc/coders/Encoders/video/H264NVENC.js:151
-#: src/misc/coders/Encoders/video/H264VAAPI.js:70
-#: src/misc/coders/Encoders/video/HEVCVAAPI.js:70
-#: src/misc/coders/Encoders/video/VP9VAAPI.js:70
+#: src/misc/coders/Encoders/video/h264_nvenc.js:151
+#: src/misc/coders/Encoders/video/h264_vaapi.js:70
+#: src/misc/coders/Encoders/video/hevc_vaapi.js:70
+#: src/misc/coders/Encoders/video/vp9_vaapi.js:70
 msgid "Rate control"
 msgstr "Kontrola szybkości"
 
@@ -2109,11 +2130,15 @@ msgstr "Kontrola szybkości"
 msgid "Ratio"
 msgstr "Ratio"
 
-#: src/views/Edit/Sources/Network.js:576
+#: src/misc/coders/Encoders/video/av1_librav1e.js:220
+msgid "rav1e Parameters"
+msgstr "rav1e Parametry"
+
+#: src/views/Edit/Sources/Network.js:570
 msgid "Read input at native speed"
 msgstr "Odtwarzaj dane wejściowe z natywną prędkością"
 
-#: src/views/Edit/Sources/Network.js:1175
+#: src/views/Edit/Sources/Network.js:1169
 msgid "Receive Mode"
 msgstr "Tryb odbioru"
 
@@ -2143,8 +2168,8 @@ msgstr "Nie udało się ponownie połączyć z Restreamer Core."
 
 #: src/views/Edit/Sources/ALSA.js:122
 #: src/views/Edit/Sources/AVFoundation.js:181
-#: src/views/Edit/Sources/Network.js:985
-#: src/views/Edit/Sources/Network.js:1079
+#: src/views/Edit/Sources/Network.js:979
+#: src/views/Edit/Sources/Network.js:1073
 #: src/views/Edit/Sources/Raspicam.js:111
 #: src/views/Edit/Sources/V4L.js:120
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:135
@@ -2184,7 +2209,7 @@ msgstr "Resetuj logo"
 
 #: src/views/Publication/Player.js:551
 msgid "Reset poster"
-msgstr ""
+msgstr "Reset plakatu"
 
 #: src/views/Settings.js:1300
 #: src/views/Settings.js:2283
@@ -2211,7 +2236,7 @@ msgstr "Uruchom ponownie Restreamer Core ..."
 msgid "Restarting the application failed."
 msgstr "Ponowne uruchomienie aplikacji nie powiodło się."
 
-#: src/views/Publication/Services/Core.js:189
+#: src/views/Publication/Services/Core.js:206
 msgid "Restreamer instructions"
 msgstr "Instrukcje Restreamera"
 
@@ -2260,7 +2285,7 @@ msgstr "Port RTMP"
 msgid "RTMP server"
 msgstr "Serwer RTMP"
 
-#: src/views/Edit/Sources/Network.js:944
+#: src/views/Edit/Sources/Network.js:938
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:50
 msgid "RTMP server is not enabled"
 msgstr "Serwer RTMP nie jest włączony"
@@ -2285,7 +2310,7 @@ msgstr "Serwer RTMPS"
 msgid "RTMPS server listen address."
 msgstr "Adres nasłuchu serwera RTMPS."
 
-#: src/views/Edit/Sources/Network.js:547
+#: src/views/Edit/Sources/Network.js:541
 msgid "RTSP"
 msgstr "RTSP"
 
@@ -2416,12 +2441,12 @@ msgstr "Wybór"
 msgid "Send anonymous metrics (helps us for future development)"
 msgstr "Wysyłaj anonimowe dane (pomaga nam w przyszłym rozwoju)"
 
-#: src/views/Edit/Sources/Network.js:974
-#: src/views/Edit/Sources/Network.js:1068
+#: src/views/Edit/Sources/Network.js:968
+#: src/views/Edit/Sources/Network.js:1062
 msgid "Send stream to address ..."
-msgstr ""
+msgstr "Wyślij strumień na adres ..."
 
-#: src/views/Edit/Sources/Network.js:913
+#: src/views/Edit/Sources/Network.js:907
 #: src/views/Edit/Wizard/Sources/InternalHLS.js:48
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:68
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:68
@@ -2462,6 +2487,10 @@ msgstr "Token serwisowy do monitorowania."
 #: src/Footer.js:240
 msgid "Sessions"
 msgstr "Sesje"
+
+#: src/misc/coders/Encoders/video/av1_librav1e.js:222
+msgid "Set the rav1e configuration using a :-separated list of key=value parameters."
+msgstr "Ustawia konfigurację rav1e przy użyciu listy parametrów klucz=wartość rozdzielonej :-ami."
 
 #: src/views/Settings.js:1516
 msgid "Sets a bandwidth limit in Mbit per second for outgoing HLS data transfer. All services, such as RTMP and outgoing processes, are included in the calculation. If the bandwidth is exceeded, HLS viewers receive the HTTP status code 509 (Bandwidth Limit Exceeded). 0 is unlimited."
@@ -2536,7 +2565,7 @@ msgstr "Snapshot"
 msgid "Social-login (OAuth2, 2FA)"
 msgstr "Social-login (OAuth2, 2FA)"
 
-#: src/views/Edit/Sources/Network.js:560
+#: src/views/Edit/Sources/Network.js:554
 msgid "Socket timeout (microseconds)"
 msgstr "Limit czasu dla gniazd (mikrosekundy)"
 
@@ -2563,6 +2592,10 @@ msgstr "Źródło i kodowanie"
 msgid "Speed"
 msgstr "Prędkość"
 
+#: src/misc/coders/Encoders/video/av1_librav1e.js:89
+msgid "Speed Preset"
+msgstr "Wstępne ustawienie prędkości"
+
 #: src/views/Main/index.js:423
 #: src/views/Settings.js:1240
 #: src/views/Settings.js:2019
@@ -2578,7 +2611,7 @@ msgstr "Wyjście SRT"
 msgid "SRT server"
 msgstr "Serwer SRT"
 
-#: src/views/Edit/Sources/Network.js:1038
+#: src/views/Edit/Sources/Network.js:1032
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:50
 msgid "SRT server is not enabled"
 msgstr "Serwer SRT nie jest włączony"
@@ -2595,7 +2628,7 @@ msgstr "SRT token do publikowania i odtwarzania. Token jest wartością parametr
 msgid "Stale timeout (seconds)"
 msgstr "Limit czasu (sekundy)"
 
-#: src/views/Edit/Sources/Network.js:737
+#: src/views/Edit/Sources/Network.js:731
 msgid "start_at_zero"
 msgstr "start_at_zero"
 
@@ -2640,13 +2673,13 @@ msgstr "Stream"
 #: src/views/Publication/Services/Twitch.js:151
 #: src/views/Publication/Services/Twitter.js:175
 #: src/views/Publication/Services/Vimeo.js:73
-#: src/views/Publication/Services/Youtube.js:173
+#: src/views/Publication/Services/Youtube.js:189
 msgid "Stream key"
 msgstr "Klucz strumienia"
 
-#: src/views/Publication/Services/RTMP.js:148
+#: src/views/Publication/Services/RTMP.js:165
 msgid "Stream Key"
-msgstr ""
+msgstr "Stream Key"
 
 #: src/views/Publication/Services/Brightcove.js:101
 #: src/views/Publication/Services/Red5.js:136
@@ -2672,7 +2705,7 @@ msgstr "Adres URL streamu"
 msgid "Support datarhei Restreamer"
 msgstr "Wsparcie datarhei Restreamer"
 
-#: src/views/Edit/Sources/Network.js:791
+#: src/views/Edit/Sources/Network.js:785
 #: src/views/Edit/Wizard/Sources/Network.js:72
 msgid "Supports HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT and more."
 msgstr "Obsługuje HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT i inne."
@@ -2683,7 +2716,7 @@ msgstr "Obsługuje HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT i inne."
 msgid "System"
 msgstr "System"
 
-#: src/views/Publication/Services/Core.js:179
+#: src/views/Publication/Services/Core.js:196
 msgid "Target address"
 msgstr "Adres celu"
 
@@ -2720,7 +2753,7 @@ msgstr "Rozległość (0,0–1,0) generowanego strumienia audio"
 msgid "The application is using an older version of the settings."
 msgstr "Aplikacja korzysta ze starej wersji ustawień."
 
-#: src/views/Edit/Sources/Network.js:864
+#: src/views/Edit/Sources/Network.js:858
 msgid "The available FFmpeg binary doesn't support any of the required protocols."
 msgstr "Dostępne binarki FFmpeg nie obsługują żadnego z wymaganych protokołów."
 
@@ -2752,7 +2785,7 @@ msgstr "Profil wpisu nie jest kompletny. Ustaw źródło wideo i audio."
 
 #: src/views/Publication/Add.js:222
 msgid "The input profile is not complete. Please define a video and/or audio source."
-msgstr ""
+msgstr "Profil wejściowy nie jest kompletny. Zdefiniuj źródło wideo i/lub audio."
 
 #: src/misc/coders/settings/Audio.js:86
 #: src/misc/filters/audio/Resample.js:78
@@ -2805,14 +2838,14 @@ msgstr "Częstotliwość próbkowania strumienia audio."
 #: src/views/Playersite.js:169
 #: src/views/Publication/Player.js:206
 msgid "The selected file is too big (<0/>). Only <1/> are allowed."
-msgstr ""
+msgstr "Wybrany plik jest zbyt duży (<0/>). Dozwolone są tylko <1/>."
 
 #: src/views/Edit/Sources/AudioLoop.js:88
 #: src/views/Edit/Sources/VideoLoop.js:96
 #: src/views/Playersite.js:162
 #: src/views/Publication/Player.js:199
 msgid "The selected file type ({0}) is not allowed. Allowed file types are {1}"
-msgstr ""
+msgstr "Wybrany typ pliku ({0}) jest niedozwolony. Dozwolone typy plików to {1}"
 
 #: src/views/Publication/Edit.js:277
 msgid "The settings for \"{0}\" have been saved"
@@ -2921,7 +2954,7 @@ msgstr "Ta licencja umożliwia ponownemu użytkownikowi rozpowszechnianie, remik
 msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms."
 msgstr "Ta licencja umożliwia ponownemu użytkownikowi rozpowszechnianie, remiksowanie, adaptowanie i używanie materiału w dowolnym medium lub formacie, pod warunkiem, że twórca zostanie potwierdzony. Licencja pozwala na wykorzystanie komercyjne. Jeśli remiksujesz, adaptujesz lub rozszerzasz materiał, musisz licencjonować zmodyfikowany materiał na identycznych warunkach."
 
-#: src/views/Edit/Sources/Network.js:801
+#: src/views/Edit/Sources/Network.js:795
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
 msgstr "Ten protokół jest nieznany lub nie jest obsługiwany przez dostępne binarki FFmpeg."
 
@@ -2943,13 +2976,25 @@ msgstr "Ta wersja interfejsu użytkownika jest zgodna."
 
 #: src/misc/controls/Limits.js:72
 msgid "Threshold (seconds)"
-msgstr ""
+msgstr "Próg (sekundy)"
+
+#: src/misc/coders/Encoders/video/av1_librav1e.js:211
+msgid "Tile Columns"
+msgstr "Kolumny z płytkami"
+
+#: src/misc/coders/Encoders/video/av1_librav1e.js:197
+msgid "Tile Rows"
+msgstr "Rzędy płytek"
+
+#: src/misc/coders/Encoders/video/av1_librav1e.js:183
+msgid "Tiles"
+msgstr "Płytki"
 
 #: src/views/Settings.js:1666
 msgid "Time until an inactive viewer connection is treated as closed."
 msgstr "Czas, po którym nieaktywne połączenie widza jest traktowane jako zamknięte."
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:190
+#: src/misc/coders/Encoders/video/h264_v4l2m2m.js:180
 msgid "To stabilize the system, increase the HLS segment length for the keyframe interval by 2-3 * (Processing and Control)."
 msgstr "Aby ustabilizować system, zwiększ długość segmentu HLS dla interwału klatek kluczowych o 2-3 * (Processing and Control)."
 
@@ -3037,15 +3082,15 @@ msgstr "Prześlij podstawowe źródło do usługi Akamai (MSL) Media Services Li
 
 #: src/views/Publication/Services/Livepush.js:17
 msgid "Transmit the main source to the Livepush RTMP Service. More details about the settings can be found <0>here</0>."
-msgstr ""
+msgstr "Prześlij główne źródło do usługi Livepush RTMP. Więcej szczegółów na temat ustawień można znaleźć <0>tutaj</0>."
 
 #: src/views/Publication/Services/NimoTv.js:18
 msgid "Transmit the main source to the Nimo TV RTMP Service. More details about the settings can be found <0>here</0>."
-msgstr ""
+msgstr "Prześlij główne źródło do usługi Nimo TV RTMP. Więcej szczegółów na temat ustawień można znaleźć <0>tutaj</0>."
 
 #: src/views/Publication/Services/PicartoTv.js:17
 msgid "Transmit the main source to the Picarto TV RTMP Service. More details about the settings can be found <0>here</0>."
-msgstr ""
+msgstr "Prześlij główne źródło do usługi Picarto TV RTMP. Więcej szczegółów na temat ustawień można znaleźć <0>tutaj</0>."
 
 #: src/views/Publication/Services/Restream.js:18
 msgid "Transmit the main source to the Restream RTMP Service. More details about the settings can be found <0>here</0>."
@@ -3061,11 +3106,11 @@ msgstr "Przekazać na LinkedIn. Więcej szczegółów można znaleźć <0>tutaj<
 
 #: src/views/Publication/Services/Dailymotion.js:15
 msgid "Transmit your Livestream to an Dailymotion RTMP service. <0>Here </0>you can find more details about the settings."
-msgstr ""
+msgstr "Prześlij swój Livestream do usługi Dailymotion RTMP. <0>Tutaj </0>znajdziesz więcej szczegółów na temat ustawień."
 
 #: src/views/Publication/Services/Kick.js:16
 msgid "Transmit your Livestream to an Kick.com RTMP service. <0>Here </0>you can find more details about the settings."
-msgstr ""
+msgstr "Prześlij swój Livestream do usługi Kick.com RTMP. <0>Tutaj </0>znajdziesz więcej szczegółów na temat ustawień."
 
 #: src/views/Publication/Services/Owncast.js:15
 msgid "Transmit your Livestream to an Owncast server. <0>Here </0>you can find more details about the settings."
@@ -3073,7 +3118,7 @@ msgstr "Prześlij swój Livestream na serwer Owncast. <0>Tutaj </0>znajdziesz wi
 
 #: src/views/Publication/Services/Rumble.js:16
 msgid "Transmit your Livestream to an Rumble RTMP service. <0>Here </0>you can find more details about the settings."
-msgstr ""
+msgstr "Prześlij swój Livestream do usługi Rumble RTMP. <0>Tutaj </0>znajdziesz więcej szczegółów na temat ustawień."
 
 #: src/views/Publication/Services/Youtube.js:21
 msgid "Transmits your video as an RTMP stream with the required key generated in YouTube Studio. You can find more information on setting up a live stream at YouTube's <0>Creator Academy</0>."
@@ -3083,12 +3128,12 @@ msgstr "Przesyła Twój film jako strumień RTMP z wymaganym kluczem wygenerowan
 msgid "Transmits your video stream with the required key, which was generated in Twitter Producer. You can find more information on seting up a live stream at Twitter's <0>Producer</0>."
 msgstr "Przesyła strumień wideo z wymaganym kluczem, który został wygenerowany w programie Twitter Producer. Więcej informacji na temat konfigurowania transmisji na żywo można znaleźć na stronie <0>Producent</0> Twittera."
 
-#: src/misc/coders/Encoders/video/X264.js:108
-#: src/misc/coders/Encoders/video/X265.js:108
+#: src/misc/coders/Encoders/video/h264_libx264.js:102
+#: src/misc/coders/Encoders/video/hevc_libx265.js:102
 msgid "Tune"
 msgstr "Tune"
 
-#: src/views/Edit/Sources/Network.js:551
+#: src/views/Edit/Sources/Network.js:545
 #: src/views/Edit/Wizard/Sources/Network.js:77
 msgid "UDP transport"
 msgstr "Transport UDP"
@@ -3110,7 +3155,7 @@ msgstr "Nieznany"
 #: src/views/Playersite.js:179
 #: src/views/Publication/Player.js:216
 msgid "Unknown upload error"
-msgstr ""
+msgstr "Nieznany błąd przesyłania"
 
 #: src/views/Playersite.js:529
 msgid "Unselected"
@@ -3132,11 +3177,11 @@ msgstr "Upload"
 
 #: src/views/Edit/Sources/AudioLoop.js:138
 msgid "Upload an audio file ({0}) in order to loop it."
-msgstr ""
+msgstr "Prześlij plik audio ({0}), aby go zapętlić."
 
 #: src/views/Edit/Sources/VideoLoop.js:146
 msgid "Upload an image or video file ({0}) in order to loop it."
-msgstr ""
+msgstr "Prześlij obraz lub plik wideo ({0}), aby go zapętlić."
 
 #: src/views/Edit/Sources/AudioLoop.js:149
 #: src/views/Edit/Sources/VideoLoop.js:157
@@ -3151,7 +3196,7 @@ msgstr "Nie udało się pobrać logo"
 
 #: src/views/Publication/Player.js:484
 msgid "Uploading the poster failed"
-msgstr ""
+msgstr "Przesyłanie plakatu nie powiodło się"
 
 #: src/Footer.js:165
 #: src/misc/Progress.js:53
@@ -3175,7 +3220,7 @@ msgstr "Wykorzystaj swoje prawa autorskie i wybierz odpowiednią licencję na ob
 msgid "Use your copyright and choose the right image licence. Whether free for all or highly restricted. Briefly discuss what others are allowed to do with your image."
 msgstr "Wykorzystaj swoje prawa autorskie i wybierz odpowiednią licencję na obraz. Niezależnie od tego, czy jest to licencja bezpłatna, czy bardzo ograniczona. Krótko omów, co inni mogą zrobić z Twoim wizerunkiem."
 
-#: src/views/Edit/Sources/Network.js:742
+#: src/views/Edit/Sources/Network.js:736
 msgid "use_wallclock_as_timestamps"
 msgstr "use_wallclock_as_timestamps"
 
@@ -3183,7 +3228,7 @@ msgstr "use_wallclock_as_timestamps"
 msgid "User registration"
 msgstr "Rejestracja Użytkownika"
 
-#: src/views/Edit/Sources/Network.js:813
+#: src/views/Edit/Sources/Network.js:807
 #: src/views/Edit/Wizard/Sources/Network.js:84
 #: src/views/Login.js:272
 #: src/views/Publication/Services/DaCast.js:131
@@ -3202,12 +3247,12 @@ msgstr "Login"
 msgid "Username for authorization."
 msgstr "Nazwa użytkownika do autoryzacji."
 
-#: src/views/Edit/Sources/Network.js:818
+#: src/views/Edit/Sources/Network.js:812
 #: src/views/Edit/Wizard/Sources/Network.js:90
 msgid "Username for the device."
 msgstr "Nazwa użytkownika urządzenia."
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:176
+#: src/misc/coders/Encoders/video/h264_v4l2m2m.js:166
 msgid "V4L2_M2M is experimental."
 msgstr "V4L2_M2M jest eksperymentalny."
 
@@ -3276,13 +3321,17 @@ msgstr "Głośność"
 msgid "VPU ID"
 msgstr "VPU ID"
 
-#: src/misc/coders/Encoders/video/H264V4L2M2M.js:178
+#: src/misc/coders/Encoders/video/h264_v4l2m2m.js:168
 msgid "We recommend OpenMAX IL for Raspberry PI (3/4) with a 32-bit operating system."
 msgstr "Polecamy OpenMAX IL dla Raspberry PI (3/4) z 32-bitowym systemem operacyjnym."
 
 #: src/views/Welcome.js:27
 msgid "Welcome to Restreamer v2, the solution for fast and easy video publishing. Free for private and commercial use. Further help in the <0>docs</0>."
 msgstr "Witamy w Restreamer v2, rozwiązanie do szybkiego i łatwego publikowania filmów. Bezpłatnie do użytku prywatnego i komercyjnego. Więcej pomocy w <0>dokumentacji</0>."
+
+#: src/misc/coders/Encoders/video/av1_librav1e.js:104
+msgid "What speed preset to use."
+msgstr "Jakiego ustawienia prędkości użyć."
 
 #: src/misc/controls/HLS.js:74
 msgid "Where to store the HLS playlist and segments. In-Memory is recommended."

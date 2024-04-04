@@ -2,7 +2,6 @@ import React from 'react';
 
 import { I18nProvider } from '@lingui/react';
 import { i18n } from '@lingui/core';
-import * as plurals from 'make-plural/plurals';
 
 import { messages as EN } from './locales/en/messages.js';
 import { messages as DA } from './locales/da/messages.js';
@@ -13,7 +12,7 @@ import { messages as FR } from './locales/fr/messages.js';
 import { messages as IT } from './locales/it/messages.js';
 import { messages as KO } from './locales/ko/messages.js';
 import { messages as PL } from './locales/pl/messages.js';
-import { messages as PT } from './locales/pt/messages.js';
+import { messages as PT } from './locales/pt-br/messages.js';
 import { messages as RU } from './locales/ru/messages.js';
 import { messages as SL } from './locales/sl/messages.js';
 import { messages as TR } from './locales/tr/messages.js';
@@ -21,21 +20,6 @@ import { messages as UK } from './locales/uk/messages.js';
 import { messages as ZH } from './locales/zh-hans/messages.js';
 import * as Storage from './utils/storage';
 
-i18n.loadLocaleData('en', { plurals: plurals.en });
-i18n.loadLocaleData('da', { plurals: plurals.da });
-i18n.loadLocaleData('de', { plurals: plurals.de });
-i18n.loadLocaleData('el', { plurals: plurals.el });
-i18n.loadLocaleData('es', { plurals: plurals.es });
-i18n.loadLocaleData('fr', { plurals: plurals.fr });
-i18n.loadLocaleData('it', { plurals: plurals.it });
-i18n.loadLocaleData('ko', { plurals: plurals.ko });
-i18n.loadLocaleData('pl', { plurals: plurals.pl });
-i18n.loadLocaleData('pt', { plurals: plurals.pt });
-i18n.loadLocaleData('ru', { plurals: plurals.ru });
-i18n.loadLocaleData('sl', { plurals: plurals.sl });
-i18n.loadLocaleData('tr', { plurals: plurals.tr });
-i18n.loadLocaleData('uk', { plurals: plurals.tr });
-i18n.loadLocaleData('zh-hans', { plurals: plurals.zh });
 i18n.load({
 	en: EN,
 	da: DA,
@@ -46,7 +30,7 @@ i18n.load({
 	it: IT,
 	ko: KO,
 	pl: PL,
-	pt: PT,
+	'pt-br': PT,
 	ru: RU,
 	sl: SL,
 	tr: TR,
@@ -55,7 +39,7 @@ i18n.load({
 });
 
 const aliases = {
-	'pt-br': 'pt',
+	pt: 'pt-br',
 	'zh-cn': 'zh-hans',
 };
 
@@ -93,7 +77,7 @@ const getBrowserLanguage = (defaultLanguage) => {
 	return match[0].toLowerCase();
 };
 
-i18n.activate(getLanguage('en', ['en', 'da', 'de', 'el', 'es', 'fr', 'it', 'ko', 'pl', 'pt', 'ru', 'sl', 'tr', 'uk', 'zh-hans']));
+i18n.activate(getLanguage('en', ['en', 'da', 'de', 'el', 'es', 'fr', 'it', 'ko', 'pl', 'pt-br', 'ru', 'sl', 'tr', 'uk', 'zh-hans']));
 
 export default function Provider(props) {
 	return <I18nProvider i18n={i18n}>{props.children}</I18nProvider>;
