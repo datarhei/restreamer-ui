@@ -21,7 +21,7 @@
 		"@lingui/react": "^4.7.0",
 		"@mui/icons-material": "^5.15.6",
 		"@mui/lab": "^5.0.0-alpha.162",
-		"@mui/material": "^5.15.6",
+		"@mui/material": "^5.15.14",
 		"@mui/styles": "^5.15.6",
 		"@testing-library/dom": "^9.3.4",
 		"@testing-library/jest-dom": "^6.3.0",
