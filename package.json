@@ -19,7 +19,7 @@
 		"@lingui/core": "^4.7.0",
 		"@lingui/macro": "^4.7.0",
 		"@lingui/react": "^4.7.0",
-		"@mui/icons-material": "^5.15.6",
+		"@mui/icons-material": "^5.15.14",
 		"@mui/lab": "^5.0.0-alpha.162",
 		"@mui/material": "^5.15.6",
 		"@mui/styles": "^5.15.6",
