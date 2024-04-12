@@ -455,7 +455,7 @@ const getRTMPAddress = (host, app, name, token, secure) => {
 	let url = 'rtmp' + (secure ? 's' : '') + '://' + host + app + '/' + name + '.stream';
 
 	if (token.length !== 0) {
-		url += '/token=' + encodeURIComponent(token);
+		url += '/' + encodeURIComponent(token);
 	}
 
 	return url;
