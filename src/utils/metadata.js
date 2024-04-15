@@ -804,12 +804,6 @@ const initSource = (type, initialSource) => {
 		streams: [],
 	};
 
-	// Default pre-selection for custom audio
-	if (type === 'audio') {
-		source.type = 'virtualaudio';
-		source.settings.source = 'silence';
-	}
-
 	source = {
 		...source,
 		...initialSource,
@@ -1026,9 +1020,10 @@ const analyzeStreams = (type, streams) => {
  * @param {*} streams Array of streams
  * @param {*} profile A profile
  * @param {*} encoders Array of supported (by ffmpeg) encoders
+ * @param {*} preselectAudio Whether to preselect an audio profile if type == video
  * @returns A profile
  */
-const preselectProfile = (type, streams, profile, encoders) => {
+const preselectProfile = (type, streams, profile, encoders, preselectAudio = true) => {
 	const preselectAudioProfile = (streams, audio) => {
 		audio.stream = -1;
 		audio.encoder.coder = 'none';
@@ -1110,7 +1105,7 @@ const preselectProfile = (type, streams, profile, encoders) => {
 			return false;
 		}
 
-		if (streams[audio.stream].codec !== 'aac' || streams[audio.stream].codec !== 'mp3') {
+		if (streams[audio.stream].codec !== 'aac' && streams[audio.stream].codec !== 'mp3') {
 			if (audio.encoder.coder === 'copy') {
 				return false;
 			}
@@ -1164,17 +1159,21 @@ const preselectProfile = (type, streams, profile, encoders) => {
 			profile.video = video;
 		}
 
-		if (isAudioPlausible(streams, profile.audio) === false) {
-			profile.audio = preselectAudioProfile(streams, profile.audio);
+		// Only select audio stream if explicitely asked to.
+		if (preselectAudio === true) {
+			if (isAudioPlausible(streams, profile.audio) === false) {
+				console.log('audio is not plausible');
+				profile.audio = preselectAudioProfile(streams, profile.audio);
 
-			if (profile.audio.stream >= 0) {
-				profile.audio.source = 0;
+				if (profile.audio.stream >= 0) {
+					profile.audio.source = 0;
 
-				profile.custom.selected = false;
-				profile.custom.stream = profile.audio.stream;
-			} else {
-				profile.custom.selected = true;
-				profile.custom.stream = -2;
+					profile.custom.selected = false;
+					profile.custom.stream = profile.audio.stream;
+				} else {
+					profile.custom.selected = false;
+					profile.custom.stream = -1;
+				}
 			}
 		}
 	} else if (type === 'audio') {

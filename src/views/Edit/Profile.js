@@ -59,14 +59,6 @@ export default function Profile(props) {
 
 		let audio = $sources.audio;
 
-		if ($profile.custom.selected === false) {
-			if ($profile.custom.stream === -1) {
-				audio.type = 'noaudio';
-			} else {
-				audio.type = 'videoaudio';
-			}
-		}
-
 		let hasAudio = false;
 		for (let i = 0; i < $sources.video.streams.length; i++) {
 			if ($sources.video.streams[i].type === 'audio') {
@@ -117,7 +109,9 @@ export default function Profile(props) {
 		let status = M.analyzeStreams(type, res.streams);
 
 		if (type === 'video') {
-			const profile = M.preselectProfile('video', res.streams, $profile, props.skills.encoders);
+			let audio = $sources.audio;
+
+			const profile = M.preselectProfile('video', res.streams, $profile, props.skills.encoders, audio.type === '');
 
 			// Add pseudo sources
 			props.skills.sources.noaudio = [];
@@ -130,15 +124,23 @@ export default function Profile(props) {
 				}
 			}
 
-			let audio = $sources.audio;
-
 			if (hasAudio === true) {
 				props.skills.sources.videoaudio = [];
-				audio.type = 'videoaudio';
+				if (audio.type === '') {
+					audio.type = 'videoaudio';
+				}
 			} else {
 				delete props.skills.sources.videoaudio;
-				audio = M.initSource('audio', {});
+				if (audio.type === '' || audio.type === 'videoaudio') {
+					audio.type = 'noaudio';
+					profile.audio.source = -1;
+					profile.audio.stream = -1;
+					profile.custom.selected = false;
+					profile.custom.stream = -1;
+				}
 			}
+
+			audio = M.initSource('audio', audio);
 
 			setProfile({
 				...$profile,
@@ -154,7 +156,7 @@ export default function Profile(props) {
 
 			setAudioProbe({
 				...$audioProbe,
-				status: 'none',
+				status: audio.type === 'noaudio' ? 'success' : 'none',
 			});
 
 			setSources({
@@ -272,9 +274,11 @@ export default function Profile(props) {
 			if (source === 'noaudio') {
 				custom.selected = false;
 				custom.stream = -1;
+				profile.source = -1;
 				profile.stream = -1;
 			} else if (source === 'videoaudio') {
 				custom.selected = false;
+				profile.source = 0;
 
 				for (let i = 0; i < $sources.video.streams.length; i++) {
 					if ($sources.video.streams[i].type === 'audio') {
@@ -287,8 +291,25 @@ export default function Profile(props) {
 				custom.selected = true;
 				custom.stream = -2;
 
+				profile.source = 1;
 				profile.stream = -1;
 			}
+
+			let audio = $sources.audio;
+			audio.type = source;
+
+			setSources({
+				...$sources,
+				audio: audio,
+			});
+		} else {
+			let video = $sources.video;
+			video.type = source;
+
+			setSources({
+				...$sources,
+				video: video,
+			});
 		}
 
 		setProfile({
@@ -485,7 +506,7 @@ export default function Profile(props) {
 										onChange={handleEncoding('audio')}
 									/>
 								</Grid>
-								{$profile.audio.encoder.coder !== 'none' && $profile.audio.encoder.coder !== 'copy' && (
+								{$profile.audio.encoder.coder !== 'none' && $profile.audio.encoder.coder !== 'copy' && $profile.audio.source !== -1 && (
 									<Grid item xs={12}>
 										<FilterSelect
 											type="audio"
