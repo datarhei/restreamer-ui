@@ -1162,7 +1162,6 @@ const preselectProfile = (type, streams, profile, encoders, preselectAudio = tru
 		// Only select audio stream if explicitely asked to.
 		if (preselectAudio === true) {
 			if (isAudioPlausible(streams, profile.audio) === false) {
-				console.log('audio is not plausible');
 				profile.audio = preselectAudioProfile(streams, profile.audio);
 
 				if (profile.audio.stream >= 0) {
