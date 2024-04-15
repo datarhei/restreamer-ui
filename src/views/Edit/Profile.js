@@ -333,14 +333,18 @@ export default function Profile(props) {
 		}
 	};
 
-	const handleStreamSelect = (type) => (stream) => {
-		const profile = $profile[type];
+	const handleStreamSelect = (type, what) => (stream) => {
+		const profile = $profile;
 
-		profile.stream = stream;
+		profile[type].stream = stream;
+
+		if (what === 'custom') {
+			profile.custom.stream = stream;
+		}
 
 		setProfile({
 			...$profile,
-			[type]: profile,
+			...profile,
 		});
 	};
 
@@ -493,7 +497,7 @@ export default function Profile(props) {
 										type="audio"
 										streams={$sources.video.streams}
 										selected={$profile.custom.stream}
-										onChange={handleStreamSelect('audio')}
+										onChange={handleStreamSelect('audio', 'custom')}
 									/>
 								</Grid>
 								<Grid item xs={12}>
