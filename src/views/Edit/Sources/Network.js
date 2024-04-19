@@ -74,10 +74,10 @@ const initSettings = (initialSettings, config) => {
 	};
 
 	settings.general = {
-		analyzeduration: 5000000,
-		analyzeduration_rtmp: 3000000,
-		analyzeduration_http: 20000000,
-		probesize: 5000000,
+		analyzeduration: 5_000_000, // microseconds, 5s,
+		analyzeduration_rtmp: 3_000_000, // 3s
+		analyzeduration_http: 20_000_000, // 20s
+		probesize: 5_000_000, // bytes
 		max_probe_packets: 2500,
 		fflags: ['genpts'],
 		thread_queue_size: 512,
@@ -220,9 +220,8 @@ const createInputs = (settings, config, skills) => {
 		input.options.push('-fflags', '+' + settings.general.fflags.join('+'));
 	}
 	input.options.push('-thread_queue_size', settings.general.thread_queue_size);
-	if (settings.general.probesize !== 5000000) {
-		input.options.push('-probesize', settings.general.probesize);
-	}
+	input.options.push('-probesize', settings.general.probesize);
+
 	if (settings.general.max_probe_packets !== 2500) {
 		input.options.push('-max_probe_packets', settings.general.max_probe_packets);
 	}
@@ -245,13 +244,9 @@ const createInputs = (settings, config, skills) => {
 	// analyzeduration: 20s for http and 3s for rtmp streams
 	if (settings.mode === 'push') {
 		if (settings.push.type === 'hls') {
-			if (settings.general.analyzeduration_http !== 5000000) {
-				input.options.push('-analyzeduration', settings.general.analyzeduration_http);
-			}
+			input.options.push('-analyzeduration', settings.general.analyzeduration_http);
 		} else if (settings.push.type === 'rtmp') {
-			if (settings.general.analyzeduration_rtmp !== 5000000) {
-				input.options.push('-analyzeduration', settings.general.analyzeduration_rtmp);
-			}
+			input.options.push('-analyzeduration', settings.general.analyzeduration_rtmp);
 
 			if (skills.ffmpeg.version_major >= 6) {
 				const codecs = [];
@@ -270,59 +265,14 @@ const createInputs = (settings, config, skills) => {
 				}
 			}
 		} else if (settings.push.type === 'srt') {
-			if (settings.general.analyzeduration !== 5000000) {
-				input.options.push('-analyzeduration', settings.general.analyzeduration);
-			}
+			input.options.push('-analyzeduration', settings.general.analyzeduration);
 		}
 	} else {
-		if (protocol === 'http') {
-			if (settings.general.analyzeduration_http !== 5000000) {
-				input.options.push('-analyzeduration', settings.general.analyzeduration_http);
-			}
-		} else if (protocol === 'rtmp') {
-			if (settings.general.analyzeduration_rtmp !== 5000000) {
-				input.options.push('-analyzeduration', settings.general.analyzeduration_rtmp);
-			}
-
-			if (skills.ffmpeg.version_major >= 6) {
-				const codecs = [];
-				if (skills.codecs.video.hevc?.length > 0) {
-					codecs.push('hvc1');
-				}
-				if (skills.codecs.video.av1?.length > 0) {
-					codecs.push('av01');
-				}
-				if (skills.codecs.video.vp9?.length > 0) {
-					codecs.push('vp09');
-				}
-
-				if (codecs.length !== 0) {
-					input.options.push('-rtmp_enhanced_codecs', codecs.join(','));
-				}
-			}
-		} else {
-			if (settings.general.analyzeduration !== 5000000) {
-				input.options.push('-analyzeduration', settings.general.analyzeduration);
-			}
-		}
-	}
-
-	if (settings.mode === 'pull') {
 		input.address = addUsernamePassword(input.address, settings.username, settings.password);
 
-		if (protocol === 'rtsp') {
-			if (skills.ffmpeg.version_major === 4) {
-				input.options.push('-stimeout', settings.rtsp.stimeout);
-			} else {
-				input.options.push('-timeout', settings.rtsp.stimeout);
-			}
+		if (protocol === 'http') {
+			input.options.push('-analyzeduration', settings.general.analyzeduration_http);
 
-			if (settings.rtsp.udp === true) {
-				input.options.push('-rtsp_transport', 'udp');
-			} else {
-				input.options.push('-rtsp_transport', 'tcp');
-			}
-		} else if (protocol === 'http') {
 			if (settings.http.readNative === true) {
 				input.options.push('-re');
 			}
@@ -342,19 +292,44 @@ const createInputs = (settings, config, skills) => {
 			if (settings.http.http_proxy.length !== 0) {
 				input.options.push('-http_proxy', settings.http.http_proxy);
 			}
-		}
-	}
-	/*
-	if (skills.protocols.input.includes('playout')) {
-		if (protocol === 'http' || protocol === 'rtmp' || protocol === 'rtsp') {
-			if (!input.address.startsWith('playout:')) {
-				input.address = 'playout:' + input.address;
-			}
+		} else if (protocol === 'rtmp') {
+			input.options.push('-analyzeduration', settings.general.analyzeduration_rtmp);
 
-			input.options.push('-playout_audio', '1');
+			if (skills.ffmpeg.version_major >= 6) {
+				const codecs = [];
+				if (skills.codecs.video.hevc?.length > 0) {
+					codecs.push('hvc1');
+				}
+				if (skills.codecs.video.av1?.length > 0) {
+					codecs.push('av01');
+				}
+				if (skills.codecs.video.vp9?.length > 0) {
+					codecs.push('vp09');
+				}
+
+				if (codecs.length !== 0) {
+					input.options.push('-rtmp_enhanced_codecs', codecs.join(','));
+				}
+			}
+		} else {
+			input.options.push('-analyzeduration', settings.general.analyzeduration);
+
+			if (protocol === 'rtsp') {
+				if (skills.ffmpeg.version_major === 4) {
+					input.options.push('-stimeout', settings.rtsp.stimeout);
+				} else {
+					input.options.push('-timeout', settings.rtsp.stimeout);
+				}
+
+				if (settings.rtsp.udp === true) {
+					input.options.push('-rtsp_transport', 'udp');
+				} else {
+					input.options.push('-rtsp_transport', 'tcp');
+				}
+			}
 		}
 	}
-*/
+
 	return [input];
 };
 
@@ -522,7 +497,18 @@ const isValidURL = (address) => {
 
 function AdvancedSettings(props) {
 	const settings = props.settings;
-	const protocolClass = getProtocolClass(settings.address);
+	let protocolClass = getProtocolClass(settings.address);
+	if (settings.mode === 'push') {
+		switch (settings.push.type) {
+			case 'rtmp':
+				protocolClass = 'rtmp';
+				break;
+			case 'srt':
+				protocolClass = 'srt';
+				break;
+			default:
+		}
+	}
 
 	return (
 		<Grid item xs={12}>

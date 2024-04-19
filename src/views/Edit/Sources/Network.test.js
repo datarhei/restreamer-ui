@@ -7,6 +7,8 @@ import * as Network from './Network';
 const $skills_ffmpeg6 = {
 	ffmpeg: {
 		version: '6.1.1',
+		version_major: 6,
+		version_minor: 1,
 	},
 	formats: {
 		demuxers: ['rtsp'],
@@ -27,6 +29,8 @@ const $skills_ffmpeg6 = {
 const $skills_ffmpeg5 = {
 	ffmpeg: {
 		version: '5.1.2',
+		version_major: 5,
+		version_minor: 1,
 	},
 	formats: {
 		demuxers: ['rtsp'],
@@ -39,6 +43,8 @@ const $skills_ffmpeg5 = {
 const $skills_ffmpeg4 = {
 	ffmpeg: {
 		version: '4.4.1',
+		version_major: 4,
+		version_minor: 4,
 	},
 	formats: {
 		demuxers: ['rtsp'],
@@ -71,7 +77,7 @@ test('source:network pull', async () => {
 	};
 
 	const Source = Network.component;
-	let { getByLabelText, queryByText, rerender } = render(<Source onChange={handleChange} />);
+	let { getByLabelText, queryByText, rerender } = render(<Source onChange={handleChange} knownDevices={[]} />);
 
 	expect(queryByText(`This protocol is unknown or not supported by the available FFmpeg binary.`)).toBe(null);
 
@@ -81,19 +87,19 @@ test('source:network pull', async () => {
 	expect($settings.mode).toBe('pull');
 	expect($settings.address).toBe('rtsp://127.0.0.1/live/stream');
 
-	rerender(<Source settings={$settings} onChange={handleChange} />);
+	rerender(<Source settings={$settings} onChange={handleChange} knownDevices={[]} />);
 
 	expect(queryByText(`This protocol is unknown or not supported by the available FFmpeg binary.`)).toBeInTheDocument();
 
-	rerender(<Source settings={$settings} skills={$skills_ffmpeg4} onChange={handleChange} />);
+	rerender(<Source settings={$settings} skills={$skills_ffmpeg4} onChange={handleChange} knownDevices={[]} />);
 
 	expect(queryByText(`This protocol is unknown or not supported by the available FFmpeg binary.`)).toBe(null);
 
-	rerender(<Source settings={$settings} skills={$skills_ffmpeg5} onChange={handleChange} />);
+	rerender(<Source settings={$settings} skills={$skills_ffmpeg5} onChange={handleChange} knownDevices={[]} />);
 
 	expect(queryByText(`This protocol is unknown or not supported by the available FFmpeg binary.`)).toBe(null);
 
-	rerender(<Source settings={$settings} skills={$skills_ffmpeg6} onChange={handleChange} />);
+	rerender(<Source settings={$settings} skills={$skills_ffmpeg6} onChange={handleChange} knownDevices={[]} />);
 
 	expect(queryByText(`This protocol is unknown or not supported by the available FFmpeg binary.`)).toBe(null);
 });
@@ -140,7 +146,20 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg4,
 		input: {
 			address: 'rtsp://admin:foobar@127.0.0.1/live/stream',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-stimeout', 5000000, '-rtsp_transport', 'tcp'],
+			options: [
+				'-fflags',
+				'+genpts',
+				'-thread_queue_size',
+				512,
+				'-probesize',
+				5000000,
+				'-analyzeduration',
+				5000000,
+				'-stimeout',
+				5000000,
+				'-rtsp_transport',
+				'tcp',
+			],
 		},
 	},
 	{
@@ -149,7 +168,7 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg4,
 		input: {
 			address: 'rtmp://admin:foobar@127.0.0.1/live/stream',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-probesize', 5000000, '-analyzeduration', 3000000],
 		},
 	},
 	{
@@ -163,6 +182,8 @@ pullmatrix.tests = [
 				'+genpts',
 				'-thread_queue_size',
 				512,
+				'-probesize',
+				5000000,
 				'-analyzeduration',
 				20000000,
 				'-re',
@@ -181,7 +202,7 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg4,
 		input: {
 			address: 'srt://127.0.0.1?mode=caller&streamid=foobar',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-probesize', 5000000, '-analyzeduration', 5000000],
 		},
 	},
 	{
@@ -190,7 +211,20 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg5,
 		input: {
 			address: 'rtsp://admin:foobar@127.0.0.1/live/stream',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-timeout', 5000000, '-rtsp_transport', 'tcp'],
+			options: [
+				'-fflags',
+				'+genpts',
+				'-thread_queue_size',
+				512,
+				'-probesize',
+				5000000,
+				'-analyzeduration',
+				5000000,
+				'-timeout',
+				5000000,
+				'-rtsp_transport',
+				'tcp',
+			],
 		},
 	},
 	{
@@ -199,7 +233,7 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg5,
 		input: {
 			address: 'rtmp://admin:foobar@127.0.0.1/live/stream',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-probesize', 5000000, '-analyzeduration', 3000000],
 		},
 	},
 	{
@@ -213,6 +247,8 @@ pullmatrix.tests = [
 				'+genpts',
 				'-thread_queue_size',
 				512,
+				'-probesize',
+				5000000,
 				'-analyzeduration',
 				20000000,
 				'-re',
@@ -231,7 +267,7 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg5,
 		input: {
 			address: 'srt://127.0.0.1?mode=caller&streamid=foobar',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-probesize', 5000000, '-analyzeduration', 5000000],
 		},
 	},
 	{
@@ -240,7 +276,20 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg6,
 		input: {
 			address: 'rtsp://admin:foobar@127.0.0.1/live/stream',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-timeout', 5000000, '-rtsp_transport', 'tcp'],
+			options: [
+				'-fflags',
+				'+genpts',
+				'-thread_queue_size',
+				512,
+				'-probesize',
+				5000000,
+				'-analyzeduration',
+				5000000,
+				'-timeout',
+				5000000,
+				'-rtsp_transport',
+				'tcp',
+			],
 		},
 	},
 	{
@@ -249,7 +298,18 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg6,
 		input: {
 			address: 'rtmp://admin:foobar@127.0.0.1/live/stream',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000, '-rtmp_enhanced_codecs', 'hvc1,av01,vp09'],
+			options: [
+				'-fflags',
+				'+genpts',
+				'-thread_queue_size',
+				512,
+				'-probesize',
+				5000000,
+				'-analyzeduration',
+				3000000,
+				'-rtmp_enhanced_codecs',
+				'hvc1,av01,vp09',
+			],
 		},
 	},
 	{
@@ -263,6 +323,8 @@ pullmatrix.tests = [
 				'+genpts',
 				'-thread_queue_size',
 				512,
+				'-probesize',
+				5000000,
 				'-analyzeduration',
 				20000000,
 				'-re',
@@ -281,7 +343,7 @@ pullmatrix.tests = [
 		skills: $skills_ffmpeg6,
 		input: {
 			address: 'srt://127.0.0.1?mode=caller&streamid=foobar',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-probesize', 5000000, '-analyzeduration', 5000000],
 		},
 	},
 ];
@@ -294,7 +356,7 @@ test.each(pullmatrix.tests)('source:network pull $name input with ffmpeg $skills
 
 	const Source = Network.component;
 
-	let { getByText, getByRole } = render(<Source settings={data.settings} skills={data.skills} onProbe={handleProbe} />);
+	let { getByText, getByRole } = render(<Source settings={data.settings} skills={data.skills} onProbe={handleProbe} knownDevices={[]} />);
 
 	expect(getByText('Probe')).toBeInTheDocument();
 
@@ -318,21 +380,21 @@ test('source:network push', async () => {
 	};
 
 	const Source = Network.component;
-	let { queryByText, rerender } = render(<Source settings={$settings} onChange={handleChange} />);
+	let { queryByText, rerender } = render(<Source settings={$settings} onChange={handleChange} knownDevices={[]} />);
 
 	expect($settings.mode).toBe('push');
 
 	expect(queryByText(`The available FFmpeg binary doesn't support any of the required protocols.`)).toBeInTheDocument();
 
-	rerender(<Source settings={$settings} skills={$skills_ffmpeg4} onChange={handleChange} />);
+	rerender(<Source settings={$settings} skills={$skills_ffmpeg4} onChange={handleChange} knownDevices={[]} />);
 
 	expect(queryByText(`The available FFmpeg binary doesn't support any of the required protocols.`)).toBe(null);
 
-	rerender(<Source settings={$settings} skills={$skills_ffmpeg5} onChange={handleChange} />);
+	rerender(<Source settings={$settings} skills={$skills_ffmpeg5} onChange={handleChange} knownDevices={[]} />);
 
 	expect(queryByText(`The available FFmpeg binary doesn't support any of the required protocols.`)).toBe(null);
 
-	rerender(<Source settings={$settings} skills={$skills_ffmpeg6} onChange={handleChange} />);
+	rerender(<Source settings={$settings} skills={$skills_ffmpeg6} onChange={handleChange} knownDevices={[]} />);
 
 	expect(queryByText(`The available FFmpeg binary doesn't support any of the required protocols.`)).toBe(null);
 });
@@ -350,14 +412,14 @@ test('source:network push RTMP', async () => {
 	};
 
 	const Source = Network.component;
-	let { getByText, queryByText, rerender } = render(<Source settings={$settings} skills={$skills_ffmpeg5} onChange={handleChange} />);
+	let { getByText, queryByText, rerender } = render(<Source settings={$settings} skills={$skills_ffmpeg5} onChange={handleChange} knownDevices={[]} />);
 
 	expect($settings.mode).toBe('push');
 	expect($settings.push.type).toBe('rtmp');
 
 	expect(queryByText(`Enable RTMP server ...`)).toBeInTheDocument();
 
-	rerender(<Source settings={$settings} config={$config} skills={$skills_ffmpeg5} onChange={handleChange} />);
+	rerender(<Source settings={$settings} config={$config} skills={$skills_ffmpeg5} onChange={handleChange} knownDevices={[]} />);
 
 	expect(getByText('Probe')).toBeInTheDocument();
 });
@@ -375,14 +437,14 @@ test('source:network push SRT', async () => {
 	};
 
 	const Source = Network.component;
-	let { getByText, queryByText, rerender } = render(<Source settings={$settings} skills={$skills_ffmpeg5} onChange={handleChange} />);
+	let { getByText, queryByText, rerender } = render(<Source settings={$settings} skills={$skills_ffmpeg5} onChange={handleChange} knownDevices={[]} />);
 
 	expect($settings.mode).toBe('push');
 	expect($settings.push.type).toBe('srt');
 
 	expect(queryByText(`Enable SRT server ...`)).toBeInTheDocument();
 
-	rerender(<Source settings={$settings} config={$config} skills={$skills_ffmpeg5} onChange={handleChange} />);
+	rerender(<Source settings={$settings} config={$config} skills={$skills_ffmpeg5} onChange={handleChange} knownDevices={[]} />);
 
 	expect(getByText('Probe')).toBeInTheDocument();
 });
@@ -406,7 +468,7 @@ pushmatrix.tests = [
 		config: $config,
 		input: {
 			address: '{rtmp,name=external.stream}',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-probesize', 5000000, '-analyzeduration', 3000000],
 		},
 	},
 	{
@@ -416,7 +478,7 @@ pushmatrix.tests = [
 		config: $config,
 		input: {
 			address: '{srt,name=external.stream,mode=request}',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-probesize', 5000000, '-analyzeduration', 5000000],
 		},
 	},
 	{
@@ -426,7 +488,7 @@ pushmatrix.tests = [
 		config: $config,
 		input: {
 			address: '{rtmp,name=external.stream}',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-probesize', 5000000, '-analyzeduration', 3000000],
 		},
 	},
 	{
@@ -436,7 +498,7 @@ pushmatrix.tests = [
 		config: $config,
 		input: {
 			address: '{srt,name=external.stream,mode=request}',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-probesize', 5000000, '-analyzeduration', 5000000],
 		},
 	},
 	{
@@ -446,7 +508,18 @@ pushmatrix.tests = [
 		config: $config,
 		input: {
 			address: '{rtmp,name=external.stream}',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-analyzeduration', 3000000, '-rtmp_enhanced_codecs', 'hvc1,av01,vp09'],
+			options: [
+				'-fflags',
+				'+genpts',
+				'-thread_queue_size',
+				512,
+				'-probesize',
+				5000000,
+				'-analyzeduration',
+				3000000,
+				'-rtmp_enhanced_codecs',
+				'hvc1,av01,vp09',
+			],
 		},
 	},
 	{
@@ -456,7 +529,7 @@ pushmatrix.tests = [
 		config: $config,
 		input: {
 			address: '{srt,name=external.stream,mode=request}',
-			options: ['-fflags', '+genpts', '-thread_queue_size', 512],
+			options: ['-fflags', '+genpts', '-thread_queue_size', 512, '-probesize', 5000000, '-analyzeduration', 5000000],
 		},
 	},
 ];
@@ -468,7 +541,9 @@ test.each(pushmatrix.tests)('source:network push $name input with ffmpeg $skills
 	};
 
 	const Source = Network.component;
-	let { getByText, getByRole } = render(<Source settings={data.settings} config={data.config} skills={data.skills} onProbe={handleProbe} />);
+	let { getByText, getByRole } = render(
+		<Source settings={data.settings} config={data.config} skills={data.skills} onProbe={handleProbe} knownDevices={[]} />,
+	);
 
 	expect(getByText('Probe')).toBeInTheDocument();
 
