@@ -74,7 +74,7 @@ const initSettings = (initialSettings, config) => {
 	};
 
 	settings.general = {
-		analyzeduration: 5_000_000, // microseconds, 5s,
+		analyzeduration: 5_000_000, // microseconds, 5s
 		analyzeduration_rtmp: 3_000_000, // 3s
 		analyzeduration_http: 20_000_000, // 20s
 		probesize: 5_000_000, // bytes
