@@ -1,5 +1,13 @@
 # Restreamer-UI
 
+## v1.11.0 > v1.12.0
+
+-   Add option to select different SRT stream in wizard
+-   Add option to select different RTMP stream in wizard
+-   Fix selecting other than first audio stream ([#710](https://github.com/datarhei/restreamer/issues/710))
+-   Fix reset of previous audio settings when editing profile ([#730](https://github.com/datarhei/restreamer/issues/730))
+-   Fix RTMP URL for receive mode
+
 ## v1.10.0 > v1.11.0
 
 -   Add allow to stream HEVC and AV1 to Youtube via RTMP
