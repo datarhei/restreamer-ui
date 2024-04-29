@@ -327,6 +327,43 @@ Format.defaultProps = {
 	onChange: function (event) {},
 };
 
+function PixFormat(props) {
+	const { i18n } = useLingui();
+	const sizes = [
+		{ value: 'yuv420p', label: 'yuv420p' },
+		{ value: 'nv12', label: 'nv12' },
+	];
+
+	if (props.allowAuto === true) {
+		sizes.unshift({ value: 'auto', label: 'auto' });
+	}
+
+	if (props.allowCustom === true) {
+		sizes.push({ value: 'custom', label: i18n._(t`Custom ...`) });
+	}
+
+	return (
+		<SelectCustom
+			options={sizes}
+			label={props.label}
+			customLabel={props.customLabel}
+			value={props.value}
+			onChange={props.onChange}
+			variant={props.variant}
+			allowCustom={props.allowCustom}
+		/>
+	);
+}
+
+PixFormat.defaultProps = {
+	allowAuto: false,
+	allowCustom: false,
+	variant: 'outlined',
+	label: <Trans>Pixel Format</Trans>,
+	customLabel: <Trans>Custom format</Trans>,
+	onChange: function (event) {},
+};
+
 function FpsMode(props) {
 	return (
 		<Select label={<Trans>Framerate mode</Trans>} value={props.value} onChange={props.onChange}>
@@ -360,5 +397,6 @@ export default {
 	Width,
 	Height,
 	Format,
+	PixFormat,
 	FpsMode,
 };

@@ -374,12 +374,14 @@ export default function Profile(props) {
 		if (type === 'video') {
 			streams = [
 				{
+					url: '',
 					index: 0,
 					stream: 0,
 					type: 'video',
 					codec: 'h264',
 					width: 1920,
 					height: 1080,
+					pix_fmt: 'yuv420p',
 					sampling_hz: 0,
 					layout: '',
 					channels: 0,
@@ -388,13 +390,14 @@ export default function Profile(props) {
 		} else if (type === 'audio') {
 			streams = [
 				{
+					url: '',
 					index: 1,
 					stream: 0,
 					type: 'audio',
 					codec: 'aac',
 					width: 0,
 					height: 0,
-					sampling_hz: 44100,
+					sampling_hz: '44100',
 					layout: 'stereo',
 					channels: 2,
 				},
@@ -448,8 +451,25 @@ export default function Profile(props) {
 		const inputs = $sources[type].inputs;
 		const probe = {
 			streams: $hintModal.streams,
-			log: ['Stream hints'],
+			log: [],
 		};
+
+		const url = inputs[0].address;
+
+		probe.log.push(`Stream hints for input from '${url}'`);
+
+		for (let s of $hintModal.streams) {
+			s.url = url;
+
+			let stream = `Stream #${s.index}:${s.stream}: `;
+			if (s.type === 'video') {
+				stream += `Video: ${s.codec}, ${s.pix_fmt}, ${s.width}x${s.height}`;
+			} else if (s.type === 'audio') {
+				stream += `Audio: ${s.codec}, ${s.sampling_hz} Hz, ${s.layout}`;
+			}
+
+			probe.log.push(stream);
+		}
 
 		handleProbeStreams(type, device, settings, inputs, probe);
 
@@ -654,6 +674,15 @@ export default function Profile(props) {
 																probe details
 															</Link>
 															.
+														</Trans>
+													</Typography>
+													<Typography>
+														<Trans>
+															In order to proceed anyways, you can provide{' '}
+															<Link color="textSecondary" href="#!" onClick={handleHintModal('audio', [])}>
+																hints
+															</Link>{' '}
+															about the available streams.
 														</Trans>
 													</Typography>
 												</BoxText>

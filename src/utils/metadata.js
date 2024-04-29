@@ -949,12 +949,14 @@ const initStream = (initialStream) => {
 	}
 
 	const stream = {
+		url: '',
 		index: 0,
 		stream: 0,
 		type: '',
 		codec: '',
 		width: 0,
 		height: 0,
+		pix_fmt: '',
 		sampling_hz: 0,
 		layout: '',
 		channels: 0,

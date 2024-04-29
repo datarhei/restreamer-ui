@@ -36,6 +36,10 @@ const Stream = function (props) {
 					stream.width = 1920;
 					stream.height = 1080;
 				}
+
+				if (stream.pix_fmt === '') {
+					stream.pix_fmt = 'yuv240p';
+				}
 			}
 			stream.type = value;
 		} else if (what === 'size') {
@@ -53,7 +57,7 @@ const Stream = function (props) {
 	return (
 		<Grid container spacing={1}>
 			<Grid item xs={6}>
-				<Select label={<Trans>Type</Trans>} value={props.stream.type} onChange={handleChange('type')} disabled={props.locked}>
+				<Select label={<Trans>Type</Trans>} value={props.stream.type} onChange={handleChange('type')}>
 					<MenuItem value="audio">Audio</MenuItem>
 					<MenuItem value="video">Video</MenuItem>
 				</Select>
@@ -87,6 +91,9 @@ const Stream = function (props) {
 					<Grid item xs={12}>
 						<Video.Size value={props.stream.width + 'x' + props.stream.height} onChange={handleChange('size')} allowCustom />
 					</Grid>
+					<Grid item xs={12}>
+						<Video.PixFormat value={props.stream.pix_fmt} onChange={handleChange('pix_fmt')} allowCustom />
+					</Grid>
 				</React.Fragment>
 			)}
 		</Grid>
@@ -95,7 +102,6 @@ const Stream = function (props) {
 
 Stream.defaultProps = {
 	stream: {},
-	locked: false,
 	onChange: () => {},
 };
 
@@ -138,7 +144,7 @@ const Streams = function (props) {
 				<Grid key={stream.index + ':' + stream.stream} item xs={12}>
 					<Stack spacing={1}>
 						<Typography>Stream {stream.stream}</Typography>
-						<Stream stream={stream} onChange={handleChange(index)} locked={index === 0} />
+						<Stream stream={stream} onChange={handleChange(index)} />
 						{index > 0 && (
 							<Button variant="outlined" color="secondary" onClick={handleRemoveStream(index)}>
 								<Trans>Remove Stream</Trans>
