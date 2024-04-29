@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { useLingui } from '@lingui/react';
-import { Trans, t } from '@lingui/macro';
+import { Trans } from '@lingui/macro';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
@@ -14,8 +13,6 @@ import Video from '../coders/settings/Video';
 import Audio from '../coders/settings/Audio';
 
 const Stream = function (props) {
-	const { i18n } = useLingui();
-
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
 
