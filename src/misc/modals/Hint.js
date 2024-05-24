@@ -55,16 +55,16 @@ const Stream = function (props) {
 	};
 
 	return (
-		<Grid container spacing={1}>
-			<Grid item xs={6}>
+		<Grid container spacing={2}>
+			{/* <Grid item xs={6}>
 				<Select label={<Trans>Type</Trans>} value={props.stream.type} onChange={handleChange('type')}>
 					<MenuItem value="audio">Audio</MenuItem>
 					<MenuItem value="video">Video</MenuItem>
 				</Select>
-			</Grid>
+			</Grid> */}
 			{props.stream.type === 'audio' ? (
 				<React.Fragment>
-					<Grid item xs={6}>
+					<Grid item xs={12}>
 						<Select label={<Trans>Codec</Trans>} value={props.stream.codec} onChange={handleChange('codec')}>
 							<MenuItem value="aac">AAC</MenuItem>
 							<MenuItem value="mp3">MP3</MenuItem>
@@ -79,7 +79,7 @@ const Stream = function (props) {
 				</React.Fragment>
 			) : (
 				<React.Fragment>
-					<Grid item xs={6}>
+					<Grid item xs={12}>
 						<Select label={<Trans>Codec</Trans>} value={props.stream.codec} onChange={handleChange('codec')}>
 							<MenuItem value="h264">H264</MenuItem>
 							<MenuItem value="hevc">HEVC</MenuItem>
@@ -142,21 +142,23 @@ const Streams = function (props) {
 		<Grid container spacing={1}>
 			{props.streams.map((stream, index) => (
 				<Grid key={stream.index + ':' + stream.stream} item xs={12}>
-					<Stack spacing={1}>
-						<Typography>Stream {stream.stream}</Typography>
+					<Stack>
+						<Typography sx={{textTransform: "UPPERCASE", marginBottom: 2}} >{stream.type}</Typography>
 						<Stream stream={stream} onChange={handleChange(index)} />
-						{index > 0 && (
-							<Button variant="outlined" color="secondary" onClick={handleRemoveStream(index)}>
-								<Trans>Remove Stream</Trans>
-							</Button>
-						)}
 					</Stack>
 				</Grid>
 			))}
 			<Grid item xs={12}>
-				<Button variant="outlined" color="default" onClick={handleAddStream}>
-					<Trans>Add Stream</Trans>
-				</Button>
+				{props.streams.length < 2 && (
+					<Button variant="outlined" color="default" onClick={handleAddStream}>
+						<Trans>Add Audio</Trans>
+					</Button>
+				)}
+				{props.streams.length === 2 && (
+					<Button variant="outlined" color="secondary" onClick={handleRemoveStream(1)}>
+						<Trans>Remove Audio</Trans>
+					</Button>
+				)}
 			</Grid>
 		</Grid>
 	);
