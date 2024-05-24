@@ -36,7 +36,9 @@ const useStyles = makeStyles((theme) => ({
 		marginLeft: 10,
 	},
 	playerL1: {
-		padding: '4px 1px 4px 8px',
+		//padding: '4px 1px 4px 8px',
+		paddingTop: 10,
+		paddingLeft: 18
 	},
 	playerL2: {
 		position: 'relative',
