@@ -1,5 +1,5 @@
 ARG NODE_IMAGE=node:21-alpine3.17
-ARG CADDY_IMAGE=caddy:2.7.5-alpine
+ARG CADDY_IMAGE=caddy:2.7.6-alpine
 
 FROM $NODE_IMAGE as builder
 
