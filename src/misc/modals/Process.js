@@ -60,8 +60,43 @@ const initLogdata = (logdata) => {
 	return data;
 };
 
+// This requires updating all processes first.
+
+// const loglevel = (level) => {
+// 	switch(level) {
+// 		case 'warning':
+// 			return [
+// 				'[warning]', '[error]', '[debug]', '[trace]',
+// 			];
+// 		case 'error':
+// 			return [
+// 				'[error]', '[debug]', '[trace]',
+// 			];
+// 		case 'debug':
+// 			return [
+// 				'[debug]', '[trace]',
+// 			];
+// 		default:
+// 			return [
+// 				'[info]', '[warning]', '[error]', '[debug]', '[trace]',
+// 			];
+// 		}
+// }
+
+// const filterPrelude = (loglines) => {
+// 	return loglines
+// 	  .filter(entry => entry.startsWith('[info]'))
+// 	  .map(entry => entry.replace('[info]', ''));
+// }
+
+// const filterLoglines = (loglines, level) => {
+// 	return loglines.filter((entry) => {
+// 		return loglevel(level).some((level) => entry[1].includes(level));
+// 	});
+// }
+
 const formatLogline = (entry) => {
-	let line = '@' + entry[0] + ' ';
+	let line = new Date(entry[0] * 1000).toISOString() + ' ';
 
 	const matches = entry[1].match(/^\[([0-9A-Za-z]+) @ 0x[0-9a-f]+\]/i);
 	if (matches !== null) {
@@ -107,6 +142,7 @@ const Component = function (props) {
 											<Typography variant="body1" className={classes.title}>
 												<Trans>Banner</Trans>
 											</Typography>
+											{/* <Textarea rows={9} value={filterPrelude(logdata.prelude).join('\n')} scrollTo="bottom" readOnly allowCopy /> */}
 											<Textarea rows={9} value={logdata.prelude.join('\n')} scrollTo="bottom" readOnly allowCopy />
 										</Grid>
 										<Grid item xs={12} marginTop={2}>
@@ -116,6 +152,7 @@ const Component = function (props) {
 											<Typography variant="body1" className={classes.title}>
 												<Trans>Logging</Trans>
 											</Typography>
+											{/* <Textarea rows={16} value={filterLoglines(logdata.log, 'info').map(formatLogline).join('\n')} scrollTo="bottom" readOnly allowCopy /> */}
 											<Textarea rows={16} value={logdata.log.map(formatLogline).join('\n')} scrollTo="bottom" readOnly allowCopy />
 										</Grid>
 									</Grid>
