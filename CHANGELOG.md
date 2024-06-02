@@ -1,5 +1,16 @@
 # Restreamer-UI
 
+## v1.12.0 > v1.13.0
+
+-   Add to allow stream hints in case probing fails
+-   Mod enables ff-loglevel and prepares the logging component
+-   Mod uses official Instagram-RTMP target
+-   Mod Remove unused imports
+-   Mod Update translations
+-   Mod updates dep.
+-   Fix player position
+-   Fix missing stream URL, summarize streams in probe log, don't lock type for first stream
+
 ## v1.11.0 > v1.12.0
 
 -   Add option to select different SRT stream in wizard
