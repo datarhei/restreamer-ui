@@ -41,7 +41,11 @@ export default function Component(props) {
 			isCustom: v === props.customKey ? true : false,
 		});
 
-		props.onChange(event);
+		props.onChange({
+			target: {
+				value: v === props.customKey ? value.custom : value.value,
+			},
+		});
 	};
 
 	const handleCustomChange = (event) => {
@@ -59,7 +63,7 @@ export default function Component(props) {
 		options.push(
 			<MenuItem key={o.value} value={o.value} disabled={o.disabled === true}>
 				{o.label}
-			</MenuItem>
+			</MenuItem>,
 		);
 	}
 

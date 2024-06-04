@@ -143,7 +143,7 @@ const Streams = function (props) {
 			{props.streams.map((stream, index) => (
 				<Grid key={stream.index + ':' + stream.stream} item xs={12}>
 					<Stack>
-						<Typography sx={{textTransform: "UPPERCASE", marginBottom: 2}} >{stream.type}</Typography>
+						<Typography sx={{ textTransform: 'UPPERCASE', marginBottom: 2 }}>{stream.type}</Typography>
 						<Stream stream={stream} onChange={handleChange(index)} />
 					</Stack>
 				</Grid>
