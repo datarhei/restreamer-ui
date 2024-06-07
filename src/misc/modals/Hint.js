@@ -24,7 +24,7 @@ const Stream = function (props) {
 			if (value === 'audio') {
 				stream.codec = 'aac';
 				if (stream.sampling_hz === 0) {
-					stream.sampling_hz = 44100;
+					stream.sampling_hz = '44100';
 				}
 				if (stream.layout === '') {
 					stream.layout = 'stereo';
