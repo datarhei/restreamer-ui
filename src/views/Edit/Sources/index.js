@@ -9,6 +9,7 @@ import * as VideoLoop from './VideoLoop';
 import * as AudioLoop from './AudioLoop';
 import * as VirtualAudio from './VirtualAudio';
 import * as VirtualVideo from './VirtualVideo';
+import * as SDP from './SDP';
 
 class Registry {
 	constructor() {
@@ -50,5 +51,6 @@ registry.Register(NoAudio);
 registry.Register(VideoAudio);
 registry.Register(VideoLoop);
 registry.Register(AudioLoop);
+registry.Register(SDP);
 
 export default registry;
