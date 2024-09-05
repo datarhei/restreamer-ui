@@ -17,6 +17,7 @@ function createMapping(settings, stream, skills) {
 	const mapping = {
 		global: [],
 		local: ['-c:v', 'mpeg2_cuvid'],
+		filter: [],
 	};
 
 	return mapping;

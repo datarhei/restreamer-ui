@@ -24,6 +24,7 @@ function createMapping(settings, stream, skills) {
 	const mapping = {
 		global: [['-vsync', 'drop']],
 		local: local,
+		filter: [],
 	};
 
 	return mapping;

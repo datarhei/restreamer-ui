@@ -17,6 +17,7 @@ function createMapping(settings, stream, skills) {
 	const mapping = {
 		global: [],
 		local: ['-hwaccel', 'videotoolbox'],
+		filter: [],
 	};
 
 	return mapping;

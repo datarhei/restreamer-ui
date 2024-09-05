@@ -17,6 +17,7 @@ function createMapping(settings, stream, skills) {
 	const mapping = {
 		global: [],
 		local: ['-c:v', 'vp8_cuvid'],
+		filter: [],
 	};
 
 	return mapping;

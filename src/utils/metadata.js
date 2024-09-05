@@ -662,14 +662,17 @@ const createInputsOutputs = (sources, profiles, requireVideo = true) => {
 
 		const local = profile.video.encoder.mapping.local.slice();
 
-		if (profile.video.encoder.coder !== 'copy' && profile.video.filter.graph.length !== 0) {
-			// Check if there's already a video filter in the local mapping
-			let filterIndex = local.indexOf('-filter:v');
-			if (filterIndex !== -1) {
-				local[filterIndex + 1] += ',' + profile.video.filter.graph;
-			} else {
-				local.unshift('-filter:v', profile.video.filter.graph);
+		if (profile.video.encoder.coder !== 'copy' && (profile.video.filter.graph.length !== 0 || profile.video.encoder.mapping.filter.length !== 0)) {
+			let filter = profile.video.filter.graph;
+			if (profile.video.encoder.mapping.filter.length !== 0) {
+				if (filter.length !== 0) {
+					filter += ',';
+				}
+
+				filter += profile.video.encoder.mapping.filter.join(',');
 			}
+
+			local.unshift('-filter:v', filter);
 		}
 
 		const options = ['-map', index + ':' + stream.stream, ...local];
@@ -696,14 +699,17 @@ const createInputsOutputs = (sources, profiles, requireVideo = true) => {
 
 			const local = profile.audio.encoder.mapping.local.slice();
 
-			if (profile.audio.encoder.coder !== 'copy' && profile.audio.filter.graph.length !== 0) {
-				// Check if there's already a audio filter in the local mapping
-				let filterIndex = local.indexOf('-filter:a');
-				if (filterIndex !== -1) {
-					local[filterIndex + 1] += ',' + profile.audio.filter.graph;
-				} else {
-					local.unshift('-filter:a', profile.audio.filter.graph);
+			if (profile.audio.encoder.coder !== 'copy' && (profile.audio.filter.graph.length !== 0 || profile.audio.encoder.mapping.filter.length !== 0)) {
+				let filter = profile.audio.filter.graph;
+				if (profile.audio.encoder.mapping.filter.length !== 0) {
+					if (filter.length !== 0) {
+						filter += ',';
+					}
+
+					filter += profile.audio.encoder.mapping.filter.join(',');
 				}
+
+				local.unshift('-filter:a', filter);
 			}
 
 			options.push('-map', index + ':' + stream.stream, ...local);
@@ -844,11 +850,13 @@ const initProfile = (initialProfile) => {
 		profile.video.encoder.mapping = {
 			global: [],
 			local: profile.video.encoder.mapping,
+			filter: [],
 		};
 	} else {
 		profile.video.encoder.mapping = {
 			global: [],
 			local: [],
+			filter: [],
 			...profile.video.encoder.mapping,
 		};
 	}
@@ -864,11 +872,13 @@ const initProfile = (initialProfile) => {
 		profile.video.decoder.mapping = {
 			global: [],
 			local: profile.video.decoder.mapping,
+			filter: [],
 		};
 	} else {
 		profile.video.decoder.mapping = {
 			global: [],
 			local: [],
+			filter: [],
 			...profile.video.decoder.mapping,
 		};
 	}
@@ -899,11 +909,13 @@ const initProfile = (initialProfile) => {
 		profile.audio.encoder.mapping = {
 			global: [],
 			local: profile.audio.encoder.mapping,
+			filter: [],
 		};
 	} else {
 		profile.audio.encoder.mapping = {
 			global: [],
 			local: [],
+			filter: [],
 			...profile.audio.encoder.mapping,
 		};
 	}
@@ -919,11 +931,13 @@ const initProfile = (initialProfile) => {
 		profile.audio.decoder.mapping = {
 			global: [],
 			local: profile.audio.decoder.mapping,
+			filter: [],
 		};
 	} else {
 		profile.audio.decoder.mapping = {
 			global: [],
 			local: [],
+			filter: [],
 			...profile.audio.decoder.mapping,
 		};
 	}

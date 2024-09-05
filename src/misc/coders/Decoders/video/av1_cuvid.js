@@ -17,6 +17,7 @@ function createMapping(settings, stream, skills) {
 	const mapping = {
 		global: [],
 		local: ['-hwaccel', 'cuda', '-c:v', 'av1_cuvid'],
+		filter: [],
 	};
 
 	return mapping;

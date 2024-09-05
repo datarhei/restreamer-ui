@@ -54,6 +54,7 @@ function createMapping(settings, stream, skills) {
 	const mapping = {
 		global: [],
 		local: local,
+		filter: [],
 	};
 
 	return mapping;

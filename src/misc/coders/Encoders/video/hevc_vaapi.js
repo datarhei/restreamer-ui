@@ -30,13 +30,12 @@ function createMapping(settings, stream, skills) {
 
 	const global = [];
 	const local = [];
+	const filter = [];
 
 	// https://trac.ffmpeg.org/wiki/Hardware/VAAPI
 	global.push(['-vaapi_device', '/dev/dri/renderD128']);
 
 	local.push(
-		'-vf',
-		'format=nv12,hwupload',
 		'-codec:v',
 		'hevc_vaapi',
 		'-profile:v',
@@ -59,9 +58,12 @@ function createMapping(settings, stream, skills) {
 		local.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);
 	}
 
+	filter.push('format=nv12', 'hwupload');
+
 	return {
 		global: global,
 		local: local,
+		filter: filter,
 	};
 }
 
