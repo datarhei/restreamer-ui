@@ -37,7 +37,7 @@ export default function Summary(props) {
 		const s = Sources.Get(source.type);
 		if (s !== null) {
 			name = s.name;
-			address = stream.url.replace(/^playout:/, '');
+			address = decodeURIComponent(stream.url.replace(/^playout:/, ''));
 
 			showEncoding = true;
 		}
