@@ -36,6 +36,7 @@ import * as Twitter from './Twitter';
 import * as UDP from './UDP';
 import * as Vimeo from './Vimeo';
 import * as WOWZA from './WOWZA';
+import * as Wettercom from './Wettercom';
 import * as Youtube from './Youtube';
 
 class Registry {
@@ -91,6 +92,7 @@ registry.Register(NimoTv);
 registry.Register(PeerTube);
 registry.Register(MediaNetwork);
 registry.Register(Livespotting);
+registry.Register(Wettercom);
 registry.Register(Azure);
 registry.Register(Brightcove);
 registry.Register(Akamai);
