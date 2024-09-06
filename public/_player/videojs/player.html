@@ -83,9 +83,6 @@
 		responsive: true,
 		fluid: true,
 		sources: [{ src: window.location.origin + '/' + playerConfig.source, type: 'application/x-mpegURL' }],
-		plugins: {
-			license: playerConfig.license
-		}
 	};
 
 	if (playerConfig.chromecast) {
@@ -132,6 +129,8 @@
 					},
 				],
 			});
+
+			player.license(playerConfig.license);
 		}
 
 		if (autoplay === true) {

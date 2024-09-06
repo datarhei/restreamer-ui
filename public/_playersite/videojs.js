@@ -8,23 +8,26 @@ var config = {
 	fluid: true,
 	// Needed to append the url orgin in order for the source to properly pass to the cast device
 	sources: [{ src: playerConfig.source, type: 'application/x-mpegURL' }],
-	plugins: {
-		license: playerConfig.license,
-	},
 };
 
 if (chromecast) {
 	config.techOrder = ['chromecast', 'html5'];
-	config.plugins.chromecast = {};
-}
-
-if (airplay) {
-	config.plugins.airPlay = {};
 }
 
 var player = videojs('player', config);
 
 player.ready(function () {
+
+	if (chromecast) {
+		player.chromecast();
+	}
+
+	if (airplay) {
+		player.airPlay();
+	}
+	
+	player.license(playerConfig.license);
+
 	if (playerConfig.logo.image.length != 0) {
 		var overlay = null;
 
