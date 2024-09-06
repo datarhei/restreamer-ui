@@ -1,5 +1,13 @@
 # Restreamer-UI
 
+## v1.13.0 > v1.14.0
+
+-   Add wettercom service
+-   Mod updates public videojs >v8
+-   Fix erroneous filter setting
+-   Fix encoded address
+-   Fix double -filter parameter when encoder sets filter
+
 ## v1.12.0 > v1.13.0
 
 -   Add to allow stream hints in case probing fails
