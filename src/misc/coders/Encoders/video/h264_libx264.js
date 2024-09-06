@@ -71,7 +71,7 @@ function createMapping(settings, stream, skills) {
 	const mapping = {
 		global: [],
 		local: local,
-		filter: ['erosion'],
+		filter: [],
 	};
 
 	return mapping;
