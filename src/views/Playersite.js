@@ -14,6 +14,11 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 
 import * as M from '../utils/metadata';
 import playerSiteThumb from '../assets/images/playersite.png';
@@ -23,6 +28,8 @@ import Dialog from '../misc/modals/Dialog';
 import Filesize from '../misc/Filesize';
 import FormInlineButton from '../misc/FormInlineButton';
 import H from '../utils/help';
+import MultiSelect from '../misc/MultiSelect';
+import MultiSelectOption from '../misc/MultiSelectOption';
 import NotifyContext from '../contexts/Notify';
 import Paper from '../misc/Paper';
 import PaperHeader from '../misc/PaperHeader';
@@ -48,6 +55,61 @@ const imageTypes = [
 ];
 
 const templateTypes = [{ mimetype: 'text/html', extension: 'html', maxSize: 500 * 1024 }];
+
+function CheckboxList(props) {
+	const [$checked, setChecked] = React.useState(props.selected);
+
+	const handleToggle = (value) => () => {
+		const currentIndex = $checked.indexOf(value);
+		const newChecked = [...$checked];
+
+		if (currentIndex === -1) {
+			newChecked.push(value);
+		} else {
+			newChecked.splice(currentIndex, 1);
+		}
+
+		setChecked(newChecked);
+
+		props.onChange({
+			target: {
+				value: [...newChecked],
+			},
+		});
+	};
+
+	return (
+		<List sx={{ width: '100%', position: 'relative', overflow: 'auto', maxHeight: 300 }}>
+			{props.items.map((value) => {
+				const labelId = `checkbox-list-label-${value.id}`;
+
+				return (
+					<ListItem key={value.id} disablePadding>
+						<ListItemButton onClick={handleToggle(value.id)} dense disabled={props.disabled}>
+							<ListItemIcon>
+								<Checkbox
+									edge="start"
+									checked={$checked.indexOf(value.id) !== -1}
+									tabIndex={-1}
+									disableRipple
+									inputProps={{ 'aria-labelledby': labelId }}
+								/>
+							</ListItemIcon>
+							<ListItemText id={labelId} primary={value.name} />
+						</ListItemButton>
+					</ListItem>
+				);
+			})}
+		</List>
+	);
+}
+
+CheckboxList.defaultProps = {
+	disabled: false,
+	selected: [],
+	items: [],
+	onChange: function () {},
+};
 
 export default function Playersite(props) {
 	const classes = useStyles();
@@ -250,6 +312,12 @@ export default function Playersite(props) {
 		return null;
 	}
 
+	let main_channelid = props.restreamer.GetCurrentChannelID();
+	let channel = props.restreamer.GetChannel($settings.channelid);
+	if (channel !== null) {
+		main_channelid = channel.channelid;
+	}
+
 	return (
 		<React.Fragment>
 			<Paper xs={12} md={10}>
@@ -320,6 +388,44 @@ export default function Playersite(props) {
 									</Select>
 									<Typography variant="caption">
 										<Trans>Main page channel (index.html).</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<MultiSelect
+										disabled={!$settings.playersite}
+										type="select"
+										label={<Trans>Additional channels</Trans>}
+										value={$settings.channel_list.filter((c) => c !== main_channelid)}
+										renderValue={(selected) => {
+											return selected
+												.map((id) => {
+													let channel = props.restreamer.GetChannel(id);
+													if (channel === null) {
+														return '';
+													}
+													return channel.name;
+												})
+												.filter((name) => name.length !== 0)
+												.join(', ');
+										}}
+										onChange={handleChange('channel_list')}
+									>
+										{$channels
+											.sort((a, b) => {
+												const aname = a.name.toUpperCase();
+												const bname = b.name.toUpperCase();
+												return aname < bname ? -1 : aname > bname ? 1 : 0;
+											})
+											.map((c) => {
+												return { id: c.channelid, name: c.name };
+											})
+											.filter((c) => c.id !== main_channelid)
+											.map((c) => {
+												return <MultiSelectOption key={c.id} value={c.id} name={c.name} />;
+											})}
+									</MultiSelect>
+									<Typography variant="caption">
+										<Trans>Additional channels to display on the playersite.</Trans>
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>

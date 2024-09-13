@@ -2247,6 +2247,7 @@ class Restreamer {
 			player: 'videojs',
 			playersite: false,
 			channelid: 'current',
+			channel_list: this.ListChannels().map((c) => c.channelid),
 			title: 'restreamer',
 			share: true,
 			support: true,
@@ -2311,7 +2312,8 @@ class Restreamer {
 			channel = this.GetChannel(this.GetCurrentChannelID());
 		}
 
-		const channels = this.ListChannels();
+		// filter channels based on the main channel and additional channels
+		const channels = this.ListChannels().filter((c) => settings.channel_list.indexOf(c.channelid) !== -1 || c.channelid === channel.channelid);
 
 		// Handlebars function ifEquals
 		Handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
