@@ -3,10 +3,12 @@
 ## v1.13.0 > v1.14.0
 
 -   Add wettercom service
+-   Add option to select which channels will be displayed on the playersite ([#392](https://github.com/datarhei/restreamer/issues/392), [#800](https://github.com/datarhei/restreamer/issues/800))
 -   Mod updates public videojs >v8
 -   Fix erroneous filter setting
 -   Fix encoded address
 -   Fix double -filter parameter when encoder sets filter
+-   Fix Docker build ([#64](https://github.com/datarhei/restreamer-ui/issues/64))
 
 ## v1.12.0 > v1.13.0
 
