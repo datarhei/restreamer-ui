@@ -1,22 +1,17 @@
-ARG NODE_IMAGE=node:21-alpine3.17
-ARG CADDY_IMAGE=caddy:2.7.5-alpine
+ARG NODE_IMAGE=node:21-alpine3.20
+ARG CADDY_IMAGE=caddy:2.8.4-alpine
 
-FROM $NODE_IMAGE as builder
+FROM $NODE_IMAGE AS builder
 
-ARG NODE_SPACE_SIZE=10240
-ENV NODE_OPTIONS="--openssl-legacy-provider --max-old-space-size=$NODE_SPACE_SIZE"
-
-ENV PUBLIC_URL "./"
+ENV PUBLIC_URL="./"
 
 COPY . /ui
 
 WORKDIR /ui
 
 RUN cd /ui && \
-	yarn set version berry && \
-	yarn config set httpTimeout 600000 && \
- 	yarn install && \
- 	yarn run build
+	yarn install && \
+	yarn build
 
 FROM $CADDY_IMAGE
 
