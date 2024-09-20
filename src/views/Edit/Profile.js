@@ -569,7 +569,7 @@ export default function Profile(props) {
 												type="video"
 												streams={$sources.video.streams}
 												profile={$profile.video}
-												codecs={['copy', 'h264']}
+												codecs={['copy', 'h264', 'hevc', 'av1', 'vp8', 'vp9']}
 												skills={props.skills}
 												onChange={handleEncoding('video')}
 											/>
@@ -642,7 +642,7 @@ export default function Profile(props) {
 										type="audio"
 										streams={$sources.video.streams}
 										profile={$profile.audio}
-										codecs={['copy', 'aac', 'mp3']}
+										codecs={['copy', 'aac', 'mp3', 'opus']}
 										skills={props.skills}
 										onChange={handleEncoding('audio')}
 									/>
