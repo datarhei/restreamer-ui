@@ -1,7 +1,12 @@
 import React from 'react';
 
 import Grid from '@mui/material/Grid';
+import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
 
+import { Trans } from '@lingui/macro';
+
+import Select from '../../../Select';
 import Video from '../../settings/Video';
 import Helper from '../../helper';
 
@@ -9,8 +14,9 @@ function init(initialState) {
 	const state = {
 		bitrate: '4096',
 		fps: '25',
-		gop: '2',
 		fps_mode: 'auto',
+		gop: '2',
+		usage: 'realtime',
 		...initialState,
 	};
 
@@ -23,7 +29,7 @@ function createMapping(settings, stream, skills) {
 
 	const local = [
 		'-codec:v',
-		'libvpx-vp9',
+		'libaom-av1',
 		'-b:v',
 		`${settings.bitrate}k`,
 		'-maxrate:v',
@@ -32,12 +38,10 @@ function createMapping(settings, stream, skills) {
 		`${settings.bitrate}k`,
 		'-r',
 		`${settings.fps}`,
-		'-deadline',
-		'realtime',
-		'-quality',
-		'realtime',
 		'-pix_fmt',
 		'yuv420p',
+		'-usage',
+		`${settings.usage}`,
 	];
 
 	if (settings.gop !== 'auto') {
@@ -61,6 +65,26 @@ function createMapping(settings, stream, skills) {
 
 	return mapping;
 }
+
+function Usage(props) {
+	return (
+		<React.Fragment>
+			<Select label={<Trans>Usage</Trans>} value={props.value} onChange={props.onChange}>
+				<MenuItem value="good">good</MenuItem>
+				<MenuItem value="realtime">realtime</MenuItem>
+				<MenuItem value="allintra">allintra</MenuItem>
+			</Select>
+			<Typography variant="caption">
+				<Trans>Quality and compression efficiency vs speed trade-off.</Trans>
+			</Typography>
+		</React.Fragment>
+	);
+}
+
+Usage.defaultProps = {
+	value: 'realtime',
+	onChange: function (event) {},
+};
 
 function Coder(props) {
 	const settings = init(props.settings);
@@ -107,6 +131,9 @@ function Coder(props) {
 					<Video.FpsMode value={settings.fps_mode} onChange={update('fps_mode')} />
 				</Grid>
 			)}
+			<Grid item xs={6}>
+				<Usage value={settings.usage} onChange={update('usage')} />
+			</Grid>
 		</Grid>
 	);
 }
@@ -118,14 +145,14 @@ Coder.defaultProps = {
 	onChange: function (settings, mapping) {},
 };
 
-const coder = 'libvpx-vp9';
-const name = 'VP9 (libvpx-vp9)';
-const codec = 'vp9';
+const coder = 'libaom-av1';
+const name = 'AV1 (libaom)';
+const codec = 'av1';
 const type = 'video';
 const hwaccel = false;
 
 function summarize(settings) {
-	return `${name}, ${settings.bitrate} kbit/s, ${settings.fps} FPS`;
+	return `${name}, ${settings.bitrate} kbit/s, ${settings.fps} FPS, Usage: ${settings.usage}`;
 }
 
 function defaults(stream, skills) {

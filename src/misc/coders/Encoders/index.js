@@ -17,12 +17,13 @@ import * as H264V4L2M2M from './video/h264_v4l2m2m';
 import * as H264VAAPI from './video/h264_vaapi';
 import * as HEVCVAAPI from './video/hevc_vaapi';
 import * as HEVCVideoToolbox from './video/hevc_videotoolbox';
+import * as VP9VPX from './video/vp9_libvpx';
 import * as VP9VAAPI from './video/vp9_vaapi';
 import * as VideoCopy from './video/copy';
 import * as VideoNone from './video/none';
 import * as VideoRaw from './video/rawvideo';
-import * as VP9 from './video/vp9_libvpx';
 import * as AV1Rav1e from './video/av1_librav1e';
+import * as AV1AOM from './video/av1_libaom';
 
 class Registry {
 	constructor(type) {
@@ -133,8 +134,9 @@ videoRegistry.Register(H264VAAPI);
 videoRegistry.Register(X265);
 videoRegistry.Register(HEVCVAAPI);
 videoRegistry.Register(HEVCVideoToolbox);
+videoRegistry.Register(VP9VPX);
 videoRegistry.Register(VP9VAAPI);
-videoRegistry.Register(VP9);
+videoRegistry.Register(AV1AOM);
 videoRegistry.Register(AV1Rav1e);
 videoRegistry.Register(VideoRaw);
 

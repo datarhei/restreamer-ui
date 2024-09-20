@@ -20,8 +20,8 @@ function init(initialState) {
 		qp: '-1',
 		speed: '-1',
 		tiles: '0',
-		tile_rows: '0',
-		tile_columns: '0',
+		tile_rows: '1',
+		tile_columns: '2',
 		params: '',
 		...initialState,
 	};
