@@ -29,6 +29,7 @@ import Paper from '../../misc/Paper';
 import PaperHeader from '../../misc/PaperHeader';
 import PaperFooter from '../../misc/PaperFooter';
 import PaperThumb from '../../misc/PaperThumb';
+import PreviewControl from '../../misc/controls/Preview';
 import ProcessControl from '../../misc/controls/Process';
 import Profile from './Profile';
 import ProfileSummary from './ProfileSummary';
@@ -322,6 +323,12 @@ export default function Edit(props) {
 				notify.Dispatch('error', 'save:ingest', i18n._(t`Failed to update ingest snapshot process (${err.message})`));
 			}
 
+			// Create/update the ingest preview process
+			[, err] = await props.restreamer.UpsertIngestPreview(_channelid, control);
+			if (err !== null) {
+				notify.Dispatch('error', 'save:ingest', i18n._(t`Failed to update ingest preview process (${err.message})`));
+			}
+
 			// Create/update the player
 			res = await props.restreamer.UpdatePlayer(_channelid);
 			if (res === false) {
@@ -545,6 +552,21 @@ export default function Edit(props) {
 								</Grid>
 								<Grid item xs={12}>
 									<SnapshotControl settings={$data.control.snapshot} onChange={handleControlChange('snapshot')} />
+								</Grid>
+								<Grid item xs={12}>
+									<Divider />
+								</Grid>
+								<Grid item xs={12}>
+									<Typography variant="h3">
+										<Trans>Player Playback</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<PreviewControl
+										encoders={$skills.encoders.video}
+										settings={$data.control.preview}
+										onChange={handleControlChange('preview')}
+									/>
 								</Grid>
 								<Grid item xs={12}>
 									<Divider />

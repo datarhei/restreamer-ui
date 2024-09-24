@@ -285,6 +285,11 @@ const defaultIngestMetadata = {
 			enable: true,
 			interval: 60,
 		},
+		preview: {
+			enable: false,
+			video_encoder: 'libx264',
+			audio_encoder: 'aac',
+		},
 		limits: {
 			cpu_usage: 0,
 			memory_mbytes: 0,
@@ -470,6 +475,11 @@ const mergeIngestMetadata = (metadata, base) => {
 	metadata.control.snapshot = {
 		...base.control.snapshot,
 		...metadata.control.snapshot,
+	};
+
+	metadata.control.preview = {
+		...base.control.preview,
+		...metadata.control.preview,
 	};
 
 	if (!Array.isArray(metadata.sources)) {

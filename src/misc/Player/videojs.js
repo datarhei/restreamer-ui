@@ -14,6 +14,15 @@ export default function VideoJS(props) {
 	const playerRef = React.useRef(null);
 	const { options, onReady } = props;
 
+	const retryVideo = () => {
+		const player = playerRef.current;
+		if (player) {
+			player.error(null); // Clear the error
+			player.src(options.sources); // Reload the source
+			player.play(); // Attempt to play again
+		}
+	};
+
 	React.useEffect(() => {
 		// make sure Video.js player is only initialized once
 		if (!playerRef.current) {
@@ -32,6 +41,17 @@ export default function VideoJS(props) {
 			}
 			player.addClass('video-js');
 			player.addClass('vjs-16-9');
+
+			// retry on MEDIA_ERR_NETWORK = 2
+			let retry_count = 0;
+			player.on('error', () => {
+				const error = player.error();
+				console.log(error);
+				if (error && (error.code === 2 || error.code === 4) && retry_count < 10) {
+					retry_count += 1;
+					setTimeout(retryVideo, 2000);
+				}
+			});
 		} else {
 			// you can update player here [update player through props]
 			// const player = playerRef.current;

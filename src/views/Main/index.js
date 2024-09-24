@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 	playerL1: {
 		//padding: '4px 1px 4px 8px',
 		paddingTop: 10,
-		paddingLeft: 18
+		paddingLeft: 18,
 	},
 	playerL2: {
 		position: 'relative',
@@ -69,6 +69,7 @@ export default function Main(props) {
 		progress: {},
 		state: 'disconnected',
 		onConnect: null,
+		preview: null,
 	});
 	const [$metadata, setMetadata] = React.useState(M.getDefaultIngestMetadata());
 	const [$processDetails, setProcessDetails] = React.useState({
@@ -148,6 +149,15 @@ export default function Main(props) {
 					await onConnect();
 				}, 100);
 				state.onConnect = null;
+			}
+			// check av codec @ preview
+			if (state.progress.video_codec !== 'h264' && $state.preview === null) {
+				const preview_progress = await props.restreamer.GetIngestProgress(`${_channelid}`, '_preview');
+				if (preview_progress) {
+					state.preview = false;
+				} else {
+					state.preview = true;
+				}
 			}
 		}
 
@@ -287,11 +297,16 @@ export default function Main(props) {
 	const storage = $metadata.control.hls.storage;
 	const channel = props.restreamer.GetChannel(_channelid);
 	const manifest = props.restreamer.GetChannelAddress('hls+' + storage, _channelid);
+	const manifest_preview = props.restreamer.GetChannelAddress('hls+' + storage, `${_channelid}_h264`);
 	const poster = props.restreamer.GetChannelAddress('snapshot+' + storage, _channelid);
 
-	let title = <Trans>Main channel</Trans>;
+	let title = <Trans>{$state.progress.video_codec} - Main channel</Trans>;
 	if (channel && channel.name && channel.name.length !== 0) {
-		title = channel.name;
+		if ($state.progress.video_codec) {
+			title = `${$state.progress.video_codec} - ${channel.name}`;
+		} else {
+			title = `${channel.name}`;
+		}
 	}
 
 	return (
@@ -382,8 +397,41 @@ export default function Main(props) {
 												)}
 											</Grid>
 										)}
-										{$state.state === 'connected' && (
+										{$state.state === 'connected' && $state.progress.video_codec === 'h264' && (
 											<Player type="videojs-internal" source={manifest} poster={poster} autoplay mute controls />
+										)}
+										{$state.state === 'connected' && $state.progress.video_codec !== 'h264' && $metadata.control.preview.enable && (
+											<Player type="videojs-internal" source={manifest_preview} poster={poster} autoplay mute controls />
+										)}
+										{$state.state === 'connected' && $state.progress.video_codec !== 'h264' && !$metadata.control.preview.enable && (
+											<Grid
+												container
+												direction="column"
+												className={classes.playerL3}
+												justifyContent="center"
+												alignItems="center"
+												spacing={1}
+											>
+												<Grid item>
+													<WarningIcon className={classes.playerWarningIcon} />
+												</Grid>
+												<Grid item>
+													<Typography>
+														<Trans>No H.264 Stream availabe.</Trans>
+													</Typography>
+												</Grid>
+												<Grid item textAlign={'center'}>
+													<Typography>
+														<Trans>
+															Please{' '}
+															<Link style={{ textDecoration: 'underline' }} onClick={() => navigate(`/${_channelid}/edit`)}>
+																edit
+															</Link>{' '}
+															this channel and enable the browser-compatible H.264 stream in the "Processing & Control" area:
+														</Trans>
+													</Typography>
+												</Grid>
+											</Grid>
 										)}
 									</Grid>
 								</Grid>
@@ -433,6 +481,16 @@ export default function Main(props) {
 										>
 											<Trans>Snapshot</Trans>
 										</CopyButton>
+										{$metadata.control.preview.enable && (
+											<CopyButton
+												variant="outlined"
+												color="default"
+												size="small"
+												value={props.restreamer.GetPublicAddress('hls+' + storage, `${_channelid}_h264`)}
+											>
+												<Trans>HLS @ H.264</Trans>
+											</CopyButton>
+										)}
 									</Stack>
 								</Stack>
 							</Grid>
