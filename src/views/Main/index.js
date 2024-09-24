@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { Trans } from '@lingui/macro';
 import makeStyles from '@mui/styles/makeStyles';
+import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
@@ -300,10 +301,14 @@ export default function Main(props) {
 	const manifest_preview = props.restreamer.GetChannelAddress('hls+' + storage, `${_channelid}_h264`);
 	const poster = props.restreamer.GetChannelAddress('snapshot+' + storage, _channelid);
 
-	let title = <Trans>{$state.progress.video_codec} - Main channel</Trans>;
+	let title = <Trans>Main channel</Trans>;
 	if (channel && channel.name && channel.name.length !== 0) {
 		if ($state.progress.video_codec) {
-			title = `${$state.progress.video_codec} - ${channel.name}`;
+			title = (
+				<>
+				  	<Chip variant="outlined" color="primary" label={$state.progress.video_codec} /> {channel.name}
+				</>
+			);
 		} else {
 			title = `${channel.name}`;
 		}
@@ -326,7 +331,7 @@ export default function Main(props) {
 												className={classes.playerL3}
 												justifyContent="center"
 												alignItems="center"
-												spacing={1}
+												spacing={2}
 											>
 												<Grid item>
 													<Typography variant="h2">
@@ -342,7 +347,7 @@ export default function Main(props) {
 												className={classes.playerL3}
 												justifyContent="center"
 												alignItems="center"
-												spacing={1}
+												spacing={2}
 											>
 												<Grid item>
 													<CircularProgress color="inherit" />
@@ -361,7 +366,7 @@ export default function Main(props) {
 												className={classes.playerL3}
 												justifyContent="center"
 												alignItems="center"
-												spacing={1}
+												spacing={2}
 											>
 												<Grid item>
 													<WarningIcon className={classes.playerWarningIcon} />
@@ -397,7 +402,7 @@ export default function Main(props) {
 												)}
 											</Grid>
 										)}
-										{$state.state === 'connected' && $state.progress.video_codec === 'h264' && (
+										{$state.state === 'connected' && $state.progress.video_codec === 'h264'&& !$metadata.control.preview.enable && (
 											<Player type="videojs-internal" source={manifest} poster={poster} autoplay mute controls />
 										)}
 										{$state.state === 'connected' && $state.progress.video_codec !== 'h264' && $metadata.control.preview.enable && (
@@ -410,7 +415,8 @@ export default function Main(props) {
 												className={classes.playerL3}
 												justifyContent="center"
 												alignItems="center"
-												spacing={1}
+												textAlign={"center"}
+												spacing={2}
 											>
 												<Grid item>
 													<WarningIcon className={classes.playerWarningIcon} />
@@ -420,14 +426,39 @@ export default function Main(props) {
 														<Trans>No H.264 Stream availabe.</Trans>
 													</Typography>
 												</Grid>
-												<Grid item textAlign={'center'}>
+												<Grid item>
 													<Typography>
 														<Trans>
 															Please{' '}
 															<Link style={{ textDecoration: 'underline' }} onClick={() => navigate(`/${_channelid}/edit`)}>
 																edit
 															</Link>{' '}
-															this channel and enable the browser-compatible H.264 stream in the "Processing & Control" area:
+															this channel and enable the browser-compatible H.264 stream in the "Processing & Control" area.
+														</Trans>
+													</Typography>
+												</Grid>
+											</Grid>
+										)}
+										{$state.state === 'connected' && $state.progress.video_codec === 'h264' && $metadata.control.preview.enable && (
+											<Grid
+												container
+												direction="column"
+												className={classes.playerL3}
+												justifyContent="center"
+												alignItems="center"
+												spacing={2}
+											>
+												<Grid item>
+													<WarningIcon className={classes.playerWarningIcon} />
+												</Grid>
+												<Grid item>
+													<Typography>
+														<Trans>
+															Please{' '}
+															<Link style={{ textDecoration: 'underline' }} onClick={() => navigate(`/${_channelid}/edit`)}>
+																edit
+															</Link>{' '}
+															this channel and disable the second H.264 stream in the "Processing & Control" area.
 														</Trans>
 													</Typography>
 												</Grid>

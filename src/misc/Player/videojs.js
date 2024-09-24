@@ -42,13 +42,10 @@ export default function VideoJS(props) {
 			player.addClass('video-js');
 			player.addClass('vjs-16-9');
 
-			// retry on MEDIA_ERR_NETWORK = 2
-			let retry_count = 0;
+			// retry on MEDIA_ERR_NETWORK = 2 || 4
 			player.on('error', () => {
 				const error = player.error();
-				console.log(error);
-				if (error && (error.code === 2 || error.code === 4) && retry_count < 10) {
-					retry_count += 1;
+				if (error && (error.code === 2 || error.code === 4)) {
 					setTimeout(retryVideo, 2000);
 				}
 			});
@@ -58,6 +55,7 @@ export default function VideoJS(props) {
 			// player.autoplay(options.autoplay);
 			// player.src(options.sources);
 		}
+	// eslint-disable-next-line
 	}, [options, videoRef, onReady, props.type]);
 
 	// Dispose the Video.js player when the functional component unmounts
