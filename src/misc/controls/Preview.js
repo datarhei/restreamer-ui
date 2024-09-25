@@ -47,7 +47,7 @@ export default function Control(props) {
 				<Checkbox label={<Trans>Enable browser-compatible H.264 stream</Trans>} checked={settings.enable} onChange={handleChange('enable')} />
 			</Grid>
 			<Grid item xs={12} md={6}>
-				<Select label={<Trans>Video Codec</Trans>} value={settings.video_codec} onChange={handleChange('video_encoder')}>
+				<Select label={<Trans>Video Codec</Trans>} value={settings.video_encoder} disabled={!settings.enable} onChange={handleChange('video_encoder')}>
 					<MenuItem value="libx264" disabled={!encoders.includes('libx264')}>
 						H.264 (libx264)
 					</MenuItem>
@@ -77,5 +77,6 @@ export default function Control(props) {
 
 Control.defaulProps = {
 	settings: {},
+	encoders: [],
 	onChange: function (settings, automatic) {},
 };
