@@ -9,10 +9,18 @@ import './video-js-skin-internal.min.css';
 import './video-js-skin-public.min.css';
 import 'videojs-overlay/dist/videojs-overlay.css';
 
-export default function VideoJS(props) {
+export default function VideoJS({ type = 'videojs-internal', options = {}, onReady = null }) {
 	const videoRef = React.useRef(null);
 	const playerRef = React.useRef(null);
-	const { options, onReady } = props;
+
+	const retryVideo = () => {
+		const player = playerRef.current;
+		if (player) {
+			player.error(null); // Clear the error
+			player.src(options.sources); // Reload the source
+			player.play(); // Attempt to play again
+		}
+	};
 
 	React.useEffect(() => {
 		// make sure Video.js player is only initialized once
@@ -25,20 +33,29 @@ export default function VideoJS(props) {
 			}));
 
 			// add internal/public skin style
-			if (props.type === 'videojs-public') {
+			if (type === 'videojs-public') {
 				player.addClass('vjs-public');
 			} else {
 				player.addClass('vjs-internal');
 			}
 			player.addClass('video-js');
 			player.addClass('vjs-16-9');
+
+			// retry on MEDIA_ERR_NETWORK = 2 || 4
+			player.on('error', () => {
+				const error = player.error();
+				if (error && (error.code === 2 || error.code === 4)) {
+					setTimeout(retryVideo, 2000);
+				}
+			});
 		} else {
 			// you can update player here [update player through props]
 			// const player = playerRef.current;
 			// player.autoplay(options.autoplay);
 			// player.src(options.sources);
 		}
-	}, [options, videoRef, onReady, props.type]);
+		// eslint-disable-next-line
+	}, [options, videoRef, onReady, type]);
 
 	// Dispose the Video.js player when the functional component unmounts
 	React.useEffect(() => {
@@ -67,7 +84,3 @@ export default function VideoJS(props) {
 		</Grid>
 	);
 }
-
-VideoJS.defaultProps = {
-	type: 'videojs-internal',
-};

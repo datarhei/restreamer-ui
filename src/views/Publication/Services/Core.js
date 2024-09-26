@@ -41,7 +41,7 @@ const requires = {
 	formats: ['flv', 'mpegts'],
 	codecs: {
 		audio: ['aac'],
-		video: ['h264'],
+		video: ['h264', 'hevc', 'vp9', 'av1'],
 	},
 };
 
@@ -92,8 +92,8 @@ function init(settings) {
 	return initSettings;
 }
 
-function Service(props) {
-	const settings = init(props.settings);
+function Service({ settings = {}, skills = {}, metadata = {}, streams = [], onChange = function (output, settings) {} }) {
+	settings = init(settings);
 
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
@@ -151,7 +151,7 @@ function Service(props) {
 
 		const output = createOutput(settings);
 
-		props.onChange([output], settings);
+		onChange([output], settings);
 	};
 
 	const createOutput = (settings) => {
@@ -165,6 +165,23 @@ function Service(props) {
 			output.options = ['-bsf:v', 'dump_extra', '-f', 'mpegts'];
 		} else {
 			output.options = ['-f', 'flv'];
+
+			if (skills.ffmpeg.version_major >= 6) {
+				const codecs = [];
+				if (skills.codecs.video.includes('hevc')) {
+					codecs.push('hvc1');
+				}
+				if (skills.codecs.video.includes('av1')) {
+					codecs.push('av01');
+				}
+				if (skills.codecs.video.includes('vp9')) {
+					codecs.push('vp09');
+				}
+
+				if (codecs.length !== 0) {
+					output.options.push('-rtmp_enhanced_codecs', codecs.join(','));
+				}
+			}
 		}
 
 		return output;
@@ -230,14 +247,6 @@ function Service(props) {
 		</Grid>
 	);
 }
-
-Service.defaultProps = {
-	settings: {},
-	skills: {},
-	metadata: {},
-	streams: [],
-	onChange: function (output, settings) {},
-};
 
 export {
 	id,

@@ -46,7 +46,7 @@ const requires = {
 	formats: ['flv'],
 	codecs: {
 		audio: ['aac', 'mp3'],
-		video: ['h264'],
+		video: ['h264', 'hevc', 'vp9', 'av1'],
 	},
 };
 
@@ -78,8 +78,8 @@ function init(settings) {
 	return initSettings;
 }
 
-function Service(props) {
-	const settings = init(props.settings);
+function Service({ settings = {}, skills = {}, metadata = {}, streams = [], onChange = function (output, settings) {} }) {
+	settings = init(settings);
 
 	const handleChange = (what) => (event) => {
 		let value = event.target.value;
@@ -90,7 +90,7 @@ function Service(props) {
 			if (what === 'address') {
 				const matches = value.match(/(rtmp.):\/\//);
 				if (matches !== null) {
-					if (props.skills.protocols.includes(matches[1])) {
+					if (skills.protocols.includes(matches[1])) {
 						settings['protocol'] = matches[0];
 						value = value.replace(matches[0], '');
 					}
@@ -102,11 +102,28 @@ function Service(props) {
 
 		const output = createOutput(settings);
 
-		props.onChange([output], settings);
+		onChange([output], settings);
 	};
 
 	const createOutput = (settings) => {
 		const options = ['-f', 'flv'];
+
+		if (skills.ffmpeg.version_major >= 6) {
+			const codecs = [];
+			if (skills.codecs.video.includes('hevc')) {
+				codecs.push('hvc1');
+			}
+			if (skills.codecs.video.includes('av1')) {
+				codecs.push('av01');
+			}
+			if (skills.codecs.video.includes('vp9')) {
+				codecs.push('vp09');
+			}
+
+			if (codecs.length !== 0) {
+				options.push('-rtmp_enhanced_codecs', codecs.join(','));
+			}
+		}
 
 		for (let key in settings.options) {
 			if (settings.options[key].length !== 0) {
@@ -279,13 +296,5 @@ function Service(props) {
 		</Grid>
 	);
 }
-
-Service.defaultProps = {
-	settings: {},
-	skills: {},
-	metadata: {},
-	streams: [],
-	onChange: function (output, settings) {},
-};
 
 export { id, name, version, stream_key_link, description, image_copyright, author, category, requires, ServiceIcon as icon, Service as component };

@@ -74,8 +74,8 @@ function init(settings) {
 	return initSettings;
 }
 
-function Service(props) {
-	const settings = init(props.settings);
+function Service({ settings = {}, skills = {}, metadata = {}, streams = [], onChange = function (output, settings) {} }) {
+	settings = init(settings);
 
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
@@ -88,7 +88,7 @@ function Service(props) {
 
 		const outputs = createOutput(settings);
 
-		props.onChange(outputs, settings);
+		onChange(outputs, settings);
 	};
 
 	const createOutput = (settings) => {
@@ -101,14 +101,12 @@ function Service(props) {
 		if (settings.mode === 'rtmps') {
 			let options = ['-f', 'flv'];
 
-			console.log('codecs', props.skills.codecs);
-
-			if (props.skills.ffmpeg.version_major >= 6) {
+			if (skills.ffmpeg.version_major >= 6) {
 				const codecs = [];
-				if (props.skills.codecs.video.includes('hevc')) {
+				if (skills.codecs.video.includes('hevc')) {
 					codecs.push('hvc1');
 				}
-				if (props.skills.codecs.video.includes('av1')) {
+				if (skills.codecs.video.includes('av1')) {
 					codecs.push('av01');
 				}
 
@@ -176,8 +174,8 @@ function Service(props) {
 		return outputs;
 	};
 
-	const allowRTMPS = props.skills.protocols.includes('rtmps') && props.skills.formats.includes('flv');
-	const allowHLS = props.skills.protocols.includes('https') && props.skills.formats.includes('hls');
+	const allowRTMPS = skills.protocols.includes('rtmps') && skills.formats.includes('flv');
+	const allowHLS = skills.protocols.includes('https') && skills.formats.includes('hls');
 
 	return (
 		<Grid container spacing={2}>
@@ -202,13 +200,5 @@ function Service(props) {
 		</Grid>
 	);
 }
-
-Service.defaultProps = {
-	settings: {},
-	skills: {},
-	metadata: {},
-	streams: [],
-	onChange: function (output, settings) {},
-};
 
 export { id, name, version, stream_key_link, description, image_copyright, author, category, requires, ServiceIcon as icon, Service as component };

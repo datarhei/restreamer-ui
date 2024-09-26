@@ -18,22 +18,15 @@ const useStyles = makeStyles((theme) => ({
 	disabled: {},
 }));
 
-export default function Component(props) {
+export default function Component({ label = '', checked = false, disabled = false, onChange = function (event) {} }) {
 	const classes = useStyles();
 
 	return (
 		<FormControlLabel
 			className={classes.root}
-			control={<Checkbox className={classes.root} checked={props.checked} onChange={props.onChange} />}
-			label={props.label}
-			disabled={props.disabled}
+			control={<Checkbox className={classes.root} checked={checked} onChange={onChange} />}
+			label={label}
+			disabled={disabled}
 		/>
 	);
 }
-
-Component.defaultProps = {
-	label: '',
-	checked: false,
-	disabled: false,
-	onChange: function (event) {},
-};

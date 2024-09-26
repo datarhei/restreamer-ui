@@ -48,14 +48,21 @@ function initDevices(initialDevices) {
 	return devices;
 }
 
-function Source(props) {
-	const settings = initSettings(props.settings, props.knownDevices);
-	const devices = initDevices(props.knownDevices);
+function Source({
+	settings = {},
+	knownDevices = [],
+	config = null,
+	skills = null,
+	onChange = function (type, settings, inputs, ready) {},
+	onRefresh = function () {},
+}) {
+	const devices = initDevices(knownDevices);
+	settings = initSettings(settings, knownDevices);
 
 	const handleChange = (newSettings) => {
 		newSettings = newSettings || settings;
 
-		props.onChange(S.id, newSettings, S.func.createInputs(newSettings), true);
+		onChange(S.id, newSettings, S.func.createInputs(newSettings), true);
 	};
 
 	const update = (what) => (event) => {
@@ -101,12 +108,6 @@ function Source(props) {
 		</React.Fragment>
 	);
 }
-
-Source.defaultProps = {
-	knownDevices: [],
-	settings: {},
-	onChange: function (type, settings, inputs, ready) {},
-};
 
 function SourceIcon(props) {
 	return <FontAwesomeIcon icon={faRaspberryPi} style={{ color: '#FFF' }} {...props} />;

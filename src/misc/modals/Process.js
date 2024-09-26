@@ -60,8 +60,43 @@ const initLogdata = (logdata) => {
 	return data;
 };
 
+// This requires updating all processes first.
+
+// const loglevel = (level) => {
+// 	switch(level) {
+// 		case 'warning':
+// 			return [
+// 				'[warning]', '[error]', '[debug]', '[trace]',
+// 			];
+// 		case 'error':
+// 			return [
+// 				'[error]', '[debug]', '[trace]',
+// 			];
+// 		case 'debug':
+// 			return [
+// 				'[debug]', '[trace]',
+// 			];
+// 		default:
+// 			return [
+// 				'[info]', '[warning]', '[error]', '[debug]', '[trace]',
+// 			];
+// 		}
+// }
+
+// const filterPrelude = (loglines) => {
+// 	return loglines
+// 	  .filter(entry => entry.startsWith('[info]'))
+// 	  .map(entry => entry.replace('[info]', ''));
+// }
+
+// const filterLoglines = (loglines, level) => {
+// 	return loglines.filter((entry) => {
+// 		return loglevel(level).some((level) => entry[1].includes(level));
+// 	});
+// }
+
 const formatLogline = (entry) => {
-	let line = '@' + entry[0] + ' ';
+	let line = new Date(entry[0] * 1000).toISOString() + ' ';
 
 	const matches = entry[1].match(/^\[([0-9A-Za-z]+) @ 0x[0-9a-f]+\]/i);
 	if (matches !== null) {
@@ -78,16 +113,26 @@ const formatLogline = (entry) => {
 	return line;
 };
 
-const Component = function (props) {
+const Component = function ({
+	open = false,
+	title = '',
+	progress = {},
+	logdata = {
+		prelude: [],
+		log: [],
+	},
+	onClose = null,
+	onHelp = null,
+}) {
 	const classes = useStyles();
-	const logdata = initLogdata({
-		...props.logdata,
-		command: props.progress?.command,
+	logdata = initLogdata({
+		...logdata,
+		command: progress?.command,
 	});
 
 	return (
-		<Modal open={props.open} onClose={props.onClose} className="modal">
-			<ModalContent title={props.title} onClose={props.onClose} onHelp={props.onHelp}>
+		<Modal open={open} onClose={onClose} className="modal">
+			<ModalContent title={title} onClose={onClose} onHelp={onHelp}>
 				<Grid container spacing={1}>
 					<Grid item xs={12} md={8} lg={10}>
 						<Grid container spacing={3}>
@@ -107,6 +152,7 @@ const Component = function (props) {
 											<Typography variant="body1" className={classes.title}>
 												<Trans>Banner</Trans>
 											</Typography>
+											{/* <Textarea rows={9} value={filterPrelude(logdata.prelude).join('\n')} scrollTo="bottom" readOnly allowCopy /> */}
 											<Textarea rows={9} value={logdata.prelude.join('\n')} scrollTo="bottom" readOnly allowCopy />
 										</Grid>
 										<Grid item xs={12} marginTop={2}>
@@ -116,6 +162,7 @@ const Component = function (props) {
 											<Typography variant="body1" className={classes.title}>
 												<Trans>Logging</Trans>
 											</Typography>
+											{/* <Textarea rows={16} value={filterLoglines(logdata.log, 'info').map(formatLogline).join('\n')} scrollTo="bottom" readOnly allowCopy /> */}
 											<Textarea rows={16} value={logdata.log.map(formatLogline).join('\n')} scrollTo="bottom" readOnly allowCopy />
 										</Grid>
 									</Grid>
@@ -124,7 +171,7 @@ const Component = function (props) {
 						</Grid>
 					</Grid>
 					<Grid item xs={12} md={4} lg={2}>
-						{props.progress !== null && <Progress {...props.progress} />}
+						{progress !== null && <Progress {...progress} />}
 					</Grid>
 				</Grid>
 			</ModalContent>
@@ -133,15 +180,3 @@ const Component = function (props) {
 };
 
 export default Component;
-
-Component.defaultProps = {
-	open: false,
-	title: '',
-	progress: {},
-	logdata: {
-		prelude: [],
-		log: [],
-	},
-	onClose: null,
-	onHelp: null,
-};

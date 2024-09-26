@@ -18,6 +18,8 @@ const restreamer = {
 		return {
 			ffmpeg: {
 				version: '5.1.2',
+				version_major: 5,
+				version_minor: 1,
 			},
 			formats: {
 				demuxers: ['rtsp'],
@@ -26,7 +28,7 @@ const restreamer = {
 				input: ['http', 'https', 'rtmp', 'rtmps', 'srt'],
 			},
 			sources: {
-				network: {},
+				network: [],
 			},
 			encoders: {
 				audio: ['copy', 'none', 'aac'],
@@ -335,7 +337,7 @@ test('wizard: rtmp source video h264-aac', async () => {
 	let button = screen.getByRole('button', { name: 'RTMP server' });
 	fireEvent.click(button);
 
-	expect(screen.queryByText(/Send stream to this address:/)).toBeInTheDocument();
+	expect(screen.queryByText(/Address:/)).toBeInTheDocument();
 
 	button = screen.getByRole('button', { name: 'Next' });
 	expect(button).toBeEnabled();
@@ -396,6 +398,8 @@ test('wizard: srt source video h264-aac', async () => {
 	// Choose network source
 	let button = screen.getByRole('button', { name: 'SRT server' });
 	fireEvent.click(button);
+
+	expect(screen.queryByText(/Address:/)).toBeInTheDocument();
 
 	button = screen.getByRole('button', { name: 'Next' });
 	expect(button).toBeEnabled();

@@ -23,6 +23,8 @@ import Dialog from '../misc/modals/Dialog';
 import Filesize from '../misc/Filesize';
 import FormInlineButton from '../misc/FormInlineButton';
 import H from '../utils/help';
+import MultiSelect from '../misc/MultiSelect';
+import MultiSelectOption from '../misc/MultiSelectOption';
 import NotifyContext from '../contexts/Notify';
 import Paper from '../misc/Paper';
 import PaperHeader from '../misc/PaperHeader';
@@ -49,12 +51,12 @@ const imageTypes = [
 
 const templateTypes = [{ mimetype: 'text/html', extension: 'html', maxSize: 500 * 1024 }];
 
-export default function Playersite(props) {
+export default function Playersite({ restreamer = null }) {
 	const classes = useStyles();
 	const navigate = useNavigate();
 	const { i18n } = useLingui();
-	const address = props.restreamer.Address() + '/';
-	const playersiteUrl = props.restreamer.GetPlayersiteUrl();
+	const address = restreamer.Address() + '/';
+	const playersiteUrl = restreamer.GetPlayersiteUrl();
 	const notify = React.useContext(NotifyContext);
 	const [$ready, setReady] = React.useState(false);
 	const [$ingest, setIngest] = React.useState(false);
@@ -79,15 +81,15 @@ export default function Playersite(props) {
 	}, []);
 
 	const mount = async () => {
-		const data = await props.restreamer.GetMetadata();
+		const data = await restreamer.GetMetadata();
 
 		setData(data);
-		setSettings(props.restreamer.InitPlayersiteSettings(data.playersite));
-		setChannels(props.restreamer.ListChannels());
-		setIngest(props.restreamer.HasIngest());
+		setSettings(restreamer.InitPlayersiteSettings(data.playersite));
+		setChannels(restreamer.ListChannels());
+		setIngest(restreamer.HasIngest());
 
-		setTemplates(await props.restreamer.ListPlayersiteTemplates());
-		setAvailable(await props.restreamer.HasPlayersite());
+		setTemplates(await restreamer.ListPlayersiteTemplates());
+		setAvailable(await restreamer.HasPlayersite());
 
 		setReady(true);
 	};
@@ -109,7 +111,7 @@ export default function Playersite(props) {
 	};
 
 	const handleBackgroundImageUpload = async (data, extension) => {
-		const path = await props.restreamer.UploadPlayersiteBackgroundImage(data, extension);
+		const path = await restreamer.UploadPlayersiteBackgroundImage(data, extension);
 
 		handleChange('bgimage_url')({
 			target: {
@@ -121,9 +123,9 @@ export default function Playersite(props) {
 	};
 
 	const handleTemplateUpload = async (data, extension) => {
-		const name = await props.restreamer.UploadPlayersiteTemplate(data, $settings.templatename);
+		const name = await restreamer.UploadPlayersiteTemplate(data, $settings.templatename);
 
-		setTemplates(await props.restreamer.ListPlayersiteTemplates());
+		setTemplates(await restreamer.ListPlayersiteTemplates());
 		setSettings({
 			...$settings,
 			template: name,
@@ -136,12 +138,12 @@ export default function Playersite(props) {
 	const handleTemplateDelete = async () => {
 		setSaving(true);
 
-		await props.restreamer.DeletePlayersiteTemplate($settings.template);
+		await restreamer.DeletePlayersiteTemplate($settings.template);
 		setSettings({
 			...$settings,
 			template: '!default',
 		});
-		setTemplates(await props.restreamer.ListPlayersiteTemplates());
+		setTemplates(await restreamer.ListPlayersiteTemplates());
 
 		setSaving(false);
 	};
@@ -208,21 +210,21 @@ export default function Playersite(props) {
 			playersite: $settings,
 		};
 
-		let res = await props.restreamer.SetMetadata(data);
+		let res = await restreamer.SetMetadata(data);
 		if (res === false) {
 			notify.Dispatch('error', 'save:playersite', i18n._(t`Failed to store player size setting.`));
 			setSaving(false);
 			return;
 		}
 
-		res = await props.restreamer.UpdatePlayersite();
+		res = await restreamer.UpdatePlayersite();
 		if (res === false) {
 			notify.Dispatch('error', 'save:playersite', i18n._(t`Failed to create publication website files.`));
 			setSaving(false);
 			return;
 		}
 
-		setAvailable(await props.restreamer.HasPlayersite());
+		setAvailable(await restreamer.HasPlayersite());
 
 		setSaving(false);
 
@@ -248,6 +250,12 @@ export default function Playersite(props) {
 	if ($ingest === false) {
 		navigate('/');
 		return null;
+	}
+
+	let main_channelid = restreamer.GetCurrentChannelID();
+	let channel = restreamer.GetChannel($settings.channelid);
+	if (channel !== null) {
+		main_channelid = channel.channelid;
 	}
 
 	return (
@@ -320,6 +328,44 @@ export default function Playersite(props) {
 									</Select>
 									<Typography variant="caption">
 										<Trans>Main page channel (index.html).</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<MultiSelect
+										disabled={!$settings.playersite}
+										type="select"
+										label={<Trans>Additional channels</Trans>}
+										value={$settings.channel_list.filter((c) => c !== main_channelid)}
+										renderValue={(selected) => {
+											return selected
+												.map((id) => {
+													let channel = restreamer.GetChannel(id);
+													if (channel === null) {
+														return '';
+													}
+													return channel.name;
+												})
+												.filter((name) => name.length !== 0)
+												.join(', ');
+										}}
+										onChange={handleChange('channel_list')}
+									>
+										{$channels
+											.sort((a, b) => {
+												const aname = a.name.toUpperCase();
+												const bname = b.name.toUpperCase();
+												return aname < bname ? -1 : aname > bname ? 1 : 0;
+											})
+											.map((c) => {
+												return { id: c.channelid, name: c.name };
+											})
+											.filter((c) => c.id !== main_channelid)
+											.map((c) => {
+												return <MultiSelectOption key={c.id} value={c.id} name={c.name} />;
+											})}
+									</MultiSelect>
+									<Typography variant="caption">
+										<Trans>Additional channels to display on the playersite.</Trans>
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
@@ -754,7 +800,3 @@ export default function Playersite(props) {
 		</React.Fragment>
 	);
 }
-
-Playersite.defaultProps = {
-	restreamer: null,
-};

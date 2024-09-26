@@ -10,9 +10,7 @@ import * as Filters from './filters';
 // Import all encoders (audio/video)
 import * as Encoders from './coders/Encoders';
 
-export default function FilterSelect(props) {
-	const profile = props.profile;
-
+export default function FilterSelect({ type = '', profile = {}, availableFilters = [], onChange = function (filter, automatic) {} }) {
 	// handleFilterChange
 	// what: Filter name
 	// settings (component settings):  {Key: Value}
@@ -28,7 +26,7 @@ export default function FilterSelect(props) {
 
 		// Get the order of the filters
 		let filterOrder = [];
-		if (props.type === 'video') {
+		if (type === 'video') {
 			filterOrder = Filters.Video.Filters();
 		} else {
 			filterOrder = Filters.Audio.Filters();
@@ -48,14 +46,14 @@ export default function FilterSelect(props) {
 
 		filter.graph = graphs.join(',');
 
-		props.onChange(filter, automatic);
+		onChange(filter, automatic);
 	};
 
 	// Set filterRegistry by type
 	let filterRegistry = null;
-	if (props.type === 'video') {
+	if (type === 'video') {
 		filterRegistry = Filters.Video;
-	} else if (props.type === 'audio') {
+	} else if (type === 'audio') {
 		filterRegistry = Filters.Audio;
 	} else {
 		return null;
@@ -64,10 +62,10 @@ export default function FilterSelect(props) {
 	// Checks the state of hwaccel (gpu encoding)
 	let encoderRegistry = null;
 	let hwaccel = false;
-	if (props.type === 'video') {
+	if (type === 'video') {
 		encoderRegistry = Encoders.Video;
 		for (let encoder of encoderRegistry.List()) {
-			if (encoder.codec === props.profile.encoder.coder && encoder.hwaccel) {
+			if (encoder.codec === profile.encoder.coder && encoder.hwaccel) {
 				hwaccel = true;
 			}
 		}
@@ -78,7 +76,7 @@ export default function FilterSelect(props) {
 	if (!hwaccel) {
 		for (let c of filterRegistry.List()) {
 			// Checks FFmpeg skills (filter is available)
-			if (props.availableFilters.includes(c.filter)) {
+			if (availableFilters.includes(c.filter)) {
 				const Settings = c.component;
 
 				if (!(c.filter in profile.filter.settings)) {
@@ -125,10 +123,3 @@ export default function FilterSelect(props) {
 		</Grid>
 	);
 }
-
-FilterSelect.defaultProps = {
-	type: '',
-	profile: {},
-	availableFilters: [],
-	onChange: function (filter, automatic) {},
-};

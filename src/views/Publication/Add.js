@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Add(props) {
+export default function Add({ restreamer = null }) {
 	const theme = useTheme();
 	const breakpointUpSm = useMediaQuery(theme.breakpoints.up('sm'));
 	const classes = useStyles();
@@ -88,16 +88,16 @@ export default function Add(props) {
 	}, [navigate, $invalid]);
 
 	const load = async () => {
-		const channelid = props.restreamer.SelectChannel(_channelid);
+		const channelid = restreamer.SelectChannel(_channelid);
 		if (channelid === '' || channelid !== _channelid) {
 			setInvalid(true);
 			return;
 		}
 
-		const skills = await props.restreamer.Skills();
+		const skills = await restreamer.Skills();
 		setSkills(skills);
 
-		let ingest = await props.restreamer.GetIngestMetadata(_channelid);
+		let ingest = await restreamer.GetIngestMetadata(_channelid);
 		setMetadata({
 			...$metadata,
 			name: ingest.meta.name,
@@ -223,14 +223,14 @@ export default function Add(props) {
 			return;
 		}
 
-		const [id, err] = await props.restreamer.CreateEgress(_channelid, $service, global, inputs, outputs, $settings.control);
+		const [id, err] = await restreamer.CreateEgress(_channelid, $service, global, inputs, outputs, $settings.control);
 		if (err !== null) {
 			setSaving(false);
 			notify.Dispatch('error', 'save:egress:' + $service, i18n._(t`Failed to create publication service (${err.message})`));
 			return;
 		}
 
-		await props.restreamer.SetEgressMetadata(_channelid, id, $settings);
+		await restreamer.SetEgressMetadata(_channelid, id, $settings);
 
 		let message = i18n._(t`The publication service has been created`);
 		if ($settings.name.length !== 0) {
@@ -401,7 +401,7 @@ export default function Add(props) {
 							{serviceList}
 							<Grid item xs={12} className={classes.buttonAbort}>
 								<Button variant="outlined" color="default" onClick={handleAbort}>
-									<Trans>Abort</Trans>
+									<Trans>Close</Trans>
 								</Button>
 							</Grid>
 						</Grid>
@@ -577,10 +577,6 @@ export default function Add(props) {
 		</React.Fragment>
 	);
 }
-
-Add.defaultProps = {
-	restreamer: null,
-};
 
 Add.propTypes = {
 	restreamer: PropTypes.object.isRequired,

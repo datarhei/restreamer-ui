@@ -21,15 +21,15 @@ const isProbablyMixedContent = (address) => {
 	return false;
 };
 
-export default function Invalid(props) {
-	const [$mixed] = React.useState(isProbablyMixedContent(props.address));
+export default function Invalid({ address = '' }) {
+	const [$mixed] = React.useState(isProbablyMixedContent(address));
 
 	return (
 		<Paper xs={8} sm={6} md={6} className="PaperM">
 			<PaperHeader title={<Trans>Error</Trans>} onAbort={() => window.location.reload()} />
 			<PaperContent>
 				<Typography>
-					<Trans>There was an error connecting to Restreamer Core at {props.address}.</Trans>
+					<Trans>There was an error connecting to Restreamer Core at {address}.</Trans>
 				</Typography>
 				{$mixed === true && (
 					<Typography sx={{ mt: '1em' }}>
@@ -47,7 +47,3 @@ export default function Invalid(props) {
 		</Paper>
 	);
 }
-
-Invalid.defaultProps = {
-	address: '',
-};

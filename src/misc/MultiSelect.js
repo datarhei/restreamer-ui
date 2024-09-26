@@ -13,26 +13,21 @@ const MenuProps = {
 	},
 };
 
-export default function Component(props) {
+export default function Component({
+	variant = 'outlined',
+	label = '',
+	value = [],
+	disabled = false,
+	renderValue = (selected) => selected.join(', '),
+	onChange = function (event) {},
+	children = null,
+}) {
 	return (
-		<FormControl variant="outlined" fullWidth>
-			<InputLabel>{props.label}</InputLabel>
-			<Select
-				multiple
-				value={props.value}
-				onChange={props.onChange}
-				input={<OutlinedInput />}
-				renderValue={(selected) => selected.join(', ')}
-				MenuProps={MenuProps}
-			>
-				{props.children}
+		<FormControl variant={variant} disabled={disabled} fullWidth>
+			<InputLabel>{label}</InputLabel>
+			<Select multiple value={value} onChange={onChange} input={<OutlinedInput />} renderValue={renderValue} MenuProps={MenuProps}>
+				{children}
 			</Select>
 		</FormControl>
 	);
 }
-
-Component.defaultProps = {
-	label: '',
-	value: [],
-	onChange: function (event) {},
-};

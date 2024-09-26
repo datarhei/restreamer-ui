@@ -20,10 +20,17 @@ const initSettings = (initialSettings, config) => {
 	return settings;
 };
 
-function Source(props) {
-	const config = S.func.initConfig(props.config);
-	const settings = initSettings(props.settings, config);
-	const skills = S.func.initSkills(props.skills);
+function Source({
+	settings = {},
+	knownDevices = [],
+	config = null,
+	skills = null,
+	onChange = function (type, settings, inputs, ready) {},
+	onRefresh = function () {},
+}) {
+	config = S.func.initConfig(config);
+	settings = initSettings(settings, config);
+	skills = S.func.initSkills(skills);
 
 	const handleChange = (newSettings) => {
 		newSettings = newSettings || settings;
@@ -31,7 +38,7 @@ function Source(props) {
 		const inputs = S.func.createInputs(newSettings, config, skills);
 		newSettings.address = inputs[0].address;
 
-		props.onChange(S.id, newSettings, inputs, newSettings.address.length !== 0);
+		onChange(S.id, newSettings, inputs, newSettings.address.length !== 0);
 	};
 
 	React.useEffect(() => {
@@ -56,13 +63,6 @@ function Source(props) {
 		</React.Fragment>
 	);
 }
-
-Source.defaultProps = {
-	settings: {},
-	config: null,
-	skills: null,
-	onChange: function (type, settings, inputs, ready) {},
-};
 
 function SourceIcon(props) {
 	return <Icon style={{ color: '#FFF' }} {...props} />;

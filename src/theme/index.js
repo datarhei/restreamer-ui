@@ -11,6 +11,7 @@ import backdrop from './components/backdrop';
 import box from './components/box';
 import button from './components/button';
 import checkobox from './components/checkbox';
+import chip from './components/chip';
 import ctypography from './components/typography';
 import dialog from './components/dialog';
 import divider from './components/divider';
@@ -58,6 +59,7 @@ const theme = createTheme({
 		MuiBox: { ...box },
 		MuiButton: { ...button },
 		MuiCheckbox: { ...checkobox },
+		MuiChip: { ...chip },
 		MuiDialog: { ...dialog },
 		MuiDivider: { ...divider },
 		MuiFab: { ...fab },

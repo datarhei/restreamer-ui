@@ -1,5 +1,44 @@
 # Restreamer-UI
 
+## v1.13.0 > v1.14.0
+
+-   Add wettercom service
+-   Add option to select which channels will be displayed on the playersite ([#392](https://github.com/datarhei/restreamer/issues/392), [#800](https://github.com/datarhei/restreamer/issues/800))
+-   Mod updates public videojs >v8
+-   Fix erroneous filter setting
+-   Fix encoded address
+-   Fix double -filter parameter when encoder sets filter
+-   Fix Docker build ([#64](https://github.com/datarhei/restreamer-ui/issues/64))
+
+## v1.12.0 > v1.13.0
+
+-   Add to allow stream hints in case probing fails
+-   Mod enables ff-loglevel and prepares the logging component
+-   Mod uses official Instagram-RTMP target
+-   Mod Remove unused imports
+-   Mod Update translations
+-   Mod updates dep.
+-   Fix player position
+-   Fix missing stream URL, summarize streams in probe log, don't lock type for first stream
+
+## v1.11.0 > v1.12.0
+
+-   Add option to select different SRT stream in wizard
+-   Add option to select different RTMP stream in wizard
+-   Fix selecting other than first audio stream ([#710](https://github.com/datarhei/restreamer/issues/710))
+-   Fix reset of previous audio settings when editing profile ([#730](https://github.com/datarhei/restreamer/issues/730))
+-   Fix RTMP URL for receive mode
+
+## v1.10.0 > v1.11.0
+
+-   Add allow to stream HEVC and AV1 to Youtube via RTMP
+-   Add librav1e AV1 encoder
+-   Add support for AV1 CUDA decoding ([PR 46](https://github.com/datarhei/restreamer-ui/pull/46))
+-   Add FFmpeg 6 support
+-   Add HEVC VideoToolbox encoder
+-   Fix anonymize error message ([#688](https://github.com/datarhei/restreamer/issues/688))
+-   Fix chromecast config ([#37](https://github.com/datarhei/restreamer-ui/issues/37))
+
 ## v1.9.0 > v1.10.0
 
 -   Add resource usage and ffmpeg command to process details

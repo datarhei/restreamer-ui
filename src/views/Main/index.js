@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { Trans } from '@lingui/macro';
 import makeStyles from '@mui/styles/makeStyles';
+import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
@@ -36,7 +37,9 @@ const useStyles = makeStyles((theme) => ({
 		marginLeft: 10,
 	},
 	playerL1: {
-		padding: '4px 1px 4px 8px',
+		//padding: '4px 1px 4px 8px',
+		paddingTop: 10,
+		paddingLeft: 18,
 	},
 	playerL2: {
 		position: 'relative',
@@ -57,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Main(props) {
+export default function Main({ restreamer = null }) {
 	const classes = useStyles();
 	const navigate = useNavigate();
 	const { channelid: _channelid } = useParams();
@@ -67,6 +70,7 @@ export default function Main(props) {
 		progress: {},
 		state: 'disconnected',
 		onConnect: null,
+		preview: null,
 	});
 	const [$metadata, setMetadata] = React.useState(M.getDefaultIngestMetadata());
 	const [$processDetails, setProcessDetails] = React.useState({
@@ -103,10 +107,10 @@ export default function Main(props) {
 	}, [navigate, $invalid]);
 
 	const load = async () => {
-		const config = props.restreamer.ConfigActive();
+		const config = restreamer.ConfigActive();
 		setConfig(config);
 
-		const metadata = await props.restreamer.GetIngestMetadata(_channelid);
+		const metadata = await restreamer.GetIngestMetadata(_channelid);
 		setMetadata({
 			...$metadata,
 			...metadata,
@@ -116,13 +120,13 @@ export default function Main(props) {
 	};
 
 	const update = async () => {
-		const channelid = props.restreamer.SelectChannel(_channelid);
+		const channelid = restreamer.SelectChannel(_channelid);
 		if (channelid === '' || channelid !== _channelid) {
 			setInvalid(true);
 			return;
 		}
 
-		const progress = await props.restreamer.GetIngestProgress(_channelid);
+		const progress = await restreamer.GetIngestProgress(_channelid);
 
 		const state = {
 			...$state,
@@ -135,8 +139,8 @@ export default function Main(props) {
 		if (state.state === 'connecting') {
 			if (state.onConnect === null) {
 				state.onConnect = async () => {
-					await props.restreamer.StopIngestSnapshot(_channelid);
-					await props.restreamer.StartIngestSnapshot(_channelid);
+					await restreamer.StopIngestSnapshot(_channelid);
+					await restreamer.StartIngestSnapshot(_channelid);
 				};
 			}
 		} else if (state.state === 'connected') {
@@ -146,6 +150,15 @@ export default function Main(props) {
 					await onConnect();
 				}, 100);
 				state.onConnect = null;
+			}
+			// check av codec @ preview
+			if (state.progress.video_codec !== 'h264' && $state.preview === null) {
+				const preview_progress = await restreamer.GetIngestProgress(`${_channelid}`, '_preview');
+				if (preview_progress) {
+					state.preview = false;
+				} else {
+					state.preview = true;
+				}
 			}
 		}
 
@@ -172,13 +185,13 @@ export default function Main(props) {
 			...$state,
 			state: 'connecting',
 			onConnect: async () => {
-				await props.restreamer.StopIngestSnapshot(_channelid);
-				await props.restreamer.StartIngestSnapshot(_channelid);
+				await restreamer.StopIngestSnapshot(_channelid);
+				await restreamer.StartIngestSnapshot(_channelid);
 			},
 		});
 
-		await props.restreamer.StartIngest(_channelid);
-		await props.restreamer.StartIngestSnapshot(_channelid);
+		await restreamer.StartIngest(_channelid);
+		await restreamer.StartIngestSnapshot(_channelid);
 	};
 
 	const disconnect = async () => {
@@ -187,8 +200,8 @@ export default function Main(props) {
 			state: 'disconnecting',
 		});
 
-		await props.restreamer.StopIngestSnapshot(_channelid);
-		await props.restreamer.StopIngest(_channelid);
+		await restreamer.StopIngestSnapshot(_channelid);
+		await restreamer.StopIngest(_channelid);
 
 		await disconnectEgresses();
 	};
@@ -199,7 +212,7 @@ export default function Main(props) {
 	};
 
 	const disconnectEgresses = async () => {
-		await props.restreamer.StopAllEgresses(_channelid);
+		await restreamer.StopAllEgresses(_channelid);
 	};
 
 	const handleProcessDetails = async (event) => {
@@ -212,7 +225,7 @@ export default function Main(props) {
 		};
 
 		if (open === true) {
-			const data = await props.restreamer.GetIngestLog(_channelid);
+			const data = await restreamer.GetIngestLog(_channelid);
 			if (data !== null) {
 				logdata = data;
 			}
@@ -232,7 +245,7 @@ export default function Main(props) {
 	};
 
 	const updateProcessDetailsLog = async () => {
-		const data = await props.restreamer.GetIngestLog(_channelid);
+		const data = await restreamer.GetIngestLog(_channelid);
 		if (data !== null) {
 			setProcessDetails({
 				...$processDetails,
@@ -248,7 +261,7 @@ export default function Main(props) {
 		let data = '';
 
 		if ($processDebug.open === false) {
-			const debug = await props.restreamer.GetIngestDebug(_channelid);
+			const debug = await restreamer.GetIngestDebug(_channelid);
 			data = JSON.stringify(debug, null, 2);
 		}
 
@@ -283,13 +296,22 @@ export default function Main(props) {
 	}
 
 	const storage = $metadata.control.hls.storage;
-	const channel = props.restreamer.GetChannel(_channelid);
-	const manifest = props.restreamer.GetChannelAddress('hls+' + storage, _channelid);
-	const poster = props.restreamer.GetChannelAddress('snapshot+' + storage, _channelid);
+	const channel = restreamer.GetChannel(_channelid);
+	const manifest = restreamer.GetChannelAddress('hls+' + storage, _channelid);
+	const manifest_preview = restreamer.GetChannelAddress('hls+' + storage, `${_channelid}_h264`);
+	const poster = restreamer.GetChannelAddress('snapshot+' + storage, _channelid);
 
 	let title = <Trans>Main channel</Trans>;
 	if (channel && channel.name && channel.name.length !== 0) {
-		title = channel.name;
+		if ($state.progress.video_codec) {
+			title = (
+				<>
+					<Chip variant="outlined" color="primary" label={$state.progress.video_codec} /> {channel.name}
+				</>
+			);
+		} else {
+			title = `${channel.name}`;
+		}
 	}
 
 	return (
@@ -309,7 +331,7 @@ export default function Main(props) {
 												className={classes.playerL3}
 												justifyContent="center"
 												alignItems="center"
-												spacing={1}
+												spacing={2}
 											>
 												<Grid item>
 													<Typography variant="h2">
@@ -325,7 +347,7 @@ export default function Main(props) {
 												className={classes.playerL3}
 												justifyContent="center"
 												alignItems="center"
-												spacing={1}
+												spacing={2}
 											>
 												<Grid item>
 													<CircularProgress color="inherit" />
@@ -344,7 +366,7 @@ export default function Main(props) {
 												className={classes.playerL3}
 												justifyContent="center"
 												alignItems="center"
-												spacing={1}
+												spacing={2}
 											>
 												<Grid item>
 													<WarningIcon className={classes.playerWarningIcon} />
@@ -380,8 +402,67 @@ export default function Main(props) {
 												)}
 											</Grid>
 										)}
-										{$state.state === 'connected' && (
+										{$state.state === 'connected' && $state.progress.video_codec === 'h264' && !$metadata.control.preview.enable && (
 											<Player type="videojs-internal" source={manifest} poster={poster} autoplay mute controls />
+										)}
+										{$state.state === 'connected' && $state.progress.video_codec !== 'h264' && $metadata.control.preview.enable && (
+											<Player type="videojs-internal" source={manifest_preview} poster={poster} autoplay mute controls />
+										)}
+										{$state.state === 'connected' && $state.progress.video_codec !== 'h264' && !$metadata.control.preview.enable && (
+											<Grid
+												container
+												direction="column"
+												className={classes.playerL3}
+												justifyContent="center"
+												alignItems="center"
+												textAlign={'center'}
+												spacing={2}
+											>
+												<Grid item>
+													<WarningIcon className={classes.playerWarningIcon} />
+												</Grid>
+												<Grid item>
+													<Typography>
+														<Trans>No H.264 Stream availabe.</Trans>
+													</Typography>
+												</Grid>
+												<Grid item>
+													<Typography>
+														<Trans>
+															Please{' '}
+															<Link style={{ textDecoration: 'underline' }} onClick={() => navigate(`/${_channelid}/edit`)}>
+																edit
+															</Link>{' '}
+															this channel and enable the browser-compatible H.264 stream in the "Processing & Control" area.
+														</Trans>
+													</Typography>
+												</Grid>
+											</Grid>
+										)}
+										{$state.state === 'connected' && $state.progress.video_codec === 'h264' && $metadata.control.preview.enable && (
+											<Grid
+												container
+												direction="column"
+												className={classes.playerL3}
+												justifyContent="center"
+												alignItems="center"
+												spacing={2}
+											>
+												<Grid item>
+													<WarningIcon className={classes.playerWarningIcon} />
+												</Grid>
+												<Grid item>
+													<Typography>
+														<Trans>
+															Please{' '}
+															<Link style={{ textDecoration: 'underline' }} onClick={() => navigate(`/${_channelid}/edit`)}>
+																edit
+															</Link>{' '}
+															this channel and disable the second H.264 stream in the "Processing & Control" area.
+														</Trans>
+													</Typography>
+												</Grid>
+											</Grid>
 										)}
 									</Grid>
 								</Grid>
@@ -399,27 +480,17 @@ export default function Main(props) {
 											variant="outlined"
 											color="default"
 											size="small"
-											value={props.restreamer.GetPublicAddress('hls+' + storage, _channelid)}
+											value={restreamer.GetPublicAddress('hls+' + storage, _channelid)}
 										>
 											<Trans>HLS</Trans>
 										</CopyButton>
 										{$metadata.control.rtmp.enable && (
-											<CopyButton
-												variant="outlined"
-												color="default"
-												size="small"
-												value={props.restreamer.GetPublicAddress('rtmp', _channelid)}
-											>
+											<CopyButton variant="outlined" color="default" size="small" value={restreamer.GetPublicAddress('rtmp', _channelid)}>
 												<Trans>RTMP</Trans>
 											</CopyButton>
 										)}
 										{$metadata.control.srt.enable && (
-											<CopyButton
-												variant="outlined"
-												color="default"
-												size="small"
-												value={props.restreamer.GetPublicAddress('srt', _channelid)}
-											>
+											<CopyButton variant="outlined" color="default" size="small" value={restreamer.GetPublicAddress('srt', _channelid)}>
 												<Trans>SRT</Trans>
 											</CopyButton>
 										)}
@@ -427,10 +498,20 @@ export default function Main(props) {
 											variant="outlined"
 											color="default"
 											size="small"
-											value={props.restreamer.GetPublicAddress('snapshot+memfs', _channelid)}
+											value={restreamer.GetPublicAddress('snapshot+memfs', _channelid)}
 										>
 											<Trans>Snapshot</Trans>
 										</CopyButton>
+										{$metadata.control.preview.enable && (
+											<CopyButton
+												variant="outlined"
+												color="default"
+												size="small"
+												value={restreamer.GetPublicAddress('hls+' + storage, `${_channelid}_h264`)}
+											>
+												<Trans>HLS @ H.264</Trans>
+											</CopyButton>
+										)}
 									</Stack>
 								</Stack>
 							</Grid>
@@ -456,7 +537,7 @@ export default function Main(props) {
 					</Paper>
 				</Grid>
 				<Grid item xs={12} sm={12} md={4}>
-					<Publication restreamer={props.restreamer} channelid={_channelid} />
+					<Publication restreamer={restreamer} channelid={_channelid} />
 				</Grid>
 			</Grid>
 			<ProcessModal
@@ -477,7 +558,3 @@ export default function Main(props) {
 		</React.Fragment>
 	);
 }
-
-Main.defaultProps = {
-	restreamer: null,
-};

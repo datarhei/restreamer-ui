@@ -121,12 +121,12 @@ const ImageBackdrop = styled('span')(({ theme }) => ({
 	border: `2px solid ${theme.palette.primary.dark}`,
 }));
 
-function ChannelButton(props, largeChannelList) {
+function ChannelButton({ url = '', width = 200, title = '', state = '', disabled = false, onClick = () => {}, largeChannelList = [] }) {
 	const classes = useStyles();
 	const theme = useTheme();
 
 	let color = theme.palette.primary.main;
-	switch (props.state) {
+	switch (state) {
 		case 'disconnected':
 			color = theme.palette.primary.main;
 			break;
@@ -146,7 +146,7 @@ function ChannelButton(props, largeChannelList) {
 	}
 
 	let color_active = theme.palette.primary.main;
-	switch (props.disabled) {
+	switch (disabled) {
 		case true:
 			color_active = theme.palette.primary.light;
 			break;
@@ -157,23 +157,23 @@ function ChannelButton(props, largeChannelList) {
 
 	return (
 		<Grid item xs={12} sm={6} md={4} lg={3} style={{ paddingBottom: largeChannelList ? '10px' : 'auto' }}>
-			<ImageButton focusRipple disabled={props.disabled} onClick={props.onClick} style={{ width: props.width }}>
+			<ImageButton focusRipple disabled={disabled} onClick={onClick} style={{ width: width }}>
 				<Stack direction="column" spacing={0.5}>
 					<Image
 						style={{
-							width: props.width,
-							height: parseInt((props.width / 16) * 9),
+							width: width,
+							height: parseInt((width / 16) * 9),
 						}}
 					>
 						<ImageAlt>
 							<DoNotDisturbAltIcon fontSize="large" />
 						</ImageAlt>
-						<ImageSrc style={{ backgroundImage: `url(${props.url})`, borderColor: color_active }} />
+						<ImageSrc style={{ backgroundImage: `url(${url})`, borderColor: color_active }} />
 						<ImageBackdrop className="MuiImageBackdrop-root" style={{ borderColor: color_active }} />
 					</Image>
 					<Stack direction="row" alignItems="flex-start" justifyContent="space-between" className={classes.imageTitle}>
 						<Typography variant="body2" color="inherit">
-							{props.title}
+							{title}
 						</Typography>
 						<Typography variant="body2" color="inherit">
 							<LensIcon fontSize="small" style={{ color: color }} />
@@ -184,15 +184,6 @@ function ChannelButton(props, largeChannelList) {
 		</Grid>
 	);
 }
-
-ChannelButton.defaultProps = {
-	url: '',
-	width: 200,
-	title: '',
-	state: '',
-	disabled: false,
-	onClick: () => {},
-};
 
 const calculateColumnsPerRow = (breakpointSmall, breakpointMedium, breakpointLarge) => {
 	if (breakpointLarge) {
@@ -209,7 +200,21 @@ const calculateRowsToFit = (windowHeight, thumbnailHeight, otherUIHeight) => {
 	return Math.floor((windowHeight - otherUIHeight) / thumbnailHeight);
 };
 
-export default function ChannelList(props) {
+export default function ChannelList({
+	open = false,
+	channelid = '',
+	allChannels = [],
+	onClose = () => {},
+	onClick = (channelid) => {},
+	onAdd = (name) => {},
+	onState = (channelids) => {
+		const states = {};
+		for (let channelid of channelids) {
+			states[channelid] = '';
+		}
+		return states;
+	},
+}) {
 	const classes = useStyles();
 	const theme = useTheme();
 	const breakpointSmall = useMediaQuery(theme.breakpoints.up('sm'));
@@ -224,8 +229,6 @@ export default function ChannelList(props) {
 	});
 	const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 	const [windowHeight, setWindowHeight] = React.useState(window.innerHeight);
-
-	const { channels: allChannels, channelid, onClick, onClose, onState } = props;
 
 	const [$largeChannelList, setLargeChannelList] = React.useState(false);
 
@@ -316,7 +319,7 @@ export default function ChannelList(props) {
 		});
 	};
 
-	if (props.open === false) {
+	if (open === false) {
 		return null;
 	}
 
@@ -333,9 +336,9 @@ export default function ChannelList(props) {
 		<React.Fragment>
 			<SwipeableDrawer
 				anchor="bottom"
-				open={props.open}
+				open={open}
 				onOpen={() => {}}
-				onClose={props.onClose}
+				onClose={onClose}
 				sx={{
 					marginButtom: 60,
 					'& .MuiDrawer-paper': {
@@ -363,7 +366,7 @@ export default function ChannelList(props) {
 									<IconButton color="inherit" size="large" onClick={handleLargeChannelList}>
 										{$largeChannelList ? <FullscreenExitIcon /> : <FullscreenIcon />}
 									</IconButton>
-									<IconButton color="inherit" size="large" onClick={props.onClose}>
+									<IconButton color="inherit" size="large" onClick={onClose}>
 										<CloseIcon />
 									</IconButton>
 								</Stack>
@@ -419,7 +422,7 @@ export default function ChannelList(props) {
 						disabled={$addChannel.name.length === 0}
 						onClick={() => {
 							handleAddChannelDialog();
-							props.onAdd($addChannel.name);
+							onAdd($addChannel.name);
 						}}
 					>
 						<Trans>Add</Trans>
@@ -440,20 +443,3 @@ export default function ChannelList(props) {
 		</React.Fragment>
 	);
 }
-
-ChannelList.defaultProps = {
-	open: false,
-	channelid: '',
-	channels: [],
-	onClose: () => {},
-	onClick: (channelid) => {},
-	onAdd: (name) => {},
-	onState: (channelids) => {
-		const states = {};
-		for (let channelid of channelids) {
-			states[channelid] = '';
-		}
-
-		return states;
-	},
-};

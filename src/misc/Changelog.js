@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Changelog(props) {
+export default function Changelog({ open = false, current = '', previous = '', onClose = () => {}, children = null }) {
 	const [$data, setData] = React.useState('');
 	const classes = useStyles();
 
@@ -62,7 +62,7 @@ export default function Changelog(props) {
 
 	const onMount = async () => {
 		let data = await loadData();
-		data = filter(data, props.current, props.previous);
+		data = filter(data, current, previous);
 
 		setData(data);
 	};
@@ -141,39 +141,39 @@ export default function Changelog(props) {
 	const renderers = {
 		h1: (props) => (
 			<h1 className={classes.h1} {...props}>
-				{props.children}
+				{children}
 			</h1>
 		),
 		h2: (props) => (
 			<h2 className={classes.h2} {...props}>
-				{props.children}
+				{children}
 			</h2>
 		),
 		h3: (props) => (
 			<h3 className={classes.h3} {...props}>
-				{props.children}
+				{children}
 			</h3>
 		),
 		h4: (props) => (
 			<h4 className={classes.h4} {...props}>
-				{props.children}
+				{children}
 			</h4>
 		),
 		a: (props) => (
 			<a className={classes.a} target="_blank" {...props}>
-				{props.children}
+				{children}
 			</a>
 		),
 	};
 
 	return (
 		<Dialog
-			open={props.open}
-			onClose={props.onClose}
+			open={open}
+			onClose={onClose}
 			title={<Trans>Update details (Changelog)</Trans>}
 			maxWidth={600}
 			buttonsRight={
-				<Button variant="outlined" color="primary" onClick={props.onClose}>
+				<Button variant="outlined" color="primary" onClick={onClose}>
 					<Trans>Close</Trans>
 				</Button>
 			}
@@ -188,10 +188,3 @@ export default function Changelog(props) {
 		</Dialog>
 	);
 }
-
-Changelog.defaultProps = {
-	open: false,
-	current: '',
-	previous: '',
-	onClose: () => {},
-};

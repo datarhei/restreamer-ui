@@ -11,8 +11,20 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Env from './Env';
 
-export default function Password(props) {
-	const [$visible, setVisible] = React.useState(props.show);
+export default function Password({
+	id = 'password',
+	label = '',
+	value = '',
+	disabled = false,
+	autoComplete = 'current-password',
+	env = false,
+	show = false,
+	helperText = false,
+	inputProps = {},
+	error = false,
+	onChange = function (value) {},
+}) {
+	const [$visible, setVisible] = React.useState(show);
 
 	const handleClickShowPassword = () => {
 		setVisible(!$visible);
@@ -27,50 +39,36 @@ export default function Password(props) {
 			<IconButton edge="end" size="large">
 				<VisibilityOff />
 			</IconButton>
-			{props.env ? <Env /> : null}
+			{env ? <Env /> : null}
 		</InputAdornment>
 	);
 
-	if (props.disabled === false) {
+	if (disabled === false) {
 		adornment = (
 			<InputAdornment position="end">
 				<IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword} edge="end" size="large">
 					{$visible ? <Visibility /> : <VisibilityOff />}
 				</IconButton>
-				{props.env ? <Env /> : null}
+				{env ? <Env /> : null}
 			</InputAdornment>
 		);
 	}
 
 	return (
-		<FormControl variant="outlined" disabled={props.disabled} fullWidth>
-			<InputLabel htmlFor={props.id}>{props.label}</InputLabel>
+		<FormControl variant="outlined" disabled={disabled} fullWidth>
+			<InputLabel htmlFor={id}>{label}</InputLabel>
 			<OutlinedInput
-				id={props.id}
-				type={$visible && !props.disabled ? 'text' : 'password'}
-				value={props.value}
-				onChange={props.onChange}
+				id={id}
+				type={$visible && !disabled ? 'text' : 'password'}
+				value={value}
+				onChange={onChange}
 				endAdornment={adornment}
-				label={props.label}
-				autoComplete={props.autoComplete}
-				inputProps={props.inputProps}
-				error={props.error}
+				label={label}
+				autoComplete={autoComplete}
+				inputProps={inputProps}
+				error={error}
 			/>
-			{props.helperText && <FormHelperText>{props.helperText}</FormHelperText>}
+			{helperText && <FormHelperText>{helperText}</FormHelperText>}
 		</FormControl>
 	);
 }
-
-Password.defaultProps = {
-	id: 'password',
-	label: '',
-	value: '',
-	disabled: false,
-	autoComplete: 'current-password',
-	env: false,
-	show: false,
-	helperText: false,
-	inputProps: {},
-	error: false,
-	onChange: function (value) {},
-};

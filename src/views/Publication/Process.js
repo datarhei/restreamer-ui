@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import ActionButton from '../../misc/ActionButton';
 import BoxText from '../../misc/BoxText';
 import Duration from '../../misc/Duration';
-import Progress from '../../misc/Progress';
 
 function init(progress) {
 	const initProgress = {
@@ -24,11 +23,11 @@ function init(progress) {
 	return initProgress;
 }
 
-export default function Process(props) {
-	const progress = init(props.progress);
+export default function Process({ progress = {}, onAction = function (action) {} }) {
+	progress = init(progress);
 
 	const handleAction = (action) => () => {
-		props.onAction(action);
+		onAction(action);
 	};
 
 	return (
@@ -96,8 +95,3 @@ export default function Process(props) {
 		</Grid>
 	);
 }
-
-Progress.defaultProps = {
-	progress: {},
-	onAction: function (action) {},
-};
