@@ -2259,9 +2259,12 @@ class Restreamer {
 	async UpdatePlayerConfig(channelid, metadata) {
 		metadata.player = this.InitPlayerSettings(metadata.player);
 
+		// use h264 preview stream if enabled
+		const channel_id_h264 = metadata.control.preview?.enable ? `${channelid}_h264`: channelid
+
 		const playerConfig = {
 			...metadata.player,
-			source: this.GetChannelManifestPath(channelid, metadata.control.hls.storage),
+			source: this.GetChannelManifestPath(channel_id_h264, metadata.control.hls.storage),
 			poster: this.GetChannelPosterPath(channelid, metadata.control.hls.storage),
 			license: {
 				license: metadata.license,
