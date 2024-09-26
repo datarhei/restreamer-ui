@@ -53,7 +53,7 @@ export default function UploadButton({
 				return;
 			}
 
-			if (file.size > type.maxSize) {
+			if (type.maxSize > 0 && file.size > type.maxSize) {
 				// the file is too big
 				onError({
 					type: 'size',

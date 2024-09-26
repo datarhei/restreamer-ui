@@ -15,7 +15,7 @@ import Filesize from '../../../misc/Filesize';
 import FormInlineButton from '../../../misc/FormInlineButton';
 import UploadButton from '../../../misc/UploadButton';
 
-const imageTypes = [{ mimetype: 'application/sdp', extension: '*.sdp', maxSize: 2 * 1024 * 1024 }];
+const fileTypes = [{ mimetype: 'application/sdp', extension: '*.sdp', maxSize: 2 * 1024 * 1024 }];
 
 const useStyles = makeStyles((theme) => ({
 	gridContainer: {
@@ -146,7 +146,7 @@ function Source({
 			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
 				<Grid item xs={12}>
 					<Typography variant="caption">
-						<Trans>Upload SDP file ({imageTypes.map((t) => t.mimetype).join(', ')}).</Trans>
+						<Trans>Upload SDP file ({fileTypes.map((t) => t.mimetype).join(', ')}).</Trans>
 					</Typography>
 				</Grid>
 				<Grid item xs={12} md={9}>
@@ -155,7 +155,7 @@ function Source({
 				<Grid item xs={12} md={3}>
 					<UploadButton
 						label={<Trans>Upload</Trans>}
-						acceptTypes={imageTypes}
+						acceptTypes={fileTypes}
 						onStart={handleUploadStart}
 						onError={handleUploadError(<Trans>Uploading the file failed</Trans>)}
 						onUpload={handleFileUpload}

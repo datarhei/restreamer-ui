@@ -15,7 +15,7 @@ import Filesize from '../../../misc/Filesize';
 import FormInlineButton from '../../../misc/FormInlineButton';
 import UploadButton from '../../../misc/UploadButton';
 
-const imageTypes = [{ mimetype: 'audio/*', extension: 'audio', maxSize: 25 * 1024 * 1024 }];
+const imageTypes = [{ mimetype: 'audio/*', extension: 'audio', maxSize: 0 }];
 
 const useStyles = makeStyles((theme) => ({
 	gridContainer: {
