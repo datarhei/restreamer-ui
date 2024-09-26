@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 		paddingTop: '1em',
 	},
 	playerL1: {
-		padding: '4px 1px 4px 9px',
+		padding: '4px 1px 4px 18px',
 	},
 	playerL2: {
 		position: 'relative',
