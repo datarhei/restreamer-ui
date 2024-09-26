@@ -60,21 +60,21 @@ const createInputs = (settings) => {
 	return inputs;
 };
 
-function Source(props) {
+function Source({ settings = {}, onChange = function (settings) {}, onProbe = function (settings, inputs) {} }) {
 	const { i18n } = useLingui();
-	const settings = initSettings(props.settings);
+	settings = initSettings(settings);
 
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
 
-		props.onChange({
+		onChange({
 			...settings,
 			[what]: value,
 		});
 	};
 
 	const handleProbe = () => {
-		props.onProbe(settings, createInputs(settings));
+		onProbe(settings, createInputs(settings));
 	};
 
 	return (
@@ -172,12 +172,6 @@ function Source(props) {
 		</Grid>
 	);
 }
-
-Source.defaultProps = {
-	settings: {},
-	onChange: function (settings) {},
-	onProbe: function (settings, inputs) {},
-};
 
 function SourceIcon(props) {
 	return <Icon style={{ color: '#FFF' }} {...props} />;

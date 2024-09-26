@@ -11,7 +11,7 @@ import welcomeImage from '../assets/images/welcome.png';
 import Paper from '../misc/Paper';
 import PaperThumb from '../misc/PaperThumb';
 
-export default function Welcome(props) {
+export default function Welcome() {
 	const navigate = useNavigate();
 	const { channelid: _channelid } = useParams();
 

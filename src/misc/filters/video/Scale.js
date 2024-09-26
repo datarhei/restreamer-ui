@@ -38,9 +38,9 @@ function createGraph(settings) {
 	return mapping.join(',');
 }
 
-function Mode(props) {
+function Mode({ value = '', onChange = function (event) {} }) {
 	return (
-		<Select label={<Trans>Scale</Trans>} value={props.value} onChange={props.onChange}>
+		<Select label={<Trans>Scale</Trans>} value={value} onChange={onChange}>
 			<MenuItem value="none">
 				<Trans>None</Trans>
 			</MenuItem>
@@ -57,13 +57,8 @@ function Mode(props) {
 	);
 }
 
-Mode.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
-function Filter(props) {
-	const settings = init(props.settings);
+function Filter({ settings = {}, onChange = function (settings, mapping) {} }) {
+	settings = init(settings);
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -72,7 +67,7 @@ function Filter(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createGraph(newSettings), automatic);
+		onChange(newSettings, createGraph(newSettings), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -112,11 +107,6 @@ function Filter(props) {
 		</React.Fragment>
 	);
 }
-
-Filter.defaultProps = {
-	settings: {},
-	onChange: function (settings, mapping) {},
-};
 
 const filter = 'scale';
 const name = 'Scale';

@@ -34,9 +34,9 @@ function createGraph(settings) {
 	return mapping.join(',');
 }
 
-function Mode(props) {
+function Mode({ value = '', onChange = function (event) {} }) {
 	return (
-		<Select label={<Trans>Deinterlace mode</Trans>} value={props.value} onChange={props.onChange}>
+		<Select label={<Trans>Deinterlace mode</Trans>} value={value} onChange={onChange}>
 			<MenuItem value="0">
 				<Trans>Each frames</Trans>
 			</MenuItem>
@@ -47,14 +47,9 @@ function Mode(props) {
 	);
 }
 
-Mode.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
-function Parity(props) {
+function Parity({ value = '', onChange = function (event) {} }) {
 	return (
-		<Select label={<Trans>Deinterlace parity</Trans>} value={props.value} onChange={props.onChange}>
+		<Select label={<Trans>Deinterlace parity</Trans>} value={value} onChange={onChange}>
 			<MenuItem value="0">
 				<Trans>Top field</Trans>
 			</MenuItem>
@@ -68,14 +63,9 @@ function Parity(props) {
 	);
 }
 
-Parity.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
-function Deint(props) {
+function Deint({ value = '', onChange = function (event) {} }) {
 	return (
-		<Select label={<Trans>Deinterlace deint</Trans>} value={props.value} onChange={props.onChange}>
+		<Select label={<Trans>Deinterlace deint</Trans>} value={value} onChange={onChange}>
 			<MenuItem value="0">
 				<Trans>All frames</Trans>
 			</MenuItem>
@@ -86,13 +76,8 @@ function Deint(props) {
 	);
 }
 
-Deint.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
-function Filter(props) {
-	const settings = init(props.settings);
+function Filter({ settings = {}, onChange = function (settings, mapping) {} }) {
+	settings = init(settings);
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -101,7 +86,7 @@ function Filter(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createGraph(newSettings), automatic);
+		onChange(newSettings, createGraph(newSettings), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -143,11 +128,6 @@ function Filter(props) {
 		</React.Fragment>
 	);
 }
-
-Filter.defaultProps = {
-	settings: {},
-	onChange: function (settings, mapping) {},
-};
 
 const filter = 'bwdif';
 const name = 'Deinterlacing Filter';

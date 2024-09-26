@@ -41,29 +41,20 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Component(props) {
+export default function Component({ color = 'light', textAlign = 'left', alignItems = 'center', justifyContent = 'center', style = null, children = null }) {
 	const classes = useStyles();
 
 	return (
 		<Stack
 			direction="column"
-			justifyContent={props.justifyContent}
-			alignItems={props.alignItems}
-			textAlign={props.textAlign}
+			justifyContent={justifyContent}
+			alignItems={alignItems}
+			textAlign={textAlign}
 			spacing={1}
-			className={
-				props.color === 'dark' ? classes.dark : props.color === 'success' ? classes.success : props.color === 'danger' ? classes.danger : classes.light
-			}
-			{...props}
+			className={color === 'dark' ? classes.dark : color === 'success' ? classes.success : color === 'danger' ? classes.danger : classes.light}
+			style={style}
 		>
-			{props.children}
+			{children}
 		</Stack>
 	);
 }
-
-Component.defaultProps = {
-	color: 'light',
-	textAlign: 'left',
-	alignItems: 'center',
-	justifyContent: 'center',
-};

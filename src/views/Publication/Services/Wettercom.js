@@ -14,7 +14,7 @@ const version = '1.0';
 const stream_key_link = 'https://www.wetter.com/hd-live-webcams/informationen/';
 const description = (
 	<Trans>
-		Transmit your Livestream to wetter.com. Contact the publisher {' '}
+		Transmit your Livestream to wetter.com. Contact the publisher{' '}
 		<Link color="secondary" target="_blank" href="https://www.wetter.com/hd-live-webcams/informationen/">
 			here{' '}
 		</Link>
@@ -58,8 +58,8 @@ function init(settings) {
 	return initSettings;
 }
 
-function Service(props) {
-	const settings = init(props.settings);
+function Service({ settings = {}, skills = {}, metadata = {}, streams = [], onChange = function (output, settings) {} }) {
+	settings = init(settings);
 
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
@@ -68,7 +68,7 @@ function Service(props) {
 
 		const output = createOutput(settings);
 
-		props.onChange([output], settings);
+		onChange([output], settings);
 	};
 
 	const createOutput = (settings) => {
@@ -110,13 +110,5 @@ function Service(props) {
 		</Grid>
 	);
 }
-
-Service.defaultProps = {
-	settings: {},
-	skills: {},
-	metadata: {},
-	streams: [],
-	onChange: function (output, settings) {},
-};
 
 export { id, name, version, stream_key_link, description, image_copyright, author, category, requires, ServiceIcon as icon, Service as component };

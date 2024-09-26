@@ -66,10 +66,10 @@ function createMapping(settings, stream, skills) {
 	return mapping;
 }
 
-function Usage(props) {
+function Usage({ value = '', onChange = function (event) {} }) {
 	return (
 		<React.Fragment>
-			<Select label={<Trans>Usage</Trans>} value={props.value} onChange={props.onChange}>
+			<Select label={<Trans>Usage</Trans>} value={value} onChange={onChange}>
 				<MenuItem value="good">good</MenuItem>
 				<MenuItem value="realtime">realtime</MenuItem>
 				<MenuItem value="allintra">allintra</MenuItem>
@@ -81,15 +81,10 @@ function Usage(props) {
 	);
 }
 
-Usage.defaultProps = {
-	value: 'realtime',
-	onChange: function (event) {},
-};
-
-function Coder(props) {
-	const settings = init(props.settings);
-	const stream = Helper.InitStream(props.stream);
-	const skills = Helper.InitSkills(props.skills);
+function Coder({ stream = {}, settings = {}, skills = {}, onChange = function (settings, mapping) {} }) {
+	settings = init(settings);
+	stream = Helper.InitStream(stream);
+	skills = Helper.InitSkills(skills);
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -98,7 +93,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
+		onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -137,13 +132,6 @@ function Coder(props) {
 		</Grid>
 	);
 }
-
-Coder.defaultProps = {
-	stream: {},
-	settings: {},
-	skills: {},
-	onChange: function (settings, mapping) {},
-};
 
 const coder = 'libaom-av1';
 const name = 'AV1 (libaom)';

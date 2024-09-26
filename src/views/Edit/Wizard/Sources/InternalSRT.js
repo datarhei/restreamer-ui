@@ -26,12 +26,19 @@ const initSettings = (initialSettings, config) => {
 	return settings;
 };
 
-function Source(props) {
+function Source({
+	settings = {},
+	knownDevices = [],
+	config = null,
+	skills = null,
+	onChange = function (type, settings, inputs, ready) {},
+	onRefresh = function () {},
+}) {
 	const { i18n } = useLingui();
 	const navigate = useNavigate();
-	const config = S.func.initConfig(props.config);
-	const settings = initSettings(props.settings, config);
-	const skills = S.func.initSkills(props.skills);
+	config = S.func.initConfig(config);
+	settings = initSettings(settings, config);
+	skills = S.func.initSkills(skills);
 
 	const handleChange = (newSettings) => {
 		newSettings = newSettings || settings;
@@ -39,11 +46,11 @@ function Source(props) {
 		const inputs = S.func.createInputs(newSettings, config, skills);
 		newSettings.address = inputs[0].address;
 
-		props.onChange(S.id, newSettings, inputs, config.srt.enabled);
+		onChange(S.id, newSettings, inputs, config.srt.enabled);
 	};
 
 	const handleRefresh = () => {
-		props.onRefresh();
+		onRefresh();
 	};
 
 	const update = (what) => (event) => {
@@ -82,7 +89,7 @@ function Source(props) {
 			</React.Fragment>
 		);
 	} else {
-		const filteredDevices = props.knownDevices.filter((device) => device.media === 'srt');
+		const filteredDevices = knownDevices.filter((device) => device.media === 'srt');
 		const options = filteredDevices.map((device) => {
 			return (
 				<MenuItem key={device.id} value={device.id}>
@@ -135,13 +142,6 @@ function Source(props) {
 
 	return form;
 }
-
-Source.defaultProps = {
-	settings: {},
-	config: null,
-	skills: null,
-	onChange: function (type, settings, inputs, ready) {},
-};
 
 function SourceIcon(props) {
 	return <Icon style={{ color: '#FFF' }} {...props} />;

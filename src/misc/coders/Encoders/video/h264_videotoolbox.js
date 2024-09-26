@@ -64,9 +64,9 @@ function createMapping(settings, stream, skills) {
 	return mapping;
 }
 
-function Entropy(props) {
+function Entropy({ value = '', onChange = function (event) {} }) {
 	return (
-		<Select label={<Trans>Entropy coder</Trans>} value={props.value} onChange={props.onChange}>
+		<Select label={<Trans>Entropy coder</Trans>} value={value} onChange={onChange}>
 			<MenuItem value="default">default</MenuItem>
 			<MenuItem value="cavlc">CAVLC</MenuItem>
 			<MenuItem value="cabac">CABAC</MenuItem>
@@ -74,15 +74,10 @@ function Entropy(props) {
 	);
 }
 
-Entropy.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
-function Coder(props) {
-	const settings = init(props.settings);
-	const stream = Helper.InitStream(props.stream);
-	const skills = Helper.InitSkills(props.skills);
+function Coder({ stream = {}, settings = {}, skills = {}, onChange = function (settings, mapping) {} }) {
+	settings = init(settings);
+	stream = Helper.InitStream(stream);
+	skills = Helper.InitSkills(skills);
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -91,7 +86,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
+		onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -128,13 +123,6 @@ function Coder(props) {
 		</Grid>
 	);
 }
-
-Coder.defaultProps = {
-	stream: {},
-	settings: {},
-	skills: {},
-	onChange: function (settings, mapping) {},
-};
 
 const coder = 'h264_videotoolbox';
 const name = 'H.264 (VideoToolbox)';

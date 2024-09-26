@@ -8,10 +8,9 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 import CopyToClipboard from '../utils/clipboard';
 import NotifyContext from '../contexts/Notify';
 
-export default function CopyButton(props) {
+export default function CopyButton({ variant = 'outlined', color = 'default', size = 'small', value = '', children = null }) {
 	const notify = useContext(NotifyContext);
 	const { i18n } = useLingui();
-	const { children, value, ...other } = props;
 
 	const handleCopy = async () => {
 		const success = await CopyToClipboard(value);
@@ -24,12 +23,8 @@ export default function CopyButton(props) {
 	};
 
 	return (
-		<Button {...other} endIcon={<FileCopyIcon />} onClick={handleCopy}>
+		<Button variant={variant} color={color} size={size} endIcon={<FileCopyIcon />} onClick={handleCopy}>
 			{children}
 		</Button>
 	);
 }
-
-CopyButton.defaultProps = {
-	value: '',
-};

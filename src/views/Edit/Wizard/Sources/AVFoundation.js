@@ -23,20 +23,27 @@ function initSettings(initialSettings) {
 	return settings;
 }
 
-function Source(props) {
+function Source({
+	settings = {},
+	knownDevices = [],
+	config = null,
+	skills = null,
+	onChange = function (type, settings, inputs, ready) {},
+	onRefresh = function () {},
+}) {
 	const { i18n } = useLingui();
-	const settings = initSettings(props.settings);
+	settings = initSettings(settings);
 
 	const handleChange = (newSettings) => {
 		newSettings = newSettings || settings;
 
-		const filteredDevices = props.knownDevices.filter((device) => device.media === 'video');
+		const filteredDevices = knownDevices.filter((device) => device.media === 'video');
 
-		props.onChange(S.id, newSettings, S.func.createInputs(newSettings), filteredDevices.length !== 0 ? true : false);
+		onChange(S.id, newSettings, S.func.createInputs(newSettings), filteredDevices.length !== 0 ? true : false);
 	};
 
 	const handleRefresh = () => {
-		props.onRefresh();
+		onRefresh();
 	};
 
 	const update = (what) => (event) => {
@@ -55,7 +62,7 @@ function Source(props) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	let filteredDevices = props.knownDevices.filter((device) => device.media === 'video');
+	let filteredDevices = knownDevices.filter((device) => device.media === 'video');
 	let options = filteredDevices.map((device) => {
 		return (
 			<MenuItem key={device.id} value={device.id}>
@@ -68,13 +75,13 @@ function Source(props) {
 		options.push(
 			<MenuItem key="none" value="none" disabled={true}>
 				{i18n._(t`No input device available`)}
-			</MenuItem>
+			</MenuItem>,
 		);
 	} else {
 		options.unshift(
 			<MenuItem key="default" value="default">
 				{i18n._(t`Default`)}
-			</MenuItem>
+			</MenuItem>,
 		);
 	}
 
@@ -84,7 +91,7 @@ function Source(props) {
 		</Select>
 	);
 
-	filteredDevices = props.knownDevices.filter((device) => device.media === 'audio');
+	filteredDevices = knownDevices.filter((device) => device.media === 'audio');
 	options = filteredDevices.map((device) => {
 		return (
 			<MenuItem key={device.id} value={device.id}>
@@ -96,14 +103,14 @@ function Source(props) {
 	options.unshift(
 		<MenuItem key="none" value="none">
 			{i18n._(t`None`)}
-		</MenuItem>
+		</MenuItem>,
 	);
 
 	if (options.length > 1) {
 		options.unshift(
 			<MenuItem key="default" value="default">
 				{i18n._(t`Default`)}
-			</MenuItem>
+			</MenuItem>,
 		);
 	}
 
@@ -140,13 +147,6 @@ function Source(props) {
 		</React.Fragment>
 	);
 }
-
-Source.defaultProps = {
-	knownDevices: [],
-	settings: {},
-	onChange: function (type, settings, inputs, ready) {},
-	onRefresh: function () {},
-};
 
 function SourceIcon(props) {
 	return <Icon style={{ color: '#FFF' }} {...props} />;

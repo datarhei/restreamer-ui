@@ -51,8 +51,8 @@ function init(settings) {
 	return initSettings;
 }
 
-function Service(props) {
-	const settings = init(props.settings);
+function Service({ settings = {}, skills = {}, metadata = {}, streams = [], onChange = function (output, settings) {} }) {
+	settings = init(settings);
 
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
@@ -61,7 +61,7 @@ function Service(props) {
 
 		const outputs = createOutput(settings);
 
-		props.onChange(outputs, settings);
+		onChange(outputs, settings);
 	};
 
 	const createOutput = (settings) => {
@@ -75,7 +75,7 @@ function Service(props) {
 		return outputs;
 	};
 
-	const filteredDevices = props.skills.devices.fbdev.filter((device) => device.extra !== '');
+	const filteredDevices = skills.devices.fbdev.filter((device) => device.extra !== '');
 	const options = filteredDevices.map((device) => {
 		return {
 			value: device.id,
@@ -113,13 +113,5 @@ function Service(props) {
 		</Grid>
 	);
 }
-
-Service.defaultProps = {
-	settings: {},
-	skills: {},
-	metadata: {},
-	streams: [],
-	onChange: function (output, settings) {},
-};
 
 export { id, name, version, stream_key_link, description, image_copyright, author, category, requires, ServiceIcon as icon, Service as component };

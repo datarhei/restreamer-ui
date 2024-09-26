@@ -32,7 +32,7 @@ const HtmlTooltip = withStyles((theme) => ({
 	},
 }))(Tooltip);
 
-export default function Component(props) {
+export default function Component({ style = null }) {
 	const classes = useStyles();
 	return (
 		<HtmlTooltip
@@ -44,9 +44,7 @@ export default function Component(props) {
 			placement="right"
 			arrow
 		>
-			<Chip size="small" label="ENV" className={classes.root} {...props} />
+			<Chip size="small" label="ENV" className={classes.root} style={style} />
 		</HtmlTooltip>
 	);
 }
-
-Component.defaultProps = {};

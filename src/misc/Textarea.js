@@ -12,7 +12,21 @@ import NotifyContext from '../contexts/Notify';
 import Palette from '../theme/base/palette';
 import TextareaModal from './modals/Textarea';
 
-export default function Component(props) {
+export default function Component({
+	title = '',
+	rows = 20,
+	value = '',
+	readOnly = true,
+	allowCopy = true,
+	allowModal = false,
+	allowDownload = false,
+	downloadName = '',
+	disabled = false,
+	scrollTo = 'top',
+	onChange = function (value) {},
+	onHelp = null,
+	content = null,
+}) {
 	const { i18n } = useLingui();
 
 	const [$modal, setModal] = React.useState(false);
@@ -20,10 +34,8 @@ export default function Component(props) {
 	const notify = useContext(NotifyContext);
 	const textAreaRef = React.createRef();
 
-	const { content } = props;
-
 	React.useEffect(() => {
-		scrollTo();
+		scrollToAction();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [content]);
 
@@ -62,8 +74,8 @@ export default function Component(props) {
 			});
 	};
 
-	const scrollTo = () => {
-		if (props.scrollTo === 'bottom') {
+	const scrollToAction = () => {
+		if (scrollTo === 'bottom') {
 			textAreaRef.current.scrollTop = textAreaRef.current.scrollHeight;
 		}
 
@@ -72,8 +84,8 @@ export default function Component(props) {
 
 	const handleDownload = () => {
 		var element = document.createElement('a');
-		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(props.value));
-		element.setAttribute('download', props.downloadName);
+		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(value));
+		element.setAttribute('download', downloadName);
 
 		element.style.display = 'none';
 		document.body.appendChild(element);
@@ -83,18 +95,15 @@ export default function Component(props) {
 		document.body.removeChild(element);
 	};
 
-	let allowCopy = props.allowCopy;
-	if (props.value.length === 0 || props.disabled === true) {
+	if (value.length === 0 || disabled === true) {
 		allowCopy = false;
 	}
 
-	let allowModal = props.allowModal;
-	if (props.value.length === 0 || props.disabled === true) {
+	if (value.length === 0 || disabled === true) {
 		allowModal = false;
 	}
 
-	let allowDownload = props.allowDownload;
-	if (props.value.length === 0 || props.disabled === true || props.downloadName.length === 0) {
+	if (value.length === 0 || disabled === true || downloadName.length === 0) {
 		allowDownload = false;
 	}
 
@@ -113,10 +122,10 @@ export default function Component(props) {
 			backgroundColor: Palette.background.footer2,
 		},
 	};
-	if (props.rows === 1) {
+	if (rows === 1) {
 		textAreaStyle = {
 			...textAreaStyle,
-			height: 18 * props.rows + 9.5 + 'px',
+			height: 18 * rows + 9.5 + 'px',
 			overflowY: 'hidden',
 			marginBottom: '0em',
 			marginTop: '0em',
@@ -134,7 +143,7 @@ export default function Component(props) {
 	} else {
 		textAreaStyle = {
 			...textAreaStyle,
-			height: 18 * props.rows + 8 + 'px',
+			height: 18 * rows + 8 + 'px',
 		};
 		textAreaDivStyle = {
 			...textAreaDivStyle,
@@ -167,45 +176,21 @@ export default function Component(props) {
 						</IconButton>
 					)}
 				</Stack>
-				<textarea
-					style={textAreaStyle}
-					ref={textAreaRef}
-					rows={props.rows}
-					value={props.value}
-					readOnly={props.readOnly}
-					disabled={props.disabled}
-					onChange={props.onChange}
-				/>
+				<textarea style={textAreaStyle} ref={textAreaRef} rows={rows} value={value} readOnly={readOnly} disabled={disabled} onChange={onChange} />
 			</Stack>
 			<TextareaModal
 				open={$modal}
 				onClose={handleModal}
-				title={props.title}
-				onHelp={props.onHelp}
-				rows={props.rows}
-				value={props.value}
-				readOnly={props.readOnly}
-				disabled={props.disabled}
-				onChange={props.onChange}
-				scrollTo={props.scrollTo}
-				{...props}
+				title={title}
+				onHelp={onHelp}
+				rows={rows}
+				value={value}
+				readOnly={readOnly}
+				disabled={disabled}
+				onChange={onChange}
+				scrollTo={scrollToAction}
 				allowModal={false}
 			/>
 		</React.Fragment>
 	);
 }
-
-Component.defaultProps = {
-	title: '',
-	rows: 20,
-	value: '',
-	readOnly: true,
-	allowCopy: true,
-	allowModal: false,
-	allowDownload: false,
-	downloadName: '',
-	disabled: false,
-	scrollTo: 'top',
-	onChange: function (value) {},
-	onHelp: null,
-};

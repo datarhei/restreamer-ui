@@ -10,10 +10,8 @@ import * as Filters from '../../misc/filters';
 import BoxText from '../../misc/BoxText';
 import Sources from './Sources';
 
-export default function Summary(props) {
+export default function Summary({ type = '', sources = [], profile = null }) {
 	const { i18n } = useLingui();
-	const sources = props.sources;
-	const profile = props.profile;
 
 	let source = null;
 	let stream = null;
@@ -44,9 +42,9 @@ export default function Summary(props) {
 
 		let coder = null;
 
-		if (props.type === 'video') {
+		if (type === 'video') {
 			coder = Coders.Video.Get(profile.encoder.coder);
-		} else if (props.type === 'audio') {
+		} else if (type === 'audio') {
 			coder = Coders.Audio.Get(profile.encoder.coder);
 		}
 
@@ -58,9 +56,9 @@ export default function Summary(props) {
 			if (profile.filter.graph.length !== 0) {
 				let filters = null;
 
-				if (props.type === 'video') {
+				if (type === 'video') {
 					filters = Filters.Video;
-				} else if (props.type === 'audio') {
+				} else if (type === 'audio') {
 					filters = Filters.Audio;
 				}
 
@@ -114,9 +112,3 @@ export default function Summary(props) {
 		</BoxText>
 	);
 }
-
-Summary.defaultProps = {
-	type: '',
-	sources: [],
-	profile: null,
-};

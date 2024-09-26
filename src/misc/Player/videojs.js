@@ -9,10 +9,9 @@ import './video-js-skin-internal.min.css';
 import './video-js-skin-public.min.css';
 import 'videojs-overlay/dist/videojs-overlay.css';
 
-export default function VideoJS(props) {
+export default function VideoJS({ type = 'videojs-internal', options = {}, onReady = null }) {
 	const videoRef = React.useRef(null);
 	const playerRef = React.useRef(null);
-	const { options, onReady } = props;
 
 	const retryVideo = () => {
 		const player = playerRef.current;
@@ -34,7 +33,7 @@ export default function VideoJS(props) {
 			}));
 
 			// add internal/public skin style
-			if (props.type === 'videojs-public') {
+			if (type === 'videojs-public') {
 				player.addClass('vjs-public');
 			} else {
 				player.addClass('vjs-internal');
@@ -55,8 +54,8 @@ export default function VideoJS(props) {
 			// player.autoplay(options.autoplay);
 			// player.src(options.sources);
 		}
-	// eslint-disable-next-line
-	}, [options, videoRef, onReady, props.type]);
+		// eslint-disable-next-line
+	}, [options, videoRef, onReady, type]);
 
 	// Dispose the Video.js player when the functional component unmounts
 	React.useEffect(() => {
@@ -85,7 +84,3 @@ export default function VideoJS(props) {
 		</Grid>
 	);
 }
-
-VideoJS.defaultProps = {
-	type: 'videojs-internal',
-};

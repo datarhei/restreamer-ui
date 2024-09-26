@@ -15,9 +15,9 @@ const outlined = {
 		'& .MuiChip-label': {
 			padding: '.1em .7em .1em .7em',
 			margin: 0,
-			fontSize: '.9rem'
+			fontSize: '.9rem',
 		},
-		marginRight: '.5em'
+		marginRight: '.5em',
 	},
 	primary: {
 		color: base.palette.text.primary,

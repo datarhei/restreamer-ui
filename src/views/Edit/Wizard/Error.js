@@ -10,10 +10,10 @@ import BoxText from '../../../misc/BoxText';
 import Paper from '../../../misc/Paper';
 import PaperHeader from '../../../misc/PaperHeader';
 
-export default function Error(props) {
+export default function Error({ onAbort = () => {}, onHelp = () => {}, onNext = () => {} }) {
 	return (
 		<Paper xs={12} sm={8} md={6} marginBottom="6em" className="PaperM">
-			<PaperHeader spacing={3} variant="h1" title={<Trans>Error</Trans>} onAbort={props.onAbort} onHelp={props.onHelp} />
+			<PaperHeader spacing={3} variant="h1" title={<Trans>Error</Trans>} onAbort={onAbort} onHelp={onHelp} />
 			<Grid container spacing={3}>
 				<BoxText color="dark">
 					<WarningIcon fontSize="large" color="error" />
@@ -22,7 +22,7 @@ export default function Error(props) {
 					</Typography>
 				</BoxText>
 				<Grid item xs={12}>
-					<Button variant="outlined" fullWidth color="primary" onClick={props.onNext}>
+					<Button variant="outlined" fullWidth color="primary" onClick={onNext}>
 						<Trans>Retry</Trans>
 					</Button>
 				</Grid>
@@ -30,9 +30,3 @@ export default function Error(props) {
 		</Paper>
 	);
 }
-
-Error.defaultProps = {
-	onAbort: () => {},
-	onHelp: () => {},
-	onNext: () => {},
-};

@@ -10,22 +10,14 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Component = React.forwardRef((props, ref) => {
+const Component = React.forwardRef(({ key = '', name = '', value = '', selected = false }, ref) => {
 	const classes = useStyles();
 
-	const { name, value, selected, ...other } = props;
-
 	return (
-		<MenuItem value={props.value} className={props.selected ? classes.root : ''} ref={ref} {...other}>
-			{props.name}
+		<MenuItem key={key} value={value} className={selected ? classes.root : ''} ref={ref}>
+			{name}
 		</MenuItem>
 	);
 });
 
 export default Component;
-
-Component.defaultProps = {
-	name: '',
-	value: '',
-	selected: false,
-};

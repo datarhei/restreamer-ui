@@ -104,8 +104,8 @@ function initAuths(auths) {
 	return auths;
 }
 
-export default function Login(props) {
-	const [$auths] = React.useState(initAuths(props.auths));
+export default function Login({ address = '', auths = [], hasService = false, onLogin = function (username, password) {}, onAuth0 = function () {} }) {
+	const [$auths] = React.useState(initAuths(auths));
 	const [$login, setLogin] = React.useState({
 		username: '',
 		password: '',
@@ -143,7 +143,7 @@ export default function Login(props) {
 
 		setLoginCheck(true);
 
-		const res = await props.onLogin($login.username, $login.password);
+		const res = await onLogin($login.username, $login.password);
 		if (res === false) {
 			setLoginCheck(false);
 		}
@@ -182,7 +182,7 @@ export default function Login(props) {
 
 		if (isAuthenticated === false) {
 			const redirect = await auth0.login({
-				address: props.address,
+				address: address,
 				hash: window.location.hash.substring(1),
 			});
 
@@ -198,7 +198,7 @@ export default function Login(props) {
 
 	const handleAuth0 = async () => {
 		setLoginCheck(true);
-		await props.onAuth0();
+		await onAuth0();
 	};
 
 	const handleChange = (what) => (event) => {
@@ -241,7 +241,7 @@ export default function Login(props) {
 										<Trans>Basic</Trans>
 									</ToggleButton>
 								)}
-								{props.hasService === true && !hasAuthType($auths, 'auth0') && (
+								{hasService === true && !hasAuthType($auths, 'auth0') && (
 									<ToggleButton value="service">
 										<Trans>Service</Trans>
 									</ToggleButton>
@@ -302,7 +302,7 @@ export default function Login(props) {
 						</Grid>
 					</React.Fragment>
 				)}
-				{props.hasService === true && $loginTarget === 'service' && !hasAuthType($auths, 'auth0') && (
+				{hasService === true && $loginTarget === 'service' && !hasAuthType($auths, 'auth0') && (
 					<React.Fragment>
 						<Grid item xs={12} align="center">
 							<Grid container spacing={0}>
@@ -420,11 +420,3 @@ export default function Login(props) {
 		</Paper>
 	);
 }
-
-Login.defaultProps = {
-	address: '',
-	auths: [],
-	hasService: false,
-	onLogin: function (username, password) {},
-	onAuth0: function () {},
-};

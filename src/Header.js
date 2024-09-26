@@ -160,12 +160,12 @@ const StyledMenu = styled((props) => (
 	},
 }));
 
-function AboutModal(props) {
+function AboutModal({ open = false, onClose = () => {} }) {
 	const classes = useStyles();
 
 	return (
-		<Modal open={props.open} onClose={props.onClose} className="modal">
-			<ModalContent title="About datarhei Restreamer" onClose={props.onClose} className={classes.modalPaper}>
+		<Modal open={open} onClose={onClose} className="modal">
+			<ModalContent title="About datarhei Restreamer" onClose={onClose} className={classes.modalPaper}>
 				<Grid container spacing={1}>
 					<Grid item xs={12} className={classes.aboutImage}>
 						<PaperThumb image={welcomeImage} title="Welcome to Restreamer v2" height="200px" />
@@ -215,12 +215,17 @@ function AboutModal(props) {
 	);
 }
 
-AboutModal.defaultProps = {
-	open: false,
-	onClose: () => {},
-};
-
-function HeaderMenu(props) {
+function HeaderMenu({
+	onChannel = () => {},
+	onPlayersite = () => {},
+	onSettings = () => {},
+	onLogout = () => {},
+	expand = true,
+	showPlayersite = false,
+	showSettings = false,
+	hasUpdates = false,
+	hasService = false,
+}) {
 	const classes = useStyles();
 
 	const [$anchorEl, setAnchorEl] = React.useState(null);
@@ -238,17 +243,17 @@ function HeaderMenu(props) {
 		Storage.Set('language', language);
 	};
 
-	if (props.expand === true) {
+	if (expand === true) {
 		return (
 			<React.Fragment>
-				<Fab className="headerFab" color="primary" onClick={props.onChannel}>
+				<Fab className="headerFab" color="primary" onClick={onChannel}>
 					<VideocamIcon className="fabIcon" />
 				</Fab>
-				<Fab className={props.hasUpdates ? 'headerFabHighlight' : 'headerFab'} color="primary" onClick={handleMenuOpen}>
+				<Fab className={hasUpdates ? 'headerFabHighlight' : 'headerFab'} color="primary" onClick={handleMenuOpen}>
 					<MenuOpenIcon className="fabIcon" />
 				</Fab>
 				<StyledMenu anchorEl={$anchorEl} open={$anchorEl !== null} onClose={handleMenuClose} onClick={handleMenuClose} disableScrollLock>
-					{props.hasService === true && (
+					{hasService === true && (
 						<React.Fragment>
 							<MenuItem component="a" href="https://service.datarhei.com" target="blank">
 								<ListItemIcon>
@@ -259,18 +264,18 @@ function HeaderMenu(props) {
 							<Divider />
 						</React.Fragment>
 					)}
-					{props.showPlayersite === true && (
-						<MenuItem onClick={props.onPlayersite}>
+					{showPlayersite === true && (
+						<MenuItem onClick={onPlayersite}>
 							<ListItemIcon size="large">
 								<WebIcon fontSize="small" size="large" />
 							</ListItemIcon>
 							<Trans>Playersite</Trans>
 						</MenuItem>
 					)}
-					{props.showSettings === true && (
-						<MenuItem onClick={props.onSettings}>
+					{showSettings === true && (
+						<MenuItem onClick={onSettings}>
 							<ListItemIcon>
-								<Settings fontSize="small" className={props.hasUpdates ? classes.colorHighlight : ''} />
+								<Settings fontSize="small" className={hasUpdates ? classes.colorHighlight : ''} />
 							</ListItemIcon>
 							<Trans>System</Trans>
 						</MenuItem>
@@ -300,7 +305,7 @@ function HeaderMenu(props) {
 						</ListItemIcon>
 						<LanguageSelect onChange={handleLanguageChange} />
 					</MenuItem>
-					<MenuItem onClick={props.onLogout}>
+					<MenuItem onClick={onLogout}>
 						<ListItemIcon>
 							<Logout fontSize="small" />
 						</ListItemIcon>
@@ -348,19 +353,17 @@ function HeaderMenu(props) {
 	}
 }
 
-HeaderMenu.defaultProps = {
-	onChannel: () => {},
-	onPlayersite: () => {},
-	onSettings: () => {},
-	onLogout: () => {},
-	expand: false,
-	showPlayersite: false,
-	showSettings: false,
-	hasUpdates: false,
-	hasService: false,
-};
-
-export default function Header(props) {
+export default function Header({
+	onChannel = () => {},
+	onPlayersite = () => {},
+	onSettings = () => {},
+	onLogout = () => {},
+	expand = true,
+	showPlayersite = false,
+	showSettings = false,
+	hasUpdates = false,
+	hasService = false,
+}) {
 	const classes = useStyles();
 
 	return (
@@ -372,14 +375,20 @@ export default function Header(props) {
 						<Typography className="headerTitle">Restreamer</Typography>
 					</Stack>
 					<Stack className="headerRight" direction="row" alignItems="center" spacing={0}>
-						<HeaderMenu {...props}></HeaderMenu>
+						<HeaderMenu
+							onChannel={onChannel}
+							onPlayersite={onPlayersite}
+							onSettings={onSettings}
+							onLogout={onLogout}
+							expand={expand}
+							showPlayersite={showPlayersite}
+							showSettings={showSettings}
+							hasUpdates={hasUpdates}
+							hasService={hasService}
+						></HeaderMenu>
 					</Stack>
 				</Stack>
 			</Grid>
 		</Grid>
 	);
 }
-
-Header.defaultProps = {
-	expand: false,
-};

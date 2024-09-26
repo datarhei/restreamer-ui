@@ -13,21 +13,30 @@ import BoxText from '../../../misc/BoxText';
 import Paper from '../../../misc/Paper';
 import PaperHeader from '../../../misc/PaperHeader';
 
-export default function Video(props) {
+export default function Video({
+	onAbort = () => {},
+	onHelp = () => {},
+	onBack = () => {},
+	onNext = () => {},
+	sourceid = '',
+	status = '',
+	ready = false,
+	children = null,
+}) {
 	return (
 		<Paper xs={12} sm={9} md={6} marginBottom="6em" className="PaperM">
-			<PaperHeader spacing={2} variant="h1" title={<Trans>Video setup</Trans>} onAbort={props.onAbort} onHelp={props.onHelp} />
+			<PaperHeader spacing={2} variant="h1" title={<Trans>Video setup</Trans>} onAbort={onAbort} onHelp={onHelp} />
 			<Grid container spacing={2}>
 				<Grid item xs={12}>
 					<Divider />
 				</Grid>
-				{props.children}
+				{children}
 				<Grid item xs={12}>
-					{props.status === 'error' && (
+					{status === 'error' && (
 						<BoxText color="dark">
 							<WarningIcon fontSize="large" color="error" />
 							<Typography textAlign="center">
-								{props.sourceid === 'rtmp' || props.sourceid === 'hls' ? (
+								{sourceid === 'rtmp' || sourceid === 'hls' ? (
 									<Trans>No live stream was detected. Please check the software that sends the stream.</Trans>
 								) : (
 									<Trans>Failed to verify the source. Please check the address.</Trans>
@@ -35,7 +44,7 @@ export default function Video(props) {
 							</Typography>
 						</BoxText>
 					)}
-					{props.status === 'nostream' && (
+					{status === 'nostream' && (
 						<BoxText color="dark">
 							<WarningIcon fontSize="large" color="error" />
 							<Typography textAlign="center">
@@ -43,7 +52,7 @@ export default function Video(props) {
 							</Typography>
 						</BoxText>
 					)}
-					{props.status === 'nocoder' && (
+					{status === 'nocoder' && (
 						<BoxText color="dark">
 							<WarningIcon fontSize="large" color="error" />
 							<Typography textAlign="center">
@@ -62,12 +71,12 @@ export default function Video(props) {
 					<Divider />
 				</Grid>
 				<Grid item xs={3}>
-					<Button variant="outlined" color="default" fullWidth onClick={props.onBack}>
+					<Button variant="outlined" color="default" fullWidth onClick={onBack}>
 						<Trans>Back</Trans>
 					</Button>
 				</Grid>
 				<Grid item xs={9}>
-					<Button variant="outlined" fullWidth color="primary" disabled={!props.ready} onClick={props.onNext}>
+					<Button variant="outlined" fullWidth color="primary" disabled={!ready} onClick={onNext}>
 						<Trans>Next</Trans>
 					</Button>
 				</Grid>
@@ -75,13 +84,3 @@ export default function Video(props) {
 		</Paper>
 	);
 }
-
-Video.defaultProps = {
-	onAbort: () => {},
-	onHelp: () => {},
-	onBack: () => {},
-	onNext: () => {},
-	sourceid: '',
-	status: '',
-	ready: false,
-};

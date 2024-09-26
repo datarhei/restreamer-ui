@@ -12,14 +12,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Component(props) {
+export default function Component({ style = null, children = null }) {
 	const classes = useStyles();
 
 	return (
-		<Stack direction="column" justifyContent="center" alignItems="center" spacing={1} className={classes.box} {...props}>
-			{props.children}
+		<Stack direction="column" justifyContent="center" alignItems="center" spacing={1} className={classes.box} style={style}>
+			{children}
 		</Stack>
 	);
 }
-
-Component.defaultProps = {};
