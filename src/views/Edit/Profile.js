@@ -80,6 +80,7 @@ export default function Profile({
 	const load = async () => {
 		// Add pseudo sources
 		skills.sources.noaudio = [];
+		skills.sources.sdp = [];
 
 		let audio = $sources.audio;
 
@@ -145,6 +146,7 @@ export default function Profile({
 
 			// Add pseudo sources
 			skills.sources.noaudio = [];
+			skills.sources.sdp = [];
 
 			let hasAudio = false;
 			for (let i = 0; i < res.streams.length; i++) {
