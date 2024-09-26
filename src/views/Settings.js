@@ -2043,6 +2043,7 @@ export default function Settings({ restreamer = null }) {
 								</Grid>
 								<Grid item xs={6} md={8}>
 									<Password
+										id='srt_token'
 										label={<Trans>Token</Trans>}
 										env={env('srt.token')}
 										disabled={env('srt.token') || !config.srt.enable}
@@ -2056,13 +2057,14 @@ export default function Settings({ restreamer = null }) {
 								</Grid>
 								<Grid item xs={12}>
 									<Password
+										id='srt_passphrase'
 										label={<Trans>Passphrase</Trans>}
 										env={env('srt.passphrase')}
 										disabled={env('srt.passphrase') || !config.srt.enable}
 										value={config.srt.passphrase}
 										onChange={handleChange('srt.passphrase')}
 										inputProps={{ maxLength: 79 }}
-										error={config.srt.passphrase && config.srt.passphrase.length < 10}
+										error={(config.srt.passphrase && config.srt.passphrase.length < 10) ? true : false}
 										helperText={
 											config.srt.passphrase && config.srt.passphrase.length < 10 ? (
 												<Trans>Passphrase must be between 10 and 79 characters long</Trans>
