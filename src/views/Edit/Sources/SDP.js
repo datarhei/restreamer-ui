@@ -6,7 +6,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
-import Icon from '@mui/icons-material/Cached';
+import Icon from '@mui/icons-material/VideoFile';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
@@ -55,9 +55,19 @@ const createInputs = (settings) => {
 	return [input];
 };
 
-function Source(props) {
+function Source({
+	knownDevices = [],
+	settings = {},
+	onChange = function (settings) {},
+	onProbe = function (settings, inputs) {},
+	onRefresh = function () {},
+	onStore = function (name, data) {
+		return '';
+	},
+}) {
 	const classes = useStyles();
-	const settings = initSettings(props.settings);
+	settings = initSettings(settings);
+	
 	const [$saving, setSaving] = React.useState(false);
 	const [$error, setError] = React.useState({
 		open: false,
@@ -66,9 +76,9 @@ function Source(props) {
 	});
 
 	const handleFileUpload = async (data, extension, mimetype) => {
-		const path = await props.onStore('input.sdp', data);
+		const path = await onStore('input.sdp', data);
 
-		props.onChange({
+		onChange({
 			...settings,
 			address: path,
 			mimetype: mimetype,
@@ -132,7 +142,7 @@ function Source(props) {
 	};
 
 	const handleProbe = () => {
-		props.onProbe(settings, createInputs(settings));
+		onProbe(settings, createInputs(settings));
 	};
 
 	return (
@@ -179,17 +189,6 @@ function Source(props) {
 		</React.Fragment>
 	);
 }
-
-Source.defaultProps = {
-	knownDevices: [],
-	settings: {},
-	onChange: function (settings) {},
-	onProbe: function (settings, inputs) {},
-	onRefresh: function () {},
-	onStore: function (name, data) {
-		return '';
-	},
-};
 
 function SourceIcon(props) {
 	return <Icon style={{ color: '#FFF' }} {...props} />;
