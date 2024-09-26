@@ -563,7 +563,7 @@ export default function Edit({ restreamer = null }) {
 								</Grid>
 								<Grid item xs={12}>
 									<PreviewControl
-										encoders={$skills.encoders.video}
+										availableEncoders={$skills.encoders.video}
 										settings={$data.control.preview}
 										onChange={handleControlChange('preview')}
 									/>

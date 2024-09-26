@@ -5,17 +5,9 @@ import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 
+import * as Encoders from '../coders/Encoders';
 import Checkbox from '../Checkbox';
 import Select from '../Select';
-
-const encoderOptions = {
-    'libx264': 'H.264 (libx264)',
-    'h264_nvenc': 'H.264 (NVENC)',
-    'h264_omx': 'H.264 (OpenMAX IL)',
-    'h264_v4l2m2m': 'H.264 (V4L2 Memory to Memory)',
-    'h264_vaapi': 'H.264 (Intel VAAPI)',
-    'h264_videotoolbox': 'H.264 (VideoToolbox)',
-};
 
 function init(settings) {
 	const initSettings = {
@@ -28,7 +20,7 @@ function init(settings) {
 	return initSettings;
 }
 
-export default function Control({ settings = {}, encoders = [], onChange = function (settings, automatic) {} }) {
+export default function Control({ settings = {}, availableEncoders = [], onChange = function (settings, automatic) {} }) {
 	settings = init(settings);
 
 	// Set the defaults
@@ -49,24 +41,19 @@ export default function Control({ settings = {}, encoders = [], onChange = funct
 		onChange(settings, false);
 	};
 
+	const encoders = Encoders.Video.GetCodersForCodec('h264', availableEncoders, 'any');
+
 	return (
 		<Grid container spacing={2}>
 			<Grid item xs={12}>
 				<Checkbox label={<Trans>Enable browser-compatible H.264 stream</Trans>} checked={settings.enable} onChange={handleChange('enable')} />
 			</Grid>
 			<Grid item xs={12} md={6}>
-				<Select
-					label={<Trans>Video Codec</Trans>}
-					value={settings.video_encoder}
-					disabled={!settings.enable}
-					onChange={handleChange('video_encoder')}
-				>
-					{Object.entries(encoderOptions).map(([value, label]) => (
-						encoders.includes(value) && (
-							<MenuItem key={value} value={value}>
-								{label}
-							</MenuItem>
-						)
+				<Select label={<Trans>Video Codec</Trans>} value={settings.video_encoder} disabled={!settings.enable} onChange={handleChange('video_encoder')}>
+					{encoders.map((encoder) => (
+						<MenuItem key={encoder.coder} value={encoder.coder}>
+							{encoder.name}
+						</MenuItem>
 					))}
 				</Select>
 				<Typography variant="caption">
