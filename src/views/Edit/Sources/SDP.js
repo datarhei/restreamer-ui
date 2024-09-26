@@ -15,10 +15,7 @@ import Filesize from '../../../misc/Filesize';
 import FormInlineButton from '../../../misc/FormInlineButton';
 import UploadButton from '../../../misc/UploadButton';
 
-const imageTypes = [
-	{ mimetype: 'application/sdp', extension: '*.sdp', maxSize: 2 * 1024 * 1024 },
-	{ mimetype: '', extension: '*.sdp', maxSize: 2 * 1024 * 1024 }
-];
+const imageTypes = [{ mimetype: 'application/sdp', extension: '*.sdp', maxSize: 2 * 1024 * 1024 }];
 
 const useStyles = makeStyles((theme) => ({
 	gridContainer: {
@@ -47,7 +44,6 @@ const createInputs = (settings) => {
 		options: [],
 	};
 
-	
 	input.options.push('-protocol_whitelist', 'file,udp,rtp');
 	input.options.push('-buffer_size', '671088640');
 	input.options.push('-thread_queue_size', '4096');
@@ -67,7 +63,7 @@ function Source({
 }) {
 	const classes = useStyles();
 	settings = initSettings(settings);
-	
+
 	const [$saving, setSaving] = React.useState(false);
 	const [$error, setError] = React.useState({
 		open: false,
@@ -150,7 +146,7 @@ function Source({
 			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
 				<Grid item xs={12}>
 					<Typography variant="caption">
-						<Trans>Upload an image or video file ({imageTypes.map((t) => t.mimetype).join(', ')}) in order to loop it.</Trans>
+						<Trans>Upload SDP file ({imageTypes.map((t) => t.mimetype).join(', ')}).</Trans>
 					</Typography>
 				</Grid>
 				<Grid item xs={12} md={9}>
