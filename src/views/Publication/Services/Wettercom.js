@@ -32,7 +32,7 @@ const author = {
 		link: 'https://github.com/datarhei',
 	},
 };
-const category = 'software';
+const category = 'platform';
 const requires = {
 	protocols: ['rtmp'],
 	formats: ['flv'],
