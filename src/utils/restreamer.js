@@ -859,14 +859,14 @@ class Restreamer {
 		// Sanity check on the RTMP app
 		let app = val.config.rtmp.app;
 		const re = new RegExp('/+', 'g');
-		app = app.replace(re, '/');
+		app = app.replace(re, '/'); // replace all multiple occurences of / with only one /
 		if (app !== '/') {
 			if (app[app.length - 1] === '/') {
-				app = app.substring(0, app.length - 2);
+				app = app.substring(0, app.length - 1); // Remove the trailing /
 			}
 
 			if (app[0] !== '/') {
-				app = '/' + app;
+				app = '/' + app; // Add a / at the beginning
 			}
 		} else {
 			app = '';
@@ -2260,7 +2260,7 @@ class Restreamer {
 		metadata.player = this.InitPlayerSettings(metadata.player);
 
 		// use h264 preview stream if enabled
-		const channel_id_h264 = metadata.control.preview?.enable ? `${channelid}_h264`: channelid
+		const channel_id_h264 = metadata.control.preview?.enable ? `${channelid}_h264` : channelid;
 
 		const playerConfig = {
 			...metadata.player,
