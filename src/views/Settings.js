@@ -1994,7 +1994,7 @@ export default function Settings({ restreamer = null }) {
 								</Grid>
 								<Grid item xs={12}>
 									<Password
-										label={<Trans>Token</Trans>}
+										label={<Trans>Streamkey</Trans>}
 										env={env('rtmp.token')}
 										disabled={env('rtmp.token') || !config.rtmp.enable}
 										value={config.rtmp.token}
@@ -2002,7 +2002,7 @@ export default function Settings({ restreamer = null }) {
 									/>
 									<ErrorBox configvalue="rtmp.token" messages={$tabs.rtmp.messages} />
 									<Typography variant="caption">
-										<Trans>RTMP token for publishing and playing. The token is the value of the URL query parameter 'token.'</Trans>
+										<Trans>RTMP streamkey for publishing and playing. The streamkey needs to be appended to the URL.</Trans>
 									</Typography>
 								</Grid>
 							</Grid>
@@ -2043,7 +2043,7 @@ export default function Settings({ restreamer = null }) {
 								</Grid>
 								<Grid item xs={6} md={8}>
 									<Password
-										id='srt_token'
+										id="srt_token"
 										label={<Trans>Token</Trans>}
 										env={env('srt.token')}
 										disabled={env('srt.token') || !config.srt.enable}
@@ -2057,14 +2057,14 @@ export default function Settings({ restreamer = null }) {
 								</Grid>
 								<Grid item xs={12}>
 									<Password
-										id='srt_passphrase'
+										id="srt_passphrase"
 										label={<Trans>Passphrase</Trans>}
 										env={env('srt.passphrase')}
 										disabled={env('srt.passphrase') || !config.srt.enable}
 										value={config.srt.passphrase}
 										onChange={handleChange('srt.passphrase')}
 										inputProps={{ maxLength: 79 }}
-										error={(config.srt.passphrase && config.srt.passphrase.length < 10) ? true : false}
+										error={config.srt.passphrase && config.srt.passphrase.length < 10 ? true : false}
 										helperText={
 											config.srt.passphrase && config.srt.passphrase.length < 10 ? (
 												<Trans>Passphrase must be between 10 and 79 characters long</Trans>
