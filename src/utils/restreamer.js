@@ -827,6 +827,11 @@ class Restreamer {
 
 		// Set defaults for the port if it's not set.
 		let port = address.port;
+		if (config.http.secure) {
+			let [, tls_port] = splitHostPort(val.config.tls.address);
+			port = tls_port;
+		}
+
 		if (port.length === 0) {
 			port = config.http.secure ? '443' : '80';
 		}
