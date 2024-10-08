@@ -59,9 +59,14 @@ const initSettings = (initialSettings, config) => {
 
 	settings.rtsp = {
 		udp: false,
+		transport: 'tcp',
 		stimeout: 5000000,
 		...settings.rtsp,
 	};
+
+	if (settings.rtsp.udp === true) {
+		settings.rtsp.transport = 'udp';
+	}
 
 	settings.http = {
 		readNative: true,
@@ -321,11 +326,7 @@ const createInputs = (settings, config, skills) => {
 					input.options.push('-timeout', settings.rtsp.stimeout);
 				}
 
-				if (settings.rtsp.udp === true) {
-					input.options.push('-rtsp_transport', 'udp');
-				} else {
-					input.options.push('-rtsp_transport', 'tcp');
-				}
+				input.options.push('-rtsp_transport', settings.rtsp.transport);
 			}
 		}
 	}
@@ -527,7 +528,18 @@ function AdvancedSettings({ settings = {}, onChange = function (settings) {} }) 
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
-									<Checkbox label={<Trans>UDP transport</Trans>} checked={settings.rtsp.udp} onChange={onChange('rtsp', 'udp')} />
+									<Select
+										type="select"
+										label={<Trans>Transport</Trans>}
+										value={settings.rtsp.transport}
+										onChange={onChange('rtsp', 'transport')}
+									>
+										<MenuItem value="udp">UDP</MenuItem>
+										<MenuItem value="tcp">TCP</MenuItem>
+										<MenuItem value="udpmulticast">UDP multicast</MenuItem>
+										<MenuItem value="http">HTTP tunneling</MenuItem>
+										<MenuItem value="https">HTTPS tunneling</MenuItem>
+									</Select>
 								</Grid>
 								<Grid item xs={12}>
 									<TextField
