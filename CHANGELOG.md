@@ -1,8 +1,14 @@
 # Restreamer-UI
 
+## v1.14.0 > v1.15.0
+
+-   Add EarthCam publication service
+-   Add other RTSP transport modes
+-   Fix wetter.com category
+
 ## v1.13.0 > v1.14.0
 
--   Add wettercom service
+-   Add wetter.com service
 -   Add option to select which channels will be displayed on the playersite ([#392](https://github.com/datarhei/restreamer/issues/392), [#800](https://github.com/datarhei/restreamer/issues/800))
 -   Mod updates public videojs >v8
 -   Fix erroneous filter setting
