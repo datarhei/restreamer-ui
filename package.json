@@ -41,7 +41,7 @@
 		"react-router-dom": "^6.26.1",
 		"react-scripts": "^5.0.1",
 		"semver": "^7.6.3",
-		"serve": "^14.2.3",
+		"serve": "^14.2.4",
 		"typescript": "^5.5.4",
 		"url-parse": "^1.5.10",
 		"util": "^0.12.5",
