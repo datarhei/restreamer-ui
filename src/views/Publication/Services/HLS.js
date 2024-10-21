@@ -18,7 +18,6 @@ import Typography from '@mui/material/Typography';
 import Checkbox from '../../../misc/Checkbox';
 import Select from '../../../misc/Select';
 import MultiSelect from '../../../misc/MultiSelect';
-import MultiSelectOption from '../../../misc/MultiSelectOption';
 import Password from '../../../misc/Password';
 
 const id = 'hls';
@@ -335,23 +334,29 @@ function Service({ settings = {}, skills = {}, metadata = {}, streams = [], onCh
 								/>
 							</Grid>
 							<Grid item xs={12}>
-								<MultiSelect type="select" label="hls_flags" value={settings.options.hls_flags} onChange={handleChange('hls_flags')}>
-									<MultiSelectOption value="single_file" name="single_file" />
-									<MultiSelectOption value="delete_segments" name="delete_segments" />
-									<MultiSelectOption value="append_list" name="append_list" />
-									<MultiSelectOption value="round_durations" name="round_durations" />
-									<MultiSelectOption value="discont_start" name="discont_start" />
-									<MultiSelectOption value="omit_endlist" name="omit_endlist" />
-									<MultiSelectOption value="periodic_rekey" name="periodic_rekey" />
-									<MultiSelectOption value="independent_segments" name="independent_segments" />
-									<MultiSelectOption value="iframes_only" name="iframes_only" />
-									<MultiSelectOption value="split_by_time" name="split_by_time" />
-									<MultiSelectOption value="program_date_time" name="program_date_time" />
-									<MultiSelectOption value="second_level_segment_index" name="second_level_segment_index" />
-									<MultiSelectOption value="second_level_segment_size" name="second_level_segment_size" />
-									<MultiSelectOption value="second_level_segment_duration" name="second_level_segment_duration" />
-									<MultiSelectOption value="temp_file" name="temp_file" />
-								</MultiSelect>
+								<MultiSelect
+									type="select"
+									label="hls_flags"
+									value={settings.options.hls_flags}
+									onChange={handleChange('hls_flags')}
+									items={[
+										{ value: ' single_file' },
+										{ value: ' delete_segments' },
+										{ value: ' append_list' },
+										{ value: ' round_durations' },
+										{ value: ' discont_start' },
+										{ value: ' omit_endlist' },
+										{ value: ' periodic_rekey' },
+										{ value: ' independent_segments' },
+										{ value: ' iframes_only' },
+										{ value: ' split_by_time' },
+										{ value: ' program_date_time' },
+										{ value: ' second_level_segment_index' },
+										{ value: ' second_level_segment_size' },
+										{ value: ' second_level_segment_duration' },
+										{ value: ' temp_file' },
+									]}
+								></MultiSelect>
 							</Grid>
 							<Grid item xs={12}>
 								<Typography variant="h3">

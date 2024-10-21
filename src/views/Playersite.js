@@ -24,7 +24,6 @@ import Filesize from '../misc/Filesize';
 import FormInlineButton from '../misc/FormInlineButton';
 import H from '../utils/help';
 import MultiSelect from '../misc/MultiSelect';
-import MultiSelectOption from '../misc/MultiSelectOption';
 import NotifyContext from '../contexts/Notify';
 import Paper from '../misc/Paper';
 import PaperHeader from '../misc/PaperHeader';
@@ -333,7 +332,6 @@ export default function Playersite({ restreamer = null }) {
 								<Grid item xs={12}>
 									<MultiSelect
 										disabled={!$settings.playersite}
-										type="select"
 										label={<Trans>Additional channels</Trans>}
 										value={$settings.channel_list.filter((c) => c !== main_channelid)}
 										renderValue={(selected) => {
@@ -349,21 +347,17 @@ export default function Playersite({ restreamer = null }) {
 												.join(', ');
 										}}
 										onChange={handleChange('channel_list')}
-									>
-										{$channels
+										items={$channels
 											.sort((a, b) => {
 												const aname = a.name.toUpperCase();
 												const bname = b.name.toUpperCase();
 												return aname < bname ? -1 : aname > bname ? 1 : 0;
 											})
 											.map((c) => {
-												return { id: c.channelid, name: c.name };
+												return { value: c.channelid, name: c.name };
 											})
-											.filter((c) => c.id !== main_channelid)
-											.map((c) => {
-												return <MultiSelectOption key={c.id} value={c.id} name={c.name} />;
-											})}
-									</MultiSelect>
+											.filter((c) => c.value !== main_channelid)}
+									></MultiSelect>
 									<Typography variant="caption">
 										<Trans>Additional channels to display on the playersite.</Trans>
 									</Typography>

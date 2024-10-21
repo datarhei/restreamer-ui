@@ -23,7 +23,6 @@ import BoxText from '../../../misc/BoxText';
 import Checkbox from '../../../misc/Checkbox';
 import FormInlineButton from '../../../misc/FormInlineButton';
 import MultiSelect from '../../../misc/MultiSelect';
-import MultiSelectOption from '../../../misc/MultiSelectOption';
 import Password from '../../../misc/Password';
 import Select from '../../../misc/Select';
 import Textarea from '../../../misc/Textarea';
@@ -710,17 +709,23 @@ function AdvancedSettings({ settings = {}, onChange = function (settings) {} }) 
 							</Typography>
 						</Grid>
 						<Grid item xs={12}>
-							<MultiSelect type="select" label="flags" value={settings.general.fflags} onChange={onChange('general', 'fflags')}>
-								<MultiSelectOption value="discardcorrupt" name="discardcorrupt" />
-								<MultiSelectOption value="fastseek" name="fastseek" />
-								<MultiSelectOption value="genpts" name="genpts" />
-								<MultiSelectOption value="igndts" name="igndts" />
-								<MultiSelectOption value="ignidx" name="ignidx" />
-								<MultiSelectOption value="nobuffer" name="nobuffer" />
-								<MultiSelectOption value="nofillin" name="nofillin" />
-								<MultiSelectOption value="noparse" name="noparse" />
-								<MultiSelectOption value="sortdts" name="sortdts" />
-							</MultiSelect>
+							<MultiSelect
+								type="select"
+								label="flags"
+								value={settings.general.fflags}
+								onChange={onChange('general', 'fflags')}
+								items={[
+									{ value: 'discardcorrupt' },
+									{ value: 'fastseek' },
+									{ value: 'genpts' },
+									{ value: 'igndts' },
+									{ value: 'ignidx' },
+									{ value: 'nobuffer' },
+									{ value: 'nofillin' },
+									{ value: 'noparse' },
+									{ value: 'sortdts' },
+								]}
+							></MultiSelect>
 						</Grid>
 						<Grid item xs={12}>
 							<Checkbox label={<Trans>copyts</Trans>} checked={settings.general.copyts} onChange={onChange('general', 'copyts')} />

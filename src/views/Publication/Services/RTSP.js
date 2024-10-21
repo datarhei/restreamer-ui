@@ -17,7 +17,6 @@ import Typography from '@mui/material/Typography';
 
 import Select from '../../../misc/Select';
 import MultiSelect from '../../../misc/MultiSelect';
-import MultiSelectOption from '../../../misc/MultiSelectOption';
 import Password from '../../../misc/Password';
 
 const id = 'rtsp';
@@ -190,12 +189,8 @@ function Service({ settings = {}, skills = {}, metadata = {}, streams = [], onCh
 									label="allowed_media_types"
 									value={settings.options.allowed_media_types}
 									onChange={handleChange('allowed_media_types')}
-								>
-									<MultiSelectOption value="" name="all media types" />
-									<MultiSelectOption value="video" name="video" />
-									<MultiSelectOption value="audio" name="audio" />
-									<MultiSelectOption value="data" name="data" />
-								</MultiSelect>
+									items={[{ key: 'all', value: '', name: 'all media types' }, { value: 'video' }, { value: 'audio' }, { value: 'data' }]}
+								></MultiSelect>
 							</Grid>
 							<Grid item xs={12}>
 								<TextField

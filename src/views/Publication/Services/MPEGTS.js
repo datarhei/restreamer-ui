@@ -17,7 +17,6 @@ import Typography from '@mui/material/Typography';
 import Checkbox from '../../../misc/Checkbox';
 import Select from '../../../misc/Select';
 import MultiSelect from '../../../misc/MultiSelect';
-import MultiSelectOption from '../../../misc/MultiSelectOption';
 
 const id = 'mpegts';
 const name = 'MPEG-TS';
@@ -301,13 +300,19 @@ function Service({ settings = {}, skills = {}, metadata = {}, streams = [], onCh
 								/>
 							</Grid>
 							<Grid item xs={12}>
-								<MultiSelect type="select" label="mpegts_flags" value={settings.options.mpegts_flags} onChange={handleChange('mpegts_flags')}>
-									<MultiSelectOption value="resend_headers" name="resend_headers" />
-									<MultiSelectOption value="latm" name="latm" />
-									<MultiSelectOption value="pat_pmt_at_frames" name="pat_pmt_at_frames" />
-									<MultiSelectOption value="system_b" name="system_b" />
-									<MultiSelectOption value="initial_discontinuity" name="initial_discontinuity" />
-								</MultiSelect>
+								<MultiSelect
+									type="select"
+									label="mpegts_flags"
+									value={settings.options.mpegts_flags}
+									onChange={handleChange('mpegts_flags')}
+									items={[
+										{ value: 'resend_headers' },
+										{ value: 'latm' },
+										{ value: 'pat_pmt_at_frames' },
+										{ value: 'system_b' },
+										{ value: 'initial_discontinuity' },
+									]}
+								></MultiSelect>
 							</Grid>
 							<Grid item xs={12}>
 								<Checkbox label="mpegts_copyts" checked={settings.options.mpegts_copyts} onChange={handleChange('mpegts_copyts')} />
