@@ -74,6 +74,7 @@ const initSettings = (initialSettings, config) => {
 		userAgent: '',
 		referer: '',
 		http_proxy: '',
+		headers: '',
 		...settings.http,
 	};
 
@@ -291,6 +292,15 @@ const createInputs = (settings, config, skills) => {
 
 			if (settings.http.referer.length !== 0) {
 				input.options.push('-referer', settings.http.referer);
+			}
+
+			if (settings.http.headers.length !== 0) {
+				let headers = settings.http.headers
+					.split('\n')
+					.map((l) => l.trim())
+					.filter((l) => l.length > 0)
+					.join('\r\n');
+				input.options.push('-headers', headers + '\r\n');
 			}
 
 			if (settings.http.http_proxy.length !== 0) {
@@ -604,6 +614,19 @@ function AdvancedSettings({ settings = {}, onChange = function (settings) {} }) 
 										value={settings.http.referer}
 										onChange={onChange('http', 'referer')}
 									/>
+								</Grid>
+								<Grid item xs={12}>
+									<TextField
+										variant="outlined"
+										fullWidth
+										multiline
+										label="Headers"
+										value={settings.http.headers}
+										onChange={onChange('http', 'headers')}
+									/>
+									<Typography variant="caption">
+										<Trans>List of additional HTTP headers, one per line.</Trans>
+									</Typography>
 								</Grid>
 								<Grid item xs={12}>
 									<TextField
