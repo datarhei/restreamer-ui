@@ -6,6 +6,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="{{description}}">
 	<meta name="author" content="datarhei restreamer">
+	<style>
+		html{
+    		min-height: 100vh;
+		}
+		body{
+			margin: 0;
+			padding: 0;
+			min-height: 100vh;
+		}
+		#player{
+			width: 100vw;
+			height: 100vh;
+			overflow: hidden;
+		}
+	</style>
 	<title>{{name}}</title>
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 	<link rel="alternate" type="application/json+oembed" href="channels/{{channelid}}/oembed.json" title="{{name}}">
@@ -23,7 +38,7 @@
 	{{/if}}
 </head>
 <body>
-<div style="position:absolute;top:0;right:0;bottom:0;left:0;background-color:black;">
+<div>
 	<video id="player" class="vjs-public video-js" controls playsinline></video>
 </div>
 <script src="player/videojs/dist/video.min.js"></script>
@@ -81,7 +96,6 @@
 		muted: mute,
 		liveui: true,
 		responsive: true,
-		fluid: true,
 		sources: [{ src: window.location.origin + '/' + playerConfig.source, type: 'application/x-mpegURL' }],
 		plugins: {},
 	};
