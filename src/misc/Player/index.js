@@ -73,7 +73,7 @@ export default function Player({
 									{
 										showBackground: false,
 										content: overlay,
-										start: 'playing',
+										start: 'play',
 										end: 'pause',
 									},
 								],

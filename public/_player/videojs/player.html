@@ -98,41 +98,42 @@
 	}
 
 	var player = videojs('player', config);
-	player.ready(function() {
-		if(playerConfig.logo.image.length != 0) {
-			var overlay = null;
 
-			var imgTag = new Image();
-			imgTag.onLoad = function () {
-				imgTag.setAttribute('width', this.width);
-				imgTag.setAttribute('height'.this.height);
-			};
-			imgTag.src = playerConfig.logo.image + '?' + Math.random();
+	if(playerConfig.logo.image.length != 0) {
+		var overlay = null;
 
-			if (playerConfig.logo.link.length !== 0) {
-				var aTag = document.createElement('a');
-				aTag.setAttribute('href', playerConfig.logo.link);
-				aTag.setAttribute('target', '_blank');
-				aTag.appendChild(imgTag);
-				overlay = aTag.outerHTML;
-			} else {
-				overlay = imgTag.outerHTML;
-			}
+		var imgTag = new Image();
+		imgTag.onLoad = function () {
+			imgTag.setAttribute('width', this.width);
+			imgTag.setAttribute('height'.this.height);
+		};
+		imgTag.src = playerConfig.logo.image + '?' + Math.random();
 
-			player.overlay({
-				align: playerConfig.logo.position,
-				overlays: [
-					{
-						showBackground: false,
-						content: overlay,
-						start: 'playing',
-						end: 'pause',
-					},
-				],
-			});
-
-			player.license(playerConfig.license);
+		if (playerConfig.logo.link.length !== 0) {
+			var aTag = document.createElement('a');
+			aTag.setAttribute('href', playerConfig.logo.link);
+			aTag.setAttribute('target', '_blank');
+			aTag.appendChild(imgTag);
+			overlay = aTag.outerHTML;
+		} else {
+			overlay = imgTag.outerHTML;
 		}
+
+		player.overlay({
+			align: playerConfig.logo.position,
+			overlays: [
+				{
+					showBackground: false,
+					content: overlay,
+					start: 'play',
+					end: 'pause',
+				},
+			],
+		});
+	}
+
+	player.ready(function() {
+		player.license(playerConfig.license);
 
 		if (autoplay === true) {
 			// https://videojs.com/blog/autoplay-best-practices-with-video-js/

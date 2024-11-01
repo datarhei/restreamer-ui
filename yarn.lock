@@ -11999,10 +11999,10 @@ videojs-font@4.2.0:
   resolved "https://registry.yarnpkg.com/videojs-font/-/videojs-font-4.2.0.tgz#fbce803d347c565816e296f527e208dc65c9f235"
   integrity sha512-YPq+wiKoGy2/M7ccjmlvwi58z2xsykkkfNMyIg4xb7EZQQNwB71hcSsB3o75CqQV7/y5lXkXhI/rsGAS7jfEmQ==
 
-videojs-overlay@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/videojs-overlay/-/videojs-overlay-3.1.0.tgz#d57505d375eca952feeb36e5b33e0a130e3dc9e0"
-  integrity sha512-P863Z4ghWgf7Z4A4uzmHlqIixRb8v5220JuQ4pfb/uorbWSBCt5D+czrp/eTxXXLtSmrSUKn596QswVYZuMzPg==
+videojs-overlay@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/videojs-overlay/-/videojs-overlay-4.0.0.tgz#aa450b3e6e0a86d9bfc61eff66bbdd9f6ed1f07d"
+  integrity sha512-R+DqPhq8iiyNXUgnXr3ZKWXjLmyiztyvzmND4jr+Fa/MaxN6dMwG7hvqb+la24Qaqh8Jxprnw62vqQ0vc8QoHQ==
   dependencies:
     global "^4.3.2"
     video.js "^6 || ^7 || ^8"
