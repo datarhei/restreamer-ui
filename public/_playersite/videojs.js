@@ -6,24 +6,22 @@ var config = {
 	liveui: true,
 	responsive: true,
 	fluid: true,
-	// Needed to append the url origin in order for the source to properly pass to the cast device. Also provide a default reciever application ID
+	// Needed to append the url origin in order for the source to properly pass to the cast device
 	sources: [{ src: window.location.origin + '/' + playerConfig.source, type: 'application/x-mpegURL' }],
-	plugins: {
-		license: playerConfig.license,
-		chromecast: {
-			receiverApplicationId: 'CC1AD845'
-		},
-	},
+	plugins: {},
 };
 
 if (chromecast) {
 	config.techOrder = ['chromecast', 'html5'];
+	config.plugins.chromecast = {
+		// Provide a default reciever application ID
+		receiverApplicationId: 'CC1AD845',
+	};
 }
 
 var player = videojs('player', config);
 
 player.ready(function () {
-
 	if (chromecast) {
 		player.chromecast();
 	}
@@ -31,7 +29,7 @@ player.ready(function () {
 	if (airplay) {
 		player.airPlay();
 	}
-	
+
 	player.license(playerConfig.license);
 
 	if (playerConfig.logo.image.length != 0) {
