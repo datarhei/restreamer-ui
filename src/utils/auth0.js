@@ -8,7 +8,7 @@ let isAvailable = false;
 try {
 	new Auth0Client({
 		domain: 'example.eu.auth0.com',
-		client_id: 'some_client_id',
+		clientId: 'some_client_id',
 		audience: 'https://example.com/',
 		cacheLocation: 'memory',
 	});
@@ -74,10 +74,8 @@ const init = () => {
 	try {
 		client = new Auth0Client({
 			domain: config.domain,
-			client_id: config.client_id,
-			audience: config.audience,
+			clientId: config.client_id,
 			cacheLocation: 'localstorage',
-			advancedOptions: { defaultScope: 'openid' },
 		});
 	} catch (e) {
 		return false;
@@ -143,27 +141,29 @@ const login = async (queryParams) => {
 		...getConfig(),
 	};
 
-	let queryString = [];
-	for (let n in queryParams) {
-		queryString.push(n + '=' + encodeURIComponent(queryParams[n]));
-	}
+    let queryString = [];
+    for (let key in queryParams) {
+        if (queryParams[key]) {
+            queryString.push(`${key}=${queryParams[key]}`); // No encoding for keys or values
+        }
+    }
+    if (queryString) {
+        try {
+            const url = new URL(config.redirect_uri);
+            url.search = url.search ? `${url.search}&${queryString}` : queryString;
+            config.redirect_uri = url.href;
+        } catch (e) {
+            console.error('Error constructing redirect URI:', e);
+        }
+    }
 
-	if (queryString.length !== 0) {
-		try {
-			let url = new URL(config.redirect_uri);
-			if (url.search.length > 1) {
-				url.search = url.search + '&' + queryString.join('&');
-			} else {
-				url.search = '?' + queryString.join('&');
-			}
-
-			config.redirect_uri = url.href;
-		} catch (e) {}
-	}
-
-	const options = {
-		redirect_uri: config.redirect_uri,
-	};
+    const options = {
+        authorizationParams: {
+            redirect_uri: config.redirect_uri,
+            scope: 'openid profile email',
+			audience: config.audience
+        }
+    };
 
 	try {
 		await client.loginWithRedirect(options);
@@ -192,8 +192,18 @@ const getToken = async () => {
 		return token;
 	}
 
+	const config = {
+		...getConfig(),
+	};
+    const options = {
+        authorizationParams: {
+            scope: config.scope,
+			audience: config.audience
+        }
+    };
+
 	try {
-		token = await client.getTokenSilently();
+		token = await client.getTokenSilently(options);
 	} catch (error) {
 		console.error(error);
 	}
