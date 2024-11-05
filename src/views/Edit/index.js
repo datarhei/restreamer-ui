@@ -211,8 +211,8 @@ export default function Edit({ restreamer = null }) {
 		setSkills(skills);
 	};
 
-	const handleSourceStore = async (name, data) => {
-		return await restreamer.UploadData('', name, data);
+	const handleSourceStore = async (name, data, onprogress) => {
+		return await restreamer.UploadData('', name, data, onprogress);
 	};
 
 	const handleSourceProbe = async (inputs) => {

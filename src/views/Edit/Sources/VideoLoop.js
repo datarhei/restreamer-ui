@@ -4,12 +4,12 @@ import { Trans } from '@lingui/macro';
 import makeStyles from '@mui/styles/makeStyles';
 import Backdrop from '@mui/material/Backdrop';
 import Button from '@mui/material/Button';
-import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
 import Icon from '@mui/icons-material/Cached';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
+import CircularProgress from '../../../misc/CircularProgress';
 import Dialog from '../../../misc/modals/Dialog';
 import Filesize from '../../../misc/Filesize';
 import FormInlineButton from '../../../misc/FormInlineButton';
@@ -71,7 +71,10 @@ function Source({
 	const classes = useStyles();
 	settings = initSettings(settings);
 
-	const [$saving, setSaving] = React.useState(false);
+	const [$progress, setProgress] = React.useState({
+		enable: false,
+		value: -1,
+	});
 	const [$error, setError] = React.useState({
 		open: false,
 		title: '',
@@ -79,7 +82,15 @@ function Source({
 	});
 
 	const handleFileUpload = async (data, extension, mimetype) => {
-		const path = await onStore('videoloop.source', data);
+		const path = await onStore('videoloop.source', data, (computable, progress, total) => {
+			setProgress((current) => {
+				return {
+					...current,
+					enable: true,
+					value: computable ? progress * 100 : -1,
+				};
+			});
+		});
 
 		onChange({
 			...settings,
@@ -87,11 +98,17 @@ function Source({
 			mimetype: mimetype,
 		});
 
-		setSaving(false);
+		setProgress({
+			...$progress,
+			enable: false,
+		});
 	};
 
 	const handleUploadStart = () => {
-		setSaving(true);
+		setProgress({
+			...$progress,
+			enable: true,
+		});
 	};
 
 	const handleUploadError = (title) => (err) => {
@@ -123,7 +140,10 @@ function Source({
 				message = <Trans>Unknown upload error</Trans>;
 		}
 
-		setSaving(false);
+		setProgress({
+			...$progress,
+			enable: false,
+		});
 
 		showUploadError(title, message);
 	};
@@ -174,8 +194,8 @@ function Source({
 					</FormInlineButton>
 				</Grid>
 			</Grid>
-			<Backdrop open={$saving}>
-				<CircularProgress color="inherit" />
+			<Backdrop open={$progress.enable}>
+				<CircularProgress color="inherit" value={$progress.value} />
 			</Backdrop>
 			<Dialog
 				open={$error.open}

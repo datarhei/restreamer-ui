@@ -78,8 +78,8 @@ export default function SourceSelect({
 		await onRefresh();
 	};
 
-	const handleStore = async (name, data) => {
-		return await onStore(name, data);
+	const handleStore = async (name, data, onprogress) => {
+		return await onStore(name, data, onprogress);
 	};
 
 	const handleProbe = async (settings, inputs) => {
