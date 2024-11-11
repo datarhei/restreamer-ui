@@ -4,7 +4,11 @@
 
 -   Add EarthCam publication service
 -   Add other RTSP transport modes
+-   Add X11grap
+-   Add SDP ([PR-#47](https://github.com/datarhei/restreamer-ui/pull/47)) (thx patcarter883)
+-   Add support AV1 decoding ([PR-#46](https://github.com/datarhei/restreamer-ui/pull/46)) (thx patcarter883)
 -   Fix wetter.com category
+-   Fix chromecast ([PR-#73](https://github.com/datarhei/restreamer-ui/pull/73)) (thx badincite)
 
 ## v1.13.0 > v1.14.0
 

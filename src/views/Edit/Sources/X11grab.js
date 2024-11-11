@@ -7,9 +7,11 @@ import makeStyles from '@mui/styles/makeStyles';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import RefreshIcon from '@mui/icons-material/Refresh';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 import FormInlineButton from '../../../misc/FormInlineButton';
+import MultiSelect from '../../../misc/MultiSelect';
 import SelectCustom from '../../../misc/SelectCustom';
 import Checkbox from '../../../misc/Checkbox';
 import Video from '../../../misc/coders/settings/Video';
@@ -29,7 +31,7 @@ const initSettings = (initialSettings) => {
 		probesize: 42_000_000, // bytes
 		fflags: ['nobuffer'],
 		thread_queue_size: 1028,
-		size: 'cif',
+		video_size: 'cif',
 		framerate: '25',
 		device: ':1',
 		draw_mouse: false,
@@ -49,11 +51,13 @@ const createInputs = (settings) => {
 
 	input.options.push('-thread_queue_size', settings.thread_queue_size);
 	input.options.push('-probesize', '' + settings.probesize);
-	input.options.push('-fflags', settings.fflags.join(','));
+	if (settings.fflags.length !== 0) {
+		input.options.push('-fflags', '+' + settings.fflags.join('+'));
+	}
 	input.options.push('-f', 'x11grab');
 	input.options.push('-video_size', settings.size);
 	input.options.push('-framerate', settings.framerate);
-	if (settings.follow_mouse) {
+	if (settings.follow_mouse === true) {
 		input.options.push('-draw_mouse', '1');
 		input.options.push('-follow_mouse', settings.follow_mouse);
 	} else {
@@ -97,7 +101,7 @@ function Source({ knownDevices = [], settings = {}, onChange = function (setting
 	const handleChange = (what) => (event) => {
 		let data = {};
 
-		if (['device', 'framerate', 'size'].includes(what)) {
+		if (['device', 'probesize', 'fflags', 'framerate', 'video_size', 'thread_queue_size', 'follow_mouse' ].includes(what)) {
 			data[what] = event.target.value;
 		}
 
@@ -161,10 +165,58 @@ function Source({ knownDevices = [], settings = {}, onChange = function (setting
 				</Button>
 			</Grid>
 			<Grid item xs={12}>
+				<TextField
+					variant="outlined"
+					type="number"
+					min="0"
+					step="1"
+					fullWidth
+					label="thread_queue_size"
+					value={settings.thread_queue_size}
+					onChange={handleChange('thread_queue_size')}
+				/>
+			</Grid>
+			<Grid item xs={12}>
+				<TextField
+					variant="outlined"
+					type="number"
+					min="32"
+					step="1"
+					fullWidth
+					label="probesize (bytes)"
+					value={settings.probesize}
+					onChange={handleChange('probesize')}
+				/>
+				<Typography variant="caption">
+					<Trans>
+						Mininum {32}, default {5000000}
+					</Trans>
+				</Typography>
+			</Grid>
+			<Grid item xs={12}>
+				<MultiSelect
+					type="select"
+					label="flags"
+					value={settings.fflags}
+					onChange={handleChange('fflags')}
+					items={[
+						{ value: 'discardcorrupt' },
+						{ value: 'fastseek' },
+						{ value: 'genpts' },
+						{ value: 'igndts' },
+						{ value: 'ignidx' },
+						{ value: 'nobuffer' },
+						{ value: 'nofillin' },
+						{ value: 'noparse' },
+						{ value: 'sortdts' },
+					]}
+				></MultiSelect>
+			</Grid>
+			<Grid item xs={12}>
 				<Video.Framerate value={settings.framerate} onChange={handleChange('framerate')} allowCustom />
 			</Grid>
 			<Grid item xs={12}>
-				<Video.Size value={settings.size} onChange={handleChange('size')} allowCustom />
+				<Video.Size value={settings.video_size} onChange={handleChange('video_size')} allowCustom />
 			</Grid>
 			<Grid item xs={12}>
 				<Grid item>
