@@ -616,7 +616,7 @@ class Restreamer {
 		};
 
 		for (let device of val.devices.demuxers) {
-			if (!['avfoundation', 'video4linux2', 'alsa', 'fbdev'].includes(device.id)) {
+			if (!['avfoundation', 'video4linux2', 'alsa', 'fbdev', 'x11grab'].includes(device.id)) {
 				continue;
 			}
 
