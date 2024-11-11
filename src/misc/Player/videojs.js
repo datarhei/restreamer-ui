@@ -3,7 +3,7 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 
 import videojs from 'video.js';
-import overlay from './videojs-overlay.es.js';
+import './videojs-overlay.es.js';
 import 'video.js/dist/video-js.min.css';
 import './video-js-skin-internal.min.css';
 import './video-js-skin-public.min.css';
@@ -27,8 +27,6 @@ export default function VideoJS({ type = 'videojs-internal', options = {}, onRea
 		if (!playerRef.current) {
 			const videoElement = videoRef.current;
 			if (!videoElement) return;
-
-			videojs.registerPlugin('overlay', overlay);
 
 			const player = (playerRef.current = videojs(videoElement, options, () => {
 				onReady && onReady(player);

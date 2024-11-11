@@ -63,7 +63,11 @@ export default function UploadButton({
 				return;
 			}
 
+			/*
+			let streamer = file.stream();
+
 			let reader = new FileReader();
+			// read as blob: https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL
 			reader.readAsArrayBuffer(file);
 			reader.onloadend = async () => {
 				if (reader.result === null) {
@@ -74,9 +78,11 @@ export default function UploadButton({
 					});
 					return;
 				}
-
-				onUpload(reader.result, type.extension, type.mimetype);
-			};
+*/
+			// transformStream in order to count transferred bytes: https://stackoverflow.com/questions/35711724/upload-progress-indicators-for-fetch
+			// .pipeThrough(progressTrackingStream)
+			onUpload(file, type.extension, type.mimetype);
+			//};
 		};
 
 		onStart();

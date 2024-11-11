@@ -2290,7 +2290,7 @@ class Restreamer {
 	}
 
 	// Upload channel specific channel data
-	async UploadData(channelid, name, data) {
+	async UploadData(channelid, name, data, onprogress = null) {
 		if (channelid.length === 0) {
 			channelid = this.GetCurrentChannelID();
 		}
@@ -2305,7 +2305,7 @@ class Restreamer {
 
 		const path = `/channels/${channel.channelid}/${name}`;
 
-		await this._uploadAssetData(path, data);
+		await this._uploadAssetData(path, data, onprogress);
 
 		return path;
 	}
@@ -3358,8 +3358,8 @@ class Restreamer {
 		return true;
 	}
 
-	async _uploadAssetData(remotePath, data) {
-		await this._call(this.api.DataPutFile, remotePath, data);
+	async _uploadAssetData(remotePath, data, onprogress = null) {
+		await this._call(this.api.DataPutFile, remotePath, data, onprogress);
 
 		return true;
 	}
