@@ -93,6 +93,11 @@ const initSettings = (initialSettings, config) => {
 		...settings.general,
 	};
 
+	settings.extentions = {
+		liveguard: 'none',
+		...settings.extentions,
+	};
+
 	return settings;
 };
 
@@ -337,6 +342,17 @@ const createInputs = (settings, config, skills) => {
 
 				input.options.push('-rtsp_transport', settings.rtsp.transport);
 			}
+		}
+	}
+
+	if (skills.protocols.input.includes('playout')) {
+		console.log("playout enabled");
+		if (settings.extentions.liveguard === 'video') {
+			input.address = `playout:${input.address}`
+			input.options.push('-playout_audio', '0');
+		} else if (settings.extentions.liveguard === 'video_audio') {
+			input.address = `playout:${input.address}`
+			input.options.push('-playout_audio', '1');
 		}
 	}
 
@@ -783,6 +799,37 @@ function AdvancedSettings({ settings = {}, onChange = function (settings) {} }) 
 	);
 }
 
+function ExtentionSettings({ settings = {}, skills = {}, onChange = function (settings) {} }) {
+	if (!skills.protocols.input.includes('playout')) return null;
+	return (
+		<Grid item xs={12}>
+			<Accordion className="accordion">
+				<AccordionSummary elevation={0} expandIcon={<ArrowDropDownIcon />}>
+					<Typography>
+						<Trans>Extention settings</Trans>
+					</Typography>
+				</AccordionSummary>
+				<AccordionDetails>
+					<Grid container spacing={2}>
+						<Grid item xs={12}>
+							<Select
+								type="select"
+								label={<Trans>Live stabilization</Trans>}
+								value={settings.extentions.liveguard}
+								onChange={onChange('extentions', 'liveguard')}
+							>
+								<MenuItem value="none"><Trans>Protect: None</Trans></MenuItem>
+								<MenuItem value="video"><Trans>Protect: Video channel</Trans></MenuItem>
+								<MenuItem value="video_audio"><Trans>Protect: Video and audio channel</Trans></MenuItem>
+							</Select>
+						</Grid>
+					</Grid>
+				</AccordionDetails>
+			</Accordion>
+		</Grid>
+	);
+}
+
 function Pull({
 	knownDevices = [],
 	settings = {},
@@ -859,6 +906,7 @@ function Pull({
 								</React.Fragment>
 							)}
 							<AdvancedSettings settings={settings} onChange={onChange} />
+							<ExtentionSettings settings={settings} skills={skills} onChange={onChange} />
 						</React.Fragment>
 					)}
 				</React.Fragment>
@@ -917,17 +965,17 @@ function Push({
 				</Grid>
 			</Grid>
 			{settings.push.type === 'rtmp' && (
-				<PushRTMP knownDevices={knownDevices} settings={settings} config={config} onChange={onChange} onProbe={onProbe} onRefresh={onRefresh} />
+				<PushRTMP knownDevices={knownDevices} settings={settings} config={config} skills={skills} onChange={onChange} onProbe={onProbe} onRefresh={onRefresh} />
 			)}
-			{settings.push.type === 'hls' && <PushHLS settings={settings} config={config} onChange={onChange} onProbe={onProbe} />}
+			{settings.push.type === 'hls' && <PushHLS settings={settings} config={config} skills={skills} onChange={onChange} onProbe={onProbe} />}
 			{settings.push.type === 'srt' && (
-				<PushSRT knownDevices={knownDevices} settings={settings} config={config} onChange={onChange} onProbe={onProbe} onRefresh={onRefresh} />
+				<PushSRT knownDevices={knownDevices} settings={settings} config={config} skills={skills} onChange={onChange} onProbe={onProbe} onRefresh={onRefresh} />
 			)}
 		</React.Fragment>
 	);
 }
 
-function PushHLS({ settings = {}, config = {}, onChange = function (settings) {}, onProbe = function (settings, inputs) {} }) {
+function PushHLS({ settings = {}, config = {}, skills = {}, onChange = function (settings) {}, onProbe = function (settings, inputs) {} }) {
 	const classes = useStyles();
 
 	const HLS = getHLS(config);
@@ -945,6 +993,7 @@ function PushHLS({ settings = {}, config = {}, onChange = function (settings) {}
 				</BoxTextarea>
 			</Grid>
 			<AdvancedSettings settings={settings} onChange={onChange} />
+			<ExtentionSettings settings={settings} skills={skills} onChange={onChange} />
 			<Grid item xs={12}>
 				<FormInlineButton onClick={onProbe}>
 					<Trans>Probe</Trans>
@@ -958,6 +1007,7 @@ function PushRTMP({
 	knownDevices = [],
 	settings = {},
 	config = {},
+	skills = {},
 	onChange = function (settings) {},
 	onProbe = function (settings, inputs) {},
 	onRefresh = function () {},
@@ -1032,6 +1082,7 @@ function PushRTMP({
 					</React.Fragment>
 				)}
 				<AdvancedSettings settings={settings} onChange={onChange} />
+				<ExtentionSettings settings={settings} skills={skills} onChange={onChange} />
 				<Grid item xs={12}>
 					<FormInlineButton onClick={onProbe} disabled={settings.push.name === 'none'}>
 						<Trans>Probe</Trans>
@@ -1048,6 +1099,7 @@ function PushSRT({
 	knownDevices = [],
 	settings = {},
 	config = {},
+	skills = {},
 	onChange = function (settings) {},
 	onProbe = function (settings, inputs) {},
 	onRefresh = function () {},
@@ -1122,6 +1174,7 @@ function PushSRT({
 					</React.Fragment>
 				)}
 				<AdvancedSettings settings={settings} onChange={onChange} />
+				<ExtentionSettings settings={settings} skills={skills} onChange={onChange} />
 				<Grid item xs={12}>
 					<FormInlineButton onClick={onProbe} disabled={settings.push.name === 'none'}>
 						<Trans>Probe</Trans>
@@ -1177,6 +1230,12 @@ function Source({
 			settings.push[what] = value;
 			if (what === 'type') {
 				settings.push.name = config.channelid;
+			}
+		} else if (section === 'extentions') {
+			if ([].includes(what)) {
+				settings.extentions[what] = !settings.extentions[what];
+			} else {
+				settings.extentions[what] = value;
 			}
 		} else {
 			settings[what] = value;
