@@ -55,7 +55,7 @@ const createInputs = (settings) => {
 		input.options.push('-fflags', '+' + settings.fflags.join('+'));
 	}
 	input.options.push('-f', 'x11grab');
-	input.options.push('-video_size', settings.size);
+	input.options.push('-video_size', settings.video_size);
 	input.options.push('-framerate', settings.framerate);
 	if (settings.follow_mouse === true) {
 		input.options.push('-draw_mouse', '1');
