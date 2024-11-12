@@ -30,8 +30,8 @@ const initSettings = (initialSettings) => {
 	const settings = {
 		probesize: 42_000_000, // bytes
 		fflags: ['nobuffer'],
-		thread_queue_size: 1028,
-		video_size: 'cif',
+		thread_queue_size: 1024,
+		video_size: '1280x720',
 		framerate: '25',
 		device: ':1',
 		draw_mouse: false,
@@ -67,21 +67,15 @@ const createInputs = (settings) => {
 	return [input];
 };
 
-
-function FollowMouse({
-	value = '',
-	allowCustom = false,
-	onChange = function (event) {},
-}) {
+function FollowMouse({ value = '', allowCustom = false, onChange = function (event) {}, disabled = false }) {
 	const { i18n } = useLingui();
-	const values = [
-		{ value: 'centered', label: 'Centered' },
-	];
+	const values = [{ value: 'centered', label: 'Centered' }];
 
 	values.push({ value: 'custom', label: i18n._(t`Custom ...`) });
 
 	return (
 		<SelectCustom
+			disabled={disabled}
 			options={values}
 			label={<Trans>Follow mouse</Trans>}
 			customLabel={<Trans>Follow mouse</Trans>}
@@ -101,7 +95,7 @@ function Source({ knownDevices = [], settings = {}, onChange = function (setting
 	const handleChange = (what) => (event) => {
 		let data = {};
 
-		if (['device', 'probesize', 'fflags', 'framerate', 'video_size', 'thread_queue_size', 'follow_mouse' ].includes(what)) {
+		if (['device', 'probesize', 'fflags', 'framerate', 'video_size', 'thread_queue_size', 'follow_mouse'].includes(what)) {
 			data[what] = event.target.value;
 		}
 
@@ -114,7 +108,6 @@ function Source({ knownDevices = [], settings = {}, onChange = function (setting
 			...data,
 		});
 	};
-
 
 	const handleRefresh = () => {
 		onRefresh();
@@ -223,12 +216,10 @@ function Source({ knownDevices = [], settings = {}, onChange = function (setting
 					<Checkbox label={<Trans>Draw mouse</Trans>} checked={settings.draw_mouse} onChange={handleChange('draw_mouse')} />
 				</Grid>
 			</Grid>
-			<Grid item xs={6}>
-				{settings.draw_mouse && (
-					<Grid item>
-						<FollowMouse value={settings.follow_mouse} onChange={handleChange('follow_mouse')} allowCustom />
-					</Grid>
-				)}
+			<Grid item xs={12}>
+				<Grid item>
+					<FollowMouse disabled={!settings.draw_mouse} value={settings.follow_mouse} onChange={handleChange('follow_mouse')} allowCustom />
+				</Grid>
 			</Grid>
 			<Grid item xs={12}>
 				<FormInlineButton onClick={handleProbe}>
@@ -244,9 +235,9 @@ function SourceIcon(props) {
 }
 
 const id = 'x11grab';
-const name = <Trans>X11-grap</Trans>;
+const name = <Trans>X11 Screen Capture</Trans>;
 const capabilities = ['video'];
-const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0';
+const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0 || ^7.0.0';
 
 const func = {
 	initSettings,

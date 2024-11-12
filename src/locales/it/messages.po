@@ -90,7 +90,7 @@ msgstr ""
 msgid "Additional channels to display on the playersite."
 msgstr ""
 
-#: src/views/Edit/Sources/Network.js:854
+#: src/views/Edit/Sources/Network.js:858
 #: src/views/Edit/Wizard/Sources/Network.js:73
 #: src/views/Publication/Services/Azure.js:98
 #: src/views/Publication/Services/Brightcove.js:95
@@ -123,8 +123,8 @@ msgstr "Indirizzo da ascoltare per le richieste HTTP."
 msgid "Address to listen on for HTTPS requests."
 msgstr "Indirizzo su cui ascoltare le richieste HTTPS."
 
-#: src/views/Edit/Sources/Network.js:1070
-#: src/views/Edit/Sources/Network.js:1162
+#: src/views/Edit/Sources/Network.js:1074
+#: src/views/Edit/Sources/Network.js:1166
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:129
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:129
 msgid "Address:"
@@ -138,7 +138,7 @@ msgstr "Regoli i colori del sito di pubblicazione e lo sfondo come preferisce."
 msgid "Advanced monitoring"
 msgstr "Monitoraggio avanzato"
 
-#: src/views/Edit/Sources/Network.js:542
+#: src/views/Edit/Sources/Network.js:543
 #: src/views/Publication/Services/DASH.js:204
 #: src/views/Publication/Services/HLS.js:192
 #: src/views/Publication/Services/Icecast.js:172
@@ -214,7 +214,7 @@ msgstr "Applicazione"
 msgid "Are you sure you want to abort the wizard?"
 msgstr "È sicuro di voler interrompere la procedura guidata?"
 
-#: src/views/Publication/Add.js:528
+#: src/views/Publication/Add.js:527
 msgid "Audio"
 msgstr "Audio"
 
@@ -283,7 +283,7 @@ msgstr "Disponibile"
 msgid "AVFoundation"
 msgstr "AVFoundation"
 
-#: src/views/Edit/Sources/Network.js:784
+#: src/views/Edit/Sources/Network.js:785
 msgid "avoid_negative_ts"
 msgstr "avoid_negative_ts"
 
@@ -294,7 +294,7 @@ msgstr "avoid_negative_ts"
 #: src/views/Edit/Wizard/Metadata.js:35
 #: src/views/Edit/Wizard/Video.js:75
 #: src/views/Edit/Wizard/VideoProfile.js:82
-#: src/views/Publication/Add.js:562
+#: src/views/Publication/Add.js:561
 msgid "Back"
 msgstr "Indietro"
 
@@ -434,12 +434,12 @@ msgstr "Scegliere un flusso audio"
 #: src/views/Edit/Sources/Framebuffer.js:89
 #: src/views/Edit/Sources/Raspicam.js:93
 #: src/views/Edit/Sources/V4L.js:93
-#: src/views/Edit/Sources/X11grab.js:137
+#: src/views/Edit/Sources/X11grab.js:130
 msgid "Choose an input device ..."
 msgstr "Scegliere un dispositivo di input ..."
 
-#: src/views/Edit/Sources/Network.js:1046
-#: src/views/Edit/Sources/Network.js:1138
+#: src/views/Edit/Sources/Network.js:1050
+#: src/views/Edit/Sources/Network.js:1142
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:103
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:103
 msgid "Choose an input stream ..."
@@ -473,7 +473,7 @@ msgstr "Chunk"
 #: src/views/Edit/index.js:643
 #: src/views/Playersite.js:757
 #: src/views/Publication/Add.js:404
-#: src/views/Publication/Add.js:559
+#: src/views/Publication/Add.js:558
 #: src/views/Publication/Edit.js:595
 #: src/views/Publication/Player.js:537
 #: src/views/Settings.js:2216
@@ -550,7 +550,7 @@ msgstr "Contenuto"
 msgid "Content URL"
 msgstr "URL del contenuto"
 
-#: src/views/Edit/Sources/Network.js:769
+#: src/views/Edit/Sources/Network.js:770
 msgid "copyts"
 msgstr "copyts"
 
@@ -594,8 +594,8 @@ msgstr "Creative Commons"
 #: src/views/Edit/Sources/AVFoundation.js:129
 #: src/views/Edit/Sources/AVFoundation.js:162
 #: src/views/Edit/Sources/V4L.js:99
-#: src/views/Edit/Sources/X11grab.js:81
-#: src/views/Edit/Sources/X11grab.js:143
+#: src/views/Edit/Sources/X11grab.js:74
+#: src/views/Edit/Sources/X11grab.js:136
 msgid "Custom ..."
 msgstr "Personalizzato ..."
 
@@ -663,7 +663,7 @@ msgid "Custom size"
 msgstr "Dimensione personalizzata"
 
 #: src/views/Edit/Sources/V4L.js:113
-#: src/views/Edit/Sources/X11grab.js:157
+#: src/views/Edit/Sources/X11grab.js:150
 msgid "Custom video device"
 msgstr "Dispositivo video personalizzato"
 
@@ -700,11 +700,11 @@ msgstr "Decoder"
 msgid "Default"
 msgstr "Default"
 
-#: src/views/Edit/Sources/Network.js:704
+#: src/views/Edit/Sources/Network.js:705
 msgid "Default {0}"
 msgstr "Predefinito {0}"
 
-#: src/views/Edit/Sources/Network.js:744
+#: src/views/Edit/Sources/Network.js:745
 msgid "Default {0} ({1} seconds)"
 msgstr "Predefinito {0} ({1} secondi)"
 
@@ -828,7 +828,7 @@ msgstr "Documenti"
 msgid "Documentation"
 msgstr "Documentazione"
 
-#: src/views/Edit/Sources/X11grab.js:223
+#: src/views/Edit/Sources/X11grab.js:216
 msgid "Draw mouse"
 msgstr ""
 
@@ -904,7 +904,7 @@ msgstr "Attivare ora"
 msgid "Enable primary stream"
 msgstr "Attiva il flusso primario"
 
-#: src/views/Edit/Sources/Network.js:1027
+#: src/views/Edit/Sources/Network.js:1031
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:86
 msgid "Enable RTMP server ..."
 msgstr "Abilitare il server RTMP ..."
@@ -917,7 +917,7 @@ msgstr "Abilita il trasferimento RTMPS"
 msgid "Enable snapshots"
 msgstr "Abilita le istantanee"
 
-#: src/views/Edit/Sources/Network.js:1119
+#: src/views/Edit/Sources/Network.js:1123
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:86
 msgid "Enable SRT server ..."
 msgstr "Abilitare il server SRT ..."
@@ -935,7 +935,7 @@ msgid "Encoder"
 msgstr "Encoder"
 
 #: src/views/Edit/Summary.js:93
-#: src/views/Publication/Add.js:493
+#: src/views/Publication/Add.js:492
 #: src/views/Publication/Edit.js:528
 msgid "Encoding"
 msgstr "Codifica"
@@ -954,7 +954,7 @@ msgstr "Inserisca un nome per il nuovo canale."
 msgid "Enter password"
 msgstr "Inserire la password"
 
-#: src/views/Edit/Sources/Network.js:847
+#: src/views/Edit/Sources/Network.js:851
 #: src/views/Edit/Wizard/Sources/Network.js:66
 msgid "Enter the address of your network source:"
 msgstr "Inserisci l'indirizzo della tua sorgente di rete:"
@@ -1018,7 +1018,7 @@ msgstr "Estendere il piè di pagina"
 msgid "Extend header"
 msgstr "Estendere l'intestazione"
 
-#: src/views/Edit/Sources/Network.js:810
+#: src/views/Edit/Sources/Network.js:809
 msgid "Extention settings"
 msgstr ""
 
@@ -1106,8 +1106,8 @@ msgstr "Fissare le dimensioni"
 msgid "Flags"
 msgstr "Bandiere"
 
-#: src/views/Edit/Sources/X11grab.js:86
-#: src/views/Edit/Sources/X11grab.js:87
+#: src/views/Edit/Sources/X11grab.js:80
+#: src/views/Edit/Sources/X11grab.js:81
 msgid "Follow mouse"
 msgstr ""
 
@@ -1119,7 +1119,7 @@ msgstr "Per i Javascript."
 msgid "For Stylesheets."
 msgstr "Per i fogli di stile."
 
-#: src/views/Edit/Sources/Network.js:596
+#: src/views/Edit/Sources/Network.js:597
 msgid "Force input framerate"
 msgstr "Forzare il framerate in ingresso"
 
@@ -1150,7 +1150,7 @@ msgstr "Framebuffer"
 
 #: src/misc/coders/settings/Video.js:98
 #: src/misc/filters/video/Framerate.js:36
-#: src/views/Edit/Sources/Network.js:609
+#: src/views/Edit/Sources/Network.js:610
 msgid "Framerate"
 msgstr "Framerate"
 
@@ -1166,13 +1166,9 @@ msgstr "Modalità framerate"
 msgid "Frequency (Hz)"
 msgstr "Frequenza (Hz)"
 
-#: src/views/Main/Publication.js:208
-msgid "g CO2eq/h"
-msgstr ""
-
 #: src/views/Edit/index.js:425
 #: src/views/Edit/index.js:437
-#: src/views/Edit/Sources/Network.js:660
+#: src/views/Edit/Sources/Network.js:661
 #: src/views/Playersite.js:267
 #: src/views/Playersite.js:280
 #: src/views/Publication/Add.js:414
@@ -1262,7 +1258,7 @@ msgstr "Capovolgimento orizzontale"
 msgid "Hosted Restreamer interface"
 msgstr "Interfaccia Restreamer in hosting"
 
-#: src/views/Edit/Sources/Network.js:586
+#: src/views/Edit/Sources/Network.js:587
 msgid "HTTP and HTTPS"
 msgstr "HTTP e HTTPS"
 
@@ -1355,8 +1351,8 @@ msgstr "Iniettare 3"
 msgid "Inject 4"
 msgstr "Iniettare 4"
 
-#: src/views/Edit/Sources/Network.js:1059
-#: src/views/Edit/Sources/Network.js:1151
+#: src/views/Edit/Sources/Network.js:1063
+#: src/views/Edit/Sources/Network.js:1155
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:118
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:118
 msgid "Input stream"
@@ -1377,7 +1373,7 @@ msgstr "Allarme problemi"
 
 #: src/misc/Progress.js:169
 #: src/views/Main/Progress.js:67
-#: src/views/Main/Publication.js:197
+#: src/views/Main/Publication.js:184
 msgid "kbit/s"
 msgstr "kbit/s"
 
@@ -1439,7 +1435,7 @@ msgstr "Link"
 msgid "Link, mouseover"
 msgstr "Link, passaggio del mouse"
 
-#: src/views/Edit/Sources/Network.js:643
+#: src/views/Edit/Sources/Network.js:644
 msgid "List of additional HTTP headers, one per line."
 msgstr ""
 
@@ -1459,7 +1455,7 @@ msgstr "Elenco di intervalli IP in notazione CIDR, ad esempio 127.0.0.1/32, che 
 msgid "List size (segments)"
 msgstr "Dimensione della lista (segmenti)"
 
-#: src/views/Edit/Sources/Network.js:816
+#: src/views/Edit/Sources/Network.js:817
 msgid "Live stabilization"
 msgstr ""
 
@@ -1671,8 +1667,8 @@ msgstr "Meta informazioni"
 msgid "Metadata"
 msgstr "Metadati"
 
-#: src/views/Edit/Sources/Network.js:687
-#: src/views/Edit/Sources/X11grab.js:191
+#: src/views/Edit/Sources/Network.js:688
+#: src/views/Edit/Sources/X11grab.js:184
 msgid "Mininum {0}, default {1}"
 msgstr "Minimo {0}, predefinito {1}"
 
@@ -1739,7 +1735,7 @@ msgstr "Nome del modello. Se il nome esiste già, verrà sovrascritto."
 msgid "Network"
 msgstr "Rete"
 
-#: src/views/Edit/Sources/Network.js:1279
+#: src/views/Edit/Sources/Network.js:1289
 #: src/views/Edit/Wizard/Sources/Network.js:123
 msgid "Network source"
 msgstr "Fonte della rete"
@@ -1897,7 +1893,7 @@ msgstr "La passphrase deve avere una lunghezza compresa tra 10 e 79 caratteri."
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "Il passthrough (copia) deve essere disattivato solo se necessario. Ogni codifica richiede risorse CPU/GPU aggiuntive."
 
-#: src/views/Edit/Sources/Network.js:894
+#: src/views/Edit/Sources/Network.js:898
 #: src/views/Edit/Wizard/Sources/Network.js:104
 #: src/views/Login.js:282
 #: src/views/Publication/Services/Akamai.js:134
@@ -1917,7 +1913,7 @@ msgstr "Password"
 msgid "Password for authorization."
 msgstr "Password per l'autorizzazione."
 
-#: src/views/Edit/Sources/Network.js:899
+#: src/views/Edit/Sources/Network.js:903
 #: src/views/Edit/Wizard/Sources/Network.js:110
 msgid "Password for the device."
 msgstr "Password per il dispositivo."
@@ -2043,7 +2039,7 @@ msgstr "Contattate l'operatore del servizio e verificate cosa succede."
 msgid "Please select a file to upload."
 msgstr "Seleziona un file da caricare."
 
-#: src/views/Publication/Add.js:498
+#: src/views/Publication/Add.js:497
 msgid "Please use \"Passthrough (copy)\" if possible. Encoding requires additional CPU/GPU resources."
 msgstr "Se possibile, utilizzi \"Passthrough (copia)\". La codifica richiede risorse CPU/GPU aggiuntive."
 
@@ -2089,17 +2085,17 @@ msgstr "Chiave di flusso primaria"
 #: src/views/Edit/Sources/AudioLoop.js:185
 #: src/views/Edit/Sources/AVFoundation.js:210
 #: src/views/Edit/Sources/Framebuffer.js:119
-#: src/views/Edit/Sources/Network.js:912
-#: src/views/Edit/Sources/Network.js:995
-#: src/views/Edit/Sources/Network.js:1084
-#: src/views/Edit/Sources/Network.js:1176
+#: src/views/Edit/Sources/Network.js:916
+#: src/views/Edit/Sources/Network.js:999
+#: src/views/Edit/Sources/Network.js:1088
+#: src/views/Edit/Sources/Network.js:1180
 #: src/views/Edit/Sources/Raspicam.js:125
 #: src/views/Edit/Sources/SDP.js:166
 #: src/views/Edit/Sources/V4L.js:134
 #: src/views/Edit/Sources/VideoLoop.js:193
 #: src/views/Edit/Sources/VirtualAudio.js:169
 #: src/views/Edit/Sources/VirtualVideo.js:188
-#: src/views/Edit/Sources/X11grab.js:235
+#: src/views/Edit/Sources/X11grab.js:226
 msgid "Probe"
 msgstr "Sonda"
 
@@ -2143,19 +2139,19 @@ msgstr "Elaborazione e controllo"
 msgid "Profile"
 msgstr "Profilo"
 
-#: src/views/Edit/Sources/Network.js:817
+#: src/views/Edit/Sources/Network.js:821
 msgid "Protect: None"
 msgstr ""
 
-#: src/views/Edit/Sources/Network.js:819
+#: src/views/Edit/Sources/Network.js:823
 msgid "Protect: Video and audio channel"
 msgstr ""
 
-#: src/views/Edit/Sources/Network.js:818
+#: src/views/Edit/Sources/Network.js:822
 msgid "Protect: Video channel"
 msgstr ""
 
-#: src/views/Edit/Sources/Network.js:953
+#: src/views/Edit/Sources/Network.js:957
 #: src/views/Publication/Services/Akamai.js:144
 #: src/views/Publication/Services/Akamai.js:182
 #: src/views/Publication/Services/Azure.js:89
@@ -2198,15 +2194,15 @@ msgstr "Servizio di pubblicazione non trovato"
 msgid "Publication website settings saved"
 msgstr "Impostazioni del sito web di pubblicazione salvate"
 
-#: src/views/Main/Publication.js:176
+#: src/views/Main/Publication.js:163
 msgid "Publications"
 msgstr "Pubblicazioni"
 
-#: src/views/Edit/Sources/Network.js:1252
+#: src/views/Edit/Sources/Network.js:1262
 msgid "Pull Mode"
 msgstr "Modo di tirare"
 
-#: src/views/Edit/Sources/Network.js:1251
+#: src/views/Edit/Sources/Network.js:1261
 msgid "Pull or recieve the data:"
 msgstr "Tirare o ricevere i dati:"
 
@@ -2245,11 +2241,11 @@ msgstr "Rapporto"
 msgid "rav1e Parameters"
 msgstr "Parametri rav1e"
 
-#: src/views/Edit/Sources/Network.js:591
+#: src/views/Edit/Sources/Network.js:592
 msgid "Read input at native speed"
 msgstr "Leggere l'input a velocità nativa"
 
-#: src/views/Edit/Sources/Network.js:1253
+#: src/views/Edit/Sources/Network.js:1263
 msgid "Receive Mode"
 msgstr "Modalità di ricezione"
 
@@ -2279,11 +2275,11 @@ msgstr "La riconnessione a Restreamer Core non è riuscita."
 
 #: src/views/Edit/Sources/ALSA.js:131
 #: src/views/Edit/Sources/AVFoundation.js:190
-#: src/views/Edit/Sources/Network.js:1063
-#: src/views/Edit/Sources/Network.js:1155
+#: src/views/Edit/Sources/Network.js:1067
+#: src/views/Edit/Sources/Network.js:1159
 #: src/views/Edit/Sources/Raspicam.js:111
 #: src/views/Edit/Sources/V4L.js:120
-#: src/views/Edit/Sources/X11grab.js:164
+#: src/views/Edit/Sources/X11grab.js:157
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:142
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:122
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:122
@@ -2403,7 +2399,7 @@ msgstr "Porta RTMP"
 msgid "RTMP server"
 msgstr "Server RTMP"
 
-#: src/views/Edit/Sources/Network.js:1022
+#: src/views/Edit/Sources/Network.js:1026
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:81
 msgid "RTMP server is not enabled"
 msgstr "Il server RTMP non è abilitato"
@@ -2428,7 +2424,7 @@ msgstr "Server RTMPS"
 msgid "RTMPS server listen address."
 msgstr "Indirizzo di ascolto del server RTMPS."
 
-#: src/views/Edit/Sources/Network.js:551
+#: src/views/Edit/Sources/Network.js:552
 msgid "RTSP"
 msgstr "RTSP"
 
@@ -2445,7 +2441,7 @@ msgstr "Campionamento"
 #: src/views/Edit/index.js:654
 #: src/views/Edit/Wizard/License.js:43
 #: src/views/Playersite.js:763
-#: src/views/Publication/Add.js:568
+#: src/views/Publication/Add.js:567
 #: src/views/Publication/Edit.js:601
 #: src/views/Publication/Player.js:543
 #: src/views/Settings.js:2221
@@ -2513,7 +2509,7 @@ msgstr "Segmentazione"
 #: src/views/Edit/Sources/Framebuffer.js:108
 #: src/views/Edit/Sources/Raspicam.js:105
 #: src/views/Edit/Sources/V4L.js:106
-#: src/views/Edit/Sources/X11grab.js:150
+#: src/views/Edit/Sources/X11grab.js:143
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:127
 #: src/views/Edit/Wizard/Sources/Raspicam.js:102
 #: src/views/Edit/Wizard/Sources/V4L.js:121
@@ -2565,14 +2561,14 @@ msgstr "Selezione"
 msgid "Send anonymous metrics (helps us for future development)"
 msgstr "Invii metriche anonime (ci aiuta per lo sviluppo futuro)"
 
-#: src/views/Edit/Sources/Network.js:1052
-#: src/views/Edit/Sources/Network.js:1144
+#: src/views/Edit/Sources/Network.js:1056
+#: src/views/Edit/Sources/Network.js:1148
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:109
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:109
 msgid "Send stream to address ..."
 msgstr "Invia il flusso all'indirizzo ..."
 
-#: src/views/Edit/Sources/Network.js:983
+#: src/views/Edit/Sources/Network.js:987
 #: src/views/Edit/Wizard/Sources/InternalHLS.js:55
 msgid "Send stream to this address:"
 msgstr "Invia il flusso a questo indirizzo:"
@@ -2690,7 +2686,7 @@ msgstr "Snapshot"
 msgid "Social-login (OAuth2, 2FA)"
 msgstr "Social-login (OAuth2, 2FA)"
 
-#: src/views/Edit/Sources/Network.js:575
+#: src/views/Edit/Sources/Network.js:576
 msgid "Socket timeout (microseconds)"
 msgstr "Timeout della presa (microsecondi)"
 
@@ -2698,7 +2694,7 @@ msgstr "Timeout della presa (microsecondi)"
 msgid "Software"
 msgstr "Software"
 
-#: src/misc/controls/Source.js:75
+#: src/misc/controls/Source.js:74
 #: src/views/Edit/Sources/VirtualAudio.js:88
 #: src/views/Edit/Sources/VirtualVideo.js:112
 #: src/views/Publication/Add.js:475
@@ -2736,7 +2732,7 @@ msgstr "Uscita SRT"
 msgid "SRT server"
 msgstr "Server SRT"
 
-#: src/views/Edit/Sources/Network.js:1114
+#: src/views/Edit/Sources/Network.js:1118
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:81
 msgid "SRT server is not enabled"
 msgstr "Il server SRT non è abilitato"
@@ -2753,7 +2749,7 @@ msgstr "Token SRT per la pubblicazione e la riproduzione. Il token è il valore 
 msgid "Stale timeout (seconds)"
 msgstr "Timeout di stallo (secondi)"
 
-#: src/views/Edit/Sources/Network.js:771
+#: src/views/Edit/Sources/Network.js:772
 msgid "start_at_zero"
 msgstr "start_at_zero"
 
@@ -2824,12 +2820,8 @@ msgid "Stream names"
 msgstr "Nomi dei flussi"
 
 #: src/misc/controls/Source.js:78
-#~ msgid "Stream source for publication service (experimental)."
-#~ msgstr "Fonte di flusso per il servizio di pubblicazione (sperimentale)."
-
-#: src/misc/controls/Source.js:79
-msgid "Stream source for publication service."
-msgstr ""
+msgid "Stream source for publication service (experimental)."
+msgstr "Fonte di flusso per il servizio di pubblicazione (sperimentale)."
 
 #: src/views/Publication/Services/Akamai.js:156
 #: src/views/Publication/Services/CDN77.js:102
@@ -2845,7 +2837,7 @@ msgstr ""
 msgid "Support datarhei Restreamer"
 msgstr "Supporto datarhei Restreamer"
 
-#: src/views/Edit/Sources/Network.js:860
+#: src/views/Edit/Sources/Network.js:864
 #: src/views/Edit/Wizard/Sources/Network.js:79
 msgid "Supports HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT and more."
 msgstr "Supporta HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT e altro."
@@ -2893,7 +2885,7 @@ msgstr "L'ampiezza (0.0 - 1.0) del flusso audio generato"
 msgid "The application is using an older version of the settings."
 msgstr "L'applicazione sta usando una vecchia versione delle impostazioni."
 
-#: src/views/Edit/Sources/Network.js:941
+#: src/views/Edit/Sources/Network.js:945
 msgid "The available FFmpeg binary doesn't support any of the required protocols."
 msgstr "Il binario FFmpeg disponibile non supporta nessuno dei protocolli richiesti."
 
@@ -3101,7 +3093,7 @@ msgstr "Questa licenza permette ai riutilizzatori di distribuire, remixare, adat
 msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms."
 msgstr "Questa licenza permette ai riutilizzatori di distribuire, remixare, adattare e costruire sul materiale in qualsiasi mezzo o formato, purché venga data l'attribuzione al creatore. La licenza permette l'uso commerciale. Se remixate, adattate o costruite sul materiale, dovete dare in licenza il materiale modificato sotto gli stessi termini."
 
-#: src/views/Edit/Sources/Network.js:870
+#: src/views/Edit/Sources/Network.js:874
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
 msgstr "Questo protocollo è sconosciuto o non supportato dal binario FFmpeg disponibile."
 
@@ -3286,7 +3278,7 @@ msgstr "Trasmette il suo video come flusso RTMP con la chiave necessaria generat
 msgid "Transmits your video stream with the required key, which was generated in Twitter Producer. You can find more information on seting up a live stream at Twitter's <0>Producer</0>."
 msgstr "Trasmette il suo flusso video con la chiave richiesta, che è stata generata in Twitter Producer. Può trovare maggiori informazioni sull'impostazione di un live stream su Twitter <0>Producer</0>."
 
-#: src/views/Edit/Sources/Network.js:557
+#: src/views/Edit/Sources/Network.js:558
 msgid "Transport"
 msgstr ""
 
@@ -3392,7 +3384,7 @@ msgstr "Utilizzi il suo copyright e scelga la licenza d'immagine corretta. Che s
 msgid "Use your copyright and choose the right image licence. Whether free for all or highly restricted. Briefly discuss what others are allowed to do with your image."
 msgstr "Usa il tuo copyright e scegli la giusta licenza per le immagini. Che sia libera per tutti o altamente limitata. Discuti brevemente su cosa gli altri possono fare con la tua immagine."
 
-#: src/views/Edit/Sources/Network.js:776
+#: src/views/Edit/Sources/Network.js:777
 msgid "use_wallclock_as_timestamps"
 msgstr "use_wallclock_as_timestamps"
 
@@ -3400,7 +3392,7 @@ msgstr "use_wallclock_as_timestamps"
 msgid "User registration"
 msgstr "Registrazione dell'utente"
 
-#: src/views/Edit/Sources/Network.js:882
+#: src/views/Edit/Sources/Network.js:886
 #: src/views/Edit/Wizard/Sources/Network.js:91
 #: src/views/Login.js:272
 #: src/views/Publication/Services/DaCast.js:131
@@ -3419,7 +3411,7 @@ msgstr "Nome utente"
 msgid "Username for authorization."
 msgstr "Nome utente per l'autorizzazione."
 
-#: src/views/Edit/Sources/Network.js:887
+#: src/views/Edit/Sources/Network.js:891
 #: src/views/Edit/Wizard/Sources/Network.js:97
 msgid "Username for the device."
 msgstr "Nome utente del dispositivo."
@@ -3440,7 +3432,7 @@ msgstr "velluto"
 msgid "Vertical Flip"
 msgstr "Capovolgimento verticale"
 
-#: src/views/Publication/Add.js:503
+#: src/views/Publication/Add.js:502
 msgid "Video"
 msgstr "Video"
 
@@ -3451,7 +3443,7 @@ msgstr ""
 #: src/views/Edit/Sources/AVFoundation.js:135
 #: src/views/Edit/Sources/Raspicam.js:98
 #: src/views/Edit/Sources/V4L.js:112
-#: src/views/Edit/Sources/X11grab.js:156
+#: src/views/Edit/Sources/X11grab.js:149
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:89
 #: src/views/Edit/Wizard/Sources/Raspicam.js:93
 #: src/views/Edit/Wizard/Sources/V4L.js:112
@@ -3477,7 +3469,7 @@ msgstr "Fonte video"
 #: src/Footer.js:231
 #: src/Footer.js:236
 #: src/Footer.js:249
-#: src/views/Main/Publication.js:186
+#: src/views/Main/Publication.js:173
 msgid "Viewer"
 msgstr "Visualizzatore"
 
@@ -3526,8 +3518,8 @@ msgstr "Larghezza"
 msgid "Write protection"
 msgstr "Scrivere la protezione"
 
-#: src/views/Edit/Sources/X11grab.js:247
-msgid "X11-grap"
+#: src/views/Edit/Sources/X11grab.js:238
+msgid "X11 Screen Capture"
 msgstr ""
 
 #: src/views/Edit/Wizard/Abort.js:38
