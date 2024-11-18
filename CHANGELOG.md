@@ -4,11 +4,17 @@
 
 -   Add EarthCam publication service
 -   Add other RTSP transport modes
--   Add X11grap
--   Add SDP ([PR-#47](https://github.com/datarhei/restreamer-ui/pull/47)) (thx patcarter883)
--   Add support AV1 decoding ([PR-#46](https://github.com/datarhei/restreamer-ui/pull/46)) (thx patcarter883)
+-   Add X11grab
+-   Add SDP support ([PR-#47](https://github.com/datarhei/restreamer-ui/pull/47)) (thx patcarter883)
+-   Add support for AV1 decoding ([PR-#46](https://github.com/datarhei/restreamer-ui/pull/46)) (thx patcarter883)
+-   Add upload progress for audio/video loop files
+-   Add support for custom HTTP headers
+-   Add support for FFmpeg 7
 -   Fix wetter.com category
 -   Fix chromecast ([PR-#73](https://github.com/datarhei/restreamer-ui/pull/73)) (thx badincite)
+-   Fix [#819](https://github.com/datarhei/restreamer#819)
+-   Fix [#819](https://github.com/datarhei/restreamer#825)
+-   Remove file size limit for loop file uploads
 
 ## v1.13.0 > v1.14.0
 
