@@ -70,7 +70,7 @@ function Coder({ stream = {}, settings = {}, skills = {}, onChange = function (s
 
 const coder = 'cuda';
 const name = 'NVDEC (CUDA)';
-const codecs = ['h264', 'hevc', 'mpeg1', 'mpeg2', 'mpeg4', 'vp8', 'vp9', 'vc1'];
+const codecs = ['av1', 'h264', 'hevc', 'mpeg1', 'mpeg2', 'mpeg4', 'vp8', 'vp9', 'vc1'];
 const type = 'video';
 const hwaccel = true;
 
