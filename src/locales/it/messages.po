@@ -345,7 +345,7 @@ msgid "Beep factor"
 msgstr "Fattore bip"
 
 #: src/misc/coders/settings/Audio.js:14
-#: src/misc/coders/settings/Video.js:15
+#: src/misc/coders/settings/Video.js:16
 msgid "Bitrate"
 msgstr "Bitrate"
 
@@ -445,7 +445,7 @@ msgstr "Scegliere un dispositivo di input ..."
 msgid "Choose an input stream ..."
 msgstr "Scegliere un flusso di ingresso ..."
 
-#: src/misc/coders/settings/Video.js:319
+#: src/misc/coders/settings/Video.js:320
 msgid "Choose between CFR and VFR (Auto)"
 msgstr "Scegliere tra CFR e VFR (Auto)"
 
@@ -532,7 +532,7 @@ msgstr "Collegamento a Restreamer Core ..."
 msgid "Connecting to Restreamer Core failed probably because of mixed content."
 msgstr "La connessione a Restreamer Core non è riuscita, probabilmente a causa del contenuto misto."
 
-#: src/misc/coders/settings/Video.js:313
+#: src/misc/coders/settings/Video.js:314
 msgid "Constant frame rate (CFR)"
 msgstr "Frequenza di fotogrammi costante (CFR)"
 
@@ -578,14 +578,14 @@ msgstr "Creative Commons"
 #: src/misc/coders/settings/Audio.js:33
 #: src/misc/coders/settings/Audio.js:120
 #: src/misc/coders/settings/Audio.js:170
-#: src/misc/coders/settings/Video.js:39
-#: src/misc/coders/settings/Video.js:77
-#: src/misc/coders/settings/Video.js:121
-#: src/misc/coders/settings/Video.js:173
-#: src/misc/coders/settings/Video.js:206
-#: src/misc/coders/settings/Video.js:240
-#: src/misc/coders/settings/Video.js:270
-#: src/misc/coders/settings/Video.js:298
+#: src/misc/coders/settings/Video.js:40
+#: src/misc/coders/settings/Video.js:78
+#: src/misc/coders/settings/Video.js:122
+#: src/misc/coders/settings/Video.js:174
+#: src/misc/coders/settings/Video.js:207
+#: src/misc/coders/settings/Video.js:241
+#: src/misc/coders/settings/Video.js:271
+#: src/misc/coders/settings/Video.js:299
 #: src/misc/filters/audio/Resample.js:72
 #: src/misc/filters/audio/Resample.js:122
 #: src/misc/filters/audio/Volume.js:58
@@ -608,7 +608,7 @@ msgid "Custom audio index"
 msgstr "Indice audio personalizzato"
 
 #: src/misc/coders/settings/Audio.js:15
-#: src/misc/coders/settings/Video.js:16
+#: src/misc/coders/settings/Video.js:17
 msgid "Custom bitrate (kbit/s)"
 msgstr "Bitrate personalizzato (kbit/s)"
 
@@ -624,12 +624,12 @@ msgstr "Ritardo personalizzato"
 msgid "Custom device"
 msgstr "Dispositivo personalizzato"
 
-#: src/misc/coders/settings/Video.js:254
-#: src/misc/coders/settings/Video.js:284
+#: src/misc/coders/settings/Video.js:255
+#: src/misc/coders/settings/Video.js:285
 msgid "Custom format"
 msgstr "Formato personalizzato"
 
-#: src/misc/coders/settings/Video.js:99
+#: src/misc/coders/settings/Video.js:100
 #: src/misc/filters/video/Framerate.js:37
 msgid "Custom framerate"
 msgstr "Framerate personalizzato"
@@ -638,7 +638,7 @@ msgstr "Framerate personalizzato"
 msgid "Custom JSON config for datarhei Core."
 msgstr "Configurazione JSON personalizzata per datarhei Core."
 
-#: src/misc/coders/settings/Video.js:61
+#: src/misc/coders/settings/Video.js:62
 msgid "Custom keyframe interval"
 msgstr "Intervallo keyframe personalizzato"
 
@@ -656,9 +656,18 @@ msgstr "Campionamento personalizzato (Hz)"
 msgid "Custom scale"
 msgstr "Scala personalizzata"
 
-#: src/misc/coders/settings/Video.js:147
-#: src/misc/coders/settings/Video.js:187
-#: src/misc/coders/settings/Video.js:220
+#: src/misc/coders/Decoders/video/h264_cuvid.js:73
+#: src/misc/coders/Decoders/video/hevc_cuvid.js:73
+#: src/misc/coders/Decoders/video/mjpeg_cuvid.js:73
+#: src/misc/coders/Decoders/video/mpeg1_cuvid.js:73
+#: src/misc/coders/Decoders/video/mpeg2_cuvid.js:73
+#: src/misc/coders/Decoders/video/mpeg4_cuvid.js:73
+#: src/misc/coders/Decoders/video/vc1_cuvid.js:73
+#: src/misc/coders/Decoders/video/vp8_cuvid.js:73
+#: src/misc/coders/Decoders/video/vp9_cuvid.js:73
+#: src/misc/coders/settings/Video.js:148
+#: src/misc/coders/settings/Video.js:188
+#: src/misc/coders/settings/Video.js:221
 msgid "Custom size"
 msgstr "Dimensione personalizzata"
 
@@ -1127,7 +1136,7 @@ msgstr "Forzare il framerate in ingresso"
 msgid "Force key frames"
 msgstr "Forzare i fotogrammi dei tasti"
 
-#: src/misc/coders/settings/Video.js:253
+#: src/misc/coders/settings/Video.js:254
 msgid "Format"
 msgstr "Formato"
 
@@ -1140,7 +1149,7 @@ msgstr "FPS"
 msgid "Frame drops"
 msgstr "Cadute del telaio"
 
-#: src/misc/coders/settings/Video.js:310
+#: src/misc/coders/settings/Video.js:311
 msgid "Frame is passed through (Passthrough)"
 msgstr "Il frame viene fatto passare (Passthrough)"
 
@@ -1148,7 +1157,7 @@ msgstr "Il frame viene fatto passare (Passthrough)"
 msgid "Framebuffer"
 msgstr "Framebuffer"
 
-#: src/misc/coders/settings/Video.js:98
+#: src/misc/coders/settings/Video.js:99
 #: src/misc/filters/video/Framerate.js:36
 #: src/views/Edit/Sources/Network.js:610
 msgid "Framerate"
@@ -1158,7 +1167,7 @@ msgstr "Framerate"
 msgid "Framerate conversion (frame interpolation)"
 msgstr "Conversione del framerate (interpolazione dei fotogrammi)"
 
-#: src/misc/coders/settings/Video.js:308
+#: src/misc/coders/settings/Video.js:309
 msgid "Framerate mode"
 msgstr "Modalità framerate"
 
@@ -1213,6 +1222,10 @@ msgstr "ID di Google Analytics"
 msgid "Google Analytics Tracker Name"
 msgstr "Nome del tracker di Google Analytics"
 
+#: src/misc/coders/settings/Video.js:327
+msgid "GPU"
+msgstr ""
+
 #: src/views/Edit/Sources/V4L.js:146
 #: src/views/Edit/Wizard/Sources/V4L.js:140
 msgid "Hardware device"
@@ -1226,7 +1239,7 @@ msgstr "Intestazione"
 msgid "Headline"
 msgstr "Titolo"
 
-#: src/misc/coders/settings/Video.js:186
+#: src/misc/coders/settings/Video.js:187
 msgid "Height"
 msgstr "Altezza"
 
@@ -1377,7 +1390,7 @@ msgstr "Allarme problemi"
 msgid "kbit/s"
 msgstr "kbit/s"
 
-#: src/misc/coders/settings/Video.js:60
+#: src/misc/coders/settings/Video.js:61
 msgid "Keyframe interval (seconds)"
 msgstr "Intervallo dei fotogrammi chiave (secondi)"
 
@@ -1394,7 +1407,9 @@ msgstr "Certificazione Let's Encrypt"
 msgid "Let's Encrypt requires one or more public domain names and an accessible port 80/TCP."
 msgstr "Let's Encrypt richiede uno o più nomi di dominio pubblico e una porta 80/TCP accessibile."
 
-#: src/misc/coders/Encoders/video/h264_nvenc.js:107
+#: src/misc/coders/Encoders/video/av1_nvenc.js:103
+#: src/misc/coders/Encoders/video/h264_nvenc.js:118
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:117
 msgid "Level"
 msgstr "Livello"
 
@@ -1930,7 +1945,7 @@ msgstr "rosa"
 msgid "Pixel format"
 msgstr "Formato pixel"
 
-#: src/misc/coders/settings/Video.js:283
+#: src/misc/coders/settings/Video.js:284
 msgid "Pixel Format"
 msgstr ""
 
@@ -2067,9 +2082,11 @@ msgstr "Poster"
 msgid "Poster image URL"
 msgstr "URL dell'immagine del poster"
 
+#: src/misc/coders/Encoders/video/av1_nvenc.js:76
 #: src/misc/coders/Encoders/video/h264_libx264.js:82
-#: src/misc/coders/Encoders/video/h264_nvenc.js:75
+#: src/misc/coders/Encoders/video/h264_nvenc.js:81
 #: src/misc/coders/Encoders/video/hevc_libx265.js:82
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:81
 msgid "Preset"
 msgstr "Preset"
 
@@ -2129,12 +2146,13 @@ msgstr "Rapporto sul processo"
 msgid "Processing & Control"
 msgstr "Elaborazione e controllo"
 
-#: src/misc/coders/Encoders/video/h264_nvenc.js:95
+#: src/misc/coders/Encoders/video/h264_nvenc.js:106
 #: src/misc/coders/Encoders/video/h264_vaapi.js:84
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:106
 #: src/misc/coders/Encoders/video/hevc_vaapi.js:86
 #: src/misc/coders/Encoders/video/hevc_videotoolbox.js:64
 #: src/misc/coders/Encoders/video/vp9_vaapi.js:86
-#: src/misc/coders/settings/Video.js:131
+#: src/misc/coders/settings/Video.js:132
 #: src/views/Edit/Wizard/VideoProfile.js:42
 msgid "Profile"
 msgstr "Profilo"
@@ -2226,8 +2244,10 @@ msgstr ""
 msgid "Raspberry Pi camera"
 msgstr "Fotocamera Raspberry Pi"
 
-#: src/misc/coders/Encoders/video/h264_nvenc.js:137
+#: src/misc/coders/Encoders/video/av1_nvenc.js:141
+#: src/misc/coders/Encoders/video/h264_nvenc.js:148
 #: src/misc/coders/Encoders/video/h264_vaapi.js:70
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:145
 #: src/misc/coders/Encoders/video/hevc_vaapi.js:72
 #: src/misc/coders/Encoders/video/vp9_vaapi.js:72
 msgid "Rate control"
@@ -2324,6 +2344,18 @@ msgstr "Azzeramento del logo"
 #: src/views/Publication/Player.js:552
 msgid "Reset poster"
 msgstr "Poster di reset"
+
+#: src/misc/coders/Decoders/video/h264_cuvid.js:72
+#: src/misc/coders/Decoders/video/hevc_cuvid.js:72
+#: src/misc/coders/Decoders/video/mjpeg_cuvid.js:72
+#: src/misc/coders/Decoders/video/mpeg1_cuvid.js:72
+#: src/misc/coders/Decoders/video/mpeg2_cuvid.js:72
+#: src/misc/coders/Decoders/video/mpeg4_cuvid.js:72
+#: src/misc/coders/Decoders/video/vc1_cuvid.js:72
+#: src/misc/coders/Decoders/video/vp8_cuvid.js:72
+#: src/misc/coders/Decoders/video/vp9_cuvid.js:72
+msgid "Resize"
+msgstr ""
 
 #: src/views/Settings.js:1295
 #: src/views/Settings.js:2280
@@ -2673,7 +2705,7 @@ msgstr "Seno"
 msgid "Sitename"
 msgstr "Nome del sito"
 
-#: src/misc/coders/settings/Video.js:146
+#: src/misc/coders/settings/Video.js:147
 msgid "Size"
 msgstr "Dimensione"
 
@@ -3282,8 +3314,11 @@ msgstr "Trasmette il suo flusso video con la chiave richiesta, che è stata gene
 msgid "Transport"
 msgstr ""
 
+#: src/misc/coders/Encoders/video/av1_nvenc.js:92
 #: src/misc/coders/Encoders/video/h264_libx264.js:98
+#: src/misc/coders/Encoders/video/h264_nvenc.js:95
 #: src/misc/coders/Encoders/video/hevc_libx265.js:98
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:95
 msgid "Tune"
 msgstr "Tune"
 
@@ -3420,7 +3455,7 @@ msgstr "Nome utente del dispositivo."
 msgid "V4L2_M2M is experimental."
 msgstr "V4L2_M2M è sperimentale."
 
-#: src/misc/coders/settings/Video.js:316
+#: src/misc/coders/settings/Video.js:317
 msgid "Variable frame rate (VFR)"
 msgstr "Frequenza di fotogrammi variabile (VFR)"
 
@@ -3510,7 +3545,7 @@ msgstr "Dove memorizzare la playlist e i segmenti HLS. Si consiglia di utilizzar
 msgid "white"
 msgstr "bianco"
 
-#: src/misc/coders/settings/Video.js:219
+#: src/misc/coders/settings/Video.js:220
 msgid "Width"
 msgstr "Larghezza"
 

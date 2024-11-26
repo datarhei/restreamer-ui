@@ -345,7 +345,7 @@ msgid "Beep factor"
 msgstr "蜂鸣系数"
 
 #: src/misc/coders/settings/Audio.js:14
-#: src/misc/coders/settings/Video.js:15
+#: src/misc/coders/settings/Video.js:16
 msgid "Bitrate"
 msgstr "比特率"
 
@@ -445,7 +445,7 @@ msgstr "选择一个输入设备 ..."
 msgid "Choose an input stream ..."
 msgstr "选择输入流 ..."
 
-#: src/misc/coders/settings/Video.js:319
+#: src/misc/coders/settings/Video.js:320
 msgid "Choose between CFR and VFR (Auto)"
 msgstr "在 CFR 和 VFR 中选择（自动）"
 
@@ -532,7 +532,7 @@ msgstr "连接到 Restreamer Core ..."
 msgid "Connecting to Restreamer Core failed probably because of mixed content."
 msgstr "连接到 Restreamer Core 失败，原因可能是 mixed content。"
 
-#: src/misc/coders/settings/Video.js:313
+#: src/misc/coders/settings/Video.js:314
 msgid "Constant frame rate (CFR)"
 msgstr "固定帧率（CFR）"
 
@@ -578,14 +578,14 @@ msgstr "创作许可"
 #: src/misc/coders/settings/Audio.js:33
 #: src/misc/coders/settings/Audio.js:120
 #: src/misc/coders/settings/Audio.js:170
-#: src/misc/coders/settings/Video.js:39
-#: src/misc/coders/settings/Video.js:77
-#: src/misc/coders/settings/Video.js:121
-#: src/misc/coders/settings/Video.js:173
-#: src/misc/coders/settings/Video.js:206
-#: src/misc/coders/settings/Video.js:240
-#: src/misc/coders/settings/Video.js:270
-#: src/misc/coders/settings/Video.js:298
+#: src/misc/coders/settings/Video.js:40
+#: src/misc/coders/settings/Video.js:78
+#: src/misc/coders/settings/Video.js:122
+#: src/misc/coders/settings/Video.js:174
+#: src/misc/coders/settings/Video.js:207
+#: src/misc/coders/settings/Video.js:241
+#: src/misc/coders/settings/Video.js:271
+#: src/misc/coders/settings/Video.js:299
 #: src/misc/filters/audio/Resample.js:72
 #: src/misc/filters/audio/Resample.js:122
 #: src/misc/filters/audio/Volume.js:58
@@ -608,7 +608,7 @@ msgid "Custom audio index"
 msgstr "自定义音频索引"
 
 #: src/misc/coders/settings/Audio.js:15
-#: src/misc/coders/settings/Video.js:16
+#: src/misc/coders/settings/Video.js:17
 msgid "Custom bitrate (kbit/s)"
 msgstr "自定义比特率（kbit/s）"
 
@@ -624,12 +624,12 @@ msgstr "自定义延迟"
 msgid "Custom device"
 msgstr "自定义设备"
 
-#: src/misc/coders/settings/Video.js:254
-#: src/misc/coders/settings/Video.js:284
+#: src/misc/coders/settings/Video.js:255
+#: src/misc/coders/settings/Video.js:285
 msgid "Custom format"
 msgstr "自定义格式"
 
-#: src/misc/coders/settings/Video.js:99
+#: src/misc/coders/settings/Video.js:100
 #: src/misc/filters/video/Framerate.js:37
 msgid "Custom framerate"
 msgstr "自定义帧率"
@@ -638,7 +638,7 @@ msgstr "自定义帧率"
 msgid "Custom JSON config for datarhei Core."
 msgstr "自定义 datarhei Core 的 JSON 配置。"
 
-#: src/misc/coders/settings/Video.js:61
+#: src/misc/coders/settings/Video.js:62
 msgid "Custom keyframe interval"
 msgstr "自定义关键帧间隔"
 
@@ -656,9 +656,18 @@ msgstr "自定义采样率（Hz）"
 msgid "Custom scale"
 msgstr "自定义缩放"
 
-#: src/misc/coders/settings/Video.js:147
-#: src/misc/coders/settings/Video.js:187
-#: src/misc/coders/settings/Video.js:220
+#: src/misc/coders/Decoders/video/h264_cuvid.js:73
+#: src/misc/coders/Decoders/video/hevc_cuvid.js:73
+#: src/misc/coders/Decoders/video/mjpeg_cuvid.js:73
+#: src/misc/coders/Decoders/video/mpeg1_cuvid.js:73
+#: src/misc/coders/Decoders/video/mpeg2_cuvid.js:73
+#: src/misc/coders/Decoders/video/mpeg4_cuvid.js:73
+#: src/misc/coders/Decoders/video/vc1_cuvid.js:73
+#: src/misc/coders/Decoders/video/vp8_cuvid.js:73
+#: src/misc/coders/Decoders/video/vp9_cuvid.js:73
+#: src/misc/coders/settings/Video.js:148
+#: src/misc/coders/settings/Video.js:188
+#: src/misc/coders/settings/Video.js:221
 msgid "Custom size"
 msgstr "自定义尺寸"
 
@@ -1127,7 +1136,7 @@ msgstr "强制输入帧率"
 msgid "Force key frames"
 msgstr "强制帧率"
 
-#: src/misc/coders/settings/Video.js:253
+#: src/misc/coders/settings/Video.js:254
 msgid "Format"
 msgstr "格式"
 
@@ -1140,7 +1149,7 @@ msgstr "帧率"
 msgid "Frame drops"
 msgstr "丢弃帧"
 
-#: src/misc/coders/settings/Video.js:310
+#: src/misc/coders/settings/Video.js:311
 msgid "Frame is passed through (Passthrough)"
 msgstr "帧直通（Passthrough）"
 
@@ -1148,7 +1157,7 @@ msgstr "帧直通（Passthrough）"
 msgid "Framebuffer"
 msgstr "帧缓冲"
 
-#: src/misc/coders/settings/Video.js:98
+#: src/misc/coders/settings/Video.js:99
 #: src/misc/filters/video/Framerate.js:36
 #: src/views/Edit/Sources/Network.js:610
 msgid "Framerate"
@@ -1158,7 +1167,7 @@ msgstr "帧率"
 msgid "Framerate conversion (frame interpolation)"
 msgstr "帧频转换（帧插值）"
 
-#: src/misc/coders/settings/Video.js:308
+#: src/misc/coders/settings/Video.js:309
 msgid "Framerate mode"
 msgstr "帧率模式"
 
@@ -1213,6 +1222,10 @@ msgstr "Google Analytics ID"
 msgid "Google Analytics Tracker Name"
 msgstr "Google Analytics Tracker Name"
 
+#: src/misc/coders/settings/Video.js:327
+msgid "GPU"
+msgstr ""
+
 #: src/views/Edit/Sources/V4L.js:146
 #: src/views/Edit/Wizard/Sources/V4L.js:140
 msgid "Hardware device"
@@ -1226,7 +1239,7 @@ msgstr "顶栏"
 msgid "Headline"
 msgstr "提要"
 
-#: src/misc/coders/settings/Video.js:186
+#: src/misc/coders/settings/Video.js:187
 msgid "Height"
 msgstr "高度"
 
@@ -1377,7 +1390,7 @@ msgstr "问题警告"
 msgid "kbit/s"
 msgstr "kbit/s"
 
-#: src/misc/coders/settings/Video.js:60
+#: src/misc/coders/settings/Video.js:61
 msgid "Keyframe interval (seconds)"
 msgstr "关键帧间隔（秒）"
 
@@ -1394,7 +1407,9 @@ msgstr "Let's Encrypt 证书"
 msgid "Let's Encrypt requires one or more public domain names and an accessible port 80/TCP."
 msgstr "Let's Encrypt 需要一个或多个公共域名和可访问的 TCP 端口 80。"
 
-#: src/misc/coders/Encoders/video/h264_nvenc.js:107
+#: src/misc/coders/Encoders/video/av1_nvenc.js:103
+#: src/misc/coders/Encoders/video/h264_nvenc.js:118
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:117
 msgid "Level"
 msgstr "Level"
 
@@ -1930,7 +1945,7 @@ msgstr "粉色"
 msgid "Pixel format"
 msgstr "像素格式"
 
-#: src/misc/coders/settings/Video.js:283
+#: src/misc/coders/settings/Video.js:284
 msgid "Pixel Format"
 msgstr ""
 
@@ -2067,9 +2082,11 @@ msgstr "海报"
 msgid "Poster image URL"
 msgstr "海报图片 URL"
 
+#: src/misc/coders/Encoders/video/av1_nvenc.js:76
 #: src/misc/coders/Encoders/video/h264_libx264.js:82
-#: src/misc/coders/Encoders/video/h264_nvenc.js:75
+#: src/misc/coders/Encoders/video/h264_nvenc.js:81
 #: src/misc/coders/Encoders/video/hevc_libx265.js:82
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:81
 msgid "Preset"
 msgstr "预设"
 
@@ -2129,12 +2146,13 @@ msgstr "进程报告"
 msgid "Processing & Control"
 msgstr "串流进程和控制"
 
-#: src/misc/coders/Encoders/video/h264_nvenc.js:95
+#: src/misc/coders/Encoders/video/h264_nvenc.js:106
 #: src/misc/coders/Encoders/video/h264_vaapi.js:84
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:106
 #: src/misc/coders/Encoders/video/hevc_vaapi.js:86
 #: src/misc/coders/Encoders/video/hevc_videotoolbox.js:64
 #: src/misc/coders/Encoders/video/vp9_vaapi.js:86
-#: src/misc/coders/settings/Video.js:131
+#: src/misc/coders/settings/Video.js:132
 #: src/views/Edit/Wizard/VideoProfile.js:42
 msgid "Profile"
 msgstr "Profile"
@@ -2226,8 +2244,10 @@ msgstr ""
 msgid "Raspberry Pi camera"
 msgstr "树莓派相机"
 
-#: src/misc/coders/Encoders/video/h264_nvenc.js:137
+#: src/misc/coders/Encoders/video/av1_nvenc.js:141
+#: src/misc/coders/Encoders/video/h264_nvenc.js:148
 #: src/misc/coders/Encoders/video/h264_vaapi.js:70
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:145
 #: src/misc/coders/Encoders/video/hevc_vaapi.js:72
 #: src/misc/coders/Encoders/video/vp9_vaapi.js:72
 msgid "Rate control"
@@ -2324,6 +2344,18 @@ msgstr "重置图标"
 #: src/views/Publication/Player.js:552
 msgid "Reset poster"
 msgstr "重置海报"
+
+#: src/misc/coders/Decoders/video/h264_cuvid.js:72
+#: src/misc/coders/Decoders/video/hevc_cuvid.js:72
+#: src/misc/coders/Decoders/video/mjpeg_cuvid.js:72
+#: src/misc/coders/Decoders/video/mpeg1_cuvid.js:72
+#: src/misc/coders/Decoders/video/mpeg2_cuvid.js:72
+#: src/misc/coders/Decoders/video/mpeg4_cuvid.js:72
+#: src/misc/coders/Decoders/video/vc1_cuvid.js:72
+#: src/misc/coders/Decoders/video/vp8_cuvid.js:72
+#: src/misc/coders/Decoders/video/vp9_cuvid.js:72
+msgid "Resize"
+msgstr ""
 
 #: src/views/Settings.js:1295
 #: src/views/Settings.js:2280
@@ -2673,7 +2705,7 @@ msgstr "波形"
 msgid "Sitename"
 msgstr "站点名称"
 
-#: src/misc/coders/settings/Video.js:146
+#: src/misc/coders/settings/Video.js:147
 msgid "Size"
 msgstr "大小"
 
@@ -3282,8 +3314,11 @@ msgstr "将媒体流与在 Twitter Producer 中生成的秘钥传输。有关在
 msgid "Transport"
 msgstr ""
 
+#: src/misc/coders/Encoders/video/av1_nvenc.js:92
 #: src/misc/coders/Encoders/video/h264_libx264.js:98
+#: src/misc/coders/Encoders/video/h264_nvenc.js:95
 #: src/misc/coders/Encoders/video/hevc_libx265.js:98
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:95
 msgid "Tune"
 msgstr "Tune"
 
@@ -3420,7 +3455,7 @@ msgstr "设备用户名。"
 msgid "V4L2_M2M is experimental."
 msgstr "V4L2_M2M 是实验性的。"
 
-#: src/misc/coders/settings/Video.js:316
+#: src/misc/coders/settings/Video.js:317
 msgid "Variable frame rate (VFR)"
 msgstr "可变帧率（VFR）"
 
@@ -3510,7 +3545,7 @@ msgstr "存储 HLM playlist 和 segments 的位置。推荐 In-Memory。"
 msgid "white"
 msgstr "白色"
 
-#: src/misc/coders/settings/Video.js:219
+#: src/misc/coders/settings/Video.js:220
 msgid "Width"
 msgstr "宽度"
 

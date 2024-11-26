@@ -345,7 +345,7 @@ msgid "Beep factor"
 msgstr "Παράγοντας μπιπ"
 
 #: src/misc/coders/settings/Audio.js:14
-#: src/misc/coders/settings/Video.js:15
+#: src/misc/coders/settings/Video.js:16
 msgid "Bitrate"
 msgstr "Bitrate"
 
@@ -445,7 +445,7 @@ msgstr "Επιλέξτε μια συσκευή εισόδου ..."
 msgid "Choose an input stream ..."
 msgstr "Επιλέξτε μια ροή εισόδου ..."
 
-#: src/misc/coders/settings/Video.js:319
+#: src/misc/coders/settings/Video.js:320
 msgid "Choose between CFR and VFR (Auto)"
 msgstr "Επιλέξτε μεταξύ CFR και VFR (Auto)"
 
@@ -532,7 +532,7 @@ msgstr "Σύνδεση στο Restreamer Core ..."
 msgid "Connecting to Restreamer Core failed probably because of mixed content."
 msgstr "Η σύνδεση στο Restreamer Core απέτυχε πιθανώς λόγω μικτού περιεχομένου."
 
-#: src/misc/coders/settings/Video.js:313
+#: src/misc/coders/settings/Video.js:314
 msgid "Constant frame rate (CFR)"
 msgstr "Σταθερός ρυθμός καρέ (CFR)"
 
@@ -578,14 +578,14 @@ msgstr "Creative Commons"
 #: src/misc/coders/settings/Audio.js:33
 #: src/misc/coders/settings/Audio.js:120
 #: src/misc/coders/settings/Audio.js:170
-#: src/misc/coders/settings/Video.js:39
-#: src/misc/coders/settings/Video.js:77
-#: src/misc/coders/settings/Video.js:121
-#: src/misc/coders/settings/Video.js:173
-#: src/misc/coders/settings/Video.js:206
-#: src/misc/coders/settings/Video.js:240
-#: src/misc/coders/settings/Video.js:270
-#: src/misc/coders/settings/Video.js:298
+#: src/misc/coders/settings/Video.js:40
+#: src/misc/coders/settings/Video.js:78
+#: src/misc/coders/settings/Video.js:122
+#: src/misc/coders/settings/Video.js:174
+#: src/misc/coders/settings/Video.js:207
+#: src/misc/coders/settings/Video.js:241
+#: src/misc/coders/settings/Video.js:271
+#: src/misc/coders/settings/Video.js:299
 #: src/misc/filters/audio/Resample.js:72
 #: src/misc/filters/audio/Resample.js:122
 #: src/misc/filters/audio/Volume.js:58
@@ -608,7 +608,7 @@ msgid "Custom audio index"
 msgstr "Προσαρμοσμένο ευρετήριο ήχου"
 
 #: src/misc/coders/settings/Audio.js:15
-#: src/misc/coders/settings/Video.js:16
+#: src/misc/coders/settings/Video.js:17
 msgid "Custom bitrate (kbit/s)"
 msgstr "Προσαρμοσμένος ρυθμός bitrate (kbit/s)"
 
@@ -624,12 +624,12 @@ msgstr "Προσαρμοσμένη καθυστέρηση"
 msgid "Custom device"
 msgstr "Προσαρμοσμένη συσκευή"
 
-#: src/misc/coders/settings/Video.js:254
-#: src/misc/coders/settings/Video.js:284
+#: src/misc/coders/settings/Video.js:255
+#: src/misc/coders/settings/Video.js:285
 msgid "Custom format"
 msgstr "Προσαρμοσμένη μορφή"
 
-#: src/misc/coders/settings/Video.js:99
+#: src/misc/coders/settings/Video.js:100
 #: src/misc/filters/video/Framerate.js:37
 msgid "Custom framerate"
 msgstr "Προσαρμοσμένη ταχύτητα καρέ"
@@ -638,7 +638,7 @@ msgstr "Προσαρμοσμένη ταχύτητα καρέ"
 msgid "Custom JSON config for datarhei Core."
 msgstr "Προσαρμοσμένες ρυθμίσεις JSON για το datarhei Core."
 
-#: src/misc/coders/settings/Video.js:61
+#: src/misc/coders/settings/Video.js:62
 msgid "Custom keyframe interval"
 msgstr "Προσαρμοσμένο διάστημα καρέ πλήκτρων"
 
@@ -656,9 +656,18 @@ msgstr "Προσαρμοσμένη δειγματοληψία (Hz)"
 msgid "Custom scale"
 msgstr "Προσαρμοσμένη κλίμακα"
 
-#: src/misc/coders/settings/Video.js:147
-#: src/misc/coders/settings/Video.js:187
-#: src/misc/coders/settings/Video.js:220
+#: src/misc/coders/Decoders/video/h264_cuvid.js:73
+#: src/misc/coders/Decoders/video/hevc_cuvid.js:73
+#: src/misc/coders/Decoders/video/mjpeg_cuvid.js:73
+#: src/misc/coders/Decoders/video/mpeg1_cuvid.js:73
+#: src/misc/coders/Decoders/video/mpeg2_cuvid.js:73
+#: src/misc/coders/Decoders/video/mpeg4_cuvid.js:73
+#: src/misc/coders/Decoders/video/vc1_cuvid.js:73
+#: src/misc/coders/Decoders/video/vp8_cuvid.js:73
+#: src/misc/coders/Decoders/video/vp9_cuvid.js:73
+#: src/misc/coders/settings/Video.js:148
+#: src/misc/coders/settings/Video.js:188
+#: src/misc/coders/settings/Video.js:221
 msgid "Custom size"
 msgstr "Προσαρμοσμένο μέγεθος"
 
@@ -1127,7 +1136,7 @@ msgstr "Αναγκαστική εισαγωγή καρέ"
 msgid "Force key frames"
 msgstr "Αναγκαστικά πλαίσια πλήκτρων"
 
-#: src/misc/coders/settings/Video.js:253
+#: src/misc/coders/settings/Video.js:254
 msgid "Format"
 msgstr "Μορφή"
 
@@ -1140,7 +1149,7 @@ msgstr "FPS"
 msgid "Frame drops"
 msgstr "Πτώσεις πλαισίων"
 
-#: src/misc/coders/settings/Video.js:310
+#: src/misc/coders/settings/Video.js:311
 msgid "Frame is passed through (Passthrough)"
 msgstr "Το πλαίσιο περνάει (Passthrough)"
 
@@ -1148,7 +1157,7 @@ msgstr "Το πλαίσιο περνάει (Passthrough)"
 msgid "Framebuffer"
 msgstr "Framebuffer"
 
-#: src/misc/coders/settings/Video.js:98
+#: src/misc/coders/settings/Video.js:99
 #: src/misc/filters/video/Framerate.js:36
 #: src/views/Edit/Sources/Network.js:610
 msgid "Framerate"
@@ -1158,7 +1167,7 @@ msgstr "Ταχύτητα καρέ"
 msgid "Framerate conversion (frame interpolation)"
 msgstr "Μετατροπή καρέ (παρεμβολή καρέ)"
 
-#: src/misc/coders/settings/Video.js:308
+#: src/misc/coders/settings/Video.js:309
 msgid "Framerate mode"
 msgstr "Λειτουργία καρέ"
 
@@ -1213,6 +1222,10 @@ msgstr "Αναγνωριστικό Google Analytics"
 msgid "Google Analytics Tracker Name"
 msgstr "Όνομα ανιχνευτή Google Analytics"
 
+#: src/misc/coders/settings/Video.js:327
+msgid "GPU"
+msgstr ""
+
 #: src/views/Edit/Sources/V4L.js:146
 #: src/views/Edit/Wizard/Sources/V4L.js:140
 msgid "Hardware device"
@@ -1226,7 +1239,7 @@ msgstr "Κεφαλίδα"
 msgid "Headline"
 msgstr "Επικεφαλίδα"
 
-#: src/misc/coders/settings/Video.js:186
+#: src/misc/coders/settings/Video.js:187
 msgid "Height"
 msgstr "Ύψος"
 
@@ -1377,7 +1390,7 @@ msgstr "Ειδοποίηση έκδοσης"
 msgid "kbit/s"
 msgstr "kbit/s"
 
-#: src/misc/coders/settings/Video.js:60
+#: src/misc/coders/settings/Video.js:61
 msgid "Keyframe interval (seconds)"
 msgstr "Διάστημα καρέ πλήκτρων (δευτερόλεπτα)"
 
@@ -1394,7 +1407,9 @@ msgstr "Πιστοποίηση Let's Encrypt"
 msgid "Let's Encrypt requires one or more public domain names and an accessible port 80/TCP."
 msgstr "Το Let's Encrypt απαιτεί ένα ή περισσότερα δημόσια ονόματα τομέα και μια προσβάσιμη θύρα 80/TCP."
 
-#: src/misc/coders/Encoders/video/h264_nvenc.js:107
+#: src/misc/coders/Encoders/video/av1_nvenc.js:103
+#: src/misc/coders/Encoders/video/h264_nvenc.js:118
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:117
 msgid "Level"
 msgstr "Επίπεδο"
 
@@ -1930,7 +1945,7 @@ msgstr "ροζ"
 msgid "Pixel format"
 msgstr "Μορφή pixel"
 
-#: src/misc/coders/settings/Video.js:283
+#: src/misc/coders/settings/Video.js:284
 msgid "Pixel Format"
 msgstr ""
 
@@ -2067,9 +2082,11 @@ msgstr "Αφίσα"
 msgid "Poster image URL"
 msgstr "URL εικόνας αφίσας"
 
+#: src/misc/coders/Encoders/video/av1_nvenc.js:76
 #: src/misc/coders/Encoders/video/h264_libx264.js:82
-#: src/misc/coders/Encoders/video/h264_nvenc.js:75
+#: src/misc/coders/Encoders/video/h264_nvenc.js:81
 #: src/misc/coders/Encoders/video/hevc_libx265.js:82
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:81
 msgid "Preset"
 msgstr "Προεπιλεγμένο"
 
@@ -2129,12 +2146,13 @@ msgstr "Αναφορά διαδικασίας"
 msgid "Processing & Control"
 msgstr "Επεξεργασία & έλεγχος"
 
-#: src/misc/coders/Encoders/video/h264_nvenc.js:95
+#: src/misc/coders/Encoders/video/h264_nvenc.js:106
 #: src/misc/coders/Encoders/video/h264_vaapi.js:84
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:106
 #: src/misc/coders/Encoders/video/hevc_vaapi.js:86
 #: src/misc/coders/Encoders/video/hevc_videotoolbox.js:64
 #: src/misc/coders/Encoders/video/vp9_vaapi.js:86
-#: src/misc/coders/settings/Video.js:131
+#: src/misc/coders/settings/Video.js:132
 #: src/views/Edit/Wizard/VideoProfile.js:42
 msgid "Profile"
 msgstr "Προφίλ"
@@ -2226,8 +2244,10 @@ msgstr ""
 msgid "Raspberry Pi camera"
 msgstr "Κάμερα Raspberry Pi"
 
-#: src/misc/coders/Encoders/video/h264_nvenc.js:137
+#: src/misc/coders/Encoders/video/av1_nvenc.js:141
+#: src/misc/coders/Encoders/video/h264_nvenc.js:148
 #: src/misc/coders/Encoders/video/h264_vaapi.js:70
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:145
 #: src/misc/coders/Encoders/video/hevc_vaapi.js:72
 #: src/misc/coders/Encoders/video/vp9_vaapi.js:72
 msgid "Rate control"
@@ -2324,6 +2344,18 @@ msgstr "Επαναφορά λογότυπου"
 #: src/views/Publication/Player.js:552
 msgid "Reset poster"
 msgstr "Επαναφορά αφίσας"
+
+#: src/misc/coders/Decoders/video/h264_cuvid.js:72
+#: src/misc/coders/Decoders/video/hevc_cuvid.js:72
+#: src/misc/coders/Decoders/video/mjpeg_cuvid.js:72
+#: src/misc/coders/Decoders/video/mpeg1_cuvid.js:72
+#: src/misc/coders/Decoders/video/mpeg2_cuvid.js:72
+#: src/misc/coders/Decoders/video/mpeg4_cuvid.js:72
+#: src/misc/coders/Decoders/video/vc1_cuvid.js:72
+#: src/misc/coders/Decoders/video/vp8_cuvid.js:72
+#: src/misc/coders/Decoders/video/vp9_cuvid.js:72
+msgid "Resize"
+msgstr ""
 
 #: src/views/Settings.js:1295
 #: src/views/Settings.js:2280
@@ -2673,7 +2705,7 @@ msgstr "Sine"
 msgid "Sitename"
 msgstr "Sitename"
 
-#: src/misc/coders/settings/Video.js:146
+#: src/misc/coders/settings/Video.js:147
 msgid "Size"
 msgstr "Μέγεθος"
 
@@ -3282,8 +3314,11 @@ msgstr "Μεταδίδει τη ροή βίντεο με το απαιτούμε
 msgid "Transport"
 msgstr ""
 
+#: src/misc/coders/Encoders/video/av1_nvenc.js:92
 #: src/misc/coders/Encoders/video/h264_libx264.js:98
+#: src/misc/coders/Encoders/video/h264_nvenc.js:95
 #: src/misc/coders/Encoders/video/hevc_libx265.js:98
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:95
 msgid "Tune"
 msgstr "Συντονισμός"
 
@@ -3420,7 +3455,7 @@ msgstr "Όνομα χρήστη για τη συσκευή."
 msgid "V4L2_M2M is experimental."
 msgstr "Το V4L2_M2M είναι πειραματικό."
 
-#: src/misc/coders/settings/Video.js:316
+#: src/misc/coders/settings/Video.js:317
 msgid "Variable frame rate (VFR)"
 msgstr "Μεταβλητός ρυθμός καρέ (VFR)"
 
@@ -3510,7 +3545,7 @@ msgstr "Πού να αποθηκεύσετε τη λίστα αναπαραγω�
 msgid "white"
 msgstr "λευκό"
 
-#: src/misc/coders/settings/Video.js:219
+#: src/misc/coders/settings/Video.js:220
 msgid "Width"
 msgstr "Πλάτος"
 
