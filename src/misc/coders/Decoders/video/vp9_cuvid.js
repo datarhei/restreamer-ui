@@ -1,9 +1,15 @@
 import React from 'react';
 
+import Grid from '@mui/material/Grid';
+import { Trans } from '@lingui/macro';
+
 import Helper from '../../helper';
+import Video from '../../settings/Video';
 
 function init(initialState) {
 	const state = {
+		gpu: '0',
+		resize: 'auto',
 		...initialState,
 	};
 
@@ -14,9 +20,15 @@ function createMapping(settings, stream, skills) {
 	stream = Helper.InitStream(stream);
 	skills = Helper.InitSkills(skills);
 
+	let local = ['-c:v', 'vp9_cuvid', '-gpu', `${settings.gpu}`];
+
+	if (settings.resize !== 'auto') {
+		local.push('-resize', `${settings.resize}`);
+	}
+
 	const mapping = {
 		global: [],
-		local: ['-c:v', 'vp9_cuvid'],
+		local: local,
 		filter: [],
 	};
 
@@ -38,12 +50,38 @@ function Coder({ stream = {}, settings = {}, skills = {}, onChange = function (s
 		onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
 	};
 
+	const update = (what) => (event) => {
+		const newSettings = {
+			...settings,
+			[what]: event.target.value,
+		};
+
+		handleChange(newSettings);
+	};
+
 	React.useEffect(() => {
 		handleChange(null);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	return null;
+	return (
+		<Grid container spacing={2}>
+			<Grid item xs={6}>
+				<Video.Size
+					value={settings.resize}
+					label={<Trans>Resize</Trans>}
+					customLabel={<Trans>Custom size</Trans>}
+					onChange={update('resize')}
+					allowCustom={true}
+					allowAuto={true}
+				/>
+			</Grid>
+			<Grid item xs={6}>
+				<Video.GPU value={settings.gpu} onChange={update('gpu')} />
+			</Grid>
+			<Grid item xs={12}></Grid>
+		</Grid>
+	);
 }
 
 const coder = 'vp9_cuvid';

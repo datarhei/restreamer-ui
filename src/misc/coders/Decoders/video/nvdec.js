@@ -1,9 +1,13 @@
 import React from 'react';
 
+import Grid from '@mui/material/Grid';
+
 import Helper from '../../helper';
+import Video from '../../settings/Video';
 
 function init(initialState) {
 	const state = {
+		gpu: '0',
 		...initialState,
 	};
 
@@ -16,7 +20,7 @@ function createMapping(settings, stream, skills) {
 
 	const mapping = {
 		global: [],
-		local: ['-hwaccel', 'cuda', '-hwaccel_output_format', 'cuda'],
+		local: ['-hwaccel', 'cuda', '-hwaccel_output_format', 'nv12', '-hwaccel_device', `${settings.gpu}`],
 		filter: [],
 	};
 
@@ -38,12 +42,28 @@ function Coder({ stream = {}, settings = {}, skills = {}, onChange = function (s
 		onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
 	};
 
+	const update = (what) => (event) => {
+		const newSettings = {
+			...settings,
+			[what]: event.target.value,
+		};
+
+		handleChange(newSettings);
+	};
+
 	React.useEffect(() => {
 		handleChange(null);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	return null;
+	return (
+		<Grid container spacing={2}>
+			<Grid item xs={6}>
+				<Video.GPU value={settings.gpu} onChange={update('gpu')} />
+			</Grid>
+			<Grid item xs={12}></Grid>
+		</Grid>
+	);
 }
 
 // -hwaccel cuda -hwaccel_output_format cuda

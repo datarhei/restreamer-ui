@@ -4,6 +4,8 @@ import Helper from '../../helper';
 
 function init(initialState) {
 	const state = {
+		gpu: '0',
+		resize: 'auto',
 		...initialState,
 	};
 
