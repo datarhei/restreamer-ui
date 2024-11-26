@@ -6,6 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 import Select from '../../../misc/Select';
 import SelectCustom from '../../../misc/SelectCustom';
+import TextField from '../../../misc/TextField';
 
 function Bitrate({
 	value = '',
@@ -322,6 +323,10 @@ function FpsMode({ value = '', onChange = function (event) {} }) {
 	);
 }
 
+function GPU({ value = '', onChange = function (event) {} }) {
+	return <TextField label={<Trans>GPU</Trans>} value={value} onChange={onChange} type="number" min={0}></TextField>;
+}
+
 export default {
 	Bitrate,
 	GOP,
@@ -333,4 +338,5 @@ export default {
 	Format,
 	PixFormat,
 	FpsMode,
+	GPU,
 };

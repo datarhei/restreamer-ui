@@ -11,6 +11,7 @@ import Helper from '../../helper';
 
 function init(initialState) {
 	const state = {
+		gpu: '0',
 		bitrate: '4096',
 		fps: '25',
 		gop: '2',
@@ -31,6 +32,8 @@ function createMapping(settings, stream, skills) {
 	const local = [
 		'-codec:v',
 		'av1_nvenc',
+		'-gpu',
+		`${settings.gpu}`,
 		'-preset:v',
 		`${settings.preset}`,
 		'-tune:v',
@@ -195,6 +198,9 @@ function Coder({ stream = {}, settings = {}, skills = {}, onChange = function (s
 			</Grid>
 			<Grid item xs={6}>
 				<RateControl value={settings.rc} onChange={update('rc')} />
+			</Grid>
+			<Grid item xs={6}>
+				<Video.GPU value={settings.gpu} onChange={update('gpu')} />
 			</Grid>
 		</Grid>
 	);
