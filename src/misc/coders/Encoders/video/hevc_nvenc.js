@@ -31,7 +31,7 @@ function createMapping(settings, stream, skills) {
 
 	const local = [
 		'-codec:v',
-		'h264_nvenc',
+		'hevc_nvenc',
 		'-preset:v',
 		`${settings.preset}`,
 		'-tune:v',
@@ -102,10 +102,9 @@ function Profile({ value = '', onChange = function (event) {} }) {
 	return (
 		<Select label={<Trans>Profile</Trans>} value={value} onChange={onChange}>
 			<MenuItem value="auto">auto</MenuItem>
-			<MenuItem value="baseline">baseline</MenuItem>
 			<MenuItem value="main">main</MenuItem>
-			<MenuItem value="high">high</MenuItem>
-			<MenuItem value="high444p">high444p</MenuItem>
+			<MenuItem value="main10">main10</MenuItem>
+			<MenuItem value="rext">rext</MenuItem>
 		</Select>
 	);
 }
@@ -116,15 +115,9 @@ function Level({ value = '', onChange = function (event) {} }) {
 			<MenuItem value="auto">auto</MenuItem>
 			<MenuItem value="1">1</MenuItem>
 			<MenuItem value="1.0">1.0</MenuItem>
-			<MenuItem value="1b">1b</MenuItem>
-			<MenuItem value="1.0b">1.0b</MenuItem>
-			<MenuItem value="1.1">1.1</MenuItem>
-			<MenuItem value="1.2">1.2</MenuItem>
-			<MenuItem value="1.3">1.3</MenuItem>
 			<MenuItem value="2">2</MenuItem>
 			<MenuItem value="2.0">2.0</MenuItem>
 			<MenuItem value="2.1">2.1</MenuItem>
-			<MenuItem value="2.2">2.2</MenuItem>
 			<MenuItem value="3">3</MenuItem>
 			<MenuItem value="3.0">3.0</MenuItem>
 			<MenuItem value="3.1">3.1</MenuItem>
@@ -132,10 +125,14 @@ function Level({ value = '', onChange = function (event) {} }) {
 			<MenuItem value="4">4</MenuItem>
 			<MenuItem value="4.0">4.0</MenuItem>
 			<MenuItem value="4.1">4.1</MenuItem>
-			<MenuItem value="4.2">4.2</MenuItem>
 			<MenuItem value="5">5</MenuItem>
 			<MenuItem value="5.0">5.0</MenuItem>
 			<MenuItem value="5.1">5.1</MenuItem>
+			<MenuItem value="5.2">5.2</MenuItem>
+			<MenuItem value="6">6</MenuItem>
+			<MenuItem value="6.0">6.0</MenuItem>
+			<MenuItem value="6.1">6.1</MenuItem>
+			<MenuItem value="6.2">6.2</MenuItem>
 		</Select>
 	);
 }
@@ -210,9 +207,9 @@ function Coder({ stream = {}, settings = {}, skills = {}, onChange = function (s
 	);
 }
 
-const coder = 'h264_nvenc';
-const name = 'H.264 (NVENC)';
-const codec = 'h264';
+const coder = 'hevc_nvenc';
+const name = 'HEVC (NVENC)';
+const codec = 'hevc';
 const type = 'video';
 const hwaccel = true;
 

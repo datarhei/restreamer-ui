@@ -16,7 +16,6 @@ function init(initialState) {
 		gop: '2',
 		preset: 'p4',
 		tune: 'll',
-		profile: 'auto',
 		level: 'auto',
 		rc: 'auto',
 		...initialState,
@@ -31,7 +30,7 @@ function createMapping(settings, stream, skills) {
 
 	const local = [
 		'-codec:v',
-		'h264_nvenc',
+		'av1_nvenc',
 		'-preset:v',
 		`${settings.preset}`,
 		'-tune:v',
@@ -50,10 +49,6 @@ function createMapping(settings, stream, skills) {
 
 	if (settings.gop !== 'auto') {
 		local.push('-g', `${Math.round(parseInt(settings.fps) * parseInt(settings.gop)).toFixed(0)}`);
-	}
-
-	if (settings.profile !== 'auto') {
-		local.push('-profile:v', `${settings.profile}`);
 	}
 
 	if (settings.level !== 'auto') {
@@ -76,6 +71,8 @@ function createMapping(settings, stream, skills) {
 function Preset({ value = '', onChange = function (event) {} }) {
 	return (
 		<Select label={<Trans>Preset</Trans>} value={value} onChange={onChange}>
+			<MenuItem value="medium">HQ 1 pass</MenuItem>
+			<MenuItem value="fast">HQ 1 pass</MenuItem>
 			<MenuItem value="p1">fastest</MenuItem>
 			<MenuItem value="p2">faster</MenuItem>
 			<MenuItem value="p3">fast</MenuItem>
@@ -98,44 +95,40 @@ function Tune({ value = '', onChange = function (event) {} }) {
 	);
 }
 
-function Profile({ value = '', onChange = function (event) {} }) {
-	return (
-		<Select label={<Trans>Profile</Trans>} value={value} onChange={onChange}>
-			<MenuItem value="auto">auto</MenuItem>
-			<MenuItem value="baseline">baseline</MenuItem>
-			<MenuItem value="main">main</MenuItem>
-			<MenuItem value="high">high</MenuItem>
-			<MenuItem value="high444p">high444p</MenuItem>
-		</Select>
-	);
-}
-
 function Level({ value = '', onChange = function (event) {} }) {
 	return (
 		<Select label={<Trans>Level</Trans>} value={value} onChange={onChange}>
 			<MenuItem value="auto">auto</MenuItem>
-			<MenuItem value="1">1</MenuItem>
-			<MenuItem value="1.0">1.0</MenuItem>
-			<MenuItem value="1b">1b</MenuItem>
-			<MenuItem value="1.0b">1.0b</MenuItem>
-			<MenuItem value="1.1">1.1</MenuItem>
-			<MenuItem value="1.2">1.2</MenuItem>
-			<MenuItem value="1.3">1.3</MenuItem>
 			<MenuItem value="2">2</MenuItem>
 			<MenuItem value="2.0">2.0</MenuItem>
 			<MenuItem value="2.1">2.1</MenuItem>
 			<MenuItem value="2.2">2.2</MenuItem>
+			<MenuItem value="2.3">2.3</MenuItem>
 			<MenuItem value="3">3</MenuItem>
 			<MenuItem value="3.0">3.0</MenuItem>
 			<MenuItem value="3.1">3.1</MenuItem>
 			<MenuItem value="3.2">3.2</MenuItem>
+			<MenuItem value="3.3">3.3</MenuItem>
 			<MenuItem value="4">4</MenuItem>
 			<MenuItem value="4.0">4.0</MenuItem>
 			<MenuItem value="4.1">4.1</MenuItem>
 			<MenuItem value="4.2">4.2</MenuItem>
+			<MenuItem value="4.3">4.3</MenuItem>
 			<MenuItem value="5">5</MenuItem>
 			<MenuItem value="5.0">5.0</MenuItem>
 			<MenuItem value="5.1">5.1</MenuItem>
+			<MenuItem value="5.2">5.2</MenuItem>
+			<MenuItem value="5.3">5.3</MenuItem>
+			<MenuItem value="6">6</MenuItem>
+			<MenuItem value="6.0">6.0</MenuItem>
+			<MenuItem value="6.1">6.1</MenuItem>
+			<MenuItem value="6.2">6.2</MenuItem>
+			<MenuItem value="6.3">6.3</MenuItem>
+			<MenuItem value="7">7</MenuItem>
+			<MenuItem value="7.0">7.0</MenuItem>
+			<MenuItem value="7.1">7.1</MenuItem>
+			<MenuItem value="7.2">7.2</MenuItem>
+			<MenuItem value="7.3">7.3</MenuItem>
 		</Select>
 	);
 }
@@ -198,9 +191,6 @@ function Coder({ stream = {}, settings = {}, skills = {}, onChange = function (s
 				<Tune value={settings.tune} onChange={update('tune')} />
 			</Grid>
 			<Grid item xs={6}>
-				<Profile value={settings.profile} onChange={update('profile')} />
-			</Grid>
-			<Grid item xs={6}>
 				<Level value={settings.level} onChange={update('level')} />
 			</Grid>
 			<Grid item xs={6}>
@@ -210,9 +200,9 @@ function Coder({ stream = {}, settings = {}, skills = {}, onChange = function (s
 	);
 }
 
-const coder = 'h264_nvenc';
-const name = 'H.264 (NVENC)';
-const codec = 'h264';
+const coder = 'av1_nvenc';
+const name = 'AV1 (NVENC)';
+const codec = 'av1';
 const type = 'video';
 const hwaccel = true;
 
