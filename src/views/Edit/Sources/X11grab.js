@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { useLingui } from '@lingui/react';
-import ScreenshotMonitorIcon from '@mui/icons-material/ScreenshotMonitor';
 import { Trans, t } from '@lingui/macro';
+import ScreenshotMonitorIcon from '@mui/icons-material/ScreenshotMonitor';
 import makeStyles from '@mui/styles/makeStyles';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';

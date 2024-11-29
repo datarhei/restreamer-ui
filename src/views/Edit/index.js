@@ -112,6 +112,7 @@ export default function Edit({ restreamer = null }) {
 		});
 
 		const skills = await restreamer.Skills();
+		skills.sources['channel'] = skills.sources['channel'].filter((channel) => channel.id !== _channelid);
 		setSkills(skills);
 
 		const config = await restreamer.ConfigActive();
@@ -208,6 +209,7 @@ export default function Edit({ restreamer = null }) {
 		await restreamer.RefreshSkills();
 
 		const skills = await restreamer.Skills();
+		skills.sources['channel'] = skills.sources['channel'].filter((channel) => channel.id !== _channelid);
 		setSkills(skills);
 	};
 

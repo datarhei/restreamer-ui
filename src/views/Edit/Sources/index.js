@@ -11,6 +11,7 @@ import * as VideoLoop from './VideoLoop';
 import * as VirtualAudio from './VirtualAudio';
 import * as VirtualVideo from './VirtualVideo';
 import * as X11grab from './X11grab';
+import * as Channel from './Channel';
 
 class Registry {
 	constructor() {
@@ -54,5 +55,6 @@ registry.Register(VideoLoop);
 registry.Register(AudioLoop);
 registry.Register(SDP);
 registry.Register(X11grab);
+registry.Register(Channel);
 
 export default registry;

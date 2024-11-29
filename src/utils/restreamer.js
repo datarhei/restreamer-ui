@@ -514,6 +514,9 @@ class Restreamer {
 				virtualvideo: [],
 				videoloop: [],
 				audioloop: [],
+				channel: [],
+				noaudio: [],
+				sdp: [],
 			},
 			sinks: {},
 		};
@@ -676,6 +679,15 @@ class Restreamer {
 		});
 
 		skills.sources['network'].push(...channels);
+
+		channels = this.ListChannels().map((channel) => {
+			return {
+				id: channel.channelid,
+				name: channel.name,
+			};
+		});
+
+		skills.sources['channel'].push(...channels);
 
 		this.skills = skills;
 	}
