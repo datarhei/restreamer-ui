@@ -45,6 +45,7 @@ const initSettings = (initialSettings, config) => {
 		password: '',
 		push: {},
 		rtsp: {},
+		srt: {},
 		http: {},
 		general: {},
 		...initialSettings,
@@ -66,6 +67,11 @@ const initSettings = (initialSettings, config) => {
 	if (settings.rtsp.udp === true) {
 		settings.rtsp.transport = 'udp';
 	}
+
+	settings.srt = {
+		latency: 20,
+		...settings.srt,
+	};
 
 	settings.http = {
 		readNative: true,
@@ -214,7 +220,7 @@ const createInputs = (settings, config, skills) => {
 			if (name === config.channelid) {
 				name += '.stream';
 			}
-			input.address = getLocalSRT(name);
+			input.address = getLocalSRT(name, settings.srt.latency);
 		} else {
 			input.address = '';
 		}
@@ -346,12 +352,11 @@ const createInputs = (settings, config, skills) => {
 	}
 
 	if (skills.protocols.input.includes('playout')) {
-		console.log("playout enabled");
 		if (settings.extentions.liveguard === 'video') {
-			input.address = `playout:${input.address}`
+			input.address = `playout:${input.address}`;
 			input.options.push('-playout_audio', '0');
 		} else if (settings.extentions.liveguard === 'video_audio') {
-			input.address = `playout:${input.address}`
+			input.address = `playout:${input.address}`;
 			input.options.push('-playout_audio', '1');
 		}
 	}
@@ -477,6 +482,8 @@ const getSRTAddress = (host, name, token, passphrase, publish) => {
 		url += '&passphrase=' + encodeURIComponent(passphrase);
 	}
 
+	url += '&latency=120000';
+
 	return url;
 };
 
@@ -508,8 +515,8 @@ const getLocalRTMP = (name) => {
 	return '{rtmp,name=' + name + '}';
 };
 
-const getLocalSRT = (name) => {
-	return '{srt,name=' + name + ',mode=request}';
+const getLocalSRT = (name, latency) => {
+	return '{srt,name=' + name + ',mode=request,latency=' + latency * 1000 + '}';
 };
 
 const isValidURL = (address) => {
@@ -577,6 +584,27 @@ function AdvancedSettings({ settings = {}, onChange = function (settings) {} }) 
 										value={settings.rtsp.stimeout}
 										onChange={onChange('rtsp', 'stimeout')}
 									/>
+								</Grid>
+							</React.Fragment>
+						)}
+						{protocolClass === 'srt' && settings.mode == 'push' && (
+							<React.Fragment>
+								<Grid item xs={12}>
+									<Typography variant="h3">
+										<Trans>SRT</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<TextField
+										variant="outlined"
+										fullWidth
+										label={<Trans>Latency (milliseconds)</Trans>}
+										value={settings.srt.latency}
+										onChange={onChange('srt', 'latency')}
+									/>
+									<Typography variant="caption">
+										<Trans>Internal SRT latency in milliseconds.</Trans>
+									</Typography>
 								</Grid>
 							</React.Fragment>
 						)}
@@ -818,9 +846,15 @@ function ExtentionSettings({ settings = {}, skills = {}, onChange = function (se
 								value={settings.extentions.liveguard}
 								onChange={onChange('extentions', 'liveguard')}
 							>
-								<MenuItem value="none"><Trans>Protect: None</Trans></MenuItem>
-								<MenuItem value="video"><Trans>Protect: Video channel</Trans></MenuItem>
-								<MenuItem value="video_audio"><Trans>Protect: Video and audio channel</Trans></MenuItem>
+								<MenuItem value="none">
+									<Trans>Protect: None</Trans>
+								</MenuItem>
+								<MenuItem value="video">
+									<Trans>Protect: Video channel</Trans>
+								</MenuItem>
+								<MenuItem value="video_audio">
+									<Trans>Protect: Video and audio channel</Trans>
+								</MenuItem>
 							</Select>
 						</Grid>
 					</Grid>
@@ -965,11 +999,27 @@ function Push({
 				</Grid>
 			</Grid>
 			{settings.push.type === 'rtmp' && (
-				<PushRTMP knownDevices={knownDevices} settings={settings} config={config} skills={skills} onChange={onChange} onProbe={onProbe} onRefresh={onRefresh} />
+				<PushRTMP
+					knownDevices={knownDevices}
+					settings={settings}
+					config={config}
+					skills={skills}
+					onChange={onChange}
+					onProbe={onProbe}
+					onRefresh={onRefresh}
+				/>
 			)}
 			{settings.push.type === 'hls' && <PushHLS settings={settings} config={config} skills={skills} onChange={onChange} onProbe={onProbe} />}
 			{settings.push.type === 'srt' && (
-				<PushSRT knownDevices={knownDevices} settings={settings} config={config} skills={skills} onChange={onChange} onProbe={onProbe} onRefresh={onRefresh} />
+				<PushSRT
+					knownDevices={knownDevices}
+					settings={settings}
+					config={config}
+					skills={skills}
+					onChange={onChange}
+					onProbe={onProbe}
+					onRefresh={onRefresh}
+				/>
 			)}
 		</React.Fragment>
 	);
@@ -1220,6 +1270,8 @@ function Source({
 			} else {
 				settings.rtsp[what] = value;
 			}
+		} else if (section === 'srt') {
+			settings.srt[what] = value;
 		} else if (section === 'general') {
 			if (['copyts', 'start_at_zero', 'use_wallclock_as_timestamps'].includes(what)) {
 				settings.general[what] = !settings.general[what];
