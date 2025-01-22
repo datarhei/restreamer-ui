@@ -78,10 +78,6 @@ export default function Profile({
 	}, []);
 
 	const load = async () => {
-		// Add pseudo sources
-		skills.sources.noaudio = [];
-		skills.sources.sdp = [];
-
 		let audio = $sources.audio;
 
 		let hasAudio = false;
