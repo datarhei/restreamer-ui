@@ -43,6 +43,8 @@ function createMapping(settings, stream, skills) {
 		`${settings.fps}`,
 		'-sc_threshold',
 		'0',
+		'-forced-idr',
+		'1',
 		'-pix_fmt',
 		'yuv420p',
 	];
