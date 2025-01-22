@@ -381,9 +381,9 @@ class Restreamer {
 			return;
 		}
 
-		await this._initSkills();
 		await this._initConfig();
 		await this._discoverChannels();
+		await this._initSkills();
 	}
 
 	_setTokenRefresh(expiresIn) {
