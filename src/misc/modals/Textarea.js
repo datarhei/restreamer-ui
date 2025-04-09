@@ -16,18 +16,26 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Component = function (props) {
+const Component = function ({
+	open = false,
+	title = '',
+	value = '',
+	rows = 0,
+	scrollTo = 'bottom',
+	readOnly = true,
+	allowCopy = true,
+	onClose = null,
+	onHelp = null,
+}) {
 	const classes = useStyles();
 
-	const { open, title, onClose, onHelp, ...other } = props;
-
 	return (
-		<Modal open={props.open} onClose={props.onClose} className="modal">
-			<ModalContent title={props.title} onClose={props.onClose} onHelp={props.onHelp} style={{ overflow: 'hidden' }}>
+		<Modal open={open} onClose={onClose} className="modal">
+			<ModalContent title={title} onClose={onClose} onHelp={onHelp} style={{ overflow: 'hidden' }}>
 				<Grid container spacing={1}>
 					<Grid item xs={12}>
 						<Stack direction="column" justifyContent="center" alignItems="center" spacing={1} className={classes.box}>
-							<Textarea {...other} />
+							<Textarea value={value} rows={rows} scrollTo={scrollTo} readOnly={readOnly} allowCopy={allowCopy} />
 						</Stack>
 					</Grid>
 				</Grid>
@@ -37,10 +45,3 @@ const Component = function (props) {
 };
 
 export default Component;
-
-Component.defaultProps = {
-	open: false,
-	title: '',
-	onClose: null,
-	onHelp: null,
-};

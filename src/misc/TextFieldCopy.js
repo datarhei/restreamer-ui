@@ -20,14 +20,26 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Component(props) {
+export default function Component({
+	id = null,
+	label = '',
+	value = '',
+	disabled = false,
+	multiline = false,
+	rows = 1,
+	type = 'text',
+	readOnly = true,
+	allowCopy = true,
+	size = 'small',
+	onChange = function (value) {},
+}) {
 	const classes = useStyles();
 	const { i18n } = useLingui();
 
 	const notify = useContext(NotifyContext);
 
 	const handleCopy = async () => {
-		const success = await CopyToClipboard(props.value);
+		const success = await CopyToClipboard(value);
 
 		if (success === true) {
 			notify.Dispatch('success', 'clipboard', i18n._(t`Data copied to clipboard`));
@@ -37,18 +49,18 @@ export default function Component(props) {
 	};
 
 	return (
-		<FormControl variant="outlined" disabled={props.disabled} fullWidth>
-			<InputLabel htmlFor={props.id}>{props.label}</InputLabel>
+		<FormControl variant="outlined" disabled={disabled} fullWidth>
+			<InputLabel htmlFor={id}>{label}</InputLabel>
 			<OutlinedInput
 				className={classes.root}
-				id={props.id}
-				value={props.value}
-				label={props.label}
-				type={props.type}
+				id={id}
+				value={value}
+				label={label}
+				type={type}
 				inputprops={{
 					readOnly: true,
 				}}
-				size={props.size}
+				size={size}
 				endAdornment={
 					<IconButton size="small" onClick={handleCopy}>
 						<FileCopyIcon fontSize="small" />
@@ -58,17 +70,3 @@ export default function Component(props) {
 		</FormControl>
 	);
 }
-
-Component.defaultProps = {
-	id: null,
-	label: '',
-	value: '',
-	disabled: false,
-	multiline: false,
-	rows: 1,
-	type: 'text',
-	readOnly: true,
-	allowCopy: true,
-	size: 'small',
-	onChange: function (value) {},
-};

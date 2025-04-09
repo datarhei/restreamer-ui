@@ -4,18 +4,18 @@ import { Trans } from '@lingui/macro';
 import makeStyles from '@mui/styles/makeStyles';
 import Backdrop from '@mui/material/Backdrop';
 import Button from '@mui/material/Button';
-import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
 import Icon from '@mui/icons-material/Cached';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
+import CircularProgress from '../../../misc/CircularProgress';
 import Dialog from '../../../misc/modals/Dialog';
 import Filesize from '../../../misc/Filesize';
 import FormInlineButton from '../../../misc/FormInlineButton';
 import UploadButton from '../../../misc/UploadButton';
 
-const imageTypes = [{ mimetype: 'audio/*', extension: 'audio', maxSize: 25 * 1024 * 1024 }];
+const imageTypes = [{ mimetype: 'audio/*', extension: 'audio', maxSize: 0 }];
 
 const useStyles = makeStyles((theme) => ({
 	gridContainer: {
@@ -50,10 +50,23 @@ const createInputs = (settings) => {
 	return [input];
 };
 
-function Source(props) {
+function Source({
+	knownDevices = [],
+	settings = {},
+	onChange = function (settings) {},
+	onProbe = function (settings, inputs) {},
+	onRefresh = function () {},
+	onStore = function (name, data) {
+		return '';
+	},
+}) {
 	const classes = useStyles();
-	const settings = initSettings(props.settings);
-	const [$saving, setSaving] = React.useState(false);
+	settings = initSettings(settings);
+
+	const [$progress, setProgress] = React.useState({
+		enable: false,
+		value: -1,
+	});
 	const [$error, setError] = React.useState({
 		open: false,
 		title: '',
@@ -61,19 +74,33 @@ function Source(props) {
 	});
 
 	const handleFileUpload = async (data, extension, mimetype) => {
-		const path = await props.onStore('audioloop.source', data);
+		const path = await onStore('audioloop.source', data, (computable, progress, total) => {
+			setProgress((current) => {
+				return {
+					...current,
+					enable: true,
+					value: computable ? progress * 100 : -1,
+				};
+			});
+		});
 
-		props.onChange({
+		onChange({
 			...settings,
 			address: path,
 			mimetype: mimetype,
 		});
 
-		setSaving(false);
+		setProgress({
+			...$progress,
+			enable: false,
+		});
 	};
 
 	const handleUploadStart = () => {
-		setSaving(true);
+		setProgress({
+			...$progress,
+			enable: true,
+		});
 	};
 
 	const handleUploadError = (title) => (err) => {
@@ -105,7 +132,10 @@ function Source(props) {
 				message = <Trans>Unknown upload error</Trans>;
 		}
 
-		setSaving(false);
+		setProgress({
+			...$progress,
+			enable: false,
+		});
 
 		showUploadError(title, message);
 	};
@@ -127,7 +157,7 @@ function Source(props) {
 	};
 
 	const handleProbe = () => {
-		props.onProbe(settings, createInputs(settings));
+		onProbe(settings, createInputs(settings));
 	};
 
 	return (
@@ -156,8 +186,8 @@ function Source(props) {
 					</FormInlineButton>
 				</Grid>
 			</Grid>
-			<Backdrop open={$saving}>
-				<CircularProgress color="inherit" />
+			<Backdrop open={$progress.enable}>
+				<CircularProgress color="inherit" value={$progress.value} />
 			</Backdrop>
 			<Dialog
 				open={$error.open}
@@ -175,17 +205,6 @@ function Source(props) {
 	);
 }
 
-Source.defaultProps = {
-	knownDevices: [],
-	settings: {},
-	onChange: function (settings) {},
-	onProbe: function (settings, inputs) {},
-	onRefresh: function () {},
-	onStore: function (name, data) {
-		return '';
-	},
-};
-
 function SourceIcon(props) {
 	return <Icon style={{ color: '#FFF' }} {...props} />;
 }
@@ -193,7 +212,7 @@ function SourceIcon(props) {
 const id = 'audioloop';
 const name = <Trans>Loop</Trans>;
 const capabilities = ['audio'];
-const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0';
+const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0 || ^7.0.0';
 
 const func = {
 	initSettings,

@@ -17,18 +17,32 @@ import Paper from '../../../misc/Paper';
 import PaperHeader from '../../../misc/PaperHeader';
 import Select from '../../../misc/Select';
 
-export default function Audio(props) {
+export default function Audio({
+	onAbort = () => {},
+	onHelp = () => {},
+	onBack = () => {},
+	onNext = () => {},
+	onSource = () => {},
+	source = '',
+	onAudioStreamChange = () => {},
+	onAudioDeviceChange = () => {},
+	streamList = [],
+	deviceList = [],
+	status = '',
+	stream = 0,
+	address = {},
+}) {
 	const { i18n } = useLingui();
 
 	return (
 		<Paper xs={12} sm={9} md={6} marginBottom="6em" className="PaperM">
-			<PaperHeader spacing={2} variant="h1" title={<Trans>Audio setup</Trans>} onAbort={props.onAbort} onHelp={props.onHelp} />
+			<PaperHeader spacing={2} variant="h1" title={<Trans>Audio setup</Trans>} onAbort={onAbort} onHelp={onHelp} />
 			<Grid container spacing={2}>
 				<Grid item xs={12}>
 					<Divider />
 				</Grid>
 				<Grid item xs={12}>
-					{props.status === 'error' && (
+					{status === 'error' && (
 						<BoxText color="dark">
 							<WarningIcon fontSize="large" color="error" />
 							<Typography textAlign="center">
@@ -36,7 +50,7 @@ export default function Audio(props) {
 							</Typography>
 						</BoxText>
 					)}
-					{props.status === 'nostream' && (
+					{status === 'nostream' && (
 						<BoxText color="dark">
 							<WarningIcon fontSize="large" color="error" />
 							<Typography textAlign="center">
@@ -44,7 +58,7 @@ export default function Audio(props) {
 							</Typography>
 						</BoxText>
 					)}
-					{props.status === 'nocoder' && (
+					{status === 'nocoder' && (
 						<BoxText color="dark">
 							<WarningIcon fontSize="large" color="error" />
 							<Typography textAlign="center">
@@ -54,9 +68,9 @@ export default function Audio(props) {
 					)}
 				</Grid>
 				<Grid item xs={12}>
-					<RadioGroup row value={props.source} onChange={props.onSource}>
+					<RadioGroup row value={source} onChange={onSource}>
 						<Grid container spacing={2}>
-							{props.streamList.length === 0 && (
+							{streamList.length === 0 && (
 								<Grid item xs={12}>
 									<Typography>
 										<Trans>
@@ -66,26 +80,26 @@ export default function Audio(props) {
 									</Typography>
 								</Grid>
 							)}
-							{props.streamList.length !== 0 && (
+							{streamList.length !== 0 && (
 								<React.Fragment>
 									<Grid item xs={12}>
 										<FormControlLabel value="video" control={<Radio />} label={i18n._(t`Audio from device`)} />
 									</Grid>
 									<Grid item xs={12}>
-										<Select label={<Trans>Stream</Trans>} value={props.stream} onChange={props.onAudioStreamChange}>
-											{props.streamList}
+										<Select label={<Trans>Stream</Trans>} value={stream} onChange={onAudioStreamChange}>
+											{streamList}
 										</Select>
 									</Grid>
 								</React.Fragment>
 							)}
-							{props.deviceList.length !== 0 && (
+							{deviceList.length !== 0 && (
 								<React.Fragment>
 									<Grid item xs={12}>
 										<FormControlLabel value="alsa" control={<Radio />} label={i18n._(t`Audio from device`)} />
 									</Grid>
 									<Grid item xs={12}>
-										<Select label={<Trans>Device</Trans>} value={props.address} onChange={props.onAudioDeviceChange}>
-											{props.deviceList}
+										<Select label={<Trans>Device</Trans>} value={address} onChange={onAudioDeviceChange}>
+											{deviceList}
 										</Select>
 									</Grid>
 								</React.Fragment>
@@ -105,12 +119,12 @@ export default function Audio(props) {
 					<Divider />
 				</Grid>
 				<Grid item xs={3}>
-					<Button variant="outlined" color="default" fullWidth onClick={props.onBack}>
+					<Button variant="outlined" color="default" fullWidth onClick={onBack}>
 						<Trans>Back</Trans>
 					</Button>
 				</Grid>
 				<Grid item xs={9}>
-					<Button variant="outlined" fullWidth color="primary" onClick={props.onNext}>
+					<Button variant="outlined" fullWidth color="primary" onClick={onNext}>
 						<Trans>Next</Trans>
 					</Button>
 				</Grid>
@@ -118,19 +132,3 @@ export default function Audio(props) {
 		</Paper>
 	);
 }
-
-Audio.defaultProps = {
-	onAbort: () => {},
-	onHelp: () => {},
-	onBack: () => {},
-	onNext: () => {},
-	onSource: () => {},
-	source: '',
-	onAudioStreamChange: () => {},
-	onAudioDeviceChange: () => {},
-	streamList: [],
-	deviceList: [],
-	status: '',
-	stream: 0,
-	address: {},
-};

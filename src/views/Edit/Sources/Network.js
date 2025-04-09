@@ -23,7 +23,6 @@ import BoxText from '../../../misc/BoxText';
 import Checkbox from '../../../misc/Checkbox';
 import FormInlineButton from '../../../misc/FormInlineButton';
 import MultiSelect from '../../../misc/MultiSelect';
-import MultiSelectOption from '../../../misc/MultiSelectOption';
 import Password from '../../../misc/Password';
 import Select from '../../../misc/Select';
 import Textarea from '../../../misc/Textarea';
@@ -59,9 +58,14 @@ const initSettings = (initialSettings, config) => {
 
 	settings.rtsp = {
 		udp: false,
+		transport: 'tcp',
 		stimeout: 5000000,
 		...settings.rtsp,
 	};
+
+	if (settings.rtsp.udp === true) {
+		settings.rtsp.transport = 'udp';
+	}
 
 	settings.http = {
 		readNative: true,
@@ -70,6 +74,7 @@ const initSettings = (initialSettings, config) => {
 		userAgent: '',
 		referer: '',
 		http_proxy: '',
+		headers: '',
 		...settings.http,
 	};
 
@@ -86,6 +91,11 @@ const initSettings = (initialSettings, config) => {
 		use_wallclock_as_timestamps: false,
 		avoid_negative_ts: 'auto',
 		...settings.general,
+	};
+
+	settings.extentions = {
+		liveguard: 'none',
+		...settings.extentions,
 	};
 
 	return settings;
@@ -289,6 +299,15 @@ const createInputs = (settings, config, skills) => {
 				input.options.push('-referer', settings.http.referer);
 			}
 
+			if (settings.http.headers.length !== 0) {
+				let headers = settings.http.headers
+					.split('\n')
+					.map((l) => l.trim())
+					.filter((l) => l.length > 0)
+					.join('\r\n');
+				input.options.push('-headers', headers + '\r\n');
+			}
+
 			if (settings.http.http_proxy.length !== 0) {
 				input.options.push('-http_proxy', settings.http.http_proxy);
 			}
@@ -321,12 +340,19 @@ const createInputs = (settings, config, skills) => {
 					input.options.push('-timeout', settings.rtsp.stimeout);
 				}
 
-				if (settings.rtsp.udp === true) {
-					input.options.push('-rtsp_transport', 'udp');
-				} else {
-					input.options.push('-rtsp_transport', 'tcp');
-				}
+				input.options.push('-rtsp_transport', settings.rtsp.transport);
 			}
+		}
+	}
+
+	if (skills.protocols.input.includes('playout')) {
+		console.log("playout enabled");
+		if (settings.extentions.liveguard === 'video') {
+			input.address = `playout:${input.address}`
+			input.options.push('-playout_audio', '0');
+		} else if (settings.extentions.liveguard === 'video_audio') {
+			input.address = `playout:${input.address}`
+			input.options.push('-playout_audio', '1');
 		}
 	}
 
@@ -495,8 +521,7 @@ const isValidURL = (address) => {
 	return true;
 };
 
-function AdvancedSettings(props) {
-	const settings = props.settings;
+function AdvancedSettings({ settings = {}, onChange = function (settings) {} }) {
 	let protocolClass = getProtocolClass(settings.address);
 	if (settings.mode === 'push') {
 		switch (settings.push.type) {
@@ -528,7 +553,18 @@ function AdvancedSettings(props) {
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
-									<Checkbox label={<Trans>UDP transport</Trans>} checked={settings.rtsp.udp} onChange={props.onChange('rtsp', 'udp')} />
+									<Select
+										type="select"
+										label={<Trans>Transport</Trans>}
+										value={settings.rtsp.transport}
+										onChange={onChange('rtsp', 'transport')}
+									>
+										<MenuItem value="udp">UDP</MenuItem>
+										<MenuItem value="tcp">TCP</MenuItem>
+										<MenuItem value="udpmulticast">UDP multicast</MenuItem>
+										<MenuItem value="http">HTTP tunneling</MenuItem>
+										<MenuItem value="https">HTTPS tunneling</MenuItem>
+									</Select>
 								</Grid>
 								<Grid item xs={12}>
 									<TextField
@@ -539,7 +575,7 @@ function AdvancedSettings(props) {
 										fullWidth
 										label={<Trans>Socket timeout (microseconds)</Trans>}
 										value={settings.rtsp.stimeout}
-										onChange={props.onChange('rtsp', 'stimeout')}
+										onChange={onChange('rtsp', 'stimeout')}
 									/>
 								</Grid>
 							</React.Fragment>
@@ -555,12 +591,12 @@ function AdvancedSettings(props) {
 									<Checkbox
 										label={<Trans>Read input at native speed</Trans>}
 										checked={settings.http.readNative}
-										onChange={props.onChange('http', 'readNative')}
+										onChange={onChange('http', 'readNative')}
 									/>
 									<Checkbox
 										label={<Trans>Force input framerate</Trans>}
 										checked={settings.http.forceFramerate}
-										onChange={props.onChange('http', 'forceFramerate')}
+										onChange={onChange('http', 'forceFramerate')}
 									/>
 								</Grid>
 								{settings.http.forceFramerate === true && (
@@ -573,7 +609,7 @@ function AdvancedSettings(props) {
 											fullWidth
 											label={<Trans>Framerate</Trans>}
 											value={settings.http.framerate}
-											onChange={props.onChange('http', 'framerate')}
+											onChange={onChange('http', 'framerate')}
 										/>
 									</Grid>
 								)}
@@ -583,7 +619,7 @@ function AdvancedSettings(props) {
 										fullWidth
 										label="User-Agent"
 										value={settings.http.userAgent}
-										onChange={props.onChange('http', 'userAgent')}
+										onChange={onChange('http', 'userAgent')}
 									/>
 								</Grid>
 								<Grid item xs={12}>
@@ -592,8 +628,21 @@ function AdvancedSettings(props) {
 										fullWidth
 										label="Referrer"
 										value={settings.http.referer}
-										onChange={props.onChange('http', 'referer')}
+										onChange={onChange('http', 'referer')}
 									/>
+								</Grid>
+								<Grid item xs={12}>
+									<TextField
+										variant="outlined"
+										fullWidth
+										multiline
+										label="Headers"
+										value={settings.http.headers}
+										onChange={onChange('http', 'headers')}
+									/>
+									<Typography variant="caption">
+										<Trans>List of additional HTTP headers, one per line.</Trans>
+									</Typography>
 								</Grid>
 								<Grid item xs={12}>
 									<TextField
@@ -601,7 +650,7 @@ function AdvancedSettings(props) {
 										fullWidth
 										label="HTTP proxy"
 										value={settings.http.http_proxy}
-										onChange={props.onChange('http', 'http_proxy')}
+										onChange={onChange('http', 'http_proxy')}
 										placeholder="https://123.123.123.123:443"
 									/>
 								</Grid>
@@ -621,7 +670,7 @@ function AdvancedSettings(props) {
 								fullWidth
 								label="thread_queue_size"
 								value={settings.general.thread_queue_size}
-								onChange={props.onChange('general', 'thread_queue_size')}
+								onChange={onChange('general', 'thread_queue_size')}
 							/>
 						</Grid>
 						<Grid item xs={12}>
@@ -633,7 +682,7 @@ function AdvancedSettings(props) {
 								fullWidth
 								label="probesize (bytes)"
 								value={settings.general.probesize}
-								onChange={props.onChange('general', 'probesize')}
+								onChange={onChange('general', 'probesize')}
 							/>
 							<Typography variant="caption">
 								<Trans>
@@ -650,7 +699,7 @@ function AdvancedSettings(props) {
 								fullWidth
 								label="max_probe_packets"
 								value={settings.general.max_probe_packets}
-								onChange={props.onChange('general', 'max_probe_packets')}
+								onChange={onChange('general', 'max_probe_packets')}
 							/>
 							<Typography variant="caption">
 								<Trans>Default {2500}</Trans>
@@ -677,7 +726,7 @@ function AdvancedSettings(props) {
 												? settings.general.analyzeduration_rtmp
 												: settings.general.analyzeduration
 								}
-								onChange={props.onChange(
+								onChange={onChange(
 									'general',
 									settings.mode === 'push'
 										? settings.push.type === 'hls'
@@ -699,29 +748,35 @@ function AdvancedSettings(props) {
 							</Typography>
 						</Grid>
 						<Grid item xs={12}>
-							<MultiSelect type="select" label="flags" value={settings.general.fflags} onChange={props.onChange('general', 'fflags')}>
-								<MultiSelectOption value="discardcorrupt" name="discardcorrupt" />
-								<MultiSelectOption value="fastseek" name="fastseek" />
-								<MultiSelectOption value="genpts" name="genpts" />
-								<MultiSelectOption value="igndts" name="igndts" />
-								<MultiSelectOption value="ignidx" name="ignidx" />
-								<MultiSelectOption value="nobuffer" name="nobuffer" />
-								<MultiSelectOption value="nofillin" name="nofillin" />
-								<MultiSelectOption value="noparse" name="noparse" />
-								<MultiSelectOption value="sortdts" name="sortdts" />
-							</MultiSelect>
+							<MultiSelect
+								type="select"
+								label="flags"
+								value={settings.general.fflags}
+								onChange={onChange('general', 'fflags')}
+								items={[
+									{ value: 'discardcorrupt' },
+									{ value: 'fastseek' },
+									{ value: 'genpts' },
+									{ value: 'igndts' },
+									{ value: 'ignidx' },
+									{ value: 'nobuffer' },
+									{ value: 'nofillin' },
+									{ value: 'noparse' },
+									{ value: 'sortdts' },
+								]}
+							></MultiSelect>
 						</Grid>
 						<Grid item xs={12}>
-							<Checkbox label={<Trans>copyts</Trans>} checked={settings.general.copyts} onChange={props.onChange('general', 'copyts')} />
+							<Checkbox label={<Trans>copyts</Trans>} checked={settings.general.copyts} onChange={onChange('general', 'copyts')} />
 							<Checkbox
 								label={<Trans>start_at_zero</Trans>}
 								checked={settings.general.start_at_zero}
-								onChange={props.onChange('general', 'start_at_zero')}
+								onChange={onChange('general', 'start_at_zero')}
 							/>
 							<Checkbox
 								label={<Trans>use_wallclock_as_timestamps</Trans>}
 								checked={settings.general.use_wallclock_as_timestamps}
-								onChange={props.onChange('general', 'use_wallclock_as_timestamps')}
+								onChange={onChange('general', 'use_wallclock_as_timestamps')}
 							/>
 						</Grid>
 						<Grid item xs={12}>
@@ -729,7 +784,7 @@ function AdvancedSettings(props) {
 								type="select"
 								label={<Trans>avoid_negative_ts</Trans>}
 								value={settings.general.avoid_negative_ts}
-								onChange={props.onChange('general', 'avoid_negative_ts')}
+								onChange={onChange('general', 'avoid_negative_ts')}
 							>
 								<MenuItem value="make_non_negative">make_non_negative</MenuItem>
 								<MenuItem value="make_zero">make_zero</MenuItem>
@@ -744,12 +799,50 @@ function AdvancedSettings(props) {
 	);
 }
 
-function Pull(props) {
+function ExtentionSettings({ settings = {}, skills = {}, onChange = function (settings) {} }) {
+	if (!skills.protocols.input.includes('playout')) return null;
+	return (
+		<Grid item xs={12}>
+			<Accordion className="accordion">
+				<AccordionSummary elevation={0} expandIcon={<ArrowDropDownIcon />}>
+					<Typography>
+						<Trans>Extention settings</Trans>
+					</Typography>
+				</AccordionSummary>
+				<AccordionDetails>
+					<Grid container spacing={2}>
+						<Grid item xs={12}>
+							<Select
+								type="select"
+								label={<Trans>Live stabilization</Trans>}
+								value={settings.extentions.liveguard}
+								onChange={onChange('extentions', 'liveguard')}
+							>
+								<MenuItem value="none"><Trans>Protect: None</Trans></MenuItem>
+								<MenuItem value="video"><Trans>Protect: Video channel</Trans></MenuItem>
+								<MenuItem value="video_audio"><Trans>Protect: Video and audio channel</Trans></MenuItem>
+							</Select>
+						</Grid>
+					</Grid>
+				</AccordionDetails>
+			</Accordion>
+		</Grid>
+	);
+}
+
+function Pull({
+	knownDevices = [],
+	settings = {},
+	config = {},
+	skills = null,
+	onChange = function (settings) {},
+	onProbe = function (settings, inputs) {},
+	onRefresh = function () {},
+}) {
 	const classes = useStyles();
-	const settings = props.settings;
 	const authProtocol = isAuthProtocol(settings.address);
 	const validURL = isValidURL(settings.address);
-	const supportedProtocol = isSupportedProtocol(settings.address, props.skills.protocols.input);
+	const supportedProtocol = isSupportedProtocol(settings.address, skills.protocols.input);
 
 	return (
 		<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
@@ -765,7 +858,7 @@ function Pull(props) {
 					label={<Trans>Address</Trans>}
 					placeholder="rtsp://ip:port/path"
 					value={settings.address}
-					onChange={props.onChange('', 'address')}
+					onChange={onChange('', 'address')}
 				/>
 				<Typography variant="caption">
 					<Trans>Supports HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT and more.</Trans>
@@ -792,7 +885,7 @@ function Pull(props) {
 											fullWidth
 											label={<Trans>Username</Trans>}
 											value={settings.username}
-											onChange={props.onChange('', 'username')}
+											onChange={onChange('', 'username')}
 										/>
 										<Typography variant="caption">
 											<Trans>Username for the device.</Trans>
@@ -804,7 +897,7 @@ function Pull(props) {
 											fullWidth
 											label={<Trans>Password</Trans>}
 											value={settings.password}
-											onChange={props.onChange('', 'password')}
+											onChange={onChange('', 'password')}
 										/>
 										<Typography variant="caption">
 											<Trans>Password for the device.</Trans>
@@ -812,13 +905,14 @@ function Pull(props) {
 									</Grid>
 								</React.Fragment>
 							)}
-							<AdvancedSettings {...props}></AdvancedSettings>
+							<AdvancedSettings settings={settings} onChange={onChange} />
+							<ExtentionSettings settings={settings} skills={skills} onChange={onChange} />
 						</React.Fragment>
 					)}
 				</React.Fragment>
 			)}
 			<Grid item xs={12}>
-				<FormInlineButton disabled={!validURL || !supportedProtocol} onClick={props.onProbe}>
+				<FormInlineButton disabled={!validURL || !supportedProtocol} onClick={onProbe}>
 					<Trans>Probe</Trans>
 				</FormInlineButton>
 			</Grid>
@@ -826,13 +920,20 @@ function Pull(props) {
 	);
 }
 
-function Push(props) {
+function Push({
+	knownDevices = [],
+	settings = {},
+	config = {},
+	skills = null,
+	onChange = function (settings) {},
+	onProbe = function (settings, inputs) {},
+	onRefresh = function () {},
+}) {
 	const classes = useStyles();
-	const settings = props.settings;
 
-	//const supportsHLS = isSupportedProtocol('http://', props.skills.protocols.input);
-	const supportsRTMP = isSupportedProtocol('rtmp://', props.skills.protocols.input);
-	const supportsSRT = isSupportedProtocol('srt://', props.skills.protocols.input);
+	//const supportsHLS = isSupportedProtocol('http://', skills.protocols.input);
+	const supportsRTMP = isSupportedProtocol('rtmp://', skills.protocols.input);
+	const supportsSRT = isSupportedProtocol('srt://', skills.protocols.input);
 
 	if (!supportsRTMP && !supportsSRT) {
 		return (
@@ -853,7 +954,7 @@ function Push(props) {
 		<React.Fragment>
 			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
 				<Grid item xs={12}>
-					<Select type="select" label={<Trans>Protocol</Trans>} value={settings.push.type} onChange={props.onChange('push', 'type')}>
+					<Select type="select" label={<Trans>Protocol</Trans>} value={settings.push.type} onChange={onChange('push', 'type')}>
 						<MenuItem value="rtmp" disabled={!supportsRTMP}>
 							RTMP
 						</MenuItem>
@@ -863,26 +964,19 @@ function Push(props) {
 					</Select>
 				</Grid>
 			</Grid>
-			{settings.push.type === 'rtmp' && <PushRTMP {...props} />}
-			{settings.push.type === 'hls' && <PushHLS {...props} />}
-			{settings.push.type === 'srt' && <PushSRT {...props} />}
+			{settings.push.type === 'rtmp' && (
+				<PushRTMP knownDevices={knownDevices} settings={settings} config={config} skills={skills} onChange={onChange} onProbe={onProbe} onRefresh={onRefresh} />
+			)}
+			{settings.push.type === 'hls' && <PushHLS settings={settings} config={config} skills={skills} onChange={onChange} onProbe={onProbe} />}
+			{settings.push.type === 'srt' && (
+				<PushSRT knownDevices={knownDevices} settings={settings} config={config} skills={skills} onChange={onChange} onProbe={onProbe} onRefresh={onRefresh} />
+			)}
 		</React.Fragment>
 	);
 }
 
-Push.defaultProps = {
-	knownDevices: [],
-	settings: {},
-	config: {},
-	skills: null,
-	onChange: function (settings) {},
-	onProbe: function (settings, inputs) {},
-	onRefresh: function () {},
-};
-
-function PushHLS(props) {
+function PushHLS({ settings = {}, config = {}, skills = {}, onChange = function (settings) {}, onProbe = function (settings, inputs) {} }) {
 	const classes = useStyles();
-	const config = props.config;
 
 	const HLS = getHLS(config);
 
@@ -898,9 +992,10 @@ function PushHLS(props) {
 					<Textarea rows={1} value={HLS} readOnly allowCopy />
 				</BoxTextarea>
 			</Grid>
-			<AdvancedSettings {...props} />
+			<AdvancedSettings settings={settings} onChange={onChange} />
+			<ExtentionSettings settings={settings} skills={skills} onChange={onChange} />
 			<Grid item xs={12}>
-				<FormInlineButton onClick={props.onProbe}>
+				<FormInlineButton onClick={onProbe}>
 					<Trans>Probe</Trans>
 				</FormInlineButton>
 			</Grid>
@@ -908,11 +1003,18 @@ function PushHLS(props) {
 	);
 }
 
-function PushRTMP(props) {
+function PushRTMP({
+	knownDevices = [],
+	settings = {},
+	config = {},
+	skills = {},
+	onChange = function (settings) {},
+	onProbe = function (settings, inputs) {},
+	onRefresh = function () {},
+}) {
 	const { i18n } = useLingui();
 	const classes = useStyles();
 	const navigate = useNavigate();
-	const config = props.config;
 
 	let form = null;
 
@@ -934,7 +1036,7 @@ function PushRTMP(props) {
 	} else {
 		const RTMP = getRTMP(config);
 
-		const filteredDevices = props.knownDevices.filter((device) => device.media === 'rtmp');
+		const filteredDevices = knownDevices.filter((device) => device.media === 'rtmp');
 		const options = filteredDevices.map((device) => {
 			return (
 				<MenuItem key={device.id} value={device.id}>
@@ -958,14 +1060,14 @@ function PushRTMP(props) {
 		form = (
 			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
 				<Grid item xs={12}>
-					<Select type="select" label={<Trans>Input stream</Trans>} value={props.settings.push.name} onChange={props.onChange('push', 'name')}>
+					<Select type="select" label={<Trans>Input stream</Trans>} value={settings.push.name} onChange={onChange('push', 'name')}>
 						{options}
 					</Select>
-					<Button size="small" startIcon={<RefreshIcon />} onClick={props.onRefresh} sx={{ float: 'right' }}>
+					<Button size="small" startIcon={<RefreshIcon />} onClick={onRefresh} sx={{ float: 'right' }}>
 						<Trans>Refresh</Trans>
 					</Button>
 				</Grid>
-				{props.settings.push.name === config.channelid && (
+				{settings.push.name === config.channelid && (
 					<React.Fragment>
 						<Grid item xs={12}>
 							<Typography>
@@ -979,9 +1081,10 @@ function PushRTMP(props) {
 						</Grid>
 					</React.Fragment>
 				)}
-				<AdvancedSettings {...props} />
+				<AdvancedSettings settings={settings} onChange={onChange} />
+				<ExtentionSettings settings={settings} skills={skills} onChange={onChange} />
 				<Grid item xs={12}>
-					<FormInlineButton onClick={props.onProbe} disabled={props.settings.push.name === 'none'}>
+					<FormInlineButton onClick={onProbe} disabled={settings.push.name === 'none'}>
 						<Trans>Probe</Trans>
 					</FormInlineButton>
 				</Grid>
@@ -992,21 +1095,18 @@ function PushRTMP(props) {
 	return form;
 }
 
-PushRTMP.defaultProps = {
-	knownDevices: [],
-	settings: {},
-	config: {},
-	skills: null,
-	onChange: function (settings) {},
-	onProbe: function (settings, inputs) {},
-	onRefresh: function () {},
-};
-
-function PushSRT(props) {
+function PushSRT({
+	knownDevices = [],
+	settings = {},
+	config = {},
+	skills = {},
+	onChange = function (settings) {},
+	onProbe = function (settings, inputs) {},
+	onRefresh = function () {},
+}) {
 	const { i18n } = useLingui();
 	const classes = useStyles();
 	const navigate = useNavigate();
-	const config = props.config;
 
 	let form = null;
 
@@ -1028,7 +1128,7 @@ function PushSRT(props) {
 	} else {
 		const SRT = getSRT(config);
 
-		const filteredDevices = props.knownDevices.filter((device) => device.media === 'srt');
+		const filteredDevices = knownDevices.filter((device) => device.media === 'srt');
 		const options = filteredDevices.map((device) => {
 			return (
 				<MenuItem key={device.id} value={device.id}>
@@ -1052,14 +1152,14 @@ function PushSRT(props) {
 		form = (
 			<Grid container alignItems="flex-start" spacing={2} className={classes.gridContainer}>
 				<Grid item xs={12}>
-					<Select type="select" label={<Trans>Input stream</Trans>} value={props.settings.push.name} onChange={props.onChange('push', 'name')}>
+					<Select type="select" label={<Trans>Input stream</Trans>} value={settings.push.name} onChange={onChange('push', 'name')}>
 						{options}
 					</Select>
-					<Button size="small" startIcon={<RefreshIcon />} onClick={props.onRefresh} sx={{ float: 'right' }}>
+					<Button size="small" startIcon={<RefreshIcon />} onClick={onRefresh} sx={{ float: 'right' }}>
 						<Trans>Refresh</Trans>
 					</Button>
 				</Grid>
-				{props.settings.push.name === config.channelid && (
+				{settings.push.name === config.channelid && (
 					<React.Fragment>
 						<Grid item xs={12}>
 							<Typography>
@@ -1073,9 +1173,10 @@ function PushSRT(props) {
 						</Grid>
 					</React.Fragment>
 				)}
-				<AdvancedSettings {...props} />
+				<AdvancedSettings settings={settings} onChange={onChange} />
+				<ExtentionSettings settings={settings} skills={skills} onChange={onChange} />
 				<Grid item xs={12}>
-					<FormInlineButton onClick={props.onProbe} disabled={props.settings.push.name === 'none'}>
+					<FormInlineButton onClick={onProbe} disabled={settings.push.name === 'none'}>
 						<Trans>Probe</Trans>
 					</FormInlineButton>
 				</Grid>
@@ -1086,22 +1187,23 @@ function PushSRT(props) {
 	return form;
 }
 
-PushSRT.defaultProps = {
-	knownDevices: [],
-	settings: {},
-	config: {},
-	skills: null,
-	onChange: function (settings) {},
-	onProbe: function (settings, inputs) {},
-	onRefresh: function () {},
-};
-
-function Source(props) {
+function Source({
+	knownDevices = [],
+	settings = {},
+	config = {},
+	skills = null,
+	onChange = function (settings) {},
+	onProbe = function (settings, inputs) {},
+	onRefresh = function () {},
+	onStore = function (name, data) {
+		return '';
+	},
+}) {
 	const classes = useStyles();
 	const { i18n } = useLingui();
-	const config = initConfig(props.config);
-	const settings = initSettings(props.settings, config);
-	const skills = initSkills(props.skills);
+	config = initConfig(config);
+	settings = initSettings(settings, config);
+	skills = initSkills(skills);
 
 	const handleChange = (section, what) => (event) => {
 		const value = event.target.value;
@@ -1129,21 +1231,27 @@ function Source(props) {
 			if (what === 'type') {
 				settings.push.name = config.channelid;
 			}
+		} else if (section === 'extentions') {
+			if ([].includes(what)) {
+				settings.extentions[what] = !settings.extentions[what];
+			} else {
+				settings.extentions[what] = value;
+			}
 		} else {
 			settings[what] = value;
 		}
 
-		props.onChange({
+		onChange({
 			...settings,
 		});
 	};
 
 	const handleProbe = () => {
-		props.onProbe(settings, createInputs(settings, config, skills));
+		onProbe(settings, createInputs(settings, config, skills));
 	};
 
 	const handleRefresh = () => {
-		props.onRefresh();
+		onRefresh();
 	};
 
 	return (
@@ -1163,7 +1271,7 @@ function Source(props) {
 					settings={settings}
 					config={config}
 					skills={skills}
-					knownDevices={props.knownDevices}
+					knownDevices={knownDevices}
 					onChange={handleChange}
 					onProbe={handleProbe}
 					onRefresh={handleRefresh}
@@ -1173,15 +1281,6 @@ function Source(props) {
 	);
 }
 
-Source.defaultProps = {
-	knownDevices: [],
-	settings: {},
-	config: {},
-	skills: null,
-	onChange: function (settings) {},
-	onProbe: function (settings, inputs) {},
-};
-
 function SourceIcon(props) {
 	return <Icon style={{ color: '#FFF' }} {...props} />;
 }
@@ -1189,7 +1288,7 @@ function SourceIcon(props) {
 const id = 'network';
 const name = <Trans>Network source</Trans>;
 const capabilities = ['audio', 'video'];
-const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0';
+const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0 || ^7.0.0';
 
 const func = {
 	initSettings,

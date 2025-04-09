@@ -41,9 +41,9 @@ function createGraph(settings) {
 }
 
 // filter
-function Rotate(props) {
+function Rotate({ value = '', onChange = function (event) {} }) {
 	return (
-		<Select label={<Trans>Rotate</Trans>} value={props.value} onChange={props.onChange}>
+		<Select label={<Trans>Rotate</Trans>} value={value} onChange={onChange}>
 			<MenuItem value="none">None</MenuItem>
 			<MenuItem value="90">90°</MenuItem>
 			<MenuItem value="180">180°</MenuItem>
@@ -52,13 +52,8 @@ function Rotate(props) {
 	);
 }
 
-Rotate.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
-function Filter(props) {
-	const settings = init(props.settings);
+function Filter({ settings = {}, onChange = function (settings, mapping) {} }) {
+	settings = init(settings);
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -67,7 +62,7 @@ function Filter(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createGraph(newSettings), automatic);
+		onChange(newSettings, createGraph(newSettings), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -90,11 +85,6 @@ function Filter(props) {
 		</Grid>
 	);
 }
-
-Filter.defaultProps = {
-	settings: {},
-	onChange: function (settings, mapping) {},
-};
 
 const filter = 'transpose';
 const name = 'Transpose';

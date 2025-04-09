@@ -13,12 +13,12 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/misc/EncodingSelect.js:237
+#: src/misc/EncodingSelect.js:243
 msgid "<0>Compatibility list</0>"
 msgstr "<0>Список совместимости</0>"
 
-#: src/views/Edit/Profile.js:560
-#: src/views/Edit/Profile.js:719
+#: src/views/Edit/Profile.js:580
+#: src/views/Edit/Profile.js:734
 msgid "<0>Show probe details</0>"
 msgstr "<0>Показать детали зонда</0>"
 
@@ -42,35 +42,35 @@ msgstr "6 (+ гарантированное начало с ключевого �
 msgid "7 (+ fragmented MP4 format)"
 msgstr "7 (+ фрагментированный формат MP4)"
 
-#: src/misc/ChannelList.js:412
-#: src/views/Edit/index.js:647
-#: src/views/Edit/index.js:666
-#: src/views/Edit/Profile.js:599
+#: src/misc/ChannelList.js:415
+#: src/views/Edit/index.js:669
+#: src/views/Edit/index.js:688
+#: src/views/Edit/Profile.js:619
 #: src/views/Edit/Wizard/Abort.js:14
 #: src/views/Publication/Edit.js:631
-#: src/views/Settings.js:2278
-#: src/views/Settings.js:2300
+#: src/views/Settings.js:2275
+#: src/views/Settings.js:2297
 msgid "Abort"
 msgstr "Отмена"
 
-#: src/Header.js:283
-#: src/Header.js:324
+#: src/Header.js:288
+#: src/Header.js:329
 msgid "About"
 msgstr "О"
 
-#: src/misc/ChannelList.js:425
+#: src/misc/ChannelList.js:428
 msgid "Add"
 msgstr "Добавить"
 
-#: src/misc/modals/Hint.js:154
+#: src/misc/modals/Hint.js:149
 msgid "Add Audio"
 msgstr ""
 
-#: src/views/Playersite.js:733
+#: src/views/Playersite.js:667
 msgid "Add external widgets and styles to the publication site. You can find some examples on the help page."
 msgstr "Добавьте внешние виджеты и стили на сайт публикации. Вы можете найти несколько примеров на странице помощи."
 
-#: src/misc/ChannelList.js:409
+#: src/misc/ChannelList.js:412
 msgid "Add new channel"
 msgstr "Добавить новый канал"
 
@@ -78,63 +78,59 @@ msgstr "Добавить новый канал"
 msgid "Add Publication"
 msgstr "Добавить публикацию"
 
-#: src/misc/modals/Hint.js:158
-#~ msgid "Add Stream"
-#~ msgstr ""
-
 #: src/views/Publication/Add.js:366
 msgid "Add: {0}"
 msgstr "Добавить: {0}"
 
-#: src/views/Playersite.js:397
+#: src/views/Playersite.js:335
 msgid "Additional channels"
 msgstr ""
 
-#: src/views/Playersite.js:428
+#: src/views/Playersite.js:362
 msgid "Additional channels to display on the playersite."
 msgstr ""
 
-#: src/views/Edit/Sources/Network.js:765
-#: src/views/Edit/Wizard/Sources/Network.js:66
+#: src/views/Edit/Sources/Network.js:858
+#: src/views/Edit/Wizard/Sources/Network.js:73
 #: src/views/Publication/Services/Azure.js:98
 #: src/views/Publication/Services/Brightcove.js:95
 #: src/views/Publication/Services/Core.js:224
 #: src/views/Publication/Services/DASH.js:192
-#: src/views/Publication/Services/HLS.js:181
+#: src/views/Publication/Services/HLS.js:180
 #: src/views/Publication/Services/Icecast.js:162
 #: src/views/Publication/Services/Image2.js:126
 #: src/views/Publication/Services/Linkedin.js:93
-#: src/views/Publication/Services/MPEGTS.js:170
+#: src/views/Publication/Services/MPEGTS.js:169
 #: src/views/Publication/Services/Red5.js:115
 #: src/views/Publication/Services/RTMP.js:159
-#: src/views/Publication/Services/RTSP.js:150
+#: src/views/Publication/Services/RTSP.js:149
 #: src/views/Publication/Services/SRT.js:161
 #: src/views/Publication/Services/UDP.js:127
 #: src/views/Publication/Services/WOWZA.js:132
-#: src/views/Settings.js:1396
+#: src/views/Settings.js:1391
 msgid "Address"
 msgstr "Адрес"
 
-#: src/views/Playersite.js:667
+#: src/views/Playersite.js:601
 msgid "Address for the background image."
 msgstr "Ссылка на изображение фона."
 
-#: src/views/Settings.js:1426
+#: src/views/Settings.js:1421
 msgid "Address to listen on for HTTP requests."
 msgstr "Порт для запросов HTTP."
 
-#: src/views/Settings.js:1440
+#: src/views/Settings.js:1435
 msgid "Address to listen on for HTTPS requests."
 msgstr "Порт для запросов HTTPS."
 
-#: src/views/Edit/Sources/Network.js:972
-#: src/views/Edit/Sources/Network.js:1066
-#: src/views/Edit/Wizard/Sources/InternalRTMP.js:122
-#: src/views/Edit/Wizard/Sources/InternalSRT.js:122
+#: src/views/Edit/Sources/Network.js:1074
+#: src/views/Edit/Sources/Network.js:1166
+#: src/views/Edit/Wizard/Sources/InternalRTMP.js:129
+#: src/views/Edit/Wizard/Sources/InternalSRT.js:129
 msgid "Address:"
 msgstr "Адрес:"
 
-#: src/views/Playersite.js:552
+#: src/views/Playersite.js:486
 msgid "Adjust publication site colors and background as you like."
 msgstr "Настройте цвета и фон сайта публикации по своему усмотрению."
 
@@ -142,14 +138,14 @@ msgstr "Настройте цвета и фон сайта публикации 
 msgid "Advanced monitoring"
 msgstr "Расширенный мониторинг"
 
-#: src/views/Edit/Sources/Network.js:518
+#: src/views/Edit/Sources/Network.js:543
 #: src/views/Publication/Services/DASH.js:204
-#: src/views/Publication/Services/HLS.js:193
+#: src/views/Publication/Services/HLS.js:192
 #: src/views/Publication/Services/Icecast.js:172
 #: src/views/Publication/Services/Image2.js:132
-#: src/views/Publication/Services/MPEGTS.js:176
+#: src/views/Publication/Services/MPEGTS.js:175
 #: src/views/Publication/Services/RTMP.js:174
-#: src/views/Publication/Services/RTSP.js:162
+#: src/views/Publication/Services/RTSP.js:161
 #: src/views/Publication/Services/SRT.js:170
 #: src/views/Publication/Services/UDP.js:133
 msgid "Advanced settings"
@@ -159,8 +155,8 @@ msgstr "Расширенные настройки"
 msgid "Advanced setup"
 msgstr "Advanced Setup"
 
-#: src/views/Playersite.js:449
-#: src/views/Publication/Player.js:527
+#: src/views/Playersite.js:383
+#: src/views/Publication/Player.js:528
 msgid "AirPlay"
 msgstr "AirPlay"
 
@@ -172,23 +168,23 @@ msgstr "Оповещение по электронной почте"
 msgid "All"
 msgstr "Все"
 
-#: src/misc/filters/video/Bwdif.js:80
+#: src/misc/filters/video/Bwdif.js:70
 msgid "All frames"
 msgstr "Все рамки"
 
-#: src/views/Settings.js:1257
+#: src/views/Settings.js:1252
 msgid "All important system settings."
 msgstr "Все важные системные настройки."
 
-#: src/views/Settings.js:1594
+#: src/views/Settings.js:1589
 msgid "Allow all referrer"
 msgstr "Разрешить всех рефералов"
 
-#: src/views/Settings.js:1634
+#: src/views/Settings.js:1629
 msgid "Allow counting how many viewers the stream has."
 msgstr "Разрешить подсчет количества зрителей у трансляции."
 
-#: src/views/Edit/Sources/ALSA.js:156
+#: src/views/Edit/Sources/ALSA.js:157
 msgid "ALSA"
 msgstr "ALSA"
 
@@ -200,15 +196,15 @@ msgstr "Амплитуда"
 msgid "An environment variable sets this value."
 msgstr "Переменная среды задает это значение."
 
-#: src/views/Settings.js:1000
+#: src/views/Settings.js:995
 msgid "API endpoint not found. Settings not saved."
 msgstr "Конечная точка API не найдена. Настройки не сохранены."
 
-#: src/views/Settings.js:1989
+#: src/views/Settings.js:1984
 msgid "App"
 msgstr "Приложение"
 
-#: src/Footer.js:218
+#: src/Footer.js:222
 #: src/views/Publication/Services/Red5.js:126
 #: src/views/Publication/Services/WOWZA.js:148
 msgid "Application"
@@ -222,27 +218,27 @@ msgstr "Вы уверены, что хотите прервать работу �
 msgid "Audio"
 msgstr "Аудио"
 
-#: src/views/Edit/Sources/ALSA.js:114
-#: src/views/Edit/Sources/AVFoundation.js:159
+#: src/views/Edit/Sources/ALSA.js:123
+#: src/views/Edit/Sources/AVFoundation.js:168
 msgid "Audio device"
 msgstr "Аудио-устройство"
 
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:111
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:118
 msgid "Audio Device"
 msgstr "Аудиоустройство"
 
-#: src/views/Edit/Wizard/Audio.js:72
-#: src/views/Edit/Wizard/Audio.js:84
+#: src/views/Edit/Wizard/Audio.js:86
+#: src/views/Edit/Wizard/Audio.js:98
 msgid "Audio from device"
 msgstr "Звук с устройства"
 
-#: src/views/Edit/Profile.js:614
+#: src/views/Edit/Profile.js:634
 #: src/views/Edit/ProfileSummary.js:90
 #: src/views/Publication/Edit.js:565
 msgid "Audio settings"
 msgstr "Настройки звука"
 
-#: src/views/Edit/Wizard/Audio.js:25
+#: src/views/Edit/Wizard/Audio.js:39
 msgid "Audio setup"
 msgstr "Настройка звука"
 
@@ -262,12 +258,12 @@ msgstr "Клиент Auth0"
 msgid "Author"
 msgstr "Автор"
 
-#: src/views/Settings.js:1236
-#: src/views/Settings.js:1529
+#: src/views/Settings.js:1231
+#: src/views/Settings.js:1524
 msgid "Authorization"
 msgstr "Авторизация"
 
-#: src/misc/filters/video/Bwdif.js:65
+#: src/misc/filters/video/Bwdif.js:60
 msgid "Auto"
 msgstr "Авто"
 
@@ -275,38 +271,38 @@ msgstr "Авто"
 msgid "Automatic cleanup of all media data"
 msgstr "Автоматическая очистка всех медиаданных"
 
-#: src/views/Publication/Player.js:524
+#: src/views/Publication/Player.js:525
 msgid "Autoplay"
 msgstr "Автовоспроизведение"
 
-#: src/views/Playersite.js:477
+#: src/views/Playersite.js:411
 msgid "Available"
 msgstr "Доступный"
 
-#: src/views/Edit/Sources/AVFoundation.js:221
+#: src/views/Edit/Sources/AVFoundation.js:222
 msgid "AVFoundation"
 msgstr "AVFoundation"
 
-#: src/views/Edit/Sources/Network.js:730
+#: src/views/Edit/Sources/Network.js:785
 msgid "avoid_negative_ts"
 msgstr "avoid_negative_ts"
 
-#: src/views/Edit/Profile.js:760
+#: src/views/Edit/Profile.js:775
 #: src/views/Edit/Wizard/Abort.js:25
-#: src/views/Edit/Wizard/Audio.js:109
+#: src/views/Edit/Wizard/Audio.js:123
 #: src/views/Edit/Wizard/License.js:38
 #: src/views/Edit/Wizard/Metadata.js:35
-#: src/views/Edit/Wizard/Video.js:66
-#: src/views/Edit/Wizard/VideoProfile.js:67
+#: src/views/Edit/Wizard/Video.js:75
+#: src/views/Edit/Wizard/VideoProfile.js:82
 #: src/views/Publication/Add.js:561
 msgid "Back"
 msgstr "Назад"
 
-#: src/views/Playersite.js:601
+#: src/views/Playersite.js:535
 msgid "Background colors"
 msgstr "Цвета фона"
 
-#: src/views/Playersite.js:654
+#: src/views/Playersite.js:588
 msgid "Background image"
 msgstr "Фоновая картинка"
 
@@ -326,21 +322,21 @@ msgstr "Резервный ключ потока"
 msgid "Backup URL"
 msgstr "Резервный URL"
 
-#: src/Footer.js:256
-#: src/Footer.js:269
+#: src/Footer.js:260
+#: src/Footer.js:273
 msgid "Bandwidth"
 msgstr "Пропускная способность"
 
-#: src/views/Settings.js:1485
+#: src/views/Settings.js:1480
 msgid "Bandwidth control"
 msgstr "Контроль трафика"
 
-#: src/misc/modals/Process.js:143
+#: src/misc/modals/Process.js:153
 msgid "Banner"
 msgstr "Баннер"
 
 #: src/views/Login.js:241
-#: src/views/Settings.js:1534
+#: src/views/Settings.js:1529
 msgid "Basic"
 msgstr "Базовый"
 
@@ -348,12 +344,12 @@ msgstr "Базовый"
 msgid "Beep factor"
 msgstr "Звуковой фактор"
 
-#: src/misc/coders/settings/Audio.js:50
-#: src/misc/coders/settings/Video.js:51
+#: src/misc/coders/settings/Audio.js:14
+#: src/misc/coders/settings/Video.js:16
 msgid "Bitrate"
 msgstr "Битрейт"
 
-#: src/views/Settings.js:1903
+#: src/views/Settings.js:1898
 msgid "Block cache types"
 msgstr "Типы блочного кэша"
 
@@ -361,11 +357,11 @@ msgstr "Типы блочного кэша"
 msgid "blue"
 msgstr "синий"
 
-#: src/misc/filters/video/Bwdif.js:62
+#: src/misc/filters/video/Bwdif.js:57
 msgid "Bottom field"
 msgstr "Нижнее поле"
 
-#: src/views/Edit/index.js:582
+#: src/views/Edit/index.js:604
 #: src/views/Edit/Wizard/Metadata.js:24
 msgid "Briefly describe what the audience will see during the live stream."
 msgstr "Кратко опишите, что зрители увидят во время прямой трансляции."
@@ -374,7 +370,7 @@ msgstr "Кратко опишите, что зрители увидят во в�
 msgid "brown"
 msgstr "коричневый"
 
-#: src/views/Publication/Player.js:413
+#: src/views/Publication/Player.js:414
 msgid "Button color"
 msgstr "Цвет кнопки"
 
@@ -386,15 +382,15 @@ msgstr "По высоте"
 msgid "By width"
 msgstr "По ширине"
 
-#: src/views/Settings.js:1805
+#: src/views/Settings.js:1800
 msgid "Cache for files on /data."
 msgstr "Кэш для файлов в /data."
 
-#: src/views/Settings.js:1847
+#: src/views/Settings.js:1842
 msgid "Cache time (Seconds)"
 msgstr "Время кэширования (сек)"
 
-#: src/views/Settings.js:1888
+#: src/views/Settings.js:1883
 msgid "Cache types"
 msgstr "Типы кеша"
 
@@ -402,23 +398,23 @@ msgstr "Типы кеша"
 msgid "Capture buffer"
 msgstr "Буфер захвата"
 
-#: src/views/Edit/Sources/AVFoundation.js:197
+#: src/views/Edit/Sources/AVFoundation.js:206
 msgid "Capture clicks"
 msgstr "Захват кликов"
 
-#: src/views/Edit/Sources/AVFoundation.js:194
+#: src/views/Edit/Sources/AVFoundation.js:203
 msgid "Capture cursor"
 msgstr "Захват курсора"
 
-#: src/views/Edit/index.js:351
+#: src/views/Edit/index.js:358
 msgid "Channel \"{0}\" saved"
 msgstr "Канал \"{0}\" сохранен"
 
-#: src/views/Edit/Sources/ALSA.js:129
+#: src/views/Edit/Sources/ALSA.js:138
 msgid "Channels"
 msgstr "Каналы"
 
-#: src/views/Settings.js:1266
+#: src/views/Settings.js:1261
 msgid "Check for updates"
 msgstr "Проверять обновление"
 
@@ -426,33 +422,34 @@ msgstr "Проверять обновление"
 msgid "Check the requirements"
 msgstr "Проверить требования"
 
-#: src/views/Edit/StreamSelect.js:53
+#: src/views/Edit/StreamSelect.js:52
 msgid "Choose a video stream"
 msgstr "Выберите видеопоток"
 
-#: src/views/Edit/StreamSelect.js:68
+#: src/views/Edit/StreamSelect.js:67
 msgid "Choose an audio stream"
 msgstr "Выберите аудиопоток"
 
-#: src/views/Edit/Sources/ALSA.js:96
-#: src/views/Edit/Sources/Framebuffer.js:80
+#: src/views/Edit/Sources/ALSA.js:105
+#: src/views/Edit/Sources/Framebuffer.js:89
 #: src/views/Edit/Sources/Raspicam.js:93
 #: src/views/Edit/Sources/V4L.js:93
+#: src/views/Edit/Sources/X11grab.js:130
 msgid "Choose an input device ..."
 msgstr "Выберите устройство ввода..."
 
-#: src/views/Edit/Sources/Network.js:948
-#: src/views/Edit/Sources/Network.js:1042
-#: src/views/Edit/Wizard/Sources/InternalRTMP.js:96
-#: src/views/Edit/Wizard/Sources/InternalSRT.js:96
+#: src/views/Edit/Sources/Network.js:1050
+#: src/views/Edit/Sources/Network.js:1142
+#: src/views/Edit/Wizard/Sources/InternalRTMP.js:103
+#: src/views/Edit/Wizard/Sources/InternalSRT.js:103
 msgid "Choose an input stream ..."
 msgstr "Выберите входной поток ..."
 
-#: src/misc/coders/settings/Video.js:380
+#: src/misc/coders/settings/Video.js:320
 msgid "Choose between CFR and VFR (Auto)"
 msgstr "Выбор между CFR и VFR (авто)"
 
-#: src/misc/EncodingSelect.js:215
+#: src/misc/EncodingSelect.js:221
 msgid "Choose codec ..."
 msgstr "Выберите кодек..."
 
@@ -460,34 +457,34 @@ msgstr "Выберите кодек..."
 msgid "Choose tenant ..."
 msgstr "Выбрать клиента..."
 
-#: src/views/Playersite.js:441
-#: src/views/Publication/Player.js:526
+#: src/views/Playersite.js:375
+#: src/views/Publication/Player.js:527
 msgid "Chromecast"
 msgstr "Chromecast"
 
 #: src/views/Publication/Services/DASH.js:309
-#: src/views/Publication/Services/HLS.js:249
+#: src/views/Publication/Services/HLS.js:248
 msgid "Chunk"
 msgstr "Чанк"
 
 #: src/misc/Changelog.js:177
-#: src/misc/ModalContent.js:77
-#: src/misc/modals/Hint.js:181
-#: src/views/Edit/index.js:621
-#: src/views/Playersite.js:823
+#: src/misc/ModalContent.js:75
+#: src/misc/modals/Hint.js:170
+#: src/views/Edit/index.js:643
+#: src/views/Playersite.js:757
 #: src/views/Publication/Add.js:404
 #: src/views/Publication/Add.js:558
 #: src/views/Publication/Edit.js:595
-#: src/views/Publication/Player.js:536
-#: src/views/Settings.js:2219
+#: src/views/Publication/Player.js:537
+#: src/views/Settings.js:2216
 msgid "Close"
 msgstr "Закрыть"
 
-#: src/views/Playersite.js:332
+#: src/views/Playersite.js:271
 msgid "Code injection"
 msgstr "Внедрение кода"
 
-#: src/misc/EncodingSelect.js:213
+#: src/misc/EncodingSelect.js:219
 #: src/misc/modals/Hint.js:68
 #: src/misc/modals/Hint.js:83
 msgid "Codec"
@@ -497,19 +494,19 @@ msgstr "Кодек"
 msgid "Color"
 msgstr "Цвет"
 
-#: src/misc/modals/Process.js:134
+#: src/misc/modals/Process.js:144
 msgid "Command"
 msgstr "Команда"
 
-#: src/views/Settings.js:1376
+#: src/views/Settings.js:1371
 msgid "Config"
 msgstr "Конфигурация"
 
-#: src/views/Password.js:134
+#: src/views/Password.js:140
 msgid "Confirm password"
 msgstr "Подтвердить пароль"
 
-#: src/misc/ActionButton.js:38
+#: src/misc/ActionButton.js:46
 msgid "Connect"
 msgstr "Подключить"
 
@@ -517,13 +514,13 @@ msgstr "Подключить"
 msgid "Connected device"
 msgstr "Подключенное устройство"
 
-#: src/views/Publication/Process.js:54
+#: src/views/Publication/Process.js:53
 msgid "Connected since <0/>"
 msgstr "Подключено с <0/>"
 
-#: src/misc/ActionButton.js:12
-#: src/views/Main/index.js:337
-#: src/views/Publication/Process.js:40
+#: src/misc/ActionButton.js:20
+#: src/views/Main/index.js:357
+#: src/views/Publication/Process.js:39
 msgid "Connecting ..."
 msgstr "Подключение ..."
 
@@ -535,33 +532,33 @@ msgstr "Подключение к ядру Restreamer..."
 msgid "Connecting to Restreamer Core failed probably because of mixed content."
 msgstr "Не удалось подключиться к ядру Restreamer, вероятно, из-за смешанного контента."
 
-#: src/misc/coders/settings/Video.js:374
+#: src/misc/coders/settings/Video.js:314
 msgid "Constant frame rate (CFR)"
 msgstr "Постоянная частота кадров (CFR)"
 
-#: src/misc/coders/Encoders/video/av1_librav1e.js:175
+#: src/misc/coders/Encoders/video/av1_librav1e.js:170
 msgid "Constant Quantizer Mode (-1 to 255)."
 msgstr "Режим постоянного квантования (от -1 до 255)."
 
 #: src/misc/controls/Metadata.js:70
-#: src/views/Playersite.js:700
-#: src/views/Playersite.js:717
+#: src/views/Playersite.js:634
+#: src/views/Playersite.js:651
 msgid "Content"
 msgstr "Контент"
 
-#: src/views/Main/index.js:397
+#: src/views/Main/index.js:476
 msgid "Content URL"
 msgstr "URL содержимого"
 
-#: src/views/Edit/Sources/Network.js:715
+#: src/views/Edit/Sources/Network.js:770
 msgid "copyts"
 msgstr "copyts"
 
-#: src/Footer.js:193
+#: src/Footer.js:197
 msgid "Cores"
 msgstr "Ядра"
 
-#: src/misc/Progress.js:66
+#: src/misc/Progress.js:130
 msgid "CPU"
 msgstr "ПРОЦЕССОР"
 
@@ -577,79 +574,81 @@ msgstr "Ограничение использования процессора �
 msgid "Creative Commons"
 msgstr "Creative Commons"
 
-#: src/misc/coders/Encoders/audio/opus.js:66
-#: src/misc/coders/settings/Audio.js:25
-#: src/misc/coders/settings/Audio.js:111
-#: src/misc/coders/settings/Audio.js:162
-#: src/misc/coders/settings/Video.js:31
-#: src/misc/coders/settings/Video.js:70
-#: src/misc/coders/settings/Video.js:115
-#: src/misc/coders/settings/Video.js:181
-#: src/misc/coders/settings/Video.js:223
-#: src/misc/coders/settings/Video.js:266
-#: src/misc/coders/settings/Video.js:305
-#: src/misc/coders/settings/Video.js:342
-#: src/misc/filters/audio/Resample.js:63
-#: src/misc/filters/audio/Resample.js:114
+#: src/misc/coders/Encoders/audio/opus.js:74
+#: src/misc/coders/settings/Audio.js:33
+#: src/misc/coders/settings/Audio.js:120
+#: src/misc/coders/settings/Audio.js:170
+#: src/misc/coders/settings/Video.js:40
+#: src/misc/coders/settings/Video.js:78
+#: src/misc/coders/settings/Video.js:122
+#: src/misc/coders/settings/Video.js:174
+#: src/misc/coders/settings/Video.js:207
+#: src/misc/coders/settings/Video.js:241
+#: src/misc/coders/settings/Video.js:271
+#: src/misc/coders/settings/Video.js:299
+#: src/misc/filters/audio/Resample.js:72
+#: src/misc/filters/audio/Resample.js:122
 #: src/misc/filters/audio/Volume.js:58
-#: src/misc/filters/video/Framerate.js:48
-#: src/views/Edit/Sources/ALSA.js:101
-#: src/views/Edit/Sources/AVFoundation.js:120
-#: src/views/Edit/Sources/AVFoundation.js:153
+#: src/misc/filters/video/Framerate.js:55
+#: src/views/Edit/Sources/ALSA.js:110
+#: src/views/Edit/Sources/AVFoundation.js:129
+#: src/views/Edit/Sources/AVFoundation.js:162
 #: src/views/Edit/Sources/V4L.js:99
+#: src/views/Edit/Sources/X11grab.js:74
+#: src/views/Edit/Sources/X11grab.js:136
 msgid "Custom ..."
 msgstr "Пользовательский ..."
 
-#: src/views/Edit/Sources/ALSA.js:115
+#: src/views/Edit/Sources/ALSA.js:124
 msgid "Custom audio device"
 msgstr "Пользовательское аудиоустройство"
 
-#: src/views/Edit/Sources/AVFoundation.js:160
+#: src/views/Edit/Sources/AVFoundation.js:169
 msgid "Custom audio index"
 msgstr "Пользовательский звуковой индекс"
 
-#: src/misc/coders/settings/Audio.js:51
-#: src/misc/coders/settings/Video.js:52
+#: src/misc/coders/settings/Audio.js:15
+#: src/misc/coders/settings/Video.js:17
 msgid "Custom bitrate (kbit/s)"
 msgstr "Пользовательский битрейт (кбит/с)"
 
-#: src/views/Playersite.js:728
+#: src/views/Playersite.js:662
 msgid "Custom code injection"
 msgstr "Внедрение пользовательского кода"
 
-#: src/misc/coders/Encoders/audio/opus.js:92
+#: src/misc/coders/Encoders/audio/opus.js:59
 msgid "Custom delay"
 msgstr "Пользовательская задержка"
 
-#: src/views/Edit/Sources/Framebuffer.js:88
+#: src/views/Edit/Sources/Framebuffer.js:97
 msgid "Custom device"
 msgstr "Пользовательское устройство"
 
-#: src/misc/coders/settings/Video.js:326
-#: src/misc/coders/settings/Video.js:363
+#: src/misc/coders/settings/Video.js:255
+#: src/misc/coders/settings/Video.js:285
 msgid "Custom format"
 msgstr "Пользовательский формат"
 
-#: src/misc/coders/settings/Video.js:136
-#: src/misc/filters/video/Framerate.js:66
+#: src/misc/coders/settings/Video.js:100
+#: src/misc/filters/video/Framerate.js:37
 msgid "Custom framerate"
 msgstr "Пользовательская частота кадров"
 
-#: src/views/Settings.js:1382
+#: src/views/Settings.js:1377
 msgid "Custom JSON config for datarhei Core."
 msgstr "Пользовательская конфигурация JSON для ядра datarhei."
 
-#: src/misc/coders/settings/Video.js:91
+#: src/misc/coders/settings/Video.js:62
 msgid "Custom keyframe interval"
 msgstr "Пользовательский интервал ключевых кадров"
 
-#: src/misc/coders/settings/Audio.js:138
-#: src/misc/filters/audio/Resample.js:90
+#: src/misc/coders/settings/Audio.js:62
+#: src/misc/filters/audio/Resample.js:54
 msgid "Custom layout"
 msgstr "Пользовательский макет"
 
-#: src/misc/coders/settings/Audio.js:189
-#: src/misc/filters/audio/Resample.js:141
+#: src/misc/coders/settings/Audio.js:148
+#: src/misc/filters/audio/Resample.js:100
 msgid "Custom sampling (Hz)"
 msgstr "Пользовательская выборка (Гц)"
 
@@ -657,23 +656,33 @@ msgstr "Пользовательская выборка (Гц)"
 msgid "Custom scale"
 msgstr "Пользовательский масштаб"
 
-#: src/misc/coders/settings/Video.js:202
-#: src/misc/coders/settings/Video.js:244
-#: src/misc/coders/settings/Video.js:287
+#: src/misc/coders/Decoders/video/h264_cuvid.js:73
+#: src/misc/coders/Decoders/video/hevc_cuvid.js:73
+#: src/misc/coders/Decoders/video/mjpeg_cuvid.js:73
+#: src/misc/coders/Decoders/video/mpeg1_cuvid.js:73
+#: src/misc/coders/Decoders/video/mpeg2_cuvid.js:73
+#: src/misc/coders/Decoders/video/mpeg4_cuvid.js:73
+#: src/misc/coders/Decoders/video/vc1_cuvid.js:73
+#: src/misc/coders/Decoders/video/vp8_cuvid.js:73
+#: src/misc/coders/Decoders/video/vp9_cuvid.js:73
+#: src/misc/coders/settings/Video.js:148
+#: src/misc/coders/settings/Video.js:188
+#: src/misc/coders/settings/Video.js:221
 msgid "Custom size"
 msgstr "Пользовательский размер"
 
 #: src/views/Edit/Sources/V4L.js:113
+#: src/views/Edit/Sources/X11grab.js:150
 msgid "Custom video device"
 msgstr "Пользовательское видеоустройство"
 
-#: src/views/Edit/Sources/AVFoundation.js:127
+#: src/views/Edit/Sources/AVFoundation.js:136
 msgid "Custom video index"
 msgstr "Пользовательский индекс видео"
 
-#: src/misc/CopyButton.js:20
-#: src/misc/Textarea.js:46
-#: src/misc/TextFieldCopy.js:33
+#: src/misc/CopyButton.js:19
+#: src/misc/Textarea.js:58
+#: src/misc/TextFieldCopy.js:45
 msgid "Data copied to clipboard"
 msgstr "Данные скопированы в буфер обмена"
 
@@ -681,38 +690,38 @@ msgstr "Данные скопированы в буфер обмена"
 msgid "Death color"
 msgstr "Цвет смерти"
 
-#: src/misc/filters/audio/Volume.js:74
+#: src/misc/filters/audio/Volume.js:65
 msgid "Decibels (dB)"
 msgstr "Децибелы (дБ)"
 
-#: src/misc/EncodingSelect.js:223
-#: src/views/Edit/Wizard/VideoProfile.js:48
+#: src/misc/EncodingSelect.js:229
+#: src/views/Edit/Wizard/VideoProfile.js:63
 msgid "Decoder"
 msgstr "Декодер"
 
-#: src/views/Edit/Sources/AVFoundation.js:115
-#: src/views/Edit/Sources/AVFoundation.js:149
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:76
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:105
-#: src/views/Playersite.js:483
-#: src/views/Playersite.js:564
-#: src/views/Playersite.js:608
+#: src/views/Edit/Sources/AVFoundation.js:124
+#: src/views/Edit/Sources/AVFoundation.js:158
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:83
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:112
+#: src/views/Playersite.js:417
+#: src/views/Playersite.js:498
+#: src/views/Playersite.js:542
 msgid "Default"
 msgstr "По умолчанию"
 
-#: src/views/Edit/Sources/Network.js:656
+#: src/views/Edit/Sources/Network.js:705
 msgid "Default {0}"
 msgstr "По умолчанию {0}"
 
-#: src/views/Edit/Sources/Network.js:696
+#: src/views/Edit/Sources/Network.js:745
 msgid "Default {0} ({1} seconds)"
 msgstr "По умолчанию {0} ({1} секунд)"
 
-#: src/misc/filters/video/Bwdif.js:128
+#: src/misc/filters/video/Bwdif.js:113
 msgid "Deinterlace (bwdif)"
 msgstr "Деинтерлейс (bwdif)"
 
-#: src/misc/filters/video/Bwdif.js:78
+#: src/misc/filters/video/Bwdif.js:68
 msgid "Deinterlace deint"
 msgstr "Деинтерлейс deint"
 
@@ -720,21 +729,21 @@ msgstr "Деинтерлейс deint"
 msgid "Deinterlace mode"
 msgstr "Режим деинтерлейса"
 
-#: src/misc/filters/video/Bwdif.js:57
+#: src/misc/filters/video/Bwdif.js:52
 msgid "Deinterlace parity"
 msgstr "Деинтерлейс по четности"
 
-#: src/misc/coders/Encoders/audio/opus.js:91
+#: src/misc/coders/Encoders/audio/opus.js:58
 msgid "Delay"
 msgstr "Задержка"
 
-#: src/views/Edit/Sources/ALSA.js:132
+#: src/views/Edit/Sources/ALSA.js:141
 msgid "Delay (ms)"
 msgstr "Задержка (мс)"
 
-#: src/views/Edit/index.js:635
-#: src/views/Edit/index.js:671
-#: src/views/Playersite.js:506
+#: src/views/Edit/index.js:657
+#: src/views/Edit/index.js:693
+#: src/views/Playersite.js:440
 #: src/views/Publication/Edit.js:604
 #: src/views/Publication/Edit.js:636
 msgid "Delete"
@@ -754,52 +763,52 @@ msgstr "Режим доставки"
 msgid "Description"
 msgstr "Описание"
 
-#: src/views/Playersite.js:330
-#: src/views/Playersite.js:547
+#: src/views/Playersite.js:269
+#: src/views/Playersite.js:481
 msgid "Design"
 msgstr "Дизайн"
 
-#: src/views/Edit/Sources/Framebuffer.js:87
-#: src/views/Edit/Wizard/Audio.js:87
+#: src/views/Edit/Sources/Framebuffer.js:96
+#: src/views/Edit/Wizard/Audio.js:101
 #: src/views/Publication/Services/Framebuffer.js:93
 msgid "Device"
 msgstr "Устройство"
 
-#: src/misc/ActionButton.js:24
-#: src/misc/ActionButton.js:45
-#: src/misc/ActionButton.js:59
+#: src/misc/ActionButton.js:32
+#: src/misc/ActionButton.js:53
+#: src/misc/ActionButton.js:67
 msgid "Disconnect"
 msgstr "Отключить"
 
-#: src/views/Edit/index.js:652
+#: src/views/Edit/index.js:674
 msgid "Disconnect & Continue"
 msgstr "Отключить и продолжить"
 
-#: src/misc/ActionButton.js:18
-#: src/views/Publication/Process.js:47
+#: src/misc/ActionButton.js:26
+#: src/views/Publication/Process.js:46
 msgid "Disconnecting ..."
 msgstr "Отключение ..."
 
 #: src/misc/controls/HLS.js:70
-#: src/views/Settings.js:1767
+#: src/views/Settings.js:1762
 msgid "Disk"
 msgstr "Диск"
 
-#: src/views/Settings.js:1802
-#: src/views/Settings.js:1810
+#: src/views/Settings.js:1797
+#: src/views/Settings.js:1805
 msgid "Disk cache"
 msgstr "Кэш диска"
 
-#: src/Footer.js:315
-#: src/Footer.js:328
+#: src/Footer.js:319
+#: src/Footer.js:332
 msgid "Disk storage"
 msgstr "Дисковое хранилище"
 
-#: src/views/Settings.js:2310
+#: src/views/Settings.js:2307
 msgid "Do you really want to restart the application now?"
 msgstr "Вы действительно хотите перезапустить приложение сейчас?"
 
-#: src/views/Edit/index.js:663
+#: src/views/Edit/index.js:685
 msgid "Do you want to delete \"{0}\"?"
 msgstr "Вы хотите удалить \"{0}\"?"
 
@@ -807,28 +816,32 @@ msgstr "Вы хотите удалить \"{0}\"?"
 msgid "Do you want to delete {title}?"
 msgstr "Вы хотите удалить {title}?"
 
-#: src/views/Edit/index.js:644
+#: src/views/Edit/index.js:666
 msgid "Do you want to disconnect \"{0}\"?"
 msgstr "Вы хотите отключить \"{0}\"?"
 
-#: src/Header.js:289
-#: src/Header.js:330
+#: src/Header.js:294
+#: src/Header.js:335
 msgid "Docs"
 msgstr "Документы"
 
 #: src/views/Publication/Services/DASH.js:501
-#: src/views/Publication/Services/HLS.js:496
+#: src/views/Publication/Services/HLS.js:501
 #: src/views/Publication/Services/Icecast.js:240
 #: src/views/Publication/Services/Image2.js:171
-#: src/views/Publication/Services/MPEGTS.js:365
+#: src/views/Publication/Services/MPEGTS.js:370
 #: src/views/Publication/Services/RTMP.js:286
-#: src/views/Publication/Services/RTSP.js:235
+#: src/views/Publication/Services/RTSP.js:230
 #: src/views/Publication/Services/SRT.js:428
 #: src/views/Publication/Services/UDP.js:241
 msgid "Documentation"
 msgstr "Документация"
 
-#: src/misc/Progress.js:157
+#: src/views/Edit/Sources/X11grab.js:216
+msgid "Draw mouse"
+msgstr ""
+
+#: src/misc/Progress.js:221
 msgid "Dup. frames"
 msgstr "Дуп. кадры"
 
@@ -840,11 +853,11 @@ msgstr "Каждое поле"
 msgid "Each frames"
 msgstr "Каждая рама"
 
-#: src/views/Edit/index.js:409
+#: src/views/Edit/index.js:416
 msgid "Edit"
 msgstr "Редактировать"
 
-#: src/views/Edit/index.js:435
+#: src/views/Edit/index.js:442
 msgid "Edit the audio and video sources for the live stream. Add a description, and set your desired content license."
 msgstr "Отредактируйте аудио и видеоисточники для прямой трансляции. Добавьте описание и установите желаемую лицензию на содержимое."
 
@@ -852,19 +865,19 @@ msgstr "Отредактируйте аудио и видеоисточники 
 msgid "Edit: {title}"
 msgstr "Изменить: {title}"
 
-#: src/views/Publication/Player.js:347
+#: src/views/Publication/Player.js:348
 msgid "EDIT: Player"
 msgstr "РЕДАКТИРОВАТЬ: Плеер"
 
-#: src/views/Playersite.js:324
+#: src/views/Playersite.js:263
 msgid "EDIT: Publication Website"
 msgstr "РЕДАКТИРОВАТЬ: Сайт публикации"
 
-#: src/views/Settings.js:1466
+#: src/views/Settings.js:1461
 msgid "Email"
 msgstr "Электронная почта"
 
-#: src/views/Publication/Player.js:381
+#: src/views/Publication/Player.js:382
 msgid "Embed"
 msgstr "Встроить"
 
@@ -882,7 +895,11 @@ msgstr "Включить периодический звуковой сигна�
 msgid "Enable backup stream"
 msgstr "Включить резервный поток"
 
-#: src/views/Publication/Player.js:514
+#: src/misc/controls/Preview.js:49
+msgid "Enable browser-compatible H.264 stream"
+msgstr ""
+
+#: src/views/Publication/Player.js:515
 msgid "Enable nerd statistics"
 msgstr "Включить статистику ботаников"
 
@@ -896,8 +913,8 @@ msgstr "Включить сейчас"
 msgid "Enable primary stream"
 msgstr "Включить основной поток"
 
-#: src/views/Edit/Sources/Network.js:929
-#: src/views/Edit/Wizard/Sources/InternalRTMP.js:79
+#: src/views/Edit/Sources/Network.js:1031
+#: src/views/Edit/Wizard/Sources/InternalRTMP.js:86
 msgid "Enable RTMP server ..."
 msgstr "Включить RTMP сервер ..."
 
@@ -909,49 +926,49 @@ msgstr "Включить передачу RTMPS"
 msgid "Enable snapshots"
 msgstr "Включить снимки"
 
-#: src/views/Edit/Sources/Network.js:1023
-#: src/views/Edit/Wizard/Sources/InternalSRT.js:79
+#: src/views/Edit/Sources/Network.js:1123
+#: src/views/Edit/Wizard/Sources/InternalSRT.js:86
 msgid "Enable SRT server ..."
 msgstr "Включить сервер SRT ..."
 
-#: src/views/Settings.js:1549
+#: src/views/Settings.js:1544
 msgid "Enabling authorization is strongly advised. Otherwise, anybody can access this instance."
 msgstr "Настоятельно рекомендуется включить авторизацию. В противном случае любой может получить доступ к этому экземпляру."
 
-#: src/views/Settings.js:1709
+#: src/views/Settings.js:1704
 msgid "Enabling basic auth is strongly advised. Otherwise, anybody could write data to /memfs."
 msgstr "Настоятельно рекомендуется включить базовую аутентификацию. В противном случае любой может записать данные в /memfs."
 
-#: src/views/Edit/Wizard/VideoProfile.js:54
+#: src/views/Edit/Wizard/VideoProfile.js:69
 msgid "Encoder"
 msgstr "Кодировщик"
 
-#: src/views/Edit/Summary.js:95
+#: src/views/Edit/Summary.js:93
 #: src/views/Publication/Add.js:492
 #: src/views/Publication/Edit.js:528
 msgid "Encoding"
 msgstr "Кодирование"
 
-#: src/views/Publication/Services/HLS.js:445
+#: src/views/Publication/Services/HLS.js:450
 #: src/views/Publication/Services/RTMP.js:258
 #: src/views/Publication/Services/SRT.js:372
 msgid "Encryption"
 msgstr "Шифрование"
 
-#: src/misc/ChannelList.js:432
+#: src/misc/ChannelList.js:435
 msgid "Enter a name for the new channel."
 msgstr "Введите имя для нового канала."
 
-#: src/views/Password.js:122
+#: src/views/Password.js:128
 msgid "Enter password"
 msgstr "Введите пароль"
 
-#: src/views/Edit/Sources/Network.js:758
-#: src/views/Edit/Wizard/Sources/Network.js:59
+#: src/views/Edit/Sources/Network.js:851
+#: src/views/Edit/Wizard/Sources/Network.js:66
 msgid "Enter the address of your network source:"
 msgstr "Введите адрес вашего сетевого источника:"
 
-#: src/views/Password.js:110
+#: src/views/Password.js:116
 msgid "Enter username"
 msgstr "Введите имя пользователя"
 
@@ -960,33 +977,33 @@ msgid "Entropy coder"
 msgstr "Энтропийный кодер"
 
 #: src/views/Edit/Wizard/Error.js:16
-#: src/views/Incompatible.js:30
+#: src/views/Incompatible.js:28
 #: src/views/Invalid.js:29
-#: src/views/Publication/Process.js:63
-#: src/views/Settings.js:1202
+#: src/views/Publication/Process.js:62
+#: src/views/Settings.js:1197
 msgid "Error"
 msgstr "Ошибка"
 
-#: src/misc/CopyButton.js:22
-#: src/misc/Textarea.js:48
-#: src/misc/TextFieldCopy.js:35
+#: src/misc/CopyButton.js:21
+#: src/misc/Textarea.js:60
+#: src/misc/TextFieldCopy.js:47
 msgid "Error while copying data to clipboard"
 msgstr "Ошибка при копировании данных в буфер обмена"
 
-#: src/views/Main/index.js:356
-#: src/views/Publication/Process.js:64
+#: src/views/Main/index.js:376
+#: src/views/Publication/Process.js:63
 msgid "Error: {0}"
 msgstr "Ошибка: {0}"
 
-#: src/views/Playersite.js:773
+#: src/views/Playersite.js:707
 msgid "Expands the area above the channel list (live chat)."
 msgstr "Расширяет область над списком каналов (живой чат)."
 
-#: src/views/Playersite.js:793
+#: src/views/Playersite.js:727
 msgid "Expands the area under the channel description (comment boxes)."
 msgstr "Расширяет область под описанием канала (окна комментариев)."
 
-#: src/views/Settings.js:1293
+#: src/views/Settings.js:1288
 msgid "Expert mode"
 msgstr "Режим эксперта"
 
@@ -994,32 +1011,36 @@ msgstr "Режим эксперта"
 msgid "EXT-X-VERSION"
 msgstr "EXT-X-VERSION"
 
-#: src/views/Playersite.js:758
+#: src/views/Playersite.js:692
 msgid "Extend channel list"
 msgstr "Расширить список каналов"
 
-#: src/views/Playersite.js:778
+#: src/views/Playersite.js:712
 msgid "Extend content"
 msgstr "Расширить содержимое"
 
-#: src/views/Playersite.js:798
+#: src/views/Playersite.js:732
 msgid "Extend footer"
 msgstr "Расширить нижний колонтитул"
 
-#: src/views/Playersite.js:738
+#: src/views/Playersite.js:672
 msgid "Extend header"
 msgstr "Расширить заголовок"
+
+#: src/views/Edit/Sources/Network.js:809
+msgid "Extention settings"
+msgstr ""
 
 #: src/views/Publication/Add.js:229
 msgid "Failed to create publication service ({0})"
 msgstr "Не удалось создать службу публикации ({0})"
 
-#: src/views/Playersite.js:282
+#: src/views/Playersite.js:221
 msgid "Failed to create publication website files."
 msgstr "Не удалось создать файлы веб-сайта публикации."
 
-#: src/views/Edit/Profile.js:512
-#: src/views/Edit/Profile.js:671
+#: src/views/Edit/Profile.js:532
+#: src/views/Edit/Profile.js:686
 msgid "Failed to probe the source. Please check the <0>probe details</0>."
 msgstr "Не удалось проверить источник. Пожалуйста, проверьте <0>подробности</0>."
 
@@ -1027,15 +1048,15 @@ msgstr "Не удалось проверить источник. Пожалуй�
 msgid "Failed to refresh token: {0}"
 msgstr "Не удалось обновить токен: {0}"
 
-#: src/views/Edit/index.js:316
+#: src/views/Edit/index.js:317
 msgid "Failed to save ingest metadata"
 msgstr "Не удалось сохранить импортированные метаданные"
 
-#: src/views/Edit/index.js:187
+#: src/views/Edit/index.js:188
 msgid "Failed to stop process"
 msgstr "Не удалось остановить процесс"
 
-#: src/views/Playersite.js:275
+#: src/views/Playersite.js:214
 msgid "Failed to store player size setting."
 msgstr "Не удалось сохранить настройку размера проигрывателя."
 
@@ -1043,41 +1064,46 @@ msgstr "Не удалось сохранить настройку размера
 msgid "Failed to store publication service ({0})"
 msgstr "Не удалось сохранить службу публикации ({0})"
 
-#: src/views/Edit/index.js:309
+#: src/views/Edit/index.js:329
+msgid "Failed to update ingest preview process ({0})"
+msgstr ""
+
+#: src/views/Edit/index.js:310
 msgid "Failed to update ingest process ({0})"
 msgstr "Не удалось обновить процесс загрузки ({0})"
 
-#: src/views/Edit/index.js:322
+#: src/views/Edit/index.js:323
 msgid "Failed to update ingest snapshot process ({0})"
 msgstr "Не удалось обновить процесс создания моментального снимка ({0})"
 
-#: src/views/Edit/index.js:328
+#: src/views/Edit/index.js:335
 msgid "Failed to update the player"
 msgstr "Не удалось обновить плеер"
 
-#: src/views/Edit/index.js:334
+#: src/views/Edit/index.js:341
 msgid "Failed to update the playersite"
 msgstr "Не удалось обновить сайт игроков"
 
-#: src/views/Edit/Wizard/Audio.js:35
-#: src/views/Edit/Wizard/Video.js:33
+#: src/views/Edit/Wizard/Audio.js:49
+#: src/views/Edit/Wizard/Video.js:42
 msgid "Failed to verify the source. Please check the address."
 msgstr "Не удалось проверить источник. Пожалуйста, проверьте адрес."
 
-#: src/views/Settings.js:2181
+#: src/views/Settings.js:2178
 msgid "FFmpeg"
 msgstr "FFmpeg"
 
-#: src/views/Edit/Sources/AudioLoop.js:142
-#: src/views/Edit/Sources/VideoLoop.js:150
+#: src/views/Edit/Sources/AudioLoop.js:172
+#: src/views/Edit/Sources/SDP.js:153
+#: src/views/Edit/Sources/VideoLoop.js:180
 msgid "File path"
 msgstr "Путь к файлу"
 
-#: src/views/Edit/Summary.js:101
+#: src/views/Edit/Summary.js:99
 msgid "Filter"
 msgstr "Фильтр"
 
-#: src/views/Edit/Profile.js:768
+#: src/views/Edit/Profile.js:783
 msgid "Finish"
 msgstr "Завершить"
 
@@ -1089,15 +1115,20 @@ msgstr "Размер исправления"
 msgid "Flags"
 msgstr "Флаги"
 
-#: src/views/Playersite.js:813
+#: src/views/Edit/Sources/X11grab.js:80
+#: src/views/Edit/Sources/X11grab.js:81
+msgid "Follow mouse"
+msgstr ""
+
+#: src/views/Playersite.js:747
 msgid "For Javascripts."
 msgstr "Для Javascripts."
 
-#: src/views/Playersite.js:753
+#: src/views/Playersite.js:687
 msgid "For Stylesheets."
 msgstr "Для таблиц стилей."
 
-#: src/views/Edit/Sources/Network.js:561
+#: src/views/Edit/Sources/Network.js:597
 msgid "Force input framerate"
 msgstr "Принудительная частота кадров на входе"
 
@@ -1105,38 +1136,38 @@ msgstr "Принудительная частота кадров на входе
 msgid "Force key frames"
 msgstr "Принудительные ключевые кадры"
 
-#: src/misc/coders/settings/Video.js:325
+#: src/misc/coders/settings/Video.js:254
 msgid "Format"
 msgstr "Формат"
 
-#: src/misc/Progress.js:92
+#: src/misc/Progress.js:156
 #: src/views/Main/Progress.js:77
 msgid "FPS"
 msgstr "FPS"
 
-#: src/misc/Progress.js:144
+#: src/misc/Progress.js:208
 msgid "Frame drops"
 msgstr "Потеря кадров"
 
-#: src/misc/coders/settings/Video.js:371
+#: src/misc/coders/settings/Video.js:311
 msgid "Frame is passed through (Passthrough)"
 msgstr "Кадр пропускается (Passthrough)"
 
-#: src/views/Edit/Sources/Framebuffer.js:129
+#: src/views/Edit/Sources/Framebuffer.js:131
 msgid "Framebuffer"
 msgstr "Кадровый буфер"
 
-#: src/misc/coders/settings/Video.js:135
-#: src/misc/filters/video/Framerate.js:65
-#: src/views/Edit/Sources/Network.js:574
+#: src/misc/coders/settings/Video.js:99
+#: src/misc/filters/video/Framerate.js:36
+#: src/views/Edit/Sources/Network.js:610
 msgid "Framerate"
 msgstr "Частота кадров"
 
-#: src/misc/filters/video/Framerate.js:107
+#: src/misc/filters/video/Framerate.js:97
 msgid "Framerate conversion (frame interpolation)"
 msgstr "Преобразование частоты кадров (интерполяция кадров)"
 
-#: src/misc/coders/settings/Video.js:369
+#: src/misc/coders/settings/Video.js:309
 msgid "Framerate mode"
 msgstr "Режим кадровой частоты"
 
@@ -1144,35 +1175,37 @@ msgstr "Режим кадровой частоты"
 msgid "Frequency (Hz)"
 msgstr "Частота (Гц)"
 
-#: src/views/Edit/index.js:418
-#: src/views/Edit/index.js:430
-#: src/views/Edit/Sources/Network.js:612
-#: src/views/Playersite.js:328
-#: src/views/Playersite.js:341
+#: src/views/Edit/index.js:425
+#: src/views/Edit/index.js:437
+#: src/views/Edit/Sources/Network.js:661
+#: src/views/Playersite.js:267
+#: src/views/Playersite.js:280
 #: src/views/Publication/Add.js:414
 #: src/views/Publication/Edit.js:426
 #: src/views/Publication/Services/DASH.js:211
-#: src/views/Publication/Services/HLS.js:200
+#: src/views/Publication/Services/HLS.js:199
 #: src/views/Publication/Services/Icecast.js:179
 #: src/views/Publication/Services/Image2.js:139
 #: src/views/Publication/Services/RTMP.js:181
-#: src/views/Publication/Services/RTSP.js:169
+#: src/views/Publication/Services/RTSP.js:168
 #: src/views/Publication/Services/SRT.js:177
-#: src/views/Settings.js:1231
-#: src/views/Settings.js:1252
+#: src/views/Settings.js:1226
+#: src/views/Settings.js:1247
 msgid "General"
 msgstr "Общие"
 
 #: src/views/Publication/Services/DLive.js:79
+#: src/views/Publication/Services/EarthCam.js:95
 #: src/views/Publication/Services/Facebook.js:115
 #: src/views/Publication/Services/Facebook.js:133
-#: src/views/Publication/Services/Instagram.js:85
+#: src/views/Publication/Services/Instagram.js:88
 #: src/views/Publication/Services/Kick.js:107
 #: src/views/Publication/Services/MediaNetwork.js:79
 #: src/views/Publication/Services/NimoTv.js:103
 #: src/views/Publication/Services/PeerTube.js:96
 #: src/views/Publication/Services/Restream.js:120
 #: src/views/Publication/Services/Rumble.js:107
+#: src/views/Publication/Services/TikTok.js:108
 #: src/views/Publication/Services/Trovo.js:79
 #: src/views/Publication/Services/Twitch.js:155
 #: src/views/Publication/Services/Twitter.js:179
@@ -1181,36 +1214,44 @@ msgstr "Общие"
 msgid "GET"
 msgstr "GET"
 
-#: src/views/Publication/Player.js:497
+#: src/views/Publication/Player.js:498
 msgid "Google Analytics ID"
 msgstr "Идентификатор Google Аналитики"
 
-#: src/views/Publication/Player.js:507
+#: src/views/Publication/Player.js:508
 msgid "Google Analytics Tracker Name"
 msgstr "Название трекера Google Аналитики"
 
-#: src/views/Edit/Sources/V4L.js:154
+#: src/misc/coders/settings/Video.js:327
+msgid "GPU"
+msgstr ""
+
+#: src/views/Edit/Sources/V4L.js:146
 #: src/views/Edit/Wizard/Sources/V4L.js:140
 msgid "Hardware device"
 msgstr "Аппаратное устройство"
 
-#: src/views/Playersite.js:617
+#: src/views/Playersite.js:551
 msgid "Header"
 msgstr "Заголовок"
 
-#: src/views/Playersite.js:573
+#: src/views/Playersite.js:507
 msgid "Headline"
 msgstr "Заголовок"
 
-#: src/misc/coders/settings/Video.js:243
+#: src/misc/coders/settings/Video.js:187
 msgid "Height"
 msgstr "Высота"
 
-#: src/views/Main/index.js:406
+#: src/views/Main/index.js:485
 msgid "HLS"
 msgstr "HLS"
 
-#: src/views/Edit/index.js:490
+#: src/views/Main/index.js:512
+msgid "HLS @ H.264"
+msgstr ""
+
+#: src/views/Edit/index.js:497
 msgid "HLS output"
 msgstr "Выход HLS"
 
@@ -1218,7 +1259,7 @@ msgstr "Выход HLS"
 msgid "HLS server"
 msgstr "Сервер HLS"
 
-#: src/views/Settings.js:1626
+#: src/views/Settings.js:1621
 msgid "HLS statistic for the In-memory storage"
 msgstr "Статистика HLS для хранилища в памяти"
 
@@ -1230,67 +1271,67 @@ msgstr "Горизонтальный переворот"
 msgid "Hosted Restreamer interface"
 msgstr "Размещенный интерфейс Restreamer"
 
-#: src/views/Edit/Sources/Network.js:551
+#: src/views/Edit/Sources/Network.js:587
 msgid "HTTP and HTTPS"
 msgstr "HTTP и HTTPS"
 
-#: src/views/Settings.js:1418
+#: src/views/Settings.js:1413
 msgid "HTTP port"
 msgstr "HTTP-порт"
 
-#: src/views/Settings.js:1448
+#: src/views/Settings.js:1443
 msgid "HTTPS (SSL/TLS)"
 msgstr "HTTPS (SSL/TLS)"
 
-#: src/views/Settings.js:1432
+#: src/views/Settings.js:1427
 msgid "HTTPS port"
 msgstr "HTTPS-порт"
 
-#: src/views/Settings.js:1352
+#: src/views/Settings.js:1347
 msgid "Human readable name on the service."
 msgstr "Человекочитаемое имя на сервисе."
 
-#: src/views/Settings.js:2255
+#: src/views/Settings.js:2252
 msgid "If you changed the ports, it might be that Restreamer Core restarted already, but it is now available on a different port."
 msgstr "Если вы изменили порты, возможно, ядро Restreamer уже перезапустилось, но теперь он доступен на другом порту."
 
-#: src/views/Settings.js:2249
+#: src/views/Settings.js:2246
 msgid "If you enabled Let's Encrypt TLS it might take some time to acquire the certificates. Make sure that Restreamer Core is reachable via port 80 from the internet. Please check the console log of Restreamer Core."
 msgstr "Если вы включили Let's Encrypt TLS, получение сертификатов может занять некоторое время. Убедитесь, что ядро Restreamer доступно через порт 80 из Интернета. Пожалуйста, проверьте журнал консоли ядра Restreamer."
 
-#: src/views/Publication/Player.js:392
+#: src/views/Publication/Player.js:393
 msgid "iframe code"
 msgstr "код iframe"
 
-#: src/views/Settings.js:1641
+#: src/views/Settings.js:1636
 msgid "Ignore IP ranges"
 msgstr "Игнорировать диапазоны IP-адресов"
 
-#: src/views/Playersite.js:662
-#: src/views/Publication/Player.js:427
+#: src/views/Playersite.js:596
+#: src/views/Publication/Player.js:428
 msgid "Image URL"
 msgstr "URL изображения"
 
-#: src/views/Playersite.js:690
+#: src/views/Playersite.js:624
 msgid "Imprint"
 msgstr "Выходные данные"
 
-#: src/views/Playersite.js:346
+#: src/views/Playersite.js:285
 msgid "In addition to the player, the Restreamer offers a complete landingpage, which you can use to present your live stream easily and quickly."
 msgstr "В дополнение к плееру Restreamer предлагает полноценную целевую страницу, которую вы можете использовать для простого и быстрого представления своей прямой трансляции."
 
-#: src/views/Edit/Profile.js:521
-#: src/views/Edit/Profile.js:680
+#: src/views/Edit/Profile.js:541
+#: src/views/Edit/Profile.js:695
 msgid "In order to proceed anyways, you can provide <0>hints</0> about the available streams."
 msgstr ""
 
 #: src/misc/controls/HLS.js:67
-#: src/views/Settings.js:1693
+#: src/views/Settings.js:1688
 msgid "In-memory"
 msgstr "В памяти"
 
-#: src/Footer.js:285
-#: src/Footer.js:298
+#: src/Footer.js:289
+#: src/Footer.js:302
 msgid "In-memory storage"
 msgstr "Хранилище в памяти"
 
@@ -1298,41 +1339,37 @@ msgstr "Хранилище в памяти"
 msgid "Incompatible"
 msgstr "Несовместимо"
 
-#: src/misc/coders/settings/Audio.js:107
-#: src/misc/coders/settings/Audio.js:158
+#: src/misc/coders/settings/Audio.js:116
+#: src/misc/coders/settings/Audio.js:166
 #: src/misc/filters/audio/Pan.js:47
-#: src/misc/filters/audio/Resample.js:59
-#: src/misc/filters/audio/Resample.js:110
+#: src/misc/filters/audio/Resample.js:68
+#: src/misc/filters/audio/Resample.js:118
 #: src/misc/filters/audio/Volume.js:46
 msgid "Inherit"
 msgstr "Наследовать"
 
-#: src/views/Playersite.js:748
+#: src/views/Playersite.js:682
 msgid "Inject 1"
 msgstr "Встраивание 1"
 
-#: src/views/Playersite.js:768
+#: src/views/Playersite.js:702
 msgid "Inject 2"
 msgstr "Встраивание 2"
 
-#: src/views/Playersite.js:788
+#: src/views/Playersite.js:722
 msgid "Inject 3"
 msgstr "Встраивание 3"
 
-#: src/views/Playersite.js:808
+#: src/views/Playersite.js:742
 msgid "Inject 4"
 msgstr "Встраивание 4"
 
-#: src/views/Edit/Sources/Network.js:961
-#: src/views/Edit/Sources/Network.js:1055
-#: src/views/Edit/Wizard/Sources/InternalRTMP.js:111
-#: src/views/Edit/Wizard/Sources/InternalSRT.js:111
+#: src/views/Edit/Sources/Network.js:1063
+#: src/views/Edit/Sources/Network.js:1155
+#: src/views/Edit/Wizard/Sources/InternalRTMP.js:118
+#: src/views/Edit/Wizard/Sources/InternalSRT.js:118
 msgid "Input stream"
 msgstr "Входной поток"
-
-#: src/views/Publication/Services/Instagram.js:121
-#~ msgid "Instafeed.me"
-#~ msgstr "Instafeed.me"
 
 #: src/views/Publication/Services/PeerTube.js:85
 msgid "Instance domain"
@@ -1342,44 +1379,46 @@ msgstr "Домен экземпляра"
 msgid "Interval (seconds)"
 msgstr "Интервал (секунды)"
 
-#: src/Header.js:295
-#: src/Header.js:336
+#: src/Header.js:300
+#: src/Header.js:341
 msgid "Issue alert"
 msgstr "Оповещение о проблеме"
 
-#: src/misc/Progress.js:105
+#: src/misc/Progress.js:169
 #: src/views/Main/Progress.js:67
 #: src/views/Main/Publication.js:184
 msgid "kbit/s"
 msgstr "кбит/с"
 
-#: src/misc/coders/settings/Video.js:90
+#: src/misc/coders/settings/Video.js:61
 msgid "Keyframe interval (seconds)"
 msgstr "Интервал между ключевыми кадрами (секунды)"
 
-#: src/misc/coders/settings/Audio.js:137
-#: src/misc/filters/audio/Resample.js:89
+#: src/misc/coders/settings/Audio.js:61
+#: src/misc/filters/audio/Resample.js:53
 msgid "Layout"
 msgstr "Макет"
 
-#: src/views/Settings.js:1453
+#: src/views/Settings.js:1448
 msgid "Let's Encrypt certification"
 msgstr "Сертификат Let's Encrypt"
 
-#: src/views/Settings.js:1461
+#: src/views/Settings.js:1456
 msgid "Let's Encrypt requires one or more public domain names and an accessible port 80/TCP."
 msgstr "Для работы Let's Encrypt требуется одно или несколько общедоступных доменных имен и доступный порт 80/TCP."
 
-#: src/misc/coders/Encoders/video/h264_nvenc.js:117
+#: src/misc/coders/Encoders/video/av1_nvenc.js:103
+#: src/misc/coders/Encoders/video/h264_nvenc.js:118
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:117
 msgid "Level"
 msgstr "Уровень"
 
-#: src/views/Settings.js:2162
+#: src/views/Settings.js:2159
 msgid "Level of system protocol."
 msgstr "Уровень системного протокола."
 
-#: src/views/Edit/index.js:421
-#: src/views/Edit/index.js:597
+#: src/views/Edit/index.js:428
+#: src/views/Edit/index.js:619
 #: src/views/Edit/Wizard/License.js:17
 msgid "License"
 msgstr "Лицензия"
@@ -1388,13 +1427,13 @@ msgstr "Лицензия"
 msgid "Life color"
 msgstr "Цвет жизни"
 
-#: src/views/Edit/index.js:565
+#: src/views/Edit/index.js:587
 #: src/views/Publication/Add.js:458
 #: src/views/Publication/Edit.js:470
 msgid "Limits"
 msgstr "Лимиты"
 
-#: src/views/Playersite.js:644
+#: src/views/Playersite.js:578
 msgid "Linecolor"
 msgstr "Цвет линии"
 
@@ -1402,30 +1441,38 @@ msgstr "Цвет линии"
 msgid "Lines"
 msgstr "Линии"
 
-#: src/views/Playersite.js:582
-#: src/views/Publication/Player.js:460
+#: src/views/Playersite.js:516
+#: src/views/Publication/Player.js:461
 msgid "Link"
 msgstr "Ссылка"
 
-#: src/views/Playersite.js:591
+#: src/views/Playersite.js:525
 msgid "Link, mouseover"
 msgstr "Ссылка, наведение курсора"
 
-#: src/views/Settings.js:1911
+#: src/views/Edit/Sources/Network.js:644
+msgid "List of additional HTTP headers, one per line."
+msgstr ""
+
+#: src/views/Settings.js:1906
 msgid "List of file extensions not to cache (e.g. \".m3u8\"), one per line. Leave empty for none."
 msgstr "Список расширений файлов, которые не следует кэшировать (например, \".m3u8\"), по одному в строке. Оставьте пустым, если нет."
 
-#: src/views/Settings.js:1896
+#: src/views/Settings.js:1891
 msgid "List of file extensions to cache (e.g. \".html\"), one per line. Leave empty to cache all file types."
 msgstr "Список расширений файлов для кэширования (напр.. \".html\"), по одному в строке. Оставьте пустым, чтобы кэшировать все типы файлов."
 
-#: src/views/Settings.js:1649
+#: src/views/Settings.js:1644
 msgid "List of IP ranges in CIDR notation, e.g., 127.0.0.1/32, that the statistics will not record—one IP range per line. Leave empty to record all sessions."
 msgstr "Список диапазонов IP адресов в нотации CIDR, напр., 127.0.0.1/32, которые не будут записываться статистикой — по одному диапазону IP адресов на строку. Оставьте пустым для записи всех сеансов.."
 
 #: src/misc/controls/HLS.js:107
 msgid "List size (segments)"
 msgstr "Размер списка (сегменты)"
+
+#: src/views/Edit/Sources/Network.js:817
+msgid "Live stabilization"
+msgstr ""
 
 #: src/views/Publication/Services/DLive.js:15
 msgid "Live-Streaming to dlive Live RTMP Service."
@@ -1435,13 +1482,9 @@ msgstr "Прямая трансляция на RTMP-сервис dlive Live."
 msgid "Live-Streaming to Facebook Live RTMP service"
 msgstr "Прямая трансляция на сервис Facebook Live RTMP"
 
-#: src/views/Publication/Services/Instagram.js:16
+#: src/views/Publication/Services/Instagram.js:15
 msgid "Live-Streaming to Instagram Live RTMP Service."
 msgstr ""
-
-#: src/views/Publication/Services/Instagram.js:19
-#~ msgid "Live-Streaming to Instagram Live RTMP Service. The stream key requires a service such as <0>Instafeed.me</0> or <1>Yellow Duck</1>."
-#~ msgstr "Прямая трансляция в Instagram Live RTMP Service. Ключ потока требует наличия такого сервиса, как <0>Instafeed.me</0> или <1>Yellow Duck</1>."
 
 #: src/views/Publication/Services/MediaNetwork.js:15
 msgid "Live-Streaming to Media Network RTMP Service."
@@ -1467,13 +1510,13 @@ msgstr "Прямая трансляция на RTMP-сервис Vimeo Live"
 msgid "Livesource ID"
 msgstr "Livesource ID"
 
-#: src/views/Settings.js:2114
+#: src/views/Settings.js:2111
 msgid "Log level"
 msgstr "Уровень журнала"
 
-#: src/misc/modals/Process.js:153
-#: src/views/Settings.js:1241
-#: src/views/Settings.js:2090
+#: src/misc/modals/Process.js:163
+#: src/views/Settings.js:1236
+#: src/views/Settings.js:2087
 msgid "Logging"
 msgstr "Логирование"
 
@@ -1496,20 +1539,20 @@ msgstr "Ошибка входа: {0}"
 msgid "Login failed: Couldn't load API details"
 msgstr "Ошибка входа: не удалось загрузить сведения об API"
 
-#: src/views/Settings.js:1539
+#: src/views/Settings.js:1534
 msgid "Login/JWT authorization"
 msgstr "Вход/JWT-авторизация"
 
-#: src/views/Publication/Player.js:382
+#: src/views/Publication/Player.js:383
 msgid "Logo"
 msgstr "Логотип"
 
-#: src/Header.js:307
+#: src/Header.js:312
 msgid "Logout"
 msgstr "Выйти"
 
-#: src/views/Edit/Sources/AudioLoop.js:194
-#: src/views/Edit/Sources/VideoLoop.js:202
+#: src/views/Edit/Sources/AudioLoop.js:213
+#: src/views/Edit/Sources/VideoLoop.js:221
 msgid "Loop"
 msgstr "Петля"
 
@@ -1521,8 +1564,8 @@ msgstr "Нормализация громкости"
 msgid "Low latency (Buffer)"
 msgstr "Низкая задержка (буфер)"
 
-#: src/views/Main/index.js:292
-#: src/views/Playersite.js:367
+#: src/views/Main/index.js:304
+#: src/views/Playersite.js:306
 msgid "Main channel"
 msgstr "Основной канал"
 
@@ -1534,11 +1577,11 @@ msgstr "Основной канал не найден"
 msgid "Main channel saved"
 msgstr "Основной канал сохранен"
 
-#: src/views/Playersite.js:390
+#: src/views/Playersite.js:329
 msgid "Main page channel (index.html)."
 msgstr "Канал главной страницы (index.html)."
 
-#: src/views/Edit/index.js:398
+#: src/views/Edit/index.js:405
 msgid "Main Source"
 msgstr "Главный источник"
 
@@ -1554,7 +1597,7 @@ msgstr "Сделать канал доступным в виде RTMP-поток
 msgid "Make the channel available as an SRT stream (experimental)."
 msgstr "Сделать канал доступным как поток SRT (экспериментальный)."
 
-#: src/misc/filters/video/Bwdif.js:83
+#: src/misc/filters/video/Bwdif.js:73
 msgid "Marked frames"
 msgstr "Маркированные рамы"
 
@@ -1562,63 +1605,63 @@ msgstr "Маркированные рамы"
 msgid "Master playlist (increases browser/client compatibility)"
 msgstr "Главный список воспроизведения (повышает совместимость с браузерами/клиентами)"
 
-#: src/views/Settings.js:1841
+#: src/views/Settings.js:1836
 msgid "Maximum allowed cache size, 0 for unlimited."
 msgstr "Максимально допустимый размер кеша, 0 для неограниченного."
 
-#: src/views/Settings.js:1749
+#: src/views/Settings.js:1744
 msgid "Maximum allowed megabytes of RAM for /memfs, 0 for unlimited."
 msgstr "Максимально допустимо мегабайт ОЗУ для /memfs, 0 для неограниченного."
 
-#: src/views/Settings.js:1794
+#: src/views/Settings.js:1789
 msgid "Maximum allowed megabytes to consume from hard disk. 0 for unlimited."
 msgstr "Максимально разрешенное количество мегабайт для использования с жесткого диска. 0 без ограничений."
 
-#: src/views/Settings.js:1508
+#: src/views/Settings.js:1503
 msgid "Maximum bandwidth Mbit/s"
 msgstr "Максимальная пропускная способность Мбит/с"
 
-#: src/misc/coders/Encoders/audio/opus.js:81
+#: src/misc/coders/Encoders/audio/opus.js:89
 msgid "Maximum delay in milliseconds."
 msgstr "Максимальная задержка в миллисекундах."
 
-#: src/views/Settings.js:1861
+#: src/views/Settings.js:1856
 msgid "Maximum file size (Megabytes)"
 msgstr "Максимальный размер файла (Мегабайты)"
 
-#: src/views/Settings.js:1881
+#: src/views/Settings.js:1876
 msgid "Maximum file size to put in cache."
 msgstr "Максимальный размер файла для кэширования."
 
-#: src/views/Settings.js:2201
+#: src/views/Settings.js:2198
 msgid "Maximum log histroy"
 msgstr "Максимальная история журнала"
 
-#: src/views/Settings.js:2168
-#: src/views/Settings.js:2187
+#: src/views/Settings.js:2165
+#: src/views/Settings.js:2184
 msgid "Maximum log lines"
 msgstr "Максимальное количество строк журнала"
 
-#: src/views/Settings.js:1741
-#: src/views/Settings.js:1786
-#: src/views/Settings.js:1821
+#: src/views/Settings.js:1736
+#: src/views/Settings.js:1781
+#: src/views/Settings.js:1816
 msgid "Maximum size (Megabytes)"
 msgstr "Максимальный размер (Мегабайты)"
 
-#: src/views/Settings.js:1658
+#: src/views/Settings.js:1653
 msgid "Maximum viewer idle time (Seconds)"
 msgstr "Максимальное время простоя зрителя (в секундах)"
 
-#: src/views/Settings.js:1491
+#: src/views/Settings.js:1486
 msgid "Maximum viewers"
 msgstr "Максимальное количество зрителей"
 
-#: src/Footer.js:208
+#: src/Footer.js:212
 msgid "MB"
 msgstr "MB"
 
-#: src/Footer.js:202
-#: src/misc/Progress.js:79
+#: src/Footer.js:206
+#: src/misc/Progress.js:143
 msgid "Memory"
 msgstr "Память"
 
@@ -1630,16 +1673,17 @@ msgstr "Ограничение памяти (мегабайт)"
 msgid "Memory usage limit in megabytes, 0 for unlimited."
 msgstr "Лимит использования памяти в мегабайтах, 0 - неограниченный."
 
-#: src/views/Edit/index.js:420
+#: src/views/Edit/index.js:427
 msgid "Meta information"
 msgstr "Мета информация"
 
-#: src/views/Edit/index.js:577
+#: src/views/Edit/index.js:599
 #: src/views/Edit/Wizard/Metadata.js:17
 msgid "Metadata"
 msgstr "Метаданные"
 
-#: src/views/Edit/Sources/Network.js:639
+#: src/views/Edit/Sources/Network.js:688
+#: src/views/Edit/Sources/X11grab.js:184
 msgid "Mininum {0}, default {1}"
 msgstr "Mininum {0}, по умолчанию {1}"
 
@@ -1653,7 +1697,7 @@ msgstr "Плесень"
 msgid "More about licenses here"
 msgstr "Подробнее о лицензиях здесь"
 
-#: src/views/Settings.js:1321
+#: src/views/Settings.js:1316
 msgid "More about the service"
 msgstr "Подробнее о сервисе"
 
@@ -1665,15 +1709,15 @@ msgstr "Подробнее об авторских правах Twitter <0>зд�
 msgid "More about YouTube's copyright <0>here</0>."
 msgstr "Подробнее об авторских правах YouTube <0>здесь</0>."
 
-#: src/views/Settings.js:1833
+#: src/views/Settings.js:1828
 msgid "Must be larger than maximum file size in cache."
 msgstr "Должен быть больше, чем максимальный размер файла в кэше."
 
-#: src/views/Settings.js:1873
+#: src/views/Settings.js:1868
 msgid "Must be smaller than maximum cache size."
 msgstr "Должен быть меньше максимального размера кэша."
 
-#: src/views/Publication/Player.js:525
+#: src/views/Publication/Player.js:526
 msgid "Mute"
 msgstr "Без звука"
 
@@ -1689,36 +1733,36 @@ msgstr "Выключить звук слева"
 msgid "Mute right"
 msgstr "Отключить звук справа"
 
-#: src/misc/ChannelList.js:436
+#: src/misc/ChannelList.js:439
 #: src/misc/controls/Metadata.js:76
 #: src/misc/controls/Metadata.js:98
-#: src/views/Playersite.js:521
-#: src/views/Settings.js:1344
+#: src/views/Playersite.js:455
+#: src/views/Settings.js:1339
 msgid "Name"
 msgstr "Имя"
 
-#: src/views/Playersite.js:526
+#: src/views/Playersite.js:460
 msgid "Name for the template. If the name already exists, it will be overwritten."
 msgstr "Имя для шаблона. Если имя уже существует, оно будет перезаписано."
 
-#: src/views/Settings.js:1235
-#: src/views/Settings.js:1391
+#: src/views/Settings.js:1230
+#: src/views/Settings.js:1386
 msgid "Network"
 msgstr "Сеть"
 
-#: src/views/Edit/Sources/Network.js:1190
+#: src/views/Edit/Sources/Network.js:1289
 #: src/views/Edit/Wizard/Sources/Network.js:123
 msgid "Network source"
 msgstr "Сетевой источник"
 
-#: src/views/Edit/Wizard/Audio.js:114
+#: src/views/Edit/Wizard/Audio.js:128
 #: src/views/Edit/Wizard/Metadata.js:40
-#: src/views/Edit/Wizard/Video.js:71
-#: src/views/Edit/Wizard/VideoProfile.js:78
+#: src/views/Edit/Wizard/Video.js:80
+#: src/views/Edit/Wizard/VideoProfile.js:87
 msgid "Next"
 msgstr "Далее"
 
-#: src/views/Edit/Profile.js:602
+#: src/views/Edit/Profile.js:622
 msgid "Next: Audio"
 msgstr "Далее: Аудио"
 
@@ -1730,50 +1774,54 @@ msgstr "Далее: Настройка видео"
 msgid "No"
 msgstr "Нет"
 
-#: src/views/Edit/Sources/NoAudio.js:45
-#: src/views/Edit/Wizard/Audio.js:98
+#: src/views/Edit/Sources/NoAudio.js:38
+#: src/views/Edit/Wizard/Audio.js:112
 msgid "No audio"
 msgstr "Нет звука"
 
-#: src/views/Edit/StreamSelect.js:62
+#: src/views/Edit/StreamSelect.js:61
 msgid "No audio stream available"
 msgstr "Аудиопоток недоступен"
 
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:70
-#: src/views/Edit/Wizard/Sources/V4L.js:99
+#: src/views/Main/index.js:426
+msgid "No H.264 Stream availabe."
+msgstr ""
+
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:77
+#: src/views/Edit/Wizard/Sources/V4L.js:106
 msgid "No input device available"
 msgstr "Устройство ввода недоступно"
 
-#: src/views/Edit/Wizard/Video.js:31
+#: src/views/Edit/Wizard/Video.js:40
 msgid "No live stream was detected. Please check the software that sends the stream."
 msgstr "Прямая трансляция не обнаружена. Пожалуйста, проверьте программное обеспечение, которое отправляет поток."
 
-#: src/views/Edit/Summary.js:29
+#: src/views/Edit/Summary.js:27
 msgid "No source selected"
 msgstr "Источник не выбран"
 
-#: src/views/Edit/SourceSelect.js:180
+#: src/views/Edit/SourceSelect.js:172
 msgid "No sources available"
 msgstr "Нет доступных источников"
 
-#: src/misc/EncodingSelect.js:175
+#: src/misc/EncodingSelect.js:181
 msgid "No suitable encoder found."
 msgstr "Подходящий энкодер не найден."
 
-#: src/misc/FilterSelect.js:106
+#: src/misc/FilterSelect.js:104
 msgid "No suitable filter found."
 msgstr "Не найден подходящий фильтр."
 
-#: src/views/Main/index.js:318
-#: src/views/Publication/Player.js:356
+#: src/views/Main/index.js:338
+#: src/views/Publication/Player.js:357
 msgid "No video"
 msgstr "Нет видео"
 
-#: src/views/Edit/StreamSelect.js:47
+#: src/views/Edit/StreamSelect.js:46
 msgid "No video stream available"
 msgstr "Видеопоток недоступен"
 
-#: src/views/Settings.js:1337
+#: src/views/Settings.js:1332
 msgid "Node ID"
 msgstr "Node ID"
 
@@ -1782,24 +1830,24 @@ msgid "Noise"
 msgstr "Шум"
 
 #: src/misc/filters/video/Scale.js:45
-#: src/views/Edit/Sources/AVFoundation.js:145
-#: src/views/Edit/Summary.js:31
-#: src/views/Edit/Summary.js:107
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:98
+#: src/views/Edit/Sources/AVFoundation.js:154
+#: src/views/Edit/Summary.js:29
+#: src/views/Edit/Summary.js:105
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:105
 msgid "None"
 msgstr "Ни одного"
 
-#: src/views/Playersite.js:331
-#: src/views/Playersite.js:685
+#: src/views/Playersite.js:270
+#: src/views/Playersite.js:619
 msgid "Notes"
 msgstr "Заметки"
 
-#: src/views/Settings.js:2176
-#: src/views/Settings.js:2195
+#: src/views/Settings.js:2173
+#: src/views/Settings.js:2192
 msgid "Number of log lines to keep."
 msgstr "Количество строк журнала для сохранения."
 
-#: src/views/Settings.js:2209
+#: src/views/Settings.js:2206
 msgid "Number of logs to keep for each process."
 msgstr "Количество журналов для каждого процесса."
 
@@ -1807,30 +1855,31 @@ msgstr "Количество журналов для каждого процес
 msgid "Number of seconds the limits are allowed to be exceeded."
 msgstr "Количество секунд, в течение которых разрешается превышать лимиты."
 
-#: src/misc/coders/Encoders/video/av1_librav1e.js:217
+#: src/misc/coders/Encoders/video/av1_librav1e.js:212
 msgid "Number of tiles columns to encode with."
 msgstr "Количество столбцов плитки для кодирования."
 
-#: src/misc/coders/Encoders/video/av1_librav1e.js:189
+#: src/misc/coders/Encoders/video/av1_librav1e.js:184
 msgid "Number of tiles encode with."
 msgstr "Количество плиток для кодирования."
 
-#: src/misc/coders/Encoders/video/av1_librav1e.js:203
+#: src/misc/coders/Encoders/video/av1_librav1e.js:198
 msgid "Number of tiles rows to encode with."
 msgstr "Количество рядов плитки для кодирования."
 
-#: src/views/Edit/Sources/AudioLoop.js:168
-#: src/views/Edit/Sources/VideoLoop.js:176
-#: src/views/Playersite.js:854
-#: src/views/Publication/Player.js:567
+#: src/views/Edit/Sources/AudioLoop.js:198
+#: src/views/Edit/Sources/SDP.js:179
+#: src/views/Edit/Sources/VideoLoop.js:206
+#: src/views/Playersite.js:788
+#: src/views/Publication/Player.js:568
 msgid "OK"
 msgstr "OK"
 
-#: src/views/Settings.js:1613
+#: src/views/Settings.js:1608
 msgid "One referrer per line, e.g. http://www.example.com"
 msgstr "Один реферер на строку, напр.. http://www.example.com"
 
-#: src/views/Playersite.js:839
+#: src/views/Playersite.js:773
 msgid "Open"
 msgstr "Открыть"
 
@@ -1843,15 +1892,15 @@ msgid "Pan"
 msgstr "Пан"
 
 #: src/views/Publication/Services/Core.js:238
-#: src/views/Settings.js:2064
+#: src/views/Settings.js:2061
 msgid "Passphrase"
 msgstr "Пассфраза"
 
-#: src/views/Settings.js:2081
+#: src/views/Settings.js:2078
 msgid "Passphrase for SRT encryption."
 msgstr "Парольная фраза для шифрования SRT."
 
-#: src/views/Settings.js:2073
+#: src/views/Settings.js:2070
 msgid "Passphrase must be between 10 and 79 characters long"
 msgstr "Длина парольной фразы должна составлять от 10 до 79 символов"
 
@@ -1859,32 +1908,32 @@ msgstr "Длина парольной фразы должна составлят
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "Сквозную \"Passthrough (copy)\" следует отключать только в случае необходимости. Каждое кодирование требует дополнительных ресурсов CPU/GPU."
 
-#: src/views/Edit/Sources/Network.js:805
-#: src/views/Edit/Wizard/Sources/Network.js:97
+#: src/views/Edit/Sources/Network.js:898
+#: src/views/Edit/Wizard/Sources/Network.js:104
 #: src/views/Login.js:282
 #: src/views/Publication/Services/Akamai.js:134
 #: src/views/Publication/Services/DaCast.js:142
 #: src/views/Publication/Services/DASH.js:198
-#: src/views/Publication/Services/HLS.js:187
+#: src/views/Publication/Services/HLS.js:186
 #: src/views/Publication/Services/Red5.js:157
-#: src/views/Publication/Services/RTSP.js:156
+#: src/views/Publication/Services/RTSP.js:155
 #: src/views/Publication/Services/WOWZA.js:178
-#: src/views/Settings.js:1569
-#: src/views/Settings.js:1727
+#: src/views/Settings.js:1564
+#: src/views/Settings.js:1722
 msgid "Password"
 msgstr "Пароль"
 
-#: src/views/Settings.js:1575
-#: src/views/Settings.js:1735
+#: src/views/Settings.js:1570
+#: src/views/Settings.js:1730
 msgid "Password for authorization."
 msgstr "Пароль для авторизации."
 
-#: src/views/Edit/Sources/Network.js:810
-#: src/views/Edit/Wizard/Sources/Network.js:103
+#: src/views/Edit/Sources/Network.js:903
+#: src/views/Edit/Wizard/Sources/Network.js:110
 msgid "Password for the device."
 msgstr "Пароль для устройства."
 
-#: src/views/Settings.js:1671
+#: src/views/Settings.js:1666
 msgid "Persist viewer statistics"
 msgstr "Сохранять статистику просмотров"
 
@@ -1896,7 +1945,7 @@ msgstr "розовый"
 msgid "Pixel format"
 msgstr "Пиксельный формат"
 
-#: src/misc/coders/settings/Video.js:362
+#: src/misc/coders/settings/Video.js:284
 msgid "Pixel Format"
 msgstr ""
 
@@ -1908,31 +1957,35 @@ msgstr "План: <0>Начальный</0>"
 msgid "Platforms"
 msgstr "Платформы"
 
-#: src/views/Publication/Player.js:384
-#: src/views/Settings.js:1237
-#: src/views/Settings.js:1584
+#: src/views/Publication/Player.js:385
+#: src/views/Settings.js:1232
+#: src/views/Settings.js:1579
 msgid "Playback"
 msgstr "Воспроизведение"
 
-#: src/views/Main/Egress.js:100
+#: src/views/Main/Egress.js:108
 msgid "Player"
 msgstr "Плеер"
+
+#: src/views/Edit/index.js:561
+msgid "Player Playback"
+msgstr ""
 
 #: src/views/Publication/Player.js:300
 msgid "Player settings saved"
 msgstr "Настройки плеера сохранены"
 
-#: src/views/Publication/Player.js:389
+#: src/views/Publication/Player.js:390
 msgid "Player URL"
 msgstr "URL-адрес плеера"
 
-#: src/Header.js:267
-#: src/views/Playersite.js:353
+#: src/Header.js:272
+#: src/views/Playersite.js:292
 msgid "Playersite"
 msgstr "Сайт плеера"
 
 #: src/views/Publication/Services/DASH.js:348
-#: src/views/Publication/Services/HLS.js:288
+#: src/views/Publication/Services/HLS.js:287
 msgid "Playlist"
 msgstr "Плейлист"
 
@@ -1940,7 +1993,15 @@ msgstr "Плейлист"
 msgid "Playlist version (M3U8). Version 3 has the best browser/client compatibility."
 msgstr "Версия плейлиста (M3U8). Версия 3 имеет наилучшую совместимость с браузерами/клиентами."
 
-#: src/views/Main/index.js:361
+#: src/views/Main/index.js:456
+msgid "Please <0>edit</0> this channel and disable the second H.264 stream in the \"Processing & Control\" area."
+msgstr ""
+
+#: src/views/Main/index.js:431
+msgid "Please <0>edit</0> this channel and enable the browser-compatible H.264 stream in the \"Processing & Control\" area."
+msgstr ""
+
+#: src/views/Main/index.js:381
 msgid "Please check the <0>process log</0>"
 msgstr "Пожалуйста, проверьте <0>журнал процесса</0>"
 
@@ -1951,41 +2012,44 @@ msgstr "Пожалуйста, проверьте <0>журнал процесс�
 #: src/views/Publication/Services/Core.js:27
 #: src/views/Publication/Services/DaCast.js:26
 #: src/views/Publication/Services/DASH.js:35
-#: src/views/Publication/Services/HLS.js:37
+#: src/views/Publication/Services/HLS.js:36
 #: src/views/Publication/Services/Icecast.js:29
 #: src/views/Publication/Services/Image2.js:33
 #: src/views/Publication/Services/Linkedin.js:24
 #: src/views/Publication/Services/Livepush.js:25
 #: src/views/Publication/Services/Livespotting.js:23
-#: src/views/Publication/Services/MPEGTS.js:35
+#: src/views/Publication/Services/MPEGTS.js:34
 #: src/views/Publication/Services/NimoTv.js:26
 #: src/views/Publication/Services/PicartoTv.js:25
 #: src/views/Publication/Services/Red5.js:25
 #: src/views/Publication/Services/Restream.js:26
 #: src/views/Publication/Services/RTMP.js:32
-#: src/views/Publication/Services/RTSP.js:36
+#: src/views/Publication/Services/RTSP.js:35
 #: src/views/Publication/Services/SRT.js:33
 #: src/views/Publication/Services/UDP.js:31
 #: src/views/Publication/Services/WOWZA.js:28
 msgid "Please contact the operator of the service and check what happens."
 msgstr "Пожалуйста, свяжитесь с оператором сервиса и проверьте, что происходит."
 
-#: src/views/Settings.js:1474
+#: src/views/Settings.js:1469
 msgid "Please enter your email address to signify agreement with the Let's Encrypt CA's terms of service and to be notified in case of issues."
 msgstr "Пожалуйста, введите свой адрес электронной почты, чтобы подтвердить согласие с условиями обслуживания Let's Encrypt CA и получить уведомление в случае возникновения проблем."
 
 #: src/views/Publication/Services/Dailymotion.js:23
+#: src/views/Publication/Services/EarthCam.js:24
 #: src/views/Publication/Services/Kick.js:24
 #: src/views/Publication/Services/Owncast.js:23
 #: src/views/Publication/Services/Rumble.js:24
 #: src/views/Publication/Services/Telegram.js:14
+#: src/views/Publication/Services/TikTok.js:25
 #: src/views/Publication/Services/Wettercom.js:24
 msgid "Please get in touch with the operator of the service and check what happens."
 msgstr "Пожалуйста, свяжитесь с оператором службы и проверьте, что происходит."
 
-#: src/views/Edit/Sources/AudioLoop.js:84
-#: src/views/Edit/Sources/VideoLoop.js:92
-#: src/views/Playersite.js:220
+#: src/views/Edit/Sources/AudioLoop.js:111
+#: src/views/Edit/Sources/SDP.js:95
+#: src/views/Edit/Sources/VideoLoop.js:119
+#: src/views/Playersite.js:159
 #: src/views/Publication/Player.js:195
 msgid "Please select a file to upload."
 msgstr "Пожалуйста, выберите файл для загрузки."
@@ -2002,25 +2066,27 @@ msgstr "Пожалуйста, подождите. Зонд транслируе�
 msgid "Please wait. Setting up the stream ..."
 msgstr "Пожалуйста подождите. Настройка потока..."
 
-#: src/views/Settings.js:2038
+#: src/views/Settings.js:2033
 msgid "Port"
 msgstr "Порт"
 
-#: src/views/Publication/Player.js:445
+#: src/views/Publication/Player.js:446
 msgid "Position"
 msgstr "Позиция"
 
-#: src/views/Publication/Player.js:383
+#: src/views/Publication/Player.js:384
 msgid "Poster"
 msgstr "Плакат"
 
-#: src/views/Publication/Player.js:474
+#: src/views/Publication/Player.js:475
 msgid "Poster image URL"
 msgstr "URL-адрес изображения плаката"
 
+#: src/misc/coders/Encoders/video/av1_nvenc.js:76
 #: src/misc/coders/Encoders/video/h264_libx264.js:82
-#: src/misc/coders/Encoders/video/h264_nvenc.js:75
+#: src/misc/coders/Encoders/video/h264_nvenc.js:81
 #: src/misc/coders/Encoders/video/hevc_libx265.js:82
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:81
 msgid "Preset"
 msgstr "Пресет"
 
@@ -2032,23 +2098,25 @@ msgstr "Основной поток"
 msgid "Primary stream key"
 msgstr "Основной ключ потока"
 
-#: src/views/Edit/Sources/ALSA.js:136
-#: src/views/Edit/Sources/AudioLoop.js:155
-#: src/views/Edit/Sources/AVFoundation.js:201
-#: src/views/Edit/Sources/Framebuffer.js:110
-#: src/views/Edit/Sources/Network.js:822
-#: src/views/Edit/Sources/Network.js:904
-#: src/views/Edit/Sources/Network.js:985
-#: src/views/Edit/Sources/Network.js:1079
+#: src/views/Edit/Sources/ALSA.js:145
+#: src/views/Edit/Sources/AudioLoop.js:185
+#: src/views/Edit/Sources/AVFoundation.js:210
+#: src/views/Edit/Sources/Framebuffer.js:119
+#: src/views/Edit/Sources/Network.js:916
+#: src/views/Edit/Sources/Network.js:999
+#: src/views/Edit/Sources/Network.js:1088
+#: src/views/Edit/Sources/Network.js:1180
 #: src/views/Edit/Sources/Raspicam.js:125
+#: src/views/Edit/Sources/SDP.js:166
 #: src/views/Edit/Sources/V4L.js:134
-#: src/views/Edit/Sources/VideoLoop.js:163
+#: src/views/Edit/Sources/VideoLoop.js:193
 #: src/views/Edit/Sources/VirtualAudio.js:169
 #: src/views/Edit/Sources/VirtualVideo.js:188
+#: src/views/Edit/Sources/X11grab.js:226
 msgid "Probe"
 msgstr "Зонд"
 
-#: src/views/Edit/index.js:554
+#: src/views/Edit/index.js:576
 #: src/views/Publication/Add.js:447
 #: src/views/Publication/Edit.js:459
 msgid "Process"
@@ -2059,36 +2127,49 @@ msgstr "Процесс"
 msgid "Process control"
 msgstr "Контроль процесса"
 
-#: src/views/Main/index.js:451
-#: src/views/Main/index.js:467
+#: src/views/Main/index.js:530
+#: src/views/Main/index.js:546
 #: src/views/Publication/Edit.js:494
 #: src/views/Publication/Edit.js:613
 msgid "Process details"
 msgstr "Детали процесса"
 
-#: src/views/Main/index.js:454
-#: src/views/Main/index.js:475
+#: src/views/Main/index.js:533
+#: src/views/Main/index.js:554
 #: src/views/Publication/Edit.js:497
 #: src/views/Publication/Edit.js:621
 msgid "Process report"
 msgstr "Отчет о процессе"
 
-#: src/views/Edit/index.js:419
-#: src/views/Edit/index.js:482
+#: src/views/Edit/index.js:426
+#: src/views/Edit/index.js:489
 msgid "Processing & Control"
 msgstr "Обработка и контроль"
 
-#: src/misc/coders/Encoders/video/h264_nvenc.js:100
-#: src/misc/coders/Encoders/video/h264_vaapi.js:89
-#: src/misc/coders/Encoders/video/hevc_vaapi.js:91
+#: src/misc/coders/Encoders/video/h264_nvenc.js:106
+#: src/misc/coders/Encoders/video/h264_vaapi.js:84
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:106
+#: src/misc/coders/Encoders/video/hevc_vaapi.js:86
 #: src/misc/coders/Encoders/video/hevc_videotoolbox.js:64
-#: src/misc/coders/Encoders/video/vp9_vaapi.js:91
-#: src/misc/coders/settings/Video.js:142
-#: src/views/Edit/Wizard/VideoProfile.js:27
+#: src/misc/coders/Encoders/video/vp9_vaapi.js:86
+#: src/misc/coders/settings/Video.js:132
+#: src/views/Edit/Wizard/VideoProfile.js:42
 msgid "Profile"
 msgstr "Профиль"
 
-#: src/views/Edit/Sources/Network.js:856
+#: src/views/Edit/Sources/Network.js:821
+msgid "Protect: None"
+msgstr ""
+
+#: src/views/Edit/Sources/Network.js:823
+msgid "Protect: Video and audio channel"
+msgstr ""
+
+#: src/views/Edit/Sources/Network.js:822
+msgid "Protect: Video channel"
+msgstr ""
+
+#: src/views/Edit/Sources/Network.js:957
 #: src/views/Publication/Services/Akamai.js:144
 #: src/views/Publication/Services/Akamai.js:182
 #: src/views/Publication/Services/Azure.js:89
@@ -2098,15 +2179,15 @@ msgstr "Профиль"
 #: src/views/Publication/Services/DaCast.js:110
 #: src/views/Publication/Services/DaCast.js:168
 #: src/views/Publication/Services/DASH.js:186
-#: src/views/Publication/Services/HLS.js:175
+#: src/views/Publication/Services/HLS.js:174
 #: src/views/Publication/Services/Icecast.js:156
 #: src/views/Publication/Services/Image2.js:120
 #: src/views/Publication/Services/Linkedin.js:84
-#: src/views/Publication/Services/MPEGTS.js:164
+#: src/views/Publication/Services/MPEGTS.js:163
 #: src/views/Publication/Services/Owncast.js:88
 #: src/views/Publication/Services/Red5.js:105
 #: src/views/Publication/Services/RTMP.js:149
-#: src/views/Publication/Services/RTSP.js:144
+#: src/views/Publication/Services/RTSP.js:143
 #: src/views/Publication/Services/SRT.js:158
 #: src/views/Publication/Services/Telegram.js:79
 #: src/views/Publication/Services/UDP.js:124
@@ -2118,7 +2199,7 @@ msgstr "Протокол"
 msgid "Protocols"
 msgstr "Протоколы"
 
-#: src/views/Settings.js:1401
+#: src/views/Settings.js:1396
 msgid "Public domain/s"
 msgstr "Публичный домен/ы"
 
@@ -2127,7 +2208,7 @@ msgstr "Публичный домен/ы"
 msgid "Publication service not found"
 msgstr "Служба публикации не найдены"
 
-#: src/views/Playersite.js:291
+#: src/views/Playersite.js:230
 msgid "Publication website settings saved"
 msgstr "Настройки сайта публикации сохранены"
 
@@ -2135,32 +2216,38 @@ msgstr "Настройки сайта публикации сохранены"
 msgid "Publications"
 msgstr "Публикации"
 
-#: src/views/Edit/Sources/Network.js:1154
+#: src/views/Edit/Sources/Network.js:1262
 msgid "Pull Mode"
 msgstr "Режим вытягивания"
 
-#: src/views/Edit/Sources/Network.js:1153
+#: src/views/Edit/Sources/Network.js:1261
 msgid "Pull or recieve the data:"
 msgstr "Вытяните или получите данные:"
 
-#: src/misc/coders/Encoders/video/av1_librav1e.js:170
+#: src/misc/coders/Encoders/video/av1_librav1e.js:165
 msgid "QP"
 msgstr "QP"
 
-#: src/misc/coders/Encoders/video/h264_vaapi.js:146
-#: src/misc/coders/Encoders/video/hevc_vaapi.js:148
-#: src/misc/coders/Encoders/video/vp9_vaapi.js:148
-#: src/misc/Progress.js:118
+#: src/misc/coders/Encoders/video/h264_vaapi.js:136
+#: src/misc/coders/Encoders/video/hevc_vaapi.js:138
+#: src/misc/coders/Encoders/video/vp9_vaapi.js:138
+#: src/misc/Progress.js:182
 msgid "Quality"
 msgstr "Качество"
 
-#: src/views/Edit/Sources/Raspicam.js:144
-#: src/views/Edit/Wizard/Sources/Raspicam.js:117
+#: src/misc/coders/Encoders/video/av1_libaom.js:78
+msgid "Quality and compression efficiency vs speed trade-off."
+msgstr ""
+
+#: src/views/Edit/Sources/Raspicam.js:137
+#: src/views/Edit/Wizard/Sources/Raspicam.js:118
 msgid "Raspberry Pi camera"
 msgstr "Камера Raspberry Pi"
 
-#: src/misc/coders/Encoders/video/h264_nvenc.js:152
+#: src/misc/coders/Encoders/video/av1_nvenc.js:141
+#: src/misc/coders/Encoders/video/h264_nvenc.js:148
 #: src/misc/coders/Encoders/video/h264_vaapi.js:70
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:145
 #: src/misc/coders/Encoders/video/hevc_vaapi.js:72
 #: src/misc/coders/Encoders/video/vp9_vaapi.js:72
 msgid "Rate control"
@@ -2170,20 +2257,20 @@ msgstr "Контроль скорости"
 msgid "Ratio"
 msgstr "Соотношение"
 
-#: src/misc/coders/Encoders/video/av1_librav1e.js:221
+#: src/misc/coders/Encoders/video/av1_librav1e.js:216
 msgid "rav1e Parameters"
 msgstr "rav1e Параметры"
 
-#: src/views/Edit/Sources/Network.js:556
+#: src/views/Edit/Sources/Network.js:592
 msgid "Read input at native speed"
 msgstr "Чтение ввода на исходной скорости"
 
-#: src/views/Edit/Sources/Network.js:1155
+#: src/views/Edit/Sources/Network.js:1263
 msgid "Receive Mode"
 msgstr "Режим приема"
 
-#: src/misc/ActionButton.js:32
-#: src/misc/ActionButton.js:53
+#: src/misc/ActionButton.js:40
+#: src/misc/ActionButton.js:61
 #: src/misc/controls/Process.js:47
 msgid "Reconnect"
 msgstr "Повторное подключение"
@@ -2192,30 +2279,31 @@ msgstr "Повторное подключение"
 msgid "Reconnect delay (seconds)"
 msgstr "Задержка повторного подключения (в секундах)"
 
-#: src/views/Main/index.js:372
-#: src/views/Publication/Process.js:68
-#: src/views/Publication/Process.js:81
+#: src/views/Main/index.js:392
+#: src/views/Publication/Process.js:67
+#: src/views/Publication/Process.js:80
 msgid "Reconnecting in {0}s"
 msgstr "Повторное подключение через {0}с"
 
-#: src/views/Settings.js:2246
+#: src/views/Settings.js:2243
 msgid "Reconnecting to Restreamer Core failed for the last {RETRIES} seconds."
 msgstr "Не удалось повторно подключиться к ядру Restreamer в течение последних {RETRIES} секунд."
 
-#: src/views/Password.js:167
+#: src/views/Password.js:173
 msgid "Reconnecting to Restreamer Core failed."
 msgstr "Повторное подключение к ядру Restreamer не удалось."
 
-#: src/views/Edit/Sources/ALSA.js:122
-#: src/views/Edit/Sources/AVFoundation.js:181
-#: src/views/Edit/Sources/Network.js:965
-#: src/views/Edit/Sources/Network.js:1059
+#: src/views/Edit/Sources/ALSA.js:131
+#: src/views/Edit/Sources/AVFoundation.js:190
+#: src/views/Edit/Sources/Network.js:1067
+#: src/views/Edit/Sources/Network.js:1159
 #: src/views/Edit/Sources/Raspicam.js:111
 #: src/views/Edit/Sources/V4L.js:120
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:135
-#: src/views/Edit/Wizard/Sources/InternalRTMP.js:115
-#: src/views/Edit/Wizard/Sources/InternalSRT.js:115
-#: src/views/Edit/Wizard/Sources/V4L.js:120
+#: src/views/Edit/Sources/X11grab.js:157
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:142
+#: src/views/Edit/Wizard/Sources/InternalRTMP.js:122
+#: src/views/Edit/Wizard/Sources/InternalSRT.js:122
+#: src/views/Edit/Wizard/Sources/V4L.js:127
 msgid "Refresh"
 msgstr "Обновление"
 
@@ -2228,61 +2316,69 @@ msgstr "Обновление"
 msgid "Region"
 msgstr "Регион"
 
-#: src/views/Password.js:146
+#: src/views/Password.js:152
 msgid "Register user"
 msgstr "Зарегистрировать пользователя"
 
-#: src/views/Password.js:178
-#: src/views/Settings.js:2266
+#: src/views/Password.js:184
+#: src/views/Settings.js:2263
 msgid "Reload"
 msgstr "Перезагрузка"
 
-#: src/misc/modals/Hint.js:159
+#: src/misc/modals/Hint.js:154
 msgid "Remove Audio"
 msgstr ""
 
-#: src/misc/modals/Hint.js:150
-#~ msgid "Remove Stream"
-#~ msgstr ""
-
-#: src/views/Settings.js:1754
+#: src/views/Settings.js:1749
 msgid "Remove the oldest entries if the /memfs is full"
 msgstr "Удалите самые старые записи, если /memfs заполнен"
 
-#: src/views/Settings.js:1942
+#: src/views/Settings.js:1937
 msgid "Requires activation"
 msgstr "Требуется активация"
 
-#: src/views/Publication/Player.js:546
+#: src/views/Publication/Player.js:547
 msgid "Reset logo"
 msgstr "Сброс логотипа"
 
-#: src/views/Publication/Player.js:551
+#: src/views/Publication/Player.js:552
 msgid "Reset poster"
 msgstr "Плакат перезагрузки"
 
-#: src/views/Settings.js:1300
-#: src/views/Settings.js:2283
-#: src/views/Settings.js:2296
-#: src/views/Settings.js:2305
+#: src/misc/coders/Decoders/video/h264_cuvid.js:72
+#: src/misc/coders/Decoders/video/hevc_cuvid.js:72
+#: src/misc/coders/Decoders/video/mjpeg_cuvid.js:72
+#: src/misc/coders/Decoders/video/mpeg1_cuvid.js:72
+#: src/misc/coders/Decoders/video/mpeg2_cuvid.js:72
+#: src/misc/coders/Decoders/video/mpeg4_cuvid.js:72
+#: src/misc/coders/Decoders/video/vc1_cuvid.js:72
+#: src/misc/coders/Decoders/video/vp8_cuvid.js:72
+#: src/misc/coders/Decoders/video/vp9_cuvid.js:72
+msgid "Resize"
+msgstr ""
+
+#: src/views/Settings.js:1295
+#: src/views/Settings.js:2280
+#: src/views/Settings.js:2293
+#: src/views/Settings.js:2302
 msgid "Restart"
 msgstr "Перезапустить"
 
-#: src/views/Settings.js:2274
+#: src/views/Settings.js:2271
 msgid "Restart required"
 msgstr "Требуется перезагрузка"
 
-#: src/views/Password.js:155
-#: src/views/Settings.js:2234
+#: src/views/Password.js:161
+#: src/views/Settings.js:2231
 msgid "Restarting"
 msgstr "Перезапуск"
 
-#: src/views/Password.js:160
-#: src/views/Settings.js:2239
+#: src/views/Password.js:166
+#: src/views/Settings.js:2236
 msgid "Restarting Restreamer Core ..."
 msgstr "Перезапуск ядра Restreamer..."
 
-#: src/views/Settings.js:1108
+#: src/views/Settings.js:1103
 msgid "Restarting the application failed."
 msgstr "Не удалось перезапустить приложение."
 
@@ -2290,17 +2386,17 @@ msgstr "Не удалось перезапустить приложение."
 msgid "Restreamer instructions"
 msgstr "Инструкции по эксплуатации рестримера"
 
-#: src/views/Settings.js:1328
+#: src/views/Settings.js:1323
 msgid "Restreamer Service"
 msgstr "Сервис Restreamer"
 
-#: src/views/Main/index.js:276
+#: src/views/Main/index.js:287
 msgid "Retrieving stream data ..."
 msgstr "Получение данных потока..."
 
 #: src/views/Edit/Wizard/Error.js:26
 #: src/views/Invalid.js:43
-#: src/views/Settings.js:1209
+#: src/views/Settings.js:1204
 msgid "Retry"
 msgstr "Повторить попытку"
 
@@ -2312,55 +2408,55 @@ msgstr "Тестовый шаблон RGB"
 msgid "Rotate"
 msgstr "Повернуть"
 
-#: src/views/Main/index.js:415
-#: src/views/Settings.js:1239
-#: src/views/Settings.js:1920
+#: src/views/Main/index.js:489
+#: src/views/Settings.js:1234
+#: src/views/Settings.js:1915
 msgid "RTMP"
 msgstr "RTMP"
 
-#: src/views/Settings.js:1997
+#: src/views/Settings.js:1992
 msgid "RTMP app for publishing."
 msgstr "Приложение RTMP для публикации."
 
-#: src/views/Edit/index.js:505
+#: src/views/Edit/index.js:512
 msgid "RTMP output"
 msgstr "RTMP-выход"
 
-#: src/views/Settings.js:1962
+#: src/views/Settings.js:1957
 msgid "RTMP Port"
 msgstr "Порт RTMP"
 
-#: src/views/Edit/Wizard/Sources/InternalRTMP.js:154
-#: src/views/Settings.js:1925
+#: src/views/Edit/Wizard/Sources/InternalRTMP.js:152
+#: src/views/Settings.js:1920
 msgid "RTMP server"
 msgstr "RTMP-сервер"
 
-#: src/views/Edit/Sources/Network.js:924
-#: src/views/Edit/Wizard/Sources/InternalRTMP.js:74
+#: src/views/Edit/Sources/Network.js:1026
+#: src/views/Edit/Wizard/Sources/InternalRTMP.js:81
 msgid "RTMP server is not enabled"
 msgstr "RTMP-сервер не включен"
 
-#: src/views/Settings.js:1970
+#: src/views/Settings.js:1965
 msgid "RTMP server listen address."
 msgstr "Адрес прослушивания RTMP-сервера."
 
-#: src/views/Settings.js:2010
-msgid "RTMP token for publishing and playing. The token is the value of the URL query parameter 'token.'"
-msgstr "Токен RTMP для публикации и воспроизведения. Токен – это значение параметра запроса URL-адреса token."
+#: src/views/Settings.js:2005
+msgid "RTMP streamkey for publishing and playing. The streamkey needs to be appended to the URL."
+msgstr ""
 
-#: src/views/Settings.js:1976
+#: src/views/Settings.js:1971
 msgid "RTMPS Port"
 msgstr "Порт RTMPS"
 
-#: src/views/Settings.js:1933
+#: src/views/Settings.js:1928
 msgid "RTMPS server"
 msgstr "RTMPS-сервер"
 
-#: src/views/Settings.js:1984
+#: src/views/Settings.js:1979
 msgid "RTMPS server listen address."
 msgstr "Адрес прослушивания сервера RTMPS."
 
-#: src/views/Edit/Sources/Network.js:527
+#: src/views/Edit/Sources/Network.js:552
 msgid "RTSP"
 msgstr "RTSP"
 
@@ -2368,19 +2464,19 @@ msgstr "RTSP"
 msgid "Rule"
 msgstr "Правило"
 
-#: src/misc/coders/settings/Audio.js:188
-#: src/misc/filters/audio/Resample.js:140
+#: src/misc/coders/settings/Audio.js:147
+#: src/misc/filters/audio/Resample.js:99
 msgid "Sampling"
 msgstr "Выборка"
 
-#: src/misc/modals/Hint.js:186
-#: src/views/Edit/index.js:632
+#: src/misc/modals/Hint.js:175
+#: src/views/Edit/index.js:654
 #: src/views/Edit/Wizard/License.js:43
-#: src/views/Playersite.js:829
+#: src/views/Playersite.js:763
 #: src/views/Publication/Add.js:567
 #: src/views/Publication/Edit.js:601
-#: src/views/Publication/Player.js:542
-#: src/views/Settings.js:2224
+#: src/views/Publication/Player.js:543
+#: src/views/Settings.js:2221
 msgid "Save"
 msgstr "Сохранить"
 
@@ -2389,13 +2485,17 @@ msgstr "Сохранить"
 msgid "Scale"
 msgstr "Масштаб"
 
+#: src/misc/filters/video/Scale.js:94
 #: src/misc/filters/video/Scale.js:99
 #: src/misc/filters/video/Scale.js:104
-#: src/misc/filters/video/Scale.js:109
 msgid "Scale size"
 msgstr "Размер шкалы"
 
-#: src/views/Settings.js:1855
+#: src/views/Edit/Sources/SDP.js:194
+msgid "SDP"
+msgstr ""
+
+#: src/views/Settings.js:1850
 msgid "Seconds to keep files in cache."
 msgstr "Секунд для хранения файлов в кеше."
 
@@ -2411,7 +2511,7 @@ msgstr "Секунд до завершения зависшего процесс
 msgid "Seconds until the snapshot/thumbnail of the video source is updated."
 msgstr "Секунд до обновления моментального снимка/миниатюры источника видео."
 
-#: src/views/Settings.js:1589
+#: src/views/Settings.js:1584
 msgid "Security"
 msgstr "Безопасность"
 
@@ -2419,7 +2519,7 @@ msgstr "Безопасность"
 msgid "Security token"
 msgstr "Токен безопасности"
 
-#: src/views/Publication/Player.js:403
+#: src/views/Publication/Player.js:404
 msgid "Seekbar color"
 msgstr "Цвет панели поиска"
 
@@ -2432,18 +2532,19 @@ msgid "Segment will be cut on the following keyframe after this time has passed.
 msgstr "Сегмент будет обрезан на следующем ключевом кадре по истечении этого времени. 2 рекомендуется."
 
 #: src/views/Publication/Services/DASH.js:429
-#: src/views/Publication/Services/HLS.js:358
+#: src/views/Publication/Services/HLS.js:363
 msgid "Segmentation"
 msgstr "Сегментация"
 
-#: src/views/Edit/Sources/ALSA.js:108
-#: src/views/Edit/Sources/AVFoundation.js:172
-#: src/views/Edit/Sources/Framebuffer.js:99
+#: src/views/Edit/Sources/ALSA.js:117
+#: src/views/Edit/Sources/AVFoundation.js:181
+#: src/views/Edit/Sources/Framebuffer.js:108
 #: src/views/Edit/Sources/Raspicam.js:105
 #: src/views/Edit/Sources/V4L.js:106
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:120
-#: src/views/Edit/Wizard/Sources/Raspicam.js:95
-#: src/views/Edit/Wizard/Sources/V4L.js:114
+#: src/views/Edit/Sources/X11grab.js:143
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:127
+#: src/views/Edit/Wizard/Sources/Raspicam.js:102
+#: src/views/Edit/Wizard/Sources/V4L.js:121
 msgid "Select a device:"
 msgstr "Выберите устройство:"
 
@@ -2468,39 +2569,39 @@ msgstr "Выберите источник видео:"
 msgid "Select whether you pull the stream from a <0>network source</0> (such as a network camera) or the <1>internal RTMP server</1> (e.g., OBS streams to the Restreamer)."
 msgstr "Выберите, извлекаете ли вы поток из <0>сетевого источника</0> (например, сетевой камеры) или <1>внутреннего RTMP-сервера</1> (например, потоки OBS на Restreamer)..."
 
-#: src/misc/EncodingSelect.js:209
+#: src/misc/EncodingSelect.js:215
 msgid "Select your encoding setting:"
 msgstr "Выберите настройку кодировки:"
 
-#: src/misc/FilterSelect.js:121
+#: src/misc/FilterSelect.js:119
 msgid "Select your filter settings (optional):"
 msgstr "Выберите настройки фильтра (необязательно):"
 
-#: src/views/Playersite.js:626
+#: src/views/Playersite.js:560
 msgid "Selected"
 msgstr "Выбрано"
 
-#: src/views/Playersite.js:373
+#: src/views/Playersite.js:312
 msgid "Selected channel"
 msgstr "Выбранный канал"
 
-#: src/views/Playersite.js:481
+#: src/views/Playersite.js:415
 msgid "Selection"
 msgstr "Выбор"
 
-#: src/views/Settings.js:1284
+#: src/views/Settings.js:1279
 msgid "Send anonymous metrics (helps us for future development)"
 msgstr "Отправляйте анонимные метрики (помогает нам в будущем развитии)"
 
-#: src/views/Edit/Sources/Network.js:954
-#: src/views/Edit/Sources/Network.js:1048
-#: src/views/Edit/Wizard/Sources/InternalRTMP.js:102
-#: src/views/Edit/Wizard/Sources/InternalSRT.js:102
+#: src/views/Edit/Sources/Network.js:1056
+#: src/views/Edit/Sources/Network.js:1148
+#: src/views/Edit/Wizard/Sources/InternalRTMP.js:109
+#: src/views/Edit/Wizard/Sources/InternalSRT.js:109
 msgid "Send stream to address ..."
 msgstr "Отправить поток по адресу ..."
 
-#: src/views/Edit/Sources/Network.js:893
-#: src/views/Edit/Wizard/Sources/InternalHLS.js:48
+#: src/views/Edit/Sources/Network.js:987
+#: src/views/Edit/Wizard/Sources/InternalHLS.js:55
 msgid "Send stream to this address:"
 msgstr "Отправить поток на этот адрес:"
 
@@ -2516,13 +2617,14 @@ msgstr "Сервер"
 #: src/views/Publication/Services/Owncast.js:100
 #: src/views/Publication/Services/Rumble.js:88
 #: src/views/Publication/Services/Telegram.js:91
+#: src/views/Publication/Services/TikTok.js:89
 msgid "Server URL"
 msgstr "URL сервера"
 
-#: src/Header.js:257
+#: src/Header.js:262
 #: src/views/Login.js:246
-#: src/views/Settings.js:1233
-#: src/views/Settings.js:1314
+#: src/views/Settings.js:1228
+#: src/views/Settings.js:1309
 msgid "Service"
 msgstr "Обслуживание"
 
@@ -2531,55 +2633,55 @@ msgstr "Обслуживание"
 msgid "Service name"
 msgstr "Имя службы"
 
-#: src/views/Settings.js:1365
+#: src/views/Settings.js:1360
 msgid "Service token for monitoring."
 msgstr "Токен сервиса для мониторинга."
 
-#: src/Footer.js:240
+#: src/Footer.js:244
 msgid "Sessions"
 msgstr "Сессии"
 
-#: src/misc/coders/Encoders/video/av1_librav1e.js:223
+#: src/misc/coders/Encoders/video/av1_librav1e.js:218
 msgid "Set the rav1e configuration using a :-separated list of key=value parameters."
 msgstr "Задайте конфигурацию rav1e с помощью :-разделенного списка параметров ключ=значение."
 
-#: src/views/Settings.js:1516
+#: src/views/Settings.js:1511
 msgid "Sets a bandwidth limit in Mbit per second for outgoing HLS data transfer. All services, such as RTMP and outgoing processes, are included in the calculation. If the bandwidth is exceeded, HLS viewers receive the HTTP status code 509 (Bandwidth Limit Exceeded). 0 is unlimited."
 msgstr "Устанавливает ограничение пропускной способности в Мбит/с для исходящей передачи данных HLS. Все услуги, такие как RTMP и исходящие процессы, включены в расчет. Если пропускная способность превышена, средства просмотра HLS получают код состояния HTTP 509 (превышен предел пропускной способности). 0 неограничен."
 
-#: src/views/Settings.js:1499
+#: src/views/Settings.js:1494
 msgid "Sets a viewer limit for HLS sessions. If the limit is exceeded, HLS viewers receive the HTTP status code 509 (Bandwidth Limit Exceeded). 0 is unlimited."
 msgstr "Устанавливает лимит зрителей для сеансов HLS. Если ограничение превышено, средства просмотра HLS получают код состояния HTTP 509 (превышен предел пропускной способности). 0 неограничен."
 
-#: src/views/Settings.js:1319
+#: src/views/Settings.js:1314
 msgid "Setting for connection to the service."
 msgstr "Настройка подключения к сервису."
 
-#: src/views/Settings.js:1219
+#: src/views/Settings.js:1214
 msgid "Settings"
 msgstr "Настройки"
 
-#: src/views/Settings.js:1221
+#: src/views/Settings.js:1216
 msgid "Settings (expert mode)"
 msgstr "Настройки (режим эксперта)"
 
-#: src/views/Settings.js:1770
+#: src/views/Settings.js:1765
 msgid "Settings for /data path. The access is protected by"
 msgstr "Настройки пути /data. Доступ защищен"
 
-#: src/views/Settings.js:1696
+#: src/views/Settings.js:1691
 msgid "Settings for /memfs path."
 msgstr "Настройки для пути /memfs."
 
-#: src/views/Settings.js:1051
+#: src/views/Settings.js:1046
 msgid "Settings saved. All changes will be applied after restarting the application."
 msgstr "Настройки сохранены. Все изменения вступят в силу после перезапуска приложения."
 
-#: src/views/Playersite.js:433
+#: src/views/Playersite.js:367
 msgid "Share button"
 msgstr "Кнопка поделиться"
 
-#: src/views/Playersite.js:463
+#: src/views/Playersite.js:397
 msgid "Shows a reference to the project."
 msgstr "Показывает ссылку на проект."
 
@@ -2591,7 +2693,7 @@ msgstr "Регистрация (бесплатно)"
 msgid "Silence"
 msgstr "Тишина"
 
-#: src/views/Edit/Wizard/Audio.js:95
+#: src/views/Edit/Wizard/Audio.js:109
 msgid "Silence Audio"
 msgstr "Тишина Аудио"
 
@@ -2599,16 +2701,16 @@ msgstr "Тишина Аудио"
 msgid "Sine"
 msgstr "Синус"
 
-#: src/views/Playersite.js:359
+#: src/views/Playersite.js:298
 msgid "Sitename"
 msgstr "Название сайта"
 
-#: src/misc/coders/settings/Video.js:201
+#: src/misc/coders/settings/Video.js:147
 msgid "Size"
 msgstr "Размер"
 
-#: src/views/Edit/index.js:543
-#: src/views/Main/index.js:434
+#: src/views/Edit/index.js:550
+#: src/views/Main/index.js:503
 msgid "Snapshot"
 msgstr "Снимок"
 
@@ -2616,7 +2718,7 @@ msgstr "Снимок"
 msgid "Social-login (OAuth2, 2FA)"
 msgstr "Регистрация (OAuth2, 2FA)"
 
-#: src/views/Edit/Sources/Network.js:540
+#: src/views/Edit/Sources/Network.js:576
 msgid "Socket timeout (microseconds)"
 msgstr "Время ожидания сокета (микросекунды)"
 
@@ -2639,7 +2741,7 @@ msgstr "Источник"
 msgid "Source & Encoding"
 msgstr "Источник и кодирование"
 
-#: src/misc/Progress.js:131
+#: src/misc/Progress.js:195
 msgid "Speed"
 msgstr "Скорость"
 
@@ -2647,31 +2749,31 @@ msgstr "Скорость"
 msgid "Speed Preset"
 msgstr "Предварительная настройка скорости"
 
-#: src/views/Main/index.js:425
-#: src/views/Settings.js:1240
-#: src/views/Settings.js:2019
+#: src/views/Main/index.js:494
+#: src/views/Settings.js:1235
+#: src/views/Settings.js:2014
 msgid "SRT"
 msgstr "SRT"
 
-#: src/views/Edit/index.js:524
+#: src/views/Edit/index.js:531
 msgid "SRT output"
 msgstr "Выход SRT"
 
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:152
-#: src/views/Settings.js:2024
+#: src/views/Settings.js:2019
 msgid "SRT server"
 msgstr "Сервер SRT"
 
-#: src/views/Edit/Sources/Network.js:1018
-#: src/views/Edit/Wizard/Sources/InternalSRT.js:74
+#: src/views/Edit/Sources/Network.js:1118
+#: src/views/Edit/Wizard/Sources/InternalSRT.js:81
 msgid "SRT server is not enabled"
 msgstr "Сервер SRT не включен"
 
-#: src/views/Settings.js:2046
+#: src/views/Settings.js:2041
 msgid "SRT server listen address."
 msgstr "Адрес прослушивания сервера SRT."
 
-#: src/views/Settings.js:2059
+#: src/views/Settings.js:2055
 msgid "SRT token for publishing and playing. The token is the value of the streamid parameter 'token.'"
 msgstr "SRT-токен для публикации и воспроизведения. Токен - это значение параметра streamid 'token'."
 
@@ -2679,28 +2781,28 @@ msgstr "SRT-токен для публикации и воспроизведен
 msgid "Stale timeout (seconds)"
 msgstr "Время ожидания ожидания (секунды)"
 
-#: src/views/Edit/Sources/Network.js:717
+#: src/views/Edit/Sources/Network.js:772
 msgid "start_at_zero"
 msgstr "start_at_zero"
 
-#: src/views/Settings.js:1621
+#: src/views/Settings.js:1616
 msgid "Statistics"
 msgstr "Статистика"
 
 #: src/misc/controls/HLS.js:65
-#: src/views/Settings.js:1238
-#: src/views/Settings.js:1688
+#: src/views/Settings.js:1233
+#: src/views/Settings.js:1683
 msgid "Storage"
 msgstr "Хранилище"
 
-#: src/views/Settings.js:1679
+#: src/views/Settings.js:1674
 msgid "Stores the viewer statistics to the disk."
 msgstr "Сохраняет статистику просмотра на диск."
 
-#: src/views/Edit/StreamSelect.js:30
-#: src/views/Edit/StreamSelect.js:36
-#: src/views/Edit/StreamSelect.js:81
-#: src/views/Edit/Wizard/Audio.js:75
+#: src/views/Edit/StreamSelect.js:29
+#: src/views/Edit/StreamSelect.js:35
+#: src/views/Edit/StreamSelect.js:80
+#: src/views/Edit/Wizard/Audio.js:89
 msgid "Stream"
 msgstr "Поток"
 
@@ -2710,10 +2812,11 @@ msgstr ""
 
 #: src/views/Publication/Services/CDN77.js:113
 #: src/views/Publication/Services/DaCast.js:153
-#: src/views/Publication/Services/Dailymotion.js:98
+#: src/views/Publication/Services/Dailymotion.js:100
 #: src/views/Publication/Services/DLive.js:75
 #: src/views/Publication/Services/Dummy.js:280
-#: src/views/Publication/Services/Instagram.js:81
+#: src/views/Publication/Services/EarthCam.js:88
+#: src/views/Publication/Services/Instagram.js:80
 #: src/views/Publication/Services/Kick.js:100
 #: src/views/Publication/Services/Livepush.js:104
 #: src/views/Publication/Services/MediaNetwork.js:75
@@ -2724,6 +2827,7 @@ msgstr ""
 #: src/views/Publication/Services/Restream.js:116
 #: src/views/Publication/Services/Rumble.js:100
 #: src/views/Publication/Services/Telegram.js:101
+#: src/views/Publication/Services/TikTok.js:101
 #: src/views/Publication/Services/Trovo.js:75
 #: src/views/Publication/Services/Twitch.js:151
 #: src/views/Publication/Services/Twitter.js:175
@@ -2757,18 +2861,22 @@ msgstr "Источник потока для службы публикации (
 msgid "Stream URL"
 msgstr "URL-адрес потока"
 
-#: src/views/Playersite.js:457
+#: src/views/Settings.js:1997
+msgid "Streamkey"
+msgstr ""
+
+#: src/views/Playersite.js:391
 msgid "Support datarhei Restreamer"
 msgstr "Поддержка datarhei Restreamer"
 
-#: src/views/Edit/Sources/Network.js:771
-#: src/views/Edit/Wizard/Sources/Network.js:72
+#: src/views/Edit/Sources/Network.js:864
+#: src/views/Edit/Wizard/Sources/Network.js:79
 msgid "Supports HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT and more."
 msgstr "Поддерживает HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT и другие."
 
-#: src/Footer.js:184
-#: src/Header.js:275
-#: src/views/Settings.js:2095
+#: src/Footer.js:188
+#: src/Header.js:280
+#: src/views/Settings.js:2092
 msgid "System"
 msgstr "Система"
 
@@ -2776,16 +2884,16 @@ msgstr "Система"
 msgid "Target address"
 msgstr "Адрес цели"
 
-#: src/views/Playersite.js:329
-#: src/views/Playersite.js:472
+#: src/views/Playersite.js:268
+#: src/views/Playersite.js:406
 msgid "Template"
 msgstr "Шаблон"
 
-#: src/views/Playersite.js:494
+#: src/views/Playersite.js:428
 msgid "Template to be used for creating the publication website. The delete button removes the selection from the system."
 msgstr "Шаблон, который будет использоваться для создания веб-сайта публикации. Кнопка удаления удаляет выделение из системы."
 
-#: src/views/Playersite.js:707
+#: src/views/Playersite.js:641
 msgid "Terms"
 msgstr "Условия"
 
@@ -2797,7 +2905,7 @@ msgstr "Тестовый шаблон"
 msgid "Test pattern (extended)"
 msgstr "Тестовый шаблон (расширенный)"
 
-#: src/views/Playersite.js:557
+#: src/views/Playersite.js:491
 msgid "Text colors"
 msgstr "Цвета текста"
 
@@ -2805,15 +2913,15 @@ msgstr "Цвета текста"
 msgid "The amplitude (0.0 - 1.0) of the generated audio stream"
 msgstr "Амплитуда (0.0 - 1.0) генерируемого аудиопотока"
 
-#: src/views/Settings.js:1304
+#: src/views/Settings.js:1299
 msgid "The application is using an older version of the settings."
 msgstr "Приложение использует более старую версию настроек."
 
-#: src/views/Edit/Sources/Network.js:844
+#: src/views/Edit/Sources/Network.js:945
 msgid "The available FFmpeg binary doesn't support any of the required protocols."
 msgstr "Доступный двоичный файл FFmpeg не поддерживает ни один из требуемых протоколов."
 
-#: src/misc/coders/settings/Audio.js:40
+#: src/misc/coders/settings/Audio.js:48
 msgid "The bitrate of the audio stream."
 msgstr "Битрейт аудиопотока."
 
@@ -2821,19 +2929,23 @@ msgstr "Битрейт аудиопотока."
 msgid "The carrier frequency"
 msgstr "Несущая частота"
 
-#: src/views/Edit/index.js:376
+#: src/views/Edit/index.js:383
 msgid "The channel \"{0}\" could not be deleted"
 msgstr "Канал \"{0}\" не может быть удален"
 
-#: src/views/Edit/index.js:385
+#: src/views/Edit/index.js:392
 msgid "The channel \"{0}\" has been deleted"
 msgstr "Канал \"{0}\" удален"
 
-#: src/views/Edit/index.js:676
+#: src/views/Edit/index.js:698
 msgid "The deletion of this channel can not be recovered. All publications of this channel will be removed."
 msgstr "Удаление этого канала не может быть восстановлено. Все публикации этого канала будут удалены."
 
-#: src/views/Edit/index.js:302
+#: src/misc/controls/Preview.js:60
+msgid "The H.264 encoder used."
+msgstr ""
+
+#: src/views/Edit/index.js:303
 #: src/views/Edit/Wizard/index.js:176
 #: src/views/Publication/Edit.js:262
 msgid "The input profile is not complete. Please define a video and audio source."
@@ -2843,8 +2955,8 @@ msgstr "Входной профиль не завершен. Укажите ис
 msgid "The input profile is not complete. Please define a video and/or audio source."
 msgstr "Входной профиль не заполнен. Пожалуйста, укажите источник видео и/или аудио."
 
-#: src/misc/coders/settings/Audio.js:126
-#: src/misc/filters/audio/Resample.js:78
+#: src/misc/coders/settings/Audio.js:135
+#: src/misc/filters/audio/Resample.js:87
 msgid "The layout of the audio stream."
 msgstr "Схема аудиопотока."
 
@@ -2860,7 +2972,7 @@ msgstr "Цвет шума"
 msgid "The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission."
 msgstr "Лицо, связавшее произведение с этим документом, сделало произведение общественным достоянием, отказавшись от всех своих прав на произведение во всем мире в соответствии с законом об авторском праве, включая все смежные и смежные права, в той мере, в какой это разрешено законом. Вы можете копировать, изменять, распространять и выполнять работу даже в коммерческих целях, не спрашивая разрешения."
 
-#: src/views/Settings.js:1409
+#: src/views/Settings.js:1404
 msgid "The public reachable domain name of the host this Restreamer is running on. Separate multiple domain names by a comma."
 msgstr "Общедоступное доменное имя хоста, на котором работает Restreamer. Разделяйте несколько доменных имен запятой."
 
@@ -2884,21 +2996,23 @@ msgstr "Создан сервис публикации"
 msgid "The RTMP output requires the RTMP Server."
 msgstr "Для вывода RTMP требуется сервер RTMP."
 
-#: src/misc/coders/settings/Audio.js:177
-#: src/misc/filters/audio/Resample.js:129
+#: src/misc/coders/settings/Audio.js:185
+#: src/misc/filters/audio/Resample.js:137
 msgid "The sample rate of the audio stream."
 msgstr "Частота дискретизации аудиопотока."
 
-#: src/views/Edit/Sources/AudioLoop.js:95
-#: src/views/Edit/Sources/VideoLoop.js:103
-#: src/views/Playersite.js:231
+#: src/views/Edit/Sources/AudioLoop.js:122
+#: src/views/Edit/Sources/SDP.js:106
+#: src/views/Edit/Sources/VideoLoop.js:130
+#: src/views/Playersite.js:170
 #: src/views/Publication/Player.js:206
 msgid "The selected file is too big (<0/>). Only <1/> are allowed."
 msgstr "Выбранный файл слишком велик (<0/>). Допускается только <1/>."
 
-#: src/views/Edit/Sources/AudioLoop.js:88
-#: src/views/Edit/Sources/VideoLoop.js:96
-#: src/views/Playersite.js:224
+#: src/views/Edit/Sources/AudioLoop.js:115
+#: src/views/Edit/Sources/SDP.js:99
+#: src/views/Edit/Sources/VideoLoop.js:123
+#: src/views/Playersite.js:163
 #: src/views/Publication/Player.js:199
 msgid "The selected file type ({0}) is not allowed. Allowed file types are {1}"
 msgstr "Выбранный тип файла ({0}) не разрешен. Разрешенными типами файлов являются {1}"
@@ -2907,27 +3021,27 @@ msgstr "Выбранный тип файла ({0}) не разрешен. Раз
 msgid "The settings for \"{0}\" have been saved"
 msgstr "Настройки для \"{0}\" сохранены"
 
-#: src/views/Edit/Wizard/Audio.js:43
+#: src/views/Edit/Wizard/Audio.js:57
 msgid "The source doesn't provide any audio streams."
 msgstr "Источник не предоставляет никаких аудиопотоков."
 
-#: src/views/Edit/Profile.js:696
+#: src/views/Edit/Profile.js:711
 msgid "The source doesn't provide any audio streams. Please check the <0>probe details</0>."
 msgstr "Источник не предоставляет никаких аудиопотоков. Пожалуйста, проверьте <0>подробнее</0>."
 
-#: src/views/Edit/Wizard/Audio.js:51
+#: src/views/Edit/Wizard/Audio.js:65
 msgid "The source doesn't provide any compatible audio streams."
 msgstr "Источник не предоставляет совместимых аудиопотоков."
 
-#: src/views/Edit/Wizard/Video.js:50
+#: src/views/Edit/Wizard/Video.js:59
 msgid "The source doesn't provide any compatible video streams. Please check the <0>requirements</0>."
 msgstr "Источник не предоставляет совместимых видеопотоков. Ознакомьтесь с <0>требованиями</0>."
 
-#: src/views/Edit/Profile.js:537
+#: src/views/Edit/Profile.js:557
 msgid "The source doesn't provide any video streams. Please check the <0>probe details</0>."
 msgstr "Источник не предоставляет никаких видеопотоков. Пожалуйста, проверьте <0>подробнее</0>."
 
-#: src/views/Edit/Wizard/Video.js:42
+#: src/views/Edit/Wizard/Video.js:51
 msgid "The source doesn't provide any video streams. Please check the device."
 msgstr "Источник не предоставляет никаких видеопотоков. Пожалуйста, проверьте устройство."
 
@@ -2935,29 +3049,30 @@ msgstr "Источник не предоставляет никаких виде
 msgid "The SRT output requires the SRT Server."
 msgstr "Для вывода SRT требуется сервер SRT Server."
 
-#: src/views/Edit/Wizard/Audio.js:62
+#: src/views/Edit/Wizard/Audio.js:76
 msgid "The video source doesn't provide any compatible audio stream. <0>Silence audio</0> is recommended. Services e.g. YouTube, Facebook & Co. require an audio channel."
 msgstr "Источник видео не обеспечивает совместимый аудиопоток. Рекомендуется <0>отключить звук</0>. Сервисы YouTube, Facebook и другие компании требуют наличия аудиоканала...."
 
-#: src/views/Edit/Wizard/VideoProfile.js:23
+#: src/views/Edit/Wizard/VideoProfile.js:38
 msgid "The video source is compatible. Select the desired resolution:"
 msgstr "Источник видео совместим. Выберите нужное разрешение:"
 
-#: src/views/Settings.js:1276
+#: src/views/Settings.js:1271
 msgid "There are updates available. Here you get more information."
 msgstr "Доступны обновления. Здесь вы получите больше информации."
 
-#: src/views/Settings.js:1004
+#: src/views/Settings.js:999
 msgid "There was a problem storing the settings. Settings not saved."
 msgstr "Не удалось сохранить настройки. Настройки не сохранены."
 
 #: src/views/Invalid.js:32
-msgid "There was an error connecting to Restreamer Core at {0}."
-msgstr "Произошла ошибка при подключении к ядру Restreamer на {0}."
+msgid "There was an error connecting to Restreamer Core at {address}."
+msgstr ""
 
-#: src/views/Edit/Sources/AudioLoop.js:102
-#: src/views/Edit/Sources/VideoLoop.js:110
-#: src/views/Playersite.js:238
+#: src/views/Edit/Sources/AudioLoop.js:129
+#: src/views/Edit/Sources/SDP.js:113
+#: src/views/Edit/Sources/VideoLoop.js:137
+#: src/views/Playersite.js:177
 #: src/views/Publication/Player.js:213
 msgid "There was an error during upload: {0}"
 msgstr "При загрузке произошла ошибка: {0}"
@@ -2966,7 +3081,7 @@ msgstr "При загрузке произошла ошибка: {0}"
 msgid "There was an error setting up the stream."
 msgstr "Не удалось настроить поток."
 
-#: src/views/Settings.js:1002
+#: src/views/Settings.js:997
 msgid "There were some errors in the settings. Settings not saved."
 msgstr "Были некоторые ошибки в настройках. Настройки не сохранены."
 
@@ -2978,7 +3093,7 @@ msgstr "Метод входа недоступен."
 msgid "This is a dummy service that explains to you the concepts of service."
 msgstr "Это фиктивный сервис, который объясняет вам концепции сервиса."
 
-#: src/views/Password.js:170
+#: src/views/Password.js:176
 msgid "This is not necessarily an error. However, it may take a bit longer for Restreamer Core to restart.."
 msgstr "Это не обязательно ошибка. Однако перезапуск ядра Restreamer может занять немного больше времени.."
 
@@ -3010,21 +3125,21 @@ msgstr "Эта лицензия позволяет повторным польз
 msgid "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms."
 msgstr "Эта лицензия позволяет повторным пользователям распространять, микшировать, адаптировать и использовать материал на любом носителе или в любом формате при условии указания авторства. Лицензия разрешает коммерческое использование. Если вы микшируете, адаптируете или развиваете материал, вы должны лицензировать измененный материал на тех же условиях."
 
-#: src/views/Edit/Sources/Network.js:781
+#: src/views/Edit/Sources/Network.js:874
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
 msgstr "Этот протокол неизвестен или не поддерживается имеющимся двоичным файлом FFmpeg."
 
-#: src/views/Edit/index.js:657
+#: src/views/Edit/index.js:679
 msgid "This source cannot be edited while it is in use. To continue, you have to disconnect the source."
 msgstr "Этот источник нельзя редактировать, пока он используется. Чтобы продолжить, вы должны отключить источник."
 
-#: src/views/Incompatible.js:21
-msgid "This version of the UI doesn't support the available FFmpeg binary ({0}). The UI requires {1}. Please use a supported FFmpeg binary."
-msgstr "Эта версия пользовательского интерфейса не поддерживает доступный двоичный файл FFmpeg ({0}). Пользовательский интерфейс требует {1}. Пожалуйста, используйте поддерживаемый двоичный файл FFmpeg."
+#: src/views/Incompatible.js:20
+msgid "This version of the UI doesn't support the available FFmpeg binary ({have}). The UI requires {want}. Please use a supported FFmpeg binary."
+msgstr ""
 
 #: src/views/Incompatible.js:14
-msgid "This version of the UI doesn't support the connected Core ({0}). The UI requires {1}. Please use a compatible version of the UI."
-msgstr "Эта версия пользовательского интерфейса не поддерживает подключенное ядро ({0}). Пользовательский интерфейс требует {1}. Пожалуйста, используйте совместимую версию пользовательского интерфейса."
+msgid "This version of the UI doesn't support the connected Core ({have}). The UI requires {want}. Please use a compatible version of the UI."
+msgstr ""
 
 #: src/views/Incompatible.js:10
 msgid "This version of the UI is compatible."
@@ -3034,19 +3149,19 @@ msgstr "Эта версия пользовательского интерфей�
 msgid "Threshold (seconds)"
 msgstr "Порог (секунды)"
 
-#: src/misc/coders/Encoders/video/av1_librav1e.js:212
+#: src/misc/coders/Encoders/video/av1_librav1e.js:207
 msgid "Tile Columns"
 msgstr "Плиточные колонны"
 
-#: src/misc/coders/Encoders/video/av1_librav1e.js:198
+#: src/misc/coders/Encoders/video/av1_librav1e.js:193
 msgid "Tile Rows"
 msgstr "Ряды плитки"
 
-#: src/misc/coders/Encoders/video/av1_librav1e.js:184
+#: src/misc/coders/Encoders/video/av1_librav1e.js:179
 msgid "Tiles"
 msgstr "Плитка"
 
-#: src/views/Settings.js:1666
+#: src/views/Settings.js:1661
 msgid "Time until an inactive viewer connection is treated as closed."
 msgstr "Время до того, как неактивное соединение со зрителем будет считаться закрытым."
 
@@ -3054,13 +3169,12 @@ msgstr "Время до того, как неактивное соединени
 msgid "To stabilize the system, increase the HLS segment length for the keyframe interval by 2-3 * (Processing and Control)."
 msgstr "Для стабилизации системы увеличьте длину сегмента HLS для интервала ключевых кадров на 2-3 * (Обработка и управление)."
 
-#: src/views/Settings.js:1357
-#: src/views/Settings.js:2002
-#: src/views/Settings.js:2051
+#: src/views/Settings.js:1352
+#: src/views/Settings.js:2047
 msgid "Token"
 msgstr "Токен"
 
-#: src/misc/filters/video/Bwdif.js:59
+#: src/misc/filters/video/Bwdif.js:54
 msgid "Top field"
 msgstr "Верхнее поле"
 
@@ -3076,7 +3190,7 @@ msgstr "Передача моментальных снимков основно�
 msgid "Transmit the audio channel of the main source to an Icecast Server. More details about the settings can be found <0>here</0>."
 msgstr "Передайте аудиоканал основного источника на сервер Icecast. Более подробную информацию о настройках можно найти <0>здесь</0>."
 
-#: src/views/Publication/Services/HLS.js:29
+#: src/views/Publication/Services/HLS.js:28
 msgid "Transmit the main source as HTTP-Live-Streaming (HLS) to an HTTP/S Server. More details about the settings can be found <0>here</0>."
 msgstr "Передайте основной источник как HTTP-Live-Streaming (HLS) на сервер HTTP/S. Более подробную информацию о настройках можно найти <0>здесь</0>."
 
@@ -3104,7 +3218,7 @@ msgstr "Передайте основной источник на основно
 msgid "Transmit the main source to an livespotting.com Ressource. More details about the settings can be found <0>here</0>."
 msgstr "Передайте основной источник на ресурс livespotting.com. Более подробную информацию о настройках можно найти <0>здесь</0>."
 
-#: src/views/Publication/Services/MPEGTS.js:27
+#: src/views/Publication/Services/MPEGTS.js:26
 msgid "Transmit the main source to an MPEG-TS Service. More details about the settings can be found here <0>here</0>."
 msgstr "Передать основной источник в службу MPEG-TS. Подробнее о настройках можно узнать здесь <0>здесь</0>."
 
@@ -3116,7 +3230,7 @@ msgstr "Передача основного источника на сервер
 msgid "Transmit the main source to an RTMP(e|s|t|te|ts) Server. More details about the settings can be found <0>here</0>."
 msgstr "Передайте основной источник на сервер RTMP(e|s|t|te|ts). Более подробную информацию о настройках можно найти <0>здесь</0>."
 
-#: src/views/Publication/Services/RTSP.js:28
+#: src/views/Publication/Services/RTSP.js:27
 msgid "Transmit the main source to an RTSP Server. More details about the settings can be found <0>here</0>."
 msgstr "Передайте основной источник на сервер RTSP. Более подробную информацию о настройках можно найти <0>здесь</0>."
 
@@ -3164,6 +3278,10 @@ msgstr "Передайте в LinkedIn. Более подробную инфор
 msgid "Transmit your Livestream to an Dailymotion RTMP service. <0>Here </0>you can find more details about the settings."
 msgstr "Передайте ваш Livestream на RTMP-сервис Dailymotion. <0>Здесь </0> вы можете найти более подробную информацию о настройках."
 
+#: src/views/Publication/Services/EarthCam.js:16
+msgid "Transmit your Livestream to an EarthCam RTMP service. <0>Here </0>you can find more details about the settings."
+msgstr ""
+
 #: src/views/Publication/Services/Kick.js:16
 msgid "Transmit your Livestream to an Kick.com RTMP service. <0>Here </0>you can find more details about the settings."
 msgstr "Передайте ваш Livestream на RTMP-сервис Kick.com. <0>Здесь </0> вы можете найти более подробную информацию о настройках."
@@ -3176,8 +3294,12 @@ msgstr "Передайте ваш Livestream на сервер Owncast. <0>Зд�
 msgid "Transmit your Livestream to an Rumble RTMP service. <0>Here </0>you can find more details about the settings."
 msgstr "Передайте ваш Livestream на сервис Rumble RTMP. <0>Здесь </0> вы можете найти более подробную информацию о настройках."
 
+#: src/views/Publication/Services/TikTok.js:17
+msgid "Transmit your Livestream to an TikTok RTMP service. <0>Here </0>you can find more details about the settings."
+msgstr ""
+
 #: src/views/Publication/Services/Wettercom.js:16
-msgid "Transmit your Livestream to wetter.com. Contact the publisher  <0>here </0>."
+msgid "Transmit your Livestream to wetter.com. Contact the publisher <0>here </0>."
 msgstr ""
 
 #: src/views/Publication/Services/Youtube.js:21
@@ -3188,40 +3310,43 @@ msgstr "Передает ваше видео в виде RTMP-потока с н
 msgid "Transmits your video stream with the required key, which was generated in Twitter Producer. You can find more information on seting up a live stream at Twitter's <0>Producer</0>."
 msgstr "Передает ваш видеопоток с нужным ключом, сгенерированным в Twitter Producer. Дополнительную информацию о настройке прямой трансляции можно найти на странице <0>Producer</0> в Твиттере."
 
-#: src/misc/coders/Encoders/video/h264_libx264.js:103
-#: src/misc/coders/Encoders/video/hevc_libx265.js:103
+#: src/views/Edit/Sources/Network.js:558
+msgid "Transport"
+msgstr ""
+
+#: src/misc/coders/Encoders/video/av1_nvenc.js:92
+#: src/misc/coders/Encoders/video/h264_libx264.js:98
+#: src/misc/coders/Encoders/video/h264_nvenc.js:95
+#: src/misc/coders/Encoders/video/hevc_libx265.js:98
+#: src/misc/coders/Encoders/video/hevc_nvenc.js:95
 msgid "Tune"
 msgstr "Мелодия"
 
-#: src/misc/modals/Hint.js:60
-#~ msgid "Type"
-#~ msgstr ""
-
-#: src/views/Edit/Sources/Network.js:531
-#: src/views/Edit/Wizard/Sources/Network.js:77
+#: src/views/Edit/Wizard/Sources/Network.js:84
 msgid "UDP transport"
 msgstr "Транспорт UDP"
 
-#: src/views/Settings.js:1204
+#: src/views/Settings.js:1199
 msgid "Unable to load the config."
 msgstr "Не удалось загрузить конфиг."
 
-#: src/views/Settings.js:1339
+#: src/views/Settings.js:1334
 msgid "Unique ident on the service."
 msgstr "Уникальный идентификатор на сервисе."
 
-#: src/views/Main/Egress.js:96
+#: src/views/Main/Egress.js:104
 msgid "Unknown"
 msgstr "Неизвестный"
 
-#: src/views/Edit/Sources/AudioLoop.js:105
-#: src/views/Edit/Sources/VideoLoop.js:113
-#: src/views/Playersite.js:241
+#: src/views/Edit/Sources/AudioLoop.js:132
+#: src/views/Edit/Sources/SDP.js:116
+#: src/views/Edit/Sources/VideoLoop.js:140
+#: src/views/Playersite.js:180
 #: src/views/Publication/Player.js:216
 msgid "Unknown upload error"
 msgstr "Неизвестная ошибка загрузки"
 
-#: src/views/Playersite.js:635
+#: src/views/Playersite.js:569
 msgid "Unselected"
 msgstr "Не выбрано"
 
@@ -3229,50 +3354,60 @@ msgstr "Не выбрано"
 msgid "Update details (Changelog)"
 msgstr "Подробности обновления (Changelog)"
 
-#: src/views/Edit/Sources/AudioLoop.js:146
-#: src/views/Edit/Sources/VideoLoop.js:154
-#: src/views/Playersite.js:514
-#: src/views/Playersite.js:534
-#: src/views/Playersite.js:672
-#: src/views/Publication/Player.js:434
-#: src/views/Publication/Player.js:481
+#: src/views/Edit/Sources/AudioLoop.js:176
+#: src/views/Edit/Sources/SDP.js:157
+#: src/views/Edit/Sources/VideoLoop.js:184
+#: src/views/Playersite.js:448
+#: src/views/Playersite.js:468
+#: src/views/Playersite.js:606
+#: src/views/Publication/Player.js:435
+#: src/views/Publication/Player.js:482
 msgid "Upload"
 msgstr "Загрузить"
 
-#: src/views/Edit/Sources/AudioLoop.js:138
+#: src/views/Edit/Sources/AudioLoop.js:168
 msgid "Upload an audio file ({0}) in order to loop it."
 msgstr "Загрузите аудиофайл ({0}), чтобы зациклить его."
 
-#: src/views/Edit/Sources/VideoLoop.js:146
+#: src/views/Edit/Sources/VideoLoop.js:176
 msgid "Upload an image or video file ({0}) in order to loop it."
 msgstr "Загрузите изображение или видеофайл ({0}), чтобы зациклить его."
 
-#: src/views/Edit/Sources/AudioLoop.js:149
-#: src/views/Edit/Sources/VideoLoop.js:157
-#: src/views/Playersite.js:537
-#: src/views/Playersite.js:675
+#: src/views/Edit/Sources/SDP.js:149
+msgid "Upload SDP file ({0})."
+msgstr ""
+
+#: src/views/Edit/Sources/AudioLoop.js:179
+#: src/views/Edit/Sources/SDP.js:160
+#: src/views/Edit/Sources/VideoLoop.js:187
+#: src/views/Playersite.js:471
+#: src/views/Playersite.js:609
 msgid "Uploading the file failed"
 msgstr "Загрузка файла не удалась"
 
-#: src/views/Publication/Player.js:437
+#: src/views/Publication/Player.js:438
 msgid "Uploading the logo failed"
 msgstr "Не удалось загрузить логотип"
 
-#: src/views/Publication/Player.js:484
+#: src/views/Publication/Player.js:485
 msgid "Uploading the poster failed"
 msgstr "Загрузка плаката не удалась"
 
-#: src/Footer.js:165
-#: src/misc/Progress.js:53
+#: src/Footer.js:169
+#: src/misc/Progress.js:117
 #: src/views/Main/Progress.js:57
 msgid "Uptime"
 msgstr "Время безотказной работы"
+
+#: src/misc/coders/Encoders/video/av1_libaom.js:72
+msgid "Usage"
+msgstr ""
 
 #: src/views/Login.js:343
 msgid "Use Auth0 for your running Restreamer Core. More <0>details</0>."
 msgstr "Используйте Auth0 для работающего ядра Restreamer. Больше <0>подробностей</0>."
 
-#: src/views/Edit/index.js:444
+#: src/views/Edit/index.js:451
 msgid "Use the wizard (<0/>) for a quick and easy setup, or edit (<1/>) the sources directly in custom mode."
 msgstr "Воспользуйтесь мастером (<0/>) для быстрой и простой настройки или отредактируйте (<1/>) источники непосредственно в пользовательском режиме."
 
@@ -3280,39 +3415,39 @@ msgstr "Воспользуйтесь мастером (<0/>) для быстро
 msgid "Use your copyright and choose the correct image license. Whether free for all or highly restricted. Briefly discuss what others are allowed to do with your image."
 msgstr "Используйте свои авторские права и выберите правильную лицензию на изображение. Независимо от того, бесплатно для всех или сильно ограничено. Кратко обсудите, что другим разрешено делать с вашим изображением."
 
-#: src/views/Edit/index.js:602
+#: src/views/Edit/index.js:624
 msgid "Use your copyright and choose the right image licence. Whether free for all or highly restricted. Briefly discuss what others are allowed to do with your image."
 msgstr "Используйте свои авторские права и выберите правильную лицензию на изображение. Независимо от того, бесплатно для всех или сильно ограничено. Кратко обсудите, что другим разрешено делать с вашим изображением."
 
-#: src/views/Edit/Sources/Network.js:722
+#: src/views/Edit/Sources/Network.js:777
 msgid "use_wallclock_as_timestamps"
 msgstr "use_wallclock_as_timestamps"
 
-#: src/views/Password.js:99
+#: src/views/Password.js:105
 msgid "User registration"
 msgstr "Регистрация пользователя"
 
-#: src/views/Edit/Sources/Network.js:793
-#: src/views/Edit/Wizard/Sources/Network.js:84
+#: src/views/Edit/Sources/Network.js:886
+#: src/views/Edit/Wizard/Sources/Network.js:91
 #: src/views/Login.js:272
 #: src/views/Publication/Services/DaCast.js:131
 #: src/views/Publication/Services/DASH.js:195
-#: src/views/Publication/Services/HLS.js:184
+#: src/views/Publication/Services/HLS.js:183
 #: src/views/Publication/Services/Red5.js:146
-#: src/views/Publication/Services/RTSP.js:153
+#: src/views/Publication/Services/RTSP.js:152
 #: src/views/Publication/Services/WOWZA.js:168
-#: src/views/Settings.js:1556
-#: src/views/Settings.js:1714
+#: src/views/Settings.js:1551
+#: src/views/Settings.js:1709
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: src/views/Settings.js:1562
-#: src/views/Settings.js:1722
+#: src/views/Settings.js:1557
+#: src/views/Settings.js:1717
 msgid "Username for authorization."
 msgstr "Имя пользователя для авторизации."
 
-#: src/views/Edit/Sources/Network.js:798
-#: src/views/Edit/Wizard/Sources/Network.js:90
+#: src/views/Edit/Sources/Network.js:891
+#: src/views/Edit/Wizard/Sources/Network.js:97
 msgid "Username for the device."
 msgstr "Имя пользователя для устройства."
 
@@ -3320,7 +3455,7 @@ msgstr "Имя пользователя для устройства."
 msgid "V4L2_M2M is experimental."
 msgstr "V4L2_M2M является экспериментальным."
 
-#: src/misc/coders/settings/Video.js:377
+#: src/misc/coders/settings/Video.js:317
 msgid "Variable frame rate (VFR)"
 msgstr "Переменная частота кадров (VFR)"
 
@@ -3336,34 +3471,39 @@ msgstr "Вертикальное сальто"
 msgid "Video"
 msgstr "Видео"
 
-#: src/views/Edit/Sources/AVFoundation.js:126
+#: src/misc/controls/Preview.js:52
+msgid "Video Codec"
+msgstr ""
+
+#: src/views/Edit/Sources/AVFoundation.js:135
 #: src/views/Edit/Sources/Raspicam.js:98
 #: src/views/Edit/Sources/V4L.js:112
-#: src/views/Edit/Wizard/Sources/AVFoundation.js:82
-#: src/views/Edit/Wizard/Sources/Raspicam.js:86
-#: src/views/Edit/Wizard/Sources/V4L.js:105
+#: src/views/Edit/Sources/X11grab.js:149
+#: src/views/Edit/Wizard/Sources/AVFoundation.js:89
+#: src/views/Edit/Wizard/Sources/Raspicam.js:93
+#: src/views/Edit/Wizard/Sources/V4L.js:112
 msgid "Video device"
 msgstr "Видеоустройство"
 
-#: src/views/Edit/Profile.js:490
+#: src/views/Edit/Profile.js:510
 #: src/views/Edit/ProfileSummary.js:66
 #: src/views/Publication/Edit.js:540
 msgid "Video settings"
 msgstr "Настройки видео"
 
 #: src/views/Edit/Wizard/Source.js:15
-#: src/views/Edit/Wizard/Video.js:19
-#: src/views/Edit/Wizard/VideoProfile.js:16
+#: src/views/Edit/Wizard/Video.js:28
+#: src/views/Edit/Wizard/VideoProfile.js:31
 msgid "Video setup"
 msgstr "Настройка видео"
 
-#: src/views/Edit/Sources/VideoAudio.js:45
+#: src/views/Edit/Sources/VideoAudio.js:38
 msgid "Video source"
 msgstr "Источник видео"
 
-#: src/Footer.js:227
-#: src/Footer.js:232
-#: src/Footer.js:245
+#: src/Footer.js:231
+#: src/Footer.js:236
+#: src/Footer.js:249
 #: src/views/Main/Publication.js:173
 msgid "Viewer"
 msgstr "Зрителей"
@@ -3372,8 +3512,8 @@ msgstr "Зрителей"
 msgid "violet"
 msgstr "фиолетовый"
 
-#: src/views/Edit/Sources/VirtualAudio.js:187
-#: src/views/Edit/Sources/VirtualVideo.js:206
+#: src/views/Edit/Sources/VirtualAudio.js:181
+#: src/views/Edit/Sources/VirtualVideo.js:200
 msgid "Virtual source"
 msgstr "Виртуальный источник"
 
@@ -3405,17 +3545,17 @@ msgstr "Где хранить список воспроизведения HLS и
 msgid "white"
 msgstr "белый"
 
-#: src/misc/coders/settings/Video.js:286
+#: src/misc/coders/settings/Video.js:220
 msgid "Width"
 msgstr "Ширина"
 
-#: src/views/Settings.js:1701
+#: src/views/Settings.js:1696
 msgid "Write protection"
 msgstr "Защита от записи"
 
-#: src/views/Publication/Services/Instagram.js:127
-#~ msgid "Yellow Duck"
-#~ msgstr "Желтая утка"
+#: src/views/Edit/Sources/X11grab.js:238
+msgid "X11 Screen Capture"
+msgstr ""
 
 #: src/views/Edit/Wizard/Abort.js:38
 msgid "Yes"
@@ -3425,12 +3565,12 @@ msgstr "Да"
 msgid "You can't abort the wizard because at least one input must be defined."
 msgstr "Вы не можете прервать работу мастера, так как должен быть настроен хотя бы один источник."
 
-#: src/views/Settings.js:2288
+#: src/views/Settings.js:2285
 msgid "You have changed the configuration. In order for the changes to take effect, you have to restart the application. Do you want to restart now?"
 msgstr "Вы изменили конфигурацию. Чтобы изменения вступили в силу, необходимо перезапустить приложение. Вы хотите перезапустить сейчас?"
 
-#: src/views/Main/index.js:379
-#: src/views/Publication/Process.js:73
+#: src/views/Main/index.js:399
+#: src/views/Publication/Process.js:72
 msgid "You have to reconnect manually"
 msgstr "Вы должны повторно подключиться вручную"
 
@@ -3438,11 +3578,11 @@ msgstr "Вы должны повторно подключиться вручну
 msgid "You have unsaved changes. Please save them before you can control the service again."
 msgstr "У вас есть несохраненные изменения. Пожалуйста, сохраните их, прежде чем вы сможете снова управлять сервисом."
 
-#: src/views/Edit/Wizard/VideoProfile.js:36
+#: src/views/Edit/Wizard/VideoProfile.js:51
 msgid "Your stream needs to be encoded, but there's no suitable encoder available."
 msgstr "Ваш поток необходимо закодировать, но подходящего кодировщика нет."
 
-#: src/views/Edit/Wizard/VideoProfile.js:43
+#: src/views/Edit/Wizard/VideoProfile.js:58
 msgid "Your stream needs to be encoded. Choose the desired encoder:"
 msgstr "Ваш поток должен быть закодирован. Выберите нужный энкодер:"
 

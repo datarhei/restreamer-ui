@@ -18,31 +18,34 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Component = React.forwardRef((props, ref) => {
-	const classes = useStyles();
-	let { marginBottom, xs, sm, md, ld, className, elevation, ...other } = props;
+const Component = React.forwardRef(
+	(
+		{
+			xs = 12,
+			sm = undefined,
+			md = undefined,
+			lg = undefined,
+			elevation = 0,
+			className = 'paper',
+			style = null,
+			marginBottom = '6em',
+			tabIndex = 0,
+			children = null,
+		},
+		ref,
+	) => {
+		const classes = useStyles();
 
-	elevation = 0;
-
-	return (
-		<Grid container justifyContent="center" spacing={1} style={{ marginBottom: props.marginBottom }}>
-			<Grid item xs={props.xs} sm={props.sm} md={props.md} lg={props.lg}>
-				<Paper className={classes[props.className]} elevation={elevation} ref={ref} {...other}>
-					{props.children}
-				</Paper>
+		return (
+			<Grid container justifyContent="center" spacing={1} style={{ marginBottom: marginBottom }}>
+				<Grid item xs={xs} sm={sm} md={md} lg={lg}>
+					<Paper className={classes[className]} elevation={elevation} ref={ref} tabIndex={tabIndex} style={style}>
+						{children}
+					</Paper>
+				</Grid>
 			</Grid>
-		</Grid>
-	);
-});
+		);
+	},
+);
 
 export default Component;
-
-Component.defaultProps = {
-	marginBottom: '6em',
-	xs: 12,
-	sm: undefined,
-	md: undefined,
-	lg: undefined,
-	elevation: 0,
-	className: 'paper',
-};

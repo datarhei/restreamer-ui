@@ -514,6 +514,9 @@ class Restreamer {
 				virtualvideo: [],
 				videoloop: [],
 				audioloop: [],
+				channel: [],
+				noaudio: [],
+				sdp: [],
 			},
 			sinks: {},
 		};
@@ -616,7 +619,7 @@ class Restreamer {
 		};
 
 		for (let device of val.devices.demuxers) {
-			if (!['avfoundation', 'video4linux2', 'alsa', 'fbdev'].includes(device.id)) {
+			if (!['avfoundation', 'video4linux2', 'alsa', 'fbdev', 'x11grab'].includes(device.id)) {
 				continue;
 			}
 
@@ -676,6 +679,15 @@ class Restreamer {
 		});
 
 		skills.sources['network'].push(...channels);
+
+		channels = this.ListChannels().map((channel) => {
+			return {
+				id: channel.channelid,
+				name: channel.name,
+			};
+		});
+
+		skills.sources['channel'].push(...channels);
 
 		this.skills = skills;
 	}
@@ -827,6 +839,11 @@ class Restreamer {
 
 		// Set defaults for the port if it's not set.
 		let port = address.port;
+		if (config.http.secure) {
+			let [, tls_port] = splitHostPort(val.config.tls.address);
+			port = tls_port;
+		}
+
 		if (port.length === 0) {
 			port = config.http.secure ? '443' : '80';
 		}
@@ -859,14 +876,14 @@ class Restreamer {
 		// Sanity check on the RTMP app
 		let app = val.config.rtmp.app;
 		const re = new RegExp('/+', 'g');
-		app = app.replace(re, '/');
+		app = app.replace(re, '/'); // replace all multiple occurences of / with only one /
 		if (app !== '/') {
 			if (app[app.length - 1] === '/') {
-				app = app.substring(0, app.length - 2);
+				app = app.substring(0, app.length - 1); // Remove the trailing /
 			}
 
 			if (app[0] !== '/') {
-				app = '/' + app;
+				app = '/' + app; // Add a / at the beginning
 			}
 		} else {
 			app = '';
@@ -1507,15 +1524,21 @@ class Restreamer {
 	}
 
 	// Get the ingest progress
-	async GetIngestProgress(channelid) {
+	async GetIngestProgress(channelid, what) {
+		// [what] for custom id extentions
 		const channel = this.GetChannel(channelid);
 		if (channel === null) {
 			return this._getProgressFromState(null);
 		}
 
-		const state = await this._getProcessState(channel.id);
-
-		return this._getProgressFromState(state);
+		if (!what) {
+			const state = await this._getProcessState(`${channel.id}`);
+			return this._getProgressFromState(state);
+		} else {
+			// id=abc, what=_preview = abc_preview
+			const state = await this._getProcessState(`${channel.id}${what}`);
+			return this._getProgressFromState(state);
+		}
 	}
 
 	// Get the ingest log
@@ -1716,74 +1739,52 @@ class Restreamer {
 		// fix Malformed AAC bitstream detected for hls version 7
 		let hls_aac_adtstoasc = false;
 
-		const getHLSParams = (lhls, version) => {
-			if (lhls) {
-				// lhls
-				return [
-					['f', 'dash'],
-					['strict', 'experimental'],
-					['hls_playlist', '1'],
-					['init_seg_name', `init-${channel.channelid}.$ext$`],
-					['media_seg_name', `chunk-${channel.channelid}-$Number%05d$.$ext$`],
-					['master_m3u8_publish_rate', '1'],
-					['adaptation_sets', 'id=0,streams=v id=1,streams=a'],
-					['lhls', '1'],
-					['streaming', '1'],
-					['seg_duration', '' + parseInt(control.hls.segmentDuration)],
-					['frag_duration', '0.5'],
-					['use_template', '1'],
-					['remove_at_exit', '0'],
-					['window_size', '' + parseInt(control.hls.listSize)],
-					['http_persistent', '0'],
-				];
-			} else {
-				// hls
-				switch (version) {
-					case 6:
-						return [
-							['f', 'hls'],
-							['start_number', '0'],
-							['hls_time', '' + parseInt(control.hls.segmentDuration)],
-							['hls_list_size', '' + parseInt(control.hls.listSize)],
-							['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments+temp_file'],
-							['hls_delete_threshold', '4'],
-							['hls_segment_filename', hls_segment_filename],
-						];
-					case 7:
-						// fix Malformed AAC bitstream detected for hls version 7
-						if (output.options.includes('-codec:a') && output.options.includes('copy')) {
-							if (!tee_muxer) {
-								output.options.push('-bsf:a', 'aac_adtstoasc');
-							}
-							hls_aac_adtstoasc = true;
+		const getHLSParams = (version) => {
+			switch (version) {
+				case 6:
+					return [
+						['f', 'hls'],
+						['start_number', '0'],
+						['hls_time', '' + parseInt(control.hls.segmentDuration)],
+						['hls_list_size', '' + parseInt(control.hls.listSize)],
+						['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments+temp_file'],
+						['hls_delete_threshold', '4'],
+						['hls_segment_filename', hls_segment_filename],
+					];
+				case 7:
+					// fix Malformed AAC bitstream detected for hls version 7
+					if (output.options.includes('-codec:a') && output.options.includes('copy')) {
+						if (!tee_muxer) {
+							output.options.push('-bsf:a', 'aac_adtstoasc');
 						}
-						return [
-							['f', 'hls'],
-							['start_number', '0'],
-							['hls_time', '' + parseInt(control.hls.segmentDuration)],
-							['hls_list_size', '' + parseInt(control.hls.listSize)],
-							['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments+temp_file'],
-							['hls_delete_threshold', '4'],
-							['hls_segment_type', 'fmp4'],
-							['hls_fmp4_init_filename', hls_fmp4_init_filename],
-							['hls_fmp4_init_resend', '1'],
-							['hls_segment_filename', hls_segment_filename],
-						];
-					// case 3
-					default:
-						return [
-							['f', 'hls'],
-							['start_number', '0'],
-							['hls_time', '' + parseInt(control.hls.segmentDuration)],
-							['hls_list_size', '' + parseInt(control.hls.listSize)],
-							['hls_flags', 'append_list+delete_segments+program_date_time+temp_file'],
-							['hls_delete_threshold', '4'],
-							['hls_segment_filename', hls_segment_filename],
-						];
-				}
+						hls_aac_adtstoasc = true;
+					}
+					return [
+						['f', 'hls'],
+						['start_number', '0'],
+						['hls_time', '' + parseInt(control.hls.segmentDuration)],
+						['hls_list_size', '' + parseInt(control.hls.listSize)],
+						['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments+temp_file'],
+						['hls_delete_threshold', '4'],
+						['hls_segment_type', 'fmp4'],
+						['hls_fmp4_init_filename', hls_fmp4_init_filename],
+						['hls_fmp4_init_resend', '1'],
+						['hls_segment_filename', hls_segment_filename],
+					];
+				// case 3
+				default:
+					return [
+						['f', 'hls'],
+						['start_number', '0'],
+						['hls_time', '' + parseInt(control.hls.segmentDuration)],
+						['hls_list_size', '' + parseInt(control.hls.listSize)],
+						['hls_flags', 'append_list+delete_segments+program_date_time+temp_file'],
+						['hls_delete_threshold', '4'],
+						['hls_segment_filename', hls_segment_filename],
+					];
 			}
 		};
-		const hls_params_raw = getHLSParams(control.hls.lhls, control.hls.version);
+		const hls_params_raw = getHLSParams(control.hls.version);
 
 		// 3.3 Use strftime for DiskFS
 		if (control.hls.storage && control.hls.storage === 'diskfs') {
@@ -1945,13 +1946,106 @@ class Restreamer {
 				},
 			],
 			options: ['-err_detect', 'ignore_err'],
-			autostart: control.process.autostart,
-			reconnect: true,
+			autostart: control.snapshot.enable ? control.process.autostart : false,
+			reconnect: control.snapshot.enable ? true : false,
 			reconnect_delay_seconds: parseInt(control.snapshot.interval),
 			stale_timeout_seconds: 30,
 		};
 
 		const [val, err] = await this._upsertProcess(channel.id + '_snapshot', snapshot);
+		if (err !== null) {
+			return [val, err];
+		}
+
+		return [val, null];
+	}
+
+	// Upsert the ingest browser playback process (preview)
+	async UpsertIngestPreview(channelid, control) {
+		const channel = this.GetChannel(channelid);
+		if (channel === null) {
+			return [null, { message: 'Unknown channel ID' }];
+		}
+
+		// Set hls storage endpoint
+		const hlsStorage = control.hls.storage;
+
+		// Set encoder settings
+		const video_encoder = control.preview.video_encoder;
+		const audio_encoder = control.preview.audio_encoder;
+
+		const preview = {
+			type: 'ffmpeg',
+			id: channel.id + '_h264',
+			reference: channel.channelid,
+			input: [
+				{
+					id: 'input_0',
+					address: `{${hlsStorage}}/${channel.channelid}.m3u8`,
+					options: [],
+				},
+			],
+			output: [
+				{
+					id: 'output_0',
+					address: `{memfs}/${channel.channelid}_output_0_h264.m3u8`,
+					options: [
+						'-c:v',
+						`${video_encoder}`,
+						'-r',
+						'25',
+						'-g',
+						'50',
+						'-sc_threshold',
+						'0',
+						'-pix_fmt',
+						'yuv420p',
+						'-c:a',
+						`${audio_encoder}`,
+						'-f',
+						'hls',
+						'-start_number',
+						'0',
+						'-hls_time',
+						'2',
+						'-hls_list_size',
+						'6',
+						'-hls_flags',
+						'append_list+delete_segments+program_date_time+temp_file',
+						'-hls_delete_threshold',
+						'4',
+						'-hls_segment_filename',
+						`{memfs}/${channel.channelid}_output_0_h264_%04d.ts`,
+						'-master_pl_name',
+						`${channel.channelid}_h264.m3u8`,
+						'-master_pl_publish_rate',
+						'2',
+					],
+					cleanup: [
+						{
+							pattern: `memfs:/${channel.channelid}_h264.m3u8`,
+							purge_on_delete: true,
+						},
+						{
+							pattern: `memfs:/${channel.channelid}_output_0_h264.m3u8`,
+							purge_on_delete: true,
+						},
+						{
+							pattern: `memfs:/${channel.channelid}_output_0_h264_*.ts`,
+							max_files: 12,
+							purge_on_delete: true,
+						},
+					],
+				},
+			],
+			options: ['-err_detect', 'ignore_err'],
+			autostart: control.preview.enable ? control.process.autostart : false,
+			reconnect: control.preview.enable ? control.process.reconnect : false,
+			reconnect_delay_seconds: 2,
+			stale_timeout_seconds: 5,
+		};
+
+		const [val, err] = await this._upsertProcess(channel.id + '_h264', preview);
 		if (err !== null) {
 			return [val, err];
 		}
@@ -2182,9 +2276,12 @@ class Restreamer {
 	async UpdatePlayerConfig(channelid, metadata) {
 		metadata.player = this.InitPlayerSettings(metadata.player);
 
+		// use h264 preview stream if enabled
+		const channel_id_h264 = metadata.control.preview?.enable ? `${channelid}_h264` : channelid;
+
 		const playerConfig = {
 			...metadata.player,
-			source: this.GetChannelManifestPath(channelid, metadata.control.hls.storage),
+			source: this.GetChannelManifestPath(channel_id_h264, metadata.control.hls.storage),
 			poster: this.GetChannelPosterPath(channelid, metadata.control.hls.storage),
 			license: {
 				license: metadata.license,
@@ -2205,7 +2302,7 @@ class Restreamer {
 	}
 
 	// Upload channel specific channel data
-	async UploadData(channelid, name, data) {
+	async UploadData(channelid, name, data, onprogress = null) {
 		if (channelid.length === 0) {
 			channelid = this.GetCurrentChannelID();
 		}
@@ -2220,7 +2317,7 @@ class Restreamer {
 
 		const path = `/channels/${channel.channelid}/${name}`;
 
-		await this._uploadAssetData(path, data);
+		await this._uploadAssetData(path, data, onprogress);
 
 		return path;
 	}
@@ -3273,8 +3370,8 @@ class Restreamer {
 		return true;
 	}
 
-	async _uploadAssetData(remotePath, data) {
-		await this._call(this.api.DataPutFile, remotePath, data);
+	async _uploadAssetData(remotePath, data, onprogress = null) {
+		await this._call(this.api.DataPutFile, remotePath, data, onprogress);
 
 		return true;
 	}
@@ -3410,6 +3507,8 @@ class Restreamer {
 			command: [],
 			cpu: 0,
 			memory: 0,
+			video_codec: '',
+			audio_codec: '',
 		};
 
 		if (state === null) {
@@ -3452,8 +3551,16 @@ class Restreamer {
 			progress.dup = state.progress.dup || 0;
 			progress.cpu = state.cpu_usage || 0;
 			progress.memory = state.memory_bytes || 0;
-		}
 
+			// check av codec @ preview
+			for (const o in state.progress.outputs) {
+				if (state.progress.outputs[o].type === 'video') {
+					progress.video_codec = state.progress.outputs[o].codec;
+				} else if (state.progress.outputs[o].type === 'audio') {
+					progress.audio_codec = state.progress.outputs[o].codec;
+				}
+			}
+		}
 		return progress;
 	}
 

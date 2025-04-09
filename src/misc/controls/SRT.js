@@ -18,13 +18,13 @@ function init(settings) {
 	return initSettings;
 }
 
-export default function Control(props) {
+export default function Control({ settings = {}, enabled = false, onChange = function (settings, automatic) {} }) {
 	const navigate = useNavigate();
-	const settings = init(props.settings);
+	settings = init(settings);
 
 	// Set the defaults
 	React.useEffect(() => {
-		props.onChange(settings, true);
+		onChange(settings, true);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -37,17 +37,17 @@ export default function Control(props) {
 			settings[what] = value;
 		}
 
-		props.onChange(settings, false);
+		onChange(settings, false);
 	};
 
 	return (
 		<Grid container spacing={2}>
-			{props.enabled && (
+			{enabled && (
 				<Grid item xs={12}>
 					<Checkbox
 						label={<Trans>Enable</Trans>}
 						checked={settings.enable}
-						disabled={!props.enabled && settings.enable !== true}
+						disabled={!enabled && settings.enable !== true}
 						onChange={handleChange('enable')}
 					/>
 					<Typography variant="caption">
@@ -55,7 +55,7 @@ export default function Control(props) {
 					</Typography>
 				</Grid>
 			)}
-			{!props.enabled && (
+			{!enabled && (
 				<Grid item xs={12}>
 					<BoxText textAlign="center">
 						<Trans>The SRT output requires the SRT Server.</Trans>
@@ -75,9 +75,3 @@ export default function Control(props) {
 		</Grid>
 	);
 }
-
-Control.defaulProps = {
-	settings: {},
-	enabled: false,
-	onChange: function (settings, automatic) {},
-};

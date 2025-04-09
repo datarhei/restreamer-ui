@@ -2,6 +2,7 @@ import * as AudioCopy from './audio/copy';
 import * as AudioNone from './audio/none';
 import * as AAC from './audio/aac';
 import * as AACAudioToolbox from './audio/aac_audiotoolbox';
+import * as AACFDK from './audio/aac_libfdk';
 import * as Libopus from './audio/opus_libopus';
 import * as Libvorbis from './audio/vorbis_libvorbis';
 import * as MP3 from './audio/mp3_libmp3lame';
@@ -17,12 +18,15 @@ import * as H264V4L2M2M from './video/h264_v4l2m2m';
 import * as H264VAAPI from './video/h264_vaapi';
 import * as HEVCVAAPI from './video/hevc_vaapi';
 import * as HEVCVideoToolbox from './video/hevc_videotoolbox';
+import * as HEVCNVENC from './video/hevc_nvenc';
+import * as VP9VPX from './video/vp9_libvpx';
 import * as VP9VAAPI from './video/vp9_vaapi';
 import * as VideoCopy from './video/copy';
 import * as VideoNone from './video/none';
 import * as VideoRaw from './video/rawvideo';
-import * as VP9 from './video/vp9_libvpx';
 import * as AV1Rav1e from './video/av1_librav1e';
+import * as AV1AOM from './video/av1_libaom';
+import * as AV1NVENC from './video/av1_nvenc';
 
 class Registry {
 	constructor(type) {
@@ -114,6 +118,7 @@ audioRegistry.Register(AudioCopy);
 audioRegistry.Register(AudioNone);
 audioRegistry.Register(AAC);
 audioRegistry.Register(AACAudioToolbox);
+audioRegistry.Register(AACFDK);
 audioRegistry.Register(MP3);
 audioRegistry.Register(Opus);
 audioRegistry.Register(Libopus);
@@ -133,9 +138,12 @@ videoRegistry.Register(H264VAAPI);
 videoRegistry.Register(X265);
 videoRegistry.Register(HEVCVAAPI);
 videoRegistry.Register(HEVCVideoToolbox);
+videoRegistry.Register(HEVCNVENC);
+videoRegistry.Register(VP9VPX);
 videoRegistry.Register(VP9VAAPI);
-videoRegistry.Register(VP9);
+videoRegistry.Register(AV1AOM);
 videoRegistry.Register(AV1Rav1e);
+videoRegistry.Register(AV1NVENC);
 videoRegistry.Register(VideoRaw);
 
 export { audioRegistry as Audio, videoRegistry as Video };

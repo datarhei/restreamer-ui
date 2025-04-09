@@ -44,25 +44,23 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Component = React.forwardRef((props, ref) => {
+const Component = React.forwardRef(({ title = '', onClose = null, onHelp = null, className = null, style = null, children = null }, ref) => {
 	const classes = useStyles();
 
-	const { title, onClose, onHelp, ...other } = props;
-
 	return (
-		<Paper className={classes.modalPaper} elevation={0} tabIndex={-1} ref={ref} {...other}>
+		<Paper className={className ? className : classes.modalPaper} elevation={0} tabIndex={-1} ref={ref} style={style}>
 			<Grid container spacing={0}>
 				<Grid item xs={12} className={classes.modalHeader}>
 					<Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
-						<Typography variant="button">{props.title}</Typography>
+						<Typography variant="button">{title}</Typography>
 						<Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={2}>
-							{typeof props.onHelp === 'function' && (
-								<IconButton color="inherit" size="small" onClick={props.onHelp}>
+							{typeof onHelp === 'function' && (
+								<IconButton color="inherit" size="small" onClick={onHelp}>
 									<HelpIcon fontSize="small" />
 								</IconButton>
 							)}
-							{typeof props.onClose === 'function' && (
-								<IconButton color="inherit" size="small" onClick={props.onClose}>
+							{typeof onClose === 'function' && (
+								<IconButton color="inherit" size="small" onClick={onClose}>
 									<CloseIcon fontSize="small" />
 								</IconButton>
 							)}
@@ -70,10 +68,10 @@ const Component = React.forwardRef((props, ref) => {
 					</Stack>
 				</Grid>
 			</Grid>
-			{props.children}
+			{children}
 			<Grid container spacing={0}>
 				<Grid item xs={12} className={classes.modalFooter}>
-					<Button variant="outlined" color="default" onClick={props.onClose}>
+					<Button variant="outlined" color="default" onClick={onClose}>
 						<Trans>Close</Trans>
 					</Button>
 				</Grid>
@@ -83,9 +81,3 @@ const Component = React.forwardRef((props, ref) => {
 });
 
 export default Component;
-
-Component.defaultProps = {
-	title: '',
-	onClose: null,
-	onHelp: null,
-};

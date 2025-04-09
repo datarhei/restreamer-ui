@@ -55,8 +55,8 @@ function init(settings) {
 	return initSettings;
 }
 
-function Service(props) {
-	const settings = init(props.settings);
+function Service({ settings = {}, skills = {}, metadata = {}, streams = [], onChange = function (output, settings) {} }) {
+	settings = init(settings);
 
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
@@ -65,7 +65,7 @@ function Service(props) {
 
 		const output = createOutput(settings);
 
-		props.onChange([output], settings);
+		onChange([output], settings);
 	};
 
 	const createOutput = (settings) => {
@@ -87,7 +87,9 @@ function Service(props) {
 					value={settings.server_url}
 					onChange={handleChange('server_url')}
 					error={settings.server_url.includes('rtmp://') || settings.server_url.includes('rtmps://') ? false : true}
-					helperText={settings.server_url.includes('rtmp://') || settings.server_url.includes('rtmps://') ? false : 'Please enter a valid RTMP/S URL.'}
+					helperText={
+						settings.server_url.includes('rtmp://') || settings.server_url.includes('rtmps://') ? false : 'Please enter a valid RTMP/S URL.'
+					}
 				/>
 			</Grid>
 			<Grid item xs={12} md={9}>
@@ -103,13 +105,5 @@ function Service(props) {
 		</Grid>
 	);
 }
-
-Service.defaultProps = {
-	settings: {},
-	skills: {},
-	metadata: {},
-	streams: [],
-	onChange: function (output, settings) {},
-};
 
 export { id, name, version, stream_key_link, description, image_copyright, author, category, requires, ServiceIcon as icon, Service as component };

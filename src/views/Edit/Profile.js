@@ -21,12 +21,30 @@ import StreamSelect from './StreamSelect';
 
 import FilterSelect from '../../misc/FilterSelect';
 
-export default function Profile(props) {
+export default function Profile({
+	skills = {},
+	sources = [],
+	profile = {},
+	config = {},
+	startWith = '',
+	onDone = function (sources, profile) {},
+	onAbort = function () {},
+	onProbe = function (inputs) {
+		return {
+			streams: [],
+			log: ['onProbe function not provided for this component'],
+		};
+	},
+	onRefresh = function () {},
+	onStore = function (name, data) {
+		return '';
+	},
+}) {
 	const [$sources, setSources] = React.useState({
-		video: M.initSource('video', props.sources[0]),
-		audio: M.initSource('audio', props.sources[1]),
+		video: M.initSource('video', sources[0]),
+		audio: M.initSource('audio', sources[1]),
 	});
-	const [$profile, setProfile] = React.useState(M.initProfile(props.profile));
+	const [$profile, setProfile] = React.useState(M.initProfile(profile));
 	const [$videoProbe, setVideoProbe] = React.useState({
 		probing: false,
 		log: [],
@@ -49,7 +67,7 @@ export default function Profile(props) {
 		type: '',
 		streams: [],
 	});
-	const [$activeStep, setActiveStep] = React.useState(props.startWith === 'audio' ? 1 : 0);
+	const [$activeStep, setActiveStep] = React.useState(startWith === 'audio' ? 1 : 0);
 	const [$ready, setReady] = React.useState(false);
 
 	React.useEffect(() => {
@@ -60,9 +78,6 @@ export default function Profile(props) {
 	}, []);
 
 	const load = async () => {
-		// Add pseudo sources
-		props.skills.sources.noaudio = [];
-
 		let audio = $sources.audio;
 
 		let hasAudio = false;
@@ -74,9 +89,9 @@ export default function Profile(props) {
 		}
 
 		if (hasAudio === true) {
-			props.skills.sources.videoaudio = [];
+			skills.sources.videoaudio = [];
 		} else {
-			delete props.skills.sources.videoaudio;
+			delete skills.sources.videoaudio;
 		}
 
 		setSources({
@@ -110,7 +125,7 @@ export default function Profile(props) {
 			});
 		}
 
-		const res = await props.onProbe(inputs);
+		const res = await onProbe(inputs);
 
 		const status = handleProbeStreams(type, device, settings, inputs, res);
 
@@ -123,10 +138,11 @@ export default function Profile(props) {
 		if (type === 'video') {
 			let audio = $sources.audio;
 
-			const profile = M.preselectProfile('video', res.streams, $profile, props.skills.encoders, audio.type === '');
+			const profile = M.preselectProfile('video', res.streams, $profile, skills.encoders, audio.type === '');
 
 			// Add pseudo sources
-			props.skills.sources.noaudio = [];
+			skills.sources.noaudio = [];
+			skills.sources.sdp = [];
 
 			let hasAudio = false;
 			for (let i = 0; i < res.streams.length; i++) {
@@ -137,12 +153,12 @@ export default function Profile(props) {
 			}
 
 			if (hasAudio === true) {
-				props.skills.sources.videoaudio = [];
+				skills.sources.videoaudio = [];
 				if (audio.type === '') {
 					audio.type = 'videoaudio';
 				}
 			} else {
-				delete props.skills.sources.videoaudio;
+				delete skills.sources.videoaudio;
 				if (audio.type === '' || audio.type === 'videoaudio') {
 					audio.type = 'noaudio';
 					profile.audio.source = -1;
@@ -182,7 +198,7 @@ export default function Profile(props) {
 				},
 			});
 		} else {
-			const profile = M.preselectProfile('audio', res.streams, $profile, props.skills.encoders);
+			const profile = M.preselectProfile('audio', res.streams, $profile, skills.encoders);
 
 			setProfile({
 				...$profile,
@@ -210,12 +226,12 @@ export default function Profile(props) {
 
 	const handleRefresh = async () => {
 		setSkillsRefresh(true);
-		await props.onRefresh();
+		await onRefresh();
 		setSkillsRefresh(false);
 	};
 
-	const handleStore = async (name, data) => {
-		return await props.onStore(name, data);
+	const handleStore = async (name, data, onprogress) => {
+		return await onStore(name, data, onprogress);
 	};
 
 	const handleEncoding = (type) => (encoder, decoder) => {
@@ -245,11 +261,11 @@ export default function Profile(props) {
 		const sources = M.cleanupSources($sources);
 		const profile = M.cleanupProfile($profile);
 
-		props.onDone(sources, profile);
+		onDone(sources, profile);
 	};
 
 	const handleAbort = () => {
-		props.onAbort();
+		onAbort();
 	};
 
 	const handleProbeLogModal = (type) => (event) => {
@@ -493,9 +509,9 @@ export default function Profile(props) {
 						<Grid item xs={12}>
 							<SourceSelect
 								type="video"
-								skills={props.skills}
+								skills={skills}
 								source={$sources.video}
-								config={props.config}
+								config={config}
 								onProbe={handleProbe}
 								onChange={handleSourceSettingsChange}
 								onRefresh={handleRefresh}
@@ -569,8 +585,8 @@ export default function Profile(props) {
 												type="video"
 												streams={$sources.video.streams}
 												profile={$profile.video}
-												codecs={['copy', 'h264']}
-												skills={props.skills}
+												codecs={['copy', 'h264', 'hevc', 'av1', 'vp8', 'vp9']}
+												skills={skills}
 												onChange={handleEncoding('video')}
 											/>
 										</Grid>
@@ -579,7 +595,7 @@ export default function Profile(props) {
 												<FilterSelect
 													type="video"
 													profile={$profile.video}
-													availableFilters={props.skills.filter}
+													availableFilters={skills.filter}
 													onChange={handleFilter('video')}
 												/>
 											</Grid>
@@ -617,9 +633,9 @@ export default function Profile(props) {
 						<Grid item xs={12}>
 							<SourceSelect
 								type="audio"
-								skills={props.skills}
+								skills={skills}
 								source={$sources.audio}
-								config={props.config}
+								config={config}
 								onProbe={handleProbe}
 								onSelect={handleSourceChange}
 								onChange={handleSourceSettingsChange}
@@ -642,19 +658,14 @@ export default function Profile(props) {
 										type="audio"
 										streams={$sources.video.streams}
 										profile={$profile.audio}
-										codecs={['copy', 'aac', 'mp3']}
-										skills={props.skills}
+										codecs={['copy', 'aac', 'mp3', 'opus']}
+										skills={skills}
 										onChange={handleEncoding('audio')}
 									/>
 								</Grid>
 								{$profile.audio.encoder.coder !== 'none' && $profile.audio.encoder.coder !== 'copy' && $profile.audio.source !== -1 && (
 									<Grid item xs={12}>
-										<FilterSelect
-											type="audio"
-											profile={$profile.audio}
-											availableFilters={props.skills.filter}
-											onChange={handleFilter('audio')}
-										/>
+										<FilterSelect type="audio" profile={$profile.audio} availableFilters={skills.filter} onChange={handleFilter('audio')} />
 									</Grid>
 								)}
 							</React.Fragment>
@@ -729,7 +740,7 @@ export default function Profile(props) {
 														streams={$sources.audio.streams}
 														profile={$profile.audio}
 														codecs={['copy', 'aac', 'mp3']}
-														skills={props.skills}
+														skills={skills}
 														onChange={handleEncoding('audio')}
 													/>
 												</Grid>
@@ -738,7 +749,7 @@ export default function Profile(props) {
 														<FilterSelect
 															type="audio"
 															profile={$profile.audio}
-															availableFilters={props.skills.filter}
+															availableFilters={skills.filter}
 															onChange={handleFilter('audio')}
 														/>
 													</Grid>
@@ -788,23 +799,3 @@ export default function Profile(props) {
 		</React.Fragment>
 	);
 }
-
-Profile.defaultProps = {
-	skills: {},
-	sources: [],
-	profile: {},
-	config: {},
-	startWith: '',
-	onDone: function (sources, profile) {},
-	onAbort: function () {},
-	onProbe: function (inputs) {
-		return {
-			streams: [],
-			log: ['onProbe function not provided for this component'],
-		};
-	},
-	onRefresh: function () {},
-	onStore: function (name, data) {
-		return '';
-	},
-};

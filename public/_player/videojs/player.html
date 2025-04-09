@@ -6,6 +6,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="{{description}}">
 	<meta name="author" content="datarhei restreamer">
+	<style>
+		html{
+    		min-height: 100vh;
+		}
+		body{
+			margin: 0;
+			padding: 0;
+			min-height: 100vh;
+		}
+		#player{
+			width: 100vw;
+			height: 100vh;
+			overflow: hidden;
+		}
+	</style>
 	<title>{{name}}</title>
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 	<link rel="alternate" type="application/json+oembed" href="channels/{{channelid}}/oembed.json" title="{{name}}">
@@ -23,7 +38,7 @@
 	{{/if}}
 </head>
 <body>
-<div style="position:absolute;top:0;right:0;bottom:0;left:0">
+<div>
 	<video id="player" class="vjs-public video-js" controls playsinline></video>
 </div>
 <script src="player/videojs/dist/video.min.js"></script>
@@ -81,8 +96,8 @@
 		muted: mute,
 		liveui: true,
 		responsive: true,
-		fluid: true,
 		sources: [{ src: window.location.origin + '/' + playerConfig.source, type: 'application/x-mpegURL' }],
+		plugins: {},
 	};
 
 	if (playerConfig.chromecast) {
@@ -97,41 +112,29 @@
 	}
 
 	var player = videojs('player', config);
+
+	if(playerConfig.logo.image.length != 0) {
+		const imgTag = new Image();
+        imgTag.src = playerConfig.logo.image;
+        imgTag.onload = function () {
+          	const logoWidth = imgTag.width;
+          	const logoHeight = imgTag.height;
+          	const overlayPosition = playerConfig.logo.position || 'top-left';
+          	const overlayLink = playerConfig.logo.link || '#';
+          	player.overlay({
+            	overlays: [{
+					content: `<a href="${overlayLink}" target="_blank"><img src="${playerConfig.logo.image + '?' + Math.random()}" alt="Logo" width="${logoWidth}" height="${logoHeight}"></a>`,
+              		start: 'play',
+              		end: 'pause',
+              		align: overlayPosition,
+              		showBackground: false
+           		}]
+          	});
+		};
+	}
+
 	player.ready(function() {
-		if(playerConfig.logo.image.length != 0) {
-			var overlay = null;
-
-			var imgTag = new Image();
-			imgTag.onLoad = function () {
-				imgTag.setAttribute('width', this.width);
-				imgTag.setAttribute('height'.this.height);
-			};
-			imgTag.src = playerConfig.logo.image + '?' + Math.random();
-
-			if (playerConfig.logo.link.length !== 0) {
-				var aTag = document.createElement('a');
-				aTag.setAttribute('href', playerConfig.logo.link);
-				aTag.setAttribute('target', '_blank');
-				aTag.appendChild(imgTag);
-				overlay = aTag.outerHTML;
-			} else {
-				overlay = imgTag.outerHTML;
-			}
-
-			player.overlay({
-				align: playerConfig.logo.position,
-				overlays: [
-					{
-						showBackground: false,
-						content: overlay,
-						start: 'playing',
-						end: 'pause',
-					},
-				],
-			});
-
-			player.license(playerConfig.license);
-		}
+		player.license(playerConfig.license);
 
 		if (autoplay === true) {
 			// https://videojs.com/blog/autoplay-best-practices-with-video-js/

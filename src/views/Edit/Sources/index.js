@@ -1,14 +1,17 @@
 import * as ALSA from './ALSA';
+import * as AudioLoop from './AudioLoop';
 import * as AVFoundation from './AVFoundation';
 import * as Network from './Network';
 import * as NoAudio from './NoAudio';
 import * as Raspicam from './Raspicam';
+import * as SDP from './SDP';
 import * as Video4Linux from './V4L';
 import * as VideoAudio from './VideoAudio';
 import * as VideoLoop from './VideoLoop';
-import * as AudioLoop from './AudioLoop';
 import * as VirtualAudio from './VirtualAudio';
 import * as VirtualVideo from './VirtualVideo';
+import * as X11grab from './X11grab';
+import * as Channel from './Channel';
 
 class Registry {
 	constructor() {
@@ -50,5 +53,8 @@ registry.Register(NoAudio);
 registry.Register(VideoAudio);
 registry.Register(VideoLoop);
 registry.Register(AudioLoop);
+registry.Register(SDP);
+registry.Register(X11grab);
+registry.Register(Channel);
 
 export default registry;

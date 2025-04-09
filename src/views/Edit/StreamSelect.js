@@ -7,20 +7,19 @@ import MenuItem from '@mui/material/MenuItem';
 
 import Select from '../../misc/Select';
 
-export default function StreamSelect(props) {
+export default function StreamSelect({ type = '', streams = [], selected = -1, allowCustom = false, allowNone = false, onChange = function (stream) {} }) {
 	const { i18n } = useLingui();
-	let selected = props.selected;
 
 	const handleChange = (event) => {
 		const stream = parseInt(event.target.value);
 
-		props.onChange(stream);
+		onChange(stream);
 	};
 
 	let streamList = [];
 
-	for (let s of props.streams) {
-		if (s.type !== props.type) {
+	for (let s of streams) {
+		if (s.type !== type) {
 			continue;
 		}
 
@@ -28,45 +27,45 @@ export default function StreamSelect(props) {
 			streamList.push(
 				<MenuItem value={s.stream} key={s.stream}>
 					{i18n._(t`Stream`)} {s.stream}: {s.codec.toUpperCase()} {s.width}x{s.height} {s.pix_fmt}
-				</MenuItem>
+				</MenuItem>,
 			);
 		} else if (s.type === 'audio') {
 			streamList.push(
 				<MenuItem value={s.stream} key={s.stream}>
 					{i18n._(t`Stream`)} {s.stream}: {s.codec.toUpperCase()} {s.layout} {s.sampling_hz}Hz
-				</MenuItem>
+				</MenuItem>,
 			);
 		}
 	}
 
-	if (props.type === 'video') {
+	if (type === 'video') {
 		if (streamList.length === 0) {
 			selected = -1;
 			streamList.push(
 				<MenuItem value="-1" key="unavailable" disabled>
 					{i18n._(t`No video stream available`)}
-				</MenuItem>
+				</MenuItem>,
 			);
 		} else {
 			streamList.unshift(
 				<MenuItem value="-1" key="none" disabled>
 					{i18n._(t`Choose a video stream`)}
-				</MenuItem>
+				</MenuItem>,
 			);
 		}
-	} else if (props.type === 'audio') {
+	} else if (type === 'audio') {
 		if (streamList.length === 0 && selected >= 0) {
 			selected = -1;
 			streamList.push(
 				<MenuItem value="-1" key="unavailable" disabled>
 					{i18n._(t`No audio stream available`)}
-				</MenuItem>
+				</MenuItem>,
 			);
 		} else {
 			streamList.unshift(
 				<MenuItem value="-1" key="none" disabled>
 					{i18n._(t`Choose an audio stream`)}
-				</MenuItem>
+				</MenuItem>,
 			);
 		}
 	}
@@ -85,12 +84,3 @@ export default function StreamSelect(props) {
 		</Grid>
 	);
 }
-
-StreamSelect.defaultProps = {
-	type: '',
-	streams: [],
-	selected: -1,
-	allowCustom: false,
-	allowNone: false,
-	onChange: function (stream) {},
-};

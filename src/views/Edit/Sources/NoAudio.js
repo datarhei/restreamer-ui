@@ -26,16 +26,9 @@ const createInputs = (settings) => {
 	return [input];
 };
 
-function Source(props) {
+function Source({ knownDevices = [], settings = {}, onChange = function (settings) {}, onProbe = function (settings, inputs) {} }) {
 	return null;
 }
-
-Source.defaultProps = {
-	knownDevices: [],
-	settings: {},
-	onChange: function (settings) {},
-	onProbe: function (settings, inputs) {},
-};
 
 function SourceIcon(props) {
 	return <Icon {...props} />;
@@ -44,7 +37,7 @@ function SourceIcon(props) {
 const id = 'noaudio';
 const name = <Trans>No audio</Trans>;
 const capabilities = ['audio'];
-const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0';
+const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0 || ^7.0.0';
 
 const func = {
 	initSettings,

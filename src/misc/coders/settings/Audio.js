@@ -6,7 +6,15 @@ import Typography from '@mui/material/Typography';
 
 import SelectCustom from '../../../misc/SelectCustom';
 
-function Bitrate(props) {
+function Bitrate({
+	value = '',
+	allowAuto = false,
+	allowCustom = false,
+	variant = 'outlined',
+	label = <Trans>Bitrate</Trans>,
+	customLabel = <Trans>Custom bitrate (kbit/s)</Trans>,
+	onChange = function (event) {},
+}) {
 	const { i18n } = useLingui();
 	const bitrates = [
 		{ value: '256', label: '256 kbit/s' },
@@ -17,11 +25,11 @@ function Bitrate(props) {
 		{ value: '8', label: '8 kbit/s' },
 	];
 
-	if (props.allowAuto === true) {
+	if (allowAuto === true) {
 		bitrates.unshift({ value: 'auto', label: 'auto' });
 	}
 
-	if (props.allowCustom === true) {
+	if (allowCustom === true) {
 		bitrates.push({ value: 'custom', label: i18n._(t`Custom ...`) });
 	}
 
@@ -29,12 +37,12 @@ function Bitrate(props) {
 		<React.Fragment>
 			<SelectCustom
 				options={bitrates}
-				label={props.label}
-				customLabel={props.customLabel}
-				value={props.value}
-				onChange={props.onChange}
-				variant={props.variant}
-				allowCustom={props.allowCustom}
+				label={label}
+				customLabel={customLabel}
+				value={value}
+				onChange={onChange}
+				variant={variant}
+				allowCustom={allowCustom}
 			/>
 			<Typography variant="caption">
 				<Trans>The bitrate of the audio stream.</Trans>
@@ -43,23 +51,24 @@ function Bitrate(props) {
 	);
 }
 
-Bitrate.defaultProps = {
-	allowAuto: false,
-	allowCustom: false,
-	variant: 'outlined',
-	label: <Trans>Bitrate</Trans>,
-	customLabel: <Trans>Custom bitrate (kbit/s)</Trans>,
-	onChange: function (event) {},
-};
-
-function Layout(props) {
+function Layout({
+	value = '',
+	extended = false,
+	variant = 'outlined',
+	allowAuto = false,
+	allowInherit = false,
+	allowCustom = false,
+	label = <Trans>Layout</Trans>,
+	customLabel = <Trans>Custom layout</Trans>,
+	onChange = function () {},
+}) {
 	const { i18n } = useLingui();
 	const options = [
 		{ value: 'mono', label: 'mono' },
 		{ value: 'stereo', label: 'stereo' },
 	];
 
-	if (props.extended) {
+	if (extended) {
 		options.push(
 			...[
 				{ value: '2.1', label: '2.1' },
@@ -99,15 +108,15 @@ function Layout(props) {
 		);
 	}
 
-	if (props.allowAuto === true) {
+	if (allowAuto === true) {
 		options.unshift({ value: 'auto', label: 'auto' });
 	}
 
-	if (props.allowInherit === true) {
+	if (allowInherit === true) {
 		options.unshift({ value: 'inherit', label: i18n._(t`Inherit`) });
 	}
 
-	if (props.allowCustom === true) {
+	if (allowCustom === true) {
 		options.push({ value: 'custom', label: i18n._(t`Custom ...`) });
 	}
 
@@ -115,12 +124,12 @@ function Layout(props) {
 		<React.Fragment>
 			<SelectCustom
 				options={options}
-				label={props.label}
-				customLabel={props.customLabel}
-				value={props.value}
-				onChange={props.onChange}
-				variant={props.variant}
-				allowCustom={props.allowCustom}
+				label={label}
+				customLabel={customLabel}
+				value={value}
+				onChange={onChange}
+				variant={variant}
+				allowCustom={allowCustom}
 			/>
 			<Typography variant="caption">
 				<Trans>The layout of the audio stream.</Trans>
@@ -129,17 +138,16 @@ function Layout(props) {
 	);
 }
 
-Layout.defaultProps = {
-	variant: 'outlined',
-	allowAuto: false,
-	allowInherit: false,
-	allowCustom: false,
-	label: <Trans>Layout</Trans>,
-	customLabel: <Trans>Custom layout</Trans>,
-	onChange: function () {},
-};
-
-function Sampling(props) {
+function Sampling({
+	value = '',
+	variant = 'outlined',
+	allowAuto = false,
+	allowInherit = false,
+	allowCustom = false,
+	label = <Trans>Sampling</Trans>,
+	customLabel = <Trans>Custom sampling (Hz)</Trans>,
+	onChange = function () {},
+}) {
 	const { i18n } = useLingui();
 	const options = [
 		{ value: '96000', label: '96000 Hz' },
@@ -150,15 +158,15 @@ function Sampling(props) {
 		{ value: '8000', label: '8000 Hz' },
 	];
 
-	if (props.allowAuto === true) {
+	if (allowAuto === true) {
 		options.unshift({ value: 'auto', label: 'auto' });
 	}
 
-	if (props.allowInherit === true) {
+	if (allowInherit === true) {
 		options.unshift({ value: 'inherit', label: i18n._(t`Inherit`) });
 	}
 
-	if (props.allowCustom === true) {
+	if (allowCustom === true) {
 		options.push({ value: 'custom', label: i18n._(t`Custom ...`) });
 	}
 
@@ -166,12 +174,12 @@ function Sampling(props) {
 		<React.Fragment>
 			<SelectCustom
 				options={options}
-				label={props.label}
-				customLabel={props.customLabel}
-				value={props.value}
-				onChange={props.onChange}
-				variant={props.variant}
-				allowCustom={props.allowCustom}
+				label={label}
+				customLabel={customLabel}
+				value={value}
+				onChange={onChange}
+				variant={variant}
+				allowCustom={allowCustom}
 			/>
 			<Typography variant="caption">
 				<Trans>The sample rate of the audio stream.</Trans>
@@ -179,16 +187,6 @@ function Sampling(props) {
 		</React.Fragment>
 	);
 }
-
-Sampling.defaultProps = {
-	variant: 'outlined',
-	allowAuto: false,
-	allowInherit: false,
-	allowCustom: false,
-	label: <Trans>Sampling</Trans>,
-	customLabel: <Trans>Custom sampling (Hz)</Trans>,
-	onChange: function () {},
-};
 
 export default {
 	Bitrate,

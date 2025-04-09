@@ -1,9 +1,11 @@
 import React from 'react';
 
+import makeStyles from '@mui/styles/makeStyles';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 const MenuProps = {
 	PaperProps: {
@@ -13,22 +15,42 @@ const MenuProps = {
 	},
 };
 
-export default function Component(props) {
+const useStyles = makeStyles((theme) => ({
+	root: {
+		fontWeight: 'bold',
+		backgroundColor: theme.palette.background.dark1,
+	},
+}));
+
+export default function Component({
+	variant = 'outlined',
+	label = '',
+	value = [],
+	disabled = false,
+	renderValue = (selected) => selected.join(', '),
+	onChange = function (event) {},
+	items = [],
+}) {
+	const classes = useStyles();
+
 	return (
-		<FormControl variant={props.variant} disabled={props.disabled} fullWidth>
-			<InputLabel>{props.label}</InputLabel>
-			<Select multiple value={props.value} onChange={props.onChange} input={<OutlinedInput />} renderValue={props.renderValue} MenuProps={MenuProps}>
-				{props.children}
+		<FormControl variant={variant} disabled={disabled} fullWidth>
+			<InputLabel>{label}</InputLabel>
+			<Select multiple value={value} onChange={onChange} input={<OutlinedInput label={label} />} renderValue={renderValue} MenuProps={MenuProps}>
+				{items.map((item) => {
+					if (!('key' in item)) {
+						item.key = item.value;
+					}
+					if (!('name' in item)) {
+						item.name = item.value;
+					}
+					return (
+						<MenuItem key={item.key} value={item.value} className={item.selected ? classes.root : ''}>
+							{item.name}
+						</MenuItem>
+					);
+				})}
 			</Select>
 		</FormControl>
 	);
 }
-
-Component.defaultProps = {
-	variant: 'outlined',
-	label: '',
-	value: [],
-	disabled: false,
-	renderValue: (selected) => selected.join(', '),
-	onChange: function (event) {},
-};

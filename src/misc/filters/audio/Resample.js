@@ -44,22 +44,31 @@ function createGraph(settings) {
 	return 'aresample=' + mapping.join(':');
 }
 
-function Layout(props) {
+function Layout({
+	value = '',
+	variant = 'outlined',
+	allowAuto = false,
+	allowInherit = false,
+	allowCustom = false,
+	label = <Trans>Layout</Trans>,
+	customLabel = <Trans>Custom layout</Trans>,
+	onChange = function () {},
+}) {
 	const { i18n } = useLingui();
 	const options = [
 		{ value: 'mono', label: 'mono' },
 		{ value: 'stereo', label: 'stereo' },
 	];
 
-	if (props.allowAuto === true) {
+	if (allowAuto === true) {
 		options.unshift({ value: 'auto', label: 'auto' });
 	}
 
-	if (props.allowInherit === true) {
+	if (allowInherit === true) {
 		options.unshift({ value: 'inherit', label: i18n._(t`Inherit`) });
 	}
 
-	if (props.allowCustom === true) {
+	if (allowCustom === true) {
 		options.push({ value: 'custom', label: i18n._(t`Custom ...`) });
 	}
 
@@ -67,12 +76,12 @@ function Layout(props) {
 		<React.Fragment>
 			<SelectCustom
 				options={options}
-				label={props.label}
-				customLabel={props.customLabel}
-				value={props.value}
-				onChange={props.onChange}
-				variant={props.variant}
-				allowCustom={props.allowCustom}
+				label={label}
+				customLabel={customLabel}
+				value={value}
+				onChange={onChange}
+				variant={variant}
+				allowCustom={allowCustom}
 			/>
 			<Typography variant="caption">
 				<Trans>The layout of the audio stream.</Trans>
@@ -81,17 +90,16 @@ function Layout(props) {
 	);
 }
 
-Layout.defaultProps = {
-	variant: 'outlined',
-	allowAuto: false,
-	allowInherit: false,
-	allowCustom: false,
-	label: <Trans>Layout</Trans>,
-	customLabel: <Trans>Custom layout</Trans>,
-	onChange: function () {},
-};
-
-function Sampling(props) {
+function Sampling({
+	value = '',
+	variant = 'outlined',
+	allowAuto = false,
+	allowInherit = false,
+	allowCustom = false,
+	label = <Trans>Sampling</Trans>,
+	customLabel = <Trans>Custom sampling (Hz)</Trans>,
+	onChange = function () {},
+}) {
 	const { i18n } = useLingui();
 	const options = [
 		{ value: '96000', label: '96000 Hz' },
@@ -102,15 +110,15 @@ function Sampling(props) {
 		{ value: '8000', label: '8000 Hz' },
 	];
 
-	if (props.allowAuto === true) {
+	if (allowAuto === true) {
 		options.unshift({ value: 'auto', label: 'auto' });
 	}
 
-	if (props.allowInherit === true) {
+	if (allowInherit === true) {
 		options.unshift({ value: 'inherit', label: i18n._(t`Inherit`) });
 	}
 
-	if (props.allowCustom === true) {
+	if (allowCustom === true) {
 		options.push({ value: 'custom', label: i18n._(t`Custom ...`) });
 	}
 
@@ -118,12 +126,12 @@ function Sampling(props) {
 		<React.Fragment>
 			<SelectCustom
 				options={options}
-				label={props.label}
-				customLabel={props.customLabel}
-				value={props.value}
-				onChange={props.onChange}
-				variant={props.variant}
-				allowCustom={props.allowCustom}
+				label={label}
+				customLabel={customLabel}
+				value={value}
+				onChange={onChange}
+				variant={variant}
+				allowCustom={allowCustom}
 			/>
 			<Typography variant="caption">
 				<Trans>The sample rate of the audio stream.</Trans>
@@ -132,18 +140,8 @@ function Sampling(props) {
 	);
 }
 
-Sampling.defaultProps = {
-	variant: 'outlined',
-	allowAuto: false,
-	allowInherit: false,
-	allowCustom: false,
-	label: <Trans>Sampling</Trans>,
-	customLabel: <Trans>Custom sampling (Hz)</Trans>,
-	onChange: function () {},
-};
-
-function Filter(props) {
-	const settings = init(props.settings);
+function Filter({ settings = {}, onChange = function (settings, graph, automatic) {} }) {
+	settings = init(settings);
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -152,7 +150,7 @@ function Filter(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createGraph(newSettings), automatic);
+		onChange(newSettings, createGraph(newSettings), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -199,11 +197,6 @@ function Filter(props) {
 		</React.Fragment>
 	);
 }
-
-Filter.defaultProps = {
-	settings: {},
-	onChange: function (settings, graph, automatic) {},
-};
 
 const filter = 'aresample';
 const name = 'Resample';

@@ -253,8 +253,8 @@ function createOutputs(settings, skills, metadata, streams) {
 //
 // 'settings' is the settings object where you store the settings for the
 // service. Its state is managed by the parent React component.
-function Service(props) {
-	const settings = init(props.settings);
+function Service({ settings = {}, skills = {}, metadata = {}, streams = [], onChange = function (output, settings) {} }) {
+	settings = init(settings);
 
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
@@ -265,12 +265,12 @@ function Service(props) {
 			settings[what] = value;
 		}
 
-		const outputs = createOutputs(settings, props.skills, props.metadata, props.streams);
+		const outputs = createOutputs(settings, skills, metadata, streams);
 
-		props.onChange(outputs, settings);
+		onChange(outputs, settings);
 	};
 
-	if (props.skills === null) {
+	if (skills === null) {
 		return null;
 	}
 
@@ -286,14 +286,6 @@ function Service(props) {
 		</Grid>
 	);
 }
-
-Service.defaultProps = {
-	settings: {},
-	skills: null,
-	metadata: {},
-	streams: [],
-	onChange: function (output, settings) {},
-};
 
 Service.propTypes = {
 	metadata: PropTypes.object.isRequired,

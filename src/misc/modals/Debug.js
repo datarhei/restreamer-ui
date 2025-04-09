@@ -2,15 +2,15 @@ import React from 'react';
 
 import TextareaModal from './Textarea';
 
-const Component = function (props) {
+const Component = function ({ open = false, data = '', title = '', onClose = null, onHelp = null }) {
 	return (
 		<TextareaModal
-			open={props.open}
-			title={props.title}
-			onClose={props.onClose}
-			onHelp={props.onHelp}
+			open={open}
+			title={title}
+			onClose={onClose}
+			onHelp={onHelp}
 			rows={20}
-			value={props.data}
+			value={data}
 			readOnly
 			allowCopy
 			allowDownload
@@ -21,11 +21,3 @@ const Component = function (props) {
 };
 
 export default Component;
-
-Component.defaultProps = {
-	open: false,
-	data: '',
-	title: '',
-	onClose: null,
-	onHelp: null,
-};

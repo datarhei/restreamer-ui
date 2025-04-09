@@ -26,20 +26,14 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Component(props) {
+export default function Component({ value = '', children = null, onChange = function (event) {} }) {
 	const classes = useStyles();
 
 	return (
 		<Box className={classes.box}>
-			<Tabs className={classes.tabs} variant="scrollable" scrollButtons allowScrollButtonsMobile value={props.value} onChange={props.onChange}>
-				{props.children}
+			<Tabs className={classes.tabs} variant="scrollable" scrollButtons allowScrollButtonsMobile value={value} onChange={onChange}>
+				{children}
 			</Tabs>
 		</Box>
 	);
 }
-
-Component.defaultProps = {
-	value: '',
-	children: null,
-	onChange: function (event) {},
-};

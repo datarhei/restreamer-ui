@@ -74,10 +74,19 @@ const createInputs = (settings) => {
 	return [input];
 };
 
-function Source(props) {
+function Source({
+	knownDevices = [],
+	settings = {},
+	onChange = function (settings) {},
+	onProbe = function (settings, inputs) {},
+	onRefresh = function () {},
+	onStore = function (name, data) {
+		return '';
+	},
+}) {
 	const classes = useStyles();
 	const { i18n } = useLingui();
-	const settings = initSettings(props.settings);
+	settings = initSettings(settings);
 
 	const handleChange = (what) => (event) => {
 		let data = {};
@@ -88,21 +97,21 @@ function Source(props) {
 			data[what] = event.target.value;
 		}
 
-		props.onChange({
+		onChange({
 			...settings,
 			...data,
 		});
 	};
 
 	const handleRefresh = () => {
-		props.onRefresh();
+		onRefresh();
 	};
 
 	const handleProbe = () => {
-		props.onProbe(settings, createInputs(settings));
+		onProbe(settings, createInputs(settings));
 	};
 
-	let filteredDevices = props.knownDevices.filter((device) => device.media === 'video');
+	let filteredDevices = knownDevices.filter((device) => device.media === 'video');
 	let options = filteredDevices.map((device) => {
 		return {
 			value: device.id,
@@ -132,7 +141,7 @@ function Source(props) {
 		/>
 	);
 
-	filteredDevices = props.knownDevices.filter((device) => device.media === 'audio');
+	filteredDevices = knownDevices.filter((device) => device.media === 'audio');
 	options = filteredDevices.map((device) => {
 		return {
 			value: device.id,
@@ -205,14 +214,6 @@ function Source(props) {
 	);
 }
 
-Source.defaultProps = {
-	knownDevices: [],
-	settings: {},
-	onChange: function (settings) {},
-	onProbe: function (settings, inputs) {},
-	onRefresh: function () {},
-};
-
 function SourceIcon(props) {
 	return <Icon style={{ color: '#FFF' }} {...props} />;
 }
@@ -220,7 +221,7 @@ function SourceIcon(props) {
 const id = 'avfoundation';
 const name = <Trans>AVFoundation</Trans>;
 const capabilities = ['audio', 'video'];
-const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0';
+const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0 || ^7.0.0';
 
 const func = {
 	initSettings,

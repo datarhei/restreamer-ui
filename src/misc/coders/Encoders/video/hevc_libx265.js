@@ -77,9 +77,9 @@ function createMapping(settings, stream, skills) {
 	return mapping;
 }
 
-function Preset(props) {
+function Preset({ value = '', onChange = function (event) {} }) {
 	return (
-		<Select label={<Trans>Preset</Trans>} value={props.value} onChange={props.onChange}>
+		<Select label={<Trans>Preset</Trans>} value={value} onChange={onChange}>
 			<MenuItem value="ultrafast">ultrafast</MenuItem>
 			<MenuItem value="superfast">superfast</MenuItem>
 			<MenuItem value="veryfast">veryfast</MenuItem>
@@ -93,14 +93,9 @@ function Preset(props) {
 	);
 }
 
-Preset.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
-function Tune(props) {
+function Tune({ value = '', onChange = function (event) {} }) {
 	return (
-		<Select label={<Trans>Tune</Trans>} value={props.value} onChange={props.onChange}>
+		<Select label={<Trans>Tune</Trans>} value={value} onChange={onChange}>
 			<MenuItem value="none">none</MenuItem>
 			<MenuItem value="animation">animation</MenuItem>
 			<MenuItem value="fastdecode">fastdecode</MenuItem>
@@ -112,15 +107,10 @@ function Tune(props) {
 	);
 }
 
-Tune.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
-function Coder(props) {
-	const settings = init(props.settings);
-	const stream = Helper.InitStream(props.stream);
-	const skills = Helper.InitSkills(props.skills);
+function Coder({ stream = {}, settings = {}, skills = {}, onChange = function (settings, mapping) {} }) {
+	settings = init(settings);
+	stream = Helper.InitStream(stream);
+	skills = Helper.InitSkills(skills);
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -129,7 +119,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
+		onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -174,13 +164,6 @@ function Coder(props) {
 		</Grid>
 	);
 }
-
-Coder.defaultProps = {
-	stream: {},
-	settings: {},
-	skills: {},
-	onChange: function (settings, mapping) {},
-};
 
 const coder = 'libx265';
 const name = 'HEVC (libx265)';

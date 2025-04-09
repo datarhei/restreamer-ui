@@ -17,7 +17,6 @@ import Typography from '@mui/material/Typography';
 
 import Select from '../../../misc/Select';
 import MultiSelect from '../../../misc/MultiSelect';
-import MultiSelectOption from '../../../misc/MultiSelectOption';
 import Password from '../../../misc/Password';
 
 const id = 'rtsp';
@@ -81,8 +80,8 @@ function init(settings) {
 	return initSettings;
 }
 
-function Service(props) {
-	const settings = init(props.settings);
+function Service({ settings = {}, skills = {}, metadata = {}, streams = [], onChange = function (output, settings) {} }) {
+	settings = init(settings);
 
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
@@ -95,7 +94,7 @@ function Service(props) {
 
 		const output = createOutput(settings);
 
-		props.onChange([output], settings);
+		onChange([output], settings);
 	};
 
 	const createOutput = (settings) => {
@@ -190,12 +189,8 @@ function Service(props) {
 									label="allowed_media_types"
 									value={settings.options.allowed_media_types}
 									onChange={handleChange('allowed_media_types')}
-								>
-									<MultiSelectOption value="" name="all media types" />
-									<MultiSelectOption value="video" name="video" />
-									<MultiSelectOption value="audio" name="audio" />
-									<MultiSelectOption value="data" name="data" />
-								</MultiSelect>
+									items={[{ key: 'all', value: '', name: 'all media types' }, { value: 'video' }, { value: 'audio' }, { value: 'data' }]}
+								></MultiSelect>
 							</Grid>
 							<Grid item xs={12}>
 								<TextField
@@ -245,13 +240,5 @@ function Service(props) {
 		</Grid>
 	);
 }
-
-Service.defaultProps = {
-	settings: {},
-	skills: {},
-	metadata: {},
-	streams: [],
-	onChange: function (output, settings) {},
-};
 
 export { id, name, version, stream_key_link, description, image_copyright, author, category, requires, ServiceIcon as icon, Service as component };

@@ -1,3 +1,5 @@
+import { fetch } from './fetch';
+
 class API {
 	constructor(address) {
 		this.base = '/api';
@@ -277,12 +279,13 @@ class API {
 		return await this._HEAD('/v3/fs/disk' + path);
 	}
 
-	async DataPutFile(path, data) {
+	async DataPutFile(path, data, onprogress = null) {
 		return await this._PUT('/v3/fs/disk' + path, {
 			headers: {
 				'Content-Type': 'application/data',
 			},
 			body: data,
+			onprogress: onprogress,
 		});
 	}
 

@@ -39,10 +39,10 @@ function createGraph(settings) {
 }
 
 // filter
-function Pan(props) {
+function Pan({ value = '', onChange = function (event) {} }) {
 	return (
 		<React.Fragment>
-			<Select label={<Trans>Pan</Trans>} value={props.value} onChange={props.onChange}>
+			<Select label={<Trans>Pan</Trans>} value={value} onChange={onChange}>
 				<MenuItem value="inherit">
 					<Trans>Inherit</Trans>
 				</MenuItem>
@@ -60,13 +60,8 @@ function Pan(props) {
 	);
 }
 
-Pan.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
-function Filter(props) {
-	const settings = init(props.settings);
+function Filter({ settings = {}, onChange = function (settings, graph, automatic) {} }) {
+	settings = init(settings);
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -75,7 +70,7 @@ function Filter(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createGraph(newSettings), automatic);
+		onChange(newSettings, createGraph(newSettings), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -101,11 +96,6 @@ function Filter(props) {
 		</React.Fragment>
 	);
 }
-
-Filter.defaultProps = {
-	settings: {},
-	onChange: function (settings, graph, automatic) {},
-};
 
 const filter = 'pan';
 const name = 'Pan';

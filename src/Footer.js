@@ -67,7 +67,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Resources(props) {
+function Resources({
+	getResources = () => {
+		return null;
+	},
+}) {
 	const classes = useStyles();
 	const [$popover, setPopover] = React.useState(null);
 	const [$resources, setResources] = React.useState(null);
@@ -94,7 +98,7 @@ function Resources(props) {
 	}, []);
 
 	const update = async () => {
-		const resources = await props.resources();
+		const resources = await getResources();
 		if (resources === null) {
 			return;
 		}
@@ -347,12 +351,6 @@ function Resources(props) {
 	);
 }
 
-Resources.defaultProps = {
-	resources: () => {
-		return null;
-	},
-};
-
 const initVersion = (initialVersion) => {
 	if (!initialVersion) {
 		initialVersion = {};
@@ -367,11 +365,18 @@ const initVersion = (initialVersion) => {
 	return version;
 };
 
-export default function Footer(props) {
+export default function Footer({
+	expand = false,
+	app = '',
+	name = '',
+	version = initVersion(),
+	getResources = () => {
+		return null;
+	},
+}) {
 	const classes = useStyles();
-	const version = initVersion(props.version);
 
-	if (props.expand === true) {
+	if (expand === true) {
 		return (
 			<Grid container className={classes.footer} spacing={0} direction="row" alignItems="center">
 				<Grid item xs={12}>
@@ -379,10 +384,10 @@ export default function Footer(props) {
 						<Stack className="footerLeft" direction="row" alignItems="center" spacing={0}>
 							<Logo className={classes.logo} />
 							<Typography className="footerVersion">
-								{props.app} v{version.number} ({version.arch}) {props.name ? '- ' + props.name : ''}
+								{app} v{version.number} ({version.arch}) {name ? '- ' + name : ''}
 							</Typography>
 						</Stack>
-						<Resources resources={props.resources} />
+						<Resources getResources={getResources} />
 					</Stack>
 				</Grid>
 			</Grid>
@@ -401,13 +406,3 @@ export default function Footer(props) {
 		);
 	}
 }
-
-Footer.defaultProps = {
-	expand: false,
-	app: '',
-	name: '',
-	version: initVersion(),
-	resources: () => {
-		return null;
-	},
-};

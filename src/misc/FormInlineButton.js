@@ -9,15 +9,37 @@ const useStyles = makeStyles((theme) => ({
 		height: '56px!important',
 	},
 }));
-
-export default function Component(props) {
+// component="label" variant={variant} color={color} disabled={disabled}
+// onClick disabled
+// target="blank" href={stream_key_link} component="a"
+export default function Component({
+	component = 'label',
+	variant = 'outlined',
+	size = 'large',
+	color = 'primary',
+	disabled = false,
+	target = 'blank',
+	href = '#',
+	className = null,
+	onClick = () => {},
+	children = null,
+}) {
 	const classes = useStyles();
 
 	return (
-		<Button variant="outlined" size="large" fullWidth color="primary" className={classes.button} {...props}>
-			{props.children}
+		<Button
+			component={component}
+			variant={variant}
+			size={size}
+			disabled={disabled}
+			fullWidth
+			color={color}
+			className={className ? className : classes.button}
+			target={target}
+			href={href}
+			onClick={onClick}
+		>
+			{children}
 		</Button>
 	);
 }
-
-Component.defaultProps = {};

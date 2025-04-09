@@ -16,7 +16,7 @@ function hexToRGBA(value) {
 	return result ? `rgba(${parseInt(result[1], 16)},${parseInt(result[2], 16)},${parseInt(result[3], 16)},1)` : value;
 }
 
-export default function ColorPicker(props) {
+export default function ColorPicker({ variant = 'default', label = '', fullWidth = false, value = 'rgba(255, 255, 255, 1)', onChange = () => {} }) {
 	const [$open, setOpen] = React.useState(false);
 
 	const handleOpen = () => {
@@ -28,18 +28,18 @@ export default function ColorPicker(props) {
 	};
 
 	const handleChange = (color) => {
-		props.onChange({
+		onChange({
 			target: {
 				value: color,
 			},
 		});
 	};
 
-	const value = hexToRGBA(props.value);
+	value = hexToRGBA(value);
 
 	return (
 		<React.Fragment>
-			<TextField variant={props.variant} fullWidth={props.fullWidth} label={props.label} value={value} onClick={handleOpen} onChange={props.onChange} />
+			<TextField variant={variant} fullWidth={fullWidth} label={label} value={value} onClick={handleOpen} onChange={onChange} />
 			{$open ? (
 				<div style={{ position: 'absolute', zIndex: '2' }}>
 					<div
@@ -58,11 +58,3 @@ export default function ColorPicker(props) {
 		</React.Fragment>
 	);
 }
-
-ColorPicker.defaultProps = {
-	variant: 'default',
-	label: '',
-	fullWidth: false,
-	value: 'rgba(255, 255, 255, 1)',
-	onChange: () => {},
-};

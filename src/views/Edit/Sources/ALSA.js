@@ -57,10 +57,19 @@ const createInputs = (settings) => {
 	return [input];
 };
 
-function Source(props) {
+function Source({
+	knownDevices = [],
+	settings = {},
+	onChange = function (settings) {},
+	onProbe = function (settings, inputs) {},
+	onRefresh = function () {},
+	onStore = function (name, data) {
+		return '';
+	},
+}) {
 	const classes = useStyles();
 	const { i18n } = useLingui();
-	const settings = initSettings(props.settings);
+	settings = initSettings(settings);
 
 	const handleChange = (what) => (event) => {
 		let data = {};
@@ -69,21 +78,21 @@ function Source(props) {
 			data[what] = event.target.value;
 		}
 
-		props.onChange({
+		onChange({
 			...settings,
 			...data,
 		});
 	};
 
 	const handleRefresh = () => {
-		props.onRefresh();
+		onRefresh();
 	};
 
 	const handleProbe = () => {
-		props.onProbe(settings, createInputs(settings));
+		onProbe(settings, createInputs(settings));
 	};
 
-	const filteredDevices = props.knownDevices.filter((device) => device.media === 'audio');
+	const filteredDevices = knownDevices.filter((device) => device.media === 'audio');
 	const options = filteredDevices.map((device) => {
 		return {
 			value: device.id.replace(/^hw:/, ''),
@@ -140,14 +149,6 @@ function Source(props) {
 	);
 }
 
-Source.defaultProps = {
-	knownDevices: [],
-	settings: {},
-	onChange: function (settings) {},
-	onProbe: function (settings, inputs) {},
-	onRefresh: function () {},
-};
-
 function SourceIcon(props) {
 	return <Icon {...props} />;
 }
@@ -155,7 +156,7 @@ function SourceIcon(props) {
 const id = 'alsa';
 const name = <Trans>ALSA</Trans>;
 const capabilities = ['audio'];
-const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0';
+const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0 || ^7.0.0';
 
 const func = {
 	initSettings,

@@ -32,8 +32,10 @@ function createMapping(settings, stream, skills) {
 		`${settings.bitrate}k`,
 		'-r',
 		`${settings.fps}`,
-		'-sc_threshold',
-		'0',
+		'-deadline',
+		'realtime',
+		'-quality',
+		'realtime',
 		'-pix_fmt',
 		'yuv420p',
 	];
@@ -60,10 +62,10 @@ function createMapping(settings, stream, skills) {
 	return mapping;
 }
 
-function Coder(props) {
-	const settings = init(props.settings);
-	const stream = Helper.InitStream(props.stream);
-	const skills = Helper.InitSkills(props.skills);
+function Coder({ stream = {}, settings = {}, skills = {}, onChange = function (settings, mapping) {} }) {
+	settings = init(settings);
+	stream = Helper.InitStream(stream);
+	skills = Helper.InitSkills(skills);
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -72,7 +74,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
+		onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -109,13 +111,6 @@ function Coder(props) {
 	);
 }
 
-Coder.defaultProps = {
-	stream: {},
-	settings: {},
-	skills: {},
-	onChange: function (settings, mapping) {},
-};
-
 const coder = 'libvpx-vp9';
 const name = 'VP9 (libvpx-vp9)';
 const codec = 'vp9';
@@ -123,7 +118,7 @@ const type = 'video';
 const hwaccel = false;
 
 function summarize(settings) {
-	return `${name}, ${settings.bitrate} kbit/s, ${settings.fps} FPS, Preset: ${settings.preset}, Profile: ${settings.profile}`;
+	return `${name}, ${settings.bitrate} kbit/s, ${settings.fps} FPS`;
 }
 
 function defaults(stream, skills) {

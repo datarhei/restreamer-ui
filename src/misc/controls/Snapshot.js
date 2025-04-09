@@ -17,12 +17,12 @@ function init(settings) {
 	return initSettings;
 }
 
-export default function Control(props) {
-	const settings = init(props.settings);
+export default function Control({ settings = {}, onChange = function (settings, automatic) {} }) {
+	settings = init(settings);
 
 	// Set the defaults
 	React.useEffect(() => {
-		props.onChange(settings, true);
+		onChange(settings, true);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -35,7 +35,7 @@ export default function Control(props) {
 			settings[what] = value;
 		}
 
-		props.onChange(settings, false);
+		onChange(settings, false);
 	};
 
 	return (
@@ -59,8 +59,3 @@ export default function Control(props) {
 		</Grid>
 	);
 }
-
-Control.defaulProps = {
-	settings: {},
-	onChange: function (settings, automatic) {},
-};

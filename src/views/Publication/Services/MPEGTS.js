@@ -17,7 +17,6 @@ import Typography from '@mui/material/Typography';
 import Checkbox from '../../../misc/Checkbox';
 import Select from '../../../misc/Select';
 import MultiSelect from '../../../misc/MultiSelect';
-import MultiSelectOption from '../../../misc/MultiSelectOption';
 
 const id = 'mpegts';
 const name = 'MPEG-TS';
@@ -91,8 +90,8 @@ function init(settings) {
 	return initSettings;
 }
 
-function Service(props) {
-	const settings = init(props.settings);
+function Service({ settings = {}, skills = {}, metadata = {}, streams = [], onChange = function (output, settings) {} }) {
+	settings = init(settings);
 
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
@@ -109,7 +108,7 @@ function Service(props) {
 
 		const output = createOutput(settings);
 
-		props.onChange([output], settings);
+		onChange([output], settings);
 	};
 
 	const createOutput = (settings) => {
@@ -301,13 +300,19 @@ function Service(props) {
 								/>
 							</Grid>
 							<Grid item xs={12}>
-								<MultiSelect type="select" label="mpegts_flags" value={settings.options.mpegts_flags} onChange={handleChange('mpegts_flags')}>
-									<MultiSelectOption value="resend_headers" name="resend_headers" />
-									<MultiSelectOption value="latm" name="latm" />
-									<MultiSelectOption value="pat_pmt_at_frames" name="pat_pmt_at_frames" />
-									<MultiSelectOption value="system_b" name="system_b" />
-									<MultiSelectOption value="initial_discontinuity" name="initial_discontinuity" />
-								</MultiSelect>
+								<MultiSelect
+									type="select"
+									label="mpegts_flags"
+									value={settings.options.mpegts_flags}
+									onChange={handleChange('mpegts_flags')}
+									items={[
+										{ value: 'resend_headers' },
+										{ value: 'latm' },
+										{ value: 'pat_pmt_at_frames' },
+										{ value: 'system_b' },
+										{ value: 'initial_discontinuity' },
+									]}
+								></MultiSelect>
 							</Grid>
 							<Grid item xs={12}>
 								<Checkbox label="mpegts_copyts" checked={settings.options.mpegts_copyts} onChange={handleChange('mpegts_copyts')} />
@@ -375,13 +380,5 @@ function Service(props) {
 		</Grid>
 	);
 }
-
-Service.defaultProps = {
-	settings: {},
-	skills: {},
-	metadata: {},
-	streams: [],
-	onChange: function (output, settings) {},
-};
 
 export { id, name, version, stream_key_link, description, image_copyright, author, category, requires, ServiceIcon as icon, Service as component };

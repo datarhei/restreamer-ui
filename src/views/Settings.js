@@ -650,8 +650,8 @@ function ErrorTab(props) {
 	return <Tab label={label} {...other} />;
 }
 
-function ErrorBox(props) {
-	const messages = props.messages.filter((m) => props.configvalue === '' || m.configvalue === props.configvalue);
+function ErrorBox({ configvalue = '', messages = [] }) {
+	messages = messages.filter((m) => configvalue === '' || m.configvalue === configvalue);
 
 	if (messages.length === 0) {
 		return null;
@@ -671,11 +671,6 @@ function ErrorBox(props) {
 	);
 }
 
-ErrorBox.defaultProps = {
-	configvalue: '',
-	messages: [],
-};
-
 const toArray = (val, separator) => {
 	return val
 		.split(separator)
@@ -691,7 +686,7 @@ const toInt = (val) => {
 	return val;
 };
 
-export default function Settings(props) {
+export default function Settings({ restreamer = null }) {
 	const classes = useStyles();
 	const { i18n } = useLingui();
 	const navigate = useNavigate();
@@ -709,10 +704,10 @@ export default function Settings(props) {
 		core: '',
 		service: false,
 	});
-	const [$expert, setExpert] = React.useState(props.restreamer.IsExpert());
+	const [$expert, setExpert] = React.useState(restreamer.IsExpert());
 	const [$updates, setUpdates] = React.useState({
-		has: props.restreamer.HasUpdates(),
-		want: props.restreamer.CheckForUpdates(),
+		has: restreamer.HasUpdates(),
+		want: restreamer.CheckForUpdates(),
 	});
 	const [$tab, setTab] = React.useState(_tab ? _tab : 'general');
 	const [$tabs, setTabs] = React.useState({
@@ -757,14 +752,14 @@ export default function Settings(props) {
 	useInterval(() => {
 		setUpdates({
 			...$updates,
-			has: props.restreamer.HasUpdates(),
+			has: restreamer.HasUpdates(),
 		});
 	}, 1000 * 2);
 
 	const load = async () => {
-		setReloadKey(props.restreamer.CreatedAt().toISOString());
+		setReloadKey(restreamer.CreatedAt().toISOString());
 
-		const data = await props.restreamer.Config();
+		const data = await restreamer.Config();
 
 		let config = null;
 		let overrides = [];
@@ -814,17 +809,17 @@ export default function Settings(props) {
 			overrides: overrides,
 			outdated: outdated,
 			core: '',
-			service: props.restreamer.HasService(),
+			service: restreamer.HasService(),
 		});
 	};
 
 	const handleExpertMode = () => {
-		props.restreamer.SetExpert(!$expert);
+		restreamer.SetExpert(!$expert);
 		setExpert(!$expert);
 	};
 
 	const handleCheckForUpdates = () => {
-		props.restreamer.SetCheckForUpdates(!$updates.want);
+		restreamer.SetCheckForUpdates(!$updates.want);
 		setUpdates({
 			...$updates,
 			want: !$updates.want,
@@ -907,7 +902,7 @@ export default function Settings(props) {
 	};
 
 	const updateLogdata = async () => {
-		const logdata = await props.restreamer.Log();
+		const logdata = await restreamer.Log();
 		setLogdata(logdata.join('\n'));
 	};
 
@@ -994,7 +989,7 @@ export default function Settings(props) {
 
 		let outdated = $config.outdated;
 
-		const [, err] = await props.restreamer.ConfigSet(config);
+		const [, err] = await restreamer.ConfigSet(config);
 		if (err !== null) {
 			if (err.code === 404) {
 				notify.Dispatch('error', 'save:settings', i18n._(t`API endpoint not found. Settings not saved.`));
@@ -1103,7 +1098,7 @@ export default function Settings(props) {
 			timeout: false,
 		});
 
-		const res = await props.restreamer.ConfigReload();
+		const res = await restreamer.ConfigReload();
 		if (res === false) {
 			notify.Dispatch('error', 'restart', i18n._(t`Restarting the application failed.`));
 
@@ -1121,7 +1116,7 @@ export default function Settings(props) {
 			});
 		};
 
-		props.restreamer.IgnoreAPIErrors(true);
+		restreamer.IgnoreAPIErrors(true);
 
 		let restarted = false;
 
@@ -1130,7 +1125,7 @@ export default function Settings(props) {
 
 			let currentKey = $reloadKey;
 
-			const about = await props.restreamer.About();
+			const about = await restreamer.About();
 			if (about === null) {
 				// API is not yet available
 				continue;
@@ -1168,8 +1163,8 @@ export default function Settings(props) {
 			return false;
 		}
 
-		await props.restreamer.Validate();
-		await props.restreamer.Login($config.data.api.auth.username, $config.data.api.auth.password);
+		await restreamer.Validate();
+		await restreamer.Login($config.data.api.auth.username, $config.data.api.auth.password);
 
 		window.location.reload();
 
@@ -1999,7 +1994,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={12}>
 									<Password
-										label={<Trans>Token</Trans>}
+										label={<Trans>Streamkey</Trans>}
 										env={env('rtmp.token')}
 										disabled={env('rtmp.token') || !config.rtmp.enable}
 										value={config.rtmp.token}
@@ -2007,7 +2002,7 @@ export default function Settings(props) {
 									/>
 									<ErrorBox configvalue="rtmp.token" messages={$tabs.rtmp.messages} />
 									<Typography variant="caption">
-										<Trans>RTMP token for publishing and playing. The token is the value of the URL query parameter 'token.'</Trans>
+										<Trans>RTMP streamkey for publishing and playing. The streamkey needs to be appended to the URL.</Trans>
 									</Typography>
 								</Grid>
 							</Grid>
@@ -2048,6 +2043,7 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={6} md={8}>
 									<Password
+										id="srt_token"
 										label={<Trans>Token</Trans>}
 										env={env('srt.token')}
 										disabled={env('srt.token') || !config.srt.enable}
@@ -2061,13 +2057,14 @@ export default function Settings(props) {
 								</Grid>
 								<Grid item xs={12}>
 									<Password
+										id="srt_passphrase"
 										label={<Trans>Passphrase</Trans>}
 										env={env('srt.passphrase')}
 										disabled={env('srt.passphrase') || !config.srt.enable}
 										value={config.srt.passphrase}
 										onChange={handleChange('srt.passphrase')}
 										inputProps={{ maxLength: 79 }}
-										error={config.srt.passphrase && config.srt.passphrase.length < 10}
+										error={config.srt.passphrase && config.srt.passphrase.length < 10 ? true : false}
 										helperText={
 											config.srt.passphrase && config.srt.passphrase.length < 10 ? (
 												<Trans>Passphrase must be between 10 and 79 characters long</Trans>
@@ -2313,10 +2310,6 @@ export default function Settings(props) {
 		</React.Fragment>
 	);
 }
-
-Settings.defaultProps = {
-	restreamer: null,
-};
 
 Settings.propTypes = {
 	restreamer: PropTypes.object.isRequired,

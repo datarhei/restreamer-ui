@@ -54,10 +54,10 @@ const createInputs = (settings) => {
 	return [input];
 };
 
-function Source(props) {
+function Source({ knownDevices = [], settings = {}, onChange = function (settings) {}, onProbe = function (settings, inputs) {}, onRefresh = function () {} }) {
 	const classes = useStyles();
 	const { i18n } = useLingui();
-	const settings = initSettings(props.settings);
+	settings = initSettings(settings);
 
 	const handleChange = (what) => (event) => {
 		let data = {};
@@ -66,21 +66,21 @@ function Source(props) {
 			data[what] = event.target.value;
 		}
 
-		props.onChange({
+		onChange({
 			...settings,
 			...data,
 		});
 	};
 
 	const handleRefresh = () => {
-		props.onRefresh();
+		onRefresh();
 	};
 
 	const handleProbe = () => {
-		props.onProbe(settings, createInputs(settings));
+		onProbe(settings, createInputs(settings));
 	};
 
-	const filteredDevices = props.knownDevices.filter((device) => device.media === 'video');
+	const filteredDevices = knownDevices.filter((device) => device.media === 'video');
 	const options = filteredDevices.map((device) => {
 		return {
 			value: device.id,
@@ -138,14 +138,6 @@ function Source(props) {
 	);
 }
 
-Source.defaultProps = {
-	knownDevices: [],
-	settings: {},
-	onChange: function (settings) {},
-	onProbe: function (settings, inputs) {},
-	onRefresh: function () {},
-};
-
 function SourceIcon(props) {
 	return <FontAwesomeIcon icon={faUsb} style={{ color: '#FFF' }} {...props} />;
 }
@@ -153,7 +145,7 @@ function SourceIcon(props) {
 const id = 'video4linux2';
 const name = <Trans>Hardware device</Trans>;
 const capabilities = ['video'];
-const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0';
+const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0 || ^7.0.0';
 
 const func = {
 	initSettings,

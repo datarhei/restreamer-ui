@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Publication(props) {
+export default function Publication({ channelid = '', restreamer = null }) {
 	const classes = useStyles();
 
 	const navigate = useNavigate();
@@ -73,7 +73,7 @@ export default function Publication(props) {
 	const update = async () => {
 		const egresses = [];
 
-		const processes = await props.restreamer.ListIngestEgresses(props.channelid, services);
+		const processes = await restreamer.ListIngestEgresses(channelid, services);
 
 		for (let p of processes) {
 			egresses.push({
@@ -89,7 +89,7 @@ export default function Publication(props) {
 	};
 
 	const sessions = async () => {
-		const current = await props.restreamer.CurrentSessions(['ffmpeg', 'hls', 'rtmp', 'srt']);
+		const current = await restreamer.CurrentSessions(['ffmpeg', 'hls', 'rtmp', 'srt']);
 
 		setSession({
 			viewer: current.sessions,
@@ -100,11 +100,11 @@ export default function Publication(props) {
 	const handleServiceAdd = (event) => {
 		event.preventDefault();
 
-		navigate(`/${props.channelid}/publication/`);
+		navigate(`/${channelid}/publication/`);
 	};
 
 	const handleServiceEdit = (service, index) => () => {
-		let target = `/${props.channelid}/publication/${service}`;
+		let target = `/${channelid}/publication/${service}`;
 
 		if (service !== 'player') {
 			target = target + '/' + index;
@@ -117,14 +117,14 @@ export default function Publication(props) {
 		let res = false;
 
 		if (order === 'start') {
-			res = await props.restreamer.StartEgress(props.channelid, id);
+			res = await restreamer.StartEgress(channelid, id);
 		} else if (order === 'restart') {
-			res = await props.restreamer.StopEgress(props.channelid, id);
+			res = await restreamer.StopEgress(channelid, id);
 			if (res === true) {
-				res = await props.restreamer.StartEgress(props.channelid, id);
+				res = await restreamer.StartEgress(channelid, id);
 			}
 		} else if (order === 'stop') {
-			res = await props.restreamer.StopEgress(props.channelid, id);
+			res = await restreamer.StopEgress(channelid, id);
 		}
 
 		return res;
@@ -153,7 +153,7 @@ export default function Publication(props) {
 						onOrder={handleOrderChange(e.id)}
 					/>
 				</Grid>
-			</React.Fragment>
+			</React.Fragment>,
 		);
 	}
 
@@ -191,8 +191,3 @@ export default function Publication(props) {
 		</React.Fragment>
 	);
 }
-
-Publication.defaultProps = {
-	channelid: '',
-	restreamer: null,
-};

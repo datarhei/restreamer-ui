@@ -18,28 +18,92 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function init(props) {
+function init({
+	valid = false,
+	order = 'stop',
+	state = 'disconnected',
+	error = '',
+	reconnect = -1,
+	bitrate = 0,
+	fps = 0,
+	time = 0,
+	speed = 0,
+	q = -1,
+	frames = 0,
+	drop = 0,
+	dup = 0,
+	command = [],
+	cpu = 0,
+	memory = 0,
+	video_codec = '',
+	audio_codec = '',
+}) {
 	const initProps = {
-		time: 0,
-		fps: 0,
-		bitrate: 0,
-		q: -1,
-		speed: 0,
-		drop: 0,
-		dup: 0,
-		frames: 0,
-		cpu: 0,
-		memory: 0,
-		...props,
+		valid: valid,
+		order: order,
+		state: state,
+		error: error,
+		reconnect: reconnect,
+		bitrate: bitrate,
+		fps: fps,
+		time: time,
+		speed: speed,
+		q: q,
+		frames: frames,
+		drop: drop,
+		dup: dup,
+		command: command,
+		cpu: cpu,
+		memory: memory,
+		video_codec: video_codec,
+		audio_codec: audio_codec,
 	};
 
 	return initProps;
 }
 
-export default function Progress(props) {
+export default function Progress({
+	valid = false,
+	order = 'stop',
+	state = 'disconnected',
+	error = '',
+	reconnect = -1,
+	bitrate = 0,
+	fps = 0,
+	time = 0,
+	speed = 0,
+	q = -1,
+	frames = 0,
+	drop = 0,
+	dup = 0,
+	command = [],
+	cpu = 0,
+	memory = 0,
+	video_codec = '',
+	audio_codec = '',
+}) {
 	const classes = useStyles();
 
-	const progress = init(props);
+	const progress = init({
+		valid: valid,
+		order: order,
+		state: state,
+		error: error,
+		reconnect: reconnect,
+		bitrate: bitrate,
+		fps: fps,
+		time: time,
+		speed: speed,
+		q: q,
+		frames: frames,
+		drop: drop,
+		dup: dup,
+		command: command,
+		cpu: cpu,
+		memory: memory,
+		video_codec: video_codec,
+		audio_codec: audio_codec,
+	});
 
 	return (
 		<Grid container className={classes.box}>
@@ -137,7 +201,7 @@ export default function Progress(props) {
 			<Grid item xs={12}>
 				<Typography variant="h4">
 					<strong>
-						<Number value={!isNaN((props.drop * 100) / props.frames) || 0} digits={2} minDigits={2} />%
+						<Number value={!isNaN((progress.drop * 100) / progress.frames) || 0} digits={2} minDigits={2} />%
 					</strong>
 				</Typography>
 				<Typography variant="body2" gutterBottom>
@@ -160,14 +224,3 @@ export default function Progress(props) {
 		</Grid>
 	);
 }
-
-Progress.defaultProps = {
-	time: 0,
-	fps: 0,
-	bitrate: 0,
-	q: -1,
-	speed: 0,
-	drop: 0,
-	dup: 0,
-	frame: 0,
-};

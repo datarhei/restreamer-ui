@@ -9,11 +9,24 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 
 import Env from './Env';
 
-export default function Component(props) {
-	const id = props.id === null ? uuidv4() : props.id;
+export default function Component({
+	id = null,
+	label = '',
+	value = '',
+	disabled = false,
+	multiline = false,
+	rows = 1,
+	env = false,
+	type = 'text',
+	min = null,
+	max = null,
+	helperText = null,
+	onChange = function (value) {},
+}) {
+	id = id === null ? uuidv4() : id;
 	let adornment = null;
 
-	if (props.env) {
+	if (env) {
 		adornment = (
 			<InputAdornment position="end">
 				<Env />
@@ -21,33 +34,31 @@ export default function Component(props) {
 		);
 	}
 
+	let inputProps = {};
+
+	if (min !== null) {
+		inputProps.min = min;
+	}
+
+	if (max !== null) {
+		inputProps.max = max;
+	}
+
 	return (
-		<FormControl variant="outlined" disabled={props.disabled} fullWidth>
-			<InputLabel htmlFor={id}>{props.label}</InputLabel>
+		<FormControl variant="outlined" disabled={disabled} fullWidth>
+			<InputLabel htmlFor={id}>{label}</InputLabel>
 			<OutlinedInput
 				id={id}
-				value={props.value}
-				onChange={props.onChange}
+				value={value}
+				onChange={onChange}
 				endAdornment={adornment}
-				label={props.label}
-				multiline={props.multiline}
-				rows={props.rows}
-				type={props.type}
+				label={label}
+				multiline={multiline}
+				rows={rows}
+				type={type}
+				inputProps={inputProps}
 			/>
-			{props.helperText && <FormHelperText>{props.helperText}</FormHelperText>}
+			{helperText && <FormHelperText>{helperText}</FormHelperText>}
 		</FormControl>
 	);
 }
-
-Component.defaultProps = {
-	id: null,
-	label: '',
-	value: '',
-	disabled: false,
-	multiline: false,
-	rows: 1,
-	env: false,
-	type: 'text',
-	helperText: null,
-	onChange: function (value) {},
-};

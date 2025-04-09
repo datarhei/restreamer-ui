@@ -6,21 +6,19 @@ import Paper from '../misc/Paper';
 import PaperHeader from '../misc/PaperHeader';
 import PaperContent from '../misc/PaperContent';
 
-export default function Incompatible(props) {
+export default function Incompatible({ type = '', have = '', want = '' }) {
 	let text = <Trans>This version of the UI is compatible.</Trans>;
 
-	if (props.type === 'core') {
+	if (type === 'core') {
 		text = (
 			<Trans>
-				This version of the UI doesn't support the connected Core ({props.have}). The UI requires {props.want}. Please use a compatible version of the
-				UI.
+				This version of the UI doesn't support the connected Core ({have}). The UI requires {want}. Please use a compatible version of the UI.
 			</Trans>
 		);
-	} else if (props.type === 'ffmpeg') {
+	} else if (type === 'ffmpeg') {
 		text = (
 			<Trans>
-				This version of the UI doesn't support the available FFmpeg binary ({props.have}). The UI requires {props.want}. Please use a supported FFmpeg
-				binary.
+				This version of the UI doesn't support the available FFmpeg binary ({have}). The UI requires {want}. Please use a supported FFmpeg binary.
 			</Trans>
 		);
 	}
@@ -32,9 +30,3 @@ export default function Incompatible(props) {
 		</Paper>
 	);
 }
-
-Incompatible.defaultProps = {
-	type: '',
-	have: '',
-	want: '',
-};

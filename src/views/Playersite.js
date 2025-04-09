@@ -14,11 +14,6 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 
 import * as M from '../utils/metadata';
 import playerSiteThumb from '../assets/images/playersite.png';
@@ -29,7 +24,6 @@ import Filesize from '../misc/Filesize';
 import FormInlineButton from '../misc/FormInlineButton';
 import H from '../utils/help';
 import MultiSelect from '../misc/MultiSelect';
-import MultiSelectOption from '../misc/MultiSelectOption';
 import NotifyContext from '../contexts/Notify';
 import Paper from '../misc/Paper';
 import PaperHeader from '../misc/PaperHeader';
@@ -56,67 +50,12 @@ const imageTypes = [
 
 const templateTypes = [{ mimetype: 'text/html', extension: 'html', maxSize: 500 * 1024 }];
 
-function CheckboxList(props) {
-	const [$checked, setChecked] = React.useState(props.selected);
-
-	const handleToggle = (value) => () => {
-		const currentIndex = $checked.indexOf(value);
-		const newChecked = [...$checked];
-
-		if (currentIndex === -1) {
-			newChecked.push(value);
-		} else {
-			newChecked.splice(currentIndex, 1);
-		}
-
-		setChecked(newChecked);
-
-		props.onChange({
-			target: {
-				value: [...newChecked],
-			},
-		});
-	};
-
-	return (
-		<List sx={{ width: '100%', position: 'relative', overflow: 'auto', maxHeight: 300 }}>
-			{props.items.map((value) => {
-				const labelId = `checkbox-list-label-${value.id}`;
-
-				return (
-					<ListItem key={value.id} disablePadding>
-						<ListItemButton onClick={handleToggle(value.id)} dense disabled={props.disabled}>
-							<ListItemIcon>
-								<Checkbox
-									edge="start"
-									checked={$checked.indexOf(value.id) !== -1}
-									tabIndex={-1}
-									disableRipple
-									inputProps={{ 'aria-labelledby': labelId }}
-								/>
-							</ListItemIcon>
-							<ListItemText id={labelId} primary={value.name} />
-						</ListItemButton>
-					</ListItem>
-				);
-			})}
-		</List>
-	);
-}
-
-CheckboxList.defaultProps = {
-	disabled: false,
-	selected: [],
-	items: [],
-	onChange: function () {},
-};
-
-export default function Playersite(props) {
+export default function Playersite({ restreamer = null }) {
 	const classes = useStyles();
 	const navigate = useNavigate();
 	const { i18n } = useLingui();
-	const address = props.restreamer.Address() + '/';
-	const playersiteUrl = props.restreamer.GetPlayersiteUrl();
+	const address = restreamer.Address() + '/';
+	const playersiteUrl = restreamer.GetPlayersiteUrl();
 	const notify = React.useContext(NotifyContext);
 	const [$ready, setReady] = React.useState(false);
 	const [$ingest, setIngest] = React.useState(false);
@@ -141,15 +80,15 @@ export default function Playersite(props) {
 	}, []);
 
 	const mount = async () => {
-		const data = await props.restreamer.GetMetadata();
+		const data = await restreamer.GetMetadata();
 
 		setData(data);
-		setSettings(props.restreamer.InitPlayersiteSettings(data.playersite));
-		setChannels(props.restreamer.ListChannels());
-		setIngest(props.restreamer.HasIngest());
+		setSettings(restreamer.InitPlayersiteSettings(data.playersite));
+		setChannels(restreamer.ListChannels());
+		setIngest(restreamer.HasIngest());
 
-		setTemplates(await props.restreamer.ListPlayersiteTemplates());
-		setAvailable(await props.restreamer.HasPlayersite());
+		setTemplates(await restreamer.ListPlayersiteTemplates());
+		setAvailable(await restreamer.HasPlayersite());
 
 		setReady(true);
 	};
@@ -171,7 +110,7 @@ export default function Playersite(props) {
 	};
 
 	const handleBackgroundImageUpload = async (data, extension) => {
-		const path = await props.restreamer.UploadPlayersiteBackgroundImage(data, extension);
+		const path = await restreamer.UploadPlayersiteBackgroundImage(data, extension);
 
 		handleChange('bgimage_url')({
 			target: {
@@ -183,9 +122,9 @@ export default function Playersite(props) {
 	};
 
 	const handleTemplateUpload = async (data, extension) => {
-		const name = await props.restreamer.UploadPlayersiteTemplate(data, $settings.templatename);
+		const name = await restreamer.UploadPlayersiteTemplate(data, $settings.templatename);
 
-		setTemplates(await props.restreamer.ListPlayersiteTemplates());
+		setTemplates(await restreamer.ListPlayersiteTemplates());
 		setSettings({
 			...$settings,
 			template: name,
@@ -198,12 +137,12 @@ export default function Playersite(props) {
 	const handleTemplateDelete = async () => {
 		setSaving(true);
 
-		await props.restreamer.DeletePlayersiteTemplate($settings.template);
+		await restreamer.DeletePlayersiteTemplate($settings.template);
 		setSettings({
 			...$settings,
 			template: '!default',
 		});
-		setTemplates(await props.restreamer.ListPlayersiteTemplates());
+		setTemplates(await restreamer.ListPlayersiteTemplates());
 
 		setSaving(false);
 	};
@@ -270,21 +209,21 @@ export default function Playersite(props) {
 			playersite: $settings,
 		};
 
-		let res = await props.restreamer.SetMetadata(data);
+		let res = await restreamer.SetMetadata(data);
 		if (res === false) {
 			notify.Dispatch('error', 'save:playersite', i18n._(t`Failed to store player size setting.`));
 			setSaving(false);
 			return;
 		}
 
-		res = await props.restreamer.UpdatePlayersite();
+		res = await restreamer.UpdatePlayersite();
 		if (res === false) {
 			notify.Dispatch('error', 'save:playersite', i18n._(t`Failed to create publication website files.`));
 			setSaving(false);
 			return;
 		}
 
-		setAvailable(await props.restreamer.HasPlayersite());
+		setAvailable(await restreamer.HasPlayersite());
 
 		setSaving(false);
 
@@ -312,8 +251,8 @@ export default function Playersite(props) {
 		return null;
 	}
 
-	let main_channelid = props.restreamer.GetCurrentChannelID();
-	let channel = props.restreamer.GetChannel($settings.channelid);
+	let main_channelid = restreamer.GetCurrentChannelID();
+	let channel = restreamer.GetChannel($settings.channelid);
 	if (channel !== null) {
 		main_channelid = channel.channelid;
 	}
@@ -393,13 +332,12 @@ export default function Playersite(props) {
 								<Grid item xs={12}>
 									<MultiSelect
 										disabled={!$settings.playersite}
-										type="select"
 										label={<Trans>Additional channels</Trans>}
 										value={$settings.channel_list.filter((c) => c !== main_channelid)}
 										renderValue={(selected) => {
 											return selected
 												.map((id) => {
-													let channel = props.restreamer.GetChannel(id);
+													let channel = restreamer.GetChannel(id);
 													if (channel === null) {
 														return '';
 													}
@@ -409,21 +347,17 @@ export default function Playersite(props) {
 												.join(', ');
 										}}
 										onChange={handleChange('channel_list')}
-									>
-										{$channels
+										items={$channels
 											.sort((a, b) => {
 												const aname = a.name.toUpperCase();
 												const bname = b.name.toUpperCase();
 												return aname < bname ? -1 : aname > bname ? 1 : 0;
 											})
 											.map((c) => {
-												return { id: c.channelid, name: c.name };
+												return { value: c.channelid, name: c.name };
 											})
-											.filter((c) => c.id !== main_channelid)
-											.map((c) => {
-												return <MultiSelectOption key={c.id} value={c.id} name={c.name} />;
-											})}
-									</MultiSelect>
+											.filter((c) => c.value !== main_channelid)}
+									></MultiSelect>
 									<Typography variant="caption">
 										<Trans>Additional channels to display on the playersite.</Trans>
 									</Typography>
@@ -860,7 +794,3 @@ export default function Playersite(props) {
 		</React.Fragment>
 	);
 }
-
-Playersite.defaultProps = {
-	restreamer: null,
-};

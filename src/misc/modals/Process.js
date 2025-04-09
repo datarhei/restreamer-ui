@@ -113,16 +113,26 @@ const formatLogline = (entry) => {
 	return line;
 };
 
-const Component = function (props) {
+const Component = function ({
+	open = false,
+	title = '',
+	progress = {},
+	logdata = {
+		prelude: [],
+		log: [],
+	},
+	onClose = null,
+	onHelp = null,
+}) {
 	const classes = useStyles();
-	const logdata = initLogdata({
-		...props.logdata,
-		command: props.progress?.command,
+	logdata = initLogdata({
+		...logdata,
+		command: progress?.command,
 	});
 
 	return (
-		<Modal open={props.open} onClose={props.onClose} className="modal">
-			<ModalContent title={props.title} onClose={props.onClose} onHelp={props.onHelp}>
+		<Modal open={open} onClose={onClose} className="modal">
+			<ModalContent title={title} onClose={onClose} onHelp={onHelp}>
 				<Grid container spacing={1}>
 					<Grid item xs={12} md={8} lg={10}>
 						<Grid container spacing={3}>
@@ -161,7 +171,7 @@ const Component = function (props) {
 						</Grid>
 					</Grid>
 					<Grid item xs={12} md={4} lg={2}>
-						{props.progress !== null && <Progress {...props.progress} />}
+						{progress !== null && <Progress {...progress} />}
 					</Grid>
 				</Grid>
 			</ModalContent>
@@ -170,15 +180,3 @@ const Component = function (props) {
 };
 
 export default Component;
-
-Component.defaultProps = {
-	open: false,
-	title: '',
-	progress: {},
-	logdata: {
-		prelude: [],
-		log: [],
-	},
-	onClose: null,
-	onHelp: null,
-};

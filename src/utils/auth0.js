@@ -31,7 +31,7 @@ const setConfig = (config) => {
 			audience: '',
 			redirect_uri: window.location.origin,
 			...config,
-		})
+		}),
 	);
 };
 

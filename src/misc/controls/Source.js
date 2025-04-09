@@ -25,12 +25,12 @@ function init(settings) {
 	return initSettings;
 }
 
-export default function Control(props) {
-	const settings = init(props.settings);
+export default function Control({ settings = {}, sources = [], onChange = function (settings, automatic) {} }) {
+	settings = init(settings);
 
 	// Set the defaults
 	React.useEffect(() => {
-		props.onChange(settings, true);
+		onChange(settings, true);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -39,33 +39,33 @@ export default function Control(props) {
 
 		settings[what] = value;
 
-		props.onChange(settings, false);
+		onChange(settings, false);
 	};
 
 	const items = [];
 
 	items.push(
-		<MenuItem key="hls+memfs" value="hls+memfs" disabled={!props.sources.includes('hls+memfs')}>
+		<MenuItem key="hls+memfs" value="hls+memfs" disabled={!sources.includes('hls+memfs')}>
 			HLS (memfs)
-		</MenuItem>
+		</MenuItem>,
 	);
 
 	items.push(
-		<MenuItem key="hls+diskfs" value="hls+diskfs" disabled={!props.sources.includes('hls+diskfs')}>
+		<MenuItem key="hls+diskfs" value="hls+diskfs" disabled={!sources.includes('hls+diskfs')}>
 			HLS (diskfs)
-		</MenuItem>
+		</MenuItem>,
 	);
 
 	items.push(
-		<MenuItem key="rtmp" value="rtmp" disabled={!props.sources.includes('rtmp')}>
+		<MenuItem key="rtmp" value="rtmp" disabled={!sources.includes('rtmp')}>
 			RTMP
-		</MenuItem>
+		</MenuItem>,
 	);
 
 	items.push(
-		<MenuItem key="srt" value="srt" disabled={!props.sources.includes('srt')}>
+		<MenuItem key="srt" value="srt" disabled={!sources.includes('srt')}>
 			SRT
-		</MenuItem>
+		</MenuItem>,
 	);
 
 	return (
@@ -81,9 +81,3 @@ export default function Control(props) {
 		</Grid>
 	);
 }
-
-Control.defaulProps = {
-	settings: {},
-	sources: [],
-	onChange: function (settings, automatic) {},
-};

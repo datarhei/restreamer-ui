@@ -25,5 +25,5 @@ createRoot(document.getElementById('root')).render(
 			<CssBaseline />
 			<RestreamerUI address={address} />
 		</ThemeProvider>
-	</StyledEngineProvider>
+	</StyledEngineProvider>,
 );

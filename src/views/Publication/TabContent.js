@@ -21,44 +21,40 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function TabContent(props) {
+export default function TabContent({ service = null, children = '' }) {
 	const classes = useStyles();
 
 	return (
 		<Grid container spacing={2}>
 			<Grid item xs={12}>
 				<Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-					<props.service.icon className={classes.serviceIcon} />
+					<service.icon className={classes.serviceIcon} />
 					<Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={0}>
 						<Typography variant="h1" className={classes.serviceName}>
-							{props.service.name}
+							{service.name}
 						</Typography>
-						<Typography>v{props.service.version}</Typography>
+						<Typography>v{service.version}</Typography>
 					</Stack>
 				</Stack>
 			</Grid>
 			<Grid item xs={12}>
 				<Divider />
 			</Grid>
-			{props.children}
+			{children}
 			<Grid item xs={12}>
 				<Divider />
 			</Grid>
 			<Grid item xs={12}>
 				<Typography>
 					<Trans>Maintainer:</Trans>{' '}
-					<Link color="secondary" target="_blank" href={props.service.author.maintainer.link}>
-						{props.service.author.maintainer.name}
+					<Link color="secondary" target="_blank" href={service.author.maintainer.link}>
+						{service.author.maintainer.name}
 					</Link>
 				</Typography>
 			</Grid>
 		</Grid>
 	);
 }
-
-TabContent.defaultProps = {
-	service: null,
-};
 
 TabContent.propTypes = {
 	service: PropTypes.object.isRequired,

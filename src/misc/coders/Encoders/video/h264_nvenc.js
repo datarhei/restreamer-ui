@@ -11,10 +11,12 @@ import Helper from '../../helper';
 
 function init(initialState) {
 	const state = {
+		gpu: '0',
 		bitrate: '4096',
 		fps: '25',
 		gop: '2',
-		preset: 'medium',
+		preset: 'p4',
+		tune: 'll',
 		profile: 'auto',
 		level: 'auto',
 		rc: 'auto',
@@ -31,8 +33,12 @@ function createMapping(settings, stream, skills) {
 	const local = [
 		'-codec:v',
 		'h264_nvenc',
+		'-gpu',
+		`${settings.gpu}`,
 		'-preset:v',
 		`${settings.preset}`,
+		'-tune:v',
+		`${settings.tune}`,
 		'-b:v',
 		`${settings.bitrate}k`,
 		'-maxrate',
@@ -70,34 +76,34 @@ function createMapping(settings, stream, skills) {
 	return mapping;
 }
 
-function Preset(props) {
+function Preset({ value = '', onChange = function (event) {} }) {
 	return (
-		<Select label={<Trans>Preset</Trans>} value={props.value} onChange={props.onChange}>
-			<MenuItem value="default">default</MenuItem>
-			<MenuItem value="slow">slow</MenuItem>
-			<MenuItem value="medium">medium</MenuItem>
-			<MenuItem value="fast">fast</MenuItem>
-			<MenuItem value="hp">hp</MenuItem>
-			<MenuItem value="hq">hq</MenuItem>
-			<MenuItem value="bd">db</MenuItem>
-			<MenuItem value="ll">ll</MenuItem>
-			<MenuItem value="llhq">llhq</MenuItem>
-			<MenuItem value="llhp">llhp</MenuItem>
-			<MenuItem value="lossless">lossless</MenuItem>
-			<MenuItem value="losslesshp">losslesshp</MenuItem>
-			<MenuItem value="losslesshq">losslesshq</MenuItem>
+		<Select label={<Trans>Preset</Trans>} value={value} onChange={onChange}>
+			<MenuItem value="p1">fastest</MenuItem>
+			<MenuItem value="p2">faster</MenuItem>
+			<MenuItem value="p3">fast</MenuItem>
+			<MenuItem value="p4">medium</MenuItem>
+			<MenuItem value="p5">slow</MenuItem>
+			<MenuItem value="p6">slower</MenuItem>
+			<MenuItem value="p7">slowest</MenuItem>
 		</Select>
 	);
 }
 
-Preset.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
-function Profile(props) {
+function Tune({ value = '', onChange = function (event) {} }) {
 	return (
-		<Select label={<Trans>Profile</Trans>} value={props.value} onChange={props.onChange}>
+		<Select label={<Trans>Tune</Trans>} value={value} onChange={onChange}>
+			<MenuItem value="hq">High quality</MenuItem>
+			<MenuItem value="ll">Low latency</MenuItem>
+			<MenuItem value="ull">Ultra low latency</MenuItem>
+			<MenuItem value="lossless">Lossless</MenuItem>
+		</Select>
+	);
+}
+
+function Profile({ value = '', onChange = function (event) {} }) {
+	return (
+		<Select label={<Trans>Profile</Trans>} value={value} onChange={onChange}>
 			<MenuItem value="auto">auto</MenuItem>
 			<MenuItem value="baseline">baseline</MenuItem>
 			<MenuItem value="main">main</MenuItem>
@@ -107,14 +113,9 @@ function Profile(props) {
 	);
 }
 
-Profile.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
-function Level(props) {
+function Level({ value = '', onChange = function (event) {} }) {
 	return (
-		<Select label={<Trans>Level</Trans>} value={props.value} onChange={props.onChange}>
+		<Select label={<Trans>Level</Trans>} value={value} onChange={onChange}>
 			<MenuItem value="auto">auto</MenuItem>
 			<MenuItem value="1">1</MenuItem>
 			<MenuItem value="1.0">1.0</MenuItem>
@@ -142,34 +143,21 @@ function Level(props) {
 	);
 }
 
-Level.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
-function RateControl(props) {
+function RateControl({ value = '', onChange = function (event) {} }) {
 	return (
-		<Select label={<Trans>Rate control</Trans>} value={props.value} onChange={props.onChange}>
+		<Select label={<Trans>Rate control</Trans>} value={value} onChange={onChange}>
 			<MenuItem value="auto">auto</MenuItem>
 			<MenuItem value="constqp">constqp</MenuItem>
 			<MenuItem value="vbr">vbr</MenuItem>
 			<MenuItem value="cbr">cbr</MenuItem>
-			<MenuItem value="cbr_ld_hq">cbr_ld_hq</MenuItem>
-			<MenuItem value="cbr_hq">cbr_hq</MenuItem>
-			<MenuItem value="vbr_hq">vbr_hq</MenuItem>
 		</Select>
 	);
 }
 
-RateControl.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
-function Coder(props) {
-	const settings = init(props.settings);
-	const stream = Helper.InitStream(props.stream);
-	const skills = Helper.InitSkills(props.skills);
+function Coder({ stream = {}, settings = {}, skills = {}, onChange = function (settings, mapping) {} }) {
+	settings = init(settings);
+	stream = Helper.InitStream(stream);
+	skills = Helper.InitSkills(skills);
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -178,7 +166,7 @@ function Coder(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
+		onChange(newSettings, createMapping(newSettings, stream, skills), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -210,6 +198,9 @@ function Coder(props) {
 				<Preset value={settings.preset} onChange={update('preset')} />
 			</Grid>
 			<Grid item xs={6}>
+				<Tune value={settings.tune} onChange={update('tune')} />
+			</Grid>
+			<Grid item xs={6}>
 				<Profile value={settings.profile} onChange={update('profile')} />
 			</Grid>
 			<Grid item xs={6}>
@@ -218,16 +209,12 @@ function Coder(props) {
 			<Grid item xs={6}>
 				<RateControl value={settings.rc} onChange={update('rc')} />
 			</Grid>
+			<Grid item xs={6}>
+				<Video.GPU value={settings.gpu} onChange={update('gpu')} />
+			</Grid>
 		</Grid>
 	);
 }
-
-Coder.defaultProps = {
-	stream: {},
-	settings: {},
-	skills: {},
-	onChange: function (settings, mapping) {},
-};
 
 const coder = 'h264_nvenc';
 const name = 'H.264 (NVENC)';

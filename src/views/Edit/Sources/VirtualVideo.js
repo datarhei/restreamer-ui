@@ -84,21 +84,21 @@ const createInputs = (settings) => {
 	return inputs;
 };
 
-function Source(props) {
+function Source({ settings = {}, onChange = function (settings) {}, onProbe = function (settings, inputs) {} }) {
 	const { i18n } = useLingui();
-	const settings = initSettings(props.settings);
+	settings = initSettings(settings);
 
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
 
-		props.onChange({
+		onChange({
 			...settings,
 			[what]: value,
 		});
 	};
 
 	const handleProbe = () => {
-		props.onProbe(settings, createInputs(settings));
+		onProbe(settings, createInputs(settings));
 	};
 
 	return (
@@ -192,12 +192,6 @@ function Source(props) {
 	);
 }
 
-Source.defaultProps = {
-	settings: {},
-	onChange: function (settings) {},
-	onProbe: function (settings, inputs) {},
-};
-
 function SourceIcon(props) {
 	return <Icon style={{ color: '#FFF' }} {...props} />;
 }
@@ -205,7 +199,7 @@ function SourceIcon(props) {
 const id = 'virtualvideo';
 const name = <Trans>Virtual source</Trans>;
 const capabilities = ['video'];
-const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0';
+const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0 || ^7.0.0';
 
 const func = {
 	initSettings,

@@ -34,14 +34,14 @@ function init(settings) {
 	return initSettings;
 }
 
-export default function Control(props) {
+export default function Control({ settings = {}, onChange = function (metadata) {} }) {
 	const classes = useStyles();
 	const [$tab, setTab] = React.useState('content');
-	const settings = init(props.settings);
+	settings = init(settings);
 
 	// Set the defaults
 	React.useEffect(() => {
-		props.onChange(settings, true);
+		onChange(settings, true);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -56,7 +56,7 @@ export default function Control(props) {
 			settings[what] = value;
 		}
 
-		props.onChange(settings, false);
+		onChange(settings, false);
 	};
 
 	const handleChangeTab = (event, value) => {
@@ -118,8 +118,3 @@ export default function Control(props) {
 		</Grid>
 	);
 }
-
-Control.defaultProps = {
-	settings: {},
-	onChange: function (metadata) {},
-};

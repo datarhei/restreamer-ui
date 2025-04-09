@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function LanguageSelect(props) {
+export default function LanguageSelect({ onChange = function (lang) {} }) {
 	const classes = useStyles();
 	const { i18n } = useLingui();
 
@@ -37,7 +37,7 @@ export default function LanguageSelect(props) {
 
 		i18n.activate(language);
 
-		props.onChange(language);
+		onChange(language);
 	};
 
 	return (
@@ -60,7 +60,3 @@ export default function LanguageSelect(props) {
 		</Select>
 	);
 }
-
-LanguageSelect.defaultProps = {
-	onChange: function (lang) {},
-};

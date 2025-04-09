@@ -30,17 +30,17 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function ProfileSummary(props) {
+export default function ProfileSummary({ sources = [], profile = null, onEdit = function (type) {}, onWizard = function () {} }) {
 	const classes = useStyles();
 
-	const profile = M.initProfile(props.profile);
+	profile = M.initProfile(profile);
 
 	const handleEdit = (what) => () => {
-		props.onEdit(what);
+		onEdit(what);
 	};
 
 	const handleWizard = () => () => {
-		props.onWizard();
+		onWizard();
 	};
 
 	return (
@@ -67,7 +67,7 @@ export default function ProfileSummary(props) {
 				</Typography>
 			</Grid>
 			<Grid item xs={12}>
-				<Summary type="video" sources={props.sources} profile={profile.video} />
+				<Summary type="video" sources={sources} profile={profile.video} />
 			</Grid>
 			<Grid
 				item
@@ -91,15 +91,8 @@ export default function ProfileSummary(props) {
 				</Typography>
 			</Grid>
 			<Grid item xs={12}>
-				<Summary type="audio" sources={props.sources} profile={profile.audio} />
+				<Summary type="audio" sources={sources} profile={profile.audio} />
 			</Grid>
 		</Grid>
 	);
 }
-
-ProfileSummary.defaultProps = {
-	sources: [],
-	profile: null,
-	onEdit: function (type) {},
-	onWizard: function () {},
-};

@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function RestreamerUI(props) {
+export default function RestreamerUI({ address = '' }) {
 	const classes = useStyles();
 
 	const [$state, setState] = React.useState({
@@ -121,7 +121,7 @@ export default function RestreamerUI(props) {
 	};
 
 	const handleMount = async () => {
-		restreamer.current = new Restreamer(props.address);
+		restreamer.current = new Restreamer(address);
 		restreamer.current.AddListener((event) => {
 			notify(event.severity, event.type, event.message);
 		});
@@ -452,7 +452,7 @@ export default function RestreamerUI(props) {
 		name = restreamer.current.Name();
 	}
 
-	let resources = () => {
+	let getResources = () => {
 		return null;
 	};
 
@@ -490,7 +490,7 @@ export default function RestreamerUI(props) {
 			);
 		} else {
 			view = <Router restreamer={restreamer.current} />;
-			resources = handleResources;
+			getResources = handleResources;
 		}
 	}
 
@@ -523,7 +523,7 @@ export default function RestreamerUI(props) {
 						</Grid>
 					</Grid>
 				</Grid>
-				<Footer expand={$state.connected} app={app} version={version} name={name} resources={resources} />
+				<Footer expand={$state.connected} app={app} version={version} name={name} getResources={getResources} />
 				<Snackbar
 					anchorOrigin={{
 						vertical: 'top',
@@ -540,7 +540,7 @@ export default function RestreamerUI(props) {
 				{expand && (
 					<ChannelList
 						open={$channelList.open}
-						channels={$channelList.channels}
+						allChannels={$channelList.channels}
 						channelid={$channelList.channelid}
 						onClose={handleCloseChannelList}
 						onClick={handleSelectChannel}
@@ -555,7 +555,3 @@ export default function RestreamerUI(props) {
 		</I18n>
 	);
 }
-
-RestreamerUI.defaultProps = {
-	address: '',
-};

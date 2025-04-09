@@ -26,12 +26,18 @@ const generatePassword = (length) => {
 	return password;
 };
 
-export default function ResetPassword(props) {
+export default function ResetPassword({
+	onReset = function (username, password) {},
+	username = '',
+	usernameOverride = false,
+	password = '',
+	passwordOverride = false,
+}) {
 	const [$login, setLogin] = React.useState({
-		username: props.username.length === 0 ? 'admin' : props.username,
-		password: props.password.length === 0 ? generatePassword(6) + '-' + generatePassword(6) + '-' + generatePassword(6) : props.password,
-		passwordConfirm: props.password.length !== 0 ? props.password : '',
-		showPassword: props.password.length === 0 ? true : false,
+		username: username.length === 0 ? 'admin' : username,
+		password: password.length === 0 ? generatePassword(6) + '-' + generatePassword(6) + '-' + generatePassword(6) : password,
+		passwordConfirm: password.length !== 0 ? password : '',
+		showPassword: password.length === 0 ? true : false,
 	});
 	const [$restart, setRestart] = React.useState({
 		restarting: false,
@@ -52,16 +58,16 @@ export default function ResetPassword(props) {
 		// values won't be changed.
 
 		let username = $login.username;
-		if (props.usernameOverride) {
+		if (usernameOverride) {
 			username = '';
 		}
 
 		let password = $login.password;
-		if (props.passwordOverride) {
+		if (passwordOverride) {
 			password = '';
 		}
 
-		const res = await props.onReset(username, $login.username, password, $login.password);
+		const res = await onReset(username, $login.username, password, $login.password);
 		switch (res) {
 			case 'ERROR':
 				setRestart({
@@ -111,8 +117,8 @@ export default function ResetPassword(props) {
 									value={$login.username}
 									onChange={handleChange('username')}
 									autoComplete="username"
-									disabled={props.usernameOverride}
-									env={props.usernameOverride}
+									disabled={usernameOverride}
+									env={usernameOverride}
 								/>
 							</Grid>
 							<Grid item xs={12}>
@@ -123,8 +129,8 @@ export default function ResetPassword(props) {
 									onChange={handleChange('password')}
 									show={$login.showPassword}
 									autoComplete="current-password"
-									disabled={props.passwordOverride}
-									env={props.passwordOverride}
+									disabled={passwordOverride}
+									env={passwordOverride}
 								/>
 							</Grid>
 							<Grid item xs={12}>
@@ -134,8 +140,8 @@ export default function ResetPassword(props) {
 									label={<Trans>Confirm password</Trans>}
 									onChange={handleChange('passwordConfirm')}
 									show={$login.showPassword}
-									disabled={props.passwordOverride}
-									env={props.passwordOverride}
+									disabled={passwordOverride}
+									env={passwordOverride}
 								/>
 							</Grid>
 							<Grid item xs={12}>
@@ -184,11 +190,3 @@ export default function ResetPassword(props) {
 		</Paper>
 	);
 }
-
-ResetPassword.defaultProps = {
-	onReset: function (username, password) {},
-	username: '',
-	usernameOverride: false,
-	password: '',
-	passwordOverride: false,
-};

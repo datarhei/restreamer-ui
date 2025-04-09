@@ -39,9 +39,9 @@ function createGraph(settings) {
 	return mapping.join(',');
 }
 
-function VolumeLevel(props) {
+function VolumeLevel({ value = '', onChange = function (event) {} }) {
 	return (
-		<Select label={<Trans>Volume</Trans>} value={props.value} onChange={props.onChange}>
+		<Select label={<Trans>Volume</Trans>} value={value} onChange={onChange}>
 			<MenuItem value="inherit">
 				<Trans>Inherit</Trans>
 			</MenuItem>
@@ -61,33 +61,12 @@ function VolumeLevel(props) {
 	);
 }
 
-VolumeLevel.defaultProps = {
-	value: '',
-	onChange: function (event) {},
-};
-
-function VolumeDB(props) {
-	return (
-		<TextField
-			variant="outlined"
-			fullWidth
-			label={<Trans>Decibels (dB)</Trans>}
-			type="number"
-			value={props.value}
-			disabled={props.disabled}
-			onChange={props.onChange}
-		/>
-	);
+function VolumeDB({ value = '', disabled = false, onChange = function (event) {} }) {
+	return <TextField variant="outlined" fullWidth label={<Trans>Decibels (dB)</Trans>} type="number" value={value} disabled={disabled} onChange={onChange} />;
 }
 
-VolumeDB.defaultProps = {
-	value: '',
-	disabled: false,
-	onChange: function (event) {},
-};
-
-function Filter(props) {
-	const settings = init(props.settings);
+function Filter({ settings = {}, onChange = function (settings, graph, automatic) {} }) {
+	settings = init(settings);
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -96,7 +75,7 @@ function Filter(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createGraph(newSettings), automatic);
+		onChange(newSettings, createGraph(newSettings), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -124,11 +103,6 @@ function Filter(props) {
 		</React.Fragment>
 	);
 }
-
-Filter.defaultProps = {
-	settings: {},
-	onChange: function (settings, graph, automatic) {},
-};
 
 const filter = 'volume';
 const name = 'Volume';

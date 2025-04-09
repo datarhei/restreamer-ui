@@ -13,8 +13,8 @@ var config = {
 
 if (chromecast) {
 	config.techOrder = ['chromecast', 'html5'];
-	// Provide a default reciever application ID
 	config.plugins.chromecast = {
+		// Provide a default reciever application ID
 		receiverApplicationId: 'CC1AD845',
 	};
 }

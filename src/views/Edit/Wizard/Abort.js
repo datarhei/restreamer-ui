@@ -8,12 +8,12 @@ import Button from '@mui/material/Button';
 import Paper from '../../../misc/Paper';
 import PaperHeader from '../../../misc/PaperHeader';
 
-export default function Abort(props) {
+export default function Abort({ onHelp = () => {}, onBack = () => {}, onNext = () => {}, nchannels = 0 }) {
 	return (
 		<Paper xs={12} sm={8} md={6} marginBottom="6em" className="PaperM">
-			<PaperHeader spacing={3} variant="h1" title={<Trans>Abort</Trans>} onHelp={props.onHelp} />
+			<PaperHeader spacing={3} variant="h1" title={<Trans>Abort</Trans>} onHelp={onHelp} />
 			<Grid container spacing={3}>
-				{props.nchannels <= 1 ? (
+				{nchannels <= 1 ? (
 					<React.Fragment>
 						<Grid item xs={12}>
 							<Typography>
@@ -21,7 +21,7 @@ export default function Abort(props) {
 							</Typography>
 						</Grid>
 						<Grid item xs={12}>
-							<Button variant="outlined" color="primary" fullWidth onClick={props.onBack}>
+							<Button variant="outlined" color="primary" fullWidth onClick={onBack}>
 								<Trans>Back</Trans>
 							</Button>
 						</Grid>
@@ -34,12 +34,12 @@ export default function Abort(props) {
 							</Typography>
 						</Grid>
 						<Grid item xs={6}>
-							<Button variant="outlined" color="default" fullWidth onClick={props.onNext}>
+							<Button variant="outlined" color="default" fullWidth onClick={onNext}>
 								<Trans>Yes</Trans>
 							</Button>
 						</Grid>
 						<Grid item xs={6}>
-							<Button variant="outlined" color="primary" fullWidth onClick={props.onBack}>
+							<Button variant="outlined" color="primary" fullWidth onClick={onBack}>
 								<Trans>No</Trans>
 							</Button>
 						</Grid>
@@ -49,10 +49,3 @@ export default function Abort(props) {
 		</Paper>
 	);
 }
-
-Abort.defaultProps = {
-	onHelp: () => {},
-	onBack: () => {},
-	onNext: () => {},
-	nchannels: 0,
-};

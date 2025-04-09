@@ -8,11 +8,11 @@ import Duration from '../../misc/Duration';
 import Number from '../../misc/Number';
 import Palette from '../../theme/base/palette';
 
-export default function Progress(props) {
-	const uptime = props.progress.time;
-	const bitrate = props.progress.bitrate;
-	const fps = props.progress.fps;
-	const speed = props.progress.speed;
+export default function Progress({ progress = {} }) {
+	const uptime = progress.time;
+	const bitrate = progress.bitrate;
+	const fps = progress.fps;
+	const speed = progress.speed;
 
 	const valueStyle = {
 		fontWeight: 'bold',
@@ -81,7 +81,3 @@ export default function Progress(props) {
 		</Grid>
 	);
 }
-
-Progress.defaultProps = {
-	progress: {},
-};

@@ -19,22 +19,17 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Component = function (props) {
+const Component = function ({ buttonsLeft = null, buttonsRight = null }) {
 	const classes = useStyles();
 
 	return (
 		<Grid container spacing={3}>
 			<Grid item xs={12} className={classes.root}>
-				<div>{props.buttonsRight}</div>
-				{props.buttonsLeft}
+				<div>{buttonsRight}</div>
+				{buttonsLeft}
 			</Grid>
 		</Grid>
 	);
 };
 
 export default Component;
-
-Component.defaultProps = {
-	buttonsLeft: null,
-	buttonsRight: null,
-};

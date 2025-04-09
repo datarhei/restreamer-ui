@@ -92,8 +92,8 @@ function init(settings) {
 	return initSettings;
 }
 
-function Service(props) {
-	const settings = init(props.settings);
+function Service({ settings = {}, skills = {}, metadata = {}, streams = [], onChange = function (output, settings) {} }) {
+	settings = init(settings);
 
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
@@ -151,7 +151,7 @@ function Service(props) {
 
 		const output = createOutput(settings);
 
-		props.onChange([output], settings);
+		onChange([output], settings);
 	};
 
 	const createOutput = (settings) => {
@@ -166,15 +166,15 @@ function Service(props) {
 		} else {
 			output.options = ['-f', 'flv'];
 
-			if (props.skills.ffmpeg.version_major >= 6) {
+			if (skills.ffmpeg.version_major >= 6) {
 				const codecs = [];
-				if (props.skills.codecs.video.includes('hevc')) {
+				if (skills.codecs.video.includes('hevc')) {
 					codecs.push('hvc1');
 				}
-				if (props.skills.codecs.video.includes('av1')) {
+				if (skills.codecs.video.includes('av1')) {
 					codecs.push('av01');
 				}
-				if (props.skills.codecs.video.includes('vp9')) {
+				if (skills.codecs.video.includes('vp9')) {
 					codecs.push('vp09');
 				}
 
@@ -247,14 +247,6 @@ function Service(props) {
 		</Grid>
 	);
 }
-
-Service.defaultProps = {
-	settings: {},
-	skills: {},
-	metadata: {},
-	streams: [],
-	onChange: function (output, settings) {},
-};
 
 export {
 	id,

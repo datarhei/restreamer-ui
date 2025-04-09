@@ -2,10 +2,17 @@ import React from 'react';
 
 import FormInlineButton from './FormInlineButton';
 
-export default function UploadButton(props) {
-	const { acceptTypes, label, onError, onStart, onUpload, ...other } = props;
-
-	const accept = props.acceptTypes.map((t) => t.mimetype);
+export default function UploadButton({
+	label = '',
+	acceptTypes = [],
+	onStart = function () {},
+	onError = function () {},
+	onUpload = function (data, extension) {},
+	variant = 'outlined',
+	color = 'primary',
+	disabled = false,
+}) {
+	const accept = acceptTypes.map((t) => t.mimetype);
 
 	const handleUpload = (event) => {
 		const handler = (event) => {
@@ -13,7 +20,7 @@ export default function UploadButton(props) {
 
 			if (files.length === 0) {
 				// no files selected
-				props.onError({
+				onError({
 					type: 'nofiles',
 				});
 				return;
@@ -22,7 +29,7 @@ export default function UploadButton(props) {
 			const file = files[0];
 
 			let type = null;
-			for (let t of props.acceptTypes) {
+			for (let t of acceptTypes) {
 				const accept = t.mimetype.split('/');
 				const actual = file.type.split('/');
 
@@ -38,7 +45,7 @@ export default function UploadButton(props) {
 
 			if (type === null) {
 				// not one of the allowed mimetypes
-				props.onError({
+				onError({
 					type: 'mimetype',
 					actual: file.type,
 					allowed: accept.slice(),
@@ -46,9 +53,9 @@ export default function UploadButton(props) {
 				return;
 			}
 
-			if (file.size > type.maxSize) {
+			if (type.maxSize > 0 && file.size > type.maxSize) {
 				// the file is too big
-				props.onError({
+				onError({
 					type: 'size',
 					actual: file.size,
 					allowed: type.maxSize,
@@ -56,23 +63,29 @@ export default function UploadButton(props) {
 				return;
 			}
 
+			/*
+			let streamer = file.stream();
+
 			let reader = new FileReader();
+			// read as blob: https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL
 			reader.readAsArrayBuffer(file);
 			reader.onloadend = async () => {
 				if (reader.result === null) {
 					// reading the file failed
-					props.onError({
+					onError({
 						type: 'read',
 						message: reader.error.message,
 					});
 					return;
 				}
-
-				props.onUpload(reader.result, type.extension, type.mimetype);
-			};
+*/
+			// transformStream in order to count transferred bytes: https://stackoverflow.com/questions/35711724/upload-progress-indicators-for-fetch
+			// .pipeThrough(progressTrackingStream)
+			onUpload(file, type.extension, type.mimetype);
+			//};
 		};
 
-		props.onStart();
+		onStart();
 
 		handler(event);
 
@@ -82,16 +95,9 @@ export default function UploadButton(props) {
 	};
 
 	return (
-		<FormInlineButton component="label" {...other}>
-			{props.label}
+		<FormInlineButton component="label" variant={variant} color={color} disabled={disabled}>
+			{label}
 			<input accept={accept.join(',')} type="file" hidden onChange={handleUpload} />
 		</FormInlineButton>
 	);
 }
-
-UploadButton.defaultProps = {
-	label: '',
-	acceptTypes: [],
-	onError: function () {},
-	onUpload: function (data, extension) {},
-};

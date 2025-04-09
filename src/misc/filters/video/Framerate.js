@@ -32,7 +32,14 @@ function createGraph(settings) {
 	return mapping.join(',');
 }
 
-function Framerate(props) {
+function Framerate({
+	label = <Trans>Framerate</Trans>,
+	customLabel = <Trans>Custom framerate</Trans>,
+	value = '',
+	variant = 'outlined',
+	allowCustom = true,
+	onChange = function (event) {},
+}) {
 	const { i18n } = useLingui();
 	const sizes = [
 		{ value: '60', label: '60' },
@@ -49,29 +56,12 @@ function Framerate(props) {
 	];
 
 	return (
-		<SelectCustom
-			options={sizes}
-			label={props.label}
-			customLabel={props.customLabel}
-			value={props.value}
-			onChange={props.onChange}
-			variant={props.variant}
-			allowCustom={props.allowCustom}
-		/>
+		<SelectCustom options={sizes} label={label} customLabel={customLabel} value={value} onChange={onChange} variant={variant} allowCustom={allowCustom} />
 	);
 }
 
-Framerate.defaultProps = {
-	label: <Trans>Framerate</Trans>,
-	customLabel: <Trans>Custom framerate</Trans>,
-	value: '',
-	variant: 'outlined',
-	allowCustom: true,
-	onChange: function (event) {},
-};
-
-function Filter(props) {
-	const settings = init(props.settings);
+function Filter({ settings = {}, onChange = function (settings, mapping) {} }) {
+	settings = init(settings);
 
 	const handleChange = (newSettings) => {
 		let automatic = false;
@@ -80,7 +70,7 @@ function Filter(props) {
 			automatic = true;
 		}
 
-		props.onChange(newSettings, createGraph(newSettings), automatic);
+		onChange(newSettings, createGraph(newSettings), automatic);
 	};
 
 	const update = (what) => (event) => {
@@ -116,11 +106,6 @@ function Filter(props) {
 		</React.Fragment>
 	);
 }
-
-Filter.defaultProps = {
-	settings: {},
-	onChange: function (settings, mapping) {},
-};
 
 const filter = 'fps';
 const name = 'Frame Interpolation';
