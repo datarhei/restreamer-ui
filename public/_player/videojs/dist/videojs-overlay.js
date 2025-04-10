@@ -403,7 +403,7 @@
           }
         }
         const playerChild = this.player.addChild('overlay', mergeOptions);
-        this.player.el().insertBefore(playerChild.el(), this.player.controlBar.el());
+        this.player.el().insertAfter(playerChild.el(), this.player.controlBar.el());
         return playerChild;
       });
     }
