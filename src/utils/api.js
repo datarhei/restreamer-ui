@@ -5,10 +5,15 @@ class API {
 		this.token = '';
 
 		this.cache = new Map();
+
+		// Debug logging for API requests/responses (opt-in via REACT_APP_API_DEBUG=true)
+		this.debugRequests = (String(process.env.REACT_APP_API_DEBUG || '')).toLowerCase() === 'true';
 	}
 
 	_debug(message) {
-		//console.log(`[CoreAPI] ${message}`);
+		if (this.debugRequests) {
+			console.log(`[CoreAPI] ${message}`);
+		}
 	}
 
 	_error(message) {
@@ -94,6 +99,31 @@ class API {
 
 		this._debug(`calling ${options.method} ${this.address + path}`);
 
+		// Debug: print request details with masked Authorization and trimmed body
+		if (this.debugRequests) {
+			const dbgHeaders = { ...options.headers };
+			if (dbgHeaders.Authorization) {
+				dbgHeaders.Authorization = 'Bearer ***';
+			}
+			let bodyPreview = undefined;
+			if (typeof options.body === 'string') {
+				try {
+					const parsed = JSON.parse(options.body);
+					const str = JSON.stringify(parsed);
+					bodyPreview = str.length > 2000 ? str.slice(0, 2000) + '…' : str;
+				} catch (_) {
+					bodyPreview = options.body.length > 2000 ? options.body.slice(0, 2000) + '…' : options.body;
+				}
+			}
+			console.log('[CoreAPI] Request', {
+				method: options.method,
+				url: this.address + path,
+				headers: dbgHeaders,
+				body: bodyPreview,
+				expect: options.expect,
+			});
+		}
+
 		const res = {
 			err: null,
 			val: null,
@@ -143,6 +173,15 @@ class API {
 			}
 
 			this._error(res.err.message);
+
+			if (this.debugRequests) {
+				console.log('[CoreAPI] Response (error)', {
+					status: response.status,
+					statusText: response.statusText,
+					url: this.address + path,
+					err: res.err,
+				});
+			}
 
 			return res;
 		}

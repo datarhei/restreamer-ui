@@ -37,6 +37,7 @@ import SnapshotControl from '../../misc/controls/Snapshot';
 import SRTControl from '../../misc/controls/SRT';
 import TabPanel from '../../misc/TabPanel';
 import TabsVerticalGrid from '../../misc/TabsVerticalGrid';
+import OverlaysControl from '../../misc/controls/Overlays';
 
 const useStyles = makeStyles((theme) => ({
 	wizardButtonElement: {
@@ -296,7 +297,7 @@ export default function Edit(props) {
 			const profiles = $data.profiles;
 			const control = $data.control;
 
-			const [global, inputs, outputs] = M.createInputsOutputs(sources, profiles, true);
+			const [global, inputs, outputs] = M.createInputsOutputs(sources, profiles, true, control.overlays || []);
 
 			if (inputs.length === 0 || outputs.length === 0) {
 				notify.Dispatch('error', 'save:ingest', i18n._(t`The input profile is not complete. Please define a video and audio source.`));
@@ -567,6 +568,22 @@ export default function Edit(props) {
 								</Grid>
 								<Grid item xs={12}>
 									<LimitsControl settings={$data.control.limits} onChange={handleControlChange('limits')} />
+								</Grid>
+								<Grid item xs={12}>
+									<Divider />
+								</Grid>
+								<Grid item xs={12}>
+									<Typography variant="h3">
+										<Trans>Overlays</Trans>
+									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<OverlaysControl
+										settings={$data.control.overlays}
+										onChange={handleControlChange('overlays')}
+										restreamer={props.restreamer}
+										channelid={_channelid}
+									/>
 								</Grid>
 							</Grid>
 						</TabPanel>
