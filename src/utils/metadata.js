@@ -793,10 +793,10 @@ const createInputsOutputs = (sources, profiles, requireVideo = true, overlays = 
 		// Add scale filter for the main video if needed
 		if (profile.video.filter.graph.length !== 0 && profile.video.filter.graph.includes('scale')) {
 			// Use the existing scale filter from the profile
-			filterParts.push(`[${videoInputIndex}:${videoStream.stream}]${profile.video.filter.graph}[bg]`);
+			filterParts.push(`[${videoInputIndex}:v]${profile.video.filter.graph}[bg]`);
 		} else {
 			// Add a default scale filter if none exists
-			filterParts.push(`[${videoInputIndex}:${videoStream.stream}]scale=1280:720[bg]`);
+			filterParts.push(`[${videoInputIndex}:v]scale=1280:720[bg]`);
 		}
 		
 		// Now chain the overlays together
@@ -831,21 +831,25 @@ const createInputsOutputs = (sources, profiles, requireVideo = true, overlays = 
 		
 		// Add format filter at the end if we have overlays
 		if (validOverlays.length > 0) {
-			// Add format=yuv420p to the final output
-			filterParts.push(`[v]format=yuv420p[vout]`);
+			// Modify the last filter to include format=yuv420p
+			const lastFilterIndex = filterParts.length - 1;
+			if (lastFilterIndex >= 0) {
+				// Replace [v] with ,format=yuv420p[v]
+				filterParts[lastFilterIndex] = filterParts[lastFilterIndex].replace('[v]', ',format=yuv420p[v]');
+			}
 			
-			// Add filter_complex to global options
-			global.push('-filter_complex', filterParts.join(';'));
-			
-			// Update the first output to map from the filter complex output
+			// Add filter_complex to the first output's options, not global
 			if (outputs.length > 0) {
-				// Find and replace the video map in the first output
 				const output = outputs[0];
-				const mapIndex = output.options.indexOf('-map');
 				
+				// Add filter_complex to the beginning of output options
+				output.options.unshift('-filter_complex', filterParts.join(';'));
+				
+				// Find and replace the video map in the output
+				const mapIndex = output.options.indexOf('-map');
 				if (mapIndex !== -1 && mapIndex + 1 < output.options.length) {
 					// Replace the video map with our filter complex output
-					output.options.splice(mapIndex, 2, '-map', '[vout]');
+					output.options.splice(mapIndex, 2, '-map', '[v]');
 				}
 			}
 		}
