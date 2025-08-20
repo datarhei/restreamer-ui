@@ -138,6 +138,8 @@ export default function Edit({ restreamer = null }) {
 				settings.ga[what] = value;
 			} else if (section === 'logo') {
 				settings.logo[what] = value;
+			} else if (section === 'logo2') {
+				settings.logo2[what] = value;
 			}
 
 			if (timeout.current !== null) {
@@ -162,6 +164,21 @@ export default function Edit({ restreamer = null }) {
 		handleChange(
 			'image',
 			'logo',
+		)({
+			target: {
+				value: path,
+			},
+		});
+
+		setSaving(false);
+	};
+
+	const handleLogo2Upload = async (data, extension) => {
+		const path = await restreamer.UploadLogo(_channelid, data, extension);
+
+		handleChange(
+			'image',
+			'logo2',
 		)({
 			target: {
 				value: path,
@@ -271,6 +288,40 @@ export default function Edit({ restreamer = null }) {
 		});
 	};
 
+	const handleLogo2Reset = (event) => {
+		// For the cleanup of the core, we need to check the following:
+		// 1. is the image on the core or external?
+		// 2. is the image used somewhere else?
+		// 3. OK via dialog
+
+		handleChange(
+			'image',
+			'logo2',
+		)({
+			target: {
+				value: '',
+			},
+		});
+
+		handleChange(
+			'position',
+			'logo2',
+		)({
+			target: {
+				value: 'top-right',
+			},
+		});
+
+		handleChange(
+			'link',
+			'logo2',
+		)({
+			target: {
+				value: '',
+			},
+		});
+	};
+
 	const handlePosterReset = (event) => {
 		// For the cleanup of the core, we need to check the following:
 		// 1. is the image on the core or external?
@@ -341,6 +392,7 @@ export default function Edit({ restreamer = null }) {
 	const playerAddress = restreamer.GetPublicAddress('player', _channelid);
 	const iframeCode = restreamer.GetPublicIframeCode(_channelid);
 	const logo = { ...$settings.logo, image: prepareUrl($settings.logo.image) };
+	const logo2 = { ...$settings.logo2, image: prepareUrl($settings.logo2.image) };
 
 	return (
 		<React.Fragment>
@@ -367,6 +419,7 @@ export default function Edit({ restreamer = null }) {
 										mute={$settings.mute}
 										poster={poster}
 										logo={logo}
+										logo2={logo2}
 										colors={$settings.color}
 										statistics={$settings.statistics}
 										controls
@@ -381,6 +434,7 @@ export default function Edit({ restreamer = null }) {
 						<TabsHorizontal value={$tab} onChange={handleChangeTab}>
 							<Tab className="tab" label={<Trans>Embed</Trans>} value="embed" />
 							<Tab className="tab" label={<Trans>Logo</Trans>} value="logo" />
+							<Tab className="tab" label={<Trans>Logo 2</Trans>} value="logo2" />
 							<Tab className="tab" label={<Trans>Poster</Trans>} value="poster" />
 							<Tab className="tab" label={<Trans>Playback</Trans>} value="playback" />
 						</TabsHorizontal>
@@ -465,6 +519,53 @@ export default function Edit({ restreamer = null }) {
 								</Grid>
 							</Grid>
 						</TabPanel>
+						<TabPanel value={$tab} index="logo2">
+							<Grid container spacing={2}>
+								<Grid item xs={12} md={9}>
+									<TextField
+										variant="outlined"
+										fullWidth
+										id="logo2-url"
+										label={<Trans>Image URL</Trans>}
+										value={$settings.logo2.image}
+										onChange={handleChange('image', 'logo2')}
+									/>
+								</Grid>
+								<Grid item xs={12} md={3}>
+									<UploadButton
+										label={<Trans>Upload</Trans>}
+										acceptTypes={logoImageTypes}
+										onStart={handleUploadStart}
+										onError={handleUploadError(<Trans>Uploading the logo failed</Trans>)}
+										onUpload={handleLogo2Upload}
+									/>
+								</Grid>
+								<Grid item xs={12} md={4}>
+									<Select
+										variant="outlined"
+										fullWidth
+										label={<Trans>Position</Trans>}
+										value={$settings.logo2.position}
+										onChange={handleChange('position', 'logo2')}
+									>
+										<MenuItem value="top-left">Top-Left</MenuItem>
+										<MenuItem value="top-right">Top-Right</MenuItem>
+										<MenuItem value="bottom-left">Bottom-Left</MenuItem>
+										<MenuItem value="bottom-right">Bottom-Right</MenuItem>
+									</Select>
+								</Grid>
+								<Grid item xs={12} md={8}>
+									<TextField
+										variant="outlined"
+										fullWidth
+										id="logo2-link"
+										label={<Trans>Link</Trans>}
+										value={$settings.logo2.link}
+										onChange={handleChange('link', 'logo2')}
+									/>
+								</Grid>
+							</Grid>
+						</TabPanel>
 						<TabPanel value={$tab} index="poster">
 							<Grid container spacing={2}>
 								<Grid item xs={12} md={9}>
@@ -545,6 +646,11 @@ export default function Edit({ restreamer = null }) {
 							{$settings.logo.image && $tab === 'logo' && (
 								<Button variant="outlined" color="secondary" onClick={handleLogoReset}>
 									<Trans>Reset logo</Trans>
+								</Button>
+							)}
+							{$settings.logo2.image && $tab === 'logo2' && (
+								<Button variant="outlined" color="secondary" onClick={handleLogo2Reset}>
+									<Trans>Reset logo 2</Trans>
 								</Button>
 							)}
 							{$settings.poster && $tab === 'poster' && (
