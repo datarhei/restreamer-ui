@@ -113,6 +113,8 @@
 
 	var player = videojs('player', config);
 
+	var overlays = [];
+	
 	if(playerConfig.logo.image.length != 0) {
 		const imgTag = new Image();
         imgTag.src = playerConfig.logo.image;
@@ -121,17 +123,42 @@
           	const logoHeight = imgTag.height;
           	const overlayPosition = playerConfig.logo.position || 'top-left';
           	const overlayLink = playerConfig.logo.link || '#';
-          	player.overlay({
-            	overlays: [{
-					content: `<a href="${overlayLink}" target="_blank"><img src="${playerConfig.logo.image + '?' + Math.random()}" alt="Logo" width="${logoWidth}" height="${logoHeight}"></a>`,
-              		start: 'play',
-              		end: 'pause',
-              		align: overlayPosition,
-              		showBackground: false
-           		}]
-          	});
+          	overlays.push({
+				content: `<a href="${overlayLink}" target="_blank"><img src="${playerConfig.logo.image + '?' + Math.random()}" alt="Logo" width="${logoWidth}" height="${logoHeight}"></a>`,
+              	start: 'play',
+              	end: 'pause',
+              	align: overlayPosition,
+              	showBackground: false
+           	});
 		};
 	}
+
+	if(playerConfig.logo2.image.length != 0) {
+		const imgTag2 = new Image();
+        imgTag2.src = playerConfig.logo2.image;
+        imgTag2.onload = function () {
+          	const logo2Width = imgTag2.width;
+          	const logo2Height = imgTag2.height;
+          	const overlayPosition2 = playerConfig.logo2.position || 'top-right';
+          	const overlayLink2 = playerConfig.logo2.link || '#';
+          	overlays.push({
+				content: `<a href="${overlayLink2}" target="_blank"><img src="${playerConfig.logo2.image + '?' + Math.random()}" alt="Logo 2" width="${logo2Width}" height="${logo2Height}"></a>`,
+              	start: 'play',
+              	end: 'pause',
+              	align: overlayPosition2,
+              	showBackground: false
+           	});
+		};
+	}
+	
+	// Apply overlays after both logos are loaded
+	setTimeout(function() {
+		if(overlays.length > 0) {
+			player.overlay({
+				overlays: overlays
+			});
+		}
+	}, 100);
 
 	player.ready(function() {
 		player.license(playerConfig.license);

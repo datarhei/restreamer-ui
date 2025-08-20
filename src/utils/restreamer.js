@@ -2202,6 +2202,13 @@ class Restreamer {
 			...settings.logo,
 		};
 
+		settings.logo2 = {
+			image: '',
+			position: 'top-right',
+			link: '',
+			...settings.logo2,
+		};
+
 		return settings;
 	}
 

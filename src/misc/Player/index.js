@@ -14,6 +14,11 @@ export default function Player({
 		position: 'top-right',
 		link: '',
 	},
+	logo2 = {
+		image: '',
+		position: 'top-left',
+		link: '',
+	},
 	ga = {
 		account: '',
 		name: '',
@@ -46,6 +51,8 @@ export default function Player({
 				type={type}
 				options={config}
 				onReady={(player) => {
+					const overlays = [];
+
 					if (logo.image.length !== 0) {
 						var overlay = null;
 
@@ -66,20 +73,52 @@ export default function Player({
 							overlay = imgTag.outerHTML;
 						}
 
-						if (player.overlay) {
+						overlays.push({
+							showBackground: false,
+							content: overlay,
+							start: 'play',
+							end: 'pause',
+							align: logo.position,
+						});
+					}
+
+					if (logo2.image.length !== 0) {
+						var overlay2 = null;
+
+						var imgTag2 = new Image();
+						imgTag2.onLoad = function () {
+							imgTag2.setAttribute('width', this.width);
+							imgTag2.setAttribute('height'.this.height);
+						};
+						imgTag2.src = logo2.image + '?' + Math.random();
+
+						if (logo2.link.length !== 0) {
+							var aTag2 = document.createElement('a');
+							aTag2.setAttribute('href', logo2.link);
+							aTag2.setAttribute('target', '_blank');
+							aTag2.appendChild(imgTag2);
+							overlay2 = aTag2.outerHTML;
+						} else {
+							overlay2 = imgTag2.outerHTML;
+						}
+
+						overlays.push({
+							showBackground: false,
+							content: overlay2,
+							start: 'play',
+							end: 'pause',
+							align: logo2.position,
+						});
+					}
+
+					// Apply overlays after setup
+					setTimeout(() => {
+						if (overlays.length > 0 && player.overlay) {
 							player.overlay({
-								align: logo.position,
-								overlays: [
-									{
-										showBackground: false,
-										content: overlay,
-										start: 'play',
-										end: 'pause',
-									},
-								],
+								overlays: overlays,
 							});
 						}
-					}
+					}, 100);
 
 					if (autoplay === true) {
 						// https://videojs.com/blog/autoplay-best-practices-with-video-js/
