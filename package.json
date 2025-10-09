@@ -42,7 +42,7 @@
 		"react-scripts": "^5.0.1",
 		"semver": "^7.6.3",
 		"serve": "^14.2.3",
-		"typescript": "^5.5.4",
+		"typescript": "^5.9.2",
 		"url-parse": "^1.5.10",
 		"util": "^0.12.5",
 		"uuid": "^10.0.0",
