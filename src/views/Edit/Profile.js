@@ -569,7 +569,7 @@ export default function Profile(props) {
 												type="video"
 												streams={$sources.video.streams}
 												profile={$profile.video}
-												codecs={['copy', 'h264']}
+												codecs={['copy', 'h264', 'h265']}
 												skills={props.skills}
 												onChange={handleEncoding('video')}
 											/>

@@ -9,7 +9,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
 import RestreamerUI from './RestreamerUI';
 
-let address = window.location.protocol + '//' + window.location.host;
+//let address = window.location.protocol + '//' + window.location.host;
+let address = "https://restream.phila.in.th/";
 if (window.location.pathname.endsWith('/ui/')) {
 	address += window.location.pathname.replace(/ui\/$/, '');
 }

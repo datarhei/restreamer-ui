@@ -493,7 +493,11 @@ export default function Wizard(props) {
 			);
 		}
 
-		const encoders = Encoders.Video.GetCodersForCodec('h264', $skills.encoders.video, 'any');
+
+		const enc264 = Encoders.Video.GetCodersForCodec('h264', $skills.encoders.video, 'any');
+        const enc265 = Encoders.Video.GetCodersForCodec('hevc', $skills.encoders.video, 'any');
+        const encoders = [...enc264, ...enc265].filter((v, i, a) => a.findIndex(x => x.coder === v.coder) === i);
+		// const encoders = Encoders.Video.GetCodersForCodec('h264', $skills.encoders.video, 'any');
 
 		let encodersList = [];
 
