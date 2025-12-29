@@ -53,7 +53,7 @@ const createInputs = (settings) => {
 	if (address.length !== 0) {
 		inputs.push({
 			address: address,
-			options: ['-f', 'lavfi'],
+			options: ['-f', 'lavfi', '-re'],
 		});
 	}
 
