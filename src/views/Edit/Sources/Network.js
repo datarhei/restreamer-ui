@@ -587,7 +587,7 @@ function AdvancedSettings({ settings = {}, onChange = function (settings) {} }) 
 								</Grid>
 							</React.Fragment>
 						)}
-						{protocolClass === 'srt' && settings.mode == 'push' && (
+						{protocolClass === 'srt' && settings.mode === 'push' && (
 							<React.Fragment>
 								<Grid item xs={12}>
 									<Typography variant="h3">
