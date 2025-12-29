@@ -1740,14 +1740,20 @@ class Restreamer {
 		let hls_aac_adtstoasc = false;
 
 		const getHLSParams = (version) => {
+			let hls_flags = 'append_list+program_date_time+temp_file';
+			if (parseInt(control.hls.listSize) > 0) {
+				hls_flags += '+delete_segments';
+			}
+
 			switch (version) {
 				case 6:
+					hls_flags += '+independent_segments';
 					return [
 						['f', 'hls'],
 						['start_number', '0'],
 						['hls_time', '' + parseInt(control.hls.segmentDuration)],
 						['hls_list_size', '' + parseInt(control.hls.listSize)],
-						['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments+temp_file'],
+						['hls_flags', hls_flags],
 						['hls_delete_threshold', '4'],
 						['hls_segment_filename', hls_segment_filename],
 					];
@@ -1759,12 +1765,13 @@ class Restreamer {
 						}
 						hls_aac_adtstoasc = true;
 					}
+					hls_flags += '+independent_segments';
 					return [
 						['f', 'hls'],
 						['start_number', '0'],
 						['hls_time', '' + parseInt(control.hls.segmentDuration)],
 						['hls_list_size', '' + parseInt(control.hls.listSize)],
-						['hls_flags', 'append_list+delete_segments+program_date_time+independent_segments+temp_file'],
+						['hls_flags', hls_flags],
 						['hls_delete_threshold', '4'],
 						['hls_segment_type', 'fmp4'],
 						['hls_fmp4_init_filename', hls_fmp4_init_filename],
@@ -1778,7 +1785,7 @@ class Restreamer {
 						['start_number', '0'],
 						['hls_time', '' + parseInt(control.hls.segmentDuration)],
 						['hls_list_size', '' + parseInt(control.hls.listSize)],
-						['hls_flags', 'append_list+delete_segments+program_date_time+temp_file'],
+						['hls_flags', hls_flags],
 						['hls_delete_threshold', '4'],
 						['hls_segment_filename', hls_segment_filename],
 					];
@@ -1859,40 +1866,42 @@ class Restreamer {
 		const cleanup_hls_segment_filename = `${hlsStorage}:/${cleanupSegmentFilePath}.` + (!control.hls.lhls && control.hls.version === 7 ? 'mp4' : 'ts');
 
 		// 4.3 Cleanup id* (process is deleted) + continuously hls_segment_playlist and hls_segment_filename
-		output.cleanup.push(
-			{
-				pattern: cleanup_global,
-				purge_on_delete: true,
-			},
-			{
-				pattern: cleanup_hls_segment_playlist,
-				max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
-				purge_on_delete: true,
-			},
-			{
-				pattern: cleanup_hls_segment_filename,
-				max_files: parseInt(control.hls.listSize) + 6,
-				max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
-				purge_on_delete: true,
-			},
-		);
+		if (control.hls.cleanup === true) {
+			output.cleanup.push(
+				{
+					pattern: cleanup_global,
+					purge_on_delete: true,
+				},
+				{
+					pattern: cleanup_hls_segment_playlist,
+					max_file_age_seconds: parseInt(control.hls.listSize) > 0 ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
+					purge_on_delete: true,
+				},
+				{
+					pattern: cleanup_hls_segment_filename,
+					max_files: parseInt(control.hls.listSize) > 0 ? parseInt(control.hls.listSize) + 6 : 0,
+					max_file_age_seconds: parseInt(control.hls.listSize) > 0 ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
+					purge_on_delete: true,
+				},
+			);
 
-		// 4.4 Cleanup hls_master_playlist
-		if (control.hls.master_playlist) {
-			output.cleanup.push({
-				pattern: cleanup_hls_master_playlist,
-				max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
-				purge_on_delete: true,
-			});
-		}
+			// 4.4 Cleanup hls_master_playlist
+			if (control.hls.master_playlist) {
+				output.cleanup.push({
+					pattern: cleanup_hls_master_playlist,
+					max_file_age_seconds: parseInt(control.hls.listSize) > 0 ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
+					purge_on_delete: true,
+				});
+			}
 
-		// 4.5 Cleanup hls_fmp4_init_filename
-		if (!control.hls.lhls && control.hls.version === 7) {
-			output.cleanup.push({
-				pattern: cleanup_hls_fmp4_init_filename,
-				max_file_age_seconds: control.hls.cleanup ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
-				purge_on_delete: true,
-			});
+			// 4.5 Cleanup hls_fmp4_init_filename
+			if (!control.hls.lhls && control.hls.version === 7) {
+				output.cleanup.push({
+					pattern: cleanup_hls_fmp4_init_filename,
+					max_file_age_seconds: parseInt(control.hls.listSize) > 0 ? parseInt(control.hls.segmentDuration) * (parseInt(control.hls.listSize) + 6) : 0,
+					purge_on_delete: true,
+				});
+			}
 		}
 
 		// 5. Push output
