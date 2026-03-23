@@ -752,12 +752,14 @@ const createInputsOutputs = (sources, profiles, requireVideo = true, overlays = 
 		const videoSource = sources[profile.video.source];
 		const videoStream = videoSource.streams[profile.video.stream];
 		const videoInputIndex = source2inputMap.get(profile.video.source + ':' + videoStream.index);
+		const videoStreamNumber = videoStream.stream; // The actual stream number within the input
 		
 		// Create filter complex parts
 		const filterParts = [];
 		
-		// Add overlays as inputs
+		// Add overlays as inputs and track their indices
 		const validOverlays = overlays.filter(overlay => overlay.path);
+		const overlayInputIndices = [];
 		validOverlays.forEach((overlay, i) => {
 			// Create input options for overlay
 			const overlayOptions = [];
@@ -772,6 +774,9 @@ const createInputsOutputs = (sources, profiles, requireVideo = true, overlays = 
 				overlayOptions.push('-framerate', '30');
 			}
 			
+			// Track the index where this overlay will be added
+			overlayInputIndices.push(inputs.length);
+			
 			// Add the overlay as an input
 			inputs.push({
 				address: overlay.path,
@@ -783,7 +788,7 @@ const createInputsOutputs = (sources, profiles, requireVideo = true, overlays = 
 		// First, create labels for each overlay
 		validOverlays.forEach((overlay, i) => {
 			const overlayIndex = i + 1;
-			const inputIndex = videoInputIndex + overlayIndex; // Main video + overlay index
+			const inputIndex = overlayInputIndices[i]; // Use the tracked input index
 			let scaleWidth = overlay.width || '320';
 			
 			// Create scale filter for the overlay
@@ -793,10 +798,10 @@ const createInputsOutputs = (sources, profiles, requireVideo = true, overlays = 
 		// Add scale filter for the main video if needed
 		if (profile.video.filter.graph.length !== 0 && profile.video.filter.graph.includes('scale')) {
 			// Use the existing scale filter from the profile
-			filterParts.push(`[${videoInputIndex}:v]${profile.video.filter.graph}[bg]`);
+			filterParts.push(`[${videoInputIndex}:v:${videoStreamNumber}]${profile.video.filter.graph}[bg]`);
 		} else {
 			// Add a default scale filter if none exists
-			filterParts.push(`[${videoInputIndex}:v]scale=1280:720[bg]`);
+			filterParts.push(`[${videoInputIndex}:v:${videoStreamNumber}]scale=1280:720[bg]`);
 		}
 		
 		// Now chain the overlays together
