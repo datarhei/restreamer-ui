@@ -4,6 +4,50 @@ import '@testing-library/jest-dom';
 
 import * as Network from './Network';
 
+const $skills_ffmpeg8 = {
+	ffmpeg: {
+		version: '8.1.1',
+		version_major: 8,
+		version_minor: 1,
+	},
+	formats: {
+		demuxers: ['rtsp'],
+	},
+	protocols: {
+		input: ['http', 'https', 'rtmp', 'rtmps', 'srt'],
+	},
+	codecs: {
+		audio: {},
+		video: {
+			av1: ['librav1e'],
+			hevc: ['hevc'],
+			vp9: ['libvpx-vp9'],
+		},
+	},
+};
+
+const $skills_ffmpeg7 = {
+	ffmpeg: {
+		version: '7.1.1',
+		version_major: 7,
+		version_minor: 1,
+	},
+	formats: {
+		demuxers: ['rtsp'],
+	},
+	protocols: {
+		input: ['http', 'https', 'rtmp', 'rtmps', 'srt'],
+	},
+	codecs: {
+		audio: {},
+		video: {
+			av1: ['librav1e'],
+			hevc: ['hevc'],
+			vp9: ['libvpx-vp9'],
+		},
+	},
+};
+
 const $skills_ffmpeg6 = {
 	ffmpeg: {
 		version: '6.1.1',

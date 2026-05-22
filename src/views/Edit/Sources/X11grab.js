@@ -237,7 +237,7 @@ function SourceIcon(props) {
 const id = 'x11grab';
 const name = <Trans>X11 Screen Capture</Trans>;
 const capabilities = ['video'];
-const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0 || ^7.0.0';
+const ffversion = '^4.1.0 || ^5.0.0 || ^6.1.0 || ^7.0.0 || ^8.1.0';
 
 const func = {
 	initSettings,

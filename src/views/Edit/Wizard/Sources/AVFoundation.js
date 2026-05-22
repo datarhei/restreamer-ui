@@ -16,8 +16,8 @@ function initSettings(initialSettings) {
 	const settings = {
 		...S.func.initSettings(initialSettings),
 		format: 'nv12',
-		framerate: 25,
-		size: 'auto',
+		framerate: 30,
+		size: '1920x1080',
 	};
 
 	return settings;
