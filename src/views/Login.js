@@ -16,6 +16,7 @@ import * as auth0 from '../utils/auth0';
 import Paper from '../misc/Paper';
 import Password from '../misc/Password';
 import Select from '../misc/Select';
+import Checkbox from '../misc/Checkbox';
 
 function hasAuthType(auths, type) {
 	for (let i = 0; i < auths.length; i++) {
@@ -110,7 +111,11 @@ export default function Login(props) {
 		username: '',
 		password: '',
 		showPassword: false,
+		totpCode: '',
+		remember30Days: false,
+		remember1Year: false,
 	});
+	const [$stage, setStage] = React.useState('credentials');
 	const [$auth0, setAuth0] = React.useState('none');
 	const [$isAuthenticated, setIsAuthenticated] = React.useState(false);
 	const [$canUseAuth0] = React.useState(auth0.canUseAuth0());
@@ -143,10 +148,68 @@ export default function Login(props) {
 
 		setLoginCheck(true);
 
-		const res = await props.onLogin($login.username, $login.password);
-		if (res === false) {
+		const result = await props.onLogin($login.username, $login.password);
+		if (result?.success === true) {
+			return;
+		}
+
+		if (result?.totpRequired === true) {
+			setStage('totp');
+		}
+
+		setLoginCheck(false);
+	};
+
+	const handleTotpLogin = async (event) => {
+		event.preventDefault();
+
+		setLoginCheck(true);
+
+		let rememberDevice = '';
+		if ($login.remember1Year === true) {
+			rememberDevice = '1y';
+		} else if ($login.remember30Days === true) {
+			rememberDevice = '30d';
+		}
+
+		const result = await props.onLogin($login.username, $login.password, {
+			totp_code: $login.totpCode,
+			remember_device: rememberDevice,
+		});
+
+		if (result?.success !== true) {
 			setLoginCheck(false);
 		}
+	};
+
+	const handleRemember30Days = (event) => {
+		const checked = event.target.checked;
+
+		setLogin({
+			...$login,
+			remember30Days: checked,
+			remember1Year: checked ? false : $login.remember1Year,
+		});
+	};
+
+	const handleRemember1Year = (event) => {
+		const checked = event.target.checked;
+
+		setLogin({
+			...$login,
+			remember1Year: checked,
+			remember30Days: checked ? false : $login.remember30Days,
+		});
+	};
+
+	const handleBackToCredentials = () => {
+		setStage('credentials');
+		setLogin({
+			...$login,
+			totpCode: '',
+			remember30Days: false,
+			remember1Year: false,
+		});
 	};
 
 	const handleAuth0Login = async () => {
@@ -259,7 +322,7 @@ export default function Login(props) {
 						</Grid>
 					</React.Fragment>
 				)}
-				{$loginTarget === 'local' && hasAuthType($auths, 'local') && (
+				{$loginTarget === 'local' && hasAuthType($auths, 'local') && $stage === 'credentials' && (
 					<React.Fragment>
 						<Grid item xs={12}>
 							<form noValidate>
@@ -295,6 +358,66 @@ export default function Login(props) {
 											onClick={handleLogin}
 										>
 											<Trans>Login</Trans>
+										</Button>
+									</Grid>
+								</Grid>
+							</form>
+						</Grid>
+					</React.Fragment>
+				)}
+				{$loginTarget === 'local' && hasAuthType($auths, 'local') && $stage === 'totp' && (
+					<React.Fragment>
+						<Grid item xs={12}>
+							<form noValidate>
+								<Grid container spacing={3}>
+									<Grid item xs={12}>
+										<Typography>
+											<Trans>Enter the 6-digit code from your authenticator app.</Trans>
+										</Typography>
+									</Grid>
+									<Grid item xs={12}>
+										<TextField
+											variant="outlined"
+											fullWidth
+											id="totp_code"
+											label={<Trans>Authenticator code</Trans>}
+											value={$login.totpCode}
+											onChange={handleChange('totpCode')}
+											autoComplete="one-time-code"
+											inputProps={{ inputMode: 'numeric' }}
+										/>
+									</Grid>
+									<Grid item xs={12}>
+										<Checkbox
+											label={<Trans>Remember this device for 30 days</Trans>}
+											checked={$login.remember30Days}
+											onChange={handleRemember30Days}
+										/>
+									</Grid>
+									<Grid item xs={12}>
+										<Checkbox
+											label={<Trans>Remember this device for 1 year</Trans>}
+											checked={$login.remember1Year}
+											onChange={handleRemember1Year}
+										/>
+									</Grid>
+									<Grid item xs={12}>
+										<Button
+											variant="outlined"
+											color="primary"
+											fullWidth
+											size="large"
+											type="submit"
+											name="login_totp"
+											onClick={handleTotpLogin}
+											disabled={$login.totpCode.length === 0}
+										>
+											<Trans>Verify and login</Trans>
+										</Button>
+									</Grid>
+									<Grid item xs={12}>
+										<Button variant="text" color="primary" fullWidth onClick={handleBackToCredentials}>
+											<Trans>Back</Trans>
 										</Button>
 									</Grid>
 								</Grid>
@@ -425,6 +548,8 @@ Login.defaultProps = {
 	address: '',
 	auths: [],
 	hasService: false,
-	onLogin: function (username, password) {},
+	onLogin: function (username, password, options) {
+		return { success: false };
+	},
 	onAuth0: function () {},
 };
