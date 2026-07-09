@@ -48,8 +48,8 @@ msgstr "7 (+ parçalanmış MP4 biçimi)"
 #: src/views/Edit/Profile.js:599
 #: src/views/Edit/Wizard/Abort.js:14
 #: src/views/Publication/Edit.js:631
-#: src/views/Settings.js:2278
-#: src/views/Settings.js:2300
+#: src/views/Settings.js:2285
+#: src/views/Settings.js:2307
 msgid "Abort"
 msgstr "Durdur"
 
@@ -111,7 +111,7 @@ msgstr ""
 #: src/views/Publication/Services/SRT.js:161
 #: src/views/Publication/Services/UDP.js:127
 #: src/views/Publication/Services/WOWZA.js:132
-#: src/views/Settings.js:1396
+#: src/views/Settings.js:1397
 msgid "Address"
 msgstr "Adres"
 
@@ -119,11 +119,11 @@ msgstr "Adres"
 msgid "Address for the background image."
 msgstr "Arka plan resmi için adres"
 
-#: src/views/Settings.js:1426
+#: src/views/Settings.js:1427
 msgid "Address to listen on for HTTP requests."
 msgstr "HTTP istekleri için dinlenecek adres."
 
-#: src/views/Settings.js:1440
+#: src/views/Settings.js:1441
 msgid "Address to listen on for HTTPS requests."
 msgstr "HTTPS istekleri için dinlenecek adres."
 
@@ -138,7 +138,7 @@ msgstr "Adres:"
 msgid "Adjust publication site colors and background as you like."
 msgstr "Yayın sitesi renklerini ve arka planını istediğiniz gibi ayarlayın."
 
-#: src/views/Login.js:322
+#: src/views/Login.js:445
 msgid "Advanced monitoring"
 msgstr "Gelişmiş izleme"
 
@@ -164,7 +164,7 @@ msgstr "Gelişmiş kurulum"
 msgid "AirPlay"
 msgstr "AirPlay"
 
-#: src/views/Login.js:325
+#: src/views/Login.js:448
 msgid "Alerting by email"
 msgstr "E-posta ile uyarı"
 
@@ -176,15 +176,15 @@ msgstr "Tümü"
 msgid "All frames"
 msgstr "Tüm çerçeveler"
 
-#: src/views/Settings.js:1257
+#: src/views/Settings.js:1258
 msgid "All important system settings."
 msgstr "Tüm önemli sistem ayarları."
 
-#: src/views/Settings.js:1594
+#: src/views/Settings.js:1601
 msgid "Allow all referrer"
 msgstr "Tüm yönlendirenlere izin ver"
 
-#: src/views/Settings.js:1634
+#: src/views/Settings.js:1641
 msgid "Allow counting how many viewers the stream has."
 msgstr "Akışın kaç izleyicisi olduğunu saymaya izin verin."
 
@@ -200,11 +200,11 @@ msgstr "Genlik"
 msgid "An environment variable sets this value."
 msgstr "Bir ortam değişkeni bu değeri ayarlar."
 
-#: src/views/Settings.js:1000
+#: src/views/Settings.js:1001
 msgid "API endpoint not found. Settings not saved."
 msgstr "API uç noktası bulunamadı. Ayarlar kaydedilmedi."
 
-#: src/views/Settings.js:1989
+#: src/views/Settings.js:1996
 msgid "App"
 msgstr "Uygulama"
 
@@ -246,24 +246,30 @@ msgstr "Ses ayarları"
 msgid "Audio setup"
 msgstr "Ses kurulumu"
 
-#: src/views/Login.js:236
+#: src/views/Login.js:299
 msgid "Auth0"
 msgstr "Auth0"
 
-#: src/views/Login.js:356
+#: src/views/Login.js:479
 msgid "Auth0 is currently not available because this interface is loaded from an insecure origin."
 msgstr "Bu arayüz güvensiz bir kaynaktan yüklendiği için Auth0 şu anda kullanılamıyor."
 
-#: src/views/Login.js:365
+#: src/views/Login.js:488
 msgid "Auth0 Tenant"
 msgstr "Auth0 Kiracı"
+
+#: src/misc/TOTPSettings.js:150
+#: src/misc/TOTPSettings.js:188
+#: src/views/Login.js:383
+msgid "Authenticator code"
+msgstr ""
 
 #: src/misc/controls/Metadata.js:71
 msgid "Author"
 msgstr "Yazar"
 
-#: src/views/Settings.js:1236
-#: src/views/Settings.js:1529
+#: src/views/Settings.js:1237
+#: src/views/Settings.js:1530
 msgid "Authorization"
 msgstr "Yetkilendirme"
 
@@ -298,6 +304,7 @@ msgstr "avoid_negative_ts"
 #: src/views/Edit/Wizard/Metadata.js:35
 #: src/views/Edit/Wizard/Video.js:66
 #: src/views/Edit/Wizard/VideoProfile.js:67
+#: src/views/Login.js:420
 #: src/views/Publication/Add.js:561
 msgid "Back"
 msgstr "Geri"
@@ -331,7 +338,7 @@ msgstr "Yedekleme URL'si"
 msgid "Bandwidth"
 msgstr "Bant Genişliği"
 
-#: src/views/Settings.js:1485
+#: src/views/Settings.js:1486
 msgid "Bandwidth control"
 msgstr "Bant genişliği kontrolü"
 
@@ -339,8 +346,8 @@ msgstr "Bant genişliği kontrolü"
 msgid "Banner"
 msgstr "Banner"
 
-#: src/views/Login.js:241
-#: src/views/Settings.js:1534
+#: src/views/Login.js:304
+#: src/views/Settings.js:1535
 msgid "Basic"
 msgstr "Temel"
 
@@ -353,7 +360,7 @@ msgstr "Bip faktörü"
 msgid "Bitrate"
 msgstr "Bit Hızı"
 
-#: src/views/Settings.js:1903
+#: src/views/Settings.js:1910
 msgid "Block cache types"
 msgstr "Blok önbellek türleri"
 
@@ -386,17 +393,21 @@ msgstr "Yüksekliğe göre"
 msgid "By width"
 msgstr "Genişliğe göre"
 
-#: src/views/Settings.js:1805
+#: src/views/Settings.js:1812
 msgid "Cache for files on /data."
 msgstr "/data üzerindeki dosyalar için önbellek."
 
-#: src/views/Settings.js:1847
+#: src/views/Settings.js:1854
 msgid "Cache time (Seconds)"
 msgstr "Önbellek süresi (Saniye)"
 
-#: src/views/Settings.js:1888
+#: src/views/Settings.js:1895
 msgid "Cache types"
 msgstr "Önbellek türleri"
+
+#: src/misc/TOTPSettings.js:206
+msgid "Cancel"
+msgstr ""
 
 #: src/misc/coders/Encoders/video/h264_v4l2m2m.js:193
 msgid "Capture buffer"
@@ -418,7 +429,7 @@ msgstr "Kanal \"{0}\" kaydedildi"
 msgid "Channels"
 msgstr "Kanallar"
 
-#: src/views/Settings.js:1266
+#: src/views/Settings.js:1267
 msgid "Check for updates"
 msgstr "Güncellemeleri kontrol edin"
 
@@ -456,7 +467,7 @@ msgstr "CFR veya VFR arasında seçim yap (Otomatik)"
 msgid "Choose codec ..."
 msgstr "Kodek seçin ..."
 
-#: src/views/Login.js:367
+#: src/views/Login.js:490
 msgid "Choose tenant ..."
 msgstr "Kiracı seçin ..."
 
@@ -479,7 +490,7 @@ msgstr "Chunk"
 #: src/views/Publication/Add.js:558
 #: src/views/Publication/Edit.js:595
 #: src/views/Publication/Player.js:536
-#: src/views/Settings.js:2219
+#: src/views/Settings.js:2226
 msgid "Close"
 msgstr "Kapat"
 
@@ -501,9 +512,17 @@ msgstr "Renk"
 msgid "Command"
 msgstr "Komuta"
 
-#: src/views/Settings.js:1376
+#: src/views/Settings.js:1377
 msgid "Config"
 msgstr "Yapılandırma"
+
+#: src/misc/TOTPSettings.js:158
+msgid "Confirm and enable"
+msgstr ""
+
+#: src/misc/TOTPSettings.js:203
+msgid "Confirm disable"
+msgstr ""
 
 #: src/views/Password.js:134
 msgid "Confirm password"
@@ -635,7 +654,7 @@ msgstr "Özel format"
 msgid "Custom framerate"
 msgstr "Özel kare hızı"
 
-#: src/views/Settings.js:1382
+#: src/views/Settings.js:1383
 msgid "Custom JSON config for datarhei Core."
 msgstr "datarhei Core için özel JSON yapılandırması."
 
@@ -765,6 +784,10 @@ msgstr "Tasarım"
 msgid "Device"
 msgstr "Cihaz"
 
+#: src/misc/TOTPSettings.js:173
+msgid "Disable TOTP"
+msgstr ""
+
 #: src/misc/ActionButton.js:24
 #: src/misc/ActionButton.js:45
 #: src/misc/ActionButton.js:59
@@ -781,12 +804,12 @@ msgid "Disconnecting ..."
 msgstr "Bağlantı kesiliyor ..."
 
 #: src/misc/controls/HLS.js:70
-#: src/views/Settings.js:1767
+#: src/views/Settings.js:1774
 msgid "Disk"
 msgstr "Depolama Alanı"
 
-#: src/views/Settings.js:1802
-#: src/views/Settings.js:1810
+#: src/views/Settings.js:1809
+#: src/views/Settings.js:1817
 msgid "Disk cache"
 msgstr "Disk önbelleği"
 
@@ -795,7 +818,7 @@ msgstr "Disk önbelleği"
 msgid "Disk storage"
 msgstr "Disk kapasitesi"
 
-#: src/views/Settings.js:2310
+#: src/views/Settings.js:2317
 msgid "Do you really want to restart the application now?"
 msgstr "Uygulamayı gerçekten şimdi yeniden başlatmak istiyor musunuz?"
 
@@ -860,7 +883,7 @@ msgstr "DÜZENLEME: Oynatıcı"
 msgid "EDIT: Publication Website"
 msgstr "DÜZENLEME: Yayın Web Sitesi"
 
-#: src/views/Settings.js:1466
+#: src/views/Settings.js:1467
 msgid "Email"
 msgstr "Eposta"
 
@@ -914,11 +937,15 @@ msgstr "Anlık görüntüleri etkinleştirin"
 msgid "Enable SRT server ..."
 msgstr "SRT sunucusunu etkinleştir ..."
 
-#: src/views/Settings.js:1549
+#: src/misc/TOTPSettings.js:118
+msgid "Enable TOTP"
+msgstr ""
+
+#: src/views/Settings.js:1550
 msgid "Enabling authorization is strongly advised. Otherwise, anybody can access this instance."
 msgstr "Yetkilendirmenin etkinleştirilmesi şiddetle tavsiye edilir. Aksi takdirde, herkes bu örneğe erişebilir."
 
-#: src/views/Settings.js:1709
+#: src/views/Settings.js:1716
 msgid "Enabling basic auth is strongly advised. Otherwise, anybody could write data to /memfs."
 msgstr "Temel yetkilendirmenin etkinleştirilmesi şiddetle tavsiye edilir. Aksi takdirde, herhangi biri /memfs'e veri yazabilir."
 
@@ -938,6 +965,10 @@ msgstr "Kodlama"
 msgid "Encryption"
 msgstr "Şifreleme"
 
+#: src/misc/TOTPSettings.js:181
+msgid "Enter a code from your authenticator app to disable two-factor authentication."
+msgstr ""
+
 #: src/misc/ChannelList.js:432
 msgid "Enter a name for the new channel."
 msgstr "Yeni kanal için bir ad girin."
@@ -945,6 +976,10 @@ msgstr "Yeni kanal için bir ad girin."
 #: src/views/Password.js:122
 msgid "Enter password"
 msgstr "Şifre girin"
+
+#: src/views/Login.js:375
+msgid "Enter the 6-digit code from your authenticator app."
+msgstr ""
 
 #: src/views/Edit/Sources/Network.js:758
 #: src/views/Edit/Wizard/Sources/Network.js:59
@@ -963,7 +998,7 @@ msgstr "Entropi kodlayıcı"
 #: src/views/Incompatible.js:30
 #: src/views/Invalid.js:29
 #: src/views/Publication/Process.js:63
-#: src/views/Settings.js:1202
+#: src/views/Settings.js:1203
 msgid "Error"
 msgstr "Hata"
 
@@ -986,7 +1021,7 @@ msgstr "Kanal listesinin (canlı sohbet) üzerindeki alanı genişletir."
 msgid "Expands the area under the channel description (comment boxes)."
 msgstr "Kanal açıklamasının (yorum kutuları) altındaki alanı genişletir."
 
-#: src/views/Settings.js:1293
+#: src/views/Settings.js:1294
 msgid "Expert mode"
 msgstr "Uzman modu"
 
@@ -1023,7 +1058,7 @@ msgstr "Yayın web sitesi dosyaları oluşturulamadı."
 msgid "Failed to probe the source. Please check the <0>probe details</0>."
 msgstr "Kaynak araştırması başarısız oldu. Lütfen <0>inceleme detaylarını</0> kontrol edin."
 
-#: src/utils/restreamer.js:449
+#: src/utils/restreamer.js:521
 msgid "Failed to refresh token: {0}"
 msgstr "Yenileme tokeni hatalı: {0}"
 
@@ -1064,7 +1099,7 @@ msgstr "Oyuncu sitesi güncellenemedi"
 msgid "Failed to verify the source. Please check the address."
 msgstr "Kaynak doğrulanamadı. Lütfen adresi kontrol edin."
 
-#: src/views/Settings.js:2181
+#: src/views/Settings.js:2188
 msgid "FFmpeg"
 msgstr "FFmpeg"
 
@@ -1158,8 +1193,8 @@ msgstr "Frekans (Hz)"
 #: src/views/Publication/Services/RTMP.js:181
 #: src/views/Publication/Services/RTSP.js:169
 #: src/views/Publication/Services/SRT.js:177
-#: src/views/Settings.js:1231
-#: src/views/Settings.js:1252
+#: src/views/Settings.js:1232
+#: src/views/Settings.js:1253
 msgid "General"
 msgstr "Genel"
 
@@ -1218,7 +1253,7 @@ msgstr "HLS çıktısı"
 msgid "HLS server"
 msgstr "HLS sunucu"
 
-#: src/views/Settings.js:1626
+#: src/views/Settings.js:1633
 msgid "HLS statistic for the In-memory storage"
 msgstr "Bellek içi depolama için HLS istatistiği"
 
@@ -1226,7 +1261,7 @@ msgstr "Bellek içi depolama için HLS istatistiği"
 msgid "Horizontal Flip"
 msgstr "Yan çevir"
 
-#: src/views/Login.js:319
+#: src/views/Login.js:442
 msgid "Hosted Restreamer interface"
 msgstr "Barındırılan Restreamer arayüzü"
 
@@ -1234,27 +1269,27 @@ msgstr "Barındırılan Restreamer arayüzü"
 msgid "HTTP and HTTPS"
 msgstr "HTTP ve HTTPS"
 
-#: src/views/Settings.js:1418
+#: src/views/Settings.js:1419
 msgid "HTTP port"
 msgstr "HTTP bağlantı noktası"
 
-#: src/views/Settings.js:1448
+#: src/views/Settings.js:1449
 msgid "HTTPS (SSL/TLS)"
 msgstr "HTTPS (SSL/TLS)"
 
-#: src/views/Settings.js:1432
+#: src/views/Settings.js:1433
 msgid "HTTPS port"
 msgstr "HTTPS bağlantı noktası"
 
-#: src/views/Settings.js:1352
+#: src/views/Settings.js:1353
 msgid "Human readable name on the service."
 msgstr "Hizmette insan tarafından okunabilir ad."
 
-#: src/views/Settings.js:2255
+#: src/views/Settings.js:2262
 msgid "If you changed the ports, it might be that Restreamer Core restarted already, but it is now available on a different port."
 msgstr "Bağlantı noktalarını değiştirdiyseniz, Restreamer Core zaten yeniden başlatılmış olabilir, ancak şimdi farklı bir bağlantı noktasında kullanılabilir."
 
-#: src/views/Settings.js:2249
+#: src/views/Settings.js:2256
 msgid "If you enabled Let's Encrypt TLS it might take some time to acquire the certificates. Make sure that Restreamer Core is reachable via port 80 from the internet. Please check the console log of Restreamer Core."
 msgstr "Let's Encrypt TLS'yi etkinleştirdiyseniz sertifikaların alınması biraz zaman alabilir. Restreamer Core'a internetten 80 numaralı bağlantı noktası üzerinden erişilebildiğinden emin olun. Lütfen Restreamer Core'un konsol günlüğünü kontrol edin."
 
@@ -1262,7 +1297,7 @@ msgstr "Let's Encrypt TLS'yi etkinleştirdiyseniz sertifikaların alınması bir
 msgid "iframe code"
 msgstr "iframe kodu"
 
-#: src/views/Settings.js:1641
+#: src/views/Settings.js:1648
 msgid "Ignore IP ranges"
 msgstr "IP aralıklarını yoksay"
 
@@ -1285,7 +1320,7 @@ msgid "In order to proceed anyways, you can provide <0>hints</0> about the avail
 msgstr ""
 
 #: src/misc/controls/HLS.js:67
-#: src/views/Settings.js:1693
+#: src/views/Settings.js:1700
 msgid "In-memory"
 msgstr "Bellek içi"
 
@@ -1362,11 +1397,11 @@ msgstr "Anahtar kare aralığı (saniye)"
 msgid "Layout"
 msgstr "Düzen"
 
-#: src/views/Settings.js:1453
+#: src/views/Settings.js:1454
 msgid "Let's Encrypt certification"
 msgstr "Let's Encrypt sertifikası"
 
-#: src/views/Settings.js:1461
+#: src/views/Settings.js:1462
 msgid "Let's Encrypt requires one or more public domain names and an accessible port 80/TCP."
 msgstr "Let's Encrypt bir veya daha fazla genel alan adı ve erişilebilir bir port 80/TCP gerektirir."
 
@@ -1374,7 +1409,7 @@ msgstr "Let's Encrypt bir veya daha fazla genel alan adı ve erişilebilir bir p
 msgid "Level"
 msgstr "Seviye"
 
-#: src/views/Settings.js:2162
+#: src/views/Settings.js:2169
 msgid "Level of system protocol."
 msgstr "Sistem protokolü seviyesi."
 
@@ -1411,15 +1446,15 @@ msgstr "Bağlantı"
 msgid "Link, mouseover"
 msgstr "Bağlantı, fareyle üzerine gelme"
 
-#: src/views/Settings.js:1911
+#: src/views/Settings.js:1918
 msgid "List of file extensions not to cache (e.g. \".m3u8\"), one per line. Leave empty for none."
 msgstr "Önbelleğe kaydedilmesi istenmeyen dosya uzantılarını her biri birer satırda listeleyin."
 
-#: src/views/Settings.js:1896
+#: src/views/Settings.js:1903
 msgid "List of file extensions to cache (e.g. \".html\"), one per line. Leave empty to cache all file types."
 msgstr "Önbelleğe alınacak dosya uzantılarının listesi (örn. \".html\"), her satır için bir tane. Tüm dosya türlerini önbelleğe almak için boş bırakın."
 
-#: src/views/Settings.js:1649
+#: src/views/Settings.js:1656
 msgid "List of IP ranges in CIDR notation, e.g., 127.0.0.1/32, that the statistics will not record—one IP range per line. Leave empty to record all sessions."
 msgstr "İstatistiklerin kaydetmeyeceği CIDR gösterimindeki IP aralıklarının listesi, örneğin 127.0.0.1/32, her satır için bir IP aralığı. Tüm oturumları kaydetmek için boş bırakın."
 
@@ -1467,36 +1502,36 @@ msgstr "Vimeo Live RTMP Hizmetine Canlı Akış"
 msgid "Livesource ID"
 msgstr "Canlı Kaynak Kimliği"
 
-#: src/views/Settings.js:2114
+#: src/views/Settings.js:2121
 msgid "Log level"
 msgstr "Günlük seviyesi"
 
 #: src/misc/modals/Process.js:153
-#: src/views/Settings.js:1241
-#: src/views/Settings.js:2090
+#: src/views/Settings.js:1242
+#: src/views/Settings.js:2097
 msgid "Logging"
 msgstr "Günlük kaydı"
 
-#: src/views/Login.js:297
-#: src/views/Login.js:391
-#: src/views/Login.js:406
+#: src/views/Login.js:360
+#: src/views/Login.js:514
+#: src/views/Login.js:529
 #: src/views/Publication/Services/Akamai.js:124
 msgid "Login"
 msgstr "Giriş yap"
 
-#: src/utils/restreamer.js:262
-#: src/utils/restreamer.js:296
+#: src/utils/restreamer.js:281
+#: src/utils/restreamer.js:319
 msgid "Login failed: {0}"
 msgstr "Giriş başarısız oldu: {0}"
 
-#: src/utils/restreamer.js:271
-#: src/utils/restreamer.js:276
-#: src/utils/restreamer.js:305
-#: src/utils/restreamer.js:310
+#: src/utils/restreamer.js:294
+#: src/utils/restreamer.js:299
+#: src/utils/restreamer.js:328
+#: src/utils/restreamer.js:333
 msgid "Login failed: Couldn't load API details"
 msgstr "Giriş başarısız oldu: API ayrıntıları yüklenemedi"
 
-#: src/views/Settings.js:1539
+#: src/views/Settings.js:1540
 msgid "Login/JWT authorization"
 msgstr "Giriş/JWT yetkilendirmesi"
 
@@ -1562,19 +1597,19 @@ msgstr "İşaretli çerçeveler"
 msgid "Master playlist (increases browser/client compatibility)"
 msgstr "Ana oynatma listesi (tarayıcı/istemci uyumluluğunu artırır)"
 
-#: src/views/Settings.js:1841
+#: src/views/Settings.js:1848
 msgid "Maximum allowed cache size, 0 for unlimited."
 msgstr "İzin verilen maksimum önbellek boyutu, sınırsız için 0."
 
-#: src/views/Settings.js:1749
+#: src/views/Settings.js:1756
 msgid "Maximum allowed megabytes of RAM for /memfs, 0 for unlimited."
 msgstr "Memfs için izin verilen maksimum megabayt RAM, sınırsız için 0."
 
-#: src/views/Settings.js:1794
+#: src/views/Settings.js:1801
 msgid "Maximum allowed megabytes to consume from hard disk. 0 for unlimited."
 msgstr "Sabit diskten tüketilmesine izin verilen maksimum megabayt. Sınırsız için 0."
 
-#: src/views/Settings.js:1508
+#: src/views/Settings.js:1509
 msgid "Maximum bandwidth Mbit/s"
 msgstr "Maksimum bant genişliği Mbit/s"
 
@@ -1582,34 +1617,34 @@ msgstr "Maksimum bant genişliği Mbit/s"
 msgid "Maximum delay in milliseconds."
 msgstr "Milisaniye cinsinden maksimum gecikme."
 
-#: src/views/Settings.js:1861
+#: src/views/Settings.js:1868
 msgid "Maximum file size (Megabytes)"
 msgstr "Maksimum dosya boyutu (Megabayt)"
 
-#: src/views/Settings.js:1881
+#: src/views/Settings.js:1888
 msgid "Maximum file size to put in cache."
 msgstr "Önbelleğe koymak için maksimum dosya boyutu."
 
-#: src/views/Settings.js:2201
+#: src/views/Settings.js:2208
 msgid "Maximum log histroy"
 msgstr "Maksimum günlük geçmişi"
 
-#: src/views/Settings.js:2168
-#: src/views/Settings.js:2187
+#: src/views/Settings.js:2175
+#: src/views/Settings.js:2194
 msgid "Maximum log lines"
 msgstr "Maksimum günlük satırları"
 
-#: src/views/Settings.js:1741
-#: src/views/Settings.js:1786
-#: src/views/Settings.js:1821
+#: src/views/Settings.js:1748
+#: src/views/Settings.js:1793
+#: src/views/Settings.js:1828
 msgid "Maximum size (Megabytes)"
 msgstr "Maksimum boyut (Megabayt)"
 
-#: src/views/Settings.js:1658
+#: src/views/Settings.js:1665
 msgid "Maximum viewer idle time (Seconds)"
 msgstr "Maksimum izleyici boşta kalma süresi (Saniye)"
 
-#: src/views/Settings.js:1491
+#: src/views/Settings.js:1492
 msgid "Maximum viewers"
 msgstr "Maksimum izleyici"
 
@@ -1653,7 +1688,7 @@ msgstr "Kalıp"
 msgid "More about licenses here"
 msgstr "Lisanslar hakkında daha fazla bilgi için"
 
-#: src/views/Settings.js:1321
+#: src/views/Settings.js:1322
 msgid "More about the service"
 msgstr "Hizmet hakkında daha fazla bilgi"
 
@@ -1665,11 +1700,11 @@ msgstr "Twitter'ın telif hakkı hakkında daha fazla bilgi <0>burada</0>."
 msgid "More about YouTube's copyright <0>here</0>."
 msgstr "YouTube'un telif hakkı hakkında daha fazla bilgi <0>burada</0>."
 
-#: src/views/Settings.js:1833
+#: src/views/Settings.js:1840
 msgid "Must be larger than maximum file size in cache."
 msgstr "Önbellekteki maksimum dosya boyutundan daha büyük olmalıdır."
 
-#: src/views/Settings.js:1873
+#: src/views/Settings.js:1880
 msgid "Must be smaller than maximum cache size."
 msgstr "Maksimum önbellek boyutundan daha küçük olmalıdır."
 
@@ -1693,7 +1728,7 @@ msgstr "Sessiz sağ"
 #: src/misc/controls/Metadata.js:76
 #: src/misc/controls/Metadata.js:98
 #: src/views/Playersite.js:521
-#: src/views/Settings.js:1344
+#: src/views/Settings.js:1345
 msgid "Name"
 msgstr "Adı"
 
@@ -1701,8 +1736,8 @@ msgstr "Adı"
 msgid "Name for the template. If the name already exists, it will be overwritten."
 msgstr "Şablon için ad. İsim zaten mevcutsa, üzerine yazılacaktır."
 
-#: src/views/Settings.js:1235
-#: src/views/Settings.js:1391
+#: src/views/Settings.js:1236
+#: src/views/Settings.js:1392
 msgid "Network"
 msgstr "Ağ"
 
@@ -1773,7 +1808,7 @@ msgstr "Video yok"
 msgid "No video stream available"
 msgstr "Video akışı yok"
 
-#: src/views/Settings.js:1337
+#: src/views/Settings.js:1338
 msgid "Node ID"
 msgstr "Düğüm Kimliği"
 
@@ -1794,12 +1829,12 @@ msgstr "Hiçbiri"
 msgid "Notes"
 msgstr "Notlar"
 
-#: src/views/Settings.js:2176
-#: src/views/Settings.js:2195
+#: src/views/Settings.js:2183
+#: src/views/Settings.js:2202
 msgid "Number of log lines to keep."
 msgstr "Tutulacak günlük satırı sayısı."
 
-#: src/views/Settings.js:2209
+#: src/views/Settings.js:2216
 msgid "Number of logs to keep for each process."
 msgstr "Her işlem için tutulacak günlük sayısı."
 
@@ -1826,13 +1861,17 @@ msgstr "Kodlanacak karo satır sayısı."
 msgid "OK"
 msgstr "TAMAM"
 
-#: src/views/Settings.js:1613
+#: src/views/Settings.js:1620
 msgid "One referrer per line, e.g. http://www.example.com"
 msgstr "Satır başına bir yönlendirici, örneğin http://www.example.com"
 
 #: src/views/Playersite.js:839
 msgid "Open"
 msgstr "Açık"
+
+#: src/misc/TOTPSettings.js:105
+msgid "Optional authenticator-app protection for login. When enabled, a one-time code is required in addition to the password."
+msgstr ""
 
 #: src/misc/coders/Encoders/video/h264_v4l2m2m.js:196
 msgid "Output buffer"
@@ -1843,15 +1882,15 @@ msgid "Pan"
 msgstr "Pan"
 
 #: src/views/Publication/Services/Core.js:238
-#: src/views/Settings.js:2064
+#: src/views/Settings.js:2071
 msgid "Passphrase"
 msgstr "Parola"
 
-#: src/views/Settings.js:2081
+#: src/views/Settings.js:2088
 msgid "Passphrase for SRT encryption."
 msgstr "SRT şifrelemesi için parola."
 
-#: src/views/Settings.js:2073
+#: src/views/Settings.js:2080
 msgid "Passphrase must be between 10 and 79 characters long"
 msgstr "Parola 10 ila 79 karakter uzunluğunda olmalıdır"
 
@@ -1861,7 +1900,7 @@ msgstr "Passthrough (kopyalama) yalnızca gerekli olduğunda devre dışı bıra
 
 #: src/views/Edit/Sources/Network.js:805
 #: src/views/Edit/Wizard/Sources/Network.js:97
-#: src/views/Login.js:282
+#: src/views/Login.js:345
 #: src/views/Publication/Services/Akamai.js:134
 #: src/views/Publication/Services/DaCast.js:142
 #: src/views/Publication/Services/DASH.js:198
@@ -1869,13 +1908,13 @@ msgstr "Passthrough (kopyalama) yalnızca gerekli olduğunda devre dışı bıra
 #: src/views/Publication/Services/Red5.js:157
 #: src/views/Publication/Services/RTSP.js:156
 #: src/views/Publication/Services/WOWZA.js:178
-#: src/views/Settings.js:1569
-#: src/views/Settings.js:1727
+#: src/views/Settings.js:1570
+#: src/views/Settings.js:1734
 msgid "Password"
 msgstr "Şifre"
 
-#: src/views/Settings.js:1575
-#: src/views/Settings.js:1735
+#: src/views/Settings.js:1576
+#: src/views/Settings.js:1742
 msgid "Password for authorization."
 msgstr "Yetkilendirme için şifre."
 
@@ -1884,7 +1923,7 @@ msgstr "Yetkilendirme için şifre."
 msgid "Password for the device."
 msgstr "Cihaz için şifre."
 
-#: src/views/Settings.js:1671
+#: src/views/Settings.js:1678
 msgid "Persist viewer statistics"
 msgstr "İzleyici istatistiklerini sürdür"
 
@@ -1900,7 +1939,7 @@ msgstr "Piksel biçimi"
 msgid "Pixel Format"
 msgstr ""
 
-#: src/views/Login.js:311
+#: src/views/Login.js:434
 msgid "Plan: <0>Starter</0>"
 msgstr "Plan: <0>Başlangıç</0>"
 
@@ -1909,8 +1948,8 @@ msgid "Platforms"
 msgstr "Platformlar"
 
 #: src/views/Publication/Player.js:384
-#: src/views/Settings.js:1237
-#: src/views/Settings.js:1584
+#: src/views/Settings.js:1238
+#: src/views/Settings.js:1591
 msgid "Playback"
 msgstr "Oynatma"
 
@@ -1970,7 +2009,7 @@ msgstr "Lütfen <0>process log</0> kontrol edin"
 msgid "Please contact the operator of the service and check what happens."
 msgstr "Lütfen servis operatörüyle iletişime geçin ve ne olduğunu kontrol edin."
 
-#: src/views/Settings.js:1474
+#: src/views/Settings.js:1475
 msgid "Please enter your email address to signify agreement with the Let's Encrypt CA's terms of service and to be notified in case of issues."
 msgstr "Let's Encrypt CA'nın hizmet koşullarını kabul ettiğinizi belirtmek ve sorun olması durumunda bilgilendirilmek için lütfen e-posta adresinizi girin."
 
@@ -2002,7 +2041,7 @@ msgstr "Lütfen bekleyin. Prob akışı verileri ..."
 msgid "Please wait. Setting up the stream ..."
 msgstr "Lütfen bekleyin. Akış kurulumu ..."
 
-#: src/views/Settings.js:2038
+#: src/views/Settings.js:2045
 msgid "Port"
 msgstr "Port"
 
@@ -2118,7 +2157,7 @@ msgstr "Protokol"
 msgid "Protocols"
 msgstr "Protokoller"
 
-#: src/views/Settings.js:1401
+#: src/views/Settings.js:1402
 msgid "Public domain/s"
 msgstr "Kamu malı/ları"
 
@@ -2198,7 +2237,7 @@ msgstr "Yeniden bağlanma gecikmesi (saniye)"
 msgid "Reconnecting in {0}s"
 msgstr "{0} sn içinde yeniden bağlanıyor"
 
-#: src/views/Settings.js:2246
+#: src/views/Settings.js:2253
 msgid "Reconnecting to Restreamer Core failed for the last {RETRIES} seconds."
 msgstr "Restreamer Core'a yeniden bağlanma son {RETRIES} saniye için başarısız oldu."
 
@@ -2233,9 +2272,17 @@ msgid "Register user"
 msgstr "Kullanıcı oluştur"
 
 #: src/views/Password.js:178
-#: src/views/Settings.js:2266
+#: src/views/Settings.js:2273
 msgid "Reload"
 msgstr "Yeniden Yükle"
+
+#: src/views/Login.js:399
+msgid "Remember this device for 1 year"
+msgstr ""
+
+#: src/views/Login.js:392
+msgid "Remember this device for 30 days"
+msgstr ""
 
 #: src/misc/modals/Hint.js:159
 msgid "Remove Audio"
@@ -2245,11 +2292,11 @@ msgstr ""
 #~ msgid "Remove Stream"
 #~ msgstr ""
 
-#: src/views/Settings.js:1754
+#: src/views/Settings.js:1761
 msgid "Remove the oldest entries if the /memfs is full"
 msgstr "/memfs doluysa en eski girdileri kaldırın"
 
-#: src/views/Settings.js:1942
+#: src/views/Settings.js:1949
 msgid "Requires activation"
 msgstr "Aktivasyon gerektirir"
 
@@ -2261,28 +2308,28 @@ msgstr "Logoyu sil"
 msgid "Reset poster"
 msgstr "Posteri sıfırla"
 
-#: src/views/Settings.js:1300
-#: src/views/Settings.js:2283
-#: src/views/Settings.js:2296
-#: src/views/Settings.js:2305
+#: src/views/Settings.js:1301
+#: src/views/Settings.js:2290
+#: src/views/Settings.js:2303
+#: src/views/Settings.js:2312
 msgid "Restart"
 msgstr "Yeniden Başlat"
 
-#: src/views/Settings.js:2274
+#: src/views/Settings.js:2281
 msgid "Restart required"
 msgstr "Yeniden başlatma gerekli"
 
 #: src/views/Password.js:155
-#: src/views/Settings.js:2234
+#: src/views/Settings.js:2241
 msgid "Restarting"
 msgstr "Yeniden Başlatma"
 
 #: src/views/Password.js:160
-#: src/views/Settings.js:2239
+#: src/views/Settings.js:2246
 msgid "Restarting Restreamer Core ..."
 msgstr "Restreamer Çekirdeği Yeniden Başlatılıyor ..."
 
-#: src/views/Settings.js:1108
+#: src/views/Settings.js:1109
 msgid "Restarting the application failed."
 msgstr "Uygulama yeniden başlatılamadı."
 
@@ -2290,7 +2337,7 @@ msgstr "Uygulama yeniden başlatılamadı."
 msgid "Restreamer instructions"
 msgstr "Restreamer talimatları"
 
-#: src/views/Settings.js:1328
+#: src/views/Settings.js:1329
 msgid "Restreamer Service"
 msgstr "Restreamer Hizmeti"
 
@@ -2300,7 +2347,7 @@ msgstr "Akış verileri alınıyor..."
 
 #: src/views/Edit/Wizard/Error.js:26
 #: src/views/Invalid.js:43
-#: src/views/Settings.js:1209
+#: src/views/Settings.js:1210
 msgid "Retry"
 msgstr "Yeniden dene"
 
@@ -2313,12 +2360,12 @@ msgid "Rotate"
 msgstr "Döndür"
 
 #: src/views/Main/index.js:415
-#: src/views/Settings.js:1239
-#: src/views/Settings.js:1920
+#: src/views/Settings.js:1240
+#: src/views/Settings.js:1927
 msgid "RTMP"
 msgstr "RTMP"
 
-#: src/views/Settings.js:1997
+#: src/views/Settings.js:2004
 msgid "RTMP app for publishing."
 msgstr "Yayınlamak için RTMP uygulaması."
 
@@ -2326,12 +2373,12 @@ msgstr "Yayınlamak için RTMP uygulaması."
 msgid "RTMP output"
 msgstr "RTMP çıkışı"
 
-#: src/views/Settings.js:1962
+#: src/views/Settings.js:1969
 msgid "RTMP Port"
 msgstr "RTMP Bağlantı Noktası"
 
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:154
-#: src/views/Settings.js:1925
+#: src/views/Settings.js:1932
 msgid "RTMP server"
 msgstr "RTMP sunucusu"
 
@@ -2340,23 +2387,23 @@ msgstr "RTMP sunucusu"
 msgid "RTMP server is not enabled"
 msgstr "RTMP sunucusu etkin değil"
 
-#: src/views/Settings.js:1970
+#: src/views/Settings.js:1977
 msgid "RTMP server listen address."
 msgstr "RTMP sunucusu dinleme adresi."
 
-#: src/views/Settings.js:2010
+#: src/views/Settings.js:2017
 msgid "RTMP token for publishing and playing. The token is the value of the URL query parameter 'token.'"
 msgstr "Yayınlama ve oynatma için RTMP belirteci. Belirteç, URL sorgu parametresi 'token'ın değeridir."
 
-#: src/views/Settings.js:1976
+#: src/views/Settings.js:1983
 msgid "RTMPS Port"
 msgstr "RTMPS Bağlantı Noktası"
 
-#: src/views/Settings.js:1933
+#: src/views/Settings.js:1940
 msgid "RTMPS server"
 msgstr "RTMPS sunucusu"
 
-#: src/views/Settings.js:1984
+#: src/views/Settings.js:1991
 msgid "RTMPS server listen address."
 msgstr "RTMPS sunucusu dinleme adresi."
 
@@ -2380,7 +2427,7 @@ msgstr "Örnek"
 #: src/views/Publication/Add.js:567
 #: src/views/Publication/Edit.js:601
 #: src/views/Publication/Player.js:542
-#: src/views/Settings.js:2224
+#: src/views/Settings.js:2231
 msgid "Save"
 msgstr "Kaydet"
 
@@ -2395,7 +2442,11 @@ msgstr "Ölçekle"
 msgid "Scale size"
 msgstr "Ölçek boyutu"
 
-#: src/views/Settings.js:1855
+#: src/misc/TOTPSettings.js:126
+msgid "Scan the QR code with your authenticator app, or enter the secret manually, then confirm with a generated code."
+msgstr ""
+
+#: src/views/Settings.js:1862
 msgid "Seconds to keep files in cache."
 msgstr "Dosyaları önbellekte tutmak için saniye."
 
@@ -2411,7 +2462,11 @@ msgstr "Kararlı bir işlem sonlandırılıncaya kadar geçen saniye."
 msgid "Seconds until the snapshot/thumbnail of the video source is updated."
 msgstr "Video kaynağının anlık görüntüsü/küçük resmi güncellenene kadar geçen saniye."
 
-#: src/views/Settings.js:1589
+#: src/misc/TOTPSettings.js:144
+msgid "Secret"
+msgstr ""
+
+#: src/views/Settings.js:1596
 msgid "Security"
 msgstr "Güvenlik"
 
@@ -2488,7 +2543,7 @@ msgstr "Seçilen kanal"
 msgid "Selection"
 msgstr "Seçim"
 
-#: src/views/Settings.js:1284
+#: src/views/Settings.js:1285
 msgid "Send anonymous metrics (helps us for future development)"
 msgstr "Anonim ölçümler gönderin (gelecekteki gelişim için bize yardımcı olur)"
 
@@ -2520,9 +2575,9 @@ msgid "Server URL"
 msgstr "Sunucu adresi"
 
 #: src/Header.js:257
-#: src/views/Login.js:246
-#: src/views/Settings.js:1233
-#: src/views/Settings.js:1314
+#: src/views/Login.js:309
+#: src/views/Settings.js:1234
+#: src/views/Settings.js:1315
 msgid "Service"
 msgstr "Hizmet"
 
@@ -2531,7 +2586,7 @@ msgstr "Hizmet"
 msgid "Service name"
 msgstr "Hizmet adı"
 
-#: src/views/Settings.js:1365
+#: src/views/Settings.js:1366
 msgid "Service token for monitoring."
 msgstr "İzleme için hizmet belirteci."
 
@@ -2543,35 +2598,35 @@ msgstr "Oturumlar"
 msgid "Set the rav1e configuration using a :-separated list of key=value parameters."
 msgstr "Anahtar=değer parametrelerinin :-ayrılmış bir listesini kullanarak rav1e yapılandırmasını ayarlayın."
 
-#: src/views/Settings.js:1516
+#: src/views/Settings.js:1517
 msgid "Sets a bandwidth limit in Mbit per second for outgoing HLS data transfer. All services, such as RTMP and outgoing processes, are included in the calculation. If the bandwidth is exceeded, HLS viewers receive the HTTP status code 509 (Bandwidth Limit Exceeded). 0 is unlimited."
 msgstr "Giden HLS veri aktarımı için saniyede Mbit cinsinden bir bant genişliği sınırı belirler. RTMP ve giden işlemler gibi tüm hizmetler hesaplamaya dahil edilir. Bant genişliği aşılırsa, HLS izleyicileri HTTP durum kodu 509 (Bant Genişliği Sınırı Aşıldı) alır. 0 sınırsızdır."
 
-#: src/views/Settings.js:1499
+#: src/views/Settings.js:1500
 msgid "Sets a viewer limit for HLS sessions. If the limit is exceeded, HLS viewers receive the HTTP status code 509 (Bandwidth Limit Exceeded). 0 is unlimited."
 msgstr "HLS oturumları için bir görüntüleyici sınırı belirler. Sınır aşılırsa, HLS izleyicileri HTTP durum kodu 509 (Bant Genişliği Sınırı Aşıldı) alır. 0 sınırsızdır."
 
-#: src/views/Settings.js:1319
+#: src/views/Settings.js:1320
 msgid "Setting for connection to the service."
 msgstr "Hizmete bağlantı için ayar."
 
-#: src/views/Settings.js:1219
+#: src/views/Settings.js:1220
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: src/views/Settings.js:1221
+#: src/views/Settings.js:1222
 msgid "Settings (expert mode)"
 msgstr "Ayarlar (uzman modu)"
 
-#: src/views/Settings.js:1770
+#: src/views/Settings.js:1777
 msgid "Settings for /data path. The access is protected by"
 msgstr "Veri yolu için ayarlar. Erişim şu şekilde korunur"
 
-#: src/views/Settings.js:1696
+#: src/views/Settings.js:1703
 msgid "Settings for /memfs path."
 msgstr "Memfs yolu için ayarlar."
 
-#: src/views/Settings.js:1051
+#: src/views/Settings.js:1052
 msgid "Settings saved. All changes will be applied after restarting the application."
 msgstr "Ayarlar kaydedildi. Tüm değişiklikler uygulama yeniden başlatıldıktan sonra uygulanacaktır."
 
@@ -2583,7 +2638,7 @@ msgstr "Paylaş düğmesi"
 msgid "Shows a reference to the project."
 msgstr "Projeye bir referans gösterir."
 
-#: src/views/Login.js:332
+#: src/views/Login.js:455
 msgid "Sign up (free)"
 msgstr "Kaydolun (ücretsiz)"
 
@@ -2612,7 +2667,7 @@ msgstr "Boyut"
 msgid "Snapshot"
 msgstr "Anlık görüntü"
 
-#: src/views/Login.js:316
+#: src/views/Login.js:439
 msgid "Social-login (OAuth2, 2FA)"
 msgstr "Sosyal giriş (OAuth2, 2FA)"
 
@@ -2648,8 +2703,8 @@ msgid "Speed Preset"
 msgstr "Hız Ön Ayarı"
 
 #: src/views/Main/index.js:425
-#: src/views/Settings.js:1240
-#: src/views/Settings.js:2019
+#: src/views/Settings.js:1241
+#: src/views/Settings.js:2026
 msgid "SRT"
 msgstr "SRT"
 
@@ -2658,7 +2713,7 @@ msgid "SRT output"
 msgstr "SRT çıkışı"
 
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:152
-#: src/views/Settings.js:2024
+#: src/views/Settings.js:2031
 msgid "SRT server"
 msgstr "SRT sunucusu"
 
@@ -2667,11 +2722,11 @@ msgstr "SRT sunucusu"
 msgid "SRT server is not enabled"
 msgstr "SRT sunucu etkin değil"
 
-#: src/views/Settings.js:2046
+#: src/views/Settings.js:2053
 msgid "SRT server listen address."
 msgstr "SRT sunucusu dinleme adresi."
 
-#: src/views/Settings.js:2059
+#: src/views/Settings.js:2066
 msgid "SRT token for publishing and playing. The token is the value of the streamid parameter 'token.'"
 msgstr "Yayınlama ve oynatma için SRT belirteci. Belirteç, streamid parametresi 'token'ın değeridir."
 
@@ -2683,17 +2738,17 @@ msgstr "Eski zaman aşımı (saniye)"
 msgid "start_at_zero"
 msgstr "start_at_zero"
 
-#: src/views/Settings.js:1621
+#: src/views/Settings.js:1628
 msgid "Statistics"
 msgstr "İstatistikler"
 
 #: src/misc/controls/HLS.js:65
-#: src/views/Settings.js:1238
-#: src/views/Settings.js:1688
+#: src/views/Settings.js:1239
+#: src/views/Settings.js:1695
 msgid "Storage"
 msgstr "Depolama"
 
-#: src/views/Settings.js:1679
+#: src/views/Settings.js:1686
 msgid "Stores the viewer statistics to the disk."
 msgstr "Görüntüleyici istatistiklerini diske kaydeder."
 
@@ -2768,7 +2823,7 @@ msgstr "HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT ve daha fazlasını destekler."
 
 #: src/Footer.js:184
 #: src/Header.js:275
-#: src/views/Settings.js:2095
+#: src/views/Settings.js:2102
 msgid "System"
 msgstr "Sistem"
 
@@ -2805,7 +2860,7 @@ msgstr "Metin renkleri"
 msgid "The amplitude (0.0 - 1.0) of the generated audio stream"
 msgstr "Oluşturulan ses akışının genliği (0.0 - 1.0)"
 
-#: src/views/Settings.js:1304
+#: src/views/Settings.js:1305
 msgid "The application is using an older version of the settings."
 msgstr "Uygulama, ayarların eski bir sürümünü kullanıyor."
 
@@ -2860,7 +2915,7 @@ msgstr "Gürültü rengi"
 msgid "The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission."
 msgstr "Bir çalışmayı bu senetle ilişkilendiren kişi, yasaların izin verdiği ölçüde, tüm ilgili ve komşu haklar da dahil olmak üzere, telif hakkı yasası uyarınca dünya çapında çalışma üzerindeki tüm haklarından feragat ederek çalışmayı kamu malı haline getirmiştir. Çalışmayı, ticari amaçlarla bile olsa, izin almaksızın kopyalayabilir, değiştirebilir, dağıtabilir ve icra edebilirsiniz."
 
-#: src/views/Settings.js:1409
+#: src/views/Settings.js:1410
 msgid "The public reachable domain name of the host this Restreamer is running on. Separate multiple domain names by a comma."
 msgstr "Bu Restreamer'ın üzerinde çalıştığı ana bilgisayarın genel erişilebilir alan adı. Birden fazla alan adını virgülle ayırın."
 
@@ -2943,11 +2998,11 @@ msgstr "Video kaynağı uyumlu bir ses akışı sağlamıyor. <0>Sessiz ses</0> 
 msgid "The video source is compatible. Select the desired resolution:"
 msgstr "Video kaynağı uyumludur. İstediğiniz çözünürlüğü seçin:"
 
-#: src/views/Settings.js:1276
+#: src/views/Settings.js:1277
 msgid "There are updates available. Here you get more information."
 msgstr "Mevcut güncellemeler var. Buradan daha fazla bilgi alabilirsiniz."
 
-#: src/views/Settings.js:1004
+#: src/views/Settings.js:1005
 msgid "There was a problem storing the settings. Settings not saved."
 msgstr "Ayarların kaydedilmesinde bir sorun oluştu. Ayarlar kaydedilmedi."
 
@@ -2966,11 +3021,11 @@ msgstr "Yükleme sırasında bir hata oluştu: {0}"
 msgid "There was an error setting up the stream."
 msgstr "Akışın kurulumunda bir hata oluştu."
 
-#: src/views/Settings.js:1002
+#: src/views/Settings.js:1003
 msgid "There were some errors in the settings. Settings not saved."
 msgstr "Ayarlarda bazı hatalar vardı. Ayarlar kaydedilmedi."
 
-#: src/views/Login.js:257
+#: src/views/Login.js:320
 msgid "There's no login method available."
 msgstr "Herhangi bir giriş yöntemi mevcut değildir."
 
@@ -3046,7 +3101,7 @@ msgstr "Karo Sıraları"
 msgid "Tiles"
 msgstr "Fayanslar"
 
-#: src/views/Settings.js:1666
+#: src/views/Settings.js:1673
 msgid "Time until an inactive viewer connection is treated as closed."
 msgstr "Etkin olmayan bir görüntüleyici bağlantısının kapalı olarak değerlendirilmesine kadar geçen süre."
 
@@ -3054,15 +3109,31 @@ msgstr "Etkin olmayan bir görüntüleyici bağlantısının kapalı olarak değ
 msgid "To stabilize the system, increase the HLS segment length for the keyframe interval by 2-3 * (Processing and Control)."
 msgstr "Sistemi stabilize etmek için, ana kare aralığı için HLS segment uzunluğunu 2-3 * (İşleme ve Kontrol) kadar artırın."
 
-#: src/views/Settings.js:1357
-#: src/views/Settings.js:2002
-#: src/views/Settings.js:2051
+#: src/views/Settings.js:1358
+#: src/views/Settings.js:2009
+#: src/views/Settings.js:2058
 msgid "Token"
 msgstr "Token"
 
 #: src/misc/filters/video/Bwdif.js:59
 msgid "Top field"
 msgstr "Üst alan"
+
+#: src/utils/restreamer.js:382
+msgid "TOTP disable failed: {0}"
+msgstr ""
+
+#: src/utils/restreamer.js:367
+msgid "TOTP enable failed: {0}"
+msgstr ""
+
+#: src/misc/TOTPSettings.js:167
+msgid "TOTP is enabled for this Restreamer instance."
+msgstr ""
+
+#: src/utils/restreamer.js:357
+msgid "TOTP setup failed: {0}"
+msgstr ""
 
 #: src/views/Publication/Services/Telegram.js:13
 msgid "Transmit a Livestream to a Telegram Channel."
@@ -3193,6 +3264,10 @@ msgstr "Video akışınızı, Twitter Producer'da oluşturulan gerekli anahtarla
 msgid "Tune"
 msgstr "Tune"
 
+#: src/misc/TOTPSettings.js:100
+msgid "Two-factor authentication (TOTP)"
+msgstr ""
+
 #: src/misc/modals/Hint.js:60
 #~ msgid "Type"
 #~ msgstr ""
@@ -3202,11 +3277,11 @@ msgstr "Tune"
 msgid "UDP transport"
 msgstr "UDP aktarımı"
 
-#: src/views/Settings.js:1204
+#: src/views/Settings.js:1205
 msgid "Unable to load the config."
 msgstr "Yapılandırma yüklenemiyor."
 
-#: src/views/Settings.js:1339
+#: src/views/Settings.js:1340
 msgid "Unique ident on the service."
 msgstr "Hizmette benzersiz kimlik."
 
@@ -3268,7 +3343,7 @@ msgstr "Posterin yüklenmesi başarısız oldu"
 msgid "Uptime"
 msgstr "Çalışma Süresi"
 
-#: src/views/Login.js:343
+#: src/views/Login.js:466
 msgid "Use Auth0 for your running Restreamer Core. More <0>details</0>."
 msgstr "Çalışan Restreamer Çekirdeğiniz için Auth0 kullanın. Daha fazla <0>detay</0>."
 
@@ -3294,20 +3369,20 @@ msgstr "Kullanıcı kaydı"
 
 #: src/views/Edit/Sources/Network.js:793
 #: src/views/Edit/Wizard/Sources/Network.js:84
-#: src/views/Login.js:272
+#: src/views/Login.js:335
 #: src/views/Publication/Services/DaCast.js:131
 #: src/views/Publication/Services/DASH.js:195
 #: src/views/Publication/Services/HLS.js:184
 #: src/views/Publication/Services/Red5.js:146
 #: src/views/Publication/Services/RTSP.js:153
 #: src/views/Publication/Services/WOWZA.js:168
-#: src/views/Settings.js:1556
-#: src/views/Settings.js:1714
+#: src/views/Settings.js:1557
+#: src/views/Settings.js:1721
 msgid "Username"
 msgstr "Kullanıcı Adı"
 
-#: src/views/Settings.js:1562
-#: src/views/Settings.js:1722
+#: src/views/Settings.js:1563
+#: src/views/Settings.js:1729
 msgid "Username for authorization."
 msgstr "Yetkilendirme için kullanıcı adı."
 
@@ -3327,6 +3402,10 @@ msgstr "Değişken kare hızı (VFR)"
 #: src/views/Edit/Sources/VirtualAudio.js:116
 msgid "velvet"
 msgstr "kadife"
+
+#: src/views/Login.js:415
+msgid "Verify and login"
+msgstr ""
 
 #: src/misc/filters/video/VFlip.js:65
 msgid "Vertical Flip"
@@ -3409,7 +3488,7 @@ msgstr "beyaz"
 msgid "Width"
 msgstr "Genişlik"
 
-#: src/views/Settings.js:1701
+#: src/views/Settings.js:1708
 msgid "Write protection"
 msgstr "Koruma yazın"
 
@@ -3425,7 +3504,7 @@ msgstr "Evet"
 msgid "You can't abort the wizard because at least one input must be defined."
 msgstr "Sihirbazı iptal edemezsiniz çünkü en az bir girdi tanımlanmış olmalıdır."
 
-#: src/views/Settings.js:2288
+#: src/views/Settings.js:2295
 msgid "You have changed the configuration. In order for the changes to take effect, you have to restart the application. Do you want to restart now?"
 msgstr "Yapılandırmayı değiştirdiniz. Değişikliklerin etkili olması için uygulamayı yeniden başlatmanız gerekir. Şimdi yeniden başlatmak istiyor musunuz?"
 
