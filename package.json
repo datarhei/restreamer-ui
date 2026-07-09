@@ -38,6 +38,7 @@
 		"react-device-detect": "^2.2.3",
 		"react-dom": "^18.3.1",
 		"react-markdown": "^9.0.1",
+		"react-qr-code": "^2.2.0",
 		"react-router-dom": "^6.26.1",
 		"react-scripts": "^5.0.1",
 		"semver": "^7.6.3",
