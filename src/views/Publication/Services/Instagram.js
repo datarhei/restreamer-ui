@@ -64,7 +64,7 @@ function Service({ settings = {}, skills = {}, metadata = {}, streams = [], onCh
 
 	const createOutput = (settings) => {
 		const output = {
-			address: 'http://instagram.com:443/rtmp/' + settings.key,
+			address: 'rtmps://live-upload.instagram.com:443/rtmp/' + settings.key,
 			options: ['-f', 'flv'],
 		};
 
