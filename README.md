@@ -1,6 +1,6 @@
 # Restreamer-UI
 
-The user interface of the Restreamer for the connection to the [datarhei Core](https://github.com/datarhei/core)application.
+The user interface of the Restreamer for the connection to the [datarhei Core](https://github.com/datarhei/core) application.
 
 - React
 - Material-UI (MUI)
@@ -20,7 +20,7 @@ Connect the UI with a [datarhei Core](https://github.com/datarhei/core):
 http://localhost:3000?address=http://core-ip:core-port
 
 ### To add/fix translations:
-Locales are located in `src/locals`
+Locales are located in `src/locales`
 ```
 $ npm run i18n-extract:clean
 $ npm run i18n-compile
