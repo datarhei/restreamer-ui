@@ -37,8 +37,6 @@
     <meta name="twitter:player:height" content="{{channel_height}}">
 	<link rel="alternate" type="application/json+oembed" href="channels/{{channel_id}}/oembed.json" title="{{channel_name}}">
 	<link rel="alternate" type="text/xml+oembed" href="channels/{{channel_id}}/oembed.xml" title="{{channel_name}}">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap"/>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons&amp;display=block">
 	{{#ifEquals player "videojs"}}
 	<link href="player/videojs/dist/video-js.min.css" rel="stylesheet">
 	<link href="player/videojs/dist/video-js-skin.min.css" rel="stylesheet">
@@ -63,7 +61,7 @@
 		/** basics **/
 		body {
 			color: {{textcolor_default}};
-			font-family: 'Roboto';
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 			font-size: 18px;
 			-webkit-font-smoothing: antialiased;
 			-moz-osx-font-smoothing: grayscale;
@@ -89,8 +87,15 @@
 			text-decoration: underline;
 		}
 		.inline-icon {
-			font-size: 18px !important;
-			vertical-align: bottom;
+			display: inline-block;
+			width: 18px;
+			height: 18px;
+			vertical-align: -3px;
+			fill: none;
+			stroke: currentColor;
+			stroke-width: 1.8;
+			stroke-linecap: round;
+			stroke-linejoin: round;
 		}
 		.right-align {
 			text-align: right;
@@ -398,13 +403,13 @@
 							<hr>
 							<div class="row col-middle-xs channel-stats">
 								<div class="col-xs-9 middle-xs">
-									<span id="channel_stats_current_{{channel_id}}"></span> <span class="material-icons inline-icon channel-stats-icon">remove_red_eye</span>
-									<span id="channel_stats_sum_{{channel_id}}"></span> <span class="material-icons inline-icon channel-stats-icon">trending_up</span>
-									<span id="channel_stats_runtime_{{channel_id}}"></span> <span class="material-icons inline-icon channel-stats-icon">live_tv</span>
+									<span id="channel_stats_current_{{channel_id}}"></span> <svg class="inline-icon channel-stats-icon" viewBox="0 0 18 18" aria-hidden="true"><path d="M1.5 9s2.7-4.5 7.5-4.5S16.5 9 16.5 9 13.8 13.5 9 13.5 1.5 9 1.5 9Z"></path><circle cx="9" cy="9" r="2.2"></circle></svg>
+									<span id="channel_stats_sum_{{channel_id}}"></span> <svg class="inline-icon channel-stats-icon" viewBox="0 0 18 18" aria-hidden="true"><path d="m2 13 4.2-4.2 3 3L16 5"></path><path d="M11.5 5H16v4.5"></path></svg>
+									<span id="channel_stats_runtime_{{channel_id}}"></span> <svg class="inline-icon channel-stats-icon" viewBox="0 0 18 18" aria-hidden="true"><rect x="2" y="4.5" width="14" height="10" rx="1.5"></rect><path d="m6.5 1.8 2.5 2.7 2.5-2.7"></path></svg>
 								</div>
 								<div class="col-xs-3 middle-xs right-align">
 									{{#if share}}
-									<a id="btn-share" href="#"><span class="material-icons inline-icon">share</span> SHARE</a>
+									<a id="btn-share" href="#"><svg class="inline-icon" viewBox="0 0 18 18" aria-hidden="true"><circle cx="5" cy="9" r="1.8"></circle><circle cx="13.5" cy="4.5" r="1.8"></circle><circle cx="13.5" cy="13.5" r="1.8"></circle><path d="m6.6 8.1 5.3-2.8M6.6 9.9l5.3 2.8"></path></svg> SHARE</a>
 									{{/if}}
 								</div>
 							</div>
