@@ -14,14 +14,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
               with:
                   ref: dev
 
             - name: Set up Node.js
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v7
               with:
-                  node-version: '21'
+                  node-version: '26'
 
             - name: Build React App
               run: |
@@ -31,7 +31,7 @@ jobs:
                   PUBLIC_URL: './'
 
             - name: Upload React build as artifact
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v7
               with:
                   name: restreamerui-dev-build
                   path: build/
@@ -41,17 +41,17 @@ jobs:
         runs-on: [self-hosted]
         steps:
             - name: Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
 
             - name: Download React build artifact
-              uses: actions/download-artifact@v4
+              uses: actions/download-artifact@v7
               with:
                   name: restreamerui-dev-build
                   path: build
 
             - name: Docker meta
               id: meta
-              uses: docker/metadata-action@v5
+              uses: docker/metadata-action@v6
               with:
                   images: |
                       datarhei/restreamer-ui
@@ -75,13 +75,13 @@ jobs:
                   password: ${{ secrets.DOCKER_PASSWORD }}
 
             - name: Build and Push Docker Image
-              uses: docker/build-push-action@v5
+              uses: docker/build-push-action@v7
               with:
                   builder: ${{ steps.buildx.outputs.name }}
                   context: .
                   file: ./Dockerfile.workflow
                   build-args: |
-                      CADDY_IMAGE=caddy:2.7.6-alpine
+                      CADDY_IMAGE=caddy:2.11-alpine
                   platforms: linux/amd64,linux/arm64,linux/arm/v7
                   push: true
                   tags: ${{ steps.meta.outputs.tags }}
