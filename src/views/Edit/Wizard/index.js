@@ -577,6 +577,7 @@ export default function Wizard({ restreamer = null }) {
 			setProfile({
 				...$profile,
 				audio: profile,
+				custom: custom,
 			});
 		};
 
@@ -597,14 +598,20 @@ export default function Wizard({ restreamer = null }) {
 			const value = event.target.value;
 
 			const profile = $profile.audio;
+			const custom = $profile.custom;
 			let source = null;
 
 			if (value === 'video') {
 				profile.source = 0;
+				custom.selected = false;
+				custom.stream = profile.stream;
 
 				source = null;
 			} else if (value === 'alsa') {
 				profile.source = 1;
+				profile.stream = -1;
+				custom.selected = true;
+				custom.stream = -2;
 
 				// The first ALSA device is selected by default
 				let address = '';
@@ -624,6 +631,9 @@ export default function Wizard({ restreamer = null }) {
 				source.inputs = fullSource.func.createInputs(source.settings);
 			} else if (value === 'silence') {
 				profile.source = 1;
+				profile.stream = -1;
+				custom.selected = true;
+				custom.stream = -2;
 
 				source = M.initSource('audio', null);
 
@@ -638,6 +648,9 @@ export default function Wizard({ restreamer = null }) {
 				source.inputs = fullSource.func.createInputs(source.settings);
 			} else {
 				profile.source = -1;
+				profile.stream = -1;
+				custom.selected = false;
+				custom.stream = -1;
 
 				source = null;
 			}

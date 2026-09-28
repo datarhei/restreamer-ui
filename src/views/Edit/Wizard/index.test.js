@@ -4,6 +4,8 @@ import '@testing-library/jest-dom';
 
 import Wizard from './index';
 
+let lastUpsertIngest = null;
+
 const restreamer = {
 	SelectChannel: () => {
 		return 'test';
@@ -308,6 +310,7 @@ const restreamer = {
 		return [{ streams: streams }, null];
 	},
 	UpsertIngest: (_channelid, global, inputs, outputs, control) => {
+		lastUpsertIngest = { global, inputs, outputs, control };
 		return [{}, null];
 	},
 	SetIngestMetadata: (_channelid, data) => {},
@@ -737,6 +740,34 @@ test('wizard: network source silence audio', async () => {
 	});
 
 	expect(screen.queryByText(/Metadata/)).toBeInTheDocument();
+
+	// Confirm metadata
+	button = screen.getByRole('button', { name: 'Next' });
+	await act(async () => {
+		fireEvent.click(button);
+	});
+
+	expect(screen.queryByText(/License/)).toBeInTheDocument();
+
+	// Save and verify that silence remains a dedicated second input.
+	lastUpsertIngest = null;
+	button = screen.getByRole('button', { name: 'Save' });
+	await act(async () => {
+		fireEvent.click(button);
+	});
+
+	expect(lastUpsertIngest).not.toBeNull();
+	expect(lastUpsertIngest.inputs).toEqual(
+		expect.arrayContaining([
+			expect.objectContaining({
+				address: 'anullsrc=r=44100:cl=stereo',
+				options: expect.arrayContaining(['-f', 'lavfi']),
+			}),
+		]),
+	);
+
+	const outputOptions = lastUpsertIngest.outputs[0].options;
+	expect(outputOptions).toEqual(expect.arrayContaining(['-map', '0:0', '-map', '1:0']));
 });
 
 test('wizard: network source no audio', async () => {
