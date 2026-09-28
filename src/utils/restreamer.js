@@ -2307,7 +2307,9 @@ class Restreamer {
 			playerConfig.poster = metadata.player.poster.replace(/^\/+/, '');
 		}
 
-		await this._uploadAssetData(`/channels/${channelid}/config.js`, 'var playerConfig = ' + JSON.stringify(playerConfig));
+		const serializedPlayerConfig = JSON.stringify(playerConfig);
+		await this._uploadAssetData(`/channels/${channelid}/config.js`, 'var playerConfig = ' + serializedPlayerConfig);
+		await this._uploadAssetData(`/channels/${channelid}/config.json`, serializedPlayerConfig);
 	}
 
 	// Upload channel specific channel data
