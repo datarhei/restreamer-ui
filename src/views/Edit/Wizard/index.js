@@ -577,7 +577,6 @@ export default function Wizard({ restreamer = null }) {
 			setProfile({
 				...$profile,
 				audio: profile,
-				custom: custom,
 			});
 		};
 
