@@ -9,8 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Last-Translator: Albano Battistella\n"
+"Language-Team: Italian\n"
 "Plural-Forms: \n"
 
 #: src/misc/EncodingSelect.js:237
@@ -64,7 +64,7 @@ msgstr "Aggiungi"
 
 #: src/misc/modals/Hint.js:154
 msgid "Add Audio"
-msgstr ""
+msgstr "Aggiungi Audio"
 
 #: src/views/Playersite.js:733
 msgid "Add external widgets and styles to the publication site. You can find some examples on the help page."
@@ -80,7 +80,7 @@ msgstr "Aggiungi pubblicazione"
 
 #: src/misc/modals/Hint.js:158
 #~ msgid "Add Stream"
-#~ msgstr ""
+#~ msgstr "Aggiungi Stream"
 
 #: src/views/Publication/Add.js:366
 msgid "Add: {0}"
@@ -88,11 +88,11 @@ msgstr "Aggiungi: {0}"
 
 #: src/views/Playersite.js:397
 msgid "Additional channels"
-msgstr ""
+msgstr "Canali aggiuntivi"
 
 #: src/views/Playersite.js:428
 msgid "Additional channels to display on the playersite."
-msgstr ""
+msgstr "Canali aggiuntivi da visualizzare nel sito del player"
 
 #: src/views/Edit/Sources/Network.js:765
 #: src/views/Edit/Wizard/Sources/Network.js:66
@@ -698,7 +698,7 @@ msgstr "Decoder"
 #: src/views/Playersite.js:564
 #: src/views/Playersite.js:608
 msgid "Default"
-msgstr "Default"
+msgstr "Predefinito"
 
 #: src/views/Edit/Sources/Network.js:656
 msgid "Default {0}"
@@ -738,7 +738,7 @@ msgstr "Ritardo (ms)"
 #: src/views/Publication/Edit.js:604
 #: src/views/Publication/Edit.js:636
 msgid "Delete"
-msgstr "Cancellare"
+msgstr "Elimina"
 
 #: src/views/Publication/Edit.js:641
 msgid "Deleting a publication service cannot be reversed. The publication stops immediately."
@@ -769,7 +769,7 @@ msgstr "Dispositivo"
 #: src/misc/ActionButton.js:45
 #: src/misc/ActionButton.js:59
 msgid "Disconnect"
-msgstr "Scollegare"
+msgstr "Disconnetti"
 
 #: src/views/Edit/index.js:652
 msgid "Disconnect & Continue"
@@ -778,7 +778,7 @@ msgstr "Disconnettersi e continuare"
 #: src/misc/ActionButton.js:18
 #: src/views/Publication/Process.js:47
 msgid "Disconnecting ..."
-msgstr "Scollegamento ..."
+msgstr "Disconnettendo ..."
 
 #: src/misc/controls/HLS.js:70
 #: src/views/Settings.js:1767
@@ -838,7 +838,7 @@ msgstr "Ogni campo"
 
 #: src/misc/filters/video/Bwdif.js:41
 msgid "Each frames"
-msgstr "Ogni cornice"
+msgstr "Ogni frame"
 
 #: src/views/Edit/index.js:409
 msgid "Edit"
@@ -1282,7 +1282,7 @@ msgstr "Oltre al player, Restreamer offre una landingpage completa, che può uti
 #: src/views/Edit/Profile.js:521
 #: src/views/Edit/Profile.js:680
 msgid "In order to proceed anyways, you can provide <0>hints</0> about the available streams."
-msgstr ""
+msgstr "Per procedere comunque, puoi fornire <0>suggerimenti</0> sui flussi disponibili."
 
 #: src/misc/controls/HLS.js:67
 #: src/views/Settings.js:1693
@@ -1437,7 +1437,7 @@ msgstr "Live-Streaming verso il servizio RTMP di Facebook Live"
 
 #: src/views/Publication/Services/Instagram.js:16
 msgid "Live-Streaming to Instagram Live RTMP Service."
-msgstr ""
+msgstr "Live streaming verso il servizio RTMP di Instagram Live."
 
 #: src/views/Publication/Services/Instagram.js:19
 #~ msgid "Live-Streaming to Instagram Live RTMP Service. The stream key requires a service such as <0>Instafeed.me</0> or <1>Yellow Duck</1>."
@@ -1898,7 +1898,7 @@ msgstr "Formato pixel"
 
 #: src/misc/coders/settings/Video.js:362
 msgid "Pixel Format"
-msgstr ""
+msgstr "Formato Pixel"
 
 #: src/views/Login.js:311
 msgid "Plan: <0>Starter</0>"
@@ -2239,11 +2239,11 @@ msgstr "Ricarica"
 
 #: src/misc/modals/Hint.js:159
 msgid "Remove Audio"
-msgstr ""
+msgstr "Rimuovi Audio"
 
 #: src/misc/modals/Hint.js:150
 #~ msgid "Remove Stream"
-#~ msgstr ""
+#~ msgstr "Rimuovi Stream"
 
 #: src/views/Settings.js:1754
 msgid "Remove the oldest entries if the /memfs is full"
@@ -2706,7 +2706,7 @@ msgstr "Flusso"
 
 #: src/views/Publication/Services/Wettercom.js:90
 msgid "Stream ID"
-msgstr ""
+msgstr "ID Stream"
 
 #: src/views/Publication/Services/CDN77.js:113
 #: src/views/Publication/Services/DaCast.js:153
@@ -3178,7 +3178,7 @@ msgstr "Trasmettere il Livestream a un servizio Rumble RTMP. <0>Qui </0>si posso
 
 #: src/views/Publication/Services/Wettercom.js:16
 msgid "Transmit your Livestream to wetter.com. Contact the publisher  <0>here </0>."
-msgstr ""
+msgstr "Trasmetti il ​​tuo livestream su wetter.com. Contatta l'editore <0>qui</0>."
 
 #: src/views/Publication/Services/Youtube.js:21
 msgid "Transmits your video as an RTMP stream with the required key generated in YouTube Studio. You can find more information on setting up a live stream at YouTube's <0>Creator Academy</0>."
@@ -3191,11 +3191,11 @@ msgstr "Trasmette il suo flusso video con la chiave richiesta, che è stata gene
 #: src/misc/coders/Encoders/video/h264_libx264.js:103
 #: src/misc/coders/Encoders/video/hevc_libx265.js:103
 msgid "Tune"
-msgstr "Tune"
+msgstr "Sintonizzazione"
 
 #: src/misc/modals/Hint.js:60
 #~ msgid "Type"
-#~ msgstr ""
+#~ msgstr "Tipo"
 
 #: src/views/Edit/Sources/Network.js:531
 #: src/views/Edit/Wizard/Sources/Network.js:77
