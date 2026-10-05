@@ -32,6 +32,7 @@ import PaperHeader from '../misc/PaperHeader';
 import PaperContent from '../misc/PaperContent';
 import PaperFooter from '../misc/PaperFooter';
 import PaperThumb from '../misc/PaperThumb';
+import TOTPSettings from '../misc/TOTPSettings';
 import Password from '../misc/Password';
 import Select from '../misc/Select';
 import TabPanel from '../misc/TabPanel';
@@ -1574,6 +1575,12 @@ export default function Settings(props) {
 									<Typography variant="caption">
 										<Trans>Password for authorization.</Trans>
 									</Typography>
+								</Grid>
+								<Grid item xs={12}>
+									<Divider />
+								</Grid>
+								<Grid item xs={12}>
+									<TOTPSettings restreamer={props.restreamer} />
 								</Grid>
 							</Grid>
 						</TabPanel>

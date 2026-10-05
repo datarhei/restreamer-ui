@@ -242,19 +242,19 @@ export default function RestreamerUI(props) {
 		});
 	};
 
-	const handleLogin = async (username, password) => {
-		const connected = await restreamer.current.Login(username, password);
+	const handleLogin = async (username, password, options = {}) => {
+		const result = await restreamer.current.Login(username, password, options);
 
 		await checkChangelog();
 
 		setState({
 			...$state,
-			connected: connected,
+			connected: result.success === true,
 			compatibility: restreamer.current.Compatibility(),
 			ingest: restreamer.current.HasIngest(),
 		});
 
-		return connected;
+		return result;
 	};
 
 	const handleAuth0 = async () => {

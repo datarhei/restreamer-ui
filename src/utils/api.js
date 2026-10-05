@@ -125,6 +125,7 @@ class API {
 			res.err = {
 				code: response.status,
 				message: response.statusText,
+				details: [],
 			};
 
 			if (isJSON === true) {
@@ -132,6 +133,9 @@ class API {
 
 				if ('code' in body && 'message' in body) {
 					res.err.message = body.message;
+					if (Array.isArray(body.details)) {
+						res.err.details = body.details;
+					}
 				} else {
 					res.err.message = body;
 				}
@@ -177,15 +181,29 @@ class API {
 		this.cache = new Map();
 	}
 
-	async Login(username, password) {
+	async Login(username, password, options = {}) {
+		const payload = {
+			username: username,
+			password: password,
+		};
+
+		if (options.totp_code) {
+			payload.totp_code = options.totp_code;
+		}
+
+		if (options.device_trust_token) {
+			payload.device_trust_token = options.device_trust_token;
+		}
+
+		if (options.remember_device) {
+			payload.remember_device = options.remember_device;
+		}
+
 		return await this._POST('/login', {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({
-				username: username,
-				password: password,
-			}),
+			body: JSON.stringify(payload),
 			expect: 'json',
 		});
 	}
@@ -475,6 +493,38 @@ class API {
 		}
 
 		return res;
+	}
+
+	async TOTPStatus() {
+		return await this._GET('/v3/auth/totp', {
+			expect: 'json',
+		});
+	}
+
+	async TOTPSetup() {
+		return await this._POST('/v3/auth/totp/setup', {
+			expect: 'json',
+		});
+	}
+
+	async TOTPEnable(code) {
+		return await this._POST('/v3/auth/totp/enable', {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ code: code }),
+			expect: 'json',
+		});
+	}
+
+	async TOTPDisable(code) {
+		return await this._DELETE('/v3/auth/totp', {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ code: code }),
+			expect: 'json',
+		});
 	}
 }
 

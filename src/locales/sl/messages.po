@@ -48,8 +48,8 @@ msgstr "7 (+ razdrobljen format MP4)"
 #: src/views/Edit/Profile.js:599
 #: src/views/Edit/Wizard/Abort.js:14
 #: src/views/Publication/Edit.js:631
-#: src/views/Settings.js:2278
-#: src/views/Settings.js:2300
+#: src/views/Settings.js:2285
+#: src/views/Settings.js:2307
 msgid "Abort"
 msgstr "Prekliči"
 
@@ -111,7 +111,7 @@ msgstr ""
 #: src/views/Publication/Services/SRT.js:161
 #: src/views/Publication/Services/UDP.js:127
 #: src/views/Publication/Services/WOWZA.js:132
-#: src/views/Settings.js:1396
+#: src/views/Settings.js:1397
 msgid "Address"
 msgstr "Naslov"
 
@@ -119,11 +119,11 @@ msgstr "Naslov"
 msgid "Address for the background image."
 msgstr "Povezava do slike za ozadje."
 
-#: src/views/Settings.js:1426
+#: src/views/Settings.js:1427
 msgid "Address to listen on for HTTP requests."
 msgstr "Naslov za sprejem HTTP zahtev."
 
-#: src/views/Settings.js:1440
+#: src/views/Settings.js:1441
 msgid "Address to listen on for HTTPS requests."
 msgstr "Naslov za sprejem HTTPS zahtev."
 
@@ -138,7 +138,7 @@ msgstr "Naslov:"
 msgid "Adjust publication site colors and background as you like."
 msgstr "Barve in ozadje mesta za objavo prilagodite po želji."
 
-#: src/views/Login.js:322
+#: src/views/Login.js:445
 msgid "Advanced monitoring"
 msgstr "Napredno spremljanje"
 
@@ -164,7 +164,7 @@ msgstr "Napredna nastavitev"
 msgid "AirPlay"
 msgstr "AirPlay"
 
-#: src/views/Login.js:325
+#: src/views/Login.js:448
 msgid "Alerting by email"
 msgstr "Opozarjanje po e-pošti"
 
@@ -176,15 +176,15 @@ msgstr "Vse"
 msgid "All frames"
 msgstr "Vsi okvirji"
 
-#: src/views/Settings.js:1257
+#: src/views/Settings.js:1258
 msgid "All important system settings."
 msgstr "Vse pomembne sistemske nastavitve."
 
-#: src/views/Settings.js:1594
+#: src/views/Settings.js:1601
 msgid "Allow all referrer"
 msgstr "Dovolite vse napotitelje"
 
-#: src/views/Settings.js:1634
+#: src/views/Settings.js:1641
 msgid "Allow counting how many viewers the stream has."
 msgstr "Omogoča štetje, koliko gledalcev ima tok."
 
@@ -200,11 +200,11 @@ msgstr "Zvočna amplituda"
 msgid "An environment variable sets this value."
 msgstr "To vrednost določa spremenljivka okolja."
 
-#: src/views/Settings.js:1000
+#: src/views/Settings.js:1001
 msgid "API endpoint not found. Settings not saved."
 msgstr "Končna točka API ni bila najdena. Nastavitve niso shranjene."
 
-#: src/views/Settings.js:1989
+#: src/views/Settings.js:1996
 msgid "App"
 msgstr "App"
 
@@ -246,24 +246,30 @@ msgstr "Nastavitve zvoka"
 msgid "Audio setup"
 msgstr "Nastavitev zvoka"
 
-#: src/views/Login.js:236
+#: src/views/Login.js:299
 msgid "Auth0"
 msgstr "Preverjanje pristnosti (Auth0)"
 
-#: src/views/Login.js:356
+#: src/views/Login.js:479
 msgid "Auth0 is currently not available because this interface is loaded from an insecure origin."
 msgstr "Auth0 trenutno ni na voljo, ker je ta vmesnik naložen iz nezanesljivega izvora."
 
-#: src/views/Login.js:365
+#: src/views/Login.js:488
 msgid "Auth0 Tenant"
 msgstr "Auth0 Najemnik"
+
+#: src/misc/TOTPSettings.js:150
+#: src/misc/TOTPSettings.js:188
+#: src/views/Login.js:383
+msgid "Authenticator code"
+msgstr ""
 
 #: src/misc/controls/Metadata.js:71
 msgid "Author"
 msgstr "Avtor"
 
-#: src/views/Settings.js:1236
-#: src/views/Settings.js:1529
+#: src/views/Settings.js:1237
+#: src/views/Settings.js:1530
 msgid "Authorization"
 msgstr "Avtorizacija"
 
@@ -298,6 +304,7 @@ msgstr "avoid_negative_ts"
 #: src/views/Edit/Wizard/Metadata.js:35
 #: src/views/Edit/Wizard/Video.js:66
 #: src/views/Edit/Wizard/VideoProfile.js:67
+#: src/views/Login.js:420
 #: src/views/Publication/Add.js:561
 msgid "Back"
 msgstr "Nazaj"
@@ -331,7 +338,7 @@ msgstr "Nadomesten URL"
 msgid "Bandwidth"
 msgstr "Pasovna širina"
 
-#: src/views/Settings.js:1485
+#: src/views/Settings.js:1486
 msgid "Bandwidth control"
 msgstr "Pretočna kontrola"
 
@@ -339,8 +346,8 @@ msgstr "Pretočna kontrola"
 msgid "Banner"
 msgstr "Baner"
 
-#: src/views/Login.js:241
-#: src/views/Settings.js:1534
+#: src/views/Login.js:304
+#: src/views/Settings.js:1535
 msgid "Basic"
 msgstr "Osnovni"
 
@@ -353,7 +360,7 @@ msgstr "Dejavnik piskanja"
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: src/views/Settings.js:1903
+#: src/views/Settings.js:1910
 msgid "Block cache types"
 msgstr "Vrste blokovnega predpomnilnika"
 
@@ -386,17 +393,21 @@ msgstr "Po višini"
 msgid "By width"
 msgstr "Po širini"
 
-#: src/views/Settings.js:1805
+#: src/views/Settings.js:1812
 msgid "Cache for files on /data."
 msgstr "Predpomnilnik za datoteke na /data."
 
-#: src/views/Settings.js:1847
+#: src/views/Settings.js:1854
 msgid "Cache time (Seconds)"
 msgstr "Čas predpomnilnika (sekunde)"
 
-#: src/views/Settings.js:1888
+#: src/views/Settings.js:1895
 msgid "Cache types"
 msgstr "Vrste predpomnilnika"
+
+#: src/misc/TOTPSettings.js:206
+msgid "Cancel"
+msgstr ""
 
 #: src/misc/coders/Encoders/video/h264_v4l2m2m.js:193
 msgid "Capture buffer"
@@ -418,7 +429,7 @@ msgstr "Kanal \"{0}\" shranjen"
 msgid "Channels"
 msgstr "Kanali"
 
-#: src/views/Settings.js:1266
+#: src/views/Settings.js:1267
 msgid "Check for updates"
 msgstr "Preveri za posodobitve"
 
@@ -456,7 +467,7 @@ msgstr "Izbira med CFR in VFR (samodejno)"
 msgid "Choose codec ..."
 msgstr "Izberi kodek ..."
 
-#: src/views/Login.js:367
+#: src/views/Login.js:490
 msgid "Choose tenant ..."
 msgstr "Izberite najemnika..."
 
@@ -479,7 +490,7 @@ msgstr "Chunk"
 #: src/views/Publication/Add.js:558
 #: src/views/Publication/Edit.js:595
 #: src/views/Publication/Player.js:536
-#: src/views/Settings.js:2219
+#: src/views/Settings.js:2226
 msgid "Close"
 msgstr "Zapri"
 
@@ -501,9 +512,17 @@ msgstr "Barva"
 msgid "Command"
 msgstr "Ukaz"
 
-#: src/views/Settings.js:1376
+#: src/views/Settings.js:1377
 msgid "Config"
 msgstr "Konfiguracija"
+
+#: src/misc/TOTPSettings.js:158
+msgid "Confirm and enable"
+msgstr ""
+
+#: src/misc/TOTPSettings.js:203
+msgid "Confirm disable"
+msgstr ""
 
 #: src/views/Password.js:134
 msgid "Confirm password"
@@ -635,7 +654,7 @@ msgstr "Format po meri"
 msgid "Custom framerate"
 msgstr "Kadriranje po meri"
 
-#: src/views/Settings.js:1382
+#: src/views/Settings.js:1383
 msgid "Custom JSON config for datarhei Core."
 msgstr "Konfiguracija JSON po meri za datarhei Core."
 
@@ -765,6 +784,10 @@ msgstr "Oblikovanje"
 msgid "Device"
 msgstr "Naprava"
 
+#: src/misc/TOTPSettings.js:173
+msgid "Disable TOTP"
+msgstr ""
+
 #: src/misc/ActionButton.js:24
 #: src/misc/ActionButton.js:45
 #: src/misc/ActionButton.js:59
@@ -781,12 +804,12 @@ msgid "Disconnecting ..."
 msgstr "Prekinjam ..."
 
 #: src/misc/controls/HLS.js:70
-#: src/views/Settings.js:1767
+#: src/views/Settings.js:1774
 msgid "Disk"
 msgstr "Disk"
 
-#: src/views/Settings.js:1802
-#: src/views/Settings.js:1810
+#: src/views/Settings.js:1809
+#: src/views/Settings.js:1817
 msgid "Disk cache"
 msgstr "Diskovni predpomnilnik"
 
@@ -795,7 +818,7 @@ msgstr "Diskovni predpomnilnik"
 msgid "Disk storage"
 msgstr "Shranjevanje diskov"
 
-#: src/views/Settings.js:2310
+#: src/views/Settings.js:2317
 msgid "Do you really want to restart the application now?"
 msgstr "Ali res želite zdaj znova zagnati aplikacijo?"
 
@@ -860,7 +883,7 @@ msgstr "EDIT: Igralec"
 msgid "EDIT: Publication Website"
 msgstr "EDIT: Spletna stran publikacije"
 
-#: src/views/Settings.js:1466
+#: src/views/Settings.js:1467
 msgid "Email"
 msgstr "E-pošta"
 
@@ -914,11 +937,15 @@ msgstr "Omogočanje posnetkov"
 msgid "Enable SRT server ..."
 msgstr "Omogočite strežnik SRT ..."
 
-#: src/views/Settings.js:1549
+#: src/misc/TOTPSettings.js:118
+msgid "Enable TOTP"
+msgstr ""
+
+#: src/views/Settings.js:1550
 msgid "Enabling authorization is strongly advised. Otherwise, anybody can access this instance."
 msgstr "Omogočanje avtorizacije je zelo priporočljivo. V nasprotnem primeru lahko do tega primerka dostopa vsakdo."
 
-#: src/views/Settings.js:1709
+#: src/views/Settings.js:1716
 msgid "Enabling basic auth is strongly advised. Otherwise, anybody could write data to /memfs."
 msgstr "Priporočamo, da omogočite osnovno avtentikacijo. V nasprotnem primeru lahko podatke v /memfs zapiše kdor koli."
 
@@ -938,6 +965,10 @@ msgstr "Enkodiranje"
 msgid "Encryption"
 msgstr "Zaščita"
 
+#: src/misc/TOTPSettings.js:181
+msgid "Enter a code from your authenticator app to disable two-factor authentication."
+msgstr ""
+
 #: src/misc/ChannelList.js:432
 msgid "Enter a name for the new channel."
 msgstr "Vnesite ime novega kanala."
@@ -945,6 +976,10 @@ msgstr "Vnesite ime novega kanala."
 #: src/views/Password.js:122
 msgid "Enter password"
 msgstr "Vnesite geslo"
+
+#: src/views/Login.js:375
+msgid "Enter the 6-digit code from your authenticator app."
+msgstr ""
 
 #: src/views/Edit/Sources/Network.js:758
 #: src/views/Edit/Wizard/Sources/Network.js:59
@@ -963,7 +998,7 @@ msgstr "Kodirnik entropije"
 #: src/views/Incompatible.js:30
 #: src/views/Invalid.js:29
 #: src/views/Publication/Process.js:63
-#: src/views/Settings.js:1202
+#: src/views/Settings.js:1203
 msgid "Error"
 msgstr "Napaka"
 
@@ -986,7 +1021,7 @@ msgstr "Razširi območje nad seznamom kanalov (klepet v živo)."
 msgid "Expands the area under the channel description (comment boxes)."
 msgstr "Razširi območje pod opisom kanala (polja za komentarje)."
 
-#: src/views/Settings.js:1293
+#: src/views/Settings.js:1294
 msgid "Expert mode"
 msgstr "Strokovni način"
 
@@ -1023,7 +1058,7 @@ msgstr "Ni uspelo ustvariti datotek spletne strani objave."
 msgid "Failed to probe the source. Please check the <0>probe details</0>."
 msgstr "Ni uspelo preveriti vira. Prosimo, preverite <0>podrobnosti o sondi</0>."
 
-#: src/utils/restreamer.js:449
+#: src/utils/restreamer.js:521
 msgid "Failed to refresh token: {0}"
 msgstr "Ni uspelo osvežiti žetona: {0}"
 
@@ -1064,7 +1099,7 @@ msgstr "Ni uspelo posodobiti mesta igralcev"
 msgid "Failed to verify the source. Please check the address."
 msgstr "Ni uspelo preveriti vira. Preverite naslov."
 
-#: src/views/Settings.js:2181
+#: src/views/Settings.js:2188
 msgid "FFmpeg"
 msgstr "FFmpeg"
 
@@ -1158,8 +1193,8 @@ msgstr "Frekvenca (Hz)"
 #: src/views/Publication/Services/RTMP.js:181
 #: src/views/Publication/Services/RTSP.js:169
 #: src/views/Publication/Services/SRT.js:177
-#: src/views/Settings.js:1231
-#: src/views/Settings.js:1252
+#: src/views/Settings.js:1232
+#: src/views/Settings.js:1253
 msgid "General"
 msgstr "Splošno"
 
@@ -1218,7 +1253,7 @@ msgstr "Izhod HLS"
 msgid "HLS server"
 msgstr "Strežnik HLS"
 
-#: src/views/Settings.js:1626
+#: src/views/Settings.js:1633
 msgid "HLS statistic for the In-memory storage"
 msgstr "Statistika HLS za shranjevanje v pomnilniku"
 
@@ -1226,7 +1261,7 @@ msgstr "Statistika HLS za shranjevanje v pomnilniku"
 msgid "Horizontal Flip"
 msgstr "Vodoravni flip"
 
-#: src/views/Login.js:319
+#: src/views/Login.js:442
 msgid "Hosted Restreamer interface"
 msgstr "Gostovani vmesnik Restreamer"
 
@@ -1234,27 +1269,27 @@ msgstr "Gostovani vmesnik Restreamer"
 msgid "HTTP and HTTPS"
 msgstr "HTTP in HTTPS"
 
-#: src/views/Settings.js:1418
+#: src/views/Settings.js:1419
 msgid "HTTP port"
 msgstr "Vrata HTTP"
 
-#: src/views/Settings.js:1448
+#: src/views/Settings.js:1449
 msgid "HTTPS (SSL/TLS)"
 msgstr "HTTPS (SSL/TLS)"
 
-#: src/views/Settings.js:1432
+#: src/views/Settings.js:1433
 msgid "HTTPS port"
 msgstr "Vrata HTTPS"
 
-#: src/views/Settings.js:1352
+#: src/views/Settings.js:1353
 msgid "Human readable name on the service."
 msgstr "Človeku berljivo ime storitve."
 
-#: src/views/Settings.js:2255
+#: src/views/Settings.js:2262
 msgid "If you changed the ports, it might be that Restreamer Core restarted already, but it is now available on a different port."
 msgstr "Če ste spremenili vrata, se je morda Restreamer Core že ponovno zagnal, vendar je zdaj na voljo na drugih vratih."
 
-#: src/views/Settings.js:2249
+#: src/views/Settings.js:2256
 msgid "If you enabled Let's Encrypt TLS it might take some time to acquire the certificates. Make sure that Restreamer Core is reachable via port 80 from the internet. Please check the console log of Restreamer Core."
 msgstr "Če ste omogočili funkcijo Let's Encrypt TLS, bo pridobivanje potrdil morda trajalo nekaj časa. Prepričajte se, da je Restreamer Core iz interneta dosegljiv prek vrat 80. Preverite dnevnik konzole Restreamer Core."
 
@@ -1262,7 +1297,7 @@ msgstr "Če ste omogočili funkcijo Let's Encrypt TLS, bo pridobivanje potrdil m
 msgid "iframe code"
 msgstr "koda iframe"
 
-#: src/views/Settings.js:1641
+#: src/views/Settings.js:1648
 msgid "Ignore IP ranges"
 msgstr "Ignoriranje območij IP"
 
@@ -1285,7 +1320,7 @@ msgid "In order to proceed anyways, you can provide <0>hints</0> about the avail
 msgstr ""
 
 #: src/misc/controls/HLS.js:67
-#: src/views/Settings.js:1693
+#: src/views/Settings.js:1700
 msgid "In-memory"
 msgstr "V pomnilniku"
 
@@ -1362,11 +1397,11 @@ msgstr "Interval med ključnimi kadri (sekunde)"
 msgid "Layout"
 msgstr "Postavitev"
 
-#: src/views/Settings.js:1453
+#: src/views/Settings.js:1454
 msgid "Let's Encrypt certification"
 msgstr "Certificiranje Let's Encrypt"
 
-#: src/views/Settings.js:1461
+#: src/views/Settings.js:1462
 msgid "Let's Encrypt requires one or more public domain names and an accessible port 80/TCP."
 msgstr "Program Let's Encrypt zahteva eno ali več javnih domenskih imen in dostopna vrata 80/TCP."
 
@@ -1374,7 +1409,7 @@ msgstr "Program Let's Encrypt zahteva eno ali več javnih domenskih imen in dost
 msgid "Level"
 msgstr "Raven"
 
-#: src/views/Settings.js:2162
+#: src/views/Settings.js:2169
 msgid "Level of system protocol."
 msgstr "Raven sistemskega protokola."
 
@@ -1411,15 +1446,15 @@ msgstr "Povezava"
 msgid "Link, mouseover"
 msgstr "Povezava, premik z miško"
 
-#: src/views/Settings.js:1911
+#: src/views/Settings.js:1918
 msgid "List of file extensions not to cache (e.g. \".m3u8\"), one per line. Leave empty for none."
 msgstr "Seznam končnic datotek, ki jih ne želite predpomniti (npr. \".m3u8\"), po ena v vrstici. Pustite prazno za nobena."
 
-#: src/views/Settings.js:1896
+#: src/views/Settings.js:1903
 msgid "List of file extensions to cache (e.g. \".html\"), one per line. Leave empty to cache all file types."
 msgstr "Seznam končnic datotek za predpomnilnik (npr. \".html\"), po ena v vrstici. Pustite prazno, če želite predpomnilnik za vse vrste datotek."
 
-#: src/views/Settings.js:1649
+#: src/views/Settings.js:1656
 msgid "List of IP ranges in CIDR notation, e.g., 127.0.0.1/32, that the statistics will not record—one IP range per line. Leave empty to record all sessions."
 msgstr "Seznam območij IP v zapisu CIDR, npr. 127.0.0.1/32, ki jih statistika ne bo zabeležila - eno območje IP na vrstico. Pustite prazno, če želite beležiti vse seje."
 
@@ -1467,36 +1502,36 @@ msgstr "Prenos v živo v storitev Vimeo Live RTMP"
 msgid "Livesource ID"
 msgstr "ID življenjskega vira"
 
-#: src/views/Settings.js:2114
+#: src/views/Settings.js:2121
 msgid "Log level"
 msgstr "Raven dnevnika"
 
 #: src/misc/modals/Process.js:153
-#: src/views/Settings.js:1241
-#: src/views/Settings.js:2090
+#: src/views/Settings.js:1242
+#: src/views/Settings.js:2097
 msgid "Logging"
 msgstr "Prijava"
 
-#: src/views/Login.js:297
-#: src/views/Login.js:391
-#: src/views/Login.js:406
+#: src/views/Login.js:360
+#: src/views/Login.js:514
+#: src/views/Login.js:529
 #: src/views/Publication/Services/Akamai.js:124
 msgid "Login"
 msgstr "Prijava"
 
-#: src/utils/restreamer.js:262
-#: src/utils/restreamer.js:296
+#: src/utils/restreamer.js:281
+#: src/utils/restreamer.js:319
 msgid "Login failed: {0}"
 msgstr "Prijava ni uspela: {0}"
 
-#: src/utils/restreamer.js:271
-#: src/utils/restreamer.js:276
-#: src/utils/restreamer.js:305
-#: src/utils/restreamer.js:310
+#: src/utils/restreamer.js:294
+#: src/utils/restreamer.js:299
+#: src/utils/restreamer.js:328
+#: src/utils/restreamer.js:333
 msgid "Login failed: Couldn't load API details"
 msgstr "Prijava ni uspela: Ni bilo mogoče naložiti podrobnosti API"
 
-#: src/views/Settings.js:1539
+#: src/views/Settings.js:1540
 msgid "Login/JWT authorization"
 msgstr "Prijava/JWT avtorizacija"
 
@@ -1562,19 +1597,19 @@ msgstr "Označeni okvirji"
 msgid "Master playlist (increases browser/client compatibility)"
 msgstr "Glavni seznam predvajanja (poveča združljivost brskalnikov/odjemalcev)"
 
-#: src/views/Settings.js:1841
+#: src/views/Settings.js:1848
 msgid "Maximum allowed cache size, 0 for unlimited."
 msgstr "Največja dovoljena velikost predpomnilnika, 0 za neomejeno."
 
-#: src/views/Settings.js:1749
+#: src/views/Settings.js:1756
 msgid "Maximum allowed megabytes of RAM for /memfs, 0 for unlimited."
 msgstr "Največji dovoljeni megabajti pomnilnika RAM za /memfs, 0 za neomejeno."
 
-#: src/views/Settings.js:1794
+#: src/views/Settings.js:1801
 msgid "Maximum allowed megabytes to consume from hard disk. 0 for unlimited."
 msgstr "Največja dovoljena poraba megabajtov s trdega diska. 0 za neomejeno."
 
-#: src/views/Settings.js:1508
+#: src/views/Settings.js:1509
 msgid "Maximum bandwidth Mbit/s"
 msgstr "Največja pasovna širina Mbit/s"
 
@@ -1582,34 +1617,34 @@ msgstr "Največja pasovna širina Mbit/s"
 msgid "Maximum delay in milliseconds."
 msgstr "Največja zamuda v milisekundah."
 
-#: src/views/Settings.js:1861
+#: src/views/Settings.js:1868
 msgid "Maximum file size (Megabytes)"
 msgstr "Največja velikost datoteke (v megabajtih)"
 
-#: src/views/Settings.js:1881
+#: src/views/Settings.js:1888
 msgid "Maximum file size to put in cache."
 msgstr "Največja velikost datoteke, ki jo je treba shraniti v predpomnilnik."
 
-#: src/views/Settings.js:2201
+#: src/views/Settings.js:2208
 msgid "Maximum log histroy"
 msgstr "Največji histroj dnevnika"
 
-#: src/views/Settings.js:2168
-#: src/views/Settings.js:2187
+#: src/views/Settings.js:2175
+#: src/views/Settings.js:2194
 msgid "Maximum log lines"
 msgstr "Največje število vrstic dnevnika"
 
-#: src/views/Settings.js:1741
-#: src/views/Settings.js:1786
-#: src/views/Settings.js:1821
+#: src/views/Settings.js:1748
+#: src/views/Settings.js:1793
+#: src/views/Settings.js:1828
 msgid "Maximum size (Megabytes)"
 msgstr "Največja velikost (v megabajtih)"
 
-#: src/views/Settings.js:1658
+#: src/views/Settings.js:1665
 msgid "Maximum viewer idle time (Seconds)"
 msgstr "Najdaljši čas mirovanja gledalca (sekunde)"
 
-#: src/views/Settings.js:1491
+#: src/views/Settings.js:1492
 msgid "Maximum viewers"
 msgstr "Največ gledalcev"
 
@@ -1653,7 +1688,7 @@ msgstr "Plesni"
 msgid "More about licenses here"
 msgstr "Več o licencah tukaj"
 
-#: src/views/Settings.js:1321
+#: src/views/Settings.js:1322
 msgid "More about the service"
 msgstr "Več o storitvi"
 
@@ -1665,11 +1700,11 @@ msgstr "Več o avtorskih pravicah Twitterja <0>tukaj</0>."
 msgid "More about YouTube's copyright <0>here</0>."
 msgstr "Več o avtorskih pravicah v YouTubu <0>tukaj</0>."
 
-#: src/views/Settings.js:1833
+#: src/views/Settings.js:1840
 msgid "Must be larger than maximum file size in cache."
 msgstr "Mora biti večja od največje velikosti datoteke v predpomnilniku."
 
-#: src/views/Settings.js:1873
+#: src/views/Settings.js:1880
 msgid "Must be smaller than maximum cache size."
 msgstr "Mora biti manjši od največje velikosti predpomnilnika."
 
@@ -1693,7 +1728,7 @@ msgstr "Utišajte desno stran"
 #: src/misc/controls/Metadata.js:76
 #: src/misc/controls/Metadata.js:98
 #: src/views/Playersite.js:521
-#: src/views/Settings.js:1344
+#: src/views/Settings.js:1345
 msgid "Name"
 msgstr "Ime"
 
@@ -1701,8 +1736,8 @@ msgstr "Ime"
 msgid "Name for the template. If the name already exists, it will be overwritten."
 msgstr "Ime predloge. Če ime že obstaja, se prepiše."
 
-#: src/views/Settings.js:1235
-#: src/views/Settings.js:1391
+#: src/views/Settings.js:1236
+#: src/views/Settings.js:1392
 msgid "Network"
 msgstr "Omrežje"
 
@@ -1773,7 +1808,7 @@ msgstr "Brez videoposnetka"
 msgid "No video stream available"
 msgstr "Video tok ni na voljo"
 
-#: src/views/Settings.js:1337
+#: src/views/Settings.js:1338
 msgid "Node ID"
 msgstr "ID vozlišča"
 
@@ -1794,12 +1829,12 @@ msgstr "Ni"
 msgid "Notes"
 msgstr "Opombe"
 
-#: src/views/Settings.js:2176
-#: src/views/Settings.js:2195
+#: src/views/Settings.js:2183
+#: src/views/Settings.js:2202
 msgid "Number of log lines to keep."
 msgstr "Število vrstic dnevnika, ki jih želite ohraniti."
 
-#: src/views/Settings.js:2209
+#: src/views/Settings.js:2216
 msgid "Number of logs to keep for each process."
 msgstr "Število dnevnikov, ki se hranijo za vsak proces."
 
@@ -1826,13 +1861,17 @@ msgstr "Število vrstic ploščic za kodiranje."
 msgid "OK"
 msgstr "V REDU"
 
-#: src/views/Settings.js:1613
+#: src/views/Settings.js:1620
 msgid "One referrer per line, e.g. http://www.example.com"
 msgstr "En referer v vsaki vrstici, npr. http://www.example.com"
 
 #: src/views/Playersite.js:839
 msgid "Open"
 msgstr "Odpri"
+
+#: src/misc/TOTPSettings.js:105
+msgid "Optional authenticator-app protection for login. When enabled, a one-time code is required in addition to the password."
+msgstr ""
 
 #: src/misc/coders/Encoders/video/h264_v4l2m2m.js:196
 msgid "Output buffer"
@@ -1843,15 +1882,15 @@ msgid "Pan"
 msgstr "Pan"
 
 #: src/views/Publication/Services/Core.js:238
-#: src/views/Settings.js:2064
+#: src/views/Settings.js:2071
 msgid "Passphrase"
 msgstr "Passphrase"
 
-#: src/views/Settings.js:2081
+#: src/views/Settings.js:2088
 msgid "Passphrase for SRT encryption."
 msgstr "geslo za šifriranje SRT."
 
-#: src/views/Settings.js:2073
+#: src/views/Settings.js:2080
 msgid "Passphrase must be between 10 and 79 characters long"
 msgstr "geslo mora biti dolgo od 10 do 79 znakov."
 
@@ -1861,7 +1900,7 @@ msgstr "Prepust (kopiranje) lahko onemogočite le, če je to potrebno. Vsako kod
 
 #: src/views/Edit/Sources/Network.js:805
 #: src/views/Edit/Wizard/Sources/Network.js:97
-#: src/views/Login.js:282
+#: src/views/Login.js:345
 #: src/views/Publication/Services/Akamai.js:134
 #: src/views/Publication/Services/DaCast.js:142
 #: src/views/Publication/Services/DASH.js:198
@@ -1869,13 +1908,13 @@ msgstr "Prepust (kopiranje) lahko onemogočite le, če je to potrebno. Vsako kod
 #: src/views/Publication/Services/Red5.js:157
 #: src/views/Publication/Services/RTSP.js:156
 #: src/views/Publication/Services/WOWZA.js:178
-#: src/views/Settings.js:1569
-#: src/views/Settings.js:1727
+#: src/views/Settings.js:1570
+#: src/views/Settings.js:1734
 msgid "Password"
 msgstr "Geslo"
 
-#: src/views/Settings.js:1575
-#: src/views/Settings.js:1735
+#: src/views/Settings.js:1576
+#: src/views/Settings.js:1742
 msgid "Password for authorization."
 msgstr "Geslo za avtorizacijo."
 
@@ -1884,7 +1923,7 @@ msgstr "Geslo za avtorizacijo."
 msgid "Password for the device."
 msgstr "Geslo za napravo."
 
-#: src/views/Settings.js:1671
+#: src/views/Settings.js:1678
 msgid "Persist viewer statistics"
 msgstr "Ohranite statistiko gledalcev"
 
@@ -1900,7 +1939,7 @@ msgstr "Format pikslov"
 msgid "Pixel Format"
 msgstr ""
 
-#: src/views/Login.js:311
+#: src/views/Login.js:434
 msgid "Plan: <0>Starter</0>"
 msgstr "Načrt: <0>Začetnik</0>"
 
@@ -1909,8 +1948,8 @@ msgid "Platforms"
 msgstr "Platforme"
 
 #: src/views/Publication/Player.js:384
-#: src/views/Settings.js:1237
-#: src/views/Settings.js:1584
+#: src/views/Settings.js:1238
+#: src/views/Settings.js:1591
 msgid "Playback"
 msgstr "Predvajanje"
 
@@ -1970,7 +2009,7 @@ msgstr "Preverite <0>dnevnik procesa</0>"
 msgid "Please contact the operator of the service and check what happens."
 msgstr "Obrnite se na operaterja storitve in preverite, kaj se dogaja."
 
-#: src/views/Settings.js:1474
+#: src/views/Settings.js:1475
 msgid "Please enter your email address to signify agreement with the Let's Encrypt CA's terms of service and to be notified in case of issues."
 msgstr "Vnesite svoj e-poštni naslov, da se strinjate s pogoji uporabe storitve Let's Encrypt CA in da boste obveščeni v primeru težav."
 
@@ -2002,7 +2041,7 @@ msgstr "Počakajte. Podatki o toku sonde ..."
 msgid "Please wait. Setting up the stream ..."
 msgstr "Počakajte. Nastavitev toka ..."
 
-#: src/views/Settings.js:2038
+#: src/views/Settings.js:2045
 msgid "Port"
 msgstr "Pristanišče"
 
@@ -2118,7 +2157,7 @@ msgstr "Protokol"
 msgid "Protocols"
 msgstr "Protokoli"
 
-#: src/views/Settings.js:1401
+#: src/views/Settings.js:1402
 msgid "Public domain/s"
 msgstr "Javna domena/e"
 
@@ -2198,7 +2237,7 @@ msgstr "Zakasnitev ponovne povezave (sekunde)"
 msgid "Reconnecting in {0}s"
 msgstr "Ponovno povezovanje v {0}s"
 
-#: src/views/Settings.js:2246
+#: src/views/Settings.js:2253
 msgid "Reconnecting to Restreamer Core failed for the last {RETRIES} seconds."
 msgstr "Ponovno vzpostavljanje povezave z jedrom Restreamer Core v zadnjih {RETRIES} sekundah ni uspelo."
 
@@ -2233,9 +2272,17 @@ msgid "Register user"
 msgstr "Registracija uporabnika"
 
 #: src/views/Password.js:178
-#: src/views/Settings.js:2266
+#: src/views/Settings.js:2273
 msgid "Reload"
 msgstr "Ponovno polnjenje"
+
+#: src/views/Login.js:399
+msgid "Remember this device for 1 year"
+msgstr ""
+
+#: src/views/Login.js:392
+msgid "Remember this device for 30 days"
+msgstr ""
 
 #: src/misc/modals/Hint.js:159
 msgid "Remove Audio"
@@ -2245,11 +2292,11 @@ msgstr ""
 #~ msgid "Remove Stream"
 #~ msgstr ""
 
-#: src/views/Settings.js:1754
+#: src/views/Settings.js:1761
 msgid "Remove the oldest entries if the /memfs is full"
 msgstr "Odstranite najstarejše vnose, če je /memfs poln"
 
-#: src/views/Settings.js:1942
+#: src/views/Settings.js:1949
 msgid "Requires activation"
 msgstr "Zahteva aktivacijo"
 
@@ -2261,28 +2308,28 @@ msgstr "Ponastavitev logotipa"
 msgid "Reset poster"
 msgstr "Ponastavitev plakata"
 
-#: src/views/Settings.js:1300
-#: src/views/Settings.js:2283
-#: src/views/Settings.js:2296
-#: src/views/Settings.js:2305
+#: src/views/Settings.js:1301
+#: src/views/Settings.js:2290
+#: src/views/Settings.js:2303
+#: src/views/Settings.js:2312
 msgid "Restart"
 msgstr "Ponovni zagon"
 
-#: src/views/Settings.js:2274
+#: src/views/Settings.js:2281
 msgid "Restart required"
 msgstr "Potreben ponovni zagon"
 
 #: src/views/Password.js:155
-#: src/views/Settings.js:2234
+#: src/views/Settings.js:2241
 msgid "Restarting"
 msgstr "Ponovni zagon spletne strani"
 
 #: src/views/Password.js:160
-#: src/views/Settings.js:2239
+#: src/views/Settings.js:2246
 msgid "Restarting Restreamer Core ..."
 msgstr "Ponovni zagon jedra Restreamerja ..."
 
-#: src/views/Settings.js:1108
+#: src/views/Settings.js:1109
 msgid "Restarting the application failed."
 msgstr "Ponovni zagon aplikacije ni uspel."
 
@@ -2290,7 +2337,7 @@ msgstr "Ponovni zagon aplikacije ni uspel."
 msgid "Restreamer instructions"
 msgstr "Navodila za ponovno snemanje"
 
-#: src/views/Settings.js:1328
+#: src/views/Settings.js:1329
 msgid "Restreamer Service"
 msgstr "Storitev ponastavljanja"
 
@@ -2300,7 +2347,7 @@ msgstr "Pridobivanje podatkov o toku ..."
 
 #: src/views/Edit/Wizard/Error.js:26
 #: src/views/Invalid.js:43
-#: src/views/Settings.js:1209
+#: src/views/Settings.js:1210
 msgid "Retry"
 msgstr "Ponovitev"
 
@@ -2313,12 +2360,12 @@ msgid "Rotate"
 msgstr "Obračanje"
 
 #: src/views/Main/index.js:415
-#: src/views/Settings.js:1239
-#: src/views/Settings.js:1920
+#: src/views/Settings.js:1240
+#: src/views/Settings.js:1927
 msgid "RTMP"
 msgstr "RTMP"
 
-#: src/views/Settings.js:1997
+#: src/views/Settings.js:2004
 msgid "RTMP app for publishing."
 msgstr "Aplikacija RTMP za objavo."
 
@@ -2326,12 +2373,12 @@ msgstr "Aplikacija RTMP za objavo."
 msgid "RTMP output"
 msgstr "Izhod RTMP"
 
-#: src/views/Settings.js:1962
+#: src/views/Settings.js:1969
 msgid "RTMP Port"
 msgstr "Pristanišče RTMP"
 
 #: src/views/Edit/Wizard/Sources/InternalRTMP.js:154
-#: src/views/Settings.js:1925
+#: src/views/Settings.js:1932
 msgid "RTMP server"
 msgstr "Strežnik RTMP"
 
@@ -2340,23 +2387,23 @@ msgstr "Strežnik RTMP"
 msgid "RTMP server is not enabled"
 msgstr "Strežnik RTMP ni omogočen"
 
-#: src/views/Settings.js:1970
+#: src/views/Settings.js:1977
 msgid "RTMP server listen address."
 msgstr "Naslov za poslušanje strežnika RTMP."
 
-#: src/views/Settings.js:2010
+#: src/views/Settings.js:2017
 msgid "RTMP token for publishing and playing. The token is the value of the URL query parameter 'token.'"
 msgstr "žeton RTMP za objavo in predvajanje. Token je vrednost parametra poizvedbe URL 'token'."
 
-#: src/views/Settings.js:1976
+#: src/views/Settings.js:1983
 msgid "RTMPS Port"
 msgstr "Pristanišče RTMPS"
 
-#: src/views/Settings.js:1933
+#: src/views/Settings.js:1940
 msgid "RTMPS server"
 msgstr "Strežnik RTMPS"
 
-#: src/views/Settings.js:1984
+#: src/views/Settings.js:1991
 msgid "RTMPS server listen address."
 msgstr "Naslov za poslušanje strežnika RTMPS."
 
@@ -2380,7 +2427,7 @@ msgstr "Vzorčenje"
 #: src/views/Publication/Add.js:567
 #: src/views/Publication/Edit.js:601
 #: src/views/Publication/Player.js:542
-#: src/views/Settings.js:2224
+#: src/views/Settings.js:2231
 msgid "Save"
 msgstr "Shrani"
 
@@ -2395,7 +2442,11 @@ msgstr "Lestvica"
 msgid "Scale size"
 msgstr "Velikost lestvice"
 
-#: src/views/Settings.js:1855
+#: src/misc/TOTPSettings.js:126
+msgid "Scan the QR code with your authenticator app, or enter the secret manually, then confirm with a generated code."
+msgstr ""
+
+#: src/views/Settings.js:1862
 msgid "Seconds to keep files in cache."
 msgstr "Sekunde za shranjevanje datotek v predpomnilniku."
 
@@ -2411,7 +2462,11 @@ msgstr "Sekunde do zaključka procesa, ki je bil zaustavljen."
 msgid "Seconds until the snapshot/thumbnail of the video source is updated."
 msgstr "Sekunde do posodobitve posnetka/malenkosti vira videoposnetka."
 
-#: src/views/Settings.js:1589
+#: src/misc/TOTPSettings.js:144
+msgid "Secret"
+msgstr ""
+
+#: src/views/Settings.js:1596
 msgid "Security"
 msgstr "Varnost"
 
@@ -2488,7 +2543,7 @@ msgstr "Izbrani kanal"
 msgid "Selection"
 msgstr "Izbor"
 
-#: src/views/Settings.js:1284
+#: src/views/Settings.js:1285
 msgid "Send anonymous metrics (helps us for future development)"
 msgstr "Pošljite anonimne metrike (pomagajo nam pri prihodnjem razvoju)"
 
@@ -2520,9 +2575,9 @@ msgid "Server URL"
 msgstr "URL strežnika"
 
 #: src/Header.js:257
-#: src/views/Login.js:246
-#: src/views/Settings.js:1233
-#: src/views/Settings.js:1314
+#: src/views/Login.js:309
+#: src/views/Settings.js:1234
+#: src/views/Settings.js:1315
 msgid "Service"
 msgstr "Storitev"
 
@@ -2531,7 +2586,7 @@ msgstr "Storitev"
 msgid "Service name"
 msgstr "Ime storitve"
 
-#: src/views/Settings.js:1365
+#: src/views/Settings.js:1366
 msgid "Service token for monitoring."
 msgstr "Storitveni žeton za spremljanje."
 
@@ -2543,35 +2598,35 @@ msgstr "Seje"
 msgid "Set the rav1e configuration using a :-separated list of key=value parameters."
 msgstr "Nastavitev konfiguracije rav1e z uporabo :-razdeljenega seznama parametrov ključ=vrednost."
 
-#: src/views/Settings.js:1516
+#: src/views/Settings.js:1517
 msgid "Sets a bandwidth limit in Mbit per second for outgoing HLS data transfer. All services, such as RTMP and outgoing processes, are included in the calculation. If the bandwidth is exceeded, HLS viewers receive the HTTP status code 509 (Bandwidth Limit Exceeded). 0 is unlimited."
 msgstr "Nastavi omejitev pasovne širine v Mbit na sekundo za izhodni prenos podatkov HLS. V izračun so vključene vse storitve, kot so RTMP in odhodni procesi. Če je pasovna širina presežena, gledalci HLS prejmejo kodo stanja HTTP 509 (Presežena omejitev pasovne širine). 0 pomeni neomejeno."
 
-#: src/views/Settings.js:1499
+#: src/views/Settings.js:1500
 msgid "Sets a viewer limit for HLS sessions. If the limit is exceeded, HLS viewers receive the HTTP status code 509 (Bandwidth Limit Exceeded). 0 is unlimited."
 msgstr "Nastavi omejitev gledalcev za seje HLS. Če je omejitev presežena, gledalci HLS prejmejo kodo stanja HTTP 509 (omejitev pasovne širine presežena). 0 pomeni neomejeno."
 
-#: src/views/Settings.js:1319
+#: src/views/Settings.js:1320
 msgid "Setting for connection to the service."
 msgstr "Nastavitev za povezavo s storitvijo."
 
-#: src/views/Settings.js:1219
+#: src/views/Settings.js:1220
 msgid "Settings"
 msgstr "Nastavitve"
 
-#: src/views/Settings.js:1221
+#: src/views/Settings.js:1222
 msgid "Settings (expert mode)"
 msgstr "Nastavitve (strokovni način)"
 
-#: src/views/Settings.js:1770
+#: src/views/Settings.js:1777
 msgid "Settings for /data path. The access is protected by"
 msgstr "Nastavitve za pot /data. Dostop je zaščiten z"
 
-#: src/views/Settings.js:1696
+#: src/views/Settings.js:1703
 msgid "Settings for /memfs path."
 msgstr "Nastavitve za pot /memfs."
 
-#: src/views/Settings.js:1051
+#: src/views/Settings.js:1052
 msgid "Settings saved. All changes will be applied after restarting the application."
 msgstr "Shranjene nastavitve. Vse spremembe se bodo uporabile po ponovnem zagonu aplikacije."
 
@@ -2583,7 +2638,7 @@ msgstr "Gumb za deljenje"
 msgid "Shows a reference to the project."
 msgstr "Prikaže referenco na projekt."
 
-#: src/views/Login.js:332
+#: src/views/Login.js:455
 msgid "Sign up (free)"
 msgstr "Prijavite se (brezplačno)"
 
@@ -2612,7 +2667,7 @@ msgstr "Velikost"
 msgid "Snapshot"
 msgstr "Posnetek"
 
-#: src/views/Login.js:316
+#: src/views/Login.js:439
 msgid "Social-login (OAuth2, 2FA)"
 msgstr "Prijava v družabnem omrežju (OAuth2, 2FA)"
 
@@ -2648,8 +2703,8 @@ msgid "Speed Preset"
 msgstr "Prednastavitev hitrosti"
 
 #: src/views/Main/index.js:425
-#: src/views/Settings.js:1240
-#: src/views/Settings.js:2019
+#: src/views/Settings.js:1241
+#: src/views/Settings.js:2026
 msgid "SRT"
 msgstr "SRT"
 
@@ -2658,7 +2713,7 @@ msgid "SRT output"
 msgstr "Izhod SRT"
 
 #: src/views/Edit/Wizard/Sources/InternalSRT.js:152
-#: src/views/Settings.js:2024
+#: src/views/Settings.js:2031
 msgid "SRT server"
 msgstr "Strežnik SRT"
 
@@ -2667,11 +2722,11 @@ msgstr "Strežnik SRT"
 msgid "SRT server is not enabled"
 msgstr "Strežnik SRT ni omogočen"
 
-#: src/views/Settings.js:2046
+#: src/views/Settings.js:2053
 msgid "SRT server listen address."
 msgstr "Naslov za poslušanje strežnika SRT."
 
-#: src/views/Settings.js:2059
+#: src/views/Settings.js:2066
 msgid "SRT token for publishing and playing. The token is the value of the streamid parameter 'token.'"
 msgstr "Žeton SRT za objavo in predvajanje. Token je vrednost parametra streamid 'token'."
 
@@ -2683,17 +2738,17 @@ msgstr "Časovna omejitev za zastaranje (sekunde)"
 msgid "start_at_zero"
 msgstr "start_at_zero"
 
-#: src/views/Settings.js:1621
+#: src/views/Settings.js:1628
 msgid "Statistics"
 msgstr "Statistika"
 
 #: src/misc/controls/HLS.js:65
-#: src/views/Settings.js:1238
-#: src/views/Settings.js:1688
+#: src/views/Settings.js:1239
+#: src/views/Settings.js:1695
 msgid "Storage"
 msgstr "Shranjevanje"
 
-#: src/views/Settings.js:1679
+#: src/views/Settings.js:1686
 msgid "Stores the viewer statistics to the disk."
 msgstr "Na disk shrani statistiko pregledovalnika."
 
@@ -2768,7 +2823,7 @@ msgstr "Podpira HTTP (HLS, DASH), RTP, RTSP, RTMP, SRT in druge."
 
 #: src/Footer.js:184
 #: src/Header.js:275
-#: src/views/Settings.js:2095
+#: src/views/Settings.js:2102
 msgid "System"
 msgstr "Sistem"
 
@@ -2805,7 +2860,7 @@ msgstr "Barve besedila"
 msgid "The amplitude (0.0 - 1.0) of the generated audio stream"
 msgstr "Amplituda (0,0 - 1,0) ustvarjenega zvočnega toka"
 
-#: src/views/Settings.js:1304
+#: src/views/Settings.js:1305
 msgid "The application is using an older version of the settings."
 msgstr "Aplikacija uporablja starejšo različico nastavitev."
 
@@ -2860,7 +2915,7 @@ msgstr "Barva šuma"
 msgid "The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission."
 msgstr "Oseba, ki je delo povezala s tem dejanjem, je delo namenila javni domeni tako, da se je odpovedala vsem svojim pravicam do dela po vsem svetu v skladu z zakonom o avtorskih pravicah, vključno z vsemi sorodnimi in sosedskimi pravicami, kolikor je to dovoljeno z zakonom. Delo lahko kopirate, spreminjate, razširjate in izvajate, tudi v komercialne namene, vse to brez prošnje za dovoljenje."
 
-#: src/views/Settings.js:1409
+#: src/views/Settings.js:1410
 msgid "The public reachable domain name of the host this Restreamer is running on. Separate multiple domain names by a comma."
 msgstr "Javno dosegljivo ime domene gostitelja, v katerem deluje ta predvajalnik. Več domenskih imen ločite z vejico."
 
@@ -2943,11 +2998,11 @@ msgstr "Vir videoposnetka ne zagotavlja združljivega zvočnega toka. Priporoča
 msgid "The video source is compatible. Select the desired resolution:"
 msgstr "Vir videoposnetka je združljiv. Izberite želeno ločljivost:"
 
-#: src/views/Settings.js:1276
+#: src/views/Settings.js:1277
 msgid "There are updates available. Here you get more information."
 msgstr "Na voljo so posodobitve. Tukaj dobite več informacij."
 
-#: src/views/Settings.js:1004
+#: src/views/Settings.js:1005
 msgid "There was a problem storing the settings. Settings not saved."
 msgstr "Pri shranjevanju nastavitev je prišlo do težave. Nastavitve niso shranjene."
 
@@ -2966,11 +3021,11 @@ msgstr "Med nalaganjem je prišlo do napake: {0}"
 msgid "There was an error setting up the stream."
 msgstr "Pri nastavljanju toka je prišlo do napake."
 
-#: src/views/Settings.js:1002
+#: src/views/Settings.js:1003
 msgid "There were some errors in the settings. Settings not saved."
 msgstr "V nastavitvah je bilo nekaj napak. Nastavitve niso bile shranjene."
 
-#: src/views/Login.js:257
+#: src/views/Login.js:320
 msgid "There's no login method available."
 msgstr "Na voljo ni načina prijave."
 
@@ -3046,7 +3101,7 @@ msgstr "Vrstice ploščic"
 msgid "Tiles"
 msgstr "Ploščice"
 
-#: src/views/Settings.js:1666
+#: src/views/Settings.js:1673
 msgid "Time until an inactive viewer connection is treated as closed."
 msgstr "Čas, dokler se neaktivna povezava gledalca ne obravnava kot zaprta."
 
@@ -3054,15 +3109,31 @@ msgstr "Čas, dokler se neaktivna povezava gledalca ne obravnava kot zaprta."
 msgid "To stabilize the system, increase the HLS segment length for the keyframe interval by 2-3 * (Processing and Control)."
 msgstr "Za stabilizacijo sistema povečajte dolžino segmenta HLS za interval ključnih slik za 2-3 * (Obdelava in nadzor)."
 
-#: src/views/Settings.js:1357
-#: src/views/Settings.js:2002
-#: src/views/Settings.js:2051
+#: src/views/Settings.js:1358
+#: src/views/Settings.js:2009
+#: src/views/Settings.js:2058
 msgid "Token"
 msgstr "Žeton"
 
 #: src/misc/filters/video/Bwdif.js:59
 msgid "Top field"
 msgstr "Vrhunsko področje"
+
+#: src/utils/restreamer.js:382
+msgid "TOTP disable failed: {0}"
+msgstr ""
+
+#: src/utils/restreamer.js:367
+msgid "TOTP enable failed: {0}"
+msgstr ""
+
+#: src/misc/TOTPSettings.js:167
+msgid "TOTP is enabled for this Restreamer instance."
+msgstr ""
+
+#: src/utils/restreamer.js:357
+msgid "TOTP setup failed: {0}"
+msgstr ""
 
 #: src/views/Publication/Services/Telegram.js:13
 msgid "Transmit a Livestream to a Telegram Channel."
@@ -3193,6 +3264,10 @@ msgstr "Prenaša vaš videoprenos z zahtevanim ključem, ki je bil ustvarjen v p
 msgid "Tune"
 msgstr "Uglaševanje"
 
+#: src/misc/TOTPSettings.js:100
+msgid "Two-factor authentication (TOTP)"
+msgstr ""
+
 #: src/misc/modals/Hint.js:60
 #~ msgid "Type"
 #~ msgstr ""
@@ -3202,11 +3277,11 @@ msgstr "Uglaševanje"
 msgid "UDP transport"
 msgstr "Prenos UDP"
 
-#: src/views/Settings.js:1204
+#: src/views/Settings.js:1205
 msgid "Unable to load the config."
 msgstr "Konfiguracije ni mogoče naložiti."
 
-#: src/views/Settings.js:1339
+#: src/views/Settings.js:1340
 msgid "Unique ident on the service."
 msgstr "Edinstvena identiteta storitve."
 
@@ -3268,7 +3343,7 @@ msgstr "Nalaganje plakata ni uspelo"
 msgid "Uptime"
 msgstr "Čas delovanja"
 
-#: src/views/Login.js:343
+#: src/views/Login.js:466
 msgid "Use Auth0 for your running Restreamer Core. More <0>details</0>."
 msgstr "Uporabite Auth0 za delujoče jedro Restreamer Core. Več <0>podrobnosti</0>."
 
@@ -3294,20 +3369,20 @@ msgstr "Registracija uporabnika"
 
 #: src/views/Edit/Sources/Network.js:793
 #: src/views/Edit/Wizard/Sources/Network.js:84
-#: src/views/Login.js:272
+#: src/views/Login.js:335
 #: src/views/Publication/Services/DaCast.js:131
 #: src/views/Publication/Services/DASH.js:195
 #: src/views/Publication/Services/HLS.js:184
 #: src/views/Publication/Services/Red5.js:146
 #: src/views/Publication/Services/RTSP.js:153
 #: src/views/Publication/Services/WOWZA.js:168
-#: src/views/Settings.js:1556
-#: src/views/Settings.js:1714
+#: src/views/Settings.js:1557
+#: src/views/Settings.js:1721
 msgid "Username"
 msgstr "Uporabniško ime"
 
-#: src/views/Settings.js:1562
-#: src/views/Settings.js:1722
+#: src/views/Settings.js:1563
+#: src/views/Settings.js:1729
 msgid "Username for authorization."
 msgstr "Uporabniško ime za avtorizacijo."
 
@@ -3327,6 +3402,10 @@ msgstr "Spremenljiva hitrost sličic (VFR)"
 #: src/views/Edit/Sources/VirtualAudio.js:116
 msgid "velvet"
 msgstr "žamet"
+
+#: src/views/Login.js:415
+msgid "Verify and login"
+msgstr ""
 
 #: src/misc/filters/video/VFlip.js:65
 msgid "Vertical Flip"
@@ -3409,7 +3488,7 @@ msgstr "bela"
 msgid "Width"
 msgstr "Širina"
 
-#: src/views/Settings.js:1701
+#: src/views/Settings.js:1708
 msgid "Write protection"
 msgstr "Zaščita pri pisanju"
 
@@ -3425,7 +3504,7 @@ msgstr "Da"
 msgid "You can't abort the wizard because at least one input must be defined."
 msgstr "Čarovnika ne morete prekiniti, ker mora biti opredeljen vsaj en vnos."
 
-#: src/views/Settings.js:2288
+#: src/views/Settings.js:2295
 msgid "You have changed the configuration. In order for the changes to take effect, you have to restart the application. Do you want to restart now?"
 msgstr "Spremenili ste konfiguracijo. Da bi spremembe začele veljati, morate znova zagnati aplikacijo. Ali želite zdaj znova zagnati aplikacijo?"
 

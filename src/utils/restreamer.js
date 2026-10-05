@@ -14,6 +14,7 @@ import * as Storage from './storage';
 import * as Version from '../version';
 import API from './api';
 import { anonymize } from './anonymizer';
+import * as TOTPTrust from './totpTrust';
 
 class Restreamer {
 	constructor(address) {
@@ -75,6 +76,7 @@ class Restreamer {
 			created_at: null,
 			version: {},
 			auths: ['localjwt'],
+			totp_required: false,
 			...initialAbout,
 		};
 
@@ -139,6 +141,10 @@ class Restreamer {
 
 	Auths() {
 		return JSON.parse(JSON.stringify(this.about.auths));
+	}
+
+	TOTPRequired() {
+		return this.about.totp_required === true;
 	}
 
 	// Events
@@ -251,16 +257,33 @@ class Restreamer {
 		return true;
 	}
 
-	async Login(username, password) {
+	async Login(username, password, options = {}) {
 		if (this.requiresLogin === false) {
 			await this._init();
-			return true;
+			return { success: true };
 		}
 
-		const [data, err] = await this._call(this.api.Login, username, password);
+		const loginOptions = { ...options };
+
+		if (!loginOptions.device_trust_token) {
+			const trustToken = TOTPTrust.getToken(this.address, username);
+			if (trustToken !== null) {
+				loginOptions.device_trust_token = trustToken;
+			}
+		}
+
+		const [data, err] = await this._call(this.api.Login, username, password, loginOptions);
 		if (err !== null) {
+			if (Array.isArray(err.details) && err.details.includes('totp_required')) {
+				return { success: false, totpRequired: true };
+			}
+
 			this._dispatchEvent('error', 'login', i18n._(t`Login failed: ${err.message}`));
-			return false;
+			return { success: false, totpRequired: false };
+		}
+
+		if (data.device_trust_token && loginOptions.remember_device) {
+			TOTPTrust.setToken(this.address, username, data.device_trust_token, loginOptions.remember_device);
 		}
 
 		this._setAccessToken(data.access_token);
@@ -269,12 +292,12 @@ class Restreamer {
 		const about = await this.About();
 		if (about === null) {
 			this._dispatchEvent('error', 'login', i18n._(t`Login failed: Couldn't load API details`));
-			return false;
+			return { success: false, totpRequired: false };
 		}
 
 		if (about.id.length === 0) {
 			this._dispatchEvent('error', 'login', i18n._(t`Login failed: Couldn't load API details`));
-			return false;
+			return { success: false, totpRequired: false };
 		}
 
 		this.about = about;
@@ -282,7 +305,7 @@ class Restreamer {
 
 		await this._init();
 
-		return true;
+		return { success: true };
 	}
 
 	async LoginWithToken(token) {
@@ -317,6 +340,55 @@ class Restreamer {
 		await this._init();
 
 		return true;
+	}
+
+	async TOTPStatus() {
+		const [val, err] = await this._call(this.api.TOTPStatus);
+		if (err !== null) {
+			return null;
+		}
+
+		return val;
+	}
+
+	async TOTPSetup() {
+		const [val, err] = await this._call(this.api.TOTPSetup);
+		if (err !== null) {
+			this._dispatchEvent('error', 'totp', i18n._(t`TOTP setup failed: ${err.message}`));
+			return null;
+		}
+
+		return val;
+	}
+
+	async TOTPEnable(code) {
+		const [val, err] = await this._call(this.api.TOTPEnable, code);
+		if (err !== null) {
+			this._dispatchEvent('error', 'totp', i18n._(t`TOTP enable failed: ${err.message}`));
+			return false;
+		}
+
+		this.about = {
+			...this.about,
+			totp_required: true,
+		};
+
+		return val !== null;
+	}
+
+	async TOTPDisable(code) {
+		const [val, err] = await this._call(this.api.TOTPDisable, code);
+		if (err !== null) {
+			this._dispatchEvent('error', 'totp', i18n._(t`TOTP disable failed: ${err.message}`));
+			return false;
+		}
+
+		this.about = {
+			...this.about,
+			totp_required: false,
+		};
+
+		return val !== null;
 	}
 
 	Logout() {
