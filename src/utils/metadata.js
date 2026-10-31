@@ -623,12 +623,15 @@ const validateProfile = (sources, profile, requireVideo = true) => {
 	return complete;
 };
 
-const createInputsOutputs = (sources, profiles, requireVideo = true) => {
+const createInputsOutputs = (sources, profiles, requireVideo = true, overlays = []) => {
 	const source2inputMap = new Map();
 
 	let global = [];
 	const inputs = [];
 	const outputs = [];
+
+	// Check if we need to use filter_complex for overlays
+	const useFilterComplex = overlays && overlays.length > 0;
 
 	// For each profile get the source and do the proper mapping
 	for (let profile of profiles) {
@@ -662,17 +665,27 @@ const createInputsOutputs = (sources, profiles, requireVideo = true) => {
 
 		const local = profile.video.encoder.mapping.local.slice();
 
+		// Prepare video filter graph
+		let videoPreFilter = '';
 		if (profile.video.encoder.coder !== 'copy' && (profile.video.filter.graph.length !== 0 || profile.video.encoder.mapping.filter.length !== 0)) {
-			let filter = profile.video.filter.graph;
+			videoPreFilter = profile.video.filter.graph;
 			if (profile.video.encoder.mapping.filter.length !== 0) {
-				if (filter.length !== 0) {
-					filter += ',';
+				if (videoPreFilter.length !== 0) {
+					videoPreFilter += ',';
 				}
 
-				filter += profile.video.encoder.mapping.filter.join(',');
+				videoPreFilter += profile.video.encoder.mapping.filter.join(',');
 			}
+		}
 
-			local.unshift('-filter:v', filter);
+		// Handle filter complex for overlays
+		if (useFilterComplex) {
+			// We'll handle this after collecting all inputs
+		} else {
+			// Use simple video filter if no overlays
+			if (videoPreFilter.length !== 0 && profile.video.encoder.coder !== 'copy') {
+				local.unshift('-filter:v', videoPreFilter);
+			}
 		}
 
 		const options = ['-map', index + ':' + stream.stream, ...local];
@@ -731,6 +744,121 @@ const createInputsOutputs = (sources, profiles, requireVideo = true) => {
 	// global is an array of arrays. Here we remove duplicates and flatten it.
 	global = uniqBy(global, (x) => JSON.stringify(x.sort()));
 	global = global.reduce((acc, val) => acc.concat(val), []);
+
+	// Process overlays and create filter_complex if needed
+	if (useFilterComplex && profiles.length > 0 && inputs.length > 0) {
+		// We'll use the first profile and its video stream as the main input
+		const profile = profiles[0];
+		const videoSource = sources[profile.video.source];
+		const videoStream = videoSource.streams[profile.video.stream];
+		const videoInputIndex = source2inputMap.get(profile.video.source + ':' + videoStream.index);
+		const videoStreamNumber = videoStream.stream; // The actual stream number within the input
+		
+		// Create filter complex parts
+		const filterParts = [];
+		
+		// Add overlays as inputs and track their indices
+		const validOverlays = overlays.filter(overlay => overlay.path);
+		const overlayInputIndices = [];
+		validOverlays.forEach((overlay, i) => {
+			// Create input options for overlay
+			const overlayOptions = [];
+			
+			// Apply loop if enabled (always use -loop 1 for images)
+			overlayOptions.push('-loop', '1');
+			
+			// Apply framerate if specified
+			if (overlay.framerate) {
+				overlayOptions.push('-framerate', overlay.framerate.toString());
+			} else {
+				overlayOptions.push('-framerate', '30');
+			}
+			
+			// Track the index where this overlay will be added
+			overlayInputIndices.push(inputs.length);
+			
+			// Add the overlay as an input
+			inputs.push({
+				address: overlay.path,
+				options: overlayOptions,
+			});
+		});
+		
+		// Now build the filter complex string similar to the working example
+		// First, create labels for each overlay
+		validOverlays.forEach((overlay, i) => {
+			const overlayIndex = i + 1;
+			const inputIndex = overlayInputIndices[i]; // Use the tracked input index
+			let scaleWidth = overlay.width || '320';
+			
+			// Create scale filter for the overlay
+			filterParts.push(`[${inputIndex}:v]scale=${scaleWidth}:-1[logo${overlayIndex}]`);
+		});
+		
+		// Add scale filter for the main video if needed
+		if (profile.video.filter.graph.length !== 0 && profile.video.filter.graph.includes('scale')) {
+			// Use the existing scale filter from the profile
+			filterParts.push(`[${videoInputIndex}:v:${videoStreamNumber}]${profile.video.filter.graph}[bg]`);
+		} else {
+			// Add a default scale filter if none exists
+			filterParts.push(`[${videoInputIndex}:v:${videoStreamNumber}]scale=1280:720[bg]`);
+		}
+		
+		// Now chain the overlays together
+		let currentInput = '[bg]';
+		validOverlays.forEach((overlay, i) => {
+			const overlayIndex = i + 1;
+			const isLastOverlay = i === validOverlays.length - 1;
+			
+			// Determine position
+			let x = overlay.x || '(W-w)/2';
+			let y = overlay.y || '(H-h)/2';
+			
+			// For vertical positioning at bottom with padding
+			if (y === '0' || !overlay.y) {
+				// If it's the first overlay, position at bottom with padding
+				if (i === 0) {
+					y = 'H-h-24';
+				} else {
+					y = '(H-h)/2';
+				}
+			}
+			
+			// Create output label
+			const outputLabel = isLastOverlay ? '[v]' : `[with_logo${overlayIndex}]`;
+			
+			// Add overlay filter
+			filterParts.push(`${currentInput}[logo${overlayIndex}]overlay=x=${x}:y=${y}${outputLabel}`);
+			
+			// Update for next iteration
+			currentInput = outputLabel;
+		});
+		
+		// Add format filter at the end if we have overlays
+		if (validOverlays.length > 0) {
+			// Modify the last filter to include format=yuv420p
+			const lastFilterIndex = filterParts.length - 1;
+			if (lastFilterIndex >= 0) {
+				// Replace [v] with ,format=yuv420p[v]
+				filterParts[lastFilterIndex] = filterParts[lastFilterIndex].replace('[v]', ',format=yuv420p[v]');
+			}
+			
+			// Add filter_complex to the first output's options, not global
+			if (outputs.length > 0) {
+				const output = outputs[0];
+				
+				// Add filter_complex to the beginning of output options
+				output.options.unshift('-filter_complex', filterParts.join(';'));
+				
+				// Find and replace the video map in the output
+				const mapIndex = output.options.indexOf('-map');
+				if (mapIndex !== -1 && mapIndex + 1 < output.options.length) {
+					// Replace the video map with our filter complex output
+					output.options.splice(mapIndex, 2, '-map', '[v]');
+				}
+			}
+		}
+	}
 
 	return [global, inputs, outputs];
 };
