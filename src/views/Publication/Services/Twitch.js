@@ -13,7 +13,7 @@ import Select from '../../../misc/Select';
 const id = 'twitch';
 const name = 'Twitch';
 const version = '1.1';
-const stream_key_link = 'https://dashboard/settings/stream';
+const stream_key_link = 'https://dashboard.twitch.tv/settings/stream';
 const description = <Trans>Live-Streaming to Twitch Live RTMP Service.</Trans>;
 const image_copyright = <Trans>More about licenses here</Trans>;
 const author = {
