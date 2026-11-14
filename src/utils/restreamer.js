@@ -1668,7 +1668,7 @@ class Restreamer {
 			rtmp_enabled = true;
 		}
 		if (
-			proc.input[0].address.includes('rtmp://localhost') &&
+			(proc.input[0].address.includes('rtmp://localhost') || proc.input[0].address.includes('{rtmp,')) &&
 			proc.input[0].address.includes(channel.channelid) &&
 			!proc.input[0].address.includes('ingest')
 		) {
@@ -1683,7 +1683,7 @@ class Restreamer {
 			srt_enabled = true;
 		}
 		if (
-			proc.input[0].address.includes('srt://localhost') &&
+			(proc.input[0].address.includes('srt://localhost') || proc.input[0].address.includes('{srt,')) &&
 			proc.input[0].address.includes(channel.channelid) &&
 			!proc.input[0].address.includes('ingest')
 		) {
